@@ -4,8 +4,18 @@ Notre idée : Jeu de simulation, ludique, simple d'utilisation et réaliste éco
 
 Tour par tour (énergie) et quand tu skip c fini 
 
-Monnaie : Argent, Réseaux, XP 
+Ressource : Argent, Réseaux, XP , Santé (mentale/bonheur/physique)			--santé trop basse = nerf--
 
 - SALARIAT : XP Professionnel pour par exemple évoluer dans la boite 
-- ENTREPREUNARIAT : Réseau (t'aiguilles sur la bonne voie), idée de choix de projet de startup qui donnera réussite ou non (exemple 3 choix puis 3 choix puis 3 choix
+- ENTREPREUNARIAT : Réseau (qui t'aiguilles sur la bonne voie), idée de choix de projet de startup qui donnera réussite ou non (exemple 3 choix puis 3 choix puis 3 choix donc total)
+- INVESTISSEMENT : 1) ACTIONS / 2) IMMO / ( 3) CRYPTO)  
+- BANQUE : PRÊTS
 
+
+
+
+
+
+
+
+Version minimal: début pas de taff, 
