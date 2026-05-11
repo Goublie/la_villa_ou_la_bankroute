@@ -1,0 +1,11 @@
+BRAINSTORMING:
+
+Notre idée : Jeu de simulation, ludique, simple d'utilisation et réaliste économique. 1 joueur (version minimaliste 1 seul personnalité) personnalisable.
+
+Tour par tour (énergie) et quand tu skip c fini 
+
+Monnaie : Argent, Réseaux, XP 
+
+- SALARIAT : XP Professionnel pour par exemple évoluer dans la boite 
+- ENTREPREUNARIAT : Réseau (t'aiguilles sur la bonne voie), idée de choix de projet de startup qui donnera réussite ou non (exemple 3 choix puis 3 choix puis 3 choix
+
