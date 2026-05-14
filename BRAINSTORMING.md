@@ -36,7 +36,7 @@ Notre idée : Jeu de simulation solo, où tu incarnes un personnage personnalisa
 * Arbre de vie non-linéaire : des choix jeunes ont des répercussions tardives (ex : ne pas faire de réseau tôt = startup plus difficile à lancer)
 * Mode "what if" : rejouer un moment clé avec un choix différent pour voir l'impact (super pour montrer les modèles ML en action)
 * Flux d'actualités économiques (belek sponso) : Un fil de notifications simule des headlines inspirées de vrais médias (ex : "Le Monde : L'IA révolutionne la médecine"). Ces signaux sont des opportunités à fenêtre temporelle limitée : lancer une startup dans le secteur annoncé dans les prochains tours booste ses chances de succès ; investir en bourse sur le secteur concerné avant la hausse peut générer un rendement supérieur. Le joueur doit donc rester attentif et savoir lire l'info économique pour en tirer parti.
-* Gestion du temps personnel : Chaque tour, le joueur dispose d'un capital temps limité à répartir entre ses différentes activités (travail salarié, startup, vie personnelle, investissements). Sur-investir dans une activité pénalise les autres : trop d'heures au bureau = startup à l'arrêt et santé en baisse ; trop de temps libre = XP professionnel stagnant.
+* Gestion du temps personnel : Chaque tour, le joueur dispose d'un capital temps limité à répartir entre ses différentes activités (travail salarié, startup, vie personnelle, investissements). Sur-investir dans une activité pénalise les autres : trop d'heures au bureau = startup à l'arrêt et santé en baisse ; trop de temps libre = XP professionnel stagnant. Investissement de temps dans l'investissement = info/indice sur quoi investir.
 
 
 
