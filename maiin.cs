@@ -13,10 +13,5 @@ public class Testing : MonoBehaviour
 	}
 }
 
-class Program
-{
-	static void Main()
-	{
-	}
-}
+
 //dsgfsffvdbvgfffhfhh
