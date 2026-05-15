@@ -37,3 +37,5 @@ sysinfo.txt
 /[Aa]ssets/Plugins/iOS/
 # Note : Gardez vos packages s'ils sont dans le dossier Assets, 
 # mais ignorez les fichiers de cache externes.
+# --- Unity user local settings ---
+[Uu]ser[Ss]ettings/
