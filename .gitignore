@@ -39,3 +39,6 @@ sysinfo.txt
 # mais ignorez les fichiers de cache externes.
 # --- Unity user local settings ---
 [Uu]ser[Ss]ettings/
+
+# --- Ignore Unity UserSettings everywhere ---
+**/[Uu]ser[Ss]ettings/
