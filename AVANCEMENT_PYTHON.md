@@ -1,7 +1,3 @@
-# Avancement du projet — Simulation Économique
-
-## Ce qui a été fait
-
 ### 1. Scrapping des données financières
 Utilisation de la librairie Python `yfinance` pour récupérer les données historiques de plusieurs actifs financiers entre le **01/01/2015 et le 31/12/2024**.
 
@@ -28,7 +24,7 @@ Les coefficients du modèle sont exportés dans un fichier `cac40_model.json` po
 ---
 
 ### 3. Modélisation de la volatilité (à coder)
-La courbe ML est volontairement lisse — elle capure la tendance mais pas les fluctuations quotidiennes.
+La courbe ML est volontairement lisse — elle capure la tendance mais pas les fluctuations mensuelles.
 
 L'idée validée : calculer les **variations mensuelles historiques réelles** de chaque actif (ex: +3.2%, -1.8%...) et les stocker sous forme de distribution. En jeu, à chaque tour on tire aléatoirement une variation dans cette distribution et on l'applique autour de la courbe lisse.
 
@@ -42,7 +38,6 @@ Cela garantit une simulation réaliste sans dénaturer la tendance du modèle.
 
 ## Ce qui reste à faire
 
-- [ ] Nettoyer les fichiers JSON des autres actifs (vérifier valeurs manquantes, aberrantes, doublons)
 - [ ] Coder la volatilité mensuelle pour chaque actif
 - [ ] Appliquer le modèle ML à tous les actifs (pas seulement le CAC 40)
 - [ ] Scrapper les données immobilières (DVF)
@@ -54,28 +49,8 @@ Cela garantit une simulation réaliste sans dénaturer la tendance du modèle.
 
 ## Stack technique utilisée
 
-| Outil | Rôle |
-|---|---|
 | `yfinance` | Scrapping données financières |
 | `pandas` | Manipulation et export des données |
 | `scikit-learn` | Régression polynomiale |
 | `matplotlib` | Visualisation des courbes (dev uniquement) |
 | `os` | Chemins dynamiques pour la reproductibilité |
-
----
-
-## Structure des fichiers
-
-```
-projet/
-├── scrapping.py            ← récupère toutes les données financières
-├── ml_model.py             ← entraîne le modèle et exporte les coefficients
-├── bourse_cac40.json       ← données CAC 40 prêtes
-├── or.json
-├── nvidia.json
-├── google.json
-├── dollar.json
-├── bitcoin.json
-├── totalenergies.json
-└── cac40_model.json        ← coefficients du modèle ML
-```
