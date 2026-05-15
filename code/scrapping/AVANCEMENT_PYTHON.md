@@ -54,3 +54,4 @@ Cela garantit une simulation réaliste sans dénaturer la tendance du modèle.
 | `scikit-learn` | Régression polynomiale |
 | `matplotlib` | Visualisation des courbes (dev uniquement) |
 | `os` | Chemins dynamiques pour la reproductibilité |
+paf
