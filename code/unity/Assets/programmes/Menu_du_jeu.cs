@@ -6,17 +6,26 @@ public class Menu_du_jeu : MonoBehaviour
 {
     public Button playButton;
     public Button quitButton;
+    public Button settingsButton;
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
         playButton.onClick.AddListener(StartGame);
         quitButton.onClick.AddListener(QuitGame);
+        settingsButton.onClick.AddListener(OpenSettings);
     }
 
     // Update is called once per frame
     void Update()
     {
         
+    }
+
+    public void OpenSettings()
+    {
+        // Code pour ouvrir les paramètres du jeu
+        Debug.Log("Ouverture des paramètres !");
+        SceneManager.LoadScene("Options");
     }
 
     public void StartGame()
