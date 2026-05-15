@@ -1,39 +1,28 @@
-# --- Unity ---
-[Ll]ibrary/
-[Tt]emp/
-[Oo]bj/
-[Bb]uild/
-[Bb]uilds/
-[Ll]ogs/
-[Uu]nityConfiguration.gen.cpp
-[Aa]ssets/AssetStoreTools*
+# Dossiers générés par Unity (à ignorer absolument)
+/[Ll]ibrary/
+/[Tt]emp/
+/[Oo]bj/
+/[Bb]uild/
+/[Bb]uilds/
+/[Ll]ogs/
+/[Uu]ser[Ss]ettings/
 
-# Ne pas ignorer les fichiers .meta (très important !)
-!/[Aa]ssets/**/*.meta
-
-# --- Visual Studio & VS Code ---
-.vs/
-.vscode/
+# Fichiers autogénérés
 *.csproj
+*.unityproj
 *.sln
-*.slnx
 *.suo
+*.tmp
 *.user
-*.userosscache
-*.sln.docstates
-*.pidb
 *.userprefs
+*.pidb
+*.booproj
+*.svd
+*.pdb
+*.mdb
+*.opendb
+*.VC.db
 
-# --- Fichiers temporaires de l'OS ---
+# Fichiers OS
 .DS_Store
 Thumbs.db
-
-# --- Crashlytics / Rapports ---
-sysinfo.txt
-*.stackdump
-
-# --- Plugins / Packages ---
-/[Aa]ssets/Plugins/Android/
-/[Aa]ssets/Plugins/iOS/
-# Note : Gardez vos packages s'ils sont dans le dossier Assets, 
-# mais ignorez les fichiers de cache externes.
