@@ -148,10 +148,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b4d4ae90588750d4993807bc4d118a8c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Audio_Manager
-  musicSource: {fileID: 1339880957}
-  SFXSource: {fileID: 2014858829}
-  background: {fileID: 8300000, guid: 46306de30fdf7ed47b55be24e957486d, type: 3}
-  appuier_boutton: {fileID: 8300000, guid: 1d07ca32994f2a4468916973f049ddfa, type: 3}
 --- !u!4 &9689045
 Transform:
   m_ObjectHideFlags: 0
@@ -331,7 +327,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 907710340}
+      - m_Target: {fileID: 0}
         m_TargetAssemblyTypeName: Audio_Manager, Assembly-CSharp
         m_MethodName: PlayBruitBouton
         m_Mode: 1
@@ -501,7 +497,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::Menu_du_jeu
   playButton: {fileID: 1836208255}
   quitButton: {fileID: 126238183}
-  settingsButton: {fileID: 0}
 --- !u!1 &907710334
 GameObject:
   m_ObjectHideFlags: 0
@@ -515,7 +510,6 @@ GameObject:
   - component: {fileID: 907710335}
   - component: {fileID: 907710338}
   - component: {fileID: 907710339}
-  - component: {fileID: 907710340}
   m_Layer: 0
   m_Name: Main Camera
   m_TagString: MainCamera
@@ -655,23 +649,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::Menu_du_jeu
   playButton: {fileID: 0}
   quitButton: {fileID: 0}
-  settingsButton: {fileID: 0}
---- !u!114 &907710340
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 907710334}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: b4d4ae90588750d4993807bc4d118a8c, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::Audio_Manager
-  musicSource: {fileID: 0}
-  SFXSource: {fileID: 0}
-  background: {fileID: 0}
-  appuier_boutton: {fileID: 0}
 --- !u!1 &1112268598
 GameObject:
   m_ObjectHideFlags: 0
@@ -763,7 +740,6 @@ GameObject:
   - component: {fileID: 1179186378}
   - component: {fileID: 1179186377}
   - component: {fileID: 1179186376}
-  - component: {fileID: 1179186379}
   m_Layer: 5
   m_Name: Options
   m_TagString: Untagged
@@ -897,21 +873,6 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1179186374}
   m_CullTransparentMesh: 1
---- !u!114 &1179186379
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1179186374}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ee96f2c321fb02a42a3251416be6975f, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::Menu_du_jeu
-  playButton: {fileID: 0}
-  quitButton: {fileID: 0}
-  settingsButton: {fileID: 0}
 --- !u!1 &1339880956
 GameObject:
   m_ObjectHideFlags: 0
