@@ -1,0 +1,7267 @@
+fileFormatVersion: 2
+guid: ccb074ab94d2e6247b6a4e2dbf78afa8
+TextureImporter:
+  internalIDToNameTable:
+  - first:
+      213: 5154719391768225518
+    second: icon_windows_tilesheet_0
+  - first:
+      213: -6267551576132769409
+    second: icon_windows_tilesheet_1
+  - first:
+      213: 917154543230228495
+    second: icon_windows_tilesheet_2
+  - first:
+      213: 859067773041377192
+    second: icon_windows_tilesheet_3
+  - first:
+      213: -8767847054620355580
+    second: icon_windows_tilesheet_4
+  - first:
+      213: -3086852636698468147
+    second: icon_windows_tilesheet_5
+  - first:
+      213: 296851718636861019
+    second: icon_windows_tilesheet_6
+  - first:
+      213: 3202790138176930727
+    second: icon_windows_tilesheet_7
+  - first:
+      213: -5484329608148063648
+    second: icon_windows_tilesheet_8
+  - first:
+      213: 6929088402391619063
+    second: icon_windows_tilesheet_9
+  - first:
+      213: -349793834392377828
+    second: icon_windows_tilesheet_10
+  - first:
+      213: 4763858037603976663
+    second: icon_windows_tilesheet_11
+  - first:
+      213: -5747572022403852845
+    second: icon_windows_tilesheet_12
+  - first:
+      213: -5331858335842837134
+    second: icon_windows_tilesheet_13
+  - first:
+      213: -8200358347436041587
+    second: icon_windows_tilesheet_14
+  - first:
+      213: 6681357311710478491
+    second: icon_windows_tilesheet_15
+  - first:
+      213: 1792510340104124396
+    second: icon_windows_tilesheet_16
+  - first:
+      213: 7949891571631299565
+    second: icon_windows_tilesheet_17
+  - first:
+      213: -1895200672322479373
+    second: icon_windows_tilesheet_18
+  - first:
+      213: 81188763989182295
+    second: icon_windows_tilesheet_19
+  - first:
+      213: -531835667654873025
+    second: icon_windows_tilesheet_20
+  - first:
+      213: 3816100979434719108
+    second: icon_windows_tilesheet_21
+  - first:
+      213: -6944593508031368132
+    second: icon_windows_tilesheet_22
+  - first:
+      213: -669726528037735663
+    second: icon_windows_tilesheet_23
+  - first:
+      213: -1793894657336548780
+    second: icon_windows_tilesheet_24
+  - first:
+      213: 4553399178813760744
+    second: icon_windows_tilesheet_25
+  - first:
+      213: -541483967044526029
+    second: icon_windows_tilesheet_26
+  - first:
+      213: -4595486629128652737
+    second: icon_windows_tilesheet_27
+  - first:
+      213: 5951521832653341747
+    second: icon_windows_tilesheet_28
+  - first:
+      213: 3525352723692995651
+    second: icon_windows_tilesheet_29
+  - first:
+      213: 5617280405172733637
+    second: icon_windows_tilesheet_30
+  - first:
+      213: -2378711233765362468
+    second: icon_windows_tilesheet_31
+  - first:
+      213: 2820501935569203496
+    second: icon_windows_tilesheet_32
+  - first:
+      213: 8195842508607897225
+    second: icon_windows_tilesheet_33
+  - first:
+      213: -8990320207842412101
+    second: icon_windows_tilesheet_34
+  - first:
+      213: -7706474163744736299
+    second: icon_windows_tilesheet_35
+  - first:
+      213: -6253684519613966829
+    second: icon_windows_tilesheet_36
+  - first:
+      213: -2222162477644916645
+    second: icon_windows_tilesheet_37
+  - first:
+      213: -4605091727548568500
+    second: icon_windows_tilesheet_38
+  - first:
+      213: 7925498832934407376
+    second: icon_windows_tilesheet_39
+  - first:
+      213: -1448500026210382196
+    second: icon_windows_tilesheet_40
+  - first:
+      213: -2078364731279683104
+    second: icon_windows_tilesheet_41
+  - first:
+      213: 3063376115694065472
+    second: icon_windows_tilesheet_42
+  - first:
+      213: 4262970848570712423
+    second: icon_windows_tilesheet_43
+  - first:
+      213: -7845856140157165078
+    second: icon_windows_tilesheet_44
+  - first:
+      213: 832716698918872437
+    second: icon_windows_tilesheet_45
+  - first:
+      213: -8498113230270636042
+    second: icon_windows_tilesheet_46
+  - first:
+      213: 884125221247231532
+    second: icon_windows_tilesheet_47
+  - first:
+      213: -8484503155879472031
+    second: icon_windows_tilesheet_48
+  - first:
+      213: -7128331326118421055
+    second: icon_windows_tilesheet_49
+  - first:
+      213: 6183404141075567603
+    second: icon_windows_tilesheet_50
+  - first:
+      213: -6896396214343457236
+    second: icon_windows_tilesheet_51
+  - first:
+      213: 2842568468547441159
+    second: icon_windows_tilesheet_52
+  - first:
+      213: 765915135113359443
+    second: icon_windows_tilesheet_53
+  - first:
+      213: 9094953578195127518
+    second: icon_windows_tilesheet_54
+  - first:
+      213: 1772554732955413172
+    second: icon_windows_tilesheet_55
+  - first:
+      213: -3585432116231822055
+    second: icon_windows_tilesheet_56
+  - first:
+      213: 5716809514176026244
+    second: icon_windows_tilesheet_57
+  - first:
+      213: 868628553697031836
+    second: icon_windows_tilesheet_58
+  - first:
+      213: 8621061667125770375
+    second: icon_windows_tilesheet_59
+  - first:
+      213: 2658123079186850525
+    second: icon_windows_tilesheet_60
+  - first:
+      213: 7527227952528868526
+    second: icon_windows_tilesheet_61
+  - first:
+      213: 7193662641257876272
+    second: icon_windows_tilesheet_62
+  - first:
+      213: 974152035125169473
+    second: icon_windows_tilesheet_63
+  - first:
+      213: 3170380906128366580
+    second: icon_windows_tilesheet_64
+  - first:
+      213: -7205466246348604432
+    second: icon_windows_tilesheet_65
+  - first:
+      213: 241506234624867070
+    second: icon_windows_tilesheet_66
+  - first:
+      213: -6362759873602352973
+    second: icon_windows_tilesheet_67
+  - first:
+      213: 608557645645858592
+    second: icon_windows_tilesheet_68
+  - first:
+      213: -2917088775981821133
+    second: icon_windows_tilesheet_69
+  - first:
+      213: -6463255468790961971
+    second: icon_windows_tilesheet_70
+  - first:
+      213: -1282247158788893451
+    second: icon_windows_tilesheet_71
+  - first:
+      213: 887884540727370306
+    second: icon_windows_tilesheet_72
+  - first:
+      213: -133684309429051048
+    second: icon_windows_tilesheet_73
+  - first:
+      213: 4804599118517282748
+    second: icon_windows_tilesheet_74
+  - first:
+      213: 2675594650619729168
+    second: icon_windows_tilesheet_75
+  - first:
+      213: -4760945792227308939
+    second: icon_windows_tilesheet_76
+  - first:
+      213: -5583724320503741808
+    second: icon_windows_tilesheet_77
+  - first:
+      213: 4772880271450358974
+    second: icon_windows_tilesheet_78
+  - first:
+      213: -4147332907221585518
+    second: icon_windows_tilesheet_79
+  - first:
+      213: 8692322233809327744
+    second: icon_windows_tilesheet_80
+  - first:
+      213: -5831803548107910912
+    second: icon_windows_tilesheet_81
+  - first:
+      213: 1991703661655082530
+    second: icon_windows_tilesheet_82
+  - first:
+      213: -6959119683852674876
+    second: icon_windows_tilesheet_83
+  - first:
+      213: 1942370777331112048
+    second: icon_windows_tilesheet_84
+  - first:
+      213: -1771907166660417376
+    second: icon_windows_tilesheet_85
+  - first:
+      213: 4382930120875894211
+    second: icon_windows_tilesheet_86
+  - first:
+      213: -4395545538743183525
+    second: icon_windows_tilesheet_87
+  - first:
+      213: -3384532393340851688
+    second: icon_windows_tilesheet_88
+  - first:
+      213: -4914452168181862059
+    second: icon_windows_tilesheet_89
+  - first:
+      213: 6259351365549460602
+    second: icon_windows_tilesheet_90
+  - first:
+      213: -4186510647802224159
+    second: icon_windows_tilesheet_91
+  - first:
+      213: -432234755391154926
+    second: icon_windows_tilesheet_92
+  - first:
+      213: 1957650742039751982
+    second: icon_windows_tilesheet_93
+  - first:
+      213: 8965720657899829698
+    second: icon_windows_tilesheet_94
+  - first:
+      213: -6955607847698289648
+    second: icon_windows_tilesheet_95
+  - first:
+      213: -6381784008285456281
+    second: icon_windows_tilesheet_96
+  - first:
+      213: 5808117754003315245
+    second: icon_windows_tilesheet_97
+  - first:
+      213: 1693957222032410551
+    second: icon_windows_tilesheet_98
+  - first:
+      213: 1962742723822609373
+    second: icon_windows_tilesheet_99
+  - first:
+      213: -6841476886979876258
+    second: icon_windows_tilesheet_100
+  - first:
+      213: -8747777804761510672
+    second: icon_windows_tilesheet_101
+  - first:
+      213: -800460041063313121
+    second: icon_windows_tilesheet_102
+  - first:
+      213: -3719619984756172183
+    second: icon_windows_tilesheet_103
+  - first:
+      213: -5808507777546980781
+    second: icon_windows_tilesheet_104
+  - first:
+      213: 369509453600001316
+    second: icon_windows_tilesheet_105
+  - first:
+      213: 329134727860409144
+    second: icon_windows_tilesheet_106
+  - first:
+      213: 7726463217506359689
+    second: icon_windows_tilesheet_107
+  - first:
+      213: 7578456233140863530
+    second: icon_windows_tilesheet_108
+  - first:
+      213: 1329839415441881269
+    second: icon_windows_tilesheet_109
+  - first:
+      213: -6191872354937036068
+    second: icon_windows_tilesheet_110
+  - first:
+      213: -7496261532269900781
+    second: icon_windows_tilesheet_111
+  - first:
+      213: -3392228026174811042
+    second: icon_windows_tilesheet_112
+  - first:
+      213: -7371568404219153504
+    second: icon_windows_tilesheet_113
+  - first:
+      213: -3620067052366363544
+    second: icon_windows_tilesheet_114
+  - first:
+      213: 1867814271580701629
+    second: icon_windows_tilesheet_115
+  - first:
+      213: 6922770145992910974
+    second: icon_windows_tilesheet_116
+  - first:
+      213: -9092055842006838943
+    second: icon_windows_tilesheet_117
+  - first:
+      213: -4418510374638080395
+    second: icon_windows_tilesheet_118
+  - first:
+      213: 4443814618234865366
+    second: icon_windows_tilesheet_119
+  - first:
+      213: 3054770161163567740
+    second: icon_windows_tilesheet_120
+  - first:
+      213: 2076763168928916838
+    second: icon_windows_tilesheet_121
+  - first:
+      213: -3722455371918092830
+    second: icon_windows_tilesheet_122
+  - first:
+      213: 7980221046246512382
+    second: icon_windows_tilesheet_123
+  - first:
+      213: 5038225097637371396
+    second: icon_windows_tilesheet_124
+  - first:
+      213: -7707044380994397974
+    second: icon_windows_tilesheet_125
+  - first:
+      213: 214023820295349121
+    second: icon_windows_tilesheet_126
+  - first:
+      213: -1784263148775338075
+    second: icon_windows_tilesheet_127
+  - first:
+      213: -3559663474502196579
+    second: icon_windows_tilesheet_128
+  - first:
+      213: -8388983689228831493
+    second: icon_windows_tilesheet_129
+  - first:
+      213: 8218775471176528366
+    second: icon_windows_tilesheet_130
+  - first:
+      213: -2729125190389978140
+    second: icon_windows_tilesheet_131
+  - first:
+      213: -1119655018128922656
+    second: icon_windows_tilesheet_132
+  - first:
+      213: -8225002832840712137
+    second: icon_windows_tilesheet_133
+  - first:
+      213: -7476147628671522918
+    second: icon_windows_tilesheet_134
+  - first:
+      213: 5437335940653643161
+    second: icon_windows_tilesheet_135
+  - first:
+      213: -8573259118084846701
+    second: icon_windows_tilesheet_136
+  - first:
+      213: 2081002865963263242
+    second: icon_windows_tilesheet_137
+  - first:
+      213: 5204085502644749729
+    second: icon_windows_tilesheet_138
+  - first:
+      213: -5405890437189652485
+    second: icon_windows_tilesheet_139
+  - first:
+      213: -5088145805108372872
+    second: icon_windows_tilesheet_140
+  - first:
+      213: 9030719888041874780
+    second: icon_windows_tilesheet_141
+  - first:
+      213: 7783897339640063953
+    second: icon_windows_tilesheet_142
+  - first:
+      213: 9179693524090904573
+    second: icon_windows_tilesheet_143
+  - first:
+      213: 5345010066871912581
+    second: icon_windows_tilesheet_144
+  - first:
+      213: 9118755198713003549
+    second: icon_windows_tilesheet_145
+  - first:
+      213: -986796984062967317
+    second: icon_windows_tilesheet_146
+  - first:
+      213: 8096700807343479260
+    second: icon_windows_tilesheet_147
+  - first:
+      213: -6665548630652691786
+    second: icon_windows_tilesheet_148
+  - first:
+      213: 2257571484777461130
+    second: icon_windows_tilesheet_149
+  - first:
+      213: 2735140350379634656
+    second: icon_windows_tilesheet_150
+  - first:
+      213: 3052749406991508764
+    second: icon_windows_tilesheet_151
+  - first:
+      213: -8788314173284928592
+    second: icon_windows_tilesheet_152
+  - first:
+      213: -5289281476377301730
+    second: icon_windows_tilesheet_153
+  - first:
+      213: 3143302966923161087
+    second: icon_windows_tilesheet_154
+  - first:
+      213: -4556689726929720995
+    second: icon_windows_tilesheet_155
+  - first:
+      213: -5832258980751812037
+    second: icon_windows_tilesheet_156
+  - first:
+      213: -3694178859053666438
+    second: icon_windows_tilesheet_157
+  - first:
+      213: -7403993742589530759
+    second: icon_windows_tilesheet_158
+  - first:
+      213: -6030017102584099384
+    second: icon_windows_tilesheet_159
+  - first:
+      213: 1533444650614773756
+    second: icon_windows_tilesheet_160
+  - first:
+      213: -7469245572020244057
+    second: icon_windows_tilesheet_161
+  - first:
+      213: 161705027710179801
+    second: icon_windows_tilesheet_162
+  - first:
+      213: 9129723844843502154
+    second: icon_windows_tilesheet_163
+  - first:
+      213: 8622415529573921040
+    second: icon_windows_tilesheet_164
+  - first:
+      213: -1428246133447346967
+    second: icon_windows_tilesheet_165
+  - first:
+      213: -2408732669233455809
+    second: icon_windows_tilesheet_166
+  - first:
+      213: 3211204039736557417
+    second: icon_windows_tilesheet_167
+  - first:
+      213: -9001671246740276144
+    second: icon_windows_tilesheet_168
+  - first:
+      213: 2330673244422703402
+    second: icon_windows_tilesheet_169
+  - first:
+      213: -9184440242400248769
+    second: icon_windows_tilesheet_170
+  - first:
+      213: -7984290926913204529
+    second: icon_windows_tilesheet_171
+  - first:
+      213: 6346512914210589143
+    second: icon_windows_tilesheet_172
+  - first:
+      213: 4783172635675090390
+    second: icon_windows_tilesheet_173
+  - first:
+      213: -3117199398884176347
+    second: icon_windows_tilesheet_174
+  - first:
+      213: -3428742784238022699
+    second: icon_windows_tilesheet_175
+  - first:
+      213: -5893864668737233402
+    second: icon_windows_tilesheet_176
+  - first:
+      213: 3297873639322509010
+    second: icon_windows_tilesheet_177
+  - first:
+      213: -508183975639414566
+    second: icon_windows_tilesheet_178
+  - first:
+      213: 6792199338116926705
+    second: icon_windows_tilesheet_179
+  - first:
+      213: -2328570272015993481
+    second: icon_windows_tilesheet_180
+  - first:
+      213: -7031614144317415647
+    second: icon_windows_tilesheet_181
+  - first:
+      213: -8958876958538356247
+    second: icon_windows_tilesheet_182
+  - first:
+      213: -2266419782045654214
+    second: icon_windows_tilesheet_183
+  - first:
+      213: -5888725631508933560
+    second: icon_windows_tilesheet_184
+  - first:
+      213: 3753311345615542569
+    second: icon_windows_tilesheet_185
+  - first:
+      213: -2929469022695499471
+    second: icon_windows_tilesheet_186
+  - first:
+      213: -6966988747944505359
+    second: icon_windows_tilesheet_187
+  - first:
+      213: 983346401044780503
+    second: icon_windows_tilesheet_188
+  - first:
+      213: 6983138277818896297
+    second: icon_windows_tilesheet_189
+  - first:
+      213: 453952800526397784
+    second: icon_windows_tilesheet_190
+  - first:
+      213: 1185118994944791552
+    second: icon_windows_tilesheet_191
+  - first:
+      213: -6971512948834074638
+    second: icon_windows_tilesheet_192
+  - first:
+      213: 211230435909914237
+    second: icon_windows_tilesheet_193
+  - first:
+      213: -5451029913678932784
+    second: icon_windows_tilesheet_194
+  - first:
+      213: 6231309458136733053
+    second: icon_windows_tilesheet_195
+  - first:
+      213: 4117529955469955628
+    second: icon_windows_tilesheet_196
+  - first:
+      213: -8316548306738925956
+    second: icon_windows_tilesheet_197
+  - first:
+      213: -3227971619152239088
+    second: icon_windows_tilesheet_198
+  - first:
+      213: 8429688316801449677
+    second: icon_windows_tilesheet_199
+  - first:
+      213: 9096593674484893559
+    second: icon_windows_tilesheet_200
+  - first:
+      213: -5186762595475157995
+    second: icon_windows_tilesheet_201
+  - first:
+      213: 857417561183521738
+    second: icon_windows_tilesheet_202
+  - first:
+      213: -3473708802313487556
+    second: icon_windows_tilesheet_203
+  - first:
+      213: -7809774671873700981
+    second: icon_windows_tilesheet_204
+  - first:
+      213: 5758732889244747735
+    second: icon_windows_tilesheet_205
+  - first:
+      213: -3506483528076810049
+    second: icon_windows_tilesheet_206
+  - first:
+      213: -24529768629523713
+    second: icon_windows_tilesheet_207
+  - first:
+      213: 1705907711333432989
+    second: icon_windows_tilesheet_208
+  - first:
+      213: 3323032069714830695
+    second: icon_windows_tilesheet_209
+  - first:
+      213: -8011460556135502429
+    second: icon_windows_tilesheet_210
+  - first:
+      213: -806199520063166092
+    second: icon_windows_tilesheet_211
+  - first:
+      213: -7473404495017882808
+    second: icon_windows_tilesheet_212
+  - first:
+      213: -5473984829446072075
+    second: icon_windows_tilesheet_213
+  - first:
+      213: 6919737877236691251
+    second: icon_windows_tilesheet_214
+  - first:
+      213: 3259353781919825842
+    second: icon_windows_tilesheet_215
+  - first:
+      213: -4466459644534912435
+    second: icon_windows_tilesheet_216
+  - first:
+      213: 8219504667889365714
+    second: icon_windows_tilesheet_217
+  - first:
+      213: -7889246374115861201
+    second: icon_windows_tilesheet_218
+  - first:
+      213: 8490353928919118046
+    second: icon_windows_tilesheet_219
+  - first:
+      213: -157904251219384535
+    second: icon_windows_tilesheet_220
+  - first:
+      213: 7262900017741828650
+    second: icon_windows_tilesheet_221
+  - first:
+      213: -1817645572589466864
+    second: icon_windows_tilesheet_222
+  - first:
+      213: -7473403720166758435
+    second: icon_windows_tilesheet_223
+  - first:
+      213: -4783481841289264971
+    second: icon_windows_tilesheet_224
+  - first:
+      213: 9141528353843550826
+    second: icon_windows_tilesheet_225
+  - first:
+      213: -7004540468807332252
+    second: icon_windows_tilesheet_226
+  - first:
+      213: -6427660051369296781
+    second: icon_windows_tilesheet_227
+  - first:
+      213: -2647491649891487963
+    second: icon_windows_tilesheet_228
+  - first:
+      213: -1713046002335963677
+    second: icon_windows_tilesheet_229
+  - first:
+      213: -8020498647160995577
+    second: icon_windows_tilesheet_230
+  - first:
+      213: -996237851850557599
+    second: icon_windows_tilesheet_231
+  - first:
+      213: -621578333212436630
+    second: icon_windows_tilesheet_232
+  - first:
+      213: 8344191392805775198
+    second: icon_windows_tilesheet_233
+  - first:
+      213: -3484986689393191960
+    second: icon_windows_tilesheet_234
+  - first:
+      213: -3982154973363342120
+    second: icon_windows_tilesheet_235
+  - first:
+      213: -7715221448259322109
+    second: icon_windows_tilesheet_236
+  - first:
+      213: -4568477447370049121
+    second: icon_windows_tilesheet_237
+  - first:
+      213: -8819984496206229393
+    second: icon_windows_tilesheet_238
+  - first:
+      213: -2494612561408820716
+    second: icon_windows_tilesheet_239
+  - first:
+      213: -7953028734725109093
+    second: icon_windows_tilesheet_240
+  - first:
+      213: 4679584290628352623
+    second: icon_windows_tilesheet_241
+  - first:
+      213: -2418130388361883080
+    second: icon_windows_tilesheet_242
+  - first:
+      213: 2709494132918325741
+    second: icon_windows_tilesheet_243
+  - first:
+      213: 7052359150585467315
+    second: icon_windows_tilesheet_244
+  - first:
+      213: 2804599009807400312
+    second: icon_windows_tilesheet_245
+  - first:
+      213: -5153582996930223189
+    second: icon_windows_tilesheet_246
+  - first:
+      213: 548491974645385281
+    second: icon_windows_tilesheet_247
+  - first:
+      213: -6867820983424075689
+    second: icon_windows_tilesheet_248
+  - first:
+      213: -4303270177260353319
+    second: icon_windows_tilesheet_249
+  - first:
+      213: 1034633973312179357
+    second: icon_windows_tilesheet_250
+  - first:
+      213: -3593911272040609756
+    second: icon_windows_tilesheet_251
+  - first:
+      213: 6474726002848694434
+    second: icon_windows_tilesheet_252
+  - first:
+      213: -3515823681045113542
+    second: icon_windows_tilesheet_253
+  - first:
+      213: 2313249743353747385
+    second: icon_windows_tilesheet_254
+  - first:
+      213: -4372622026115274965
+    second: icon_windows_tilesheet_255
+  - first:
+      213: 6728984154495977686
+    second: icon_windows_tilesheet_256
+  - first:
+      213: -2294302603618022976
+    second: icon_windows_tilesheet_257
+  - first:
+      213: 4306948852428292791
+    second: icon_windows_tilesheet_258
+  - first:
+      213: 3824401559214456870
+    second: icon_windows_tilesheet_259
+  - first:
+      213: -7619860695801316584
+    second: icon_windows_tilesheet_260
+  - first:
+      213: 1684660826951589265
+    second: icon_windows_tilesheet_261
+  - first:
+      213: 633074818382832102
+    second: icon_windows_tilesheet_262
+  - first:
+      213: 5534336916285087769
+    second: icon_windows_tilesheet_263
+  - first:
+      213: -4427276944694228832
+    second: icon_windows_tilesheet_264
+  - first:
+      213: -5010927048427955004
+    second: icon_windows_tilesheet_265
+  - first:
+      213: -8992444155043863172
+    second: icon_windows_tilesheet_266
+  - first:
+      213: -2814152852596225744
+    second: icon_windows_tilesheet_267
+  - first:
+      213: -337719998938858366
+    second: icon_windows_tilesheet_268
+  - first:
+      213: -1710057849188381737
+    second: icon_windows_tilesheet_269
+  - first:
+      213: -5197780610415346577
+    second: icon_windows_tilesheet_270
+  - first:
+      213: 3960699008848882204
+    second: icon_windows_tilesheet_271
+  - first:
+      213: -5726334820334544699
+    second: icon_windows_tilesheet_272
+  - first:
+      213: -1838389429927420656
+    second: icon_windows_tilesheet_273
+  - first:
+      213: -5092892739012400126
+    second: icon_windows_tilesheet_274
+  externalObjects: {}
+  serializedVersion: 13
+  mipmaps:
+    mipMapMode: 0
+    enableMipMap: 0
+    sRGBTexture: 1
+    linearTexture: 0
+    fadeOut: 0
+    borderMipMap: 0
+    mipMapsPreserveCoverage: 0
+    alphaTestReferenceValue: 0.5
+    mipMapFadeDistanceStart: 1
+    mipMapFadeDistanceEnd: 3
+  bumpmap:
+    convertToNormalMap: 0
+    externalNormalMap: 0
+    heightScale: 0.25
+    normalMapFilter: 0
+    flipGreenChannel: 0
+  isReadable: 0
+  streamingMipmaps: 0
+  streamingMipmapsPriority: 0
+  vTOnly: 0
+  ignoreMipmapLimit: 0
+  grayScaleToAlpha: 0
+  generateCubemap: 6
+  cubemapConvolution: 0
+  seamlessCubemap: 0
+  textureFormat: 1
+  maxTextureSize: 2048
+  textureSettings:
+    serializedVersion: 2
+    filterMode: 1
+    aniso: 1
+    mipBias: 0
+    wrapU: 1
+    wrapV: 1
+    wrapW: 1
+  nPOTScale: 0
+  lightmap: 0
+  compressionQuality: 50
+  spriteMode: 2
+  spriteExtrude: 1
+  spriteMeshType: 1
+  alignment: 0
+  spritePivot: {x: 0.5, y: 0.5}
+  spritePixelsToUnits: 100
+  spriteBorder: {x: 0, y: 0, z: 0, w: 0}
+  spriteGenerateFallbackPhysicsShape: 1
+  alphaUsage: 1
+  alphaIsTransparency: 1
+  spriteTessellationDetail: -1
+  textureType: 8
+  textureShape: 1
+  singleChannelComponent: 0
+  flipbookRows: 1
+  flipbookColumns: 1
+  maxTextureSizeSet: 0
+  compressionQualitySet: 0
+  textureFormatSet: 0
+  ignorePngGamma: 0
+  applyGammaDecoding: 0
+  swizzle: 50462976
+  cookieLightType: 0
+  platformSettings:
+  - serializedVersion: 4
+    buildTarget: DefaultTexturePlatform
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 4
+    buildTarget: Standalone
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  spriteSheet:
+    serializedVersion: 2
+    sprites:
+    - serializedVersion: 2
+      name: icon_windows_tilesheet_0
+      rect:
+        serializedVersion: 2
+        x: 7
+        y: 911
+        width: 36
+        height: 49
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: ee6a927d9fd398740800000000000000
+      internalID: 5154719391768225518
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: icon_windows_tilesheet_1
+      rect:
+        serializedVersion: 2
+        x: 47
+        y: 911
+        width: 48
+        height: 49
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: f79aa256c0f2509a0800000000000000
+      internalID: -6267551576132769409
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: icon_windows_tilesheet_2
+      rect:
+        serializedVersion: 2
+        x: 95
+        y: 911
+        width: 98
+        height: 49
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: f089f51a2336abc00800000000000000
+      internalID: 917154543230228495
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: icon_windows_tilesheet_3
+      rect:
+        serializedVersion: 2
+        x: 192
+        y: 917
+        width: 48
+        height: 40
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 8affd1a86950ceb00800000000000000
+      internalID: 859067773041377192
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: icon_windows_tilesheet_4
+      rect:
+        serializedVersion: 2
+        x: 239
+        y: 916
+        width: 50
+        height: 41
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 4041660de89525680800000000000000
+      internalID: -8767847054620355580
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: icon_windows_tilesheet_5
+      rect:
+        serializedVersion: 2
+        x: 287
+        y: 911
+        width: 50
+        height: 49
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: dc02c9bb1eb4925d0800000000000000
+      internalID: -3086852636698468147
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: icon_windows_tilesheet_6
+      rect:
+        serializedVersion: 2
+        x: 335
+        y: 911
+        width: 98
+        height: 49
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: b567058b011ae1400800000000000000
+      internalID: 296851718636861019
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: icon_windows_tilesheet_7
+      rect:
+        serializedVersion: 2
+        x: 431
+        y: 911
+        width: 50
+        height: 49
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 7a3092c59a8927c20800000000000000
+      internalID: 3202790138176930727
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: icon_windows_tilesheet_8
+      rect:
+        serializedVersion: 2
+        x: 479
+        y: 863
+        width: 50
+        height: 97
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 06a6d23574fb3e3b0800000000000000
+      internalID: -5484329608148063648
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: icon_windows_tilesheet_9
+      rect:
+        serializedVersion: 2
+        x: 528
+        y: 912
+        width: 47
+        height: 48
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 7f5d4d9a031192060800000000000000
+      internalID: 6929088402391619063
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: icon_windows_tilesheet_10
+      rect:
+        serializedVersion: 2
+        x: 576
+        y: 912
+        width: 48
+        height: 48
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: c16ab646c58452bf0800000000000000
+      internalID: -349793834392377828
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: icon_windows_tilesheet_11
+      rect:
+        serializedVersion: 2
+        x: 624
+        y: 911
+        width: 96
+        height: 49
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 7d546cb25af9c1240800000000000000
+      internalID: 4763858037603976663
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: icon_windows_tilesheet_12
+      rect:
+        serializedVersion: 2
+        x: 719
+        y: 911
+        width: 50
+        height: 49
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 3d515a392b58c30b0800000000000000
+      internalID: -5747572022403852845
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: icon_windows_tilesheet_13
+      rect:
+        serializedVersion: 2
+        x: 770
+        y: 911
+        width: 45
+        height: 49
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 27dd16bc71f6106b0800000000000000
+      internalID: -5331858335842837134
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: icon_windows_tilesheet_14
+      rect:
+        serializedVersion: 2
+        x: 818
+        y: 911
+        width: 46
+        height: 49
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: d8a5a26c789723e80800000000000000
+      internalID: -8200358347436041587
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: icon_windows_tilesheet_15
+      rect:
+        serializedVersion: 2
+        x: 863
+        y: 914
+        width: 49
+        height: 43
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: b9046fd5313f8bc50800000000000000
+      internalID: 6681357311710478491
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: icon_windows_tilesheet_16
+      rect:
+        serializedVersion: 2
+        x: 911
+        y: 912
+        width: 49
+        height: 46
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: ce7fe1e38a640e810800000000000000
+      internalID: 1792510340104124396
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: icon_windows_tilesheet_17
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 863
+        width: 49
+        height: 49
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: deb94f99340b35e60800000000000000
+      internalID: 7949891571631299565
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: icon_windows_tilesheet_18
+      rect:
+        serializedVersion: 2
+        x: 47
+        y: 863
+        width: 50
+        height: 49
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 3fa132c9705e2b5e0800000000000000
+      internalID: -1895200672322479373
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: icon_windows_tilesheet_19
+      rect:
+        serializedVersion: 2
+        x: 96
+        y: 863
+        width: 49
+        height: 50
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 757045d20c0702100800000000000000
+      internalID: 81188763989182295
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: icon_windows_tilesheet_20
+      rect:
+        serializedVersion: 2
+        x: 143
+        y: 865
+        width: 49
+        height: 45
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: f307c8e274a8e98f0800000000000000
+      internalID: -531835667654873025
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: icon_windows_tilesheet_21
+      rect:
+        serializedVersion: 2
+        x: 191
+        y: 864
+        width: 50
+        height: 47
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 4870a3a4f9385f430800000000000000
+      internalID: 3816100979434719108
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: icon_windows_tilesheet_22
+      rect:
+        serializedVersion: 2
+        x: 245
+        y: 865
+        width: 38
+        height: 48
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: c347e4c9ff8df9f90800000000000000
+      internalID: -6944593508031368132
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: icon_windows_tilesheet_23
+      rect:
+        serializedVersion: 2
+        x: 288
+        y: 815
+        width: 193
+        height: 98
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 113b7a76547a4b6f0800000000000000
+      internalID: -669726528037735663
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: icon_windows_tilesheet_24
+      rect:
+        serializedVersion: 2
+        x: 532
+        y: 864
+        width: 40
+        height: 48
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 452ebf8405eca17e0800000000000000
+      internalID: -1793894657336548780
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: icon_windows_tilesheet_25
+      rect:
+        serializedVersion: 2
+        x: 579
+        y: 864
+        width: 41
+        height: 49
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 8e4efbd9d6ce03f30800000000000000
+      internalID: 4553399178813760744
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: icon_windows_tilesheet_26
+      rect:
+        serializedVersion: 2
+        x: 624
+        y: 868
+        width: 47
+        height: 39
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 330edbc63334c78f0800000000000000
+      internalID: -541483967044526029
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: icon_windows_tilesheet_27
+      rect:
+        serializedVersion: 2
+        x: 671
+        y: 815
+        width: 50
+        height: 98
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: f38babc324d8930c0800000000000000
+      internalID: -4595486629128652737
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: icon_windows_tilesheet_28
+      rect:
+        serializedVersion: 2
+        x: 723
+        y: 864
+        width: 42
+        height: 48
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 334c844039d089250800000000000000
+      internalID: 5951521832653341747
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: icon_windows_tilesheet_29
+      rect:
+        serializedVersion: 2
+        x: 768
+        y: 865
+        width: 97
+        height: 46
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 3444da3cf919ce030800000000000000
+      internalID: 3525352723692995651
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: icon_windows_tilesheet_30
+      rect:
+        serializedVersion: 2
+        x: 864
+        y: 869
+        width: 48
+        height: 40
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 5c6451254c694fd40800000000000000
+      internalID: 5617280405172733637
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: icon_windows_tilesheet_31
+      rect:
+        serializedVersion: 2
+        x: 911
+        y: 868
+        width: 49
+        height: 41
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: cd43f206cbe1dfed0800000000000000
+      internalID: -2378711233765362468
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: icon_windows_tilesheet_32
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 817
+        width: 47
+        height: 46
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 82177e5119f642720800000000000000
+      internalID: 2820501935569203496
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: icon_windows_tilesheet_33
+      rect:
+        serializedVersion: 2
+        x: 47
+        y: 768
+        width: 96
+        height: 49
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 98ebe90965b7db170800000000000000
+      internalID: 8195842508607897225
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: icon_windows_tilesheet_34
+      rect:
+        serializedVersion: 2
+        x: 49
+        y: 817
+        width: 47
+        height: 46
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: bb9798a5767fb3380800000000000000
+      internalID: -8990320207842412101
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: icon_windows_tilesheet_35
+      rect:
+        serializedVersion: 2
+        x: 96
+        y: 815
+        width: 49
+        height: 49
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 5dbf447249a1d0590800000000000000
+      internalID: -7706474163744736299
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: icon_windows_tilesheet_36
+      rect:
+        serializedVersion: 2
+        x: 143
+        y: 720
+        width: 49
+        height: 97
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 316dc0710137639a0800000000000000
+      internalID: -6253684519613966829
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: icon_windows_tilesheet_37
+      rect:
+        serializedVersion: 2
+        x: 145
+        y: 816
+        width: 47
+        height: 49
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: b58d5c6000b4921e0800000000000000
+      internalID: -2222162477644916645
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: icon_windows_tilesheet_38
+      rect:
+        serializedVersion: 2
+        x: 192
+        y: 767
+        width: 49
+        height: 98
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: c4ca06df87d6710c0800000000000000
+      internalID: -4605091727548568500
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: icon_windows_tilesheet_39
+      rect:
+        serializedVersion: 2
+        x: 242
+        y: 767
+        width: 46
+        height: 98
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 0dc04dc82370dfd60800000000000000
+      internalID: 7925498832934407376
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: icon_windows_tilesheet_40
+      rect:
+        serializedVersion: 2
+        x: 479
+        y: 816
+        width: 96
+        height: 49
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: c8e069096e4e5ebe0800000000000000
+      internalID: -1448500026210382196
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: icon_windows_tilesheet_41
+      rect:
+        serializedVersion: 2
+        x: 575
+        y: 815
+        width: 50
+        height: 50
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 0e1df5ed94a2823e0800000000000000
+      internalID: -2078364731279683104
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: icon_windows_tilesheet_42
+      rect:
+        serializedVersion: 2
+        x: 623
+        y: 817
+        width: 48
+        height: 48
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 0475c55c85c438a20800000000000000
+      internalID: 3063376115694065472
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: icon_windows_tilesheet_43
+      rect:
+        serializedVersion: 2
+        x: 671
+        y: 721
+        width: 97
+        height: 96
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 76127ec866d192b30800000000000000
+      internalID: 4262970848570712423
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: icon_windows_tilesheet_44
+      rect:
+        serializedVersion: 2
+        x: 719
+        y: 817
+        width: 48
+        height: 48
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: ae16d1fd86bed1390800000000000000
+      internalID: -7845856140157165078
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: icon_windows_tilesheet_45
+      rect:
+        serializedVersion: 2
+        x: 767
+        y: 719
+        width: 146
+        height: 146
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 575689dfc676e8b00800000000000000
+      internalID: 832716698918872437
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: icon_windows_tilesheet_46
+      rect:
+        serializedVersion: 2
+        x: 912
+        y: 816
+        width: 48
+        height: 48
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 6ffdba0ca03a01a80800000000000000
+      internalID: -8498113230270636042
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: icon_windows_tilesheet_47
+      rect:
+        serializedVersion: 2
+        x: 922
+        y: 768
+        width: 29
+        height: 49
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: c26a765543b054c00800000000000000
+      internalID: 884125221247231532
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: icon_windows_tilesheet_48
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 719
+        width: 49
+        height: 97
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 1649f12255df04a80800000000000000
+      internalID: -8484503155879472031
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: icon_windows_tilesheet_49
+      rect:
+        serializedVersion: 2
+        x: 57
+        y: 720
+        width: 30
+        height: 49
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 1cd1c692d64131d90800000000000000
+      internalID: -7128331326118421055
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: icon_windows_tilesheet_50
+      rect:
+        serializedVersion: 2
+        x: 104
+        y: 719
+        width: 31
+        height: 50
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 3f31d732e4ddfc550800000000000000
+      internalID: 6183404141075567603
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: icon_windows_tilesheet_51
+      rect:
+        serializedVersion: 2
+        x: 143
+        y: 672
+        width: 98
+        height: 97
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: c26a5b58e241b40a0800000000000000
+      internalID: -6896396214343457236
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: icon_windows_tilesheet_52
+      rect:
+        serializedVersion: 2
+        x: 287
+        y: 769
+        width: 194
+        height: 44
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 7021f7926f4d27720800000000000000
+      internalID: 2842568468547441159
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: icon_windows_tilesheet_53
+      rect:
+        serializedVersion: 2
+        x: 397
+        y: 719
+        width: 23
+        height: 50
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 350f684e1c311aa00800000000000000
+      internalID: 765915135113359443
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: icon_windows_tilesheet_54
+      rect:
+        serializedVersion: 2
+        x: 432
+        y: 720
+        width: 49
+        height: 49
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: edc0dfc9714c73e70800000000000000
+      internalID: 9094953578195127518
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: icon_windows_tilesheet_55
+      rect:
+        serializedVersion: 2
+        x: 479
+        y: 673
+        width: 194
+        height: 96
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 4baaeb26321699810800000000000000
+      internalID: 1772554732955413172
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: icon_windows_tilesheet_56
+      rect:
+        serializedVersion: 2
+        x: 480
+        y: 768
+        width: 48
+        height: 48
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 915a9b99c7cfd3ec0800000000000000
+      internalID: -3585432116231822055
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: icon_windows_tilesheet_57
+      rect:
+        serializedVersion: 2
+        x: 528
+        y: 767
+        width: 49
+        height: 49
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 4861905d6ff265f40800000000000000
+      internalID: 5716809514176026244
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: icon_windows_tilesheet_58
+      rect:
+        serializedVersion: 2
+        x: 581
+        y: 768
+        width: 39
+        height: 48
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: c967fd0411dfd0c00800000000000000
+      internalID: 868628553697031836
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: icon_windows_tilesheet_59
+      rect:
+        serializedVersion: 2
+        x: 629
+        y: 767
+        width: 40
+        height: 49
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 788b4cfe8e924a770800000000000000
+      internalID: 8621061667125770375
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: icon_windows_tilesheet_60
+      rect:
+        serializedVersion: 2
+        x: 863
+        y: 719
+        width: 97
+        height: 50
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: dd223307bdc83e420800000000000000
+      internalID: 2658123079186850525
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: icon_windows_tilesheet_61
+      rect:
+        serializedVersion: 2
+        x: 239
+        y: 719
+        width: 98
+        height: 49
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: ea4cfdd11f5167860800000000000000
+      internalID: 7527227952528868526
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: icon_windows_tilesheet_62
+      rect:
+        serializedVersion: 2
+        x: 350
+        y: 720
+        width: 20
+        height: 48
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 03b8c2efe0605d360800000000000000
+      internalID: 7193662641257876272
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: icon_windows_tilesheet_63
+      rect:
+        serializedVersion: 2
+        x: 719
+        y: 730
+        width: 50
+        height: 26
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 14d0cda5d12e48d00800000000000000
+      internalID: 974152035125169473
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: icon_windows_tilesheet_64
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 677
+        width: 49
+        height: 37
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 4fb567003a47ffb20800000000000000
+      internalID: 3170380906128366580
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: icon_windows_tilesheet_65
+      rect:
+        serializedVersion: 2
+        x: 47
+        y: 671
+        width: 50
+        height: 50
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 0fbf25900aa010c90800000000000000
+      internalID: -7205466246348604432
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: icon_windows_tilesheet_66
+      rect:
+        serializedVersion: 2
+        x: 96
+        y: 678
+        width: 48
+        height: 34
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: efa7bdd04a00a5300800000000000000
+      internalID: 241506234624867070
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: icon_windows_tilesheet_67
+      rect:
+        serializedVersion: 2
+        x: 241
+        y: 671
+        width: 45
+        height: 50
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 3b882d63b9fe2b7a0800000000000000
+      internalID: -6362759873602352973
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: icon_windows_tilesheet_68
+      rect:
+        serializedVersion: 2
+        x: 288
+        y: 674
+        width: 97
+        height: 43
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 027c11654f7027800800000000000000
+      internalID: 608557645645858592
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: icon_windows_tilesheet_69
+      rect:
+        serializedVersion: 2
+        x: 384
+        y: 674
+        width: 49
+        height: 46
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 3331351b63b6487d0800000000000000
+      internalID: -2917088775981821133
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: icon_windows_tilesheet_70
+      rect:
+        serializedVersion: 2
+        x: 431
+        y: 671
+        width: 50
+        height: 50
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: dc82d1a1567ed46a0800000000000000
+      internalID: -6463255468790961971
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: icon_windows_tilesheet_71
+      rect:
+        serializedVersion: 2
+        x: 527
+        y: 671
+        width: 50
+        height: 50
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 5f45222b00b843ee0800000000000000
+      internalID: -1282247158788893451
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: icon_windows_tilesheet_72
+      rect:
+        serializedVersion: 2
+        x: 679
+        y: 679
+        width: 34
+        height: 34
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 242ad9b1946625c00800000000000000
+      internalID: 887884540727370306
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: icon_windows_tilesheet_73
+      rect:
+        serializedVersion: 2
+        x: 727
+        y: 679
+        width: 33
+        height: 34
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 851207034de052ef0800000000000000
+      internalID: -133684309429051048
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: icon_windows_tilesheet_74
+      rect:
+        serializedVersion: 2
+        x: 775
+        y: 680
+        width: 33
+        height: 33
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: cb7a063417d5da240800000000000000
+      internalID: 4804599118517282748
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: icon_windows_tilesheet_75
+      rect:
+        serializedVersion: 2
+        x: 822
+        y: 675
+        width: 39
+        height: 39
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 015df19a82f912520800000000000000
+      internalID: 2675594650619729168
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: icon_windows_tilesheet_76
+      rect:
+        serializedVersion: 2
+        x: 871
+        y: 679
+        width: 33
+        height: 33
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 57a866bc609bdedb0800000000000000
+      internalID: -4760945792227308939
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: icon_windows_tilesheet_77
+      rect:
+        serializedVersion: 2
+        x: 911
+        y: 672
+        width: 49
+        height: 49
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 0924aa87050a282b0800000000000000
+      internalID: -5583724320503741808
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: icon_windows_tilesheet_78
+      rect:
+        serializedVersion: 2
+        x: 7
+        y: 632
+        width: 32
+        height: 33
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: eb4c44fa15dac3240800000000000000
+      internalID: 4772880271450358974
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: icon_windows_tilesheet_79
+      rect:
+        serializedVersion: 2
+        x: 55
+        y: 631
+        width: 34
+        height: 34
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 291f4c3c1b6b176c0800000000000000
+      internalID: -4147332907221585518
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: icon_windows_tilesheet_80
+      rect:
+        serializedVersion: 2
+        x: 103
+        y: 631
+        width: 34
+        height: 34
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 0865f6b840551a870800000000000000
+      internalID: 8692322233809327744
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: icon_windows_tilesheet_81
+      rect:
+        serializedVersion: 2
+        x: 151
+        y: 631
+        width: 34
+        height: 34
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 0015a2b3295411fa0800000000000000
+      internalID: -5831803548107910912
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: icon_windows_tilesheet_82
+      rect:
+        serializedVersion: 2
+        x: 199
+        y: 631
+        width: 34
+        height: 34
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 226cbc28de3f3ab10800000000000000
+      internalID: 1991703661655082530
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: icon_windows_tilesheet_83
+      rect:
+        serializedVersion: 2
+        x: 247
+        y: 632
+        width: 34
+        height: 32
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 4c8588eb48d3c6f90800000000000000
+      internalID: -6959119683852674876
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: icon_windows_tilesheet_84
+      rect:
+        serializedVersion: 2
+        x: 295
+        y: 632
+        width: 35
+        height: 33
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 0789bec4eefa4fa10800000000000000
+      internalID: 1942370777331112048
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: icon_windows_tilesheet_85
+      rect:
+        serializedVersion: 2
+        x: 343
+        y: 633
+        width: 34
+        height: 32
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 0a8ac34e1dbe867e0800000000000000
+      internalID: -1771907166660417376
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: icon_windows_tilesheet_86
+      rect:
+        serializedVersion: 2
+        x: 390
+        y: 634
+        width: 34
+        height: 32
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 3c5ea2229bb43dc30800000000000000
+      internalID: 4382930120875894211
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: icon_windows_tilesheet_87
+      rect:
+        serializedVersion: 2
+        x: 439
+        y: 632
+        width: 32
+        height: 33
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: b57d8210f92eff2c0800000000000000
+      internalID: -4395545538743183525
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: icon_windows_tilesheet_88
+      rect:
+        serializedVersion: 2
+        x: 487
+        y: 629
+        width: 36
+        height: 36
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 81aad1468b9b701d0800000000000000
+      internalID: -3384532393340851688
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: icon_windows_tilesheet_89
+      rect:
+        serializedVersion: 2
+        x: 535
+        y: 639
+        width: 33
+        height: 20
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 5513fd97acb5ccbb0800000000000000
+      internalID: -4914452168181862059
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: icon_windows_tilesheet_90
+      rect:
+        serializedVersion: 2
+        x: 583
+        y: 638
+        width: 34
+        height: 21
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: a7c8eeb47eeadd650800000000000000
+      internalID: 6259351365549460602
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: icon_windows_tilesheet_91
+      rect:
+        serializedVersion: 2
+        x: 623
+        y: 577
+        width: 50
+        height: 96
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 1e1ab553fb686e5c0800000000000000
+      internalID: -4186510647802224159
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: icon_windows_tilesheet_92
+      rect:
+        serializedVersion: 2
+        x: 679
+        y: 635
+        width: 34
+        height: 24
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 2151551b7c4600af0800000000000000
+      internalID: -432234755391154926
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: icon_windows_tilesheet_93
+      rect:
+        serializedVersion: 2
+        x: 727
+        y: 631
+        width: 34
+        height: 34
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: e2d2f815af8fa2b10800000000000000
+      internalID: 1957650742039751982
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: icon_windows_tilesheet_94
+      rect:
+        serializedVersion: 2
+        x: 775
+        y: 631
+        width: 34
+        height: 34
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 2c930899f63ac6c70800000000000000
+      internalID: 8965720657899829698
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: icon_windows_tilesheet_95
+      rect:
+        serializedVersion: 2
+        x: 823
+        y: 631
+        width: 34
+        height: 34
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 01c2601d387b87f90800000000000000
+      internalID: -6955607847698289648
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: icon_windows_tilesheet_96
+      rect:
+        serializedVersion: 2
+        x: 871
+        y: 631
+        width: 33
+        height: 34
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 76870e0b1495f67a0800000000000000
+      internalID: -6381784008285456281
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: icon_windows_tilesheet_97
+      rect:
+        serializedVersion: 2
+        x: 920
+        y: 631
+        width: 33
+        height: 34
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: d2ad10513549a9050800000000000000
+      internalID: 5808117754003315245
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: icon_windows_tilesheet_98
+      rect:
+        serializedVersion: 2
+        x: 7
+        y: 581
+        width: 36
+        height: 36
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 7b703f35e15228710800000000000000
+      internalID: 1693957222032410551
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: icon_windows_tilesheet_99
+      rect:
+        serializedVersion: 2
+        x: 55
+        y: 583
+        width: 34
+        height: 34
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: dd3ede6bb101d3b10800000000000000
+      internalID: 1962742723822609373
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: icon_windows_tilesheet_100
+      rect:
+        serializedVersion: 2
+        x: 103
+        y: 583
+        width: 34
+        height: 34
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: e5ae48cd4013e01a0800000000000000
+      internalID: -6841476886979876258
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: icon_windows_tilesheet_101
+      rect:
+        serializedVersion: 2
+        x: 151
+        y: 583
+        width: 34
+        height: 34
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 0fcc42d2f66a99680800000000000000
+      internalID: -8747777804761510672
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: icon_windows_tilesheet_102
+      rect:
+        serializedVersion: 2
+        x: 192
+        y: 577
+        width: 47
+        height: 47
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: f11d68b65d134e4f0800000000000000
+      internalID: -800460041063313121
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: icon_windows_tilesheet_103
+      rect:
+        serializedVersion: 2
+        x: 240
+        y: 576
+        width: 48
+        height: 48
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 96a1a2dc451416cc0800000000000000
+      internalID: -3719619984756172183
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: icon_windows_tilesheet_104
+      rect:
+        serializedVersion: 2
+        x: 287
+        y: 575
+        width: 98
+        height: 50
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 352f73c73f8046fa0800000000000000
+      internalID: -5808507777546980781
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: icon_windows_tilesheet_105
+      rect:
+        serializedVersion: 2
+        x: 384
+        y: 577
+        width: 47
+        height: 47
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 42d0afae3e2c02500800000000000000
+      internalID: 369509453600001316
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: icon_windows_tilesheet_106
+      rect:
+        serializedVersion: 2
+        x: 432
+        y: 576
+        width: 48
+        height: 48
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 8335d598a42519400800000000000000
+      internalID: 329134727860409144
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: icon_windows_tilesheet_107
+      rect:
+        serializedVersion: 2
+        x: 479
+        y: 578
+        width: 50
+        height: 43
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 98996991c59e93b60800000000000000
+      internalID: 7726463217506359689
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: icon_windows_tilesheet_108
+      rect:
+        serializedVersion: 2
+        x: 530
+        y: 581
+        width: 43
+        height: 37
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: a22c43aaac51c2960800000000000000
+      internalID: 7578456233140863530
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: icon_windows_tilesheet_109
+      rect:
+        serializedVersion: 2
+        x: 578
+        y: 579
+        width: 45
+        height: 40
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 5b8f9bd07e9847210800000000000000
+      internalID: 1329839415441881269
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: icon_windows_tilesheet_110
+      rect:
+        serializedVersion: 2
+        x: 671
+        y: 575
+        width: 50
+        height: 50
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: cd2aa6d26ec021aa0800000000000000
+      internalID: -6191872354937036068
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: icon_windows_tilesheet_111
+      rect:
+        serializedVersion: 2
+        x: 720
+        y: 576
+        width: 46
+        height: 49
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 31c80a17adde7f790800000000000000
+      internalID: -7496261532269900781
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: icon_windows_tilesheet_112
+      rect:
+        serializedVersion: 2
+        x: 767
+        y: 575
+        width: 48
+        height: 50
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: e54d9be35926ce0d0800000000000000
+      internalID: -3392228026174811042
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: icon_windows_tilesheet_113
+      rect:
+        serializedVersion: 2
+        x: 815
+        y: 576
+        width: 145
+        height: 49
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 0a33605b79de2b990800000000000000
+      internalID: -7371568404219153504
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: icon_windows_tilesheet_114
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 527
+        width: 97
+        height: 50
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 8648b902230f2cdc0800000000000000
+      internalID: -3620067052366363544
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: icon_windows_tilesheet_115
+      rect:
+        serializedVersion: 2
+        x: 103
+        y: 536
+        width: 34
+        height: 32
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: db309f31f2fcbe910800000000000000
+      internalID: 1867814271580701629
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: icon_windows_tilesheet_116
+      rect:
+        serializedVersion: 2
+        x: 143
+        y: 529
+        width: 47
+        height: 48
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: e782695f4ce921060800000000000000
+      internalID: 6922770145992910974
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: icon_windows_tilesheet_117
+      rect:
+        serializedVersion: 2
+        x: 191
+        y: 528
+        width: 49
+        height: 49
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 161da2b226782d180800000000000000
+      internalID: -9092055842006838943
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: icon_windows_tilesheet_118
+      rect:
+        serializedVersion: 2
+        x: 240
+        y: 529
+        width: 47
+        height: 46
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 57ea15b793c4ea2c0800000000000000
+      internalID: -4418510374638080395
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: icon_windows_tilesheet_119
+      rect:
+        serializedVersion: 2
+        x: 289
+        y: 529
+        width: 47
+        height: 46
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 6d6c397d9d99bad30800000000000000
+      internalID: 4443814618234865366
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: icon_windows_tilesheet_120
+      rect:
+        serializedVersion: 2
+        x: 336
+        y: 527
+        width: 49
+        height: 49
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: c720e96d649b46a20800000000000000
+      internalID: 3054770161163567740
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: icon_windows_tilesheet_121
+      rect:
+        serializedVersion: 2
+        x: 385
+        y: 528
+        width: 47
+        height: 47
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 6656f96591522dc10800000000000000
+      internalID: 2076763168928916838
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: icon_windows_tilesheet_122
+      rect:
+        serializedVersion: 2
+        x: 437
+        y: 533
+        width: 38
+        height: 38
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 2e5d398cf8e275cc0800000000000000
+      internalID: -3722455371918092830
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: icon_windows_tilesheet_123
+      rect:
+        serializedVersion: 2
+        x: 481
+        y: 528
+        width: 47
+        height: 47
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: ef69e92b2c07fbe60800000000000000
+      internalID: 7980221046246512382
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: icon_windows_tilesheet_124
+      rect:
+        serializedVersion: 2
+        x: 527
+        y: 527
+        width: 95
+        height: 50
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 40e122b580f5be540800000000000000
+      internalID: 5038225097637371396
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: icon_windows_tilesheet_125
+      rect:
+        serializedVersion: 2
+        x: 623
+        y: 528
+        width: 48
+        height: 49
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: ae898aa18f31b0590800000000000000
+      internalID: -7707044380994397974
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: icon_windows_tilesheet_126
+      rect:
+        serializedVersion: 2
+        x: 671
+        y: 479
+        width: 60
+        height: 98
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 1832d26d78d58f200800000000000000
+      internalID: 214023820295349121
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: icon_windows_tilesheet_127
+      rect:
+        serializedVersion: 2
+        x: 726
+        y: 539
+        width: 42
+        height: 28
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 5af0d6f9e160d37e0800000000000000
+      internalID: -1784263148775338075
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: icon_windows_tilesheet_128
+      rect:
+        serializedVersion: 2
+        x: 767
+        y: 538
+        width: 61
+        height: 29
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: d922d5a0ee8899ec0800000000000000
+      internalID: -3559663474502196579
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: icon_windows_tilesheet_129
+      rect:
+        serializedVersion: 2
+        x: 820
+        y: 535
+        width: 45
+        height: 32
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: bf438f808c7549b80800000000000000
+      internalID: -8388983689228831493
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: icon_windows_tilesheet_130
+      rect:
+        serializedVersion: 2
+        x: 871
+        y: 535
+        width: 34
+        height: 34
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: ee1bb200fb4fe0270800000000000000
+      internalID: 8218775471176528366
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: icon_windows_tilesheet_131
+      rect:
+        serializedVersion: 2
+        x: 919
+        y: 535
+        width: 34
+        height: 34
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 4eb2c3f4913302ad0800000000000000
+      internalID: -2729125190389978140
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: icon_windows_tilesheet_132
+      rect:
+        serializedVersion: 2
+        x: 7
+        y: 489
+        width: 34
+        height: 31
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 0e7217571bf2670f0800000000000000
+      internalID: -1119655018128922656
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: icon_windows_tilesheet_133
+      rect:
+        serializedVersion: 2
+        x: 51
+        y: 482
+        width: 41
+        height: 41
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 730a2ff508beadd80800000000000000
+      internalID: -8225002832840712137
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: icon_windows_tilesheet_134
+      rect:
+        serializedVersion: 2
+        x: 95
+        y: 431
+        width: 235
+        height: 98
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: a97a7a097536f3890800000000000000
+      internalID: -7476147628671522918
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: icon_windows_tilesheet_135
+      rect:
+        serializedVersion: 2
+        x: 335
+        y: 431
+        width: 242
+        height: 98
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 995ff13da3c457b40800000000000000
+      internalID: 5437335940653643161
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: icon_windows_tilesheet_136
+      rect:
+        serializedVersion: 2
+        x: 579
+        y: 479
+        width: 43
+        height: 50
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 39b8c23514aa50980800000000000000
+      internalID: -8573259118084846701
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: icon_windows_tilesheet_137
+      rect:
+        serializedVersion: 2
+        x: 624
+        y: 480
+        width: 46
+        height: 49
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: a056f4ab41531ec10800000000000000
+      internalID: 2081002865963263242
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: icon_windows_tilesheet_138
+      rect:
+        serializedVersion: 2
+        x: 719
+        y: 480
+        width: 97
+        height: 49
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 1a586e53130a83840800000000000000
+      internalID: 5204085502644749729
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: icon_windows_tilesheet_139
+      rect:
+        serializedVersion: 2
+        x: 768
+        y: 383
+        width: 145
+        height: 146
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: bff21acf94b6af4b0800000000000000
+      internalID: -5405890437189652485
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: icon_windows_tilesheet_140
+      rect:
+        serializedVersion: 2
+        x: 912
+        y: 483
+        width: 48
+        height: 41
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 87a1f1139564369b0800000000000000
+      internalID: -5088145805108372872
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: icon_windows_tilesheet_141
+      rect:
+        serializedVersion: 2
+        x: 2
+        y: 434
+        width: 43
+        height: 45
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: c559ac034ef835d70800000000000000
+      internalID: 9030719888041874780
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: icon_windows_tilesheet_142
+      rect:
+        serializedVersion: 2
+        x: 49
+        y: 431
+        width: 47
+        height: 49
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 1d7aa59b365f50c60800000000000000
+      internalID: 7783897339640063953
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: icon_windows_tilesheet_143
+      rect:
+        serializedVersion: 2
+        x: 288
+        y: 434
+        width: 47
+        height: 46
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: dff5462cf92d46f70800000000000000
+      internalID: 9179693524090904573
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: icon_windows_tilesheet_144
+      rect:
+        serializedVersion: 2
+        x: 578
+        y: 435
+        width: 44
+        height: 41
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 58889c4365a4d2a40800000000000000
+      internalID: 5345010066871912581
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: icon_windows_tilesheet_145
+      rect:
+        serializedVersion: 2
+        x: 626
+        y: 434
+        width: 45
+        height: 42
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: d1ef80d3a835c8e70800000000000000
+      internalID: 9118755198713003549
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: icon_windows_tilesheet_146
+      rect:
+        serializedVersion: 2
+        x: 673
+        y: 435
+        width: 47
+        height: 41
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: be1008b0f513e42f0800000000000000
+      internalID: -986796984062967317
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: icon_windows_tilesheet_147
+      rect:
+        serializedVersion: 2
+        x: 719
+        y: 432
+        width: 49
+        height: 49
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: cd993527c724d5070800000000000000
+      internalID: 8096700807343479260
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: icon_windows_tilesheet_148
+      rect:
+        serializedVersion: 2
+        x: 767
+        y: 432
+        width: 49
+        height: 49
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 6badad406d63f73a0800000000000000
+      internalID: -6665548630652691786
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: icon_windows_tilesheet_149
+      rect:
+        serializedVersion: 2
+        x: 920
+        y: 433
+        width: 32
+        height: 47
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: a853635ed41845f10800000000000000
+      internalID: 2257571484777461130
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: icon_windows_tilesheet_150
+      rect:
+        serializedVersion: 2
+        x: 7
+        y: 384
+        width: 33
+        height: 48
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 0ef273348ab25f520800000000000000
+      internalID: 2735140350379634656
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: icon_windows_tilesheet_151
+      rect:
+        serializedVersion: 2
+        x: 48
+        y: 391
+        width: 47
+        height: 37
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: c156308596b8d5a20800000000000000
+      internalID: 3052749406991508764
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: icon_windows_tilesheet_152
+      rect:
+        serializedVersion: 2
+        x: 96
+        y: 391
+        width: 47
+        height: 37
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 0b332d662d2a90680800000000000000
+      internalID: -8788314173284928592
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: icon_windows_tilesheet_153
+      rect:
+        serializedVersion: 2
+        x: 143
+        y: 384
+        width: 146
+        height: 47
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: e1d2a736582b896b0800000000000000
+      internalID: -5289281476377301730
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: icon_windows_tilesheet_154
+      rect:
+        serializedVersion: 2
+        x: 291
+        y: 388
+        width: 41
+        height: 41
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: ffde2ecf4614f9b20800000000000000
+      internalID: 3143302966923161087
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: icon_windows_tilesheet_155
+      rect:
+        serializedVersion: 2
+        x: 339
+        y: 388
+        width: 41
+        height: 41
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: d59aea2f5d263c0c0800000000000000
+      internalID: -4556689726929720995
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: icon_windows_tilesheet_156
+      rect:
+        serializedVersion: 2
+        x: 387
+        y: 386
+        width: 42
+        height: 45
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: b3ad43e8b57af0fa0800000000000000
+      internalID: -5832258980751812037
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: icon_windows_tilesheet_157
+      rect:
+        serializedVersion: 2
+        x: 434
+        y: 385
+        width: 43
+        height: 46
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: a7f295976e3abbcc0800000000000000
+      internalID: -3694178859053666438
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: icon_windows_tilesheet_158
+      rect:
+        serializedVersion: 2
+        x: 479
+        y: 384
+        width: 50
+        height: 40
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 97d6cbd4beabf3990800000000000000
+      internalID: -7403993742589530759
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: icon_windows_tilesheet_159
+      rect:
+        serializedVersion: 2
+        x: 528
+        y: 385
+        width: 47
+        height: 46
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 8cdc1f2c463115ca0800000000000000
+      internalID: -6030017102584099384
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: icon_windows_tilesheet_160
+      rect:
+        serializedVersion: 2
+        x: 577
+        y: 385
+        width: 47
+        height: 46
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: cf7dd9209c3e74510800000000000000
+      internalID: 1533444650614773756
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: icon_windows_tilesheet_161
+      rect:
+        serializedVersion: 2
+        x: 624
+        y: 383
+        width: 97
+        height: 49
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 7a1f29bd9b8e75890800000000000000
+      internalID: -7469245572020244057
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: icon_windows_tilesheet_162
+      rect:
+        serializedVersion: 2
+        x: 720
+        y: 386
+        width: 49
+        height: 45
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 9d95f0faddd7e3200800000000000000
+      internalID: 161705027710179801
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: icon_windows_tilesheet_163
+      rect:
+        serializedVersion: 2
+        x: 912
+        y: 383
+        width: 48
+        height: 50
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: a4a7f4d277b43be70800000000000000
+      internalID: 9129723844843502154
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: icon_windows_tilesheet_164
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 240
+        width: 49
+        height: 145
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 011b01a9d39f8a770800000000000000
+      internalID: 8622415529573921040
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: icon_windows_tilesheet_165
+      rect:
+        serializedVersion: 2
+        x: 48
+        y: 335
+        width: 47
+        height: 50
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 9e4bb0475b9dd2ce0800000000000000
+      internalID: -1428246133447346967
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: icon_windows_tilesheet_166
+      rect:
+        serializedVersion: 2
+        x: 96
+        y: 289
+        width: 48
+        height: 96
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: f3d167b3666729ed0800000000000000
+      internalID: -2408732669233455809
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: icon_windows_tilesheet_167
+      rect:
+        serializedVersion: 2
+        x: 141
+        y: 144
+        width: 53
+        height: 241
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 96ffbc97f0d709c20800000000000000
+      internalID: 3211204039736557417
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: icon_windows_tilesheet_168
+      rect:
+        serializedVersion: 2
+        x: 192
+        y: 336
+        width: 48
+        height: 47
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 05cb239a1b3a31380800000000000000
+      internalID: -9001671246740276144
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: icon_windows_tilesheet_169
+      rect:
+        serializedVersion: 2
+        x: 239
+        y: 336
+        width: 50
+        height: 49
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: a298255a7f6385020800000000000000
+      internalID: 2330673244422703402
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: icon_windows_tilesheet_170
+      rect:
+        serializedVersion: 2
+        x: 287
+        y: 336
+        width: 50
+        height: 49
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: f3c3ee2c2405a8080800000000000000
+      internalID: -9184440242400248769
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: icon_windows_tilesheet_171
+      rect:
+        serializedVersion: 2
+        x: 337
+        y: 340
+        width: 46
+        height: 40
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: fcec6fd54b9123190800000000000000
+      internalID: -7984290926913204529
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: icon_windows_tilesheet_172
+      rect:
+        serializedVersion: 2
+        x: 383
+        y: 339
+        width: 49
+        height: 42
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 7d983f5ced7531850800000000000000
+      internalID: 6346512914210589143
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: icon_windows_tilesheet_173
+      rect:
+        serializedVersion: 2
+        x: 432
+        y: 336
+        width: 48
+        height: 47
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 6dd58c87b2e316240800000000000000
+      internalID: 4783172635675090390
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: icon_windows_tilesheet_174
+      rect:
+        serializedVersion: 2
+        x: 480
+        y: 336
+        width: 48
+        height: 47
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 52e827f89ab7db4d0800000000000000
+      internalID: -3117199398884176347
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: icon_windows_tilesheet_175
+      rect:
+        serializedVersion: 2
+        x: 527
+        y: 335
+        width: 193
+        height: 49
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 5df0f4f9a98aa60d0800000000000000
+      internalID: -3428742784238022699
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: icon_windows_tilesheet_176
+      rect:
+        serializedVersion: 2
+        x: 719
+        y: 339
+        width: 48
+        height: 46
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 60e11b19f49c43ea0800000000000000
+      internalID: -5893864668737233402
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: icon_windows_tilesheet_177
+      rect:
+        serializedVersion: 2
+        x: 767
+        y: 337
+        width: 49
+        height: 47
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 2de51f12a9664cd20800000000000000
+      internalID: 3297873639322509010
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: icon_windows_tilesheet_178
+      rect:
+        serializedVersion: 2
+        x: 819
+        y: 335
+        width: 42
+        height: 49
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: ad8877bdd5192f8f0800000000000000
+      internalID: -508183975639414566
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: icon_windows_tilesheet_179
+      rect:
+        serializedVersion: 2
+        x: 872
+        y: 338
+        width: 31
+        height: 45
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 1fc4a18bf4db24e50800000000000000
+      internalID: 6792199338116926705
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: icon_windows_tilesheet_180
+      rect:
+        serializedVersion: 2
+        x: 920
+        y: 337
+        width: 32
+        height: 47
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 775b3f5cca14fafd0800000000000000
+      internalID: -2328570272015993481
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: icon_windows_tilesheet_181
+      rect:
+        serializedVersion: 2
+        x: 47
+        y: 298
+        width: 50
+        height: 28
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 12f195ad030ba6e90800000000000000
+      internalID: -7031614144317415647
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: icon_windows_tilesheet_182
+      rect:
+        serializedVersion: 2
+        x: 192
+        y: 239
+        width: 145
+        height: 98
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 9e9a3e35fdcaba380800000000000000
+      internalID: -8958876958538356247
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: icon_windows_tilesheet_183
+      rect:
+        serializedVersion: 2
+        x: 341
+        y: 287
+        width: 41
+        height: 50
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: a33204b573f0c80e0800000000000000
+      internalID: -2266419782045654214
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: icon_windows_tilesheet_184
+      rect:
+        serializedVersion: 2
+        x: 389
+        y: 289
+        width: 38
+        height: 48
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 8441c2aec3b074ea0800000000000000
+      internalID: -5888725631508933560
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: icon_windows_tilesheet_185
+      rect:
+        serializedVersion: 2
+        x: 437
+        y: 287
+        width: 41
+        height: 50
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 9299bde68c0761430800000000000000
+      internalID: 3753311345615542569
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: icon_windows_tilesheet_186
+      rect:
+        serializedVersion: 2
+        x: 479
+        y: 297
+        width: 60
+        height: 29
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 13959b1e17f6857d0800000000000000
+      internalID: -2929469022695499471
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: icon_windows_tilesheet_187
+      rect:
+        serializedVersion: 2
+        x: 534
+        y: 299
+        width: 42
+        height: 28
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 1ffcf9c75a8405f90800000000000000
+      internalID: -6966988747944505359
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: icon_windows_tilesheet_188
+      rect:
+        serializedVersion: 2
+        x: 575
+        y: 298
+        width: 61
+        height: 29
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 7d5de6d775c85ad00800000000000000
+      internalID: 983346401044780503
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: icon_windows_tilesheet_189
+      rect:
+        serializedVersion: 2
+        x: 628
+        y: 295
+        width: 45
+        height: 32
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 9af04d2f34719e060800000000000000
+      internalID: 6983138277818896297
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: icon_windows_tilesheet_190
+      rect:
+        serializedVersion: 2
+        x: 671
+        y: 289
+        width: 48
+        height: 48
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 8517b2cbaa3cc4600800000000000000
+      internalID: 453952800526397784
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: icon_windows_tilesheet_191
+      rect:
+        serializedVersion: 2
+        x: 719
+        y: 239
+        width: 94
+        height: 98
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 00490466273627010800000000000000
+      internalID: 1185118994944791552
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: icon_windows_tilesheet_192
+      rect:
+        serializedVersion: 2
+        x: 798
+        y: 321
+        width: 16
+        height: 16
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 2ff75b1e8e5304f90800000000000000
+      internalID: -6971512948834074638
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: icon_windows_tilesheet_193
+      rect:
+        serializedVersion: 2
+        x: 815
+        y: 287
+        width: 145
+        height: 50
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: d7e492a56f07ee200800000000000000
+      internalID: 211230435909914237
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: icon_windows_tilesheet_194
+      rect:
+        serializedVersion: 2
+        x: 803
+        y: 303
+        width: 13
+        height: 9
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 0d4932f9c2d0a54b0800000000000000
+      internalID: -5451029913678932784
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: icon_windows_tilesheet_195
+      rect:
+        serializedVersion: 2
+        x: 48
+        y: 191
+        width: 51
+        height: 98
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: d7595c1ffee0a7650800000000000000
+      internalID: 6231309458136733053
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: icon_windows_tilesheet_196
+      rect:
+        serializedVersion: 2
+        x: 95
+        y: 239
+        width: 50
+        height: 50
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: c2211dbcda7642930800000000000000
+      internalID: 4117529955469955628
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: icon_windows_tilesheet_197
+      rect:
+        serializedVersion: 2
+        x: 238
+        y: 144
+        width: 48
+        height: 109
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: c7e2373c06fa59c80800000000000000
+      internalID: -8316548306738925956
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: icon_windows_tilesheet_198
+      rect:
+        serializedVersion: 2
+        x: 384
+        y: 251
+        width: 48
+        height: 27
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 01663673ae0f333d0800000000000000
+      internalID: -3227971619152239088
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: icon_windows_tilesheet_199
+      rect:
+        serializedVersion: 2
+        x: 439
+        y: 241
+        width: 36
+        height: 46
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: dcef53a9cd44cf470800000000000000
+      internalID: 8429688316801449677
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: icon_windows_tilesheet_200
+      rect:
+        serializedVersion: 2
+        x: 480
+        y: 242
+        width: 48
+        height: 46
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 777ccb940c79d3e70800000000000000
+      internalID: 9096593674484893559
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: icon_windows_tilesheet_201
+      rect:
+        serializedVersion: 2
+        x: 528
+        y: 242
+        width: 47
+        height: 46
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 51c8b6a66eae408b0800000000000000
+      internalID: -5186762595475157995
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: icon_windows_tilesheet_202
+      rect:
+        serializedVersion: 2
+        x: 575
+        y: 239
+        width: 98
+        height: 50
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: acb8686aab826eb00800000000000000
+      internalID: 857417561183521738
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: icon_windows_tilesheet_203
+      rect:
+        serializedVersion: 2
+        x: 672
+        y: 239
+        width: 48
+        height: 50
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: c3bf4f0bf38eacfc0800000000000000
+      internalID: -3473708802313487556
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: icon_windows_tilesheet_204
+      rect:
+        serializedVersion: 2
+        x: 815
+        y: 239
+        width: 46
+        height: 50
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: b8b002b505b1e9390800000000000000
+      internalID: -7809774671873700981
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: icon_windows_tilesheet_205
+      rect:
+        serializedVersion: 2
+        x: 863
+        y: 249
+        width: 50
+        height: 29
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 7d7cacb3d012bef40800000000000000
+      internalID: 5758732889244747735
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: icon_windows_tilesheet_206
+      rect:
+        serializedVersion: 2
+        x: 911
+        y: 191
+        width: 49
+        height: 98
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: fb829323fc7765fc0800000000000000
+      internalID: -3506483528076810049
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: icon_windows_tilesheet_207
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 192
+        width: 47
+        height: 49
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: ffa2a6e2e4ad8aff0800000000000000
+      internalID: -24529768629523713
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: icon_windows_tilesheet_208
+      rect:
+        serializedVersion: 2
+        x: 101
+        y: 191
+        width: 36
+        height: 50
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: d9ef0a1760a9ca710800000000000000
+      internalID: 1705907711333432989
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: icon_windows_tilesheet_209
+      rect:
+        serializedVersion: 2
+        x: 192
+        y: 192
+        width: 48
+        height: 34
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 765659caf08cd1e20800000000000000
+      internalID: 3323032069714830695
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: icon_windows_tilesheet_210
+      rect:
+        serializedVersion: 2
+        x: 287
+        y: 143
+        width: 47
+        height: 98
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 3ad6d7b121391d090800000000000000
+      internalID: -8011460556135502429
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: icon_windows_tilesheet_211
+      rect:
+        serializedVersion: 2
+        x: 335
+        y: 191
+        width: 47
+        height: 50
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 4796b84decdcfc4f0800000000000000
+      internalID: -806199520063166092
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: icon_windows_tilesheet_212
+      rect:
+        serializedVersion: 2
+        x: 383
+        y: 191
+        width: 47
+        height: 50
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 84bc6a32532294890800000000000000
+      internalID: -7473404495017882808
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: icon_windows_tilesheet_213
+      rect:
+        serializedVersion: 2
+        x: 431
+        y: 191
+        width: 48
+        height: 50
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 5f85dfecccf7804b0800000000000000
+      internalID: -5473984829446072075
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: icon_windows_tilesheet_214
+      rect:
+        serializedVersion: 2
+        x: 479
+        y: 144
+        width: 48
+        height: 97
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 331328fdfe8d70060800000000000000
+      internalID: 6919737877236691251
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: icon_windows_tilesheet_215
+      rect:
+        serializedVersion: 2
+        x: 528
+        y: 198
+        width: 48
+        height: 35
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 2bf38a0fefc8b3d20800000000000000
+      internalID: 3259353781919825842
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: icon_windows_tilesheet_216
+      rect:
+        serializedVersion: 2
+        x: 575
+        y: 197
+        width: 50
+        height: 36
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: d4a01eb1e92f302c0800000000000000
+      internalID: -4466459644534912435
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: icon_windows_tilesheet_217
+      rect:
+        serializedVersion: 2
+        x: 624
+        y: 195
+        width: 48
+        height: 39
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 2d2f53752fb811270800000000000000
+      internalID: 8219504667889365714
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: icon_windows_tilesheet_218
+      rect:
+        serializedVersion: 2
+        x: 672
+        y: 196
+        width: 97
+        height: 40
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: f2d1945c834c38290800000000000000
+      internalID: -7889246374115861201
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: icon_windows_tilesheet_219
+      rect:
+        serializedVersion: 2
+        x: 768
+        y: 193
+        width: 48
+        height: 46
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: ed0f09e1aebc3d570800000000000000
+      internalID: 8490353928919118046
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: icon_windows_tilesheet_220
+      rect:
+        serializedVersion: 2
+        x: 815
+        y: 193
+        width: 50
+        height: 46
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 9276b8d8be20fcdf0800000000000000
+      internalID: -157904251219384535
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: icon_windows_tilesheet_221
+      rect:
+        serializedVersion: 2
+        x: 864
+        y: 192
+        width: 49
+        height: 49
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: a221eace5110bc460800000000000000
+      internalID: 7262900017741828650
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: icon_windows_tilesheet_222
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 146
+        width: 49
+        height: 40
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 01b4e366bfc66c6e0800000000000000
+      internalID: -1817645572589466864
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: icon_windows_tilesheet_223
+      rect:
+        serializedVersion: 2
+        x: 48
+        y: 144
+        width: 48
+        height: 48
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: dd7a06c89e2294890800000000000000
+      internalID: -7473403720166758435
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: icon_windows_tilesheet_224
+      rect:
+        serializedVersion: 2
+        x: 96
+        y: 0
+        width: 49
+        height: 192
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 5b00c6cfb98ad9db0800000000000000
+      internalID: -4783481841289264971
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: icon_windows_tilesheet_225
+      rect:
+        serializedVersion: 2
+        x: 194
+        y: 96
+        width: 44
+        height: 97
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: a6a910b9a9b3dde70800000000000000
+      internalID: 9141528353843550826
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: icon_windows_tilesheet_226
+      rect:
+        serializedVersion: 2
+        x: 338
+        y: 152
+        width: 45
+        height: 27
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 46e04e52e8fdace90800000000000000
+      internalID: -7004540468807332252
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: icon_windows_tilesheet_227
+      rect:
+        serializedVersion: 2
+        x: 386
+        y: 151
+        width: 44
+        height: 28
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 37cf92d0d3d5cc6a0800000000000000
+      internalID: -6427660051369296781
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: icon_windows_tilesheet_228
+      rect:
+        serializedVersion: 2
+        x: 431
+        y: 95
+        width: 50
+        height: 89
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 52fa7661f58324bd0800000000000000
+      internalID: -2647491649891487963
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: icon_windows_tilesheet_229
+      rect:
+        serializedVersion: 2
+        x: 527
+        y: 97
+        width: 48
+        height: 96
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 3e5acdaacb90a38e0800000000000000
+      internalID: -1713046002335963677
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: icon_windows_tilesheet_230
+      rect:
+        serializedVersion: 2
+        x: 575
+        y: 157
+        width: 50
+        height: 21
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 701c77e89f671b090800000000000000
+      internalID: -8020498647160995577
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: icon_windows_tilesheet_231
+      rect:
+        serializedVersion: 2
+        x: 623
+        y: 153
+        width: 242
+        height: 29
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 16736a8b3f6ac22f0800000000000000
+      internalID: -996237851850557599
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: icon_windows_tilesheet_232
+      rect:
+        serializedVersion: 2
+        x: 867
+        y: 144
+        width: 43
+        height: 48
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: a671bc89cc5bf57f0800000000000000
+      internalID: -621578333212436630
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: icon_windows_tilesheet_233
+      rect:
+        serializedVersion: 2
+        x: 912
+        y: 144
+        width: 48
+        height: 42
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: e576f02ccd58cc370800000000000000
+      internalID: 8344191392805775198
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: icon_windows_tilesheet_234
+      rect:
+        serializedVersion: 2
+        x: 3
+        y: 96
+        width: 43
+        height: 48
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 8e311cbf117d2afc0800000000000000
+      internalID: -3484986689393191960
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: icon_windows_tilesheet_235
+      rect:
+        serializedVersion: 2
+        x: 48
+        y: 95
+        width: 47
+        height: 50
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 8d47f1c662b8cb8c0800000000000000
+      internalID: -3982154973363342120
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: icon_windows_tilesheet_236
+      rect:
+        serializedVersion: 2
+        x: 146
+        y: 96
+        width: 43
+        height: 48
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 30f370548f60ee490800000000000000
+      internalID: -7715221448259322109
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: icon_windows_tilesheet_237
+      rect:
+        serializedVersion: 2
+        x: 241
+        y: 95
+        width: 47
+        height: 50
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: f99ff1967f18990c0800000000000000
+      internalID: -4568477447370049121
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: icon_windows_tilesheet_238
+      rect:
+        serializedVersion: 2
+        x: 291
+        y: 96
+        width: 43
+        height: 48
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: f60dc2bb4de199580800000000000000
+      internalID: -8819984496206229393
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: icon_windows_tilesheet_239
+      rect:
+        serializedVersion: 2
+        x: 338
+        y: 96
+        width: 43
+        height: 49
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 41afff8a71b516dd0800000000000000
+      internalID: -2494612561408820716
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: icon_windows_tilesheet_240
+      rect:
+        serializedVersion: 2
+        x: 383
+        y: 47
+        width: 50
+        height: 91
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: b9a4c32b08a21a190800000000000000
+      internalID: -7953028734725109093
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: icon_windows_tilesheet_241
+      rect:
+        serializedVersion: 2
+        x: 479
+        y: 97
+        width: 48
+        height: 48
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: f6ab66b6e1931f040800000000000000
+      internalID: 4679584290628352623
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: icon_windows_tilesheet_242
+      rect:
+        serializedVersion: 2
+        x: 575
+        y: 95
+        width: 49
+        height: 50
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 832dc1d3933117ed0800000000000000
+      internalID: -2418130388361883080
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: icon_windows_tilesheet_243
+      rect:
+        serializedVersion: 2
+        x: 623
+        y: 47
+        width: 146
+        height: 96
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: de11a91fe8e0a9520800000000000000
+      internalID: 2709494132918325741
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: icon_windows_tilesheet_244
+      rect:
+        serializedVersion: 2
+        x: 772
+        y: 99
+        width: 41
+        height: 41
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 3b15f1f48430fd160800000000000000
+      internalID: 7052359150585467315
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: icon_windows_tilesheet_245
+      rect:
+        serializedVersion: 2
+        x: 820
+        y: 98
+        width: 42
+        height: 42
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 87d7bf4a0ffebe620800000000000000
+      internalID: 2804599009807400312
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: icon_windows_tilesheet_246
+      rect:
+        serializedVersion: 2
+        x: 863
+        y: 96
+        width: 97
+        height: 49
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: ba32b73b19bca78b0800000000000000
+      internalID: -5153582996930223189
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: icon_windows_tilesheet_247
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 47
+        width: 49
+        height: 50
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 14804ee7b82ac9700800000000000000
+      internalID: 548491974645385281
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: icon_windows_tilesheet_248
+      rect:
+        serializedVersion: 2
+        x: 51
+        y: 48
+        width: 43
+        height: 49
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 758b80ee33990b0a0800000000000000
+      internalID: -6867820983424075689
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: icon_windows_tilesheet_249
+      rect:
+        serializedVersion: 2
+        x: 146
+        y: 49
+        width: 43
+        height: 48
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 9d84ddfc296b744c0800000000000000
+      internalID: -4303270177260353319
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: icon_windows_tilesheet_250
+      rect:
+        serializedVersion: 2
+        x: 193
+        y: 47
+        width: 45
+        height: 50
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: d9cc2d3fd12cb5e00800000000000000
+      internalID: 1034633973312179357
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: icon_windows_tilesheet_251
+      rect:
+        serializedVersion: 2
+        x: 239
+        y: 48
+        width: 50
+        height: 46
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 4284fbb4dbcdf1ec0800000000000000
+      internalID: -3593911272040609756
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: icon_windows_tilesheet_252
+      rect:
+        serializedVersion: 2
+        x: 288
+        y: 48
+        width: 48
+        height: 49
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 2a008c9bef8dad950800000000000000
+      internalID: 6474726002848694434
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: icon_windows_tilesheet_253
+      rect:
+        serializedVersion: 2
+        x: 335
+        y: 47
+        width: 50
+        height: 49
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: a35566e5df8453fc0800000000000000
+      internalID: -3515823681045113542
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: icon_windows_tilesheet_254
+      rect:
+        serializedVersion: 2
+        x: 431
+        y: 48
+        width: 49
+        height: 47
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 9b71d5da2605a1020800000000000000
+      internalID: 2313249743353747385
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: icon_windows_tilesheet_255
+      rect:
+        serializedVersion: 2
+        x: 479
+        y: 0
+        width: 50
+        height: 96
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: b27a9543f635153c0800000000000000
+      internalID: -4372622026115274965
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: icon_windows_tilesheet_256
+      rect:
+        serializedVersion: 2
+        x: 527
+        y: 0
+        width: 98
+        height: 96
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 6d807f3df67226d50800000000000000
+      internalID: 6728984154495977686
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: icon_windows_tilesheet_257
+      rect:
+        serializedVersion: 2
+        x: 672
+        y: 47
+        width: 49
+        height: 50
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 0c9081010fff820e0800000000000000
+      internalID: -2294302603618022976
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: icon_windows_tilesheet_258
+      rect:
+        serializedVersion: 2
+        x: 771
+        y: 47
+        width: 43
+        height: 50
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 7b2c3ce792b55cb30800000000000000
+      internalID: 4306948852428292791
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: icon_windows_tilesheet_259
+      rect:
+        serializedVersion: 2
+        x: 816
+        y: 48
+        width: 46
+        height: 49
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 6208d6f94f0031530800000000000000
+      internalID: 3824401559214456870
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: icon_windows_tilesheet_260
+      rect:
+        serializedVersion: 2
+        x: 863
+        y: 0
+        width: 49
+        height: 97
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 81b3dc4a111d04690800000000000000
+      internalID: -7619860695801316584
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: icon_windows_tilesheet_261
+      rect:
+        serializedVersion: 2
+        x: 913
+        y: 52
+        width: 46
+        height: 40
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 19d177da81e116710800000000000000
+      internalID: 1684660826951589265
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: icon_windows_tilesheet_262
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 3
+        width: 48
+        height: 42
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 6e124f1713229c800800000000000000
+      internalID: 633074818382832102
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: icon_windows_tilesheet_263
+      rect:
+        serializedVersion: 2
+        x: 47
+        y: 3
+        width: 50
+        height: 42
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 910e08a6a1aedcc40800000000000000
+      internalID: 5534336916285087769
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: icon_windows_tilesheet_264
+      rect:
+        serializedVersion: 2
+        x: 143
+        y: 0
+        width: 97
+        height: 49
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 0a8493553172f82c0800000000000000
+      internalID: -4427276944694228832
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: icon_windows_tilesheet_265
+      rect:
+        serializedVersion: 2
+        x: 239
+        y: 0
+        width: 50
+        height: 49
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 4cc1e03066c957ab0800000000000000
+      internalID: -5010927048427955004
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: icon_windows_tilesheet_266
+      rect:
+        serializedVersion: 2
+        x: 290
+        y: 0
+        width: 42
+        height: 49
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: c75a21c5fab643380800000000000000
+      internalID: -8992444155043863172
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: icon_windows_tilesheet_267
+      rect:
+        serializedVersion: 2
+        x: 336
+        y: 0
+        width: 47
+        height: 49
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 039895df3ee12f8d0800000000000000
+      internalID: -2814152852596225744
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: icon_windows_tilesheet_268
+      rect:
+        serializedVersion: 2
+        x: 383
+        y: 1
+        width: 47
+        height: 47
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 28c34b5437d205bf0800000000000000
+      internalID: -337719998938858366
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: icon_windows_tilesheet_269
+      rect:
+        serializedVersion: 2
+        x: 431
+        y: 1
+        width: 49
+        height: 41
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 7db02c94277a448e0800000000000000
+      internalID: -1710057849188381737
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: icon_windows_tilesheet_270
+      rect:
+        serializedVersion: 2
+        x: 624
+        y: 0
+        width: 47
+        height: 48
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: f6cb7c7e216cdd7b0800000000000000
+      internalID: -5197780610415346577
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: icon_windows_tilesheet_271
+      rect:
+        serializedVersion: 2
+        x: 671
+        y: 1
+        width: 49
+        height: 41
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: c1aedac83ca37f630800000000000000
+      internalID: 3960699008848882204
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: icon_windows_tilesheet_272
+      rect:
+        serializedVersion: 2
+        x: 719
+        y: 0
+        width: 50
+        height: 48
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 5c8520102d8f780b0800000000000000
+      internalID: -5726334820334544699
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: icon_windows_tilesheet_273
+      rect:
+        serializedVersion: 2
+        x: 769
+        y: 3
+        width: 46
+        height: 43
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 01dd75ebd8abc76e0800000000000000
+      internalID: -1838389429927420656
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: icon_windows_tilesheet_274
+      rect:
+        serializedVersion: 2
+        x: 816
+        y: 2
+        width: 47
+        height: 45
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 20ceff389096259b0800000000000000
+      internalID: -5092892739012400126
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    outline: []
+    customData: 
+    physicsShape: []
+    bones: []
+    spriteID: 
+    internalID: 0
+    vertices: []
+    indices: 
+    edges: []
+    weights: []
+    secondaryTextures: []
+    spriteCustomMetadata:
+      entries: []
+    nameFileIdTable:
+      icon_windows_tilesheet_0: 5154719391768225518
+      icon_windows_tilesheet_1: -6267551576132769409
+      icon_windows_tilesheet_10: -349793834392377828
+      icon_windows_tilesheet_100: -6841476886979876258
+      icon_windows_tilesheet_101: -8747777804761510672
+      icon_windows_tilesheet_102: -800460041063313121
+      icon_windows_tilesheet_103: -3719619984756172183
+      icon_windows_tilesheet_104: -5808507777546980781
+      icon_windows_tilesheet_105: 369509453600001316
+      icon_windows_tilesheet_106: 329134727860409144
+      icon_windows_tilesheet_107: 7726463217506359689
+      icon_windows_tilesheet_108: 7578456233140863530
+      icon_windows_tilesheet_109: 1329839415441881269
+      icon_windows_tilesheet_11: 4763858037603976663
+      icon_windows_tilesheet_110: -6191872354937036068
+      icon_windows_tilesheet_111: -7496261532269900781
+      icon_windows_tilesheet_112: -3392228026174811042
+      icon_windows_tilesheet_113: -7371568404219153504
+      icon_windows_tilesheet_114: -3620067052366363544
+      icon_windows_tilesheet_115: 1867814271580701629
+      icon_windows_tilesheet_116: 6922770145992910974
+      icon_windows_tilesheet_117: -9092055842006838943
+      icon_windows_tilesheet_118: -4418510374638080395
+      icon_windows_tilesheet_119: 4443814618234865366
+      icon_windows_tilesheet_12: -5747572022403852845
+      icon_windows_tilesheet_120: 3054770161163567740
+      icon_windows_tilesheet_121: 2076763168928916838
+      icon_windows_tilesheet_122: -3722455371918092830
+      icon_windows_tilesheet_123: 7980221046246512382
+      icon_windows_tilesheet_124: 5038225097637371396
+      icon_windows_tilesheet_125: -7707044380994397974
+      icon_windows_tilesheet_126: 214023820295349121
+      icon_windows_tilesheet_127: -1784263148775338075
+      icon_windows_tilesheet_128: -3559663474502196579
+      icon_windows_tilesheet_129: -8388983689228831493
+      icon_windows_tilesheet_13: -5331858335842837134
+      icon_windows_tilesheet_130: 8218775471176528366
+      icon_windows_tilesheet_131: -2729125190389978140
+      icon_windows_tilesheet_132: -1119655018128922656
+      icon_windows_tilesheet_133: -8225002832840712137
+      icon_windows_tilesheet_134: -7476147628671522918
+      icon_windows_tilesheet_135: 5437335940653643161
+      icon_windows_tilesheet_136: -8573259118084846701
+      icon_windows_tilesheet_137: 2081002865963263242
+      icon_windows_tilesheet_138: 5204085502644749729
+      icon_windows_tilesheet_139: -5405890437189652485
+      icon_windows_tilesheet_14: -8200358347436041587
+      icon_windows_tilesheet_140: -5088145805108372872
+      icon_windows_tilesheet_141: 9030719888041874780
+      icon_windows_tilesheet_142: 7783897339640063953
+      icon_windows_tilesheet_143: 9179693524090904573
+      icon_windows_tilesheet_144: 5345010066871912581
+      icon_windows_tilesheet_145: 9118755198713003549
+      icon_windows_tilesheet_146: -986796984062967317
+      icon_windows_tilesheet_147: 8096700807343479260
+      icon_windows_tilesheet_148: -6665548630652691786
+      icon_windows_tilesheet_149: 2257571484777461130
+      icon_windows_tilesheet_15: 6681357311710478491
+      icon_windows_tilesheet_150: 2735140350379634656
+      icon_windows_tilesheet_151: 3052749406991508764
+      icon_windows_tilesheet_152: -8788314173284928592
+      icon_windows_tilesheet_153: -5289281476377301730
+      icon_windows_tilesheet_154: 3143302966923161087
+      icon_windows_tilesheet_155: -4556689726929720995
+      icon_windows_tilesheet_156: -5832258980751812037
+      icon_windows_tilesheet_157: -3694178859053666438
+      icon_windows_tilesheet_158: -7403993742589530759
+      icon_windows_tilesheet_159: -6030017102584099384
+      icon_windows_tilesheet_16: 1792510340104124396
+      icon_windows_tilesheet_160: 1533444650614773756
+      icon_windows_tilesheet_161: -7469245572020244057
+      icon_windows_tilesheet_162: 161705027710179801
+      icon_windows_tilesheet_163: 9129723844843502154
+      icon_windows_tilesheet_164: 8622415529573921040
+      icon_windows_tilesheet_165: -1428246133447346967
+      icon_windows_tilesheet_166: -2408732669233455809
+      icon_windows_tilesheet_167: 3211204039736557417
+      icon_windows_tilesheet_168: -9001671246740276144
+      icon_windows_tilesheet_169: 2330673244422703402
+      icon_windows_tilesheet_17: 7949891571631299565
+      icon_windows_tilesheet_170: -9184440242400248769
+      icon_windows_tilesheet_171: -7984290926913204529
+      icon_windows_tilesheet_172: 6346512914210589143
+      icon_windows_tilesheet_173: 4783172635675090390
+      icon_windows_tilesheet_174: -3117199398884176347
+      icon_windows_tilesheet_175: -3428742784238022699
+      icon_windows_tilesheet_176: -5893864668737233402
+      icon_windows_tilesheet_177: 3297873639322509010
+      icon_windows_tilesheet_178: -508183975639414566
+      icon_windows_tilesheet_179: 6792199338116926705
+      icon_windows_tilesheet_18: -1895200672322479373
+      icon_windows_tilesheet_180: -2328570272015993481
+      icon_windows_tilesheet_181: -7031614144317415647
+      icon_windows_tilesheet_182: -8958876958538356247
+      icon_windows_tilesheet_183: -2266419782045654214
+      icon_windows_tilesheet_184: -5888725631508933560
+      icon_windows_tilesheet_185: 3753311345615542569
+      icon_windows_tilesheet_186: -2929469022695499471
+      icon_windows_tilesheet_187: -6966988747944505359
+      icon_windows_tilesheet_188: 983346401044780503
+      icon_windows_tilesheet_189: 6983138277818896297
+      icon_windows_tilesheet_19: 81188763989182295
+      icon_windows_tilesheet_190: 453952800526397784
+      icon_windows_tilesheet_191: 1185118994944791552
+      icon_windows_tilesheet_192: -6971512948834074638
+      icon_windows_tilesheet_193: 211230435909914237
+      icon_windows_tilesheet_194: -5451029913678932784
+      icon_windows_tilesheet_195: 6231309458136733053
+      icon_windows_tilesheet_196: 4117529955469955628
+      icon_windows_tilesheet_197: -8316548306738925956
+      icon_windows_tilesheet_198: -3227971619152239088
+      icon_windows_tilesheet_199: 8429688316801449677
+      icon_windows_tilesheet_2: 917154543230228495
+      icon_windows_tilesheet_20: -531835667654873025
+      icon_windows_tilesheet_200: 9096593674484893559
+      icon_windows_tilesheet_201: -5186762595475157995
+      icon_windows_tilesheet_202: 857417561183521738
+      icon_windows_tilesheet_203: -3473708802313487556
+      icon_windows_tilesheet_204: -7809774671873700981
+      icon_windows_tilesheet_205: 5758732889244747735
+      icon_windows_tilesheet_206: -3506483528076810049
+      icon_windows_tilesheet_207: -24529768629523713
+      icon_windows_tilesheet_208: 1705907711333432989
+      icon_windows_tilesheet_209: 3323032069714830695
+      icon_windows_tilesheet_21: 3816100979434719108
+      icon_windows_tilesheet_210: -8011460556135502429
+      icon_windows_tilesheet_211: -806199520063166092
+      icon_windows_tilesheet_212: -7473404495017882808
+      icon_windows_tilesheet_213: -5473984829446072075
+      icon_windows_tilesheet_214: 6919737877236691251
+      icon_windows_tilesheet_215: 3259353781919825842
+      icon_windows_tilesheet_216: -4466459644534912435
+      icon_windows_tilesheet_217: 8219504667889365714
+      icon_windows_tilesheet_218: -7889246374115861201
+      icon_windows_tilesheet_219: 8490353928919118046
+      icon_windows_tilesheet_22: -6944593508031368132
+      icon_windows_tilesheet_220: -157904251219384535
+      icon_windows_tilesheet_221: 7262900017741828650
+      icon_windows_tilesheet_222: -1817645572589466864
+      icon_windows_tilesheet_223: -7473403720166758435
+      icon_windows_tilesheet_224: -4783481841289264971
+      icon_windows_tilesheet_225: 9141528353843550826
+      icon_windows_tilesheet_226: -7004540468807332252
+      icon_windows_tilesheet_227: -6427660051369296781
+      icon_windows_tilesheet_228: -2647491649891487963
+      icon_windows_tilesheet_229: -1713046002335963677
+      icon_windows_tilesheet_23: -669726528037735663
+      icon_windows_tilesheet_230: -8020498647160995577
+      icon_windows_tilesheet_231: -996237851850557599
+      icon_windows_tilesheet_232: -621578333212436630
+      icon_windows_tilesheet_233: 8344191392805775198
+      icon_windows_tilesheet_234: -3484986689393191960
+      icon_windows_tilesheet_235: -3982154973363342120
+      icon_windows_tilesheet_236: -7715221448259322109
+      icon_windows_tilesheet_237: -4568477447370049121
+      icon_windows_tilesheet_238: -8819984496206229393
+      icon_windows_tilesheet_239: -2494612561408820716
+      icon_windows_tilesheet_24: -1793894657336548780
+      icon_windows_tilesheet_240: -7953028734725109093
+      icon_windows_tilesheet_241: 4679584290628352623
+      icon_windows_tilesheet_242: -2418130388361883080
+      icon_windows_tilesheet_243: 2709494132918325741
+      icon_windows_tilesheet_244: 7052359150585467315
+      icon_windows_tilesheet_245: 2804599009807400312
+      icon_windows_tilesheet_246: -5153582996930223189
+      icon_windows_tilesheet_247: 548491974645385281
+      icon_windows_tilesheet_248: -6867820983424075689
+      icon_windows_tilesheet_249: -4303270177260353319
+      icon_windows_tilesheet_25: 4553399178813760744
+      icon_windows_tilesheet_250: 1034633973312179357
+      icon_windows_tilesheet_251: -3593911272040609756
+      icon_windows_tilesheet_252: 6474726002848694434
+      icon_windows_tilesheet_253: -3515823681045113542
+      icon_windows_tilesheet_254: 2313249743353747385
+      icon_windows_tilesheet_255: -4372622026115274965
+      icon_windows_tilesheet_256: 6728984154495977686
+      icon_windows_tilesheet_257: -2294302603618022976
+      icon_windows_tilesheet_258: 4306948852428292791
+      icon_windows_tilesheet_259: 3824401559214456870
+      icon_windows_tilesheet_26: -541483967044526029
+      icon_windows_tilesheet_260: -7619860695801316584
+      icon_windows_tilesheet_261: 1684660826951589265
+      icon_windows_tilesheet_262: 633074818382832102
+      icon_windows_tilesheet_263: 5534336916285087769
+      icon_windows_tilesheet_264: -4427276944694228832
+      icon_windows_tilesheet_265: -5010927048427955004
+      icon_windows_tilesheet_266: -8992444155043863172
+      icon_windows_tilesheet_267: -2814152852596225744
+      icon_windows_tilesheet_268: -337719998938858366
+      icon_windows_tilesheet_269: -1710057849188381737
+      icon_windows_tilesheet_27: -4595486629128652737
+      icon_windows_tilesheet_270: -5197780610415346577
+      icon_windows_tilesheet_271: 3960699008848882204
+      icon_windows_tilesheet_272: -5726334820334544699
+      icon_windows_tilesheet_273: -1838389429927420656
+      icon_windows_tilesheet_274: -5092892739012400126
+      icon_windows_tilesheet_28: 5951521832653341747
+      icon_windows_tilesheet_29: 3525352723692995651
+      icon_windows_tilesheet_3: 859067773041377192
+      icon_windows_tilesheet_30: 5617280405172733637
+      icon_windows_tilesheet_31: -2378711233765362468
+      icon_windows_tilesheet_32: 2820501935569203496
+      icon_windows_tilesheet_33: 8195842508607897225
+      icon_windows_tilesheet_34: -8990320207842412101
+      icon_windows_tilesheet_35: -7706474163744736299
+      icon_windows_tilesheet_36: -6253684519613966829
+      icon_windows_tilesheet_37: -2222162477644916645
+      icon_windows_tilesheet_38: -4605091727548568500
+      icon_windows_tilesheet_39: 7925498832934407376
+      icon_windows_tilesheet_4: -8767847054620355580
+      icon_windows_tilesheet_40: -1448500026210382196
+      icon_windows_tilesheet_41: -2078364731279683104
+      icon_windows_tilesheet_42: 3063376115694065472
+      icon_windows_tilesheet_43: 4262970848570712423
+      icon_windows_tilesheet_44: -7845856140157165078
+      icon_windows_tilesheet_45: 832716698918872437
+      icon_windows_tilesheet_46: -8498113230270636042
+      icon_windows_tilesheet_47: 884125221247231532
+      icon_windows_tilesheet_48: -8484503155879472031
+      icon_windows_tilesheet_49: -7128331326118421055
+      icon_windows_tilesheet_5: -3086852636698468147
+      icon_windows_tilesheet_50: 6183404141075567603
+      icon_windows_tilesheet_51: -6896396214343457236
+      icon_windows_tilesheet_52: 2842568468547441159
+      icon_windows_tilesheet_53: 765915135113359443
+      icon_windows_tilesheet_54: 9094953578195127518
+      icon_windows_tilesheet_55: 1772554732955413172
+      icon_windows_tilesheet_56: -3585432116231822055
+      icon_windows_tilesheet_57: 5716809514176026244
+      icon_windows_tilesheet_58: 868628553697031836
+      icon_windows_tilesheet_59: 8621061667125770375
+      icon_windows_tilesheet_6: 296851718636861019
+      icon_windows_tilesheet_60: 2658123079186850525
+      icon_windows_tilesheet_61: 7527227952528868526
+      icon_windows_tilesheet_62: 7193662641257876272
+      icon_windows_tilesheet_63: 974152035125169473
+      icon_windows_tilesheet_64: 3170380906128366580
+      icon_windows_tilesheet_65: -7205466246348604432
+      icon_windows_tilesheet_66: 241506234624867070
+      icon_windows_tilesheet_67: -6362759873602352973
+      icon_windows_tilesheet_68: 608557645645858592
+      icon_windows_tilesheet_69: -2917088775981821133
+      icon_windows_tilesheet_7: 3202790138176930727
+      icon_windows_tilesheet_70: -6463255468790961971
+      icon_windows_tilesheet_71: -1282247158788893451
+      icon_windows_tilesheet_72: 887884540727370306
+      icon_windows_tilesheet_73: -133684309429051048
+      icon_windows_tilesheet_74: 4804599118517282748
+      icon_windows_tilesheet_75: 2675594650619729168
+      icon_windows_tilesheet_76: -4760945792227308939
+      icon_windows_tilesheet_77: -5583724320503741808
+      icon_windows_tilesheet_78: 4772880271450358974
+      icon_windows_tilesheet_79: -4147332907221585518
+      icon_windows_tilesheet_8: -5484329608148063648
+      icon_windows_tilesheet_80: 8692322233809327744
+      icon_windows_tilesheet_81: -5831803548107910912
+      icon_windows_tilesheet_82: 1991703661655082530
+      icon_windows_tilesheet_83: -6959119683852674876
+      icon_windows_tilesheet_84: 1942370777331112048
+      icon_windows_tilesheet_85: -1771907166660417376
+      icon_windows_tilesheet_86: 4382930120875894211
+      icon_windows_tilesheet_87: -4395545538743183525
+      icon_windows_tilesheet_88: -3384532393340851688
+      icon_windows_tilesheet_89: -4914452168181862059
+      icon_windows_tilesheet_9: 6929088402391619063
+      icon_windows_tilesheet_90: 6259351365549460602
+      icon_windows_tilesheet_91: -4186510647802224159
+      icon_windows_tilesheet_92: -432234755391154926
+      icon_windows_tilesheet_93: 1957650742039751982
+      icon_windows_tilesheet_94: 8965720657899829698
+      icon_windows_tilesheet_95: -6955607847698289648
+      icon_windows_tilesheet_96: -6381784008285456281
+      icon_windows_tilesheet_97: 5808117754003315245
+      icon_windows_tilesheet_98: 1693957222032410551
+      icon_windows_tilesheet_99: 1962742723822609373
+  mipmapLimitGroupName: 
+  pSDRemoveMatte: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

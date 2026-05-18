@@ -1,10 +1,10 @@
 fileFormatVersion: 2
-guid: edf2f670951ce1045a889e148b69b5b5
+guid: a644fe599d723934fa8c75b822e83489
 TextureImporter:
   internalIDToNameTable:
   - first:
-      213: 5959998118949282151
-    second: 5E6F3F07-ED7A-4A61-B090-2464B8504D4C_0
+      213: -8857318285693958809
+    second: windows-xp-hd_0
   externalObjects: {}
   serializedVersion: 13
   mipmaps:
@@ -96,43 +96,17 @@ TextureImporter:
     ignorePlatformSupport: 0
     androidETC2FallbackOverride: 0
     forceMaximumCompressionQuality_BC6H_BC7: 0
-  - serializedVersion: 4
-    buildTarget: WebGL
-    maxTextureSize: 2048
-    resizeAlgorithm: 0
-    textureFormat: -1
-    textureCompression: 1
-    compressionQuality: 50
-    crunchedCompression: 0
-    allowsAlphaSplitting: 0
-    overridden: 0
-    ignorePlatformSupport: 0
-    androidETC2FallbackOverride: 0
-    forceMaximumCompressionQuality_BC6H_BC7: 0
-  - serializedVersion: 4
-    buildTarget: WindowsStoreApps
-    maxTextureSize: 2048
-    resizeAlgorithm: 0
-    textureFormat: -1
-    textureCompression: 1
-    compressionQuality: 50
-    crunchedCompression: 0
-    allowsAlphaSplitting: 0
-    overridden: 0
-    ignorePlatformSupport: 0
-    androidETC2FallbackOverride: 0
-    forceMaximumCompressionQuality_BC6H_BC7: 0
   spriteSheet:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: 5E6F3F07-ED7A-4A61-B090-2464B8504D4C_0
+      name: windows-xp-hd_0
       rect:
         serializedVersion: 2
         x: 0
         y: 0
-        width: 750
-        height: 545
+        width: 1920
+        height: 1080
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -141,8 +115,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: 761e7f536ba26b250800000000000000
-      internalID: 5959998118949282151
+      spriteID: 765c3ae72fb741580800000000000000
+      internalID: -8857318285693958809
       vertices: []
       indices: 
       edges: []
@@ -161,7 +135,7 @@ TextureImporter:
     spriteCustomMetadata:
       entries: []
     nameFileIdTable:
-      5E6F3F07-ED7A-4A61-B090-2464B8504D4C_0: 5959998118949282151
+      windows-xp-hd_0: -8857318285693958809
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

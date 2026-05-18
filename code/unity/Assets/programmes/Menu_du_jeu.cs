@@ -6,6 +6,7 @@ public class Menu_du_jeu : MonoBehaviour
 {
     public Button playButton;
     public Button quitButton;
+
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
@@ -23,7 +24,7 @@ public class Menu_du_jeu : MonoBehaviour
     {
         // Code pour démarrer le jeu
         Debug.Log("Le jeu commence !");
-        SceneManager.LoadScene("Arrivee_dans_le_jeu");
+        SceneManager.LoadScene("Jeu");
     }
 
     public void QuitGame()
