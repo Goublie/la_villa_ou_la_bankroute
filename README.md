@@ -1,16 +1,16 @@
-# LES REGLES D OR DU REPO
+# LES REGLES D'OR DU REPO
 
-## LA SAINTE TRINITé DES COMMANDE
+## LA SAINTE TRINITE DES COMMANDES
 ### JE NE JURERAI QUE PAR L ORDRE DE CES COMMANDES :
 - git pull
 - git status
 - git add {NOM DE FICHIER} /!\ ATTENTION A CE QUE VOUS PUSHEZ
-- git commit -m "MESAGE DE CE QU IL CHANGE"
+- git commit -m "MESAGE DE MES CHANGEMENTS"
 - git push 
 
 ## UNE SCENE = UNE BRANCHE
 Par exemple si je veux modifier la scène du menu je dois être dans sa branche dédiée (menu)
-Pour modifier une scène je DOIS ETRE LE SEUL ET L UNIQUE PERSONNE à la modifiée (utiliser whatsapp, discord ou tout autre moyen de communication moderne (les pigeons sont has been)), si une TO DO est créée référais vous y
+Pour modifier une scène je DOIS ETRE LE SEUL ET L UNIQUE PERSONNE à la modifier (utiliser whatsapp, discord ou tout autre moyen de communication moderne (les pigeons sont has been)), si une TO DO est créée référez vous y
 Si jamais il y a besoin de créer une nouvelle scène cela veut dire qu'une nouvelle branche doit être aussi créée.
 
 ## L'ajout d'onglets
@@ -23,6 +23,6 @@ Les fichiers .unity représentent les scènes, ils sont HORRIBLE à lire. AUDREM
 /!\ IL N EST PAS PERMIS DE MODIFIER LES SCENES DANS LES SOUS BRANCHES
 
 ## Pour synthétiser
-- SAINTE TRINITé
+- SAINTE TRINITE
 - branche = scène = fichier.unity 
 - sous branche = prefab
