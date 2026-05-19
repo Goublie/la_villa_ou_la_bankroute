@@ -31,6 +31,5 @@ public class Menu_du_jeu : MonoBehaviour
         // Code pour quitter le jeu
         Debug.Log("Le jeu se ferme !");
         Application.Quit();
-    }
-    
+    }   
 }
