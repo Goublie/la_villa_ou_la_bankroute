@@ -174,7 +174,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::Menu_du_jeu
   playButton: {fileID: 0}
   quitButton: {fileID: 0}
-  settingsButton: {fileID: 0}
 --- !u!114 &62968579
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -589,7 +588,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::Menu_du_jeu
   playButton: {fileID: 0}
   quitButton: {fileID: 0}
-  settingsButton: {fileID: 0}
 --- !u!114 &538021697
 MonoBehaviour:
   m_ObjectHideFlags: 0
