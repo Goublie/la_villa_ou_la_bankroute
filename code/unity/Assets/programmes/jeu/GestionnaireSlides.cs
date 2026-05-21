@@ -4,38 +4,41 @@ using System.Collections.Generic;
 
 public class GestionnaireSlides : MonoBehaviour
 {
-    public List<Slider> listeSliders = new List<Slider>();
+    public List<SliderAvecTexte> listeSliders = new List<SliderAvecTexte>();
     private float maxTotalSlides = 100f;
     private float currentTotalSlides = 0f;
 
     void Start()
     {
-        foreach (Slider slider in listeSliders)
+        //On récupère
+        listeSliders = new List<SliderAvecTexte>(GetComponentsInChildren<SliderAvecTexte>());
+
+        foreach (SliderAvecTexte sliderT in listeSliders)
         {
             // Configuration des sliders
-            slider.minValue = 0f;
-            slider.maxValue = maxTotalSlides;
+            sliderT.slider.minValue = 0f;
+            sliderT.slider.maxValue = maxTotalSlides;
 
-            slider.onValueChanged.AddListener((valeur) => onSliderModif(slider, valeur));
+            sliderT.slider.onValueChanged.AddListener((valeur) => onSliderModif(sliderT, valeur));
         }
     }
 
-    void onSliderModif(Slider _slider, float _valeur)
+    void onSliderModif(SliderAvecTexte _sliderT, float _valeur)
     {
         //Calcul du total des sliders
         currentTotalSlides = 0f;
-        foreach (Slider slider in listeSliders)
+        foreach (SliderAvecTexte sliderT in listeSliders)
         {
-            if (slider != _slider)
+            if (sliderT != _sliderT)
             {
-                currentTotalSlides += slider.value;
+                currentTotalSlides += sliderT.slider.value;
             }
         }
         
         //Vérification que le total ne dépasse pas le maximum
         if (currentTotalSlides + _valeur > maxTotalSlides)
         {
-            _slider.value = maxTotalSlides - currentTotalSlides;
+            _sliderT.slider.value = maxTotalSlides - currentTotalSlides;
         }
     }
 }

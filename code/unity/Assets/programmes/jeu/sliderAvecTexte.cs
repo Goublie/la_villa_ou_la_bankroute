@@ -2,7 +2,7 @@ using UnityEngine;
 using UnityEngine.UI;
 using TMPro;
 
-public class sliderAvecTexte : MonoBehaviour
+public class SliderAvecTexte : MonoBehaviour
 {
 
     public Slider slider;
@@ -16,14 +16,14 @@ public class sliderAvecTexte : MonoBehaviour
 
     void actualiseInputField(float valeur)
     {
-        inputField.SetTextWithoutNotify((valeur * 100).ToString());
+        inputField.SetTextWithoutNotify((valeur).ToString());
     }
 
     void actualiseSlider(string valeur)
     {
         if (float.TryParse(valeur, out float resultat))
         {
-            slider.SetValueWithoutNotify(resultat / 100);
+            slider.SetValueWithoutNotify(resultat);
         }
     }
 }
