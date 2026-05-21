@@ -18,7 +18,7 @@ public class Audio_Manager : MonoBehaviour
 
     public void Start()
     {
-        // Lancement de la musique de fond si elle est configurée
+        // Lancement de la musique de fond
         if (musicSource != null && background != null)
         {
             musicSource.clip = background;
@@ -26,12 +26,11 @@ public class Audio_Manager : MonoBehaviour
             musicSource.Play();
         }
 
-        // CORRECTION : On utilise bien playButton ici, avec une vérification de sécurité
         if (playButton != null)
         {
             playButton.onClick.AddListener(PlayBruitBouton);
         }
-        
+
         if (optionsButton != null)
         {
             optionsButton.onClick.AddListener(PlayBruitBouton);
@@ -48,27 +47,30 @@ public class Audio_Manager : MonoBehaviour
 
     public void PlayBruitBouton()
     {
-        Debug.Log("Clic détecté !"); // Voir si le message apparaît dans la console
-        SFXSource.PlayOneShot(appuier_boutton);
-        /*// Sécurité : on vérifie que les sources et le clip existent avant de lancer la coroutine
+        Debug.Log("Clic détecté !");
+
+        // On vérifie que tout est là avant de lancer la transition
         if (musicSource != null && SFXSource != null && appuier_boutton != null)
         {
             StartCoroutine(MuteMusicDuringSFX());
-        }*/
+        }
     }
 
     private IEnumerator MuteMusicDuringSFX()
     {
-        // Coupe le son de la musique de fond
+        // 1. On coupe le son de la musique de fond (ou on la met en Pause si tu préfères)
         musicSource.mute = true;
+        // Note : Si tu veux qu'elle s'arrête net au lieu de continuer en silence, 
+        // remplace par : musicSource.Pause();
 
-        // Joue le bruitage du bouton
+        // 2. On joue le bruitage du bouton (UNE SEULE FOIS ICI)
         SFXSource.PlayOneShot(appuier_boutton);
 
-        // Attend la fin exacte de la durée du son
+        // 3. On attend que le bruitage soit complètement terminé
         yield return new WaitForSeconds(appuier_boutton.length);
 
-        // Réactive le son de la musique de fond
+        // 4. Réactive le son de la musique de fond
         musicSource.mute = false;
+        // Note : Si tu as utilisé Pause() au-dessus, remplace par : musicSource.UnPause();
     }
 }
