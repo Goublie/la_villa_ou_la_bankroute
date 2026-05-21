@@ -18,6 +18,8 @@ public class Audio_Manager : MonoBehaviour
 
     public void Start()
     {
+        DontDestroyOnLoad(gameObject);
+
         // Lancement de la musique de fond
         if (musicSource != null && background != null)
         {
