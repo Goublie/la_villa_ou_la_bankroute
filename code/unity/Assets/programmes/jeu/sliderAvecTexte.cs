@@ -6,24 +6,23 @@ public class SliderAvecTexte : MonoBehaviour
 {
 
     public Slider slider;
-    public TMP_InputField inputField;
+    public TextMeshProUGUI textCell;
+
+    private int SoldeCompte;
 
     void Start()
     {
-        slider.onValueChanged.AddListener(actualiseInputField);
-        inputField.onValueChanged.AddListener(actualiseSlider);
+        slider.onValueChanged.AddListener((valeur) => actualiseMontant(textCell, valeur));
     }
 
-    void actualiseInputField(float valeur)
+    // Met à jour le montant affiché dans la case en fonction de la valeur du slider
+    void actualiseMontant(TextMeshProUGUI cell, float valeur)
     {
-        inputField.SetTextWithoutNotify((valeur).ToString());
+        if (cell == null) return;
+
+        float montant = valeur * SoldeCompte;
+        
+        cell.text = montant.ToString("F2") + "€";
     }
 
-    void actualiseSlider(string valeur)
-    {
-        if (float.TryParse(valeur, out float resultat))
-        {
-            slider.SetValueWithoutNotify(resultat);
-        }
-    }
 }
