@@ -9,25 +9,27 @@ public class Gestion_Options : MonoBehaviour
 
     [Header("Composants à modifier")]
     [SerializeField] private AudioSource musiqueFond;
+    [SerializeField] private AudioSource sfxSource; // <── NOUVEAU : La source pour les bruitages
     [SerializeField] private Image filtreLuminosite;
 
     void Start()
     {
         // --- Configuration du Son ---
-        if (musiqueFond != null && sliderSon != null)
+        if (sliderSon != null)
         {
-            // On initialise le slider avec le volume actuel de la musique
-            sliderSon.value = musiqueFond.volume;
+            // On initialise le slider avec le volume actuel de la musique par défaut
+            if (musiqueFond != null)
+            {
+                sliderSon.value = musiqueFond.volume;
+            }
 
             // On écoute les changements du slider en temps réel
-            sliderSon.onValueChanged.AddListener(ChangerVolume);
+            sliderSon.onValueChanged.AddListener(ChangerVolumeGeneral);
         }
 
         // --- Configuration de la Luminosité ---
         if (filtreLuminosite != null && sliderLuminosite != null)
         {
-            // On suppose que la luminosité par défaut est au max (1)
-            // Donc le filtre noir a une opacité de 0 (invisible)
             sliderLuminosite.minValue = 0f;
             sliderLuminosite.maxValue = 1f;
             sliderLuminosite.value = 1f;
@@ -36,11 +38,18 @@ public class Gestion_Options : MonoBehaviour
         }
     }
 
-    public void ChangerVolume(float valeur)
+    public void ChangerVolumeGeneral(float valeur)
     {
+        // On applique la valeur du slider à la musique de fond
         if (musiqueFond != null)
         {
             musiqueFond.volume = valeur;
+        }
+
+        // On applique EXACTEMENT la même valeur à la source des SFX !
+        if (sfxSource != null)
+        {
+            sfxSource.volume = valeur;
         }
     }
 
@@ -49,11 +58,7 @@ public class Gestion_Options : MonoBehaviour
         if (filtreLuminosite != null)
         {
             Color couleurActuelle = filtreLuminosite.color;
-
-            // Plus le slider est haut (proche de 1), plus l'alpha est bas (proche de 0 = lumineux)
-            // Plus le slider est bas (proche de 0), plus l'alpha est haut (proche de 0.8 = sombre)
             couleurActuelle.a = Mathf.Lerp(0.8f, 0f, valeur);
-
             filtreLuminosite.color = couleurActuelle;
         }
     }
