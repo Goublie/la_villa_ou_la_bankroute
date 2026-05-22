@@ -215,6 +215,26 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 3906264821542690767, guid: 635c6a2b452eb3f4e9166253f8ed2b02, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[1].m_Mode
+      value: 6
+      objectReference: {fileID: 0}
+    - target: {fileID: 3906264821542690767, guid: 635c6a2b452eb3f4e9166253f8ed2b02, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[1].m_Target
+      value: 
+      objectReference: {fileID: 816999341}
+    - target: {fileID: 3906264821542690767, guid: 635c6a2b452eb3f4e9166253f8ed2b02, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[1].m_MethodName
+      value: SetActive
+      objectReference: {fileID: 0}
+    - target: {fileID: 3906264821542690767, guid: 635c6a2b452eb3f4e9166253f8ed2b02, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[1].m_Arguments.m_BoolArgument
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 3906264821542690767, guid: 635c6a2b452eb3f4e9166253f8ed2b02, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[1].m_Arguments.m_ObjectArgumentAssemblyTypeName
+      value: UnityEngine.Object, UnityEngine
+      objectReference: {fileID: 0}
     - target: {fileID: 4564381392453351281, guid: 635c6a2b452eb3f4e9166253f8ed2b02, type: 3}
       propertyPath: m_AnchorMax.y
       value: 1
