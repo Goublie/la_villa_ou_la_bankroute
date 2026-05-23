@@ -4,14 +4,14 @@ using UnityEngine;
 [CreateAssetMenu(fileName = "GameData", menuName = "Scriptable Objects/GameData")]
 public class GameData : ScriptableObject
 {
+    public int moisPasse = 0;
     public int argent = 1000;
     public int energie = 100;
     public int santeMentale = 100;
 
-
-
     public void Start()
     {
+        moisPasse = 0;
         argent = 1000;
         energie = 100;
         santeMentale = 100;
