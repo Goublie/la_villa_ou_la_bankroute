@@ -12,6 +12,7 @@ GameObject:
   - component: {fileID: 1067600167431811589}
   - component: {fileID: 4958254334071369909}
   - component: {fileID: 2018348345738990597}
+  - component: {fileID: 1041760639519353368}
   m_Layer: 0
   m_Name: Case2
   m_TagString: Untagged
@@ -97,6 +98,18 @@ MonoBehaviour:
   m_FillOrigin: 0
   m_UseSpriteMesh: 0
   m_PixelsPerUnitMultiplier: 1
+--- !u!114 &1041760639519353368
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5029761748008281259}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f6cf5e2e87522c94ea4f3098dad15d47, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::Case
 --- !u!1 &5140140853262826887
 GameObject:
   m_ObjectHideFlags: 0
@@ -619,6 +632,7 @@ GameObject:
   - component: {fileID: 5659079147051112482}
   - component: {fileID: 5564665311016945408}
   - component: {fileID: 3785869446738772968}
+  - component: {fileID: 6166077988571903618}
   m_Layer: 0
   m_Name: Case0
   m_TagString: Untagged
@@ -704,6 +718,18 @@ MonoBehaviour:
   m_FillOrigin: 0
   m_UseSpriteMesh: 0
   m_PixelsPerUnitMultiplier: 1
+--- !u!114 &6166077988571903618
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7995978309976231321}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f6cf5e2e87522c94ea4f3098dad15d47, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: '::'
 --- !u!1 &9209033796811779066
 GameObject:
   m_ObjectHideFlags: 0
@@ -716,6 +742,7 @@ GameObject:
   - component: {fileID: 8100268132052957060}
   - component: {fileID: 6253519124717180202}
   - component: {fileID: 4774696203530426055}
+  - component: {fileID: 3394659666804083902}
   m_Layer: 0
   m_Name: Case1
   m_TagString: Untagged
@@ -801,3 +828,15 @@ MonoBehaviour:
   m_FillOrigin: 0
   m_UseSpriteMesh: 0
   m_PixelsPerUnitMultiplier: 1
+--- !u!114 &3394659666804083902
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 9209033796811779066}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f6cf5e2e87522c94ea4f3098dad15d47, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::Case

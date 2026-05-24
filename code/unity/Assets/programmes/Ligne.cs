@@ -4,17 +4,71 @@ using System.Collections.Generic;
 public class Ligne : MonoBehaviour
 {
 
-    public List<TextMeshProUGUI> ligne;
+    private List<Case> cases;
 
     public void Start()
     {
-        ligne = new List<TextMeshProUGUI>(GetComponentsInChildren<TextMeshProUGUI>());
+        cases = new List<Case>(GetComponentsInChildren<Case>());
+        //On vide la ligne au début du jeu
+        vider();
+    }
+
+    public string get(int indice)
+    {
+        return cases[indice].getTexte();
+    }
+
+    //Renvoie true si chasues case est vide
+    public bool estVide()
+    {
+        foreach (Case c in cases)
+        {
+            if (!c.estVide())
+            {
+                return false;
+            }
+        }
+        return true;
+    }
+
+    public void vider()
+    {
+        foreach (Case c in cases)
+        {
+            c.vider();
+        }
+    }
+
+    //Ajoute le texte dans la première case vide de la ligne et reuturne true en cas de réussite
+    public bool add(string text)
+    {
+        foreach (Case c in cases)
+        {
+            if (c.estVide())
+            {
+                c.set(text);
+                return true;
+            }
+        }
+        return false;
+    }
+
+    //Ajoute le nombre dans la première case vide de la ligne
+    public void add(int montant)
+    {
+        add(montant.ToString());
+    }
+
+    //Ajoute le montant d'argent dans la première case vide de la ligne
+    public void add(argent montant)
+    {
+        add(montant.ToString());
     }
 
     //Affiche le texte text dans la case à l'indice indice
     public void set(int indice, string text)
     {
-        ligne[indice].text = text;
+        cases[indice].set(text);
     }
 
     //Affiche un nombre dans la case à l'indice indice
@@ -24,11 +78,8 @@ public class Ligne : MonoBehaviour
     }
 
     //Affiche un montant en centimes dans la case à l'indice indice
-    public void setMoney(int indice, int montant)
+    public void set(int indice, argent montant)
     {
-        int centimes = montant % 100;
-        int euros = montant / 100;
-        string centimesStr = centimes < 10 ? "0" + centimes.ToString() : centimes.ToString();
-        set(indice, euros.ToString() + "," + centimesStr + "€");
+        set(indice, montant.ToString());
     }
 }

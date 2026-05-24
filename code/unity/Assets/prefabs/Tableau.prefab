@@ -78,7 +78,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: '::'
   tableau: []
-  dataDefault: Hello
+  dataDefault: 
 --- !u!1001 &3854892784517948004
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -149,7 +149,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2616952345185573983, guid: 7ea8421a0e6179b41881a6ca3e0da387, type: 3}
       propertyPath: m_AnchoredPosition.x
-      value: 443.6667
+      value: 363.5
       objectReference: {fileID: 0}
     - target: {fileID: 2616952345185573983, guid: 7ea8421a0e6179b41881a6ca3e0da387, type: 3}
       propertyPath: m_AnchoredPosition.y
@@ -311,7 +311,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2616952345185573983, guid: 7ea8421a0e6179b41881a6ca3e0da387, type: 3}
       propertyPath: m_AnchoredPosition.x
-      value: 443.6667
+      value: 363.5
       objectReference: {fileID: 0}
     - target: {fileID: 2616952345185573983, guid: 7ea8421a0e6179b41881a6ca3e0da387, type: 3}
       propertyPath: m_AnchoredPosition.y
