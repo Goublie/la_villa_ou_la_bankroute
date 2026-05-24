@@ -35,7 +35,10 @@ public class Ligne : MonoBehaviour
     {
         foreach (Case c in cases)
         {
-            c.vider();
+            if (c != null)
+            {
+                c.vider();
+            }
         }
     }
 

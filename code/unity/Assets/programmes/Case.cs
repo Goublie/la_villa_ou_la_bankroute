@@ -39,7 +39,8 @@ public class Case : MonoBehaviour
     //Vide la case
     public void vider()
     {
-        set("");
+        if (composantTexte != null)
+            set("");
     }
 
     public void Start()

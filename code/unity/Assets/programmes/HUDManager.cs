@@ -4,8 +4,7 @@ using TMPro;
 public class HUDManager : MonoBehaviour
 {
 
-    public GameData gameData; // Référence vers ton ScriptableObject
-
+    public GameData gameData;
     public TextMeshProUGUI texteArgent;
     public TextMeshProUGUI texteEnergie;
     public TextMeshProUGUI texteSanteMentale;
@@ -23,10 +22,7 @@ public class HUDManager : MonoBehaviour
 
         if (texteArgent != null)
         {
-            int euros = gameData.argent / 100; // Convertir les centimes en euros
-            int centimes = gameData.argent % 100; // Récupérer les centimes restants
-            string affichageArgent = euros.ToString() + "," + (centimes<10 ? "0" :"" )+ centimes.ToString() + " €";
-            texteArgent.text = affichageArgent;
+            texteArgent.text = gameData.argent.ToString();
         }
 
         if (texteEnergie != null) 

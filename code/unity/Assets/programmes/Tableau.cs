@@ -31,7 +31,10 @@ public class Tableau : MonoBehaviour
     {
         foreach (Ligne l in tableau)
         {
-            l.vider();
+            if (l != null)
+            {
+                l.vider();
+            }
         }
     }
 
@@ -42,12 +45,15 @@ public class Tableau : MonoBehaviour
     }
 
     //Ajoute le texte dans la première case de la première ligne vide du tableau et renvoie true en cas de réussite
-    public bool add(string text)
+    public bool add(string text1, string text2="", string text3="")
     {
         foreach (Ligne l in tableau)
         {
-            if (l.add(text))
+            if (l.estVide())
             {
+                l.set(0, text1);
+                l.set(1, text2);
+                l.set(2, text3);
                 return true;
             }
         }

@@ -189,8 +189,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3245ec927659c4140ac4f8d17403cc18, type: 3}
   m_Name: 
   m_EditorClassIdentifier: UnityEngine.UI::UnityEngine.UI.ContentSizeFitter
-  m_HorizontalFit: 2
-  m_VerticalFit: 2
+  m_HorizontalFit: 1
+  m_VerticalFit: 1
 --- !u!114 &3317698415354892082
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -203,7 +203,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 87ded68720972e544bb776b41236782e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Ligne
-  ligne: []
 --- !u!1 &6140815071453176375
 GameObject:
   m_ObjectHideFlags: 0

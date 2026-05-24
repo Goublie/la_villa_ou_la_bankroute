@@ -8,10 +8,12 @@ public class GameData : ScriptableObject
     public int energie = 100;
     public int santeMentale = 100;
 
+    public int moisPasse = 0;
+
     public void Start()
     {
         moisPasse = 0;
-        argent = 1000;
+        argent = new argent(1000);
         energie = 100;
         santeMentale = 100;
     }
