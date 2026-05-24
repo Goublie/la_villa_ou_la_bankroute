@@ -1,17 +1,2 @@
 fileFormatVersion: 2
 guid: 9eef3b6f21fe01e40a05a870d4e82cde
-MonoImporter:
-  externalObjects: {}
-  serializedVersion: 2
-  defaultReferences:
-  - musicSource: {instanceID: 0}
-  - SFXSource: {instanceID: 0}
-  - background: {fileID: 8300000, guid: 8eaaebf19d28b8e4e9c58b27fb90d545, type: 3}
-  - appuier_boutton: {fileID: 8300000, guid: 2982a25af39d8bc4d9293fb1d9bc1a7c, type: 3}
-  - playButton: {instanceID: 0}
-  - optionsButton: {instanceID: 0}
-  executionOrder: 0
-  icon: {instanceID: 0}
-  userData: 
-  assetBundleName: 
-  assetBundleVariant: 
