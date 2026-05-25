@@ -14,6 +14,15 @@ public class HUDManager : MonoBehaviour
         ActualiserAffichage();
     }
 
+    void OnEnable()
+    {
+        ActionPlay.moisPasse += ActualiserAffichage;
+    }
+
+   void OnDisable()
+    {
+        ActionPlay.moisPasse -= ActualiserAffichage;
+    }
 
     // Fonction qui rafraîchit l'interface à l'écran
     public void ActualiserAffichage()

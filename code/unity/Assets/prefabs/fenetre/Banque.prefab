@@ -374,6 +374,8 @@ GameObject:
   - component: {fileID: 2718164628112314255}
   - component: {fileID: 5223216189464182588}
   - component: {fileID: 3831978246241831988}
+  - component: {fileID: 4988642019221245581}
+  - component: {fileID: 5327931647412521848}
   m_Layer: 0
   m_Name: epargne
   m_TagString: Untagged
@@ -444,6 +446,36 @@ MonoBehaviour:
   m_FillOrigin: 0
   m_UseSpriteMesh: 0
   m_PixelsPerUnitMultiplier: 1
+--- !u!114 &4988642019221245581
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1312298437442060231}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fede8e5790880314692c71b88fc7bddb, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::CompteBanquaire
+  solde:
+    centimes: 0
+  taux: {fileID: 11400000, guid: 30454562fdfeed049ab14c1ebb6ed4f8, type: 2}
+  gameData: {fileID: 11400000, guid: 00f9a2cc968a86847bacedddfcfe8be5, type: 2}
+--- !u!114 &5327931647412521848
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1312298437442060231}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fc561707acc344045a554ed44f8a3789, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::AffichageEpargne
+  compte: {fileID: 4988642019221245581}
+  texteSolde: {fileID: 659677379879815562}
 --- !u!1 &2971480145847254154
 GameObject:
   m_ObjectHideFlags: 0
@@ -777,7 +809,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4189044657cf67c4684818dc37c2f62e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Credit
-  gameData: {fileID: 0}
+  gameData: {fileID: 11400000, guid: 00f9a2cc968a86847bacedddfcfe8be5, type: 2}
+  compte: {fileID: 4988642019221245581}
   hudManager: {fileID: 0}
   tab: {fileID: 1294707599497245561}
   entreeArgent: {fileID: 14986793362622727}
@@ -1765,6 +1798,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Debit
   gameData: {fileID: 11400000, guid: 00f9a2cc968a86847bacedddfcfe8be5, type: 2}
+  compte: {fileID: 4988642019221245581}
   hudManager: {fileID: 0}
   tab: {fileID: 1294707599497245561}
   entreeArgent: {fileID: 8802799238746887277}

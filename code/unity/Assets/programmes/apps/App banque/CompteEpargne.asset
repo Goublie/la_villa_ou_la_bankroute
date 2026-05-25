@@ -9,12 +9,11 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: c7652c5011b5cd84b90b9f01a8aeb942, type: 3}
-  m_Name: GameData
-  m_EditorClassIdentifier: Assembly-CSharp::GameData
-  argent:
-    centimes: 2147281200
-  energie: 100
-  santeMentale: 100
-  moisPasse: 11
-  investissements: []
+  m_Script: {fileID: 11500000, guid: 58aa401bc0d98844da10afca76c5b895, type: 3}
+  m_Name: CompteEpargne
+  m_EditorClassIdentifier: Assembly-CSharp::Investissement
+  sommeInvestie:
+    centimes: 0
+  taux: 0.5
+  dureeMois: 12
+  moisEcoules: 0

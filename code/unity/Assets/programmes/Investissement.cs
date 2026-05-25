@@ -1,9 +1,50 @@
-//Ce fichier doit être vu comme une classe investissement
-
+using System;
 using UnityEngine;
 
-[CreateAssetMenu(fileName = "Investissement", menuName = "Scriptable Objects/Investissement")]
-public class Investissement : ScriptableObject
+[Serializable]
+public class Investissement
 {
-    
+    public argent sommeInvestie; //La somme investie initialement
+    [SerializeField] public float taux; //Le taux de rendement sur la période 1=100%
+    [SerializeField] int dureeMois; //La durée à laquele les intérets peuvent se cumuler
+    [SerializeField] int moisEcoules; //Le nombre de mois écoulés depuis le début de l'investissement
+    float benefices; //Les bénéfices accumulés, calculés chaque mois
+
+    public Investissement(argent sommeInvestie, float taux, int dureeMois)
+    {
+        if (sommeInvestie.centimes < 0)
+        {
+            Debug.Log("La somme investie doit être positive.");
+            return;
+        }
+        if (dureeMois <= 0)
+        {
+            Debug.Log("La durée de l'investissement doit être positive.");
+            return;
+        }
+
+        this.sommeInvestie = sommeInvestie;
+        this.taux = taux;
+        this.dureeMois = dureeMois;
+        this.benefices = 0;
+        this.moisEcoules = 0;
+    }
+
+    //Cacul les bénéfices, puis si la période d'investissement est écoulée, compose les bénéfices
+    public void ComposerBenefices()
+    {
+    // Calcul des bénéfices mensuels
+    benefices += sommeInvestie.centimes * (taux / dureeMois);
+    moisEcoules++;
+
+    if (moisEcoules >= dureeMois)
+    {
+        // On arrondit pour éviter les erreurs de type float
+        sommeInvestie.centimes += Mathf.RoundToInt(benefices);
+
+        // Réinitialisation
+        benefices = 0;
+        moisEcoules = 0; 
+    }
+    }
 }
