@@ -1,0 +1,1183 @@
+{
+  "inflation_france": [
+    {
+      "Annee": 2015,
+      "Mois": 1,
+      "Periode": "2015-01",
+      "IPC": 98.86,
+      "Base100_2015_01": 100.0,
+      "Inflation_mensuelle_pct": -1.0014,
+      "Inflation_annuelle_glissante_pct": -0.3829
+    },
+    {
+      "Annee": 2015,
+      "Mois": 2,
+      "Periode": "2015-02",
+      "IPC": 99.52,
+      "Base100_2015_01": 100.6676,
+      "Inflation_mensuelle_pct": 0.6676,
+      "Inflation_annuelle_glissante_pct": -0.2706
+    },
+    {
+      "Annee": 2015,
+      "Mois": 3,
+      "Periode": "2015-03",
+      "IPC": 100.17,
+      "Base100_2015_01": 101.3251,
+      "Inflation_mensuelle_pct": 0.6531,
+      "Inflation_annuelle_glissante_pct": -0.0698
+    },
+    {
+      "Annee": 2015,
+      "Mois": 4,
+      "Periode": "2015-04",
+      "IPC": 100.28,
+      "Base100_2015_01": 101.4364,
+      "Inflation_mensuelle_pct": 0.1098,
+      "Inflation_annuelle_glissante_pct": 0.0798
+    },
+    {
+      "Annee": 2015,
+      "Mois": 5,
+      "Periode": "2015-05",
+      "IPC": 100.52,
+      "Base100_2015_01": 101.6791,
+      "Inflation_mensuelle_pct": 0.2393,
+      "Inflation_annuelle_glissante_pct": 0.2993
+    },
+    {
+      "Annee": 2015,
+      "Mois": 6,
+      "Periode": "2015-06",
+      "IPC": 100.44,
+      "Base100_2015_01": 101.5982,
+      "Inflation_mensuelle_pct": -0.0796,
+      "Inflation_annuelle_glissante_pct": 0.2595
+    },
+    {
+      "Annee": 2015,
+      "Mois": 7,
+      "Periode": "2015-07",
+      "IPC": 100.03,
+      "Base100_2015_01": 101.1835,
+      "Inflation_mensuelle_pct": -0.4082,
+      "Inflation_annuelle_glissante_pct": 0.1702
+    },
+    {
+      "Annee": 2015,
+      "Mois": 8,
+      "Periode": "2015-08",
+      "IPC": 100.35,
+      "Base100_2015_01": 101.5072,
+      "Inflation_mensuelle_pct": 0.3199,
+      "Inflation_annuelle_glissante_pct": 0.0499
+    },
+    {
+      "Annee": 2015,
+      "Mois": 9,
+      "Periode": "2015-09",
+      "IPC": 99.95,
+      "Base100_2015_01": 101.1026,
+      "Inflation_mensuelle_pct": -0.3986,
+      "Inflation_annuelle_glissante_pct": 0.03
+    },
+    {
+      "Annee": 2015,
+      "Mois": 10,
+      "Periode": "2015-10",
+      "IPC": 100.01,
+      "Base100_2015_01": 101.1633,
+      "Inflation_mensuelle_pct": 0.06,
+      "Inflation_annuelle_glissante_pct": 0.06
+    },
+    {
+      "Annee": 2015,
+      "Mois": 11,
+      "Periode": "2015-11",
+      "IPC": 99.82,
+      "Base100_2015_01": 100.9711,
+      "Inflation_mensuelle_pct": -0.19,
+      "Inflation_annuelle_glissante_pct": 0.0401
+    },
+    {
+      "Annee": 2015,
+      "Mois": 12,
+      "Periode": "2015-12",
+      "IPC": 100.04,
+      "Base100_2015_01": 101.1936,
+      "Inflation_mensuelle_pct": 0.2204,
+      "Inflation_annuelle_glissante_pct": 0.1803
+    },
+    {
+      "Annee": 2016,
+      "Mois": 1,
+      "Periode": "2016-01",
+      "IPC": 99.08,
+      "Base100_2015_01": 100.2225,
+      "Inflation_mensuelle_pct": -0.9596,
+      "Inflation_annuelle_glissante_pct": 0.2225
+    },
+    {
+      "Annee": 2016,
+      "Mois": 2,
+      "Periode": "2016-02",
+      "IPC": 99.33,
+      "Base100_2015_01": 100.4754,
+      "Inflation_mensuelle_pct": 0.2523,
+      "Inflation_annuelle_glissante_pct": -0.1909
+    },
+    {
+      "Annee": 2016,
+      "Mois": 3,
+      "Periode": "2016-03",
+      "IPC": 100.02,
+      "Base100_2015_01": 101.1734,
+      "Inflation_mensuelle_pct": 0.6947,
+      "Inflation_annuelle_glissante_pct": -0.1497
+    },
+    {
+      "Annee": 2016,
+      "Mois": 4,
+      "Periode": "2016-04",
+      "IPC": 100.09,
+      "Base100_2015_01": 101.2442,
+      "Inflation_mensuelle_pct": 0.07,
+      "Inflation_annuelle_glissante_pct": -0.1895
+    },
+    {
+      "Annee": 2016,
+      "Mois": 5,
+      "Periode": "2016-05",
+      "IPC": 100.5,
+      "Base100_2015_01": 101.6589,
+      "Inflation_mensuelle_pct": 0.4096,
+      "Inflation_annuelle_glissante_pct": -0.0199
+    },
+    {
+      "Annee": 2016,
+      "Mois": 6,
+      "Periode": "2016-06",
+      "IPC": 100.63,
+      "Base100_2015_01": 101.7904,
+      "Inflation_mensuelle_pct": 0.1294,
+      "Inflation_annuelle_glissante_pct": 0.1892
+    },
+    {
+      "Annee": 2016,
+      "Mois": 7,
+      "Periode": "2016-07",
+      "IPC": 100.25,
+      "Base100_2015_01": 101.406,
+      "Inflation_mensuelle_pct": -0.3776,
+      "Inflation_annuelle_glissante_pct": 0.2199
+    },
+    {
+      "Annee": 2016,
+      "Mois": 8,
+      "Periode": "2016-08",
+      "IPC": 100.58,
+      "Base100_2015_01": 101.7398,
+      "Inflation_mensuelle_pct": 0.3292,
+      "Inflation_annuelle_glissante_pct": 0.2292
+    },
+    {
+      "Annee": 2016,
+      "Mois": 9,
+      "Periode": "2016-09",
+      "IPC": 100.34,
+      "Base100_2015_01": 101.4971,
+      "Inflation_mensuelle_pct": -0.2386,
+      "Inflation_annuelle_glissante_pct": 0.3902
+    },
+    {
+      "Annee": 2016,
+      "Mois": 10,
+      "Periode": "2016-10",
+      "IPC": 100.37,
+      "Base100_2015_01": 101.5274,
+      "Inflation_mensuelle_pct": 0.0299,
+      "Inflation_annuelle_glissante_pct": 0.36
+    },
+    {
+      "Annee": 2016,
+      "Mois": 11,
+      "Periode": "2016-11",
+      "IPC": 100.35,
+      "Base100_2015_01": 101.5072,
+      "Inflation_mensuelle_pct": -0.0199,
+      "Inflation_annuelle_glissante_pct": 0.531
+    },
+    {
+      "Annee": 2016,
+      "Mois": 12,
+      "Periode": "2016-12",
+      "IPC": 100.65,
+      "Base100_2015_01": 101.8106,
+      "Inflation_mensuelle_pct": 0.299,
+      "Inflation_annuelle_glissante_pct": 0.6098
+    },
+    {
+      "Annee": 2017,
+      "Mois": 1,
+      "Periode": "2017-01",
+      "IPC": 100.41,
+      "Base100_2015_01": 101.5679,
+      "Inflation_mensuelle_pct": -0.2385,
+      "Inflation_annuelle_glissante_pct": 1.3423
+    },
+    {
+      "Annee": 2017,
+      "Mois": 2,
+      "Periode": "2017-02",
+      "IPC": 100.53,
+      "Base100_2015_01": 101.6893,
+      "Inflation_mensuelle_pct": 0.1195,
+      "Inflation_annuelle_glissante_pct": 1.2081
+    },
+    {
+      "Annee": 2017,
+      "Mois": 3,
+      "Periode": "2017-03",
+      "IPC": 101.17,
+      "Base100_2015_01": 102.3366,
+      "Inflation_mensuelle_pct": 0.6366,
+      "Inflation_annuelle_glissante_pct": 1.1498
+    },
+    {
+      "Annee": 2017,
+      "Mois": 4,
+      "Periode": "2017-04",
+      "IPC": 101.26,
+      "Base100_2015_01": 102.4277,
+      "Inflation_mensuelle_pct": 0.089,
+      "Inflation_annuelle_glissante_pct": 1.1689
+    },
+    {
+      "Annee": 2017,
+      "Mois": 5,
+      "Periode": "2017-05",
+      "IPC": 101.31,
+      "Base100_2015_01": 102.4783,
+      "Inflation_mensuelle_pct": 0.0494,
+      "Inflation_annuelle_glissante_pct": 0.806
+    },
+    {
+      "Annee": 2017,
+      "Mois": 6,
+      "Periode": "2017-06",
+      "IPC": 101.32,
+      "Base100_2015_01": 102.4884,
+      "Inflation_mensuelle_pct": 0.0099,
+      "Inflation_annuelle_glissante_pct": 0.6857
+    },
+    {
+      "Annee": 2017,
+      "Mois": 7,
+      "Periode": "2017-07",
+      "IPC": 100.97,
+      "Base100_2015_01": 102.1343,
+      "Inflation_mensuelle_pct": -0.3454,
+      "Inflation_annuelle_glissante_pct": 0.7182
+    },
+    {
+      "Annee": 2017,
+      "Mois": 8,
+      "Periode": "2017-08",
+      "IPC": 101.49,
+      "Base100_2015_01": 102.6603,
+      "Inflation_mensuelle_pct": 0.515,
+      "Inflation_annuelle_glissante_pct": 0.9048
+    },
+    {
+      "Annee": 2017,
+      "Mois": 9,
+      "Periode": "2017-09",
+      "IPC": 101.33,
+      "Base100_2015_01": 102.4985,
+      "Inflation_mensuelle_pct": -0.1577,
+      "Inflation_annuelle_glissante_pct": 0.9866
+    },
+    {
+      "Annee": 2017,
+      "Mois": 10,
+      "Periode": "2017-10",
+      "IPC": 101.43,
+      "Base100_2015_01": 102.5996,
+      "Inflation_mensuelle_pct": 0.0987,
+      "Inflation_annuelle_glissante_pct": 1.0561
+    },
+    {
+      "Annee": 2017,
+      "Mois": 11,
+      "Periode": "2017-11",
+      "IPC": 101.53,
+      "Base100_2015_01": 102.7008,
+      "Inflation_mensuelle_pct": 0.0986,
+      "Inflation_annuelle_glissante_pct": 1.1759
+    },
+    {
+      "Annee": 2017,
+      "Mois": 12,
+      "Periode": "2017-12",
+      "IPC": 101.85,
+      "Base100_2015_01": 103.0245,
+      "Inflation_mensuelle_pct": 0.3152,
+      "Inflation_annuelle_glissante_pct": 1.1923
+    },
+    {
+      "Annee": 2018,
+      "Mois": 1,
+      "Periode": "2018-01",
+      "IPC": 101.75,
+      "Base100_2015_01": 102.9233,
+      "Inflation_mensuelle_pct": -0.0982,
+      "Inflation_annuelle_glissante_pct": 1.3345
+    },
+    {
+      "Annee": 2018,
+      "Mois": 2,
+      "Periode": "2018-02",
+      "IPC": 101.72,
+      "Base100_2015_01": 102.893,
+      "Inflation_mensuelle_pct": -0.0295,
+      "Inflation_annuelle_glissante_pct": 1.1837
+    },
+    {
+      "Annee": 2018,
+      "Mois": 3,
+      "Periode": "2018-03",
+      "IPC": 102.75,
+      "Base100_2015_01": 103.9349,
+      "Inflation_mensuelle_pct": 1.0126,
+      "Inflation_annuelle_glissante_pct": 1.5617
+    },
+    {
+      "Annee": 2018,
+      "Mois": 4,
+      "Periode": "2018-04",
+      "IPC": 102.92,
+      "Base100_2015_01": 104.1068,
+      "Inflation_mensuelle_pct": 0.1655,
+      "Inflation_annuelle_glissante_pct": 1.6393
+    },
+    {
+      "Annee": 2018,
+      "Mois": 5,
+      "Periode": "2018-05",
+      "IPC": 103.36,
+      "Base100_2015_01": 104.5519,
+      "Inflation_mensuelle_pct": 0.4275,
+      "Inflation_annuelle_glissante_pct": 2.0235
+    },
+    {
+      "Annee": 2018,
+      "Mois": 6,
+      "Periode": "2018-06",
+      "IPC": 103.37,
+      "Base100_2015_01": 104.562,
+      "Inflation_mensuelle_pct": 0.0097,
+      "Inflation_annuelle_glissante_pct": 2.0233
+    },
+    {
+      "Annee": 2018,
+      "Mois": 7,
+      "Periode": "2018-07",
+      "IPC": 103.28,
+      "Base100_2015_01": 104.471,
+      "Inflation_mensuelle_pct": -0.0871,
+      "Inflation_annuelle_glissante_pct": 2.2878
+    },
+    {
+      "Annee": 2018,
+      "Mois": 8,
+      "Periode": "2018-08",
+      "IPC": 103.78,
+      "Base100_2015_01": 104.9767,
+      "Inflation_mensuelle_pct": 0.4841,
+      "Inflation_annuelle_glissante_pct": 2.2564
+    },
+    {
+      "Annee": 2018,
+      "Mois": 9,
+      "Periode": "2018-09",
+      "IPC": 103.56,
+      "Base100_2015_01": 104.7542,
+      "Inflation_mensuelle_pct": -0.212,
+      "Inflation_annuelle_glissante_pct": 2.2007
+    },
+    {
+      "Annee": 2018,
+      "Mois": 10,
+      "Periode": "2018-10",
+      "IPC": 103.67,
+      "Base100_2015_01": 104.8655,
+      "Inflation_mensuelle_pct": 0.1062,
+      "Inflation_annuelle_glissante_pct": 2.2084
+    },
+    {
+      "Annee": 2018,
+      "Mois": 11,
+      "Periode": "2018-11",
+      "IPC": 103.45,
+      "Base100_2015_01": 104.6429,
+      "Inflation_mensuelle_pct": -0.2122,
+      "Inflation_annuelle_glissante_pct": 1.8911
+    },
+    {
+      "Annee": 2018,
+      "Mois": 12,
+      "Periode": "2018-12",
+      "IPC": 103.47,
+      "Base100_2015_01": 104.6632,
+      "Inflation_mensuelle_pct": 0.0193,
+      "Inflation_annuelle_glissante_pct": 1.5906
+    },
+    {
+      "Annee": 2019,
+      "Mois": 1,
+      "Periode": "2019-01",
+      "IPC": 103.01,
+      "Base100_2015_01": 104.1979,
+      "Inflation_mensuelle_pct": -0.4446,
+      "Inflation_annuelle_glissante_pct": 1.2383
+    },
+    {
+      "Annee": 2019,
+      "Mois": 2,
+      "Periode": "2019-02",
+      "IPC": 103.06,
+      "Base100_2015_01": 104.2484,
+      "Inflation_mensuelle_pct": 0.0485,
+      "Inflation_annuelle_glissante_pct": 1.3173
+    },
+    {
+      "Annee": 2019,
+      "Mois": 3,
+      "Periode": "2019-03",
+      "IPC": 103.89,
+      "Base100_2015_01": 105.088,
+      "Inflation_mensuelle_pct": 0.8054,
+      "Inflation_annuelle_glissante_pct": 1.1095
+    },
+    {
+      "Annee": 2019,
+      "Mois": 4,
+      "Periode": "2019-04",
+      "IPC": 104.22,
+      "Base100_2015_01": 105.4218,
+      "Inflation_mensuelle_pct": 0.3176,
+      "Inflation_annuelle_glissante_pct": 1.2631
+    },
+    {
+      "Annee": 2019,
+      "Mois": 5,
+      "Periode": "2019-05",
+      "IPC": 104.33,
+      "Base100_2015_01": 105.5331,
+      "Inflation_mensuelle_pct": 0.1055,
+      "Inflation_annuelle_glissante_pct": 0.9385
+    },
+    {
+      "Annee": 2019,
+      "Mois": 6,
+      "Periode": "2019-06",
+      "IPC": 104.58,
+      "Base100_2015_01": 105.786,
+      "Inflation_mensuelle_pct": 0.2396,
+      "Inflation_annuelle_glissante_pct": 1.1706
+    },
+    {
+      "Annee": 2019,
+      "Mois": 7,
+      "Periode": "2019-07",
+      "IPC": 104.38,
+      "Base100_2015_01": 105.5837,
+      "Inflation_mensuelle_pct": -0.1912,
+      "Inflation_annuelle_glissante_pct": 1.0651
+    },
+    {
+      "Annee": 2019,
+      "Mois": 8,
+      "Periode": "2019-08",
+      "IPC": 104.86,
+      "Base100_2015_01": 106.0692,
+      "Inflation_mensuelle_pct": 0.4599,
+      "Inflation_annuelle_glissante_pct": 1.0407
+    },
+    {
+      "Annee": 2019,
+      "Mois": 9,
+      "Periode": "2019-09",
+      "IPC": 104.5,
+      "Base100_2015_01": 105.705,
+      "Inflation_mensuelle_pct": -0.3433,
+      "Inflation_annuelle_glissante_pct": 0.9077
+    },
+    {
+      "Annee": 2019,
+      "Mois": 10,
+      "Periode": "2019-10",
+      "IPC": 104.46,
+      "Base100_2015_01": 105.6646,
+      "Inflation_mensuelle_pct": -0.0383,
+      "Inflation_annuelle_glissante_pct": 0.762
+    },
+    {
+      "Annee": 2019,
+      "Mois": 11,
+      "Periode": "2019-11",
+      "IPC": 104.52,
+      "Base100_2015_01": 105.7253,
+      "Inflation_mensuelle_pct": 0.0574,
+      "Inflation_annuelle_glissante_pct": 1.0343
+    },
+    {
+      "Annee": 2019,
+      "Mois": 12,
+      "Periode": "2019-12",
+      "IPC": 104.98,
+      "Base100_2015_01": 106.1906,
+      "Inflation_mensuelle_pct": 0.4401,
+      "Inflation_annuelle_glissante_pct": 1.4594
+    },
+    {
+      "Annee": 2020,
+      "Mois": 1,
+      "Periode": "2020-01",
+      "IPC": 104.54,
+      "Base100_2015_01": 105.7455,
+      "Inflation_mensuelle_pct": -0.4191,
+      "Inflation_annuelle_glissante_pct": 1.4853
+    },
+    {
+      "Annee": 2020,
+      "Mois": 2,
+      "Periode": "2020-02",
+      "IPC": 104.53,
+      "Base100_2015_01": 105.7354,
+      "Inflation_mensuelle_pct": -0.0096,
+      "Inflation_annuelle_glissante_pct": 1.4264
+    },
+    {
+      "Annee": 2020,
+      "Mois": 3,
+      "Periode": "2020-03",
+      "IPC": 104.59,
+      "Base100_2015_01": 105.7961,
+      "Inflation_mensuelle_pct": 0.0574,
+      "Inflation_annuelle_glissante_pct": 0.6738
+    },
+    {
+      "Annee": 2020,
+      "Mois": 4,
+      "Periode": "2020-04",
+      "IPC": 104.56,
+      "Base100_2015_01": 105.7657,
+      "Inflation_mensuelle_pct": -0.0287,
+      "Inflation_annuelle_glissante_pct": 0.3262
+    },
+    {
+      "Annee": 2020,
+      "Mois": 5,
+      "Periode": "2020-05",
+      "IPC": 104.71,
+      "Base100_2015_01": 105.9175,
+      "Inflation_mensuelle_pct": 0.1435,
+      "Inflation_annuelle_glissante_pct": 0.3642
+    },
+    {
+      "Annee": 2020,
+      "Mois": 6,
+      "Periode": "2020-06",
+      "IPC": 104.79,
+      "Base100_2015_01": 105.9984,
+      "Inflation_mensuelle_pct": 0.0764,
+      "Inflation_annuelle_glissante_pct": 0.2008
+    },
+    {
+      "Annee": 2020,
+      "Mois": 7,
+      "Periode": "2020-07",
+      "IPC": 105.19,
+      "Base100_2015_01": 106.403,
+      "Inflation_mensuelle_pct": 0.3817,
+      "Inflation_annuelle_glissante_pct": 0.776
+    },
+    {
+      "Annee": 2020,
+      "Mois": 8,
+      "Periode": "2020-08",
+      "IPC": 105.09,
+      "Base100_2015_01": 106.3018,
+      "Inflation_mensuelle_pct": -0.0951,
+      "Inflation_annuelle_glissante_pct": 0.2193
+    },
+    {
+      "Annee": 2020,
+      "Mois": 9,
+      "Periode": "2020-09",
+      "IPC": 104.55,
+      "Base100_2015_01": 105.7556,
+      "Inflation_mensuelle_pct": -0.5138,
+      "Inflation_annuelle_glissante_pct": 0.0478
+    },
+    {
+      "Annee": 2020,
+      "Mois": 10,
+      "Periode": "2020-10",
+      "IPC": 104.51,
+      "Base100_2015_01": 105.7152,
+      "Inflation_mensuelle_pct": -0.0383,
+      "Inflation_annuelle_glissante_pct": 0.0479
+    },
+    {
+      "Annee": 2020,
+      "Mois": 11,
+      "Periode": "2020-11",
+      "IPC": 104.73,
+      "Base100_2015_01": 105.9377,
+      "Inflation_mensuelle_pct": 0.2105,
+      "Inflation_annuelle_glissante_pct": 0.2009
+    },
+    {
+      "Annee": 2020,
+      "Mois": 12,
+      "Periode": "2020-12",
+      "IPC": 104.96,
+      "Base100_2015_01": 106.1703,
+      "Inflation_mensuelle_pct": 0.2196,
+      "Inflation_annuelle_glissante_pct": -0.0191
+    },
+    {
+      "Annee": 2021,
+      "Mois": 1,
+      "Periode": "2021-01",
+      "IPC": 105.12,
+      "Base100_2015_01": 106.3322,
+      "Inflation_mensuelle_pct": 0.1524,
+      "Inflation_annuelle_glissante_pct": 0.5548
+    },
+    {
+      "Annee": 2021,
+      "Mois": 2,
+      "Periode": "2021-02",
+      "IPC": 105.12,
+      "Base100_2015_01": 106.3322,
+      "Inflation_mensuelle_pct": 0.0,
+      "Inflation_annuelle_glissante_pct": 0.5644
+    },
+    {
+      "Annee": 2021,
+      "Mois": 3,
+      "Periode": "2021-03",
+      "IPC": 105.75,
+      "Base100_2015_01": 106.9695,
+      "Inflation_mensuelle_pct": 0.5993,
+      "Inflation_annuelle_glissante_pct": 1.1091
+    },
+    {
+      "Annee": 2021,
+      "Mois": 4,
+      "Periode": "2021-04",
+      "IPC": 105.86,
+      "Base100_2015_01": 107.0807,
+      "Inflation_mensuelle_pct": 0.104,
+      "Inflation_annuelle_glissante_pct": 1.2433
+    },
+    {
+      "Annee": 2021,
+      "Mois": 5,
+      "Periode": "2021-05",
+      "IPC": 106.2,
+      "Base100_2015_01": 107.4246,
+      "Inflation_mensuelle_pct": 0.3212,
+      "Inflation_annuelle_glissante_pct": 1.423
+    },
+    {
+      "Annee": 2021,
+      "Mois": 6,
+      "Periode": "2021-06",
+      "IPC": 106.34,
+      "Base100_2015_01": 107.5663,
+      "Inflation_mensuelle_pct": 0.1318,
+      "Inflation_annuelle_glissante_pct": 1.4791
+    },
+    {
+      "Annee": 2021,
+      "Mois": 7,
+      "Periode": "2021-07",
+      "IPC": 106.4,
+      "Base100_2015_01": 107.6269,
+      "Inflation_mensuelle_pct": 0.0564,
+      "Inflation_annuelle_glissante_pct": 1.1503
+    },
+    {
+      "Annee": 2021,
+      "Mois": 8,
+      "Periode": "2021-08",
+      "IPC": 107.05,
+      "Base100_2015_01": 108.2844,
+      "Inflation_mensuelle_pct": 0.6109,
+      "Inflation_annuelle_glissante_pct": 1.8651
+    },
+    {
+      "Annee": 2021,
+      "Mois": 9,
+      "Periode": "2021-09",
+      "IPC": 106.81,
+      "Base100_2015_01": 108.0417,
+      "Inflation_mensuelle_pct": -0.2242,
+      "Inflation_annuelle_glissante_pct": 2.1616
+    },
+    {
+      "Annee": 2021,
+      "Mois": 10,
+      "Periode": "2021-10",
+      "IPC": 107.25,
+      "Base100_2015_01": 108.4867,
+      "Inflation_mensuelle_pct": 0.4119,
+      "Inflation_annuelle_glissante_pct": 2.6218
+    },
+    {
+      "Annee": 2021,
+      "Mois": 11,
+      "Periode": "2021-11",
+      "IPC": 107.64,
+      "Base100_2015_01": 108.8812,
+      "Inflation_mensuelle_pct": 0.3636,
+      "Inflation_annuelle_glissante_pct": 2.7786
+    },
+    {
+      "Annee": 2021,
+      "Mois": 12,
+      "Periode": "2021-12",
+      "IPC": 107.85,
+      "Base100_2015_01": 109.0937,
+      "Inflation_mensuelle_pct": 0.1951,
+      "Inflation_annuelle_glissante_pct": 2.7534
+    },
+    {
+      "Annee": 2022,
+      "Mois": 1,
+      "Periode": "2022-01",
+      "IPC": 108.12,
+      "Base100_2015_01": 109.3668,
+      "Inflation_mensuelle_pct": 0.2503,
+      "Inflation_annuelle_glissante_pct": 2.8539
+    },
+    {
+      "Annee": 2022,
+      "Mois": 2,
+      "Periode": "2022-02",
+      "IPC": 108.94,
+      "Base100_2015_01": 110.1962,
+      "Inflation_mensuelle_pct": 0.7584,
+      "Inflation_annuelle_glissante_pct": 3.6339
+    },
+    {
+      "Annee": 2022,
+      "Mois": 3,
+      "Periode": "2022-03",
+      "IPC": 110.49,
+      "Base100_2015_01": 111.7641,
+      "Inflation_mensuelle_pct": 1.4228,
+      "Inflation_annuelle_glissante_pct": 4.4823
+    },
+    {
+      "Annee": 2022,
+      "Mois": 4,
+      "Periode": "2022-04",
+      "IPC": 110.97,
+      "Base100_2015_01": 112.2496,
+      "Inflation_mensuelle_pct": 0.4344,
+      "Inflation_annuelle_glissante_pct": 4.8271
+    },
+    {
+      "Annee": 2022,
+      "Mois": 5,
+      "Periode": "2022-05",
+      "IPC": 111.72,
+      "Base100_2015_01": 113.0083,
+      "Inflation_mensuelle_pct": 0.6759,
+      "Inflation_annuelle_glissante_pct": 5.1977
+    },
+    {
+      "Annee": 2022,
+      "Mois": 6,
+      "Periode": "2022-06",
+      "IPC": 112.55,
+      "Base100_2015_01": 113.8479,
+      "Inflation_mensuelle_pct": 0.7429,
+      "Inflation_annuelle_glissante_pct": 5.8398
+    },
+    {
+      "Annee": 2022,
+      "Mois": 7,
+      "Periode": "2022-07",
+      "IPC": 112.87,
+      "Base100_2015_01": 114.1716,
+      "Inflation_mensuelle_pct": 0.2843,
+      "Inflation_annuelle_glissante_pct": 6.0808
+    },
+    {
+      "Annee": 2022,
+      "Mois": 8,
+      "Periode": "2022-08",
+      "IPC": 113.38,
+      "Base100_2015_01": 114.6874,
+      "Inflation_mensuelle_pct": 0.4518,
+      "Inflation_annuelle_glissante_pct": 5.9131
+    },
+    {
+      "Annee": 2022,
+      "Mois": 9,
+      "Periode": "2022-09",
+      "IPC": 112.74,
+      "Base100_2015_01": 114.0401,
+      "Inflation_mensuelle_pct": -0.5645,
+      "Inflation_annuelle_glissante_pct": 5.5519
+    },
+    {
+      "Annee": 2022,
+      "Mois": 10,
+      "Periode": "2022-10",
+      "IPC": 113.9,
+      "Base100_2015_01": 115.2134,
+      "Inflation_mensuelle_pct": 1.0289,
+      "Inflation_annuelle_glissante_pct": 6.2005
+    },
+    {
+      "Annee": 2022,
+      "Mois": 11,
+      "Periode": "2022-11",
+      "IPC": 114.26,
+      "Base100_2015_01": 115.5776,
+      "Inflation_mensuelle_pct": 0.3161,
+      "Inflation_annuelle_glissante_pct": 6.1501
+    },
+    {
+      "Annee": 2022,
+      "Mois": 12,
+      "Periode": "2022-12",
+      "IPC": 114.16,
+      "Base100_2015_01": 115.4764,
+      "Inflation_mensuelle_pct": -0.0875,
+      "Inflation_annuelle_glissante_pct": 5.8507
+    },
+    {
+      "Annee": 2023,
+      "Mois": 1,
+      "Periode": "2023-01",
+      "IPC": 114.6,
+      "Base100_2015_01": 115.9215,
+      "Inflation_mensuelle_pct": 0.3854,
+      "Inflation_annuelle_glissante_pct": 5.9933
+    },
+    {
+      "Annee": 2023,
+      "Mois": 2,
+      "Periode": "2023-02",
+      "IPC": 115.78,
+      "Base100_2015_01": 117.1151,
+      "Inflation_mensuelle_pct": 1.0297,
+      "Inflation_annuelle_glissante_pct": 6.2787
+    },
+    {
+      "Annee": 2023,
+      "Mois": 3,
+      "Periode": "2023-03",
+      "IPC": 116.79,
+      "Base100_2015_01": 118.1368,
+      "Inflation_mensuelle_pct": 0.8723,
+      "Inflation_annuelle_glissante_pct": 5.7019
+    },
+    {
+      "Annee": 2023,
+      "Mois": 4,
+      "Periode": "2023-04",
+      "IPC": 117.5,
+      "Base100_2015_01": 118.8549,
+      "Inflation_mensuelle_pct": 0.6079,
+      "Inflation_annuelle_glissante_pct": 5.8845
+    },
+    {
+      "Annee": 2023,
+      "Mois": 5,
+      "Periode": "2023-05",
+      "IPC": 117.44,
+      "Base100_2015_01": 118.7943,
+      "Inflation_mensuelle_pct": -0.0511,
+      "Inflation_annuelle_glissante_pct": 5.1199
+    },
+    {
+      "Annee": 2023,
+      "Mois": 6,
+      "Periode": "2023-06",
+      "IPC": 117.65,
+      "Base100_2015_01": 119.0067,
+      "Inflation_mensuelle_pct": 0.1788,
+      "Inflation_annuelle_glissante_pct": 4.5313
+    },
+    {
+      "Annee": 2023,
+      "Mois": 7,
+      "Periode": "2023-07",
+      "IPC": 117.71,
+      "Base100_2015_01": 119.0674,
+      "Inflation_mensuelle_pct": 0.051,
+      "Inflation_annuelle_glissante_pct": 4.2881
+    },
+    {
+      "Annee": 2023,
+      "Mois": 8,
+      "Periode": "2023-08",
+      "IPC": 118.89,
+      "Base100_2015_01": 120.261,
+      "Inflation_mensuelle_pct": 1.0025,
+      "Inflation_annuelle_glissante_pct": 4.8598
+    },
+    {
+      "Annee": 2023,
+      "Mois": 9,
+      "Periode": "2023-09",
+      "IPC": 118.26,
+      "Base100_2015_01": 119.6237,
+      "Inflation_mensuelle_pct": -0.5299,
+      "Inflation_annuelle_glissante_pct": 4.8962
+    },
+    {
+      "Annee": 2023,
+      "Mois": 10,
+      "Periode": "2023-10",
+      "IPC": 118.43,
+      "Base100_2015_01": 119.7957,
+      "Inflation_mensuelle_pct": 0.1438,
+      "Inflation_annuelle_glissante_pct": 3.9772
+    },
+    {
+      "Annee": 2023,
+      "Mois": 11,
+      "Periode": "2023-11",
+      "IPC": 118.23,
+      "Base100_2015_01": 119.5934,
+      "Inflation_mensuelle_pct": -0.1689,
+      "Inflation_annuelle_glissante_pct": 3.4745
+    },
+    {
+      "Annee": 2023,
+      "Mois": 12,
+      "Periode": "2023-12",
+      "IPC": 118.39,
+      "Base100_2015_01": 119.7552,
+      "Inflation_mensuelle_pct": 0.1353,
+      "Inflation_annuelle_glissante_pct": 3.7053
+    },
+    {
+      "Annee": 2024,
+      "Mois": 1,
+      "Periode": "2024-01",
+      "IPC": 118.19,
+      "Base100_2015_01": 119.5529,
+      "Inflation_mensuelle_pct": -0.1689,
+      "Inflation_annuelle_glissante_pct": 3.1326
+    },
+    {
+      "Annee": 2024,
+      "Mois": 2,
+      "Periode": "2024-02",
+      "IPC": 119.21,
+      "Base100_2015_01": 120.5847,
+      "Inflation_mensuelle_pct": 0.863,
+      "Inflation_annuelle_glissante_pct": 2.9625
+    },
+    {
+      "Annee": 2024,
+      "Mois": 3,
+      "Periode": "2024-03",
+      "IPC": 119.47,
+      "Base100_2015_01": 120.8477,
+      "Inflation_mensuelle_pct": 0.2181,
+      "Inflation_annuelle_glissante_pct": 2.2947
+    },
+    {
+      "Annee": 2024,
+      "Mois": 4,
+      "Periode": "2024-04",
+      "IPC": 120.07,
+      "Base100_2015_01": 121.4546,
+      "Inflation_mensuelle_pct": 0.5022,
+      "Inflation_annuelle_glissante_pct": 2.1872
+    },
+    {
+      "Annee": 2024,
+      "Mois": 5,
+      "Periode": "2024-05",
+      "IPC": 120.11,
+      "Base100_2015_01": 121.495,
+      "Inflation_mensuelle_pct": 0.0333,
+      "Inflation_annuelle_glissante_pct": 2.2735
+    },
+    {
+      "Annee": 2024,
+      "Mois": 6,
+      "Periode": "2024-06",
+      "IPC": 120.2,
+      "Base100_2015_01": 121.5861,
+      "Inflation_mensuelle_pct": 0.0749,
+      "Inflation_annuelle_glissante_pct": 2.1674
+    },
+    {
+      "Annee": 2024,
+      "Mois": 7,
+      "Periode": "2024-07",
+      "IPC": 120.42,
+      "Base100_2015_01": 121.8086,
+      "Inflation_mensuelle_pct": 0.183,
+      "Inflation_annuelle_glissante_pct": 2.3023
+    },
+    {
+      "Annee": 2024,
+      "Mois": 8,
+      "Periode": "2024-08",
+      "IPC": 121.06,
+      "Base100_2015_01": 122.456,
+      "Inflation_mensuelle_pct": 0.5315,
+      "Inflation_annuelle_glissante_pct": 1.8252
+    },
+    {
+      "Annee": 2024,
+      "Mois": 9,
+      "Periode": "2024-09",
+      "IPC": 119.56,
+      "Base100_2015_01": 120.9387,
+      "Inflation_mensuelle_pct": -1.2391,
+      "Inflation_annuelle_glissante_pct": 1.0993
+    },
+    {
+      "Annee": 2024,
+      "Mois": 10,
+      "Periode": "2024-10",
+      "IPC": 119.89,
+      "Base100_2015_01": 121.2725,
+      "Inflation_mensuelle_pct": 0.276,
+      "Inflation_annuelle_glissante_pct": 1.2328
+    },
+    {
+      "Annee": 2024,
+      "Mois": 11,
+      "Periode": "2024-11",
+      "IPC": 119.72,
+      "Base100_2015_01": 121.1005,
+      "Inflation_mensuelle_pct": -0.1418,
+      "Inflation_annuelle_glissante_pct": 1.2603
+    },
+    {
+      "Annee": 2024,
+      "Mois": 12,
+      "Periode": "2024-12",
+      "IPC": 119.95,
+      "Base100_2015_01": 121.3332,
+      "Inflation_mensuelle_pct": 0.1921,
+      "Inflation_annuelle_glissante_pct": 1.3177
+    },
+    {
+      "Annee": 2025,
+      "Mois": 1,
+      "Periode": "2025-01",
+      "IPC": 120.14,
+      "Base100_2015_01": 121.5254,
+      "Inflation_mensuelle_pct": 0.1584,
+      "Inflation_annuelle_glissante_pct": 1.6499
+    },
+    {
+      "Annee": 2025,
+      "Mois": 2,
+      "Periode": "2025-02",
+      "IPC": 120.16,
+      "Base100_2015_01": 121.5456,
+      "Inflation_mensuelle_pct": 0.0166,
+      "Inflation_annuelle_glissante_pct": 0.7969
+    },
+    {
+      "Annee": 2025,
+      "Mois": 3,
+      "Periode": "2025-03",
+      "IPC": 120.38,
+      "Base100_2015_01": 121.7682,
+      "Inflation_mensuelle_pct": 0.1831,
+      "Inflation_annuelle_glissante_pct": 0.7617
+    },
+    {
+      "Annee": 2025,
+      "Mois": 4,
+      "Periode": "2025-04",
+      "IPC": 121.06,
+      "Base100_2015_01": 122.456,
+      "Inflation_mensuelle_pct": 0.5649,
+      "Inflation_annuelle_glissante_pct": 0.8245
+    },
+    {
+      "Annee": 2025,
+      "Mois": 5,
+      "Periode": "2025-05",
+      "IPC": 120.9,
+      "Base100_2015_01": 122.2942,
+      "Inflation_mensuelle_pct": -0.1322,
+      "Inflation_annuelle_glissante_pct": 0.6577
+    },
+    {
+      "Annee": 2025,
+      "Mois": 6,
+      "Periode": "2025-06",
+      "IPC": 121.36,
+      "Base100_2015_01": 122.7595,
+      "Inflation_mensuelle_pct": 0.3805,
+      "Inflation_annuelle_glissante_pct": 0.9651
+    },
+    {
+      "Annee": 2025,
+      "Mois": 7,
+      "Periode": "2025-07",
+      "IPC": 121.62,
+      "Base100_2015_01": 123.0225,
+      "Inflation_mensuelle_pct": 0.2142,
+      "Inflation_annuelle_glissante_pct": 0.9965
+    },
+    {
+      "Annee": 2025,
+      "Mois": 8,
+      "Periode": "2025-08",
+      "IPC": 122.13,
+      "Base100_2015_01": 123.5383,
+      "Inflation_mensuelle_pct": 0.4193,
+      "Inflation_annuelle_glissante_pct": 0.8839
+    },
+    {
+      "Annee": 2025,
+      "Mois": 9,
+      "Periode": "2025-09",
+      "IPC": 120.95,
+      "Base100_2015_01": 122.3447,
+      "Inflation_mensuelle_pct": -0.9662,
+      "Inflation_annuelle_glissante_pct": 1.1626
+    },
+    {
+      "Annee": 2025,
+      "Mois": 10,
+      "Periode": "2025-10",
+      "IPC": 121.02,
+      "Base100_2015_01": 122.4155,
+      "Inflation_mensuelle_pct": 0.0579,
+      "Inflation_annuelle_glissante_pct": 0.9425
+    },
+    {
+      "Annee": 2025,
+      "Mois": 11,
+      "Periode": "2025-11",
+      "IPC": 120.85,
+      "Base100_2015_01": 122.2436,
+      "Inflation_mensuelle_pct": -0.1405,
+      "Inflation_annuelle_glissante_pct": 0.9439
+    }
+  ]
+}
