@@ -1,0 +1,796 @@
+{
+  "livret_a": [
+    {
+      "Annee": 2015,
+      "Mois": 1,
+      "Periode": "2015-01",
+      "Taux_reel_pct": 1.0
+    },
+    {
+      "Annee": 2015,
+      "Mois": 2,
+      "Periode": "2015-02",
+      "Taux_reel_pct": 1.0
+    },
+    {
+      "Annee": 2015,
+      "Mois": 3,
+      "Periode": "2015-03",
+      "Taux_reel_pct": 1.0
+    },
+    {
+      "Annee": 2015,
+      "Mois": 4,
+      "Periode": "2015-04",
+      "Taux_reel_pct": 1.0
+    },
+    {
+      "Annee": 2015,
+      "Mois": 5,
+      "Periode": "2015-05",
+      "Taux_reel_pct": 1.0
+    },
+    {
+      "Annee": 2015,
+      "Mois": 6,
+      "Periode": "2015-06",
+      "Taux_reel_pct": 1.0
+    },
+    {
+      "Annee": 2015,
+      "Mois": 7,
+      "Periode": "2015-07",
+      "Taux_reel_pct": 1.0
+    },
+    {
+      "Annee": 2015,
+      "Mois": 8,
+      "Periode": "2015-08",
+      "Taux_reel_pct": 0.75
+    },
+    {
+      "Annee": 2015,
+      "Mois": 9,
+      "Periode": "2015-09",
+      "Taux_reel_pct": 0.75
+    },
+    {
+      "Annee": 2015,
+      "Mois": 10,
+      "Periode": "2015-10",
+      "Taux_reel_pct": 0.75
+    },
+    {
+      "Annee": 2015,
+      "Mois": 11,
+      "Periode": "2015-11",
+      "Taux_reel_pct": 0.75
+    },
+    {
+      "Annee": 2015,
+      "Mois": 12,
+      "Periode": "2015-12",
+      "Taux_reel_pct": 0.75
+    },
+    {
+      "Annee": 2016,
+      "Mois": 1,
+      "Periode": "2016-01",
+      "Taux_reel_pct": 0.75
+    },
+    {
+      "Annee": 2016,
+      "Mois": 2,
+      "Periode": "2016-02",
+      "Taux_reel_pct": 0.75
+    },
+    {
+      "Annee": 2016,
+      "Mois": 3,
+      "Periode": "2016-03",
+      "Taux_reel_pct": 0.75
+    },
+    {
+      "Annee": 2016,
+      "Mois": 4,
+      "Periode": "2016-04",
+      "Taux_reel_pct": 0.75
+    },
+    {
+      "Annee": 2016,
+      "Mois": 5,
+      "Periode": "2016-05",
+      "Taux_reel_pct": 0.75
+    },
+    {
+      "Annee": 2016,
+      "Mois": 6,
+      "Periode": "2016-06",
+      "Taux_reel_pct": 0.75
+    },
+    {
+      "Annee": 2016,
+      "Mois": 7,
+      "Periode": "2016-07",
+      "Taux_reel_pct": 0.75
+    },
+    {
+      "Annee": 2016,
+      "Mois": 8,
+      "Periode": "2016-08",
+      "Taux_reel_pct": 0.75
+    },
+    {
+      "Annee": 2016,
+      "Mois": 9,
+      "Periode": "2016-09",
+      "Taux_reel_pct": 0.75
+    },
+    {
+      "Annee": 2016,
+      "Mois": 10,
+      "Periode": "2016-10",
+      "Taux_reel_pct": 0.75
+    },
+    {
+      "Annee": 2016,
+      "Mois": 11,
+      "Periode": "2016-11",
+      "Taux_reel_pct": 0.75
+    },
+    {
+      "Annee": 2016,
+      "Mois": 12,
+      "Periode": "2016-12",
+      "Taux_reel_pct": 0.75
+    },
+    {
+      "Annee": 2017,
+      "Mois": 1,
+      "Periode": "2017-01",
+      "Taux_reel_pct": 0.75
+    },
+    {
+      "Annee": 2017,
+      "Mois": 2,
+      "Periode": "2017-02",
+      "Taux_reel_pct": 0.75
+    },
+    {
+      "Annee": 2017,
+      "Mois": 3,
+      "Periode": "2017-03",
+      "Taux_reel_pct": 0.75
+    },
+    {
+      "Annee": 2017,
+      "Mois": 4,
+      "Periode": "2017-04",
+      "Taux_reel_pct": 0.75
+    },
+    {
+      "Annee": 2017,
+      "Mois": 5,
+      "Periode": "2017-05",
+      "Taux_reel_pct": 0.75
+    },
+    {
+      "Annee": 2017,
+      "Mois": 6,
+      "Periode": "2017-06",
+      "Taux_reel_pct": 0.75
+    },
+    {
+      "Annee": 2017,
+      "Mois": 7,
+      "Periode": "2017-07",
+      "Taux_reel_pct": 0.75
+    },
+    {
+      "Annee": 2017,
+      "Mois": 8,
+      "Periode": "2017-08",
+      "Taux_reel_pct": 0.75
+    },
+    {
+      "Annee": 2017,
+      "Mois": 9,
+      "Periode": "2017-09",
+      "Taux_reel_pct": 0.75
+    },
+    {
+      "Annee": 2017,
+      "Mois": 10,
+      "Periode": "2017-10",
+      "Taux_reel_pct": 0.75
+    },
+    {
+      "Annee": 2017,
+      "Mois": 11,
+      "Periode": "2017-11",
+      "Taux_reel_pct": 0.75
+    },
+    {
+      "Annee": 2017,
+      "Mois": 12,
+      "Periode": "2017-12",
+      "Taux_reel_pct": 0.75
+    },
+    {
+      "Annee": 2018,
+      "Mois": 1,
+      "Periode": "2018-01",
+      "Taux_reel_pct": 0.75
+    },
+    {
+      "Annee": 2018,
+      "Mois": 2,
+      "Periode": "2018-02",
+      "Taux_reel_pct": 0.75
+    },
+    {
+      "Annee": 2018,
+      "Mois": 3,
+      "Periode": "2018-03",
+      "Taux_reel_pct": 0.75
+    },
+    {
+      "Annee": 2018,
+      "Mois": 4,
+      "Periode": "2018-04",
+      "Taux_reel_pct": 0.75
+    },
+    {
+      "Annee": 2018,
+      "Mois": 5,
+      "Periode": "2018-05",
+      "Taux_reel_pct": 0.75
+    },
+    {
+      "Annee": 2018,
+      "Mois": 6,
+      "Periode": "2018-06",
+      "Taux_reel_pct": 0.75
+    },
+    {
+      "Annee": 2018,
+      "Mois": 7,
+      "Periode": "2018-07",
+      "Taux_reel_pct": 0.75
+    },
+    {
+      "Annee": 2018,
+      "Mois": 8,
+      "Periode": "2018-08",
+      "Taux_reel_pct": 0.75
+    },
+    {
+      "Annee": 2018,
+      "Mois": 9,
+      "Periode": "2018-09",
+      "Taux_reel_pct": 0.75
+    },
+    {
+      "Annee": 2018,
+      "Mois": 10,
+      "Periode": "2018-10",
+      "Taux_reel_pct": 0.75
+    },
+    {
+      "Annee": 2018,
+      "Mois": 11,
+      "Periode": "2018-11",
+      "Taux_reel_pct": 0.75
+    },
+    {
+      "Annee": 2018,
+      "Mois": 12,
+      "Periode": "2018-12",
+      "Taux_reel_pct": 0.75
+    },
+    {
+      "Annee": 2019,
+      "Mois": 1,
+      "Periode": "2019-01",
+      "Taux_reel_pct": 0.75
+    },
+    {
+      "Annee": 2019,
+      "Mois": 2,
+      "Periode": "2019-02",
+      "Taux_reel_pct": 0.75
+    },
+    {
+      "Annee": 2019,
+      "Mois": 3,
+      "Periode": "2019-03",
+      "Taux_reel_pct": 0.75
+    },
+    {
+      "Annee": 2019,
+      "Mois": 4,
+      "Periode": "2019-04",
+      "Taux_reel_pct": 0.75
+    },
+    {
+      "Annee": 2019,
+      "Mois": 5,
+      "Periode": "2019-05",
+      "Taux_reel_pct": 0.75
+    },
+    {
+      "Annee": 2019,
+      "Mois": 6,
+      "Periode": "2019-06",
+      "Taux_reel_pct": 0.75
+    },
+    {
+      "Annee": 2019,
+      "Mois": 7,
+      "Periode": "2019-07",
+      "Taux_reel_pct": 0.75
+    },
+    {
+      "Annee": 2019,
+      "Mois": 8,
+      "Periode": "2019-08",
+      "Taux_reel_pct": 0.75
+    },
+    {
+      "Annee": 2019,
+      "Mois": 9,
+      "Periode": "2019-09",
+      "Taux_reel_pct": 0.75
+    },
+    {
+      "Annee": 2019,
+      "Mois": 10,
+      "Periode": "2019-10",
+      "Taux_reel_pct": 0.75
+    },
+    {
+      "Annee": 2019,
+      "Mois": 11,
+      "Periode": "2019-11",
+      "Taux_reel_pct": 0.75
+    },
+    {
+      "Annee": 2019,
+      "Mois": 12,
+      "Periode": "2019-12",
+      "Taux_reel_pct": 0.75
+    },
+    {
+      "Annee": 2020,
+      "Mois": 1,
+      "Periode": "2020-01",
+      "Taux_reel_pct": 0.75
+    },
+    {
+      "Annee": 2020,
+      "Mois": 2,
+      "Periode": "2020-02",
+      "Taux_reel_pct": 0.5
+    },
+    {
+      "Annee": 2020,
+      "Mois": 3,
+      "Periode": "2020-03",
+      "Taux_reel_pct": 0.5
+    },
+    {
+      "Annee": 2020,
+      "Mois": 4,
+      "Periode": "2020-04",
+      "Taux_reel_pct": 0.5
+    },
+    {
+      "Annee": 2020,
+      "Mois": 5,
+      "Periode": "2020-05",
+      "Taux_reel_pct": 0.5
+    },
+    {
+      "Annee": 2020,
+      "Mois": 6,
+      "Periode": "2020-06",
+      "Taux_reel_pct": 0.5
+    },
+    {
+      "Annee": 2020,
+      "Mois": 7,
+      "Periode": "2020-07",
+      "Taux_reel_pct": 0.5
+    },
+    {
+      "Annee": 2020,
+      "Mois": 8,
+      "Periode": "2020-08",
+      "Taux_reel_pct": 0.5
+    },
+    {
+      "Annee": 2020,
+      "Mois": 9,
+      "Periode": "2020-09",
+      "Taux_reel_pct": 0.5
+    },
+    {
+      "Annee": 2020,
+      "Mois": 10,
+      "Periode": "2020-10",
+      "Taux_reel_pct": 0.5
+    },
+    {
+      "Annee": 2020,
+      "Mois": 11,
+      "Periode": "2020-11",
+      "Taux_reel_pct": 0.5
+    },
+    {
+      "Annee": 2020,
+      "Mois": 12,
+      "Periode": "2020-12",
+      "Taux_reel_pct": 0.5
+    },
+    {
+      "Annee": 2021,
+      "Mois": 1,
+      "Periode": "2021-01",
+      "Taux_reel_pct": 0.5
+    },
+    {
+      "Annee": 2021,
+      "Mois": 2,
+      "Periode": "2021-02",
+      "Taux_reel_pct": 0.5
+    },
+    {
+      "Annee": 2021,
+      "Mois": 3,
+      "Periode": "2021-03",
+      "Taux_reel_pct": 0.5
+    },
+    {
+      "Annee": 2021,
+      "Mois": 4,
+      "Periode": "2021-04",
+      "Taux_reel_pct": 0.5
+    },
+    {
+      "Annee": 2021,
+      "Mois": 5,
+      "Periode": "2021-05",
+      "Taux_reel_pct": 0.5
+    },
+    {
+      "Annee": 2021,
+      "Mois": 6,
+      "Periode": "2021-06",
+      "Taux_reel_pct": 0.5
+    },
+    {
+      "Annee": 2021,
+      "Mois": 7,
+      "Periode": "2021-07",
+      "Taux_reel_pct": 0.5
+    },
+    {
+      "Annee": 2021,
+      "Mois": 8,
+      "Periode": "2021-08",
+      "Taux_reel_pct": 0.5
+    },
+    {
+      "Annee": 2021,
+      "Mois": 9,
+      "Periode": "2021-09",
+      "Taux_reel_pct": 0.5
+    },
+    {
+      "Annee": 2021,
+      "Mois": 10,
+      "Periode": "2021-10",
+      "Taux_reel_pct": 0.5
+    },
+    {
+      "Annee": 2021,
+      "Mois": 11,
+      "Periode": "2021-11",
+      "Taux_reel_pct": 0.5
+    },
+    {
+      "Annee": 2021,
+      "Mois": 12,
+      "Periode": "2021-12",
+      "Taux_reel_pct": 0.5
+    },
+    {
+      "Annee": 2022,
+      "Mois": 1,
+      "Periode": "2022-01",
+      "Taux_reel_pct": 0.5
+    },
+    {
+      "Annee": 2022,
+      "Mois": 2,
+      "Periode": "2022-02",
+      "Taux_reel_pct": 1.0
+    },
+    {
+      "Annee": 2022,
+      "Mois": 3,
+      "Periode": "2022-03",
+      "Taux_reel_pct": 1.0
+    },
+    {
+      "Annee": 2022,
+      "Mois": 4,
+      "Periode": "2022-04",
+      "Taux_reel_pct": 1.0
+    },
+    {
+      "Annee": 2022,
+      "Mois": 5,
+      "Periode": "2022-05",
+      "Taux_reel_pct": 1.0
+    },
+    {
+      "Annee": 2022,
+      "Mois": 6,
+      "Periode": "2022-06",
+      "Taux_reel_pct": 1.0
+    },
+    {
+      "Annee": 2022,
+      "Mois": 7,
+      "Periode": "2022-07",
+      "Taux_reel_pct": 1.0
+    },
+    {
+      "Annee": 2022,
+      "Mois": 8,
+      "Periode": "2022-08",
+      "Taux_reel_pct": 2.0
+    },
+    {
+      "Annee": 2022,
+      "Mois": 9,
+      "Periode": "2022-09",
+      "Taux_reel_pct": 2.0
+    },
+    {
+      "Annee": 2022,
+      "Mois": 10,
+      "Periode": "2022-10",
+      "Taux_reel_pct": 2.0
+    },
+    {
+      "Annee": 2022,
+      "Mois": 11,
+      "Periode": "2022-11",
+      "Taux_reel_pct": 2.0
+    },
+    {
+      "Annee": 2022,
+      "Mois": 12,
+      "Periode": "2022-12",
+      "Taux_reel_pct": 2.0
+    },
+    {
+      "Annee": 2023,
+      "Mois": 1,
+      "Periode": "2023-01",
+      "Taux_reel_pct": 2.0
+    },
+    {
+      "Annee": 2023,
+      "Mois": 2,
+      "Periode": "2023-02",
+      "Taux_reel_pct": 3.0
+    },
+    {
+      "Annee": 2023,
+      "Mois": 3,
+      "Periode": "2023-03",
+      "Taux_reel_pct": 3.0
+    },
+    {
+      "Annee": 2023,
+      "Mois": 4,
+      "Periode": "2023-04",
+      "Taux_reel_pct": 3.0
+    },
+    {
+      "Annee": 2023,
+      "Mois": 5,
+      "Periode": "2023-05",
+      "Taux_reel_pct": 3.0
+    },
+    {
+      "Annee": 2023,
+      "Mois": 6,
+      "Periode": "2023-06",
+      "Taux_reel_pct": 3.0
+    },
+    {
+      "Annee": 2023,
+      "Mois": 7,
+      "Periode": "2023-07",
+      "Taux_reel_pct": 3.0
+    },
+    {
+      "Annee": 2023,
+      "Mois": 8,
+      "Periode": "2023-08",
+      "Taux_reel_pct": 3.0
+    },
+    {
+      "Annee": 2023,
+      "Mois": 9,
+      "Periode": "2023-09",
+      "Taux_reel_pct": 3.0
+    },
+    {
+      "Annee": 2023,
+      "Mois": 10,
+      "Periode": "2023-10",
+      "Taux_reel_pct": 3.0
+    },
+    {
+      "Annee": 2023,
+      "Mois": 11,
+      "Periode": "2023-11",
+      "Taux_reel_pct": 3.0
+    },
+    {
+      "Annee": 2023,
+      "Mois": 12,
+      "Periode": "2023-12",
+      "Taux_reel_pct": 3.0
+    },
+    {
+      "Annee": 2024,
+      "Mois": 1,
+      "Periode": "2024-01",
+      "Taux_reel_pct": 3.0
+    },
+    {
+      "Annee": 2024,
+      "Mois": 2,
+      "Periode": "2024-02",
+      "Taux_reel_pct": 3.0
+    },
+    {
+      "Annee": 2024,
+      "Mois": 3,
+      "Periode": "2024-03",
+      "Taux_reel_pct": 3.0
+    },
+    {
+      "Annee": 2024,
+      "Mois": 4,
+      "Periode": "2024-04",
+      "Taux_reel_pct": 3.0
+    },
+    {
+      "Annee": 2024,
+      "Mois": 5,
+      "Periode": "2024-05",
+      "Taux_reel_pct": 3.0
+    },
+    {
+      "Annee": 2024,
+      "Mois": 6,
+      "Periode": "2024-06",
+      "Taux_reel_pct": 3.0
+    },
+    {
+      "Annee": 2024,
+      "Mois": 7,
+      "Periode": "2024-07",
+      "Taux_reel_pct": 3.0
+    },
+    {
+      "Annee": 2024,
+      "Mois": 8,
+      "Periode": "2024-08",
+      "Taux_reel_pct": 3.0
+    },
+    {
+      "Annee": 2024,
+      "Mois": 9,
+      "Periode": "2024-09",
+      "Taux_reel_pct": 3.0
+    },
+    {
+      "Annee": 2024,
+      "Mois": 10,
+      "Periode": "2024-10",
+      "Taux_reel_pct": 3.0
+    },
+    {
+      "Annee": 2024,
+      "Mois": 11,
+      "Periode": "2024-11",
+      "Taux_reel_pct": 3.0
+    },
+    {
+      "Annee": 2024,
+      "Mois": 12,
+      "Periode": "2024-12",
+      "Taux_reel_pct": 3.0
+    },
+    {
+      "Annee": 2025,
+      "Mois": 1,
+      "Periode": "2025-01",
+      "Taux_reel_pct": 3.0
+    },
+    {
+      "Annee": 2025,
+      "Mois": 2,
+      "Periode": "2025-02",
+      "Taux_reel_pct": 2.4
+    },
+    {
+      "Annee": 2025,
+      "Mois": 3,
+      "Periode": "2025-03",
+      "Taux_reel_pct": 2.4
+    },
+    {
+      "Annee": 2025,
+      "Mois": 4,
+      "Periode": "2025-04",
+      "Taux_reel_pct": 2.4
+    },
+    {
+      "Annee": 2025,
+      "Mois": 5,
+      "Periode": "2025-05",
+      "Taux_reel_pct": 2.4
+    },
+    {
+      "Annee": 2025,
+      "Mois": 6,
+      "Periode": "2025-06",
+      "Taux_reel_pct": 2.4
+    },
+    {
+      "Annee": 2025,
+      "Mois": 7,
+      "Periode": "2025-07",
+      "Taux_reel_pct": 2.4
+    },
+    {
+      "Annee": 2025,
+      "Mois": 8,
+      "Periode": "2025-08",
+      "Taux_reel_pct": 1.7
+    },
+    {
+      "Annee": 2025,
+      "Mois": 9,
+      "Periode": "2025-09",
+      "Taux_reel_pct": 1.7
+    },
+    {
+      "Annee": 2025,
+      "Mois": 10,
+      "Periode": "2025-10",
+      "Taux_reel_pct": 1.7
+    },
+    {
+      "Annee": 2025,
+      "Mois": 11,
+      "Periode": "2025-11",
+      "Taux_reel_pct": 1.7
+    },
+    {
+      "Annee": 2025,
+      "Mois": 12,
+      "Periode": "2025-12",
+      "Taux_reel_pct": 1.7
+    }
+  ]
+}
