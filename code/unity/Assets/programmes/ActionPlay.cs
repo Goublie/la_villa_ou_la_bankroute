@@ -16,7 +16,7 @@ public class ActionPlay : MonoBehaviour
             invest.ComposerBenefices();
         }
 
-        //Active toutes les fonctios liées à cette action
+        //Active toutes les fonctions liées à cette action
         moisPasse?.Invoke();
     }
     public void incrementerMois()
