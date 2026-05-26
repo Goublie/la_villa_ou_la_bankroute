@@ -13,8 +13,18 @@ MonoBehaviour:
   m_Name: GameData
   m_EditorClassIdentifier: Assembly-CSharp::GameData
   argent:
-    centimes: 2147281200
+    centimes: 2147211875
   energie: 100
   santeMentale: 100
-  moisPasse: 11
-  investissements: []
+  moisPasse: 25
+  investissements:
+  - sommeInvestie:
+      centimes: -2147473648
+    taux: 0
+    dureeMois: 0
+    moisEcoules: 0
+  - sommeInvestie:
+      centimes: 22500
+    taux: 0.5
+    dureeMois: 12
+    moisEcoules: 0

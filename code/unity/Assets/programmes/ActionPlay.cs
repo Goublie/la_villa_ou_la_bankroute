@@ -4,7 +4,6 @@ using UnityEngine;
 public class ActionPlay : MonoBehaviour
 {
     public GameData gameData; // Référence vers ton ScriptableObject
-    public HUDManager hudManager; // Référence vers le HUDManager pour rafraîchir l'affichage
 
     public static event Action moisPasse;
 
@@ -16,18 +15,15 @@ public class ActionPlay : MonoBehaviour
             invest.ComposerBenefices();
         }
 
-        //Active toutes les fonctios liées à cette action
+        //Active toutes les fonctions liées à cette action
         moisPasse?.Invoke();
     }
-    public void incrementerMois()
+    
+    private void incrementerMois()
     {
         if (gameData != null)
         {
             gameData.moisPasse++;
-        }
-        if (hudManager != null)
-        {
-            hudManager.ActualiserAffichage();
         }
     }
 }

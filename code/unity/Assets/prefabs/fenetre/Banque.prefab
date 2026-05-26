@@ -121,9 +121,9 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 0}
-        m_TargetAssemblyTypeName: Credit, Assembly-CSharp
-        m_MethodName: crediter
+      - m_Target: {fileID: 7315172028813819504}
+        m_TargetAssemblyTypeName: GestionBanqueUI, Assembly-CSharp
+        m_MethodName: saisieCredit
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -310,14 +310,14 @@ MonoBehaviour:
   m_VerticalScrollbarEventHandler: {fileID: 0}
   m_LayoutGroup: {fileID: 0}
   m_ScrollSensitivity: 1
-  m_ContentType: 0
+  m_ContentType: 3
   m_InputType: 0
   m_AsteriskChar: 42
-  m_KeyboardType: 0
+  m_KeyboardType: 2
   m_LineType: 0
   m_HideMobileInput: 0
   m_HideSoftKeyboard: 0
-  m_CharacterValidation: 0
+  m_CharacterValidation: 3
   m_RegexValue: 
   m_GlobalPointSize: 14
   m_CharacterLimit: 0
@@ -375,7 +375,6 @@ GameObject:
   - component: {fileID: 5223216189464182588}
   - component: {fileID: 3831978246241831988}
   - component: {fileID: 4988642019221245581}
-  - component: {fileID: 5327931647412521848}
   m_Layer: 0
   m_Name: epargne
   m_TagString: Untagged
@@ -458,24 +457,15 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fede8e5790880314692c71b88fc7bddb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::CompteBanquaire
-  solde:
-    centimes: 0
-  taux: {fileID: 11400000, guid: 30454562fdfeed049ab14c1ebb6ed4f8, type: 2}
+  epargne:
+    sommeInvestie:
+      centimes: 0
+    taux: 0
+    dureeMois: 0
+    moisEcoules: 0
   gameData: {fileID: 11400000, guid: 00f9a2cc968a86847bacedddfcfe8be5, type: 2}
---- !u!114 &5327931647412521848
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1312298437442060231}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: fc561707acc344045a554ed44f8a3789, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::AffichageEpargne
-  compte: {fileID: 4988642019221245581}
-  texteSolde: {fileID: 659677379879815562}
+  UIBanque: {fileID: 7315172028813819504}
+  HUD: {fileID: 0}
 --- !u!1 &2971480145847254154
 GameObject:
   m_ObjectHideFlags: 0
@@ -610,8 +600,8 @@ MonoBehaviour:
   m_fontSizeMin: 18
   m_fontSizeMax: 72
   m_fontStyle: 2
-  m_HorizontalAlignment: 1
-  m_VerticalAlignment: 256
+  m_HorizontalAlignment: 2
+  m_VerticalAlignment: 512
   m_textAlignment: 65535
   m_characterSpacing: 0
   m_characterHorizontalScale: 1
@@ -742,7 +732,6 @@ GameObject:
   m_Component:
   - component: {fileID: 7459604138108441748}
   - component: {fileID: 1890561420936256594}
-  - component: {fileID: 5512243414842483644}
   m_Layer: 0
   m_Name: Credit
   m_TagString: Untagged
@@ -797,23 +786,6 @@ MonoBehaviour:
   m_ChildScaleWidth: 1
   m_ChildScaleHeight: 1
   m_ReverseArrangement: 0
---- !u!114 &5512243414842483644
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3356785782102195558}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 4189044657cf67c4684818dc37c2f62e, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::Credit
-  gameData: {fileID: 11400000, guid: 00f9a2cc968a86847bacedddfcfe8be5, type: 2}
-  compte: {fileID: 4988642019221245581}
-  hudManager: {fileID: 0}
-  tab: {fileID: 1294707599497245561}
-  entreeArgent: {fileID: 14986793362622727}
 --- !u!1 &3497520242716755206
 GameObject:
   m_ObjectHideFlags: 0
@@ -1151,6 +1123,7 @@ GameObject:
   - component: {fileID: 4754354159346175225}
   - component: {fileID: 4395060817525820767}
   - component: {fileID: 2880654223584844457}
+  - component: {fileID: 7315172028813819504}
   m_Layer: 5
   m_Name: Banque
   m_TagString: Untagged
@@ -1209,6 +1182,24 @@ Canvas:
   m_SortingLayerID: 0
   m_SortingOrder: 0
   m_TargetDisplay: 0
+--- !u!114 &7315172028813819504
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4728003627884137452}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fc561707acc344045a554ed44f8a3789, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::GestionBanqueUI
+  compte: {fileID: 4988642019221245581}
+  inputCredit: {fileID: 14986793362622727}
+  inputDebit: {fileID: 8802799238746887277}
+  tableau: {fileID: 1294707599497245561}
+  texteSolde: {fileID: 659677379879815562}
+  texteTaux: {fileID: 5663632490872808328}
 --- !u!1 &4888368248958513428
 GameObject:
   m_ObjectHideFlags: 0
@@ -1730,7 +1721,6 @@ GameObject:
   m_Component:
   - component: {fileID: 6170161711466246289}
   - component: {fileID: 3190561790694917186}
-  - component: {fileID: 9095525914500732647}
   m_Layer: 0
   m_Name: Debit
   m_TagString: Untagged
@@ -1785,23 +1775,6 @@ MonoBehaviour:
   m_ChildScaleWidth: 1
   m_ChildScaleHeight: 1
   m_ReverseArrangement: 0
---- !u!114 &9095525914500732647
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5746708525101512553}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 380dd3aa621e02e4192149386aa30c79, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::Debit
-  gameData: {fileID: 11400000, guid: 00f9a2cc968a86847bacedddfcfe8be5, type: 2}
-  compte: {fileID: 4988642019221245581}
-  hudManager: {fileID: 0}
-  tab: {fileID: 1294707599497245561}
-  entreeArgent: {fileID: 8802799238746887277}
 --- !u!1 &5800964663113919358
 GameObject:
   m_ObjectHideFlags: 0
@@ -1896,10 +1869,10 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 50
+  m_fontSize: 49.1
   m_fontSizeBase: 50
   m_fontWeight: 400
-  m_enableAutoSizing: 0
+  m_enableAutoSizing: 1
   m_fontSizeMin: 18
   m_fontSizeMax: 72
   m_fontStyle: 0
@@ -3325,7 +3298,7 @@ MonoBehaviour:
   m_fontSize: 14
   m_fontSizeBase: 14
   m_fontWeight: 400
-  m_enableAutoSizing: 0
+  m_enableAutoSizing: 1
   m_fontSizeMin: 18
   m_fontSizeMax: 72
   m_fontStyle: 0
@@ -3433,7 +3406,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: "Entrez un montant \xE0 c\xE9diter...\n"
+  m_text: "Entrez un montant \xE0 cr\xE9diter...\n"
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
@@ -3460,7 +3433,7 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 36.55
+  m_fontSize: 35.65
   m_fontSizeBase: 14
   m_fontWeight: 400
   m_enableAutoSizing: 1
@@ -3954,9 +3927,9 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 9095525914500732647}
-        m_TargetAssemblyTypeName: Debit, Assembly-CSharp
-        m_MethodName: dediter
+      - m_Target: {fileID: 7315172028813819504}
+        m_TargetAssemblyTypeName: GestionBanqueUI, Assembly-CSharp
+        m_MethodName: saisieDebit
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}

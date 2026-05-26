@@ -32,19 +32,19 @@ public class Investissement
 
     //Cacul les bénéfices, puis si la période d'investissement est écoulée, compose les bénéfices
     public void ComposerBenefices()
-    {
-    // Calcul des bénéfices mensuels
-    benefices += sommeInvestie.centimes * (taux / dureeMois);
-    moisEcoules++;
+    {     
+        // Calcul des bénéfices mensuels
+        benefices += sommeInvestie.centimes * (taux / dureeMois);
+        moisEcoules++;
 
-    if (moisEcoules >= dureeMois)
-    {
-        // On arrondit pour éviter les erreurs de type float
-        sommeInvestie.centimes += Mathf.RoundToInt(benefices);
+        if (moisEcoules >= dureeMois)
+        {
+            // On arrondit pour éviter les erreurs de type float
+            sommeInvestie.centimes += Mathf.RoundToInt(benefices);
 
-        // Réinitialisation
-        benefices = 0;
-        moisEcoules = 0; 
-    }
+            // Réinitialisation
+            benefices = 0;
+            moisEcoules = 0; 
+        }
     }
 }
