@@ -1,60 +1,86 @@
-using UnityEngine;
+using System;
 using System.Collections.Generic;
 
-public class CompteBanquaire : MonoBehaviour
+public class CompteBanquaire
 {
-    public Investissement epargne; //système d'épargne du compte banquaire
+    private Dictionnary<string, argent> historique; //Contient toutes les entrés/sorties d'argent lie la source à son montant
+    private argent totalEntree; // somme total d'argent positif
+    private argent totalSortie; // somme total d'argent négatif
+    private argent Solde; // solde du compte
 
-    [SerializeField] public GameData gameData; //Référence aux données du jeu
-
-    [SerializeField] public GestionBanqueUI UIBanque;
-
-    [SerializeField] public HUDManager HUD;
-
-    void Start()
+    CompteBanquaire()
     {
-        gameData.investissements.Add(epargne);
-        UIBanque.ActualiserAffichage();
+        historique = new Dictionnary<string, argent>();
     }
 
-    //Retire de l'argent du solde du compte banquaire
-    public bool debiter(argent montant)
+    CompteBanquaire(Dictionnary<string, argent> _historique)
     {
-        if (montant.centimes < 0)
-        {
-            Debug.Log("Le montant à débiter doit être positif.");
-            return false;
-        }
-
-        if (montant > epargne.sommeInvestie)
-        {
-            Debug.Log("Vous n'avez pas assez d'argent sur votre compte pour débiter ce montant.");
-            return false;
-        }
-
-        epargne.sommeInvestie -= montant;
-        gameData.argent += montant; // On ajoute le montant débité à l'argent du joueur
-        HUD.ActualiserAffichage();
-        UIBanque.ActualiserAffichage();
-        return true;
+        historique = _historique;
+        calculEntree;
+        calculSortie;
+        calculSolde;
     }
 
-    public bool crediter(argent montant)
+    //Calcul et renvoie la somme des entrées d'argent
+    public argent calculEntree()
     {
-        if (montant.centimes < 0)
+        totalEntree = 0;
+        foreach(argent montant in historique.Values)
         {
-            Debug.Log("Le montant à créditer doit être positif.");
-            return false;
+            if(montant.centimes >= 0)
+            {
+                totalEntree +=montant;
+            }
         }
-        if (montant > gameData.argent)
+        return totalEntree;
+    }
+
+    //Calcul et renvoie la somme des sorties d'argent
+    public argent calculSortie()
+    {
+        totalSortie = 0;
+        foreach(argent montant in historique.Values)
         {
-            Debug.Log("Vous n'avez pas assez d'argent pour créditer ce montant.");
-            return false;
+            if(montant.centimes < 0)
+            {
+                totalSortie +=montant;
+            }
         }
-        epargne.sommeInvestie += montant;
-        gameData.argent -= montant; // On retire le montant du joueur
-        HUD.ActualiserAffichage();
-        UIBanque.ActualiserAffichage();
-        return true;
+        return totalSortie;
+    }
+
+    public argent calculSolde()
+    {
+        Solde = totalEntree + totalSortie;
+    }
+
+    public void ajoutHistorique(string source, argent montant)
+    {
+        historique.add(source,montant);
+        if (montant.centimes >0)
+        {
+            totalEntree += montant;
+        }
+        else
+        {
+            totalSortie += montant;
+        }
+        calculSolde();
+    }
+
+    ///////////////
+    /// GETTERS ///
+    ///////////////
+
+    //Renvoie l'historique du compte
+    public Dictionnary<string, argent> getHistorique()
+    {
+        return historique;
+    }
+
+    //Renvoie le solde du compte
+    public argent getSolde()
+    {
+        return Solde;
     }
 }
