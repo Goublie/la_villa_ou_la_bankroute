@@ -1,7 +1,7 @@
 using UnityEngine;
 using UnityEngine.UI;
 
-public class Gestion_Options : MonoBehaviour
+public class Son_Luminosité : MonoBehaviour
 {
     [Header("Sliders")]
     [SerializeField] private Slider sliderSon;
@@ -36,6 +36,10 @@ public class Gestion_Options : MonoBehaviour
 
             sliderLuminosite.onValueChanged.AddListener(ChangerLuminosite);
         }
+        if (Luminosite_Globale.Instance != null)
+        {
+            sliderLuminosite.value = Luminosite_Globale.Instance.ObtenirValeurActuelle();
+        }
     }
 
     public void ChangerVolumeGeneral(float valeur)
@@ -53,13 +57,13 @@ public class Gestion_Options : MonoBehaviour
         }
     }
 
+    // Remplace l'ancienne fonction dans Gestion_Options par celle-là :
     public void ChangerLuminosite(float valeur)
     {
-        if (filtreLuminosite != null)
+        // On communique directement avec l'objet immortel
+        if (Luminosite_Globale.Instance != null)
         {
-            Color couleurActuelle = filtreLuminosite.color;
-            couleurActuelle.a = Mathf.Lerp(0.8f, 0f, valeur);
-            filtreLuminosite.color = couleurActuelle;
+            Luminosite_Globale.Instance.AppliquerLuminosite(valeur);
         }
     }
 }
