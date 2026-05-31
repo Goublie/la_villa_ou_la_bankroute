@@ -10,15 +10,15 @@ public class Tableau : MonoBehaviour
        tableau = new List<Ligne>(GetComponentsInChildren<Ligne>());
 
         //On vide le tableau au début du jeu
-        vider();
+        Vider();
     }
 
     //Renvoie true si toutes les lignes sont vides
-    public bool estVide()
+    public bool EstVide()
     {
         foreach (Ligne l in tableau)
         {
-            if (!l.estVide())
+            if (!l.EstVide())
             {
                 return false;
             }
@@ -27,13 +27,13 @@ public class Tableau : MonoBehaviour
     }
 
     //Vide le tableau
-    public void vider()
+    public void Vider()
     {
         foreach (Ligne l in tableau)
         {
             if (l != null)
             {
-                l.vider();
+                l.Vider();
             }
         }
     }
@@ -41,19 +41,19 @@ public class Tableau : MonoBehaviour
     //Renvoie le texte affiché dans la case à l'indice (y,x)
     public string get(int y, int x)
     {
-        return tableau[y].get(x);
+        return tableau[y].Get(x);
     }
 
     //Ajoute le texte dans la première case de la première ligne vide du tableau et renvoie true en cas de réussite
-    public bool add(string text1, string text2="", string text3="")
+    public virtual bool Add(string text1, string text2="", string text3="")
     {
         foreach (Ligne l in tableau)
         {
-            if (l.estVide())
+            if (l.EstVide())
             {
-                l.set(0, text1);
-                l.set(1, text2);
-                l.set(2, text3);
+                l.Set(0, text1);
+                l.Set(1, text2);
+                l.Set(2, text3);
                 return true;
             }
         }
@@ -61,20 +61,20 @@ public class Tableau : MonoBehaviour
     }
 
     //Affiche le texte text dans la case à l'indice (y,x)
-    public void set(int indiceLigne, int indiceColonne, string text)
+    public void Set(int indiceLigne, int indiceColonne, string text)
     {
-        tableau[indiceLigne].set(indiceColonne, text);
+        tableau[indiceLigne].Set(indiceColonne, text);
     }
 
     //Affiche un nombre dans la case à l'indice (y,x)
-    public void set(int indiceLigne, int indiceColonne, int data)
+    public void Set(int indiceLigne, int indiceColonne, int data)
     {
-        set(indiceLigne, indiceColonne, data.ToString());
+        Set(indiceLigne, indiceColonne, data.ToString());
     }
 
     //Affiche un montant d'argent dans la case à l'indice (y,x)
-    public void set(int indiceLigne, int indiceColonne, argent data)
+    public void Set(int indiceLigne, int indiceColonne, argent data)
     {
-        set(indiceLigne, indiceColonne, data.ToString());
+        Set(indiceLigne, indiceColonne, data.ToString());
     }
 }

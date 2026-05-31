@@ -5,21 +5,31 @@ using TMPro;
 public class EpargneUI : MonoBehaviour
 {
     //Informations à afficher dans l'onglet epargne
-    [SerializeField] CompteBanquaire compteEpgn; //Le compte d'épargne
+    [SerializeField] GameData G; //Le compte d'épargne
     
+    private Epargne epgn;
+
     //Liuex d'entrée des informations
     [SerializeField] TMP_InputField inputCredit; //L'entrée du montant à crédit
     [SerializeField] TMP_InputField inputDebit; //L'entrée du montant à débiter
 
     //Lieux d'affichage des informations
-    [SerializeField] Tableau tableauEpgn; //Le tableau d'affichage des opérations
+    [SerializeField] TableauScroll tableauEpgn; //Le tableau d'affichage des opérations
     [SerializeField] TextMeshProUGUI texteSoldeEpgn; //Le texte affichant le solde du compte d'épargne
     [SerializeField] TextMeshProUGUI texteTaux; //Le texte affichant le taux de rendement du compte d'épargne
+
+    void Start()
+    {
+        G.comptes.Add("epargne",new Epargne(0.03f,12));
+        epgn = (Epargne)G.comptes["epargne"];
+        G.investissements.Add(epgn.invest);
+        ActualiserAffichage();
+    }
 
     //Actualise l'affichage du solde et du taux
     public void ActualiserAffichage()
     {
-        if (compteEpgn == null)
+        if (epgn == null)
         {
             Debug.LogError("Le compte epargne n'est pas assigné dans le GestionBanqueUI.");
             return;
@@ -50,19 +60,20 @@ public class EpargneUI : MonoBehaviour
             return;
         }
         
-        texteSoldeEpgn.text = "Solde : " + compteEpgn.epargne.sommeInvestie.ToString();
-        texteTaux.text = "Taux : " + (compteEpgn.epargne.taux * 100).ToString("F2") + " %";
+        texteSoldeEpgn.text = "Solde : " + epgn.GetSolde().ToString();
+        texteTaux.text = "Taux : " + (epgn.GetTaux() * 100).ToString("F2") + " %";
+        ActualiserTableau();
     }
 
     //Ajoute une ligne au tableau d'affichage des opérations
-    public void ajouterTableau(string texteC1, string texteC2, string texteC3)
+    public void ActualiserTableau()
     {
-        if (tableauEpgn == null)
+        Historique histo = epgn.GetHistorique();
+        tableauEpgn.Vider();
+        for(int i=histo.GetSize(); i>histo.GetSize(); i++)
         {
-            Debug.LogError("Le tableau n'est pas assigné dans le GestionBanqueUI.");
-            return;
+            tableauEpgn.Add(histo.libelles[i], histo.montants[i].ToString(), "");
         }
-        tableauEpgn.add(texteC1, texteC2, texteC3);
     }
 
     //Gère la saisie du crédit
@@ -96,11 +107,9 @@ public class EpargneUI : MonoBehaviour
 
         argent somme = new argent(montant);
 
-        //On l'affiche dans le tableau
-        if (compteEpgn.crediter(somme))
-        {
-            ajouterTableau("Credit", "+ " + (somme).ToString(), "");   
-        }
+        //On transfere les montant
+        G.comptes["courant"].Transferer(epgn, "courant vers epargne", "Credit",  somme);
+        ActualiserAffichage();
     }
 
     //Gère la saisie du débit
@@ -135,11 +144,8 @@ public class EpargneUI : MonoBehaviour
         }
 
         argent somme = new argent(montant);
-        
-        if(compteEpgn.debiter(somme)) // On débite le compte banquaire
-        {
-            ajouterTableau("Débit", "",(-somme).ToString()); //si le débit s'est bien passé, on affiche
-        }
+        epgn.Transferer(G.comptes["courant"], "Debit", "Versement depuis le compte epargne",  somme);
+        ActualiserAffichage();
     }
 
     void OnEnable()

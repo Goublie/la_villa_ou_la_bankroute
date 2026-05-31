@@ -7,46 +7,46 @@ public class Case : MonoBehaviour
     private TextMeshProUGUI composantTexte;
 
     //renvoie le texte affiché dans la case
-    public string getTexte()
+    public string GetTexte()
     {
         return composantTexte.text;
     }
 
     // Affiche le texte text dans la case
-    public void set(string texte)
+    public void Set(string texte)
     {
         composantTexte.text = texte;
     }
 
     //Affiche un nombre dans la case
-    public void set(int montant)
+    public void Set(int montant)
     {
-        set(montant.ToString());
+        Set(montant.ToString());
     }
 
     //Affiche un montant d'argent
-    public void set(argent montant)
+    public void Set(argent montant)
     {
-        set(montant.ToString());
+        Set(montant.ToString());
     }
 
     //Renvoie vrai si la case est vide
-    public bool estVide()
+    public bool EstVide()
     {
-        return getTexte() == "";
+        return GetTexte() == "";
     }
 
     //Vide la case
-    public void vider()
+    public void Vider()
     {
         if (composantTexte != null)
-            set("");
+            Set("");
     }
 
-    public void Start()
+    public void Awake()
     {
         composantTexte = GetComponentInChildren<TextMeshProUGUI>();
         //On vide la case au début du jeu
-        vider();
+        Vider();
     }
 }

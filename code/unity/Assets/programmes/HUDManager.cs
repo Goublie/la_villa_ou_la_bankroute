@@ -16,11 +16,13 @@ public class HUDManager : MonoBehaviour
 
     void OnEnable()
     {
+        gameData.comptes["courant"].OnSoldeModifie += ActualiserAffichage;
         ActionPlay.moisPasse += ActualiserAffichage;
     }
 
    void OnDisable()
     {
+        gameData.comptes["courant"].OnSoldeModifie -= ActualiserAffichage;
         ActionPlay.moisPasse -= ActualiserAffichage;
     }
 
@@ -31,7 +33,8 @@ public class HUDManager : MonoBehaviour
 
         if (texteArgent != null)
         {
-            texteArgent.text = gameData.argent.ToString();
+            Debug.Log(gameData.comptes["courant"].GetSolde().ToString());
+            texteArgent.text = gameData.comptes["courant"].GetSolde().ToString();
         }
 
         if (texteEnergie != null) 
