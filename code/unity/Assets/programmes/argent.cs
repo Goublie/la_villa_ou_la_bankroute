@@ -13,7 +13,6 @@ public struct argent
 
     public argent(float somme) : this(Mathf.RoundToInt(somme * 100f))
     {
-        
     }
 
     public override string ToString()
@@ -28,6 +27,10 @@ public struct argent
     public static argent operator -(argent a, argent b) => new argent(a.centimes - b.centimes);
     public static argent operator -(argent a) => new argent(-a.centimes);
     public static argent operator *(argent a, float multiplicateur) => new argent((int)(a.centimes * multiplicateur));
+    public static argent operator *(float multiplicateur,argent a)
+    {
+        return a * multiplicateur;
+    }
     public static bool operator >(argent a, argent b) => a.centimes > b.centimes;
     public static bool operator <(argent a, argent b) => a.centimes < b.centimes;
     public static bool operator >=(argent a, argent b) => a.centimes >= b.centimes;

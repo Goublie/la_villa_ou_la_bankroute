@@ -6,22 +6,37 @@ public class SliderAvecTexte : MonoBehaviour
 {
     [SerializeField] private GameData G;
     public Slider slider;
-    public TextMeshProUGUI textCell;
+    public argent soldeCompte;
 
-    private int SoldeCompte;
-
+    
+    void OnEnable()
+    {
+        ActionPlay.moisPasse += RecupSolde;
+    }
+    void OnDisable()
+    {
+        ActionPlay.moisPasse -= RecupSolde;
+    }
     void Start()
     {
-        slider.onValueChanged.AddListener((valeur) => actualiseMontant(textCell, valeur));
+        RecupSolde();
+        slider.onValueChanged.AddListener((valeur) => ActualiseMontant(valeur));
+    }
+
+    private void RecupSolde()
+    {
+        if(G != null)
+        {
+            soldeCompte = G.comptes["courant"].GetSolde();
+        }
     }
 
     // Met à jour le montant affiché dans la case en fonction de la valeur du slider
-    void actualiseMontant(TextMeshProUGUI cell, float valeur)
+    void ActualiseMontant(float valeur)
     {
-        if (cell == null) return;
-
-        float montant = valeur * SoldeCompte;
-
-        cell.text = montant.ToString("F2") + "€";
+        argent montant = valeur * soldeCompte;
+        Debug.Log("valeur : " + valeur.ToString());
+        Debug.Log("montant : " + montant.ToString());
+        Debug.Log("solde : " + soldeCompte.ToString());
     }
 }

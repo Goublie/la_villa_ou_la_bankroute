@@ -1191,11 +1191,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fc561707acc344045a554ed44f8a3789, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::GestionBanqueUI
-  compte: {fileID: 4988642019221245581}
+  G: {fileID: 0}
   inputCredit: {fileID: 14986793362622727}
   inputDebit: {fileID: 8802799238746887277}
-  tableau: {fileID: 1294707599497245561}
-  texteSolde: {fileID: 659677379879815562}
+  tableauEpgn: {fileID: 0}
+  texteSoldeEpgn: {fileID: 0}
   texteTaux: {fileID: 5663632490872808328}
 --- !u!1 &4888368248958513428
 GameObject:
@@ -1500,7 +1500,7 @@ MonoBehaviour:
   m_FallbackScreenDPI: 96
   m_DefaultSpriteDPI: 96
   m_DynamicPixelsPerUnit: 1
-  m_PresetInfoIsWorld: 0
+  m_PresetInfoIsWorld: 1
 --- !u!114 &4810785592204888586
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1570,6 +1570,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 94c7c1a3f38bd9a46bc0c2aa3411678d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::GestionnaireSlides
+  G: {fileID: 0}
   listeSliders: []
 --- !u!1 &5718115543464304446
 GameObject:
@@ -5014,7 +5015,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2898196105938502309, guid: 2f78ec97b3c13974ea7a8b2bcf196213, type: 3}
       propertyPath: m_Size
-      value: 1
+      value: 0.9999998
       objectReference: {fileID: 0}
     - target: {fileID: 2898196105938502309, guid: 2f78ec97b3c13974ea7a8b2bcf196213, type: 3}
       propertyPath: m_Value
@@ -5537,6 +5538,10 @@ PrefabInstance:
       propertyPath: m_AnchoredPosition.y
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 3311478261380166037, guid: 0c045710a5dfc9649b411fe4ade021e7, type: 3}
+      propertyPath: m_PresetInfoIsWorld
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 3968883394138693477, guid: 0c045710a5dfc9649b411fe4ade021e7, type: 3}
       propertyPath: m_AnchorMax.x
       value: 0
@@ -5629,6 +5634,10 @@ PrefabInstance:
       propertyPath: m_SizeDelta.y
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 7379420106995320624, guid: 0c045710a5dfc9649b411fe4ade021e7, type: 3}
+      propertyPath: G
+      value: 
+      objectReference: {fileID: 11400000, guid: 00f9a2cc968a86847bacedddfcfe8be5, type: 2}
     - target: {fileID: 8364642074001772490, guid: 0c045710a5dfc9649b411fe4ade021e7, type: 3}
       propertyPath: m_AnchorMax.y
       value: 0
