@@ -986,7 +986,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::Audio_Manager
   musicSource: {fileID: 1339880957}
   SFXSource: {fileID: 2014858829}
-  background: {fileID: 8300000, guid: 8eaaebf19d28b8e4e9c58b27fb90d545, type: 3}
+  background: {fileID: 8300000, guid: e793c0e2fdff3b64a9e482ecdc8f3c7c, type: 3}
   appuier_boutton: {fileID: 8300000, guid: 2982a25af39d8bc4d9293fb1d9bc1a7c, type: 3}
   playButton: {fileID: 0}
   optionsButton: {fileID: 0}
@@ -1254,7 +1254,7 @@ AudioSource:
   serializedVersion: 4
   OutputAudioMixerGroup: {fileID: 0}
   m_audioClip: {fileID: 0}
-  m_Resource: {fileID: 8300000, guid: 8eaaebf19d28b8e4e9c58b27fb90d545, type: 3}
+  m_Resource: {fileID: 8300000, guid: e793c0e2fdff3b64a9e482ecdc8f3c7c, type: 3}
   m_PlayOnAwake: 1
   m_Volume: 1
   m_Pitch: 1
