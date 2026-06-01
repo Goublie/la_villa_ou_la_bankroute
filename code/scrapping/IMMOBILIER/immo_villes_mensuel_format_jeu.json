@@ -1,0 +1,5558 @@
+{
+  "paris": [
+    {
+      "Annee": 2015,
+      "Mois": 1,
+      "Periode": "2015-01",
+      "Prix_m2": 7954.55,
+      "Nb_transactions": 1850
+    },
+    {
+      "Annee": 2015,
+      "Mois": 2,
+      "Periode": "2015-02",
+      "Prix_m2": 7995.45,
+      "Nb_transactions": 1786
+    },
+    {
+      "Annee": 2015,
+      "Mois": 3,
+      "Periode": "2015-03",
+      "Prix_m2": 7942.96,
+      "Nb_transactions": 2284
+    },
+    {
+      "Annee": 2015,
+      "Mois": 4,
+      "Periode": "2015-04",
+      "Prix_m2": 7958.76,
+      "Nb_transactions": 2052
+    },
+    {
+      "Annee": 2015,
+      "Mois": 5,
+      "Periode": "2015-05",
+      "Prix_m2": 7906.43,
+      "Nb_transactions": 1936
+    },
+    {
+      "Annee": 2015,
+      "Mois": 6,
+      "Periode": "2015-06",
+      "Prix_m2": 8000.0,
+      "Nb_transactions": 2751
+    },
+    {
+      "Annee": 2015,
+      "Mois": 7,
+      "Periode": "2015-07",
+      "Prix_m2": 8100.0,
+      "Nb_transactions": 3255
+    },
+    {
+      "Annee": 2015,
+      "Mois": 8,
+      "Periode": "2015-08",
+      "Prix_m2": 7985.71,
+      "Nb_transactions": 1480
+    },
+    {
+      "Annee": 2015,
+      "Mois": 9,
+      "Periode": "2015-09",
+      "Prix_m2": 8040.88,
+      "Nb_transactions": 3156
+    },
+    {
+      "Annee": 2015,
+      "Mois": 10,
+      "Periode": "2015-10",
+      "Prix_m2": 8068.16,
+      "Nb_transactions": 2801
+    },
+    {
+      "Annee": 2015,
+      "Mois": 11,
+      "Periode": "2015-11",
+      "Prix_m2": 8000.0,
+      "Nb_transactions": 2019
+    },
+    {
+      "Annee": 2015,
+      "Mois": 12,
+      "Periode": "2015-12",
+      "Prix_m2": 8125.0,
+      "Nb_transactions": 4122
+    },
+    {
+      "Annee": 2016,
+      "Mois": 1,
+      "Periode": "2016-01",
+      "Prix_m2": 7938.89,
+      "Nb_transactions": 1146
+    },
+    {
+      "Annee": 2016,
+      "Mois": 2,
+      "Periode": "2016-02",
+      "Prix_m2": 8007.02,
+      "Nb_transactions": 1838
+    },
+    {
+      "Annee": 2016,
+      "Mois": 3,
+      "Periode": "2016-03",
+      "Prix_m2": 7957.27,
+      "Nb_transactions": 2274
+    },
+    {
+      "Annee": 2016,
+      "Mois": 4,
+      "Periode": "2016-04",
+      "Prix_m2": 8179.91,
+      "Nb_transactions": 2174
+    },
+    {
+      "Annee": 2016,
+      "Mois": 5,
+      "Periode": "2016-05",
+      "Prix_m2": 8085.94,
+      "Nb_transactions": 2351
+    },
+    {
+      "Annee": 2016,
+      "Mois": 6,
+      "Periode": "2016-06",
+      "Prix_m2": 8285.71,
+      "Nb_transactions": 2911
+    },
+    {
+      "Annee": 2016,
+      "Mois": 7,
+      "Periode": "2016-07",
+      "Prix_m2": 8298.84,
+      "Nb_transactions": 3298
+    },
+    {
+      "Annee": 2016,
+      "Mois": 8,
+      "Periode": "2016-08",
+      "Prix_m2": 8279.07,
+      "Nb_transactions": 1671
+    },
+    {
+      "Annee": 2016,
+      "Mois": 9,
+      "Periode": "2016-09",
+      "Prix_m2": 8333.33,
+      "Nb_transactions": 3297
+    },
+    {
+      "Annee": 2016,
+      "Mois": 10,
+      "Periode": "2016-10",
+      "Prix_m2": 8454.55,
+      "Nb_transactions": 2535
+    },
+    {
+      "Annee": 2016,
+      "Mois": 11,
+      "Periode": "2016-11",
+      "Prix_m2": 8333.33,
+      "Nb_transactions": 2044
+    },
+    {
+      "Annee": 2016,
+      "Mois": 12,
+      "Periode": "2016-12",
+      "Prix_m2": 8400.0,
+      "Nb_transactions": 2582
+    },
+    {
+      "Annee": 2017,
+      "Mois": 1,
+      "Periode": "2017-01",
+      "Prix_m2": 8523.41,
+      "Nb_transactions": 2522
+    },
+    {
+      "Annee": 2017,
+      "Mois": 2,
+      "Periode": "2017-02",
+      "Prix_m2": 8483.5,
+      "Nb_transactions": 2474
+    },
+    {
+      "Annee": 2017,
+      "Mois": 3,
+      "Periode": "2017-03",
+      "Prix_m2": 8538.59,
+      "Nb_transactions": 3324
+    },
+    {
+      "Annee": 2017,
+      "Mois": 4,
+      "Periode": "2017-04",
+      "Prix_m2": 8669.67,
+      "Nb_transactions": 2414
+    },
+    {
+      "Annee": 2017,
+      "Mois": 5,
+      "Periode": "2017-05",
+      "Prix_m2": 8750.0,
+      "Nb_transactions": 2551
+    },
+    {
+      "Annee": 2017,
+      "Mois": 6,
+      "Periode": "2017-06",
+      "Prix_m2": 8823.53,
+      "Nb_transactions": 3227
+    },
+    {
+      "Annee": 2017,
+      "Mois": 7,
+      "Periode": "2017-07",
+      "Prix_m2": 8989.57,
+      "Nb_transactions": 3466
+    },
+    {
+      "Annee": 2017,
+      "Mois": 8,
+      "Periode": "2017-08",
+      "Prix_m2": 9143.75,
+      "Nb_transactions": 1727
+    },
+    {
+      "Annee": 2017,
+      "Mois": 9,
+      "Periode": "2017-09",
+      "Prix_m2": 9039.5,
+      "Nb_transactions": 3193
+    },
+    {
+      "Annee": 2017,
+      "Mois": 10,
+      "Periode": "2017-10",
+      "Prix_m2": 9051.63,
+      "Nb_transactions": 2844
+    },
+    {
+      "Annee": 2017,
+      "Mois": 11,
+      "Periode": "2017-11",
+      "Prix_m2": 9062.5,
+      "Nb_transactions": 2055
+    },
+    {
+      "Annee": 2017,
+      "Mois": 12,
+      "Periode": "2017-12",
+      "Prix_m2": 9121.56,
+      "Nb_transactions": 2732
+    },
+    {
+      "Annee": 2018,
+      "Mois": 1,
+      "Periode": "2018-01",
+      "Prix_m2": 9212.77,
+      "Nb_transactions": 2177
+    },
+    {
+      "Annee": 2018,
+      "Mois": 2,
+      "Periode": "2018-02",
+      "Prix_m2": 9176.95,
+      "Nb_transactions": 2233
+    },
+    {
+      "Annee": 2018,
+      "Mois": 3,
+      "Periode": "2018-03",
+      "Prix_m2": 9187.97,
+      "Nb_transactions": 2758
+    },
+    {
+      "Annee": 2018,
+      "Mois": 4,
+      "Periode": "2018-04",
+      "Prix_m2": 9404.31,
+      "Nb_transactions": 2278
+    },
+    {
+      "Annee": 2018,
+      "Mois": 5,
+      "Periode": "2018-05",
+      "Prix_m2": 9405.88,
+      "Nb_transactions": 2368
+    },
+    {
+      "Annee": 2018,
+      "Mois": 6,
+      "Periode": "2018-06",
+      "Prix_m2": 9444.44,
+      "Nb_transactions": 3020
+    },
+    {
+      "Annee": 2018,
+      "Mois": 7,
+      "Periode": "2018-07",
+      "Prix_m2": 9687.5,
+      "Nb_transactions": 3386
+    },
+    {
+      "Annee": 2018,
+      "Mois": 8,
+      "Periode": "2018-08",
+      "Prix_m2": 9559.03,
+      "Nb_transactions": 1650
+    },
+    {
+      "Annee": 2018,
+      "Mois": 9,
+      "Periode": "2018-09",
+      "Prix_m2": 9724.2,
+      "Nb_transactions": 3080
+    },
+    {
+      "Annee": 2018,
+      "Mois": 10,
+      "Periode": "2018-10",
+      "Prix_m2": 9614.84,
+      "Nb_transactions": 3102
+    },
+    {
+      "Annee": 2018,
+      "Mois": 11,
+      "Periode": "2018-11",
+      "Prix_m2": 9818.18,
+      "Nb_transactions": 2121
+    },
+    {
+      "Annee": 2018,
+      "Mois": 12,
+      "Periode": "2018-12",
+      "Prix_m2": 9722.22,
+      "Nb_transactions": 2556
+    },
+    {
+      "Annee": 2019,
+      "Mois": 1,
+      "Periode": "2019-01",
+      "Prix_m2": 9811.9,
+      "Nb_transactions": 2392
+    },
+    {
+      "Annee": 2019,
+      "Mois": 2,
+      "Periode": "2019-02",
+      "Prix_m2": 9875.0,
+      "Nb_transactions": 2487
+    },
+    {
+      "Annee": 2019,
+      "Mois": 3,
+      "Periode": "2019-03",
+      "Prix_m2": 9885.94,
+      "Nb_transactions": 2596
+    },
+    {
+      "Annee": 2019,
+      "Mois": 4,
+      "Periode": "2019-04",
+      "Prix_m2": 10000.0,
+      "Nb_transactions": 2486
+    },
+    {
+      "Annee": 2019,
+      "Mois": 5,
+      "Periode": "2019-05",
+      "Prix_m2": 9977.27,
+      "Nb_transactions": 2439
+    },
+    {
+      "Annee": 2019,
+      "Mois": 6,
+      "Periode": "2019-06",
+      "Prix_m2": 10065.79,
+      "Nb_transactions": 2869
+    },
+    {
+      "Annee": 2019,
+      "Mois": 7,
+      "Periode": "2019-07",
+      "Prix_m2": 10312.5,
+      "Nb_transactions": 3703
+    },
+    {
+      "Annee": 2019,
+      "Mois": 8,
+      "Periode": "2019-08",
+      "Prix_m2": 10222.22,
+      "Nb_transactions": 1565
+    },
+    {
+      "Annee": 2019,
+      "Mois": 9,
+      "Periode": "2019-09",
+      "Prix_m2": 10335.32,
+      "Nb_transactions": 3174
+    },
+    {
+      "Annee": 2019,
+      "Mois": 10,
+      "Periode": "2019-10",
+      "Prix_m2": 10333.33,
+      "Nb_transactions": 3203
+    },
+    {
+      "Annee": 2019,
+      "Mois": 11,
+      "Periode": "2019-11",
+      "Prix_m2": 10357.14,
+      "Nb_transactions": 2310
+    },
+    {
+      "Annee": 2019,
+      "Mois": 12,
+      "Periode": "2019-12",
+      "Prix_m2": 10347.41,
+      "Nb_transactions": 2576
+    },
+    {
+      "Annee": 2020,
+      "Mois": 1,
+      "Periode": "2020-01",
+      "Prix_m2": 10552.08,
+      "Nb_transactions": 2495
+    },
+    {
+      "Annee": 2020,
+      "Mois": 2,
+      "Periode": "2020-02",
+      "Prix_m2": 10603.03,
+      "Nb_transactions": 2478
+    },
+    {
+      "Annee": 2020,
+      "Mois": 3,
+      "Periode": "2020-03",
+      "Prix_m2": 10752.69,
+      "Nb_transactions": 1757
+    },
+    {
+      "Annee": 2020,
+      "Mois": 4,
+      "Periode": "2020-04",
+      "Prix_m2": 10769.23,
+      "Nb_transactions": 899
+    },
+    {
+      "Annee": 2020,
+      "Mois": 5,
+      "Periode": "2020-05",
+      "Prix_m2": 10862.07,
+      "Nb_transactions": 2471
+    },
+    {
+      "Annee": 2020,
+      "Mois": 6,
+      "Periode": "2020-06",
+      "Prix_m2": 10887.1,
+      "Nb_transactions": 2551
+    },
+    {
+      "Annee": 2020,
+      "Mois": 7,
+      "Periode": "2020-07",
+      "Prix_m2": 10857.58,
+      "Nb_transactions": 2263
+    },
+    {
+      "Annee": 2020,
+      "Mois": 8,
+      "Periode": "2020-08",
+      "Prix_m2": 10994.7,
+      "Nb_transactions": 1065
+    },
+    {
+      "Annee": 2020,
+      "Mois": 9,
+      "Periode": "2020-09",
+      "Prix_m2": 11014.52,
+      "Nb_transactions": 2735
+    },
+    {
+      "Annee": 2020,
+      "Mois": 10,
+      "Periode": "2020-10",
+      "Prix_m2": 11076.92,
+      "Nb_transactions": 2795
+    },
+    {
+      "Annee": 2020,
+      "Mois": 11,
+      "Periode": "2020-11",
+      "Prix_m2": 10915.91,
+      "Nb_transactions": 2101
+    },
+    {
+      "Annee": 2020,
+      "Mois": 12,
+      "Periode": "2020-12",
+      "Prix_m2": 10913.03,
+      "Nb_transactions": 2614
+    },
+    {
+      "Annee": 2021,
+      "Mois": 1,
+      "Periode": "2021-01",
+      "Prix_m2": 10940.59,
+      "Nb_transactions": 2072
+    },
+    {
+      "Annee": 2021,
+      "Mois": 2,
+      "Periode": "2021-02",
+      "Prix_m2": 10870.83,
+      "Nb_transactions": 2033
+    },
+    {
+      "Annee": 2021,
+      "Mois": 3,
+      "Periode": "2021-03",
+      "Prix_m2": 10775.86,
+      "Nb_transactions": 2511
+    },
+    {
+      "Annee": 2021,
+      "Mois": 4,
+      "Periode": "2021-04",
+      "Prix_m2": 10798.72,
+      "Nb_transactions": 2326
+    },
+    {
+      "Annee": 2021,
+      "Mois": 5,
+      "Periode": "2021-05",
+      "Prix_m2": 10821.26,
+      "Nb_transactions": 2402
+    },
+    {
+      "Annee": 2021,
+      "Mois": 6,
+      "Periode": "2021-06",
+      "Prix_m2": 10909.09,
+      "Nb_transactions": 3157
+    },
+    {
+      "Annee": 2021,
+      "Mois": 7,
+      "Periode": "2021-07",
+      "Prix_m2": 11051.13,
+      "Nb_transactions": 3556
+    },
+    {
+      "Annee": 2021,
+      "Mois": 8,
+      "Periode": "2021-08",
+      "Prix_m2": 10887.89,
+      "Nb_transactions": 1627
+    },
+    {
+      "Annee": 2021,
+      "Mois": 9,
+      "Periode": "2021-09",
+      "Prix_m2": 10936.35,
+      "Nb_transactions": 3264
+    },
+    {
+      "Annee": 2021,
+      "Mois": 10,
+      "Periode": "2021-10",
+      "Prix_m2": 10833.33,
+      "Nb_transactions": 2745
+    },
+    {
+      "Annee": 2021,
+      "Mois": 11,
+      "Periode": "2021-11",
+      "Prix_m2": 10766.56,
+      "Nb_transactions": 2118
+    },
+    {
+      "Annee": 2021,
+      "Mois": 12,
+      "Periode": "2021-12",
+      "Prix_m2": 10735.29,
+      "Nb_transactions": 2683
+    },
+    {
+      "Annee": 2022,
+      "Mois": 1,
+      "Periode": "2022-01",
+      "Prix_m2": 10741.07,
+      "Nb_transactions": 2423
+    },
+    {
+      "Annee": 2022,
+      "Mois": 2,
+      "Periode": "2022-02",
+      "Prix_m2": 10783.78,
+      "Nb_transactions": 2357
+    },
+    {
+      "Annee": 2022,
+      "Mois": 3,
+      "Periode": "2022-03",
+      "Prix_m2": 10711.98,
+      "Nb_transactions": 2914
+    },
+    {
+      "Annee": 2022,
+      "Mois": 4,
+      "Periode": "2022-04",
+      "Prix_m2": 10720.0,
+      "Nb_transactions": 2566
+    },
+    {
+      "Annee": 2022,
+      "Mois": 5,
+      "Periode": "2022-05",
+      "Prix_m2": 10759.92,
+      "Nb_transactions": 2858
+    },
+    {
+      "Annee": 2022,
+      "Mois": 6,
+      "Periode": "2022-06",
+      "Prix_m2": 10758.93,
+      "Nb_transactions": 3415
+    },
+    {
+      "Annee": 2022,
+      "Mois": 7,
+      "Periode": "2022-07",
+      "Prix_m2": 10833.33,
+      "Nb_transactions": 3685
+    },
+    {
+      "Annee": 2022,
+      "Mois": 8,
+      "Periode": "2022-08",
+      "Prix_m2": 10716.67,
+      "Nb_transactions": 1773
+    },
+    {
+      "Annee": 2022,
+      "Mois": 9,
+      "Periode": "2022-09",
+      "Prix_m2": 10833.33,
+      "Nb_transactions": 3695
+    },
+    {
+      "Annee": 2022,
+      "Mois": 10,
+      "Periode": "2022-10",
+      "Prix_m2": 10833.33,
+      "Nb_transactions": 2633
+    },
+    {
+      "Annee": 2022,
+      "Mois": 11,
+      "Periode": "2022-11",
+      "Prix_m2": 10553.85,
+      "Nb_transactions": 2281
+    },
+    {
+      "Annee": 2022,
+      "Mois": 12,
+      "Periode": "2022-12",
+      "Prix_m2": 10612.68,
+      "Nb_transactions": 2628
+    },
+    {
+      "Annee": 2023,
+      "Mois": 1,
+      "Periode": "2023-01",
+      "Prix_m2": 10555.56,
+      "Nb_transactions": 2293
+    },
+    {
+      "Annee": 2023,
+      "Mois": 2,
+      "Periode": "2023-02",
+      "Prix_m2": 10269.75,
+      "Nb_transactions": 2194
+    },
+    {
+      "Annee": 2023,
+      "Mois": 3,
+      "Periode": "2023-03",
+      "Prix_m2": 10365.62,
+      "Nb_transactions": 2615
+    },
+    {
+      "Annee": 2023,
+      "Mois": 4,
+      "Periode": "2023-04",
+      "Prix_m2": 10265.28,
+      "Nb_transactions": 2136
+    },
+    {
+      "Annee": 2023,
+      "Mois": 5,
+      "Periode": "2023-05",
+      "Prix_m2": 10227.27,
+      "Nb_transactions": 2213
+    },
+    {
+      "Annee": 2023,
+      "Mois": 6,
+      "Periode": "2023-06",
+      "Prix_m2": 10233.33,
+      "Nb_transactions": 2813
+    },
+    {
+      "Annee": 2023,
+      "Mois": 7,
+      "Periode": "2023-07",
+      "Prix_m2": 10293.48,
+      "Nb_transactions": 2847
+    },
+    {
+      "Annee": 2023,
+      "Mois": 8,
+      "Periode": "2023-08",
+      "Prix_m2": 10096.15,
+      "Nb_transactions": 1241
+    },
+    {
+      "Annee": 2023,
+      "Mois": 9,
+      "Periode": "2023-09",
+      "Prix_m2": 10115.98,
+      "Nb_transactions": 2700
+    },
+    {
+      "Annee": 2023,
+      "Mois": 10,
+      "Periode": "2023-10",
+      "Prix_m2": 10000.0,
+      "Nb_transactions": 2164
+    },
+    {
+      "Annee": 2023,
+      "Mois": 11,
+      "Periode": "2023-11",
+      "Prix_m2": 9828.95,
+      "Nb_transactions": 1669
+    },
+    {
+      "Annee": 2023,
+      "Mois": 12,
+      "Periode": "2023-12",
+      "Prix_m2": 9774.0,
+      "Nb_transactions": 2014
+    },
+    {
+      "Annee": 2024,
+      "Mois": 1,
+      "Periode": "2024-01",
+      "Prix_m2": 9804.76,
+      "Nb_transactions": 1786
+    },
+    {
+      "Annee": 2024,
+      "Mois": 2,
+      "Periode": "2024-02",
+      "Prix_m2": 9600.0,
+      "Nb_transactions": 1810
+    },
+    {
+      "Annee": 2024,
+      "Mois": 3,
+      "Periode": "2024-03",
+      "Prix_m2": 9538.46,
+      "Nb_transactions": 1983
+    },
+    {
+      "Annee": 2024,
+      "Mois": 4,
+      "Periode": "2024-04",
+      "Prix_m2": 9531.98,
+      "Nb_transactions": 2138
+    },
+    {
+      "Annee": 2024,
+      "Mois": 5,
+      "Periode": "2024-05",
+      "Prix_m2": 9648.41,
+      "Nb_transactions": 1994
+    },
+    {
+      "Annee": 2024,
+      "Mois": 6,
+      "Periode": "2024-06",
+      "Prix_m2": 9615.38,
+      "Nb_transactions": 2397
+    },
+    {
+      "Annee": 2024,
+      "Mois": 7,
+      "Periode": "2024-07",
+      "Prix_m2": 9630.81,
+      "Nb_transactions": 2742
+    },
+    {
+      "Annee": 2024,
+      "Mois": 8,
+      "Periode": "2024-08",
+      "Prix_m2": 9596.77,
+      "Nb_transactions": 1035
+    },
+    {
+      "Annee": 2024,
+      "Mois": 9,
+      "Periode": "2024-09",
+      "Prix_m2": 9659.07,
+      "Nb_transactions": 2600
+    },
+    {
+      "Annee": 2024,
+      "Mois": 10,
+      "Periode": "2024-10",
+      "Prix_m2": 9538.08,
+      "Nb_transactions": 2134
+    },
+    {
+      "Annee": 2024,
+      "Mois": 11,
+      "Periode": "2024-11",
+      "Prix_m2": 9456.25,
+      "Nb_transactions": 1575
+    },
+    {
+      "Annee": 2024,
+      "Mois": 12,
+      "Periode": "2024-12",
+      "Prix_m2": 9638.46,
+      "Nb_transactions": 2293
+    },
+    {
+      "Annee": 2025,
+      "Mois": 1,
+      "Periode": "2025-01",
+      "Prix_m2": 9559.41,
+      "Nb_transactions": 2072
+    },
+    {
+      "Annee": 2025,
+      "Mois": 2,
+      "Periode": "2025-02",
+      "Prix_m2": 9642.86,
+      "Nb_transactions": 1906
+    },
+    {
+      "Annee": 2025,
+      "Mois": 3,
+      "Periode": "2025-03",
+      "Prix_m2": 9714.11,
+      "Nb_transactions": 3536
+    },
+    {
+      "Annee": 2025,
+      "Mois": 4,
+      "Periode": "2025-04",
+      "Prix_m2": 9485.89,
+      "Nb_transactions": 1612
+    },
+    {
+      "Annee": 2025,
+      "Mois": 5,
+      "Periode": "2025-05",
+      "Prix_m2": 9615.38,
+      "Nb_transactions": 1991
+    },
+    {
+      "Annee": 2025,
+      "Mois": 6,
+      "Periode": "2025-06",
+      "Prix_m2": 9772.73,
+      "Nb_transactions": 2692
+    },
+    {
+      "Annee": 2025,
+      "Mois": 7,
+      "Periode": "2025-07",
+      "Prix_m2": 9856.62,
+      "Nb_transactions": 3370
+    },
+    {
+      "Annee": 2025,
+      "Mois": 8,
+      "Periode": "2025-08",
+      "Prix_m2": 9884.38,
+      "Nb_transactions": 1259
+    },
+    {
+      "Annee": 2025,
+      "Mois": 9,
+      "Periode": "2025-09",
+      "Prix_m2": 9823.21,
+      "Nb_transactions": 3072
+    },
+    {
+      "Annee": 2025,
+      "Mois": 10,
+      "Periode": "2025-10",
+      "Prix_m2": 9794.98,
+      "Nb_transactions": 2572
+    },
+    {
+      "Annee": 2025,
+      "Mois": 11,
+      "Periode": "2025-11",
+      "Prix_m2": 9744.29,
+      "Nb_transactions": 1923
+    },
+    {
+      "Annee": 2025,
+      "Mois": 12,
+      "Periode": "2025-12",
+      "Prix_m2": 9750.0,
+      "Nb_transactions": 2364
+    }
+  ],
+  "lyon": [
+    {
+      "Annee": 2015,
+      "Mois": 1,
+      "Periode": "2015-01",
+      "Prix_m2": 3236.69,
+      "Nb_transactions": 414
+    },
+    {
+      "Annee": 2015,
+      "Mois": 2,
+      "Periode": "2015-02",
+      "Prix_m2": 3188.8,
+      "Nb_transactions": 466
+    },
+    {
+      "Annee": 2015,
+      "Mois": 3,
+      "Periode": "2015-03",
+      "Prix_m2": 3233.85,
+      "Nb_transactions": 512
+    },
+    {
+      "Annee": 2015,
+      "Mois": 4,
+      "Periode": "2015-04",
+      "Prix_m2": 3207.23,
+      "Nb_transactions": 520
+    },
+    {
+      "Annee": 2015,
+      "Mois": 5,
+      "Periode": "2015-05",
+      "Prix_m2": 3203.49,
+      "Nb_transactions": 418
+    },
+    {
+      "Annee": 2015,
+      "Mois": 6,
+      "Periode": "2015-06",
+      "Prix_m2": 3267.26,
+      "Nb_transactions": 648
+    },
+    {
+      "Annee": 2015,
+      "Mois": 7,
+      "Periode": "2015-07",
+      "Prix_m2": 3285.81,
+      "Nb_transactions": 899
+    },
+    {
+      "Annee": 2015,
+      "Mois": 8,
+      "Periode": "2015-08",
+      "Prix_m2": 3288.0,
+      "Nb_transactions": 447
+    },
+    {
+      "Annee": 2015,
+      "Mois": 9,
+      "Periode": "2015-09",
+      "Prix_m2": 3307.08,
+      "Nb_transactions": 682
+    },
+    {
+      "Annee": 2015,
+      "Mois": 10,
+      "Periode": "2015-10",
+      "Prix_m2": 3302.8,
+      "Nb_transactions": 628
+    },
+    {
+      "Annee": 2015,
+      "Mois": 11,
+      "Periode": "2015-11",
+      "Prix_m2": 3145.3,
+      "Nb_transactions": 416
+    },
+    {
+      "Annee": 2015,
+      "Mois": 12,
+      "Periode": "2015-12",
+      "Prix_m2": 3190.98,
+      "Nb_transactions": 650
+    },
+    {
+      "Annee": 2016,
+      "Mois": 1,
+      "Periode": "2016-01",
+      "Prix_m2": 3264.22,
+      "Nb_transactions": 444
+    },
+    {
+      "Annee": 2016,
+      "Mois": 2,
+      "Periode": "2016-02",
+      "Prix_m2": 3248.93,
+      "Nb_transactions": 444
+    },
+    {
+      "Annee": 2016,
+      "Mois": 3,
+      "Periode": "2016-03",
+      "Prix_m2": 3243.24,
+      "Nb_transactions": 531
+    },
+    {
+      "Annee": 2016,
+      "Mois": 4,
+      "Periode": "2016-04",
+      "Prix_m2": 3244.45,
+      "Nb_transactions": 446
+    },
+    {
+      "Annee": 2016,
+      "Mois": 5,
+      "Periode": "2016-05",
+      "Prix_m2": 3366.34,
+      "Nb_transactions": 525
+    },
+    {
+      "Annee": 2016,
+      "Mois": 6,
+      "Periode": "2016-06",
+      "Prix_m2": 3333.33,
+      "Nb_transactions": 665
+    },
+    {
+      "Annee": 2016,
+      "Mois": 7,
+      "Periode": "2016-07",
+      "Prix_m2": 3388.89,
+      "Nb_transactions": 872
+    },
+    {
+      "Annee": 2016,
+      "Mois": 8,
+      "Periode": "2016-08",
+      "Prix_m2": 3440.59,
+      "Nb_transactions": 492
+    },
+    {
+      "Annee": 2016,
+      "Mois": 9,
+      "Periode": "2016-09",
+      "Prix_m2": 3431.03,
+      "Nb_transactions": 749
+    },
+    {
+      "Annee": 2016,
+      "Mois": 10,
+      "Periode": "2016-10",
+      "Prix_m2": 3382.76,
+      "Nb_transactions": 553
+    },
+    {
+      "Annee": 2016,
+      "Mois": 11,
+      "Periode": "2016-11",
+      "Prix_m2": 3474.58,
+      "Nb_transactions": 499
+    },
+    {
+      "Annee": 2016,
+      "Mois": 12,
+      "Periode": "2016-12",
+      "Prix_m2": 3379.63,
+      "Nb_transactions": 660
+    },
+    {
+      "Annee": 2017,
+      "Mois": 1,
+      "Periode": "2017-01",
+      "Prix_m2": 3463.72,
+      "Nb_transactions": 536
+    },
+    {
+      "Annee": 2017,
+      "Mois": 2,
+      "Periode": "2017-02",
+      "Prix_m2": 3518.2,
+      "Nb_transactions": 590
+    },
+    {
+      "Annee": 2017,
+      "Mois": 3,
+      "Periode": "2017-03",
+      "Prix_m2": 3404.26,
+      "Nb_transactions": 707
+    },
+    {
+      "Annee": 2017,
+      "Mois": 4,
+      "Periode": "2017-04",
+      "Prix_m2": 3454.55,
+      "Nb_transactions": 529
+    },
+    {
+      "Annee": 2017,
+      "Mois": 5,
+      "Periode": "2017-05",
+      "Prix_m2": 3574.98,
+      "Nb_transactions": 600
+    },
+    {
+      "Annee": 2017,
+      "Mois": 6,
+      "Periode": "2017-06",
+      "Prix_m2": 3562.25,
+      "Nb_transactions": 786
+    },
+    {
+      "Annee": 2017,
+      "Mois": 7,
+      "Periode": "2017-07",
+      "Prix_m2": 3701.61,
+      "Nb_transactions": 891
+    },
+    {
+      "Annee": 2017,
+      "Mois": 8,
+      "Periode": "2017-08",
+      "Prix_m2": 3698.29,
+      "Nb_transactions": 429
+    },
+    {
+      "Annee": 2017,
+      "Mois": 9,
+      "Periode": "2017-09",
+      "Prix_m2": 3634.56,
+      "Nb_transactions": 702
+    },
+    {
+      "Annee": 2017,
+      "Mois": 10,
+      "Periode": "2017-10",
+      "Prix_m2": 3678.16,
+      "Nb_transactions": 623
+    },
+    {
+      "Annee": 2017,
+      "Mois": 11,
+      "Periode": "2017-11",
+      "Prix_m2": 3569.7,
+      "Nb_transactions": 481
+    },
+    {
+      "Annee": 2017,
+      "Mois": 12,
+      "Periode": "2017-12",
+      "Prix_m2": 3769.23,
+      "Nb_transactions": 715
+    },
+    {
+      "Annee": 2018,
+      "Mois": 1,
+      "Periode": "2018-01",
+      "Prix_m2": 3841.46,
+      "Nb_transactions": 501
+    },
+    {
+      "Annee": 2018,
+      "Mois": 2,
+      "Periode": "2018-02",
+      "Prix_m2": 3767.12,
+      "Nb_transactions": 481
+    },
+    {
+      "Annee": 2018,
+      "Mois": 3,
+      "Periode": "2018-03",
+      "Prix_m2": 3822.53,
+      "Nb_transactions": 561
+    },
+    {
+      "Annee": 2018,
+      "Mois": 4,
+      "Periode": "2018-04",
+      "Prix_m2": 3725.49,
+      "Nb_transactions": 541
+    },
+    {
+      "Annee": 2018,
+      "Mois": 5,
+      "Periode": "2018-05",
+      "Prix_m2": 3785.73,
+      "Nb_transactions": 526
+    },
+    {
+      "Annee": 2018,
+      "Mois": 6,
+      "Periode": "2018-06",
+      "Prix_m2": 3927.08,
+      "Nb_transactions": 658
+    },
+    {
+      "Annee": 2018,
+      "Mois": 7,
+      "Periode": "2018-07",
+      "Prix_m2": 4085.65,
+      "Nb_transactions": 929
+    },
+    {
+      "Annee": 2018,
+      "Mois": 8,
+      "Periode": "2018-08",
+      "Prix_m2": 4025.79,
+      "Nb_transactions": 490
+    },
+    {
+      "Annee": 2018,
+      "Mois": 9,
+      "Periode": "2018-09",
+      "Prix_m2": 4016.32,
+      "Nb_transactions": 724
+    },
+    {
+      "Annee": 2018,
+      "Mois": 10,
+      "Periode": "2018-10",
+      "Prix_m2": 3973.39,
+      "Nb_transactions": 711
+    },
+    {
+      "Annee": 2018,
+      "Mois": 11,
+      "Periode": "2018-11",
+      "Prix_m2": 4052.63,
+      "Nb_transactions": 519
+    },
+    {
+      "Annee": 2018,
+      "Mois": 12,
+      "Periode": "2018-12",
+      "Prix_m2": 4108.08,
+      "Nb_transactions": 655
+    },
+    {
+      "Annee": 2019,
+      "Mois": 1,
+      "Periode": "2019-01",
+      "Prix_m2": 4202.84,
+      "Nb_transactions": 618
+    },
+    {
+      "Annee": 2019,
+      "Mois": 2,
+      "Periode": "2019-02",
+      "Prix_m2": 4061.73,
+      "Nb_transactions": 557
+    },
+    {
+      "Annee": 2019,
+      "Mois": 3,
+      "Periode": "2019-03",
+      "Prix_m2": 4042.55,
+      "Nb_transactions": 591
+    },
+    {
+      "Annee": 2019,
+      "Mois": 4,
+      "Periode": "2019-04",
+      "Prix_m2": 4155.63,
+      "Nb_transactions": 626
+    },
+    {
+      "Annee": 2019,
+      "Mois": 5,
+      "Periode": "2019-05",
+      "Prix_m2": 4297.56,
+      "Nb_transactions": 594
+    },
+    {
+      "Annee": 2019,
+      "Mois": 6,
+      "Periode": "2019-06",
+      "Prix_m2": 4235.29,
+      "Nb_transactions": 683
+    },
+    {
+      "Annee": 2019,
+      "Mois": 7,
+      "Periode": "2019-07",
+      "Prix_m2": 4411.11,
+      "Nb_transactions": 1001
+    },
+    {
+      "Annee": 2019,
+      "Mois": 8,
+      "Periode": "2019-08",
+      "Prix_m2": 4551.72,
+      "Nb_transactions": 455
+    },
+    {
+      "Annee": 2019,
+      "Mois": 9,
+      "Periode": "2019-09",
+      "Prix_m2": 4429.16,
+      "Nb_transactions": 804
+    },
+    {
+      "Annee": 2019,
+      "Mois": 10,
+      "Periode": "2019-10",
+      "Prix_m2": 4505.51,
+      "Nb_transactions": 712
+    },
+    {
+      "Annee": 2019,
+      "Mois": 11,
+      "Periode": "2019-11",
+      "Prix_m2": 4566.02,
+      "Nb_transactions": 516
+    },
+    {
+      "Annee": 2019,
+      "Mois": 12,
+      "Periode": "2019-12",
+      "Prix_m2": 4516.13,
+      "Nb_transactions": 673
+    },
+    {
+      "Annee": 2020,
+      "Mois": 1,
+      "Periode": "2020-01",
+      "Prix_m2": 4533.33,
+      "Nb_transactions": 591
+    },
+    {
+      "Annee": 2020,
+      "Mois": 2,
+      "Periode": "2020-02",
+      "Prix_m2": 4608.33,
+      "Nb_transactions": 573
+    },
+    {
+      "Annee": 2020,
+      "Mois": 3,
+      "Periode": "2020-03",
+      "Prix_m2": 4612.37,
+      "Nb_transactions": 410
+    },
+    {
+      "Annee": 2020,
+      "Mois": 4,
+      "Periode": "2020-04",
+      "Prix_m2": 4706.85,
+      "Nb_transactions": 299
+    },
+    {
+      "Annee": 2020,
+      "Mois": 5,
+      "Periode": "2020-05",
+      "Prix_m2": 4759.74,
+      "Nb_transactions": 676
+    },
+    {
+      "Annee": 2020,
+      "Mois": 6,
+      "Periode": "2020-06",
+      "Prix_m2": 4711.89,
+      "Nb_transactions": 641
+    },
+    {
+      "Annee": 2020,
+      "Mois": 7,
+      "Periode": "2020-07",
+      "Prix_m2": 4893.62,
+      "Nb_transactions": 597
+    },
+    {
+      "Annee": 2020,
+      "Mois": 8,
+      "Periode": "2020-08",
+      "Prix_m2": 4885.02,
+      "Nb_transactions": 364
+    },
+    {
+      "Annee": 2020,
+      "Mois": 9,
+      "Periode": "2020-09",
+      "Prix_m2": 4997.64,
+      "Nb_transactions": 746
+    },
+    {
+      "Annee": 2020,
+      "Mois": 10,
+      "Periode": "2020-10",
+      "Prix_m2": 5000.0,
+      "Nb_transactions": 717
+    },
+    {
+      "Annee": 2020,
+      "Mois": 11,
+      "Periode": "2020-11",
+      "Prix_m2": 5000.0,
+      "Nb_transactions": 552
+    },
+    {
+      "Annee": 2020,
+      "Mois": 12,
+      "Periode": "2020-12",
+      "Prix_m2": 4943.53,
+      "Nb_transactions": 679
+    },
+    {
+      "Annee": 2021,
+      "Mois": 1,
+      "Periode": "2021-01",
+      "Prix_m2": 5000.0,
+      "Nb_transactions": 512
+    },
+    {
+      "Annee": 2021,
+      "Mois": 2,
+      "Periode": "2021-02",
+      "Prix_m2": 5000.0,
+      "Nb_transactions": 541
+    },
+    {
+      "Annee": 2021,
+      "Mois": 3,
+      "Periode": "2021-03",
+      "Prix_m2": 4934.37,
+      "Nb_transactions": 619
+    },
+    {
+      "Annee": 2021,
+      "Mois": 4,
+      "Periode": "2021-04",
+      "Prix_m2": 5000.0,
+      "Nb_transactions": 626
+    },
+    {
+      "Annee": 2021,
+      "Mois": 5,
+      "Periode": "2021-05",
+      "Prix_m2": 5081.11,
+      "Nb_transactions": 699
+    },
+    {
+      "Annee": 2021,
+      "Mois": 6,
+      "Periode": "2021-06",
+      "Prix_m2": 5074.26,
+      "Nb_transactions": 789
+    },
+    {
+      "Annee": 2021,
+      "Mois": 7,
+      "Periode": "2021-07",
+      "Prix_m2": 5181.46,
+      "Nb_transactions": 1030
+    },
+    {
+      "Annee": 2021,
+      "Mois": 8,
+      "Periode": "2021-08",
+      "Prix_m2": 5166.42,
+      "Nb_transactions": 459
+    },
+    {
+      "Annee": 2021,
+      "Mois": 9,
+      "Periode": "2021-09",
+      "Prix_m2": 5062.5,
+      "Nb_transactions": 865
+    },
+    {
+      "Annee": 2021,
+      "Mois": 10,
+      "Periode": "2021-10",
+      "Prix_m2": 5088.24,
+      "Nb_transactions": 609
+    },
+    {
+      "Annee": 2021,
+      "Mois": 11,
+      "Periode": "2021-11",
+      "Prix_m2": 5067.26,
+      "Nb_transactions": 556
+    },
+    {
+      "Annee": 2021,
+      "Mois": 12,
+      "Periode": "2021-12",
+      "Prix_m2": 5002.29,
+      "Nb_transactions": 676
+    },
+    {
+      "Annee": 2022,
+      "Mois": 1,
+      "Periode": "2022-01",
+      "Prix_m2": 5062.5,
+      "Nb_transactions": 531
+    },
+    {
+      "Annee": 2022,
+      "Mois": 2,
+      "Periode": "2022-02",
+      "Prix_m2": 4919.35,
+      "Nb_transactions": 519
+    },
+    {
+      "Annee": 2022,
+      "Mois": 3,
+      "Periode": "2022-03",
+      "Prix_m2": 5044.52,
+      "Nb_transactions": 650
+    },
+    {
+      "Annee": 2022,
+      "Mois": 4,
+      "Periode": "2022-04",
+      "Prix_m2": 5069.23,
+      "Nb_transactions": 615
+    },
+    {
+      "Annee": 2022,
+      "Mois": 5,
+      "Periode": "2022-05",
+      "Prix_m2": 5000.0,
+      "Nb_transactions": 669
+    },
+    {
+      "Annee": 2022,
+      "Mois": 6,
+      "Periode": "2022-06",
+      "Prix_m2": 5056.18,
+      "Nb_transactions": 855
+    },
+    {
+      "Annee": 2022,
+      "Mois": 7,
+      "Periode": "2022-07",
+      "Prix_m2": 5272.73,
+      "Nb_transactions": 893
+    },
+    {
+      "Annee": 2022,
+      "Mois": 8,
+      "Periode": "2022-08",
+      "Prix_m2": 5214.29,
+      "Nb_transactions": 501
+    },
+    {
+      "Annee": 2022,
+      "Mois": 9,
+      "Periode": "2022-09",
+      "Prix_m2": 5000.0,
+      "Nb_transactions": 846
+    },
+    {
+      "Annee": 2022,
+      "Mois": 10,
+      "Periode": "2022-10",
+      "Prix_m2": 5073.47,
+      "Nb_transactions": 616
+    },
+    {
+      "Annee": 2022,
+      "Mois": 11,
+      "Periode": "2022-11",
+      "Prix_m2": 5155.05,
+      "Nb_transactions": 510
+    },
+    {
+      "Annee": 2022,
+      "Mois": 12,
+      "Periode": "2022-12",
+      "Prix_m2": 5031.1,
+      "Nb_transactions": 648
+    },
+    {
+      "Annee": 2023,
+      "Mois": 1,
+      "Periode": "2023-01",
+      "Prix_m2": 5100.63,
+      "Nb_transactions": 526
+    },
+    {
+      "Annee": 2023,
+      "Mois": 2,
+      "Periode": "2023-02",
+      "Prix_m2": 5040.01,
+      "Nb_transactions": 442
+    },
+    {
+      "Annee": 2023,
+      "Mois": 3,
+      "Periode": "2023-03",
+      "Prix_m2": 4811.32,
+      "Nb_transactions": 589
+    },
+    {
+      "Annee": 2023,
+      "Mois": 4,
+      "Periode": "2023-04",
+      "Prix_m2": 4912.38,
+      "Nb_transactions": 492
+    },
+    {
+      "Annee": 2023,
+      "Mois": 5,
+      "Periode": "2023-05",
+      "Prix_m2": 4815.54,
+      "Nb_transactions": 501
+    },
+    {
+      "Annee": 2023,
+      "Mois": 6,
+      "Periode": "2023-06",
+      "Prix_m2": 4839.14,
+      "Nb_transactions": 658
+    },
+    {
+      "Annee": 2023,
+      "Mois": 7,
+      "Periode": "2023-07",
+      "Prix_m2": 4916.44,
+      "Nb_transactions": 719
+    },
+    {
+      "Annee": 2023,
+      "Mois": 8,
+      "Periode": "2023-08",
+      "Prix_m2": 4910.0,
+      "Nb_transactions": 401
+    },
+    {
+      "Annee": 2023,
+      "Mois": 9,
+      "Periode": "2023-09",
+      "Prix_m2": 4828.59,
+      "Nb_transactions": 663
+    },
+    {
+      "Annee": 2023,
+      "Mois": 10,
+      "Periode": "2023-10",
+      "Prix_m2": 4708.33,
+      "Nb_transactions": 473
+    },
+    {
+      "Annee": 2023,
+      "Mois": 11,
+      "Periode": "2023-11",
+      "Prix_m2": 4640.49,
+      "Nb_transactions": 375
+    },
+    {
+      "Annee": 2023,
+      "Mois": 12,
+      "Periode": "2023-12",
+      "Prix_m2": 4378.9,
+      "Nb_transactions": 460
+    },
+    {
+      "Annee": 2024,
+      "Mois": 1,
+      "Periode": "2024-01",
+      "Prix_m2": 4433.77,
+      "Nb_transactions": 372
+    },
+    {
+      "Annee": 2024,
+      "Mois": 2,
+      "Periode": "2024-02",
+      "Prix_m2": 4593.75,
+      "Nb_transactions": 367
+    },
+    {
+      "Annee": 2024,
+      "Mois": 3,
+      "Periode": "2024-03",
+      "Prix_m2": 4515.62,
+      "Nb_transactions": 399
+    },
+    {
+      "Annee": 2024,
+      "Mois": 4,
+      "Periode": "2024-04",
+      "Prix_m2": 4471.67,
+      "Nb_transactions": 465
+    },
+    {
+      "Annee": 2024,
+      "Mois": 5,
+      "Periode": "2024-05",
+      "Prix_m2": 4521.14,
+      "Nb_transactions": 478
+    },
+    {
+      "Annee": 2024,
+      "Mois": 6,
+      "Periode": "2024-06",
+      "Prix_m2": 4366.46,
+      "Nb_transactions": 522
+    },
+    {
+      "Annee": 2024,
+      "Mois": 7,
+      "Periode": "2024-07",
+      "Prix_m2": 4571.43,
+      "Nb_transactions": 689
+    },
+    {
+      "Annee": 2024,
+      "Mois": 8,
+      "Periode": "2024-08",
+      "Prix_m2": 4617.92,
+      "Nb_transactions": 391
+    },
+    {
+      "Annee": 2024,
+      "Mois": 9,
+      "Periode": "2024-09",
+      "Prix_m2": 4571.5,
+      "Nb_transactions": 608
+    },
+    {
+      "Annee": 2024,
+      "Mois": 10,
+      "Periode": "2024-10",
+      "Prix_m2": 4502.75,
+      "Nb_transactions": 490
+    },
+    {
+      "Annee": 2024,
+      "Mois": 11,
+      "Periode": "2024-11",
+      "Prix_m2": 4380.09,
+      "Nb_transactions": 370
+    },
+    {
+      "Annee": 2024,
+      "Mois": 12,
+      "Periode": "2024-12",
+      "Prix_m2": 4388.89,
+      "Nb_transactions": 555
+    },
+    {
+      "Annee": 2025,
+      "Mois": 1,
+      "Periode": "2025-01",
+      "Prix_m2": 4433.96,
+      "Nb_transactions": 411
+    },
+    {
+      "Annee": 2025,
+      "Mois": 2,
+      "Periode": "2025-02",
+      "Prix_m2": 4361.7,
+      "Nb_transactions": 445
+    },
+    {
+      "Annee": 2025,
+      "Mois": 3,
+      "Periode": "2025-03",
+      "Prix_m2": 4393.33,
+      "Nb_transactions": 593
+    },
+    {
+      "Annee": 2025,
+      "Mois": 4,
+      "Periode": "2025-04",
+      "Prix_m2": 4407.54,
+      "Nb_transactions": 594
+    },
+    {
+      "Annee": 2025,
+      "Mois": 5,
+      "Periode": "2025-05",
+      "Prix_m2": 4295.1,
+      "Nb_transactions": 406
+    },
+    {
+      "Annee": 2025,
+      "Mois": 6,
+      "Periode": "2025-06",
+      "Prix_m2": 4500.0,
+      "Nb_transactions": 587
+    },
+    {
+      "Annee": 2025,
+      "Mois": 7,
+      "Periode": "2025-07",
+      "Prix_m2": 4509.86,
+      "Nb_transactions": 825
+    },
+    {
+      "Annee": 2025,
+      "Mois": 8,
+      "Periode": "2025-08",
+      "Prix_m2": 4558.82,
+      "Nb_transactions": 341
+    },
+    {
+      "Annee": 2025,
+      "Mois": 9,
+      "Periode": "2025-09",
+      "Prix_m2": 4587.0,
+      "Nb_transactions": 757
+    },
+    {
+      "Annee": 2025,
+      "Mois": 10,
+      "Periode": "2025-10",
+      "Prix_m2": 4537.5,
+      "Nb_transactions": 571
+    },
+    {
+      "Annee": 2025,
+      "Mois": 11,
+      "Periode": "2025-11",
+      "Prix_m2": 4519.38,
+      "Nb_transactions": 450
+    },
+    {
+      "Annee": 2025,
+      "Mois": 12,
+      "Periode": "2025-12",
+      "Prix_m2": 4413.1,
+      "Nb_transactions": 649
+    }
+  ],
+  "marseille": [
+    {
+      "Annee": 2015,
+      "Mois": 1,
+      "Periode": "2015-01",
+      "Prix_m2": 2222.22,
+      "Nb_transactions": 504
+    },
+    {
+      "Annee": 2015,
+      "Mois": 2,
+      "Periode": "2015-02",
+      "Prix_m2": 2352.94,
+      "Nb_transactions": 520
+    },
+    {
+      "Annee": 2015,
+      "Mois": 3,
+      "Periode": "2015-03",
+      "Prix_m2": 2250.62,
+      "Nb_transactions": 603
+    },
+    {
+      "Annee": 2015,
+      "Mois": 4,
+      "Periode": "2015-04",
+      "Prix_m2": 2307.15,
+      "Nb_transactions": 560
+    },
+    {
+      "Annee": 2015,
+      "Mois": 5,
+      "Periode": "2015-05",
+      "Prix_m2": 2275.86,
+      "Nb_transactions": 529
+    },
+    {
+      "Annee": 2015,
+      "Mois": 6,
+      "Periode": "2015-06",
+      "Prix_m2": 2330.1,
+      "Nb_transactions": 727
+    },
+    {
+      "Annee": 2015,
+      "Mois": 7,
+      "Periode": "2015-07",
+      "Prix_m2": 2360.0,
+      "Nb_transactions": 939
+    },
+    {
+      "Annee": 2015,
+      "Mois": 8,
+      "Periode": "2015-08",
+      "Prix_m2": 2411.25,
+      "Nb_transactions": 494
+    },
+    {
+      "Annee": 2015,
+      "Mois": 9,
+      "Periode": "2015-09",
+      "Prix_m2": 2321.43,
+      "Nb_transactions": 761
+    },
+    {
+      "Annee": 2015,
+      "Mois": 10,
+      "Periode": "2015-10",
+      "Prix_m2": 2350.0,
+      "Nb_transactions": 695
+    },
+    {
+      "Annee": 2015,
+      "Mois": 11,
+      "Periode": "2015-11",
+      "Prix_m2": 2265.58,
+      "Nb_transactions": 517
+    },
+    {
+      "Annee": 2015,
+      "Mois": 12,
+      "Periode": "2015-12",
+      "Prix_m2": 2346.15,
+      "Nb_transactions": 767
+    },
+    {
+      "Annee": 2016,
+      "Mois": 1,
+      "Periode": "2016-01",
+      "Prix_m2": 2181.82,
+      "Nb_transactions": 527
+    },
+    {
+      "Annee": 2016,
+      "Mois": 2,
+      "Periode": "2016-02",
+      "Prix_m2": 2265.62,
+      "Nb_transactions": 633
+    },
+    {
+      "Annee": 2016,
+      "Mois": 3,
+      "Periode": "2016-03",
+      "Prix_m2": 2173.33,
+      "Nb_transactions": 617
+    },
+    {
+      "Annee": 2016,
+      "Mois": 4,
+      "Periode": "2016-04",
+      "Prix_m2": 2325.23,
+      "Nb_transactions": 642
+    },
+    {
+      "Annee": 2016,
+      "Mois": 5,
+      "Periode": "2016-05",
+      "Prix_m2": 2267.94,
+      "Nb_transactions": 626
+    },
+    {
+      "Annee": 2016,
+      "Mois": 6,
+      "Periode": "2016-06",
+      "Prix_m2": 2215.91,
+      "Nb_transactions": 767
+    },
+    {
+      "Annee": 2016,
+      "Mois": 7,
+      "Periode": "2016-07",
+      "Prix_m2": 2354.01,
+      "Nb_transactions": 852
+    },
+    {
+      "Annee": 2016,
+      "Mois": 8,
+      "Periode": "2016-08",
+      "Prix_m2": 2387.25,
+      "Nb_transactions": 594
+    },
+    {
+      "Annee": 2016,
+      "Mois": 9,
+      "Periode": "2016-09",
+      "Prix_m2": 2288.08,
+      "Nb_transactions": 798
+    },
+    {
+      "Annee": 2016,
+      "Mois": 10,
+      "Periode": "2016-10",
+      "Prix_m2": 2291.67,
+      "Nb_transactions": 659
+    },
+    {
+      "Annee": 2016,
+      "Mois": 11,
+      "Periode": "2016-11",
+      "Prix_m2": 2435.9,
+      "Nb_transactions": 631
+    },
+    {
+      "Annee": 2016,
+      "Mois": 12,
+      "Periode": "2016-12",
+      "Prix_m2": 2376.02,
+      "Nb_transactions": 748
+    },
+    {
+      "Annee": 2017,
+      "Mois": 1,
+      "Periode": "2017-01",
+      "Prix_m2": 2330.01,
+      "Nb_transactions": 694
+    },
+    {
+      "Annee": 2017,
+      "Mois": 2,
+      "Periode": "2017-02",
+      "Prix_m2": 2409.14,
+      "Nb_transactions": 666
+    },
+    {
+      "Annee": 2017,
+      "Mois": 3,
+      "Periode": "2017-03",
+      "Prix_m2": 2324.66,
+      "Nb_transactions": 938
+    },
+    {
+      "Annee": 2017,
+      "Mois": 4,
+      "Periode": "2017-04",
+      "Prix_m2": 2398.45,
+      "Nb_transactions": 747
+    },
+    {
+      "Annee": 2017,
+      "Mois": 5,
+      "Periode": "2017-05",
+      "Prix_m2": 2398.33,
+      "Nb_transactions": 744
+    },
+    {
+      "Annee": 2017,
+      "Mois": 6,
+      "Periode": "2017-06",
+      "Prix_m2": 2364.96,
+      "Nb_transactions": 968
+    },
+    {
+      "Annee": 2017,
+      "Mois": 7,
+      "Periode": "2017-07",
+      "Prix_m2": 2358.57,
+      "Nb_transactions": 1028
+    },
+    {
+      "Annee": 2017,
+      "Mois": 8,
+      "Periode": "2017-08",
+      "Prix_m2": 2500.0,
+      "Nb_transactions": 625
+    },
+    {
+      "Annee": 2017,
+      "Mois": 9,
+      "Periode": "2017-09",
+      "Prix_m2": 2392.86,
+      "Nb_transactions": 859
+    },
+    {
+      "Annee": 2017,
+      "Mois": 10,
+      "Periode": "2017-10",
+      "Prix_m2": 2406.98,
+      "Nb_transactions": 812
+    },
+    {
+      "Annee": 2017,
+      "Mois": 11,
+      "Periode": "2017-11",
+      "Prix_m2": 2285.71,
+      "Nb_transactions": 675
+    },
+    {
+      "Annee": 2017,
+      "Mois": 12,
+      "Periode": "2017-12",
+      "Prix_m2": 2371.43,
+      "Nb_transactions": 761
+    },
+    {
+      "Annee": 2018,
+      "Mois": 1,
+      "Periode": "2018-01",
+      "Prix_m2": 2454.82,
+      "Nb_transactions": 700
+    },
+    {
+      "Annee": 2018,
+      "Mois": 2,
+      "Periode": "2018-02",
+      "Prix_m2": 2400.0,
+      "Nb_transactions": 745
+    },
+    {
+      "Annee": 2018,
+      "Mois": 3,
+      "Periode": "2018-03",
+      "Prix_m2": 2393.62,
+      "Nb_transactions": 827
+    },
+    {
+      "Annee": 2018,
+      "Mois": 4,
+      "Periode": "2018-04",
+      "Prix_m2": 2366.43,
+      "Nb_transactions": 696
+    },
+    {
+      "Annee": 2018,
+      "Mois": 5,
+      "Periode": "2018-05",
+      "Prix_m2": 2337.84,
+      "Nb_transactions": 765
+    },
+    {
+      "Annee": 2018,
+      "Mois": 6,
+      "Periode": "2018-06",
+      "Prix_m2": 2347.65,
+      "Nb_transactions": 922
+    },
+    {
+      "Annee": 2018,
+      "Mois": 7,
+      "Periode": "2018-07",
+      "Prix_m2": 2417.12,
+      "Nb_transactions": 1064
+    },
+    {
+      "Annee": 2018,
+      "Mois": 8,
+      "Periode": "2018-08",
+      "Prix_m2": 2484.44,
+      "Nb_transactions": 728
+    },
+    {
+      "Annee": 2018,
+      "Mois": 9,
+      "Periode": "2018-09",
+      "Prix_m2": 2411.81,
+      "Nb_transactions": 938
+    },
+    {
+      "Annee": 2018,
+      "Mois": 10,
+      "Periode": "2018-10",
+      "Prix_m2": 2400.0,
+      "Nb_transactions": 935
+    },
+    {
+      "Annee": 2018,
+      "Mois": 11,
+      "Periode": "2018-11",
+      "Prix_m2": 2411.76,
+      "Nb_transactions": 731
+    },
+    {
+      "Annee": 2018,
+      "Mois": 12,
+      "Periode": "2018-12",
+      "Prix_m2": 2431.58,
+      "Nb_transactions": 877
+    },
+    {
+      "Annee": 2019,
+      "Mois": 1,
+      "Periode": "2019-01",
+      "Prix_m2": 2419.23,
+      "Nb_transactions": 774
+    },
+    {
+      "Annee": 2019,
+      "Mois": 2,
+      "Periode": "2019-02",
+      "Prix_m2": 2397.26,
+      "Nb_transactions": 779
+    },
+    {
+      "Annee": 2019,
+      "Mois": 3,
+      "Periode": "2019-03",
+      "Prix_m2": 2409.64,
+      "Nb_transactions": 909
+    },
+    {
+      "Annee": 2019,
+      "Mois": 4,
+      "Periode": "2019-04",
+      "Prix_m2": 2484.24,
+      "Nb_transactions": 818
+    },
+    {
+      "Annee": 2019,
+      "Mois": 5,
+      "Periode": "2019-05",
+      "Prix_m2": 2390.62,
+      "Nb_transactions": 841
+    },
+    {
+      "Annee": 2019,
+      "Mois": 6,
+      "Periode": "2019-06",
+      "Prix_m2": 2458.04,
+      "Nb_transactions": 996
+    },
+    {
+      "Annee": 2019,
+      "Mois": 7,
+      "Periode": "2019-07",
+      "Prix_m2": 2565.22,
+      "Nb_transactions": 1249
+    },
+    {
+      "Annee": 2019,
+      "Mois": 8,
+      "Periode": "2019-08",
+      "Prix_m2": 2565.73,
+      "Nb_transactions": 723
+    },
+    {
+      "Annee": 2019,
+      "Mois": 9,
+      "Periode": "2019-09",
+      "Prix_m2": 2500.0,
+      "Nb_transactions": 1047
+    },
+    {
+      "Annee": 2019,
+      "Mois": 10,
+      "Periode": "2019-10",
+      "Prix_m2": 2587.3,
+      "Nb_transactions": 1017
+    },
+    {
+      "Annee": 2019,
+      "Mois": 11,
+      "Periode": "2019-11",
+      "Prix_m2": 2590.91,
+      "Nb_transactions": 788
+    },
+    {
+      "Annee": 2019,
+      "Mois": 12,
+      "Periode": "2019-12",
+      "Prix_m2": 2527.77,
+      "Nb_transactions": 910
+    },
+    {
+      "Annee": 2020,
+      "Mois": 1,
+      "Periode": "2020-01",
+      "Prix_m2": 2634.29,
+      "Nb_transactions": 907
+    },
+    {
+      "Annee": 2020,
+      "Mois": 2,
+      "Periode": "2020-02",
+      "Prix_m2": 2676.92,
+      "Nb_transactions": 831
+    },
+    {
+      "Annee": 2020,
+      "Mois": 3,
+      "Periode": "2020-03",
+      "Prix_m2": 2627.12,
+      "Nb_transactions": 531
+    },
+    {
+      "Annee": 2020,
+      "Mois": 4,
+      "Periode": "2020-04",
+      "Prix_m2": 2807.27,
+      "Nb_transactions": 232
+    },
+    {
+      "Annee": 2020,
+      "Mois": 5,
+      "Periode": "2020-05",
+      "Prix_m2": 2634.65,
+      "Nb_transactions": 992
+    },
+    {
+      "Annee": 2020,
+      "Mois": 6,
+      "Periode": "2020-06",
+      "Prix_m2": 2566.2,
+      "Nb_transactions": 1062
+    },
+    {
+      "Annee": 2020,
+      "Mois": 7,
+      "Periode": "2020-07",
+      "Prix_m2": 2698.11,
+      "Nb_transactions": 989
+    },
+    {
+      "Annee": 2020,
+      "Mois": 8,
+      "Periode": "2020-08",
+      "Prix_m2": 2800.0,
+      "Nb_transactions": 625
+    },
+    {
+      "Annee": 2020,
+      "Mois": 9,
+      "Periode": "2020-09",
+      "Prix_m2": 2739.0,
+      "Nb_transactions": 1079
+    },
+    {
+      "Annee": 2020,
+      "Mois": 10,
+      "Periode": "2020-10",
+      "Prix_m2": 2719.44,
+      "Nb_transactions": 1208
+    },
+    {
+      "Annee": 2020,
+      "Mois": 11,
+      "Periode": "2020-11",
+      "Prix_m2": 2692.93,
+      "Nb_transactions": 968
+    },
+    {
+      "Annee": 2020,
+      "Mois": 12,
+      "Periode": "2020-12",
+      "Prix_m2": 2758.06,
+      "Nb_transactions": 1117
+    },
+    {
+      "Annee": 2021,
+      "Mois": 1,
+      "Periode": "2021-01",
+      "Prix_m2": 2750.0,
+      "Nb_transactions": 881
+    },
+    {
+      "Annee": 2021,
+      "Mois": 2,
+      "Periode": "2021-02",
+      "Prix_m2": 2774.53,
+      "Nb_transactions": 909
+    },
+    {
+      "Annee": 2021,
+      "Mois": 3,
+      "Periode": "2021-03",
+      "Prix_m2": 2811.69,
+      "Nb_transactions": 1003
+    },
+    {
+      "Annee": 2021,
+      "Mois": 4,
+      "Periode": "2021-04",
+      "Prix_m2": 2857.14,
+      "Nb_transactions": 1032
+    },
+    {
+      "Annee": 2021,
+      "Mois": 5,
+      "Periode": "2021-05",
+      "Prix_m2": 2880.95,
+      "Nb_transactions": 999
+    },
+    {
+      "Annee": 2021,
+      "Mois": 6,
+      "Periode": "2021-06",
+      "Prix_m2": 2931.14,
+      "Nb_transactions": 1364
+    },
+    {
+      "Annee": 2021,
+      "Mois": 7,
+      "Periode": "2021-07",
+      "Prix_m2": 2926.38,
+      "Nb_transactions": 1472
+    },
+    {
+      "Annee": 2021,
+      "Mois": 8,
+      "Periode": "2021-08",
+      "Prix_m2": 2873.4,
+      "Nb_transactions": 804
+    },
+    {
+      "Annee": 2021,
+      "Mois": 9,
+      "Periode": "2021-09",
+      "Prix_m2": 3040.27,
+      "Nb_transactions": 1232
+    },
+    {
+      "Annee": 2021,
+      "Mois": 10,
+      "Periode": "2021-10",
+      "Prix_m2": 2896.87,
+      "Nb_transactions": 1090
+    },
+    {
+      "Annee": 2021,
+      "Mois": 11,
+      "Periode": "2021-11",
+      "Prix_m2": 2932.18,
+      "Nb_transactions": 842
+    },
+    {
+      "Annee": 2021,
+      "Mois": 12,
+      "Periode": "2021-12",
+      "Prix_m2": 2891.67,
+      "Nb_transactions": 1041
+    },
+    {
+      "Annee": 2022,
+      "Mois": 1,
+      "Periode": "2022-01",
+      "Prix_m2": 3012.5,
+      "Nb_transactions": 957
+    },
+    {
+      "Annee": 2022,
+      "Mois": 2,
+      "Periode": "2022-02",
+      "Prix_m2": 2922.21,
+      "Nb_transactions": 884
+    },
+    {
+      "Annee": 2022,
+      "Mois": 3,
+      "Periode": "2022-03",
+      "Prix_m2": 3042.84,
+      "Nb_transactions": 1130
+    },
+    {
+      "Annee": 2022,
+      "Mois": 4,
+      "Periode": "2022-04",
+      "Prix_m2": 2961.63,
+      "Nb_transactions": 1006
+    },
+    {
+      "Annee": 2022,
+      "Mois": 5,
+      "Periode": "2022-05",
+      "Prix_m2": 3134.33,
+      "Nb_transactions": 1135
+    },
+    {
+      "Annee": 2022,
+      "Mois": 6,
+      "Periode": "2022-06",
+      "Prix_m2": 3151.56,
+      "Nb_transactions": 1338
+    },
+    {
+      "Annee": 2022,
+      "Mois": 7,
+      "Periode": "2022-07",
+      "Prix_m2": 3226.11,
+      "Nb_transactions": 1298
+    },
+    {
+      "Annee": 2022,
+      "Mois": 8,
+      "Periode": "2022-08",
+      "Prix_m2": 3237.26,
+      "Nb_transactions": 836
+    },
+    {
+      "Annee": 2022,
+      "Mois": 9,
+      "Periode": "2022-09",
+      "Prix_m2": 3218.75,
+      "Nb_transactions": 1265
+    },
+    {
+      "Annee": 2022,
+      "Mois": 10,
+      "Periode": "2022-10",
+      "Prix_m2": 3276.92,
+      "Nb_transactions": 951
+    },
+    {
+      "Annee": 2022,
+      "Mois": 11,
+      "Periode": "2022-11",
+      "Prix_m2": 3185.19,
+      "Nb_transactions": 845
+    },
+    {
+      "Annee": 2022,
+      "Mois": 12,
+      "Periode": "2022-12",
+      "Prix_m2": 3148.15,
+      "Nb_transactions": 1055
+    },
+    {
+      "Annee": 2023,
+      "Mois": 1,
+      "Periode": "2023-01",
+      "Prix_m2": 3275.87,
+      "Nb_transactions": 856
+    },
+    {
+      "Annee": 2023,
+      "Mois": 2,
+      "Periode": "2023-02",
+      "Prix_m2": 3244.15,
+      "Nb_transactions": 814
+    },
+    {
+      "Annee": 2023,
+      "Mois": 3,
+      "Periode": "2023-03",
+      "Prix_m2": 3185.19,
+      "Nb_transactions": 943
+    },
+    {
+      "Annee": 2023,
+      "Mois": 4,
+      "Periode": "2023-04",
+      "Prix_m2": 3251.92,
+      "Nb_transactions": 779
+    },
+    {
+      "Annee": 2023,
+      "Mois": 5,
+      "Periode": "2023-05",
+      "Prix_m2": 3192.53,
+      "Nb_transactions": 932
+    },
+    {
+      "Annee": 2023,
+      "Mois": 6,
+      "Periode": "2023-06",
+      "Prix_m2": 3265.99,
+      "Nb_transactions": 1030
+    },
+    {
+      "Annee": 2023,
+      "Mois": 7,
+      "Periode": "2023-07",
+      "Prix_m2": 3320.0,
+      "Nb_transactions": 1032
+    },
+    {
+      "Annee": 2023,
+      "Mois": 8,
+      "Periode": "2023-08",
+      "Prix_m2": 3293.73,
+      "Nb_transactions": 616
+    },
+    {
+      "Annee": 2023,
+      "Mois": 9,
+      "Periode": "2023-09",
+      "Prix_m2": 3157.51,
+      "Nb_transactions": 896
+    },
+    {
+      "Annee": 2023,
+      "Mois": 10,
+      "Periode": "2023-10",
+      "Prix_m2": 3208.8,
+      "Nb_transactions": 762
+    },
+    {
+      "Annee": 2023,
+      "Mois": 11,
+      "Periode": "2023-11",
+      "Prix_m2": 3158.22,
+      "Nb_transactions": 640
+    },
+    {
+      "Annee": 2023,
+      "Mois": 12,
+      "Periode": "2023-12",
+      "Prix_m2": 3161.63,
+      "Nb_transactions": 758
+    },
+    {
+      "Annee": 2024,
+      "Mois": 1,
+      "Periode": "2024-01",
+      "Prix_m2": 3101.27,
+      "Nb_transactions": 599
+    },
+    {
+      "Annee": 2024,
+      "Mois": 2,
+      "Periode": "2024-02",
+      "Prix_m2": 3128.57,
+      "Nb_transactions": 643
+    },
+    {
+      "Annee": 2024,
+      "Mois": 3,
+      "Periode": "2024-03",
+      "Prix_m2": 3131.13,
+      "Nb_transactions": 668
+    },
+    {
+      "Annee": 2024,
+      "Mois": 4,
+      "Periode": "2024-04",
+      "Prix_m2": 3157.47,
+      "Nb_transactions": 685
+    },
+    {
+      "Annee": 2024,
+      "Mois": 5,
+      "Periode": "2024-05",
+      "Prix_m2": 3086.31,
+      "Nb_transactions": 702
+    },
+    {
+      "Annee": 2024,
+      "Mois": 6,
+      "Periode": "2024-06",
+      "Prix_m2": 3023.26,
+      "Nb_transactions": 807
+    },
+    {
+      "Annee": 2024,
+      "Mois": 7,
+      "Periode": "2024-07",
+      "Prix_m2": 3216.67,
+      "Nb_transactions": 859
+    },
+    {
+      "Annee": 2024,
+      "Mois": 8,
+      "Periode": "2024-08",
+      "Prix_m2": 3177.07,
+      "Nb_transactions": 546
+    },
+    {
+      "Annee": 2024,
+      "Mois": 9,
+      "Periode": "2024-09",
+      "Prix_m2": 3164.38,
+      "Nb_transactions": 877
+    },
+    {
+      "Annee": 2024,
+      "Mois": 10,
+      "Periode": "2024-10",
+      "Prix_m2": 3225.74,
+      "Nb_transactions": 742
+    },
+    {
+      "Annee": 2024,
+      "Mois": 11,
+      "Periode": "2024-11",
+      "Prix_m2": 3051.95,
+      "Nb_transactions": 621
+    },
+    {
+      "Annee": 2024,
+      "Mois": 12,
+      "Periode": "2024-12",
+      "Prix_m2": 3137.39,
+      "Nb_transactions": 800
+    },
+    {
+      "Annee": 2025,
+      "Mois": 1,
+      "Periode": "2025-01",
+      "Prix_m2": 3202.46,
+      "Nb_transactions": 720
+    },
+    {
+      "Annee": 2025,
+      "Mois": 2,
+      "Periode": "2025-02",
+      "Prix_m2": 3162.79,
+      "Nb_transactions": 721
+    },
+    {
+      "Annee": 2025,
+      "Mois": 3,
+      "Periode": "2025-03",
+      "Prix_m2": 3230.77,
+      "Nb_transactions": 863
+    },
+    {
+      "Annee": 2025,
+      "Mois": 4,
+      "Periode": "2025-04",
+      "Prix_m2": 3178.41,
+      "Nb_transactions": 1058
+    },
+    {
+      "Annee": 2025,
+      "Mois": 5,
+      "Periode": "2025-05",
+      "Prix_m2": 3024.61,
+      "Nb_transactions": 614
+    },
+    {
+      "Annee": 2025,
+      "Mois": 6,
+      "Periode": "2025-06",
+      "Prix_m2": 3394.19,
+      "Nb_transactions": 944
+    },
+    {
+      "Annee": 2025,
+      "Mois": 7,
+      "Periode": "2025-07",
+      "Prix_m2": 3310.58,
+      "Nb_transactions": 1092
+    },
+    {
+      "Annee": 2025,
+      "Mois": 8,
+      "Periode": "2025-08",
+      "Prix_m2": 3266.67,
+      "Nb_transactions": 595
+    },
+    {
+      "Annee": 2025,
+      "Mois": 9,
+      "Periode": "2025-09",
+      "Prix_m2": 3316.3,
+      "Nb_transactions": 986
+    },
+    {
+      "Annee": 2025,
+      "Mois": 10,
+      "Periode": "2025-10",
+      "Prix_m2": 3261.54,
+      "Nb_transactions": 847
+    },
+    {
+      "Annee": 2025,
+      "Mois": 11,
+      "Periode": "2025-11",
+      "Prix_m2": 3250.0,
+      "Nb_transactions": 696
+    },
+    {
+      "Annee": 2025,
+      "Mois": 12,
+      "Periode": "2025-12",
+      "Prix_m2": 3173.08,
+      "Nb_transactions": 953
+    }
+  ],
+  "bordeaux": [
+    {
+      "Annee": 2015,
+      "Mois": 1,
+      "Periode": "2015-01",
+      "Prix_m2": 3026.56,
+      "Nb_transactions": 210
+    },
+    {
+      "Annee": 2015,
+      "Mois": 2,
+      "Periode": "2015-02",
+      "Prix_m2": 3112.97,
+      "Nb_transactions": 214
+    },
+    {
+      "Annee": 2015,
+      "Mois": 3,
+      "Periode": "2015-03",
+      "Prix_m2": 2984.48,
+      "Nb_transactions": 258
+    },
+    {
+      "Annee": 2015,
+      "Mois": 4,
+      "Periode": "2015-04",
+      "Prix_m2": 2962.96,
+      "Nb_transactions": 279
+    },
+    {
+      "Annee": 2015,
+      "Mois": 5,
+      "Periode": "2015-05",
+      "Prix_m2": 3024.75,
+      "Nb_transactions": 241
+    },
+    {
+      "Annee": 2015,
+      "Mois": 6,
+      "Periode": "2015-06",
+      "Prix_m2": 3035.71,
+      "Nb_transactions": 287
+    },
+    {
+      "Annee": 2015,
+      "Mois": 7,
+      "Periode": "2015-07",
+      "Prix_m2": 3079.0,
+      "Nb_transactions": 372
+    },
+    {
+      "Annee": 2015,
+      "Mois": 8,
+      "Periode": "2015-08",
+      "Prix_m2": 3027.44,
+      "Nb_transactions": 280
+    },
+    {
+      "Annee": 2015,
+      "Mois": 9,
+      "Periode": "2015-09",
+      "Prix_m2": 3137.93,
+      "Nb_transactions": 379
+    },
+    {
+      "Annee": 2015,
+      "Mois": 10,
+      "Periode": "2015-10",
+      "Prix_m2": 3071.43,
+      "Nb_transactions": 307
+    },
+    {
+      "Annee": 2015,
+      "Mois": 11,
+      "Periode": "2015-11",
+      "Prix_m2": 3132.2,
+      "Nb_transactions": 271
+    },
+    {
+      "Annee": 2015,
+      "Mois": 12,
+      "Periode": "2015-12",
+      "Prix_m2": 3090.91,
+      "Nb_transactions": 339
+    },
+    {
+      "Annee": 2016,
+      "Mois": 1,
+      "Periode": "2016-01",
+      "Prix_m2": 3122.5,
+      "Nb_transactions": 224
+    },
+    {
+      "Annee": 2016,
+      "Mois": 2,
+      "Periode": "2016-02",
+      "Prix_m2": 3013.16,
+      "Nb_transactions": 261
+    },
+    {
+      "Annee": 2016,
+      "Mois": 3,
+      "Periode": "2016-03",
+      "Prix_m2": 3114.75,
+      "Nb_transactions": 271
+    },
+    {
+      "Annee": 2016,
+      "Mois": 4,
+      "Periode": "2016-04",
+      "Prix_m2": 3186.25,
+      "Nb_transactions": 255
+    },
+    {
+      "Annee": 2016,
+      "Mois": 5,
+      "Periode": "2016-05",
+      "Prix_m2": 3080.36,
+      "Nb_transactions": 286
+    },
+    {
+      "Annee": 2016,
+      "Mois": 6,
+      "Periode": "2016-06",
+      "Prix_m2": 3221.95,
+      "Nb_transactions": 342
+    },
+    {
+      "Annee": 2016,
+      "Mois": 7,
+      "Periode": "2016-07",
+      "Prix_m2": 3195.26,
+      "Nb_transactions": 386
+    },
+    {
+      "Annee": 2016,
+      "Mois": 8,
+      "Periode": "2016-08",
+      "Prix_m2": 3404.51,
+      "Nb_transactions": 278
+    },
+    {
+      "Annee": 2016,
+      "Mois": 9,
+      "Periode": "2016-09",
+      "Prix_m2": 3282.29,
+      "Nb_transactions": 370
+    },
+    {
+      "Annee": 2016,
+      "Mois": 10,
+      "Periode": "2016-10",
+      "Prix_m2": 3300.0,
+      "Nb_transactions": 315
+    },
+    {
+      "Annee": 2016,
+      "Mois": 11,
+      "Periode": "2016-11",
+      "Prix_m2": 3365.36,
+      "Nb_transactions": 280
+    },
+    {
+      "Annee": 2016,
+      "Mois": 12,
+      "Periode": "2016-12",
+      "Prix_m2": 3409.09,
+      "Nb_transactions": 436
+    },
+    {
+      "Annee": 2017,
+      "Mois": 1,
+      "Periode": "2017-01",
+      "Prix_m2": 3375.0,
+      "Nb_transactions": 247
+    },
+    {
+      "Annee": 2017,
+      "Mois": 2,
+      "Periode": "2017-02",
+      "Prix_m2": 3511.9,
+      "Nb_transactions": 316
+    },
+    {
+      "Annee": 2017,
+      "Mois": 3,
+      "Periode": "2017-03",
+      "Prix_m2": 3430.53,
+      "Nb_transactions": 382
+    },
+    {
+      "Annee": 2017,
+      "Mois": 4,
+      "Periode": "2017-04",
+      "Prix_m2": 3540.62,
+      "Nb_transactions": 313
+    },
+    {
+      "Annee": 2017,
+      "Mois": 5,
+      "Periode": "2017-05",
+      "Prix_m2": 3393.3,
+      "Nb_transactions": 306
+    },
+    {
+      "Annee": 2017,
+      "Mois": 6,
+      "Periode": "2017-06",
+      "Prix_m2": 3777.08,
+      "Nb_transactions": 361
+    },
+    {
+      "Annee": 2017,
+      "Mois": 7,
+      "Periode": "2017-07",
+      "Prix_m2": 3589.06,
+      "Nb_transactions": 368
+    },
+    {
+      "Annee": 2017,
+      "Mois": 8,
+      "Periode": "2017-08",
+      "Prix_m2": 3815.79,
+      "Nb_transactions": 279
+    },
+    {
+      "Annee": 2017,
+      "Mois": 9,
+      "Periode": "2017-09",
+      "Prix_m2": 3809.69,
+      "Nb_transactions": 384
+    },
+    {
+      "Annee": 2017,
+      "Mois": 10,
+      "Periode": "2017-10",
+      "Prix_m2": 3947.37,
+      "Nb_transactions": 381
+    },
+    {
+      "Annee": 2017,
+      "Mois": 11,
+      "Periode": "2017-11",
+      "Prix_m2": 3818.58,
+      "Nb_transactions": 274
+    },
+    {
+      "Annee": 2017,
+      "Mois": 12,
+      "Periode": "2017-12",
+      "Prix_m2": 3870.97,
+      "Nb_transactions": 371
+    },
+    {
+      "Annee": 2018,
+      "Mois": 1,
+      "Periode": "2018-01",
+      "Prix_m2": 4042.37,
+      "Nb_transactions": 291
+    },
+    {
+      "Annee": 2018,
+      "Mois": 2,
+      "Periode": "2018-02",
+      "Prix_m2": 4046.15,
+      "Nb_transactions": 269
+    },
+    {
+      "Annee": 2018,
+      "Mois": 3,
+      "Periode": "2018-03",
+      "Prix_m2": 4222.22,
+      "Nb_transactions": 303
+    },
+    {
+      "Annee": 2018,
+      "Mois": 4,
+      "Periode": "2018-04",
+      "Prix_m2": 4400.97,
+      "Nb_transactions": 269
+    },
+    {
+      "Annee": 2018,
+      "Mois": 5,
+      "Periode": "2018-05",
+      "Prix_m2": 4201.25,
+      "Nb_transactions": 264
+    },
+    {
+      "Annee": 2018,
+      "Mois": 6,
+      "Periode": "2018-06",
+      "Prix_m2": 4102.75,
+      "Nb_transactions": 342
+    },
+    {
+      "Annee": 2018,
+      "Mois": 7,
+      "Periode": "2018-07",
+      "Prix_m2": 4268.29,
+      "Nb_transactions": 329
+    },
+    {
+      "Annee": 2018,
+      "Mois": 8,
+      "Periode": "2018-08",
+      "Prix_m2": 4262.56,
+      "Nb_transactions": 268
+    },
+    {
+      "Annee": 2018,
+      "Mois": 9,
+      "Periode": "2018-09",
+      "Prix_m2": 4227.61,
+      "Nb_transactions": 310
+    },
+    {
+      "Annee": 2018,
+      "Mois": 10,
+      "Periode": "2018-10",
+      "Prix_m2": 4177.93,
+      "Nb_transactions": 322
+    },
+    {
+      "Annee": 2018,
+      "Mois": 11,
+      "Periode": "2018-11",
+      "Prix_m2": 4261.36,
+      "Nb_transactions": 261
+    },
+    {
+      "Annee": 2018,
+      "Mois": 12,
+      "Periode": "2018-12",
+      "Prix_m2": 4305.57,
+      "Nb_transactions": 316
+    },
+    {
+      "Annee": 2019,
+      "Mois": 1,
+      "Periode": "2019-01",
+      "Prix_m2": 4251.87,
+      "Nb_transactions": 264
+    },
+    {
+      "Annee": 2019,
+      "Mois": 2,
+      "Periode": "2019-02",
+      "Prix_m2": 4263.16,
+      "Nb_transactions": 273
+    },
+    {
+      "Annee": 2019,
+      "Mois": 3,
+      "Periode": "2019-03",
+      "Prix_m2": 4375.0,
+      "Nb_transactions": 267
+    },
+    {
+      "Annee": 2019,
+      "Mois": 4,
+      "Periode": "2019-04",
+      "Prix_m2": 4456.38,
+      "Nb_transactions": 317
+    },
+    {
+      "Annee": 2019,
+      "Mois": 5,
+      "Periode": "2019-05",
+      "Prix_m2": 4489.72,
+      "Nb_transactions": 272
+    },
+    {
+      "Annee": 2019,
+      "Mois": 6,
+      "Periode": "2019-06",
+      "Prix_m2": 4261.79,
+      "Nb_transactions": 304
+    },
+    {
+      "Annee": 2019,
+      "Mois": 7,
+      "Periode": "2019-07",
+      "Prix_m2": 4166.67,
+      "Nb_transactions": 365
+    },
+    {
+      "Annee": 2019,
+      "Mois": 8,
+      "Periode": "2019-08",
+      "Prix_m2": 4269.7,
+      "Nb_transactions": 266
+    },
+    {
+      "Annee": 2019,
+      "Mois": 9,
+      "Periode": "2019-09",
+      "Prix_m2": 4320.0,
+      "Nb_transactions": 341
+    },
+    {
+      "Annee": 2019,
+      "Mois": 10,
+      "Periode": "2019-10",
+      "Prix_m2": 4320.71,
+      "Nb_transactions": 320
+    },
+    {
+      "Annee": 2019,
+      "Mois": 11,
+      "Periode": "2019-11",
+      "Prix_m2": 4172.22,
+      "Nb_transactions": 218
+    },
+    {
+      "Annee": 2019,
+      "Mois": 12,
+      "Periode": "2019-12",
+      "Prix_m2": 4210.53,
+      "Nb_transactions": 331
+    },
+    {
+      "Annee": 2020,
+      "Mois": 1,
+      "Periode": "2020-01",
+      "Prix_m2": 4371.67,
+      "Nb_transactions": 302
+    },
+    {
+      "Annee": 2020,
+      "Mois": 2,
+      "Periode": "2020-02",
+      "Prix_m2": 4302.84,
+      "Nb_transactions": 282
+    },
+    {
+      "Annee": 2020,
+      "Mois": 3,
+      "Periode": "2020-03",
+      "Prix_m2": 4294.32,
+      "Nb_transactions": 196
+    },
+    {
+      "Annee": 2020,
+      "Mois": 4,
+      "Periode": "2020-04",
+      "Prix_m2": 3877.92,
+      "Nb_transactions": 117
+    },
+    {
+      "Annee": 2020,
+      "Mois": 5,
+      "Periode": "2020-05",
+      "Prix_m2": 4350.0,
+      "Nb_transactions": 277
+    },
+    {
+      "Annee": 2020,
+      "Mois": 6,
+      "Periode": "2020-06",
+      "Prix_m2": 4207.14,
+      "Nb_transactions": 284
+    },
+    {
+      "Annee": 2020,
+      "Mois": 7,
+      "Periode": "2020-07",
+      "Prix_m2": 4686.27,
+      "Nb_transactions": 286
+    },
+    {
+      "Annee": 2020,
+      "Mois": 8,
+      "Periode": "2020-08",
+      "Prix_m2": 4467.94,
+      "Nb_transactions": 238
+    },
+    {
+      "Annee": 2020,
+      "Mois": 9,
+      "Periode": "2020-09",
+      "Prix_m2": 4511.9,
+      "Nb_transactions": 371
+    },
+    {
+      "Annee": 2020,
+      "Mois": 10,
+      "Periode": "2020-10",
+      "Prix_m2": 4613.64,
+      "Nb_transactions": 373
+    },
+    {
+      "Annee": 2020,
+      "Mois": 11,
+      "Periode": "2020-11",
+      "Prix_m2": 4445.8,
+      "Nb_transactions": 246
+    },
+    {
+      "Annee": 2020,
+      "Mois": 12,
+      "Periode": "2020-12",
+      "Prix_m2": 4492.73,
+      "Nb_transactions": 395
+    },
+    {
+      "Annee": 2021,
+      "Mois": 1,
+      "Periode": "2021-01",
+      "Prix_m2": 4527.78,
+      "Nb_transactions": 270
+    },
+    {
+      "Annee": 2021,
+      "Mois": 2,
+      "Periode": "2021-02",
+      "Prix_m2": 4621.21,
+      "Nb_transactions": 263
+    },
+    {
+      "Annee": 2021,
+      "Mois": 3,
+      "Periode": "2021-03",
+      "Prix_m2": 4393.94,
+      "Nb_transactions": 275
+    },
+    {
+      "Annee": 2021,
+      "Mois": 4,
+      "Periode": "2021-04",
+      "Prix_m2": 4340.28,
+      "Nb_transactions": 288
+    },
+    {
+      "Annee": 2021,
+      "Mois": 5,
+      "Periode": "2021-05",
+      "Prix_m2": 4482.14,
+      "Nb_transactions": 322
+    },
+    {
+      "Annee": 2021,
+      "Mois": 6,
+      "Periode": "2021-06",
+      "Prix_m2": 4644.01,
+      "Nb_transactions": 394
+    },
+    {
+      "Annee": 2021,
+      "Mois": 7,
+      "Periode": "2021-07",
+      "Prix_m2": 4680.85,
+      "Nb_transactions": 385
+    },
+    {
+      "Annee": 2021,
+      "Mois": 8,
+      "Periode": "2021-08",
+      "Prix_m2": 4657.05,
+      "Nb_transactions": 311
+    },
+    {
+      "Annee": 2021,
+      "Mois": 9,
+      "Periode": "2021-09",
+      "Prix_m2": 4655.17,
+      "Nb_transactions": 383
+    },
+    {
+      "Annee": 2021,
+      "Mois": 10,
+      "Periode": "2021-10",
+      "Prix_m2": 4599.46,
+      "Nb_transactions": 377
+    },
+    {
+      "Annee": 2021,
+      "Mois": 11,
+      "Periode": "2021-11",
+      "Prix_m2": 4788.15,
+      "Nb_transactions": 293
+    },
+    {
+      "Annee": 2021,
+      "Mois": 12,
+      "Periode": "2021-12",
+      "Prix_m2": 4608.89,
+      "Nb_transactions": 356
+    },
+    {
+      "Annee": 2022,
+      "Mois": 1,
+      "Periode": "2022-01",
+      "Prix_m2": 4600.12,
+      "Nb_transactions": 262
+    },
+    {
+      "Annee": 2022,
+      "Mois": 2,
+      "Periode": "2022-02",
+      "Prix_m2": 4696.23,
+      "Nb_transactions": 301
+    },
+    {
+      "Annee": 2022,
+      "Mois": 3,
+      "Periode": "2022-03",
+      "Prix_m2": 4411.19,
+      "Nb_transactions": 384
+    },
+    {
+      "Annee": 2022,
+      "Mois": 4,
+      "Periode": "2022-04",
+      "Prix_m2": 4545.45,
+      "Nb_transactions": 325
+    },
+    {
+      "Annee": 2022,
+      "Mois": 5,
+      "Periode": "2022-05",
+      "Prix_m2": 4624.69,
+      "Nb_transactions": 366
+    },
+    {
+      "Annee": 2022,
+      "Mois": 6,
+      "Periode": "2022-06",
+      "Prix_m2": 4607.11,
+      "Nb_transactions": 408
+    },
+    {
+      "Annee": 2022,
+      "Mois": 7,
+      "Periode": "2022-07",
+      "Prix_m2": 4743.01,
+      "Nb_transactions": 444
+    },
+    {
+      "Annee": 2022,
+      "Mois": 8,
+      "Periode": "2022-08",
+      "Prix_m2": 4833.33,
+      "Nb_transactions": 303
+    },
+    {
+      "Annee": 2022,
+      "Mois": 9,
+      "Periode": "2022-09",
+      "Prix_m2": 4681.82,
+      "Nb_transactions": 415
+    },
+    {
+      "Annee": 2022,
+      "Mois": 10,
+      "Periode": "2022-10",
+      "Prix_m2": 4677.08,
+      "Nb_transactions": 287
+    },
+    {
+      "Annee": 2022,
+      "Mois": 11,
+      "Periode": "2022-11",
+      "Prix_m2": 4680.85,
+      "Nb_transactions": 257
+    },
+    {
+      "Annee": 2022,
+      "Mois": 12,
+      "Periode": "2022-12",
+      "Prix_m2": 4583.33,
+      "Nb_transactions": 331
+    },
+    {
+      "Annee": 2023,
+      "Mois": 1,
+      "Periode": "2023-01",
+      "Prix_m2": 4490.2,
+      "Nb_transactions": 267
+    },
+    {
+      "Annee": 2023,
+      "Mois": 2,
+      "Periode": "2023-02",
+      "Prix_m2": 4684.21,
+      "Nb_transactions": 253
+    },
+    {
+      "Annee": 2023,
+      "Mois": 3,
+      "Periode": "2023-03",
+      "Prix_m2": 4573.66,
+      "Nb_transactions": 308
+    },
+    {
+      "Annee": 2023,
+      "Mois": 4,
+      "Periode": "2023-04",
+      "Prix_m2": 4597.56,
+      "Nb_transactions": 215
+    },
+    {
+      "Annee": 2023,
+      "Mois": 5,
+      "Periode": "2023-05",
+      "Prix_m2": 4389.7,
+      "Nb_transactions": 279
+    },
+    {
+      "Annee": 2023,
+      "Mois": 6,
+      "Periode": "2023-06",
+      "Prix_m2": 4642.86,
+      "Nb_transactions": 331
+    },
+    {
+      "Annee": 2023,
+      "Mois": 7,
+      "Periode": "2023-07",
+      "Prix_m2": 4575.81,
+      "Nb_transactions": 326
+    },
+    {
+      "Annee": 2023,
+      "Mois": 8,
+      "Periode": "2023-08",
+      "Prix_m2": 4637.55,
+      "Nb_transactions": 258
+    },
+    {
+      "Annee": 2023,
+      "Mois": 9,
+      "Periode": "2023-09",
+      "Prix_m2": 4438.51,
+      "Nb_transactions": 282
+    },
+    {
+      "Annee": 2023,
+      "Mois": 10,
+      "Periode": "2023-10",
+      "Prix_m2": 4562.5,
+      "Nb_transactions": 231
+    },
+    {
+      "Annee": 2023,
+      "Mois": 11,
+      "Periode": "2023-11",
+      "Prix_m2": 4230.77,
+      "Nb_transactions": 195
+    },
+    {
+      "Annee": 2023,
+      "Mois": 12,
+      "Periode": "2023-12",
+      "Prix_m2": 4341.78,
+      "Nb_transactions": 290
+    },
+    {
+      "Annee": 2024,
+      "Mois": 1,
+      "Periode": "2024-01",
+      "Prix_m2": 4375.0,
+      "Nb_transactions": 179
+    },
+    {
+      "Annee": 2024,
+      "Mois": 2,
+      "Periode": "2024-02",
+      "Prix_m2": 4261.1,
+      "Nb_transactions": 180
+    },
+    {
+      "Annee": 2024,
+      "Mois": 3,
+      "Periode": "2024-03",
+      "Prix_m2": 4230.0,
+      "Nb_transactions": 225
+    },
+    {
+      "Annee": 2024,
+      "Mois": 4,
+      "Periode": "2024-04",
+      "Prix_m2": 4090.91,
+      "Nb_transactions": 167
+    },
+    {
+      "Annee": 2024,
+      "Mois": 5,
+      "Periode": "2024-05",
+      "Prix_m2": 4272.73,
+      "Nb_transactions": 207
+    },
+    {
+      "Annee": 2024,
+      "Mois": 6,
+      "Periode": "2024-06",
+      "Prix_m2": 4219.81,
+      "Nb_transactions": 222
+    },
+    {
+      "Annee": 2024,
+      "Mois": 7,
+      "Periode": "2024-07",
+      "Prix_m2": 4170.45,
+      "Nb_transactions": 363
+    },
+    {
+      "Annee": 2024,
+      "Mois": 8,
+      "Periode": "2024-08",
+      "Prix_m2": 4420.56,
+      "Nb_transactions": 236
+    },
+    {
+      "Annee": 2024,
+      "Mois": 9,
+      "Periode": "2024-09",
+      "Prix_m2": 4289.47,
+      "Nb_transactions": 263
+    },
+    {
+      "Annee": 2024,
+      "Mois": 10,
+      "Periode": "2024-10",
+      "Prix_m2": 4200.0,
+      "Nb_transactions": 267
+    },
+    {
+      "Annee": 2024,
+      "Mois": 11,
+      "Periode": "2024-11",
+      "Prix_m2": 4180.33,
+      "Nb_transactions": 213
+    },
+    {
+      "Annee": 2024,
+      "Mois": 12,
+      "Periode": "2024-12",
+      "Prix_m2": 4136.38,
+      "Nb_transactions": 306
+    },
+    {
+      "Annee": 2025,
+      "Mois": 1,
+      "Periode": "2025-01",
+      "Prix_m2": 4093.75,
+      "Nb_transactions": 227
+    },
+    {
+      "Annee": 2025,
+      "Mois": 2,
+      "Periode": "2025-02",
+      "Prix_m2": 3940.98,
+      "Nb_transactions": 234
+    },
+    {
+      "Annee": 2025,
+      "Mois": 3,
+      "Periode": "2025-03",
+      "Prix_m2": 3955.22,
+      "Nb_transactions": 243
+    },
+    {
+      "Annee": 2025,
+      "Mois": 4,
+      "Periode": "2025-04",
+      "Prix_m2": 4107.18,
+      "Nb_transactions": 384
+    },
+    {
+      "Annee": 2025,
+      "Mois": 5,
+      "Periode": "2025-05",
+      "Prix_m2": 4253.73,
+      "Nb_transactions": 205
+    },
+    {
+      "Annee": 2025,
+      "Mois": 6,
+      "Periode": "2025-06",
+      "Prix_m2": 4155.56,
+      "Nb_transactions": 305
+    },
+    {
+      "Annee": 2025,
+      "Mois": 7,
+      "Periode": "2025-07",
+      "Prix_m2": 4218.75,
+      "Nb_transactions": 355
+    },
+    {
+      "Annee": 2025,
+      "Mois": 8,
+      "Periode": "2025-08",
+      "Prix_m2": 4192.31,
+      "Nb_transactions": 239
+    },
+    {
+      "Annee": 2025,
+      "Mois": 9,
+      "Periode": "2025-09",
+      "Prix_m2": 4172.89,
+      "Nb_transactions": 330
+    },
+    {
+      "Annee": 2025,
+      "Mois": 10,
+      "Periode": "2025-10",
+      "Prix_m2": 4148.94,
+      "Nb_transactions": 323
+    },
+    {
+      "Annee": 2025,
+      "Mois": 11,
+      "Periode": "2025-11",
+      "Prix_m2": 4117.65,
+      "Nb_transactions": 217
+    },
+    {
+      "Annee": 2025,
+      "Mois": 12,
+      "Periode": "2025-12",
+      "Prix_m2": 4078.17,
+      "Nb_transactions": 331
+    }
+  ],
+  "toulouse": [
+    {
+      "Annee": 2015,
+      "Mois": 1,
+      "Periode": "2015-01",
+      "Prix_m2": 2552.62,
+      "Nb_transactions": 412
+    },
+    {
+      "Annee": 2015,
+      "Mois": 2,
+      "Periode": "2015-02",
+      "Prix_m2": 2509.8,
+      "Nb_transactions": 385
+    },
+    {
+      "Annee": 2015,
+      "Mois": 3,
+      "Periode": "2015-03",
+      "Prix_m2": 2522.51,
+      "Nb_transactions": 448
+    },
+    {
+      "Annee": 2015,
+      "Mois": 4,
+      "Periode": "2015-04",
+      "Prix_m2": 2490.28,
+      "Nb_transactions": 451
+    },
+    {
+      "Annee": 2015,
+      "Mois": 5,
+      "Periode": "2015-05",
+      "Prix_m2": 2459.26,
+      "Nb_transactions": 403
+    },
+    {
+      "Annee": 2015,
+      "Mois": 6,
+      "Periode": "2015-06",
+      "Prix_m2": 2508.07,
+      "Nb_transactions": 572
+    },
+    {
+      "Annee": 2015,
+      "Mois": 7,
+      "Periode": "2015-07",
+      "Prix_m2": 2500.0,
+      "Nb_transactions": 662
+    },
+    {
+      "Annee": 2015,
+      "Mois": 8,
+      "Periode": "2015-08",
+      "Prix_m2": 2489.03,
+      "Nb_transactions": 474
+    },
+    {
+      "Annee": 2015,
+      "Mois": 9,
+      "Periode": "2015-09",
+      "Prix_m2": 2625.0,
+      "Nb_transactions": 577
+    },
+    {
+      "Annee": 2015,
+      "Mois": 10,
+      "Periode": "2015-10",
+      "Prix_m2": 2575.57,
+      "Nb_transactions": 528
+    },
+    {
+      "Annee": 2015,
+      "Mois": 11,
+      "Periode": "2015-11",
+      "Prix_m2": 2574.07,
+      "Nb_transactions": 413
+    },
+    {
+      "Annee": 2015,
+      "Mois": 12,
+      "Periode": "2015-12",
+      "Prix_m2": 2583.33,
+      "Nb_transactions": 565
+    },
+    {
+      "Annee": 2016,
+      "Mois": 1,
+      "Periode": "2016-01",
+      "Prix_m2": 2606.38,
+      "Nb_transactions": 407
+    },
+    {
+      "Annee": 2016,
+      "Mois": 2,
+      "Periode": "2016-02",
+      "Prix_m2": 2500.0,
+      "Nb_transactions": 447
+    },
+    {
+      "Annee": 2016,
+      "Mois": 3,
+      "Periode": "2016-03",
+      "Prix_m2": 2531.25,
+      "Nb_transactions": 443
+    },
+    {
+      "Annee": 2016,
+      "Mois": 4,
+      "Periode": "2016-04",
+      "Prix_m2": 2500.0,
+      "Nb_transactions": 409
+    },
+    {
+      "Annee": 2016,
+      "Mois": 5,
+      "Periode": "2016-05",
+      "Prix_m2": 2621.62,
+      "Nb_transactions": 471
+    },
+    {
+      "Annee": 2016,
+      "Mois": 6,
+      "Periode": "2016-06",
+      "Prix_m2": 2589.54,
+      "Nb_transactions": 610
+    },
+    {
+      "Annee": 2016,
+      "Mois": 7,
+      "Periode": "2016-07",
+      "Prix_m2": 2623.48,
+      "Nb_transactions": 640
+    },
+    {
+      "Annee": 2016,
+      "Mois": 8,
+      "Periode": "2016-08",
+      "Prix_m2": 2576.48,
+      "Nb_transactions": 524
+    },
+    {
+      "Annee": 2016,
+      "Mois": 9,
+      "Periode": "2016-09",
+      "Prix_m2": 2621.97,
+      "Nb_transactions": 595
+    },
+    {
+      "Annee": 2016,
+      "Mois": 10,
+      "Periode": "2016-10",
+      "Prix_m2": 2615.64,
+      "Nb_transactions": 514
+    },
+    {
+      "Annee": 2016,
+      "Mois": 11,
+      "Periode": "2016-11",
+      "Prix_m2": 2675.31,
+      "Nb_transactions": 480
+    },
+    {
+      "Annee": 2016,
+      "Mois": 12,
+      "Periode": "2016-12",
+      "Prix_m2": 2625.0,
+      "Nb_transactions": 641
+    },
+    {
+      "Annee": 2017,
+      "Mois": 1,
+      "Periode": "2017-01",
+      "Prix_m2": 2604.17,
+      "Nb_transactions": 529
+    },
+    {
+      "Annee": 2017,
+      "Mois": 2,
+      "Periode": "2017-02",
+      "Prix_m2": 2600.0,
+      "Nb_transactions": 554
+    },
+    {
+      "Annee": 2017,
+      "Mois": 3,
+      "Periode": "2017-03",
+      "Prix_m2": 2647.06,
+      "Nb_transactions": 670
+    },
+    {
+      "Annee": 2017,
+      "Mois": 4,
+      "Periode": "2017-04",
+      "Prix_m2": 2620.25,
+      "Nb_transactions": 519
+    },
+    {
+      "Annee": 2017,
+      "Mois": 5,
+      "Periode": "2017-05",
+      "Prix_m2": 2682.8,
+      "Nb_transactions": 536
+    },
+    {
+      "Annee": 2017,
+      "Mois": 6,
+      "Periode": "2017-06",
+      "Prix_m2": 2628.57,
+      "Nb_transactions": 753
+    },
+    {
+      "Annee": 2017,
+      "Mois": 7,
+      "Periode": "2017-07",
+      "Prix_m2": 2777.78,
+      "Nb_transactions": 699
+    },
+    {
+      "Annee": 2017,
+      "Mois": 8,
+      "Periode": "2017-08",
+      "Prix_m2": 2659.57,
+      "Nb_transactions": 517
+    },
+    {
+      "Annee": 2017,
+      "Mois": 9,
+      "Periode": "2017-09",
+      "Prix_m2": 2666.67,
+      "Nb_transactions": 625
+    },
+    {
+      "Annee": 2017,
+      "Mois": 10,
+      "Periode": "2017-10",
+      "Prix_m2": 2673.68,
+      "Nb_transactions": 553
+    },
+    {
+      "Annee": 2017,
+      "Mois": 11,
+      "Periode": "2017-11",
+      "Prix_m2": 2675.44,
+      "Nb_transactions": 469
+    },
+    {
+      "Annee": 2017,
+      "Mois": 12,
+      "Periode": "2017-12",
+      "Prix_m2": 2677.42,
+      "Nb_transactions": 629
+    },
+    {
+      "Annee": 2018,
+      "Mois": 1,
+      "Periode": "2018-01",
+      "Prix_m2": 2630.68,
+      "Nb_transactions": 490
+    },
+    {
+      "Annee": 2018,
+      "Mois": 2,
+      "Periode": "2018-02",
+      "Prix_m2": 2647.96,
+      "Nb_transactions": 468
+    },
+    {
+      "Annee": 2018,
+      "Mois": 3,
+      "Periode": "2018-03",
+      "Prix_m2": 2758.62,
+      "Nb_transactions": 566
+    },
+    {
+      "Annee": 2018,
+      "Mois": 4,
+      "Periode": "2018-04",
+      "Prix_m2": 2700.0,
+      "Nb_transactions": 465
+    },
+    {
+      "Annee": 2018,
+      "Mois": 5,
+      "Periode": "2018-05",
+      "Prix_m2": 2670.0,
+      "Nb_transactions": 473
+    },
+    {
+      "Annee": 2018,
+      "Mois": 6,
+      "Periode": "2018-06",
+      "Prix_m2": 2776.39,
+      "Nb_transactions": 620
+    },
+    {
+      "Annee": 2018,
+      "Mois": 7,
+      "Periode": "2018-07",
+      "Prix_m2": 2728.16,
+      "Nb_transactions": 677
+    },
+    {
+      "Annee": 2018,
+      "Mois": 8,
+      "Periode": "2018-08",
+      "Prix_m2": 2822.22,
+      "Nb_transactions": 611
+    },
+    {
+      "Annee": 2018,
+      "Mois": 9,
+      "Periode": "2018-09",
+      "Prix_m2": 2794.23,
+      "Nb_transactions": 595
+    },
+    {
+      "Annee": 2018,
+      "Mois": 10,
+      "Periode": "2018-10",
+      "Prix_m2": 2785.98,
+      "Nb_transactions": 628
+    },
+    {
+      "Annee": 2018,
+      "Mois": 11,
+      "Periode": "2018-11",
+      "Prix_m2": 2866.26,
+      "Nb_transactions": 538
+    },
+    {
+      "Annee": 2018,
+      "Mois": 12,
+      "Periode": "2018-12",
+      "Prix_m2": 2803.03,
+      "Nb_transactions": 599
+    },
+    {
+      "Annee": 2019,
+      "Mois": 1,
+      "Periode": "2019-01",
+      "Prix_m2": 2750.0,
+      "Nb_transactions": 590
+    },
+    {
+      "Annee": 2019,
+      "Mois": 2,
+      "Periode": "2019-02",
+      "Prix_m2": 2800.0,
+      "Nb_transactions": 559
+    },
+    {
+      "Annee": 2019,
+      "Mois": 3,
+      "Periode": "2019-03",
+      "Prix_m2": 2782.61,
+      "Nb_transactions": 571
+    },
+    {
+      "Annee": 2019,
+      "Mois": 4,
+      "Periode": "2019-04",
+      "Prix_m2": 2840.0,
+      "Nb_transactions": 549
+    },
+    {
+      "Annee": 2019,
+      "Mois": 5,
+      "Periode": "2019-05",
+      "Prix_m2": 2808.33,
+      "Nb_transactions": 587
+    },
+    {
+      "Annee": 2019,
+      "Mois": 6,
+      "Periode": "2019-06",
+      "Prix_m2": 2770.85,
+      "Nb_transactions": 662
+    },
+    {
+      "Annee": 2019,
+      "Mois": 7,
+      "Periode": "2019-07",
+      "Prix_m2": 2877.32,
+      "Nb_transactions": 821
+    },
+    {
+      "Annee": 2019,
+      "Mois": 8,
+      "Periode": "2019-08",
+      "Prix_m2": 2876.92,
+      "Nb_transactions": 571
+    },
+    {
+      "Annee": 2019,
+      "Mois": 9,
+      "Periode": "2019-09",
+      "Prix_m2": 3000.0,
+      "Nb_transactions": 625
+    },
+    {
+      "Annee": 2019,
+      "Mois": 10,
+      "Periode": "2019-10",
+      "Prix_m2": 2900.0,
+      "Nb_transactions": 745
+    },
+    {
+      "Annee": 2019,
+      "Mois": 11,
+      "Periode": "2019-11",
+      "Prix_m2": 2857.14,
+      "Nb_transactions": 592
+    },
+    {
+      "Annee": 2019,
+      "Mois": 12,
+      "Periode": "2019-12",
+      "Prix_m2": 2957.27,
+      "Nb_transactions": 706
+    },
+    {
+      "Annee": 2020,
+      "Mois": 1,
+      "Periode": "2020-01",
+      "Prix_m2": 2910.49,
+      "Nb_transactions": 646
+    },
+    {
+      "Annee": 2020,
+      "Mois": 2,
+      "Periode": "2020-02",
+      "Prix_m2": 2961.54,
+      "Nb_transactions": 617
+    },
+    {
+      "Annee": 2020,
+      "Mois": 3,
+      "Periode": "2020-03",
+      "Prix_m2": 3100.59,
+      "Nb_transactions": 495
+    },
+    {
+      "Annee": 2020,
+      "Mois": 4,
+      "Periode": "2020-04",
+      "Prix_m2": 3123.2,
+      "Nb_transactions": 320
+    },
+    {
+      "Annee": 2020,
+      "Mois": 5,
+      "Periode": "2020-05",
+      "Prix_m2": 3088.89,
+      "Nb_transactions": 673
+    },
+    {
+      "Annee": 2020,
+      "Mois": 6,
+      "Periode": "2020-06",
+      "Prix_m2": 3035.19,
+      "Nb_transactions": 708
+    },
+    {
+      "Annee": 2020,
+      "Mois": 7,
+      "Periode": "2020-07",
+      "Prix_m2": 3028.44,
+      "Nb_transactions": 568
+    },
+    {
+      "Annee": 2020,
+      "Mois": 8,
+      "Periode": "2020-08",
+      "Prix_m2": 3153.85,
+      "Nb_transactions": 471
+    },
+    {
+      "Annee": 2020,
+      "Mois": 9,
+      "Periode": "2020-09",
+      "Prix_m2": 3100.28,
+      "Nb_transactions": 707
+    },
+    {
+      "Annee": 2020,
+      "Mois": 10,
+      "Periode": "2020-10",
+      "Prix_m2": 3169.23,
+      "Nb_transactions": 685
+    },
+    {
+      "Annee": 2020,
+      "Mois": 11,
+      "Periode": "2020-11",
+      "Prix_m2": 3201.15,
+      "Nb_transactions": 556
+    },
+    {
+      "Annee": 2020,
+      "Mois": 12,
+      "Periode": "2020-12",
+      "Prix_m2": 3093.71,
+      "Nb_transactions": 724
+    },
+    {
+      "Annee": 2021,
+      "Mois": 1,
+      "Periode": "2021-01",
+      "Prix_m2": 3217.5,
+      "Nb_transactions": 543
+    },
+    {
+      "Annee": 2021,
+      "Mois": 2,
+      "Periode": "2021-02",
+      "Prix_m2": 3166.67,
+      "Nb_transactions": 499
+    },
+    {
+      "Annee": 2021,
+      "Mois": 3,
+      "Periode": "2021-03",
+      "Prix_m2": 3071.43,
+      "Nb_transactions": 607
+    },
+    {
+      "Annee": 2021,
+      "Mois": 4,
+      "Periode": "2021-04",
+      "Prix_m2": 3282.86,
+      "Nb_transactions": 562
+    },
+    {
+      "Annee": 2021,
+      "Mois": 5,
+      "Periode": "2021-05",
+      "Prix_m2": 3287.76,
+      "Nb_transactions": 615
+    },
+    {
+      "Annee": 2021,
+      "Mois": 6,
+      "Periode": "2021-06",
+      "Prix_m2": 3280.0,
+      "Nb_transactions": 811
+    },
+    {
+      "Annee": 2021,
+      "Mois": 7,
+      "Periode": "2021-07",
+      "Prix_m2": 3181.82,
+      "Nb_transactions": 848
+    },
+    {
+      "Annee": 2021,
+      "Mois": 8,
+      "Periode": "2021-08",
+      "Prix_m2": 3301.16,
+      "Nb_transactions": 660
+    },
+    {
+      "Annee": 2021,
+      "Mois": 9,
+      "Periode": "2021-09",
+      "Prix_m2": 3224.08,
+      "Nb_transactions": 766
+    },
+    {
+      "Annee": 2021,
+      "Mois": 10,
+      "Periode": "2021-10",
+      "Prix_m2": 3333.33,
+      "Nb_transactions": 664
+    },
+    {
+      "Annee": 2021,
+      "Mois": 11,
+      "Periode": "2021-11",
+      "Prix_m2": 3222.73,
+      "Nb_transactions": 531
+    },
+    {
+      "Annee": 2021,
+      "Mois": 12,
+      "Periode": "2021-12",
+      "Prix_m2": 3155.0,
+      "Nb_transactions": 693
+    },
+    {
+      "Annee": 2022,
+      "Mois": 1,
+      "Periode": "2022-01",
+      "Prix_m2": 3151.09,
+      "Nb_transactions": 624
+    },
+    {
+      "Annee": 2022,
+      "Mois": 2,
+      "Periode": "2022-02",
+      "Prix_m2": 3252.53,
+      "Nb_transactions": 569
+    },
+    {
+      "Annee": 2022,
+      "Mois": 3,
+      "Periode": "2022-03",
+      "Prix_m2": 3333.33,
+      "Nb_transactions": 725
+    },
+    {
+      "Annee": 2022,
+      "Mois": 4,
+      "Periode": "2022-04",
+      "Prix_m2": 3292.57,
+      "Nb_transactions": 628
+    },
+    {
+      "Annee": 2022,
+      "Mois": 5,
+      "Periode": "2022-05",
+      "Prix_m2": 3293.48,
+      "Nb_transactions": 703
+    },
+    {
+      "Annee": 2022,
+      "Mois": 6,
+      "Periode": "2022-06",
+      "Prix_m2": 3333.33,
+      "Nb_transactions": 780
+    },
+    {
+      "Annee": 2022,
+      "Mois": 7,
+      "Periode": "2022-07",
+      "Prix_m2": 3338.44,
+      "Nb_transactions": 834
+    },
+    {
+      "Annee": 2022,
+      "Mois": 8,
+      "Periode": "2022-08",
+      "Prix_m2": 3414.72,
+      "Nb_transactions": 681
+    },
+    {
+      "Annee": 2022,
+      "Mois": 9,
+      "Periode": "2022-09",
+      "Prix_m2": 3343.5,
+      "Nb_transactions": 774
+    },
+    {
+      "Annee": 2022,
+      "Mois": 10,
+      "Periode": "2022-10",
+      "Prix_m2": 3410.43,
+      "Nb_transactions": 566
+    },
+    {
+      "Annee": 2022,
+      "Mois": 11,
+      "Periode": "2022-11",
+      "Prix_m2": 3343.75,
+      "Nb_transactions": 539
+    },
+    {
+      "Annee": 2022,
+      "Mois": 12,
+      "Periode": "2022-12",
+      "Prix_m2": 3326.92,
+      "Nb_transactions": 661
+    },
+    {
+      "Annee": 2023,
+      "Mois": 1,
+      "Periode": "2023-01",
+      "Prix_m2": 3219.18,
+      "Nb_transactions": 511
+    },
+    {
+      "Annee": 2023,
+      "Mois": 2,
+      "Periode": "2023-02",
+      "Prix_m2": 3315.01,
+      "Nb_transactions": 538
+    },
+    {
+      "Annee": 2023,
+      "Mois": 3,
+      "Periode": "2023-03",
+      "Prix_m2": 3297.35,
+      "Nb_transactions": 564
+    },
+    {
+      "Annee": 2023,
+      "Mois": 4,
+      "Periode": "2023-04",
+      "Prix_m2": 3319.83,
+      "Nb_transactions": 479
+    },
+    {
+      "Annee": 2023,
+      "Mois": 5,
+      "Periode": "2023-05",
+      "Prix_m2": 3319.36,
+      "Nb_transactions": 540
+    },
+    {
+      "Annee": 2023,
+      "Mois": 6,
+      "Periode": "2023-06",
+      "Prix_m2": 3313.95,
+      "Nb_transactions": 657
+    },
+    {
+      "Annee": 2023,
+      "Mois": 7,
+      "Periode": "2023-07",
+      "Prix_m2": 3351.46,
+      "Nb_transactions": 535
+    },
+    {
+      "Annee": 2023,
+      "Mois": 8,
+      "Periode": "2023-08",
+      "Prix_m2": 3433.04,
+      "Nb_transactions": 484
+    },
+    {
+      "Annee": 2023,
+      "Mois": 9,
+      "Periode": "2023-09",
+      "Prix_m2": 3333.33,
+      "Nb_transactions": 530
+    },
+    {
+      "Annee": 2023,
+      "Mois": 10,
+      "Periode": "2023-10",
+      "Prix_m2": 3326.22,
+      "Nb_transactions": 458
+    },
+    {
+      "Annee": 2023,
+      "Mois": 11,
+      "Periode": "2023-11",
+      "Prix_m2": 3220.05,
+      "Nb_transactions": 408
+    },
+    {
+      "Annee": 2023,
+      "Mois": 12,
+      "Periode": "2023-12",
+      "Prix_m2": 3187.1,
+      "Nb_transactions": 433
+    },
+    {
+      "Annee": 2024,
+      "Mois": 1,
+      "Periode": "2024-01",
+      "Prix_m2": 3308.46,
+      "Nb_transactions": 355
+    },
+    {
+      "Annee": 2024,
+      "Mois": 2,
+      "Periode": "2024-02",
+      "Prix_m2": 3297.2,
+      "Nb_transactions": 374
+    },
+    {
+      "Annee": 2024,
+      "Mois": 3,
+      "Periode": "2024-03",
+      "Prix_m2": 3073.9,
+      "Nb_transactions": 400
+    },
+    {
+      "Annee": 2024,
+      "Mois": 4,
+      "Periode": "2024-04",
+      "Prix_m2": 3185.48,
+      "Nb_transactions": 453
+    },
+    {
+      "Annee": 2024,
+      "Mois": 5,
+      "Periode": "2024-05",
+      "Prix_m2": 3157.69,
+      "Nb_transactions": 406
+    },
+    {
+      "Annee": 2024,
+      "Mois": 6,
+      "Periode": "2024-06",
+      "Prix_m2": 3211.94,
+      "Nb_transactions": 473
+    },
+    {
+      "Annee": 2024,
+      "Mois": 7,
+      "Periode": "2024-07",
+      "Prix_m2": 3332.58,
+      "Nb_transactions": 630
+    },
+    {
+      "Annee": 2024,
+      "Mois": 8,
+      "Periode": "2024-08",
+      "Prix_m2": 3268.72,
+      "Nb_transactions": 446
+    },
+    {
+      "Annee": 2024,
+      "Mois": 9,
+      "Periode": "2024-09",
+      "Prix_m2": 3213.56,
+      "Nb_transactions": 526
+    },
+    {
+      "Annee": 2024,
+      "Mois": 10,
+      "Periode": "2024-10",
+      "Prix_m2": 3157.89,
+      "Nb_transactions": 528
+    },
+    {
+      "Annee": 2024,
+      "Mois": 11,
+      "Periode": "2024-11",
+      "Prix_m2": 3127.66,
+      "Nb_transactions": 375
+    },
+    {
+      "Annee": 2024,
+      "Mois": 12,
+      "Periode": "2024-12",
+      "Prix_m2": 3088.89,
+      "Nb_transactions": 519
+    },
+    {
+      "Annee": 2025,
+      "Mois": 1,
+      "Periode": "2025-01",
+      "Prix_m2": 3250.0,
+      "Nb_transactions": 465
+    },
+    {
+      "Annee": 2025,
+      "Mois": 2,
+      "Periode": "2025-02",
+      "Prix_m2": 3141.25,
+      "Nb_transactions": 441
+    },
+    {
+      "Annee": 2025,
+      "Mois": 3,
+      "Periode": "2025-03",
+      "Prix_m2": 3382.35,
+      "Nb_transactions": 669
+    },
+    {
+      "Annee": 2025,
+      "Mois": 4,
+      "Periode": "2025-04",
+      "Prix_m2": 3063.21,
+      "Nb_transactions": 436
+    },
+    {
+      "Annee": 2025,
+      "Mois": 5,
+      "Periode": "2025-05",
+      "Prix_m2": 3276.99,
+      "Nb_transactions": 494
+    },
+    {
+      "Annee": 2025,
+      "Mois": 6,
+      "Periode": "2025-06",
+      "Prix_m2": 3303.06,
+      "Nb_transactions": 612
+    },
+    {
+      "Annee": 2025,
+      "Mois": 7,
+      "Periode": "2025-07",
+      "Prix_m2": 3264.8,
+      "Nb_transactions": 716
+    },
+    {
+      "Annee": 2025,
+      "Mois": 8,
+      "Periode": "2025-08",
+      "Prix_m2": 3301.96,
+      "Nb_transactions": 514
+    },
+    {
+      "Annee": 2025,
+      "Mois": 9,
+      "Periode": "2025-09",
+      "Prix_m2": 3465.89,
+      "Nb_transactions": 636
+    },
+    {
+      "Annee": 2025,
+      "Mois": 10,
+      "Periode": "2025-10",
+      "Prix_m2": 3273.75,
+      "Nb_transactions": 575
+    },
+    {
+      "Annee": 2025,
+      "Mois": 11,
+      "Periode": "2025-11",
+      "Prix_m2": 3179.49,
+      "Nb_transactions": 481
+    },
+    {
+      "Annee": 2025,
+      "Mois": 12,
+      "Periode": "2025-12",
+      "Prix_m2": 3238.1,
+      "Nb_transactions": 663
+    }
+  ],
+  "nantes": [
+    {
+      "Annee": 2015,
+      "Mois": 1,
+      "Periode": "2015-01",
+      "Prix_m2": 2500.0,
+      "Nb_transactions": 127
+    },
+    {
+      "Annee": 2015,
+      "Mois": 2,
+      "Periode": "2015-02",
+      "Prix_m2": 2477.11,
+      "Nb_transactions": 192
+    },
+    {
+      "Annee": 2015,
+      "Mois": 3,
+      "Periode": "2015-03",
+      "Prix_m2": 2559.41,
+      "Nb_transactions": 240
+    },
+    {
+      "Annee": 2015,
+      "Mois": 4,
+      "Periode": "2015-04",
+      "Prix_m2": 2371.43,
+      "Nb_transactions": 259
+    },
+    {
+      "Annee": 2015,
+      "Mois": 5,
+      "Periode": "2015-05",
+      "Prix_m2": 2439.7,
+      "Nb_transactions": 232
+    },
+    {
+      "Annee": 2015,
+      "Mois": 6,
+      "Periode": "2015-06",
+      "Prix_m2": 2437.5,
+      "Nb_transactions": 339
+    },
+    {
+      "Annee": 2015,
+      "Mois": 7,
+      "Periode": "2015-07",
+      "Prix_m2": 2542.42,
+      "Nb_transactions": 406
+    },
+    {
+      "Annee": 2015,
+      "Mois": 8,
+      "Periode": "2015-08",
+      "Prix_m2": 2483.87,
+      "Nb_transactions": 303
+    },
+    {
+      "Annee": 2015,
+      "Mois": 9,
+      "Periode": "2015-09",
+      "Prix_m2": 2522.23,
+      "Nb_transactions": 376
+    },
+    {
+      "Annee": 2015,
+      "Mois": 10,
+      "Periode": "2015-10",
+      "Prix_m2": 2582.45,
+      "Nb_transactions": 334
+    },
+    {
+      "Annee": 2015,
+      "Mois": 11,
+      "Periode": "2015-11",
+      "Prix_m2": 2459.46,
+      "Nb_transactions": 295
+    },
+    {
+      "Annee": 2015,
+      "Mois": 12,
+      "Periode": "2015-12",
+      "Prix_m2": 2612.9,
+      "Nb_transactions": 403
+    },
+    {
+      "Annee": 2016,
+      "Mois": 1,
+      "Periode": "2016-01",
+      "Prix_m2": 2432.75,
+      "Nb_transactions": 239
+    },
+    {
+      "Annee": 2016,
+      "Mois": 2,
+      "Periode": "2016-02",
+      "Prix_m2": 2490.57,
+      "Nb_transactions": 255
+    },
+    {
+      "Annee": 2016,
+      "Mois": 3,
+      "Periode": "2016-03",
+      "Prix_m2": 2500.0,
+      "Nb_transactions": 283
+    },
+    {
+      "Annee": 2016,
+      "Mois": 4,
+      "Periode": "2016-04",
+      "Prix_m2": 2600.0,
+      "Nb_transactions": 285
+    },
+    {
+      "Annee": 2016,
+      "Mois": 5,
+      "Periode": "2016-05",
+      "Prix_m2": 2465.29,
+      "Nb_transactions": 304
+    },
+    {
+      "Annee": 2016,
+      "Mois": 6,
+      "Periode": "2016-06",
+      "Prix_m2": 2656.72,
+      "Nb_transactions": 397
+    },
+    {
+      "Annee": 2016,
+      "Mois": 7,
+      "Periode": "2016-07",
+      "Prix_m2": 2675.68,
+      "Nb_transactions": 405
+    },
+    {
+      "Annee": 2016,
+      "Mois": 8,
+      "Periode": "2016-08",
+      "Prix_m2": 2513.94,
+      "Nb_transactions": 340
+    },
+    {
+      "Annee": 2016,
+      "Mois": 9,
+      "Periode": "2016-09",
+      "Prix_m2": 2624.85,
+      "Nb_transactions": 398
+    },
+    {
+      "Annee": 2016,
+      "Mois": 10,
+      "Periode": "2016-10",
+      "Prix_m2": 2545.45,
+      "Nb_transactions": 302
+    },
+    {
+      "Annee": 2016,
+      "Mois": 11,
+      "Periode": "2016-11",
+      "Prix_m2": 2500.0,
+      "Nb_transactions": 292
+    },
+    {
+      "Annee": 2016,
+      "Mois": 12,
+      "Periode": "2016-12",
+      "Prix_m2": 2553.85,
+      "Nb_transactions": 411
+    },
+    {
+      "Annee": 2017,
+      "Mois": 1,
+      "Periode": "2017-01",
+      "Prix_m2": 2630.91,
+      "Nb_transactions": 320
+    },
+    {
+      "Annee": 2017,
+      "Mois": 2,
+      "Periode": "2017-02",
+      "Prix_m2": 2630.38,
+      "Nb_transactions": 338
+    },
+    {
+      "Annee": 2017,
+      "Mois": 3,
+      "Periode": "2017-03",
+      "Prix_m2": 2615.38,
+      "Nb_transactions": 371
+    },
+    {
+      "Annee": 2017,
+      "Mois": 4,
+      "Periode": "2017-04",
+      "Prix_m2": 2641.51,
+      "Nb_transactions": 373
+    },
+    {
+      "Annee": 2017,
+      "Mois": 5,
+      "Periode": "2017-05",
+      "Prix_m2": 2711.35,
+      "Nb_transactions": 364
+    },
+    {
+      "Annee": 2017,
+      "Mois": 6,
+      "Periode": "2017-06",
+      "Prix_m2": 2750.0,
+      "Nb_transactions": 487
+    },
+    {
+      "Annee": 2017,
+      "Mois": 7,
+      "Periode": "2017-07",
+      "Prix_m2": 2751.92,
+      "Nb_transactions": 460
+    },
+    {
+      "Annee": 2017,
+      "Mois": 8,
+      "Periode": "2017-08",
+      "Prix_m2": 2776.96,
+      "Nb_transactions": 368
+    },
+    {
+      "Annee": 2017,
+      "Mois": 9,
+      "Periode": "2017-09",
+      "Prix_m2": 2777.78,
+      "Nb_transactions": 370
+    },
+    {
+      "Annee": 2017,
+      "Mois": 10,
+      "Periode": "2017-10",
+      "Prix_m2": 2816.9,
+      "Nb_transactions": 371
+    },
+    {
+      "Annee": 2017,
+      "Mois": 11,
+      "Periode": "2017-11",
+      "Prix_m2": 2866.09,
+      "Nb_transactions": 296
+    },
+    {
+      "Annee": 2017,
+      "Mois": 12,
+      "Periode": "2017-12",
+      "Prix_m2": 2794.12,
+      "Nb_transactions": 395
+    },
+    {
+      "Annee": 2018,
+      "Mois": 1,
+      "Periode": "2018-01",
+      "Prix_m2": 2672.92,
+      "Nb_transactions": 283
+    },
+    {
+      "Annee": 2018,
+      "Mois": 2,
+      "Periode": "2018-02",
+      "Prix_m2": 2777.21,
+      "Nb_transactions": 304
+    },
+    {
+      "Annee": 2018,
+      "Mois": 3,
+      "Periode": "2018-03",
+      "Prix_m2": 2774.6,
+      "Nb_transactions": 370
+    },
+    {
+      "Annee": 2018,
+      "Mois": 4,
+      "Periode": "2018-04",
+      "Prix_m2": 2842.0,
+      "Nb_transactions": 362
+    },
+    {
+      "Annee": 2018,
+      "Mois": 5,
+      "Periode": "2018-05",
+      "Prix_m2": 2868.6,
+      "Nb_transactions": 328
+    },
+    {
+      "Annee": 2018,
+      "Mois": 6,
+      "Periode": "2018-06",
+      "Prix_m2": 2897.37,
+      "Nb_transactions": 427
+    },
+    {
+      "Annee": 2018,
+      "Mois": 7,
+      "Periode": "2018-07",
+      "Prix_m2": 2922.94,
+      "Nb_transactions": 472
+    },
+    {
+      "Annee": 2018,
+      "Mois": 8,
+      "Periode": "2018-08",
+      "Prix_m2": 2932.42,
+      "Nb_transactions": 343
+    },
+    {
+      "Annee": 2018,
+      "Mois": 9,
+      "Periode": "2018-09",
+      "Prix_m2": 2953.46,
+      "Nb_transactions": 372
+    },
+    {
+      "Annee": 2018,
+      "Mois": 10,
+      "Periode": "2018-10",
+      "Prix_m2": 2981.48,
+      "Nb_transactions": 397
+    },
+    {
+      "Annee": 2018,
+      "Mois": 11,
+      "Periode": "2018-11",
+      "Prix_m2": 2857.14,
+      "Nb_transactions": 327
+    },
+    {
+      "Annee": 2018,
+      "Mois": 12,
+      "Periode": "2018-12",
+      "Prix_m2": 2884.62,
+      "Nb_transactions": 371
+    },
+    {
+      "Annee": 2019,
+      "Mois": 1,
+      "Periode": "2019-01",
+      "Prix_m2": 3000.0,
+      "Nb_transactions": 348
+    },
+    {
+      "Annee": 2019,
+      "Mois": 2,
+      "Periode": "2019-02",
+      "Prix_m2": 3098.59,
+      "Nb_transactions": 315
+    },
+    {
+      "Annee": 2019,
+      "Mois": 3,
+      "Periode": "2019-03",
+      "Prix_m2": 3125.0,
+      "Nb_transactions": 370
+    },
+    {
+      "Annee": 2019,
+      "Mois": 4,
+      "Periode": "2019-04",
+      "Prix_m2": 3138.89,
+      "Nb_transactions": 409
+    },
+    {
+      "Annee": 2019,
+      "Mois": 5,
+      "Periode": "2019-05",
+      "Prix_m2": 3035.71,
+      "Nb_transactions": 377
+    },
+    {
+      "Annee": 2019,
+      "Mois": 6,
+      "Periode": "2019-06",
+      "Prix_m2": 3125.0,
+      "Nb_transactions": 429
+    },
+    {
+      "Annee": 2019,
+      "Mois": 7,
+      "Periode": "2019-07",
+      "Prix_m2": 3227.63,
+      "Nb_transactions": 528
+    },
+    {
+      "Annee": 2019,
+      "Mois": 8,
+      "Periode": "2019-08",
+      "Prix_m2": 3333.33,
+      "Nb_transactions": 381
+    },
+    {
+      "Annee": 2019,
+      "Mois": 9,
+      "Periode": "2019-09",
+      "Prix_m2": 3240.94,
+      "Nb_transactions": 452
+    },
+    {
+      "Annee": 2019,
+      "Mois": 10,
+      "Periode": "2019-10",
+      "Prix_m2": 3232.73,
+      "Nb_transactions": 436
+    },
+    {
+      "Annee": 2019,
+      "Mois": 11,
+      "Periode": "2019-11",
+      "Prix_m2": 3274.51,
+      "Nb_transactions": 343
+    },
+    {
+      "Annee": 2019,
+      "Mois": 12,
+      "Periode": "2019-12",
+      "Prix_m2": 3300.0,
+      "Nb_transactions": 453
+    },
+    {
+      "Annee": 2020,
+      "Mois": 1,
+      "Periode": "2020-01",
+      "Prix_m2": 3394.87,
+      "Nb_transactions": 337
+    },
+    {
+      "Annee": 2020,
+      "Mois": 2,
+      "Periode": "2020-02",
+      "Prix_m2": 3295.45,
+      "Nb_transactions": 376
+    },
+    {
+      "Annee": 2020,
+      "Mois": 3,
+      "Periode": "2020-03",
+      "Prix_m2": 3611.11,
+      "Nb_transactions": 275
+    },
+    {
+      "Annee": 2020,
+      "Mois": 4,
+      "Periode": "2020-04",
+      "Prix_m2": 3578.95,
+      "Nb_transactions": 159
+    },
+    {
+      "Annee": 2020,
+      "Mois": 5,
+      "Periode": "2020-05",
+      "Prix_m2": 3445.95,
+      "Nb_transactions": 391
+    },
+    {
+      "Annee": 2020,
+      "Mois": 6,
+      "Periode": "2020-06",
+      "Prix_m2": 3443.45,
+      "Nb_transactions": 384
+    },
+    {
+      "Annee": 2020,
+      "Mois": 7,
+      "Periode": "2020-07",
+      "Prix_m2": 3545.93,
+      "Nb_transactions": 334
+    },
+    {
+      "Annee": 2020,
+      "Mois": 8,
+      "Periode": "2020-08",
+      "Prix_m2": 3666.67,
+      "Nb_transactions": 283
+    },
+    {
+      "Annee": 2020,
+      "Mois": 9,
+      "Periode": "2020-09",
+      "Prix_m2": 3714.29,
+      "Nb_transactions": 470
+    },
+    {
+      "Annee": 2020,
+      "Mois": 10,
+      "Periode": "2020-10",
+      "Prix_m2": 3671.57,
+      "Nb_transactions": 440
+    },
+    {
+      "Annee": 2020,
+      "Mois": 11,
+      "Periode": "2020-11",
+      "Prix_m2": 3647.06,
+      "Nb_transactions": 329
+    },
+    {
+      "Annee": 2020,
+      "Mois": 12,
+      "Periode": "2020-12",
+      "Prix_m2": 3597.01,
+      "Nb_transactions": 441
+    },
+    {
+      "Annee": 2021,
+      "Mois": 1,
+      "Periode": "2021-01",
+      "Prix_m2": 3709.96,
+      "Nb_transactions": 348
+    },
+    {
+      "Annee": 2021,
+      "Mois": 2,
+      "Periode": "2021-02",
+      "Prix_m2": 3854.9,
+      "Nb_transactions": 314
+    },
+    {
+      "Annee": 2021,
+      "Mois": 3,
+      "Periode": "2021-03",
+      "Prix_m2": 3647.3,
+      "Nb_transactions": 388
+    },
+    {
+      "Annee": 2021,
+      "Mois": 4,
+      "Periode": "2021-04",
+      "Prix_m2": 3849.73,
+      "Nb_transactions": 410
+    },
+    {
+      "Annee": 2021,
+      "Mois": 5,
+      "Periode": "2021-05",
+      "Prix_m2": 3680.34,
+      "Nb_transactions": 390
+    },
+    {
+      "Annee": 2021,
+      "Mois": 6,
+      "Periode": "2021-06",
+      "Prix_m2": 3750.0,
+      "Nb_transactions": 533
+    },
+    {
+      "Annee": 2021,
+      "Mois": 7,
+      "Periode": "2021-07",
+      "Prix_m2": 3906.47,
+      "Nb_transactions": 595
+    },
+    {
+      "Annee": 2021,
+      "Mois": 8,
+      "Periode": "2021-08",
+      "Prix_m2": 3942.31,
+      "Nb_transactions": 424
+    },
+    {
+      "Annee": 2021,
+      "Mois": 9,
+      "Periode": "2021-09",
+      "Prix_m2": 3924.05,
+      "Nb_transactions": 447
+    },
+    {
+      "Annee": 2021,
+      "Mois": 10,
+      "Periode": "2021-10",
+      "Prix_m2": 3873.24,
+      "Nb_transactions": 427
+    },
+    {
+      "Annee": 2021,
+      "Mois": 11,
+      "Periode": "2021-11",
+      "Prix_m2": 3894.74,
+      "Nb_transactions": 317
+    },
+    {
+      "Annee": 2021,
+      "Mois": 12,
+      "Periode": "2021-12",
+      "Prix_m2": 3841.68,
+      "Nb_transactions": 432
+    },
+    {
+      "Annee": 2022,
+      "Mois": 1,
+      "Periode": "2022-01",
+      "Prix_m2": 3911.07,
+      "Nb_transactions": 308
+    },
+    {
+      "Annee": 2022,
+      "Mois": 2,
+      "Periode": "2022-02",
+      "Prix_m2": 3848.48,
+      "Nb_transactions": 345
+    },
+    {
+      "Annee": 2022,
+      "Mois": 3,
+      "Periode": "2022-03",
+      "Prix_m2": 3827.15,
+      "Nb_transactions": 414
+    },
+    {
+      "Annee": 2022,
+      "Mois": 4,
+      "Periode": "2022-04",
+      "Prix_m2": 3948.68,
+      "Nb_transactions": 387
+    },
+    {
+      "Annee": 2022,
+      "Mois": 5,
+      "Periode": "2022-05",
+      "Prix_m2": 3823.53,
+      "Nb_transactions": 437
+    },
+    {
+      "Annee": 2022,
+      "Mois": 6,
+      "Periode": "2022-06",
+      "Prix_m2": 3937.5,
+      "Nb_transactions": 517
+    },
+    {
+      "Annee": 2022,
+      "Mois": 7,
+      "Periode": "2022-07",
+      "Prix_m2": 4000.0,
+      "Nb_transactions": 535
+    },
+    {
+      "Annee": 2022,
+      "Mois": 8,
+      "Periode": "2022-08",
+      "Prix_m2": 3870.62,
+      "Nb_transactions": 386
+    },
+    {
+      "Annee": 2022,
+      "Mois": 9,
+      "Periode": "2022-09",
+      "Prix_m2": 3985.31,
+      "Nb_transactions": 492
+    },
+    {
+      "Annee": 2022,
+      "Mois": 10,
+      "Periode": "2022-10",
+      "Prix_m2": 3939.44,
+      "Nb_transactions": 354
+    },
+    {
+      "Annee": 2022,
+      "Mois": 11,
+      "Periode": "2022-11",
+      "Prix_m2": 3881.94,
+      "Nb_transactions": 354
+    },
+    {
+      "Annee": 2022,
+      "Mois": 12,
+      "Periode": "2022-12",
+      "Prix_m2": 3819.03,
+      "Nb_transactions": 438
+    },
+    {
+      "Annee": 2023,
+      "Mois": 1,
+      "Periode": "2023-01",
+      "Prix_m2": 3791.8,
+      "Nb_transactions": 372
+    },
+    {
+      "Annee": 2023,
+      "Mois": 2,
+      "Periode": "2023-02",
+      "Prix_m2": 3839.27,
+      "Nb_transactions": 344
+    },
+    {
+      "Annee": 2023,
+      "Mois": 3,
+      "Periode": "2023-03",
+      "Prix_m2": 3807.45,
+      "Nb_transactions": 359
+    },
+    {
+      "Annee": 2023,
+      "Mois": 4,
+      "Periode": "2023-04",
+      "Prix_m2": 3780.53,
+      "Nb_transactions": 306
+    },
+    {
+      "Annee": 2023,
+      "Mois": 5,
+      "Periode": "2023-05",
+      "Prix_m2": 3823.53,
+      "Nb_transactions": 317
+    },
+    {
+      "Annee": 2023,
+      "Mois": 6,
+      "Periode": "2023-06",
+      "Prix_m2": 3678.16,
+      "Nb_transactions": 429
+    },
+    {
+      "Annee": 2023,
+      "Mois": 7,
+      "Periode": "2023-07",
+      "Prix_m2": 3761.25,
+      "Nb_transactions": 325
+    },
+    {
+      "Annee": 2023,
+      "Mois": 8,
+      "Periode": "2023-08",
+      "Prix_m2": 3624.09,
+      "Nb_transactions": 302
+    },
+    {
+      "Annee": 2023,
+      "Mois": 9,
+      "Periode": "2023-09",
+      "Prix_m2": 3633.33,
+      "Nb_transactions": 355
+    },
+    {
+      "Annee": 2023,
+      "Mois": 10,
+      "Periode": "2023-10",
+      "Prix_m2": 3636.36,
+      "Nb_transactions": 315
+    },
+    {
+      "Annee": 2023,
+      "Mois": 11,
+      "Periode": "2023-11",
+      "Prix_m2": 3500.0,
+      "Nb_transactions": 223
+    },
+    {
+      "Annee": 2023,
+      "Mois": 12,
+      "Periode": "2023-12",
+      "Prix_m2": 3439.39,
+      "Nb_transactions": 291
+    },
+    {
+      "Annee": 2024,
+      "Mois": 1,
+      "Periode": "2024-01",
+      "Prix_m2": 3611.11,
+      "Nb_transactions": 224
+    },
+    {
+      "Annee": 2024,
+      "Mois": 2,
+      "Periode": "2024-02",
+      "Prix_m2": 3478.12,
+      "Nb_transactions": 223
+    },
+    {
+      "Annee": 2024,
+      "Mois": 3,
+      "Periode": "2024-03",
+      "Prix_m2": 3365.49,
+      "Nb_transactions": 216
+    },
+    {
+      "Annee": 2024,
+      "Mois": 4,
+      "Periode": "2024-04",
+      "Prix_m2": 3416.67,
+      "Nb_transactions": 293
+    },
+    {
+      "Annee": 2024,
+      "Mois": 5,
+      "Periode": "2024-05",
+      "Prix_m2": 3333.33,
+      "Nb_transactions": 258
+    },
+    {
+      "Annee": 2024,
+      "Mois": 6,
+      "Periode": "2024-06",
+      "Prix_m2": 3322.96,
+      "Nb_transactions": 294
+    },
+    {
+      "Annee": 2024,
+      "Mois": 7,
+      "Periode": "2024-07",
+      "Prix_m2": 3394.59,
+      "Nb_transactions": 388
+    },
+    {
+      "Annee": 2024,
+      "Mois": 8,
+      "Periode": "2024-08",
+      "Prix_m2": 3566.67,
+      "Nb_transactions": 283
+    },
+    {
+      "Annee": 2024,
+      "Mois": 9,
+      "Periode": "2024-09",
+      "Prix_m2": 3574.35,
+      "Nb_transactions": 342
+    },
+    {
+      "Annee": 2024,
+      "Mois": 10,
+      "Periode": "2024-10",
+      "Prix_m2": 3442.15,
+      "Nb_transactions": 264
+    },
+    {
+      "Annee": 2024,
+      "Mois": 11,
+      "Periode": "2024-11",
+      "Prix_m2": 3307.69,
+      "Nb_transactions": 223
+    },
+    {
+      "Annee": 2024,
+      "Mois": 12,
+      "Periode": "2024-12",
+      "Prix_m2": 3425.0,
+      "Nb_transactions": 337
+    },
+    {
+      "Annee": 2025,
+      "Mois": 1,
+      "Periode": "2025-01",
+      "Prix_m2": 3532.62,
+      "Nb_transactions": 248
+    },
+    {
+      "Annee": 2025,
+      "Mois": 2,
+      "Periode": "2025-02",
+      "Prix_m2": 3368.46,
+      "Nb_transactions": 266
+    },
+    {
+      "Annee": 2025,
+      "Mois": 3,
+      "Periode": "2025-03",
+      "Prix_m2": 3428.57,
+      "Nb_transactions": 365
+    },
+    {
+      "Annee": 2025,
+      "Mois": 4,
+      "Periode": "2025-04",
+      "Prix_m2": 3357.14,
+      "Nb_transactions": 265
+    },
+    {
+      "Annee": 2025,
+      "Mois": 5,
+      "Periode": "2025-05",
+      "Prix_m2": 3466.67,
+      "Nb_transactions": 305
+    },
+    {
+      "Annee": 2025,
+      "Mois": 6,
+      "Periode": "2025-06",
+      "Prix_m2": 3366.67,
+      "Nb_transactions": 355
+    },
+    {
+      "Annee": 2025,
+      "Mois": 7,
+      "Periode": "2025-07",
+      "Prix_m2": 3541.46,
+      "Nb_transactions": 402
+    },
+    {
+      "Annee": 2025,
+      "Mois": 8,
+      "Periode": "2025-08",
+      "Prix_m2": 3409.09,
+      "Nb_transactions": 335
+    },
+    {
+      "Annee": 2025,
+      "Mois": 9,
+      "Periode": "2025-09",
+      "Prix_m2": 3333.33,
+      "Nb_transactions": 400
+    },
+    {
+      "Annee": 2025,
+      "Mois": 10,
+      "Periode": "2025-10",
+      "Prix_m2": 3327.87,
+      "Nb_transactions": 345
+    },
+    {
+      "Annee": 2025,
+      "Mois": 11,
+      "Periode": "2025-11",
+      "Prix_m2": 3383.1,
+      "Nb_transactions": 260
+    },
+    {
+      "Annee": 2025,
+      "Mois": 12,
+      "Periode": "2025-12",
+      "Prix_m2": 3278.69,
+      "Nb_transactions": 377
+    }
+  ]
+}

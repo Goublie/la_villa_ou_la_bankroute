@@ -6,7 +6,6 @@ public class Menu_du_jeu : MonoBehaviour
 {
     public Button playButton;
     public Button quitButton;
-
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
