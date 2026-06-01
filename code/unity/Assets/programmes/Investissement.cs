@@ -42,7 +42,8 @@ public class Investissement
         if (moisEcoules >= dureeMois)
         {
             // On arrondit pour éviter les erreurs de type float
-            sommeInvestie.centimes += Mathf.RoundToInt(benefices);
+            int benef = Mathf.RoundToInt(benefices);
+            sommeInvestie.centimes += benef;
 
 
             // Réinitialisation
