@@ -706,4 +706,4 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::sliderAvecTexte
   slider: {fileID: 6069119790600986428}
-  inputField: {fileID: 0}
+  textCell: {fileID: 0}

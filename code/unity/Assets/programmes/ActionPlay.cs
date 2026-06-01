@@ -16,18 +16,17 @@ public class ActionPlay : MonoBehaviour
             invest.ComposerBenefices();
         }
 
-        //Active toutes les fonctions liées à cette action
+        //Active les fontions d'affichage
         moisPasse?.Invoke();
+
+        //Donne un salaire au joueur
+        gameData.comptes["courant"].AjoutHistorique("salaire", gameData.salaire);
     }
     public void incrementerMois()
     {
         if (gameData != null)
         {
             gameData.moisPasse++;
-        }
-        if (hudManager != null)
-        {
-            hudManager.ActualiserAffichage();
         }
     }
 }

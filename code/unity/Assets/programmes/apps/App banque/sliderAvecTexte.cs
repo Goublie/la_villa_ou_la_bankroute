@@ -4,7 +4,7 @@ using TMPro;
 
 public class SliderAvecTexte : MonoBehaviour
 {
-
+    [SerializeField] private GameData G;
     public Slider slider;
     public TextMeshProUGUI textCell;
 
@@ -21,8 +21,7 @@ public class SliderAvecTexte : MonoBehaviour
         if (cell == null) return;
 
         float montant = valeur * SoldeCompte;
-        
+
         cell.text = montant.ToString("F2") + "€";
     }
-
 }

@@ -6,7 +6,7 @@ public class CourantUI : MonoBehaviour
     public GameData G; // données du jeu
     
     private CompteBanquaire compteCrnt;
-    [SerializeField] Tableau tab; 
+    [SerializeField] TableauScroll tab; 
 
     [SerializeField] TextMeshProUGUI solde;
 
@@ -40,5 +40,17 @@ public class CourantUI : MonoBehaviour
     private void ActualiseAffichage()
     {
         solde.text = compteCrnt.GetSolde().ToString();
+        ActualiserTableau();
+    }
+
+    public void ActualiserTableau()
+    {
+        Historique histo = compteCrnt.GetHistorique();
+        tab.Vider();
+        for(int i = 0; i < histo.GetSize(); i++)
+        {
+            tab.Add(histo.libelles[i], histo.montants[i].ToString(), "");
+            Debug.Log("Tableau actualisé");
+        }
     }
 }

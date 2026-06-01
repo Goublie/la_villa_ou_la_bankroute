@@ -2411,7 +2411,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::CourantUI
   G: {fileID: 11400000, guid: 00f9a2cc968a86847bacedddfcfe8be5, type: 2}
-  tab: {fileID: 0}
+  tab: {fileID: 2566154123256644243}
   solde: {fileID: 7813546967366126637}
 --- !u!1 &6515185581304972424
 GameObject:
@@ -4994,8 +4994,12 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 2898196105938502309, guid: 2f78ec97b3c13974ea7a8b2bcf196213, type: 3}
+      propertyPath: m_Size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2898196105938502309, guid: 2f78ec97b3c13974ea7a8b2bcf196213, type: 3}
       propertyPath: m_Value
-      value: 0.5000078
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 2902015231194755994, guid: 2f78ec97b3c13974ea7a8b2bcf196213, type: 3}
       propertyPath: m_AnchorMax.y
@@ -5462,6 +5466,17 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 2f78ec97b3c13974ea7a8b2bcf196213, type: 3}
+--- !u!114 &2566154123256644243 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 5400989419599514900, guid: 2f78ec97b3c13974ea7a8b2bcf196213, type: 3}
+  m_PrefabInstance: {fileID: 7595572382912384903}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b23ba8164d140174f8880840a4a8a1f6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::TableauScroll
 --- !u!224 &4048220642235299019 stripped
 RectTransform:
   m_CorrespondingSourceObject: {fileID: 5856596991342295884, guid: 2f78ec97b3c13974ea7a8b2bcf196213, type: 3}

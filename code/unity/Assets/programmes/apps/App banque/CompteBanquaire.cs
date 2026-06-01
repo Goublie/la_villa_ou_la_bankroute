@@ -85,6 +85,7 @@ public class CompteBanquaire
     //Ajoute une transaction à l'istorique et recalcule le solde et le montant des sorties ou entrées
     public virtual void AjoutHistorique(string libelle, argent montant)
     {
+        Debug.Log("Ajout dans l'historique");
         historique.Add(libelle,montant);
         if (montant.centimes >0)
         {

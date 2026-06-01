@@ -70,9 +70,10 @@ public class EpargneUI : MonoBehaviour
     {
         Historique histo = epgn.GetHistorique();
         tableauEpgn.Vider();
-        for(int i=histo.GetSize(); i>histo.GetSize(); i++)
+        for(int i = 0; i < histo.GetSize(); i++)
         {
             tableauEpgn.Add(histo.libelles[i], histo.montants[i].ToString(), "");
+            Debug.Log("Tableau actualisé");
         }
     }
 
@@ -146,6 +147,7 @@ public class EpargneUI : MonoBehaviour
         argent somme = new argent(montant);
         epgn.Transferer(G.comptes["courant"], "Debit", "Versement depuis le compte epargne",  somme);
         ActualiserAffichage();
+        Debug.Log("Saisie d'un débit");
     }
 
     void OnEnable()
