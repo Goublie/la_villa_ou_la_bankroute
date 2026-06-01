@@ -9,6 +9,7 @@ public class Investissement
     [SerializeField] int dureeMois; //La durée à laquele les intérets peuvent se cumuler
     [SerializeField] int moisEcoules; //Le nombre de mois écoulés depuis le début de l'investissement
     float benefices; //Les bénéfices accumulés, calculés chaque mois
+    public event Action<argent> OnBeneficesVerses;
 
     public Investissement(argent sommeInvestie, float taux, int dureeMois)
     {
@@ -32,7 +33,8 @@ public class Investissement
 
     //Cacul les bénéfices, puis si la période d'investissement est écoulée, compose les bénéfices
     public void ComposerBenefices()
-    {     
+    {
+        Debug.Log("Calcul benef");        
         // Calcul des bénéfices mensuels
         benefices += sommeInvestie.centimes * (taux / dureeMois);
         moisEcoules++;
@@ -42,7 +44,10 @@ public class Investissement
             // On arrondit pour éviter les erreurs de type float
             sommeInvestie.centimes += Mathf.RoundToInt(benefices);
 
+
             // Réinitialisation
+            OnBeneficesVerses?.Invoke(new argent(benef));
+
             benefices = 0;
             moisEcoules = 0; 
         }

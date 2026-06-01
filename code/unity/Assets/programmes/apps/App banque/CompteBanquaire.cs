@@ -1,60 +1,117 @@
+using System;
 using UnityEngine;
 using System.Collections.Generic;
 
-public class CompteBanquaire : MonoBehaviour
+public class CompteBanquaire
 {
-    public Investissement epargne; //système d'épargne du compte banquaire
+    protected Historique historique; //Contient toutes les entrés/sorties d'argent lie la source à son montant
+    private argent totalEntree; // somme total d'argent positif
+    private argent totalSortie; // somme total d'argent négatif
+    protected argent solde; // solde du compte au début du mois
+    private argent soldeFinMois; // Solde du compte après calcul
 
-    [SerializeField] public GameData gameData; //Référence aux données du jeu
+    public event Action OnSoldeModifie;
 
-    [SerializeField] public GestionBanqueUI UIBanque;
-
-    [SerializeField] public HUDManager HUD;
-
-    void Start()
+    public CompteBanquaire()
     {
-        gameData.investissements.Add(epargne);
-        UIBanque.ActualiserAffichage();
+        argent montantInitial = new argent(100000);
+        historique = new Historique();
+        totalEntree = montantInitial;
+        totalSortie = new argent(0);
+        solde = montantInitial;
     }
 
-    //Retire de l'argent du solde du compte banquaire
-    public bool debiter(argent montant)
+    public CompteBanquaire(Historique _historique)
     {
-        if (montant.centimes < 0)
+        historique = _historique;
+        calculEntree();
+        calculSortie();
+        calculSolde();
+    }
+
+    //Calcul et renvoie la somme des entrées d'argent
+    public argent calculEntree()
+    {
+        totalEntree = new argent(0);
+        foreach(argent montant in historique.GetMontants())
         {
-            Debug.Log("Le montant à débiter doit être positif.");
+            if(montant.centimes >= 0)
+            {
+                totalEntree +=montant;
+            }
+        }
+        return totalEntree;
+    }
+
+    //Calcul et renvoie la somme des sorties d'argent
+    public argent calculSortie()
+    {
+        totalSortie = new argent(0);
+        foreach(argent montant in historique.GetMontants())
+        {
+            if(montant.centimes < 0)
+            {
+                totalSortie +=montant;
+            }
+        }
+        return totalSortie;
+    }
+
+    //Calcul et renvoie le solde du compte
+    public argent calculSolde()
+    {
+        solde = totalEntree + totalSortie;
+        OnSoldeModifie?.Invoke();
+        return solde;
+    }
+
+    public bool Transferer(CompteBanquaire destination,string libeleSource, string libeleDestination, argent somme )
+    {
+        if (somme.centimes <= 0)
+        {
+            Debug.Log("transfert d'une somme négative impossible");
             return false;
         }
-
-        if (montant > epargne.sommeInvestie)
+        if(solde < somme)
         {
-            Debug.Log("Vous n'avez pas assez d'argent sur votre compte pour débiter ce montant.");
+            Debug.Log("La somme du compte source est trop faible");
             return false;
         }
-
-        epargne.sommeInvestie -= montant;
-        gameData.argent += montant; // On ajoute le montant débité à l'argent du joueur
-        HUD.ActualiserAffichage();
-        UIBanque.ActualiserAffichage();
+        AjoutHistorique(libeleSource, -somme);
+        destination.AjoutHistorique(libeleDestination, somme);
         return true;
     }
 
-    public bool crediter(argent montant)
+    //Ajoute une transaction à l'istorique et recalcule le solde et le montant des sorties ou entrées
+    public virtual void AjoutHistorique(string libelle, argent montant)
     {
-        if (montant.centimes < 0)
+        Debug.Log("Ajout dans l'historique");
+        historique.Add(libelle,montant);
+        if (montant.centimes >0)
         {
-            Debug.Log("Le montant à créditer doit être positif.");
-            return false;
+            totalEntree += montant;
         }
-        if (montant > gameData.argent)
+        else
         {
-            Debug.Log("Vous n'avez pas assez d'argent pour créditer ce montant.");
-            return false;
+            totalSortie += montant;
         }
-        epargne.sommeInvestie += montant;
-        gameData.argent -= montant; // On retire le montant du joueur
-        HUD.ActualiserAffichage();
-        UIBanque.ActualiserAffichage();
-        return true;
+        calculSolde();
+        OnSoldeModifie?.Invoke();
+    }
+
+    ///////////////
+    /// GETTERS ///
+    ///////////////
+
+    //Renvoie l'historique du compte
+    public Historique GetHistorique()
+    {
+        return historique;
+    }
+
+    //Renvoie le solde du compte
+    public argent GetSolde()
+    {
+        return solde;
     }
 }

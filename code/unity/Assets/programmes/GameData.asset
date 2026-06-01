@@ -12,19 +12,17 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c7652c5011b5cd84b90b9f01a8aeb942, type: 3}
   m_Name: GameData
   m_EditorClassIdentifier: Assembly-CSharp::GameData
-  argent:
-    centimes: 2147211875
   energie: 100
   santeMentale: 100
-  moisPasse: 25
+  moisPasse: 1
   investissements:
   - sommeInvestie:
-      centimes: -2147473648
-    taux: 0
-    dureeMois: 0
-    moisEcoules: 0
+      centimes: 101000
+    taux: 0.03
+    dureeMois: 12
+    moisEcoules: 1
   - sommeInvestie:
-      centimes: 22500
-    taux: 0.5
+      centimes: 102000
+    taux: 0.03
     dureeMois: 12
     moisEcoules: 0
