@@ -309,7 +309,7 @@ MonoBehaviour:
   musicSource: {fileID: 1339880957}
   SFXSource: {fileID: 2014858829}
   background: {fileID: 0}
-  appuier_boutton: {fileID: 8300000, guid: b1b38f2842d68f54faa2a85e653de2e7, type: 3}
+  appuier_boutton: {fileID: 8300000, guid: 07b30aa261102ec4294d27012db21cd2, type: 3}
   playButton: {fileID: 0}
   optionsButton: {fileID: 0}
 --- !u!4 &9689045
@@ -321,7 +321,7 @@ Transform:
   m_GameObject: {fileID: 9689043}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 340.846, y: 407.42245, z: 0}
+  m_LocalPosition: {x: 381, y: 190, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -1044,8 +1044,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::Audio_Manager
   musicSource: {fileID: 1339880957}
   SFXSource: {fileID: 2014858829}
-  background: {fileID: 8300000, guid: e793c0e2fdff3b64a9e482ecdc8f3c7c, type: 3}
-  appuier_boutton: {fileID: 8300000, guid: b1b38f2842d68f54faa2a85e653de2e7, type: 3}
+  background: {fileID: 8300000, guid: 0aaf933609daba14bb48b1feaedafc4b, type: 3}
+  appuier_boutton: {fileID: 8300000, guid: 07b30aa261102ec4294d27012db21cd2, type: 3}
   playButton: {fileID: 0}
   optionsButton: {fileID: 0}
 --- !u!1 &1112268598
@@ -1312,7 +1312,7 @@ AudioSource:
   serializedVersion: 4
   OutputAudioMixerGroup: {fileID: 0}
   m_audioClip: {fileID: 0}
-  m_Resource: {fileID: 8300000, guid: e793c0e2fdff3b64a9e482ecdc8f3c7c, type: 3}
+  m_Resource: {fileID: 8300000, guid: 0aaf933609daba14bb48b1feaedafc4b, type: 3}
   m_PlayOnAwake: 1
   m_Volume: 1
   m_Pitch: 1
@@ -1997,7 +1997,7 @@ AudioSource:
   serializedVersion: 4
   OutputAudioMixerGroup: {fileID: 0}
   m_audioClip: {fileID: 0}
-  m_Resource: {fileID: 8300000, guid: 2982a25af39d8bc4d9293fb1d9bc1a7c, type: 3}
+  m_Resource: {fileID: 8300000, guid: 07b30aa261102ec4294d27012db21cd2, type: 3}
   m_PlayOnAwake: 0
   m_Volume: 1
   m_Pitch: 1
