@@ -1,5 +1,6 @@
 using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.SceneManagement; // ◄ NE PAS OUBLIER : Pour gérer les scènes
 using System.Collections;
 
 public class Audio_Manager : MonoBehaviour
@@ -8,67 +9,93 @@ public class Audio_Manager : MonoBehaviour
     [SerializeField] private AudioSource musicSource;
     [SerializeField] private AudioSource SFXSource;
 
-    [Header("Audio Clips")]
-    public AudioClip background;
+    [Header("Musiques de fond (Soundtrack)")]
+    public AudioClip musiqueMenu; // ◄ Ta musique pour le menu principal
+    public AudioClip musiqueJeu;  // ◄ Ta musique pour les niveaux de jeu
+
+    [Header("Audio Clips SFX")]
     public AudioClip appuier_boutton;
 
     [Header("UI Buttons")]
     public Button playButton;
     public Button optionsButton;
 
+    private void Awake()
+    {
+        // On rend l'Audio Manager immortel pour qu'il gère la soundtrack partout
+        DontDestroyOnLoad(gameObject);
+
+        // On s'abonne à l'événement de chargement de scène de Unity
+        SceneManager.sceneLoaded += OnSceneLoaded;
+    }
+
+    private void OnDestroy()
+    {
+        // Bonne pratique : on se désabonne si l'objet est détruit pour éviter les fuites de mémoire
+        SceneManager.sceneLoaded -= OnSceneLoaded;
+    }
+
     public void Start()
     {
-        // Lancement de la musique de fond si elle est configurée
-        if (musicSource != null && background != null)
-        {
-            musicSource.clip = background;
-            musicSource.loop = true;
-            musicSource.Play();
-        }
+        // Configuration initiale des boutons de la scène Menu
+        ConfigurerBoutons();
+    }
 
-        // CORRECTION : On utilise bien playButton ici, avec une vérification de sécurité
-        if (playButton != null)
+    // Cette fonction se déclenche AUTOMATIQUEMENT dès qu'une scène change
+    private void OnSceneLoaded(Scene scene, LoadSceneMode mode)
+    {
+        // 1. On adapte la musique selon la scène actuelle
+        if (scene.name == "Menu") // ◄ Remplace par le nom EXACT de ta scène Menu
         {
-            playButton.onClick.AddListener(PlayBruitBouton);
+            ChangerMusiqueFond(musiqueMenu);
+
+            // Comme on est revenu au menu, on doit retrouver et reconnecter les boutons
+            ConfigurerBoutons();
         }
-        
-        if (optionsButton != null)
+        else // Si on est dans le jeu (Niveau 1, Niveau 2, etc.)
         {
-            optionsButton.onClick.AddListener(PlayBruitBouton);
+            ChangerMusiqueFond(musiqueJeu);
         }
     }
 
-    public void PlaySFX(AudioClip clip)
+    private void ChangerMusiqueFond(AudioClip nouvelleMusique)
     {
-        if (SFXSource != null && clip != null)
-        {
-            SFXSource.PlayOneShot(clip);
-        }
+        if (musicSource == null || nouvelleMusique == null) return;
+
+        // Si la musique demandée est DEJA en train de jouer, on ne fait rien (évite de couper le son au redémarrage)
+        if (musicSource.clip == nouvelleMusique) return;
+
+        // On change de piste et on la lance en boucle
+        musicSource.Stop();
+        musicSource.clip = nouvelleMusique;
+        musicSource.loop = true;
+        musicSource.Play();
+    }
+
+    private void ConfigurerBoutons()
+    {
+        // On cherche les boutons dans la scène actuelle s'ils n'ont pas été assignés dans l'Inspector
+        if (playButton == null) playButton = GameObject.Find("Jouer")?.GetComponent<Button>();
+        if (optionsButton == null) optionsButton = GameObject.Find("Options")?.GetComponent<Button>();
+
+        // On applique les écouteurs de son
+        if (playButton != null) playButton.onClick.AddListener(PlayBruitBouton);
+        if (optionsButton != null) optionsButton.onClick.AddListener(PlayBruitBouton);
     }
 
     public void PlayBruitBouton()
     {
-        Debug.Log("Clic détecté !"); // Voir si le message apparaît dans la console
-        SFXSource.PlayOneShot(appuier_boutton);
-        /*// Sécurité : on vérifie que les sources et le clip existent avant de lancer la coroutine
         if (musicSource != null && SFXSource != null && appuier_boutton != null)
         {
             StartCoroutine(MuteMusicDuringSFX());
-        }*/
+        }
     }
 
     private IEnumerator MuteMusicDuringSFX()
     {
-        // Coupe le son de la musique de fond
         musicSource.mute = true;
-
-        // Joue le bruitage du bouton
         SFXSource.PlayOneShot(appuier_boutton);
-
-        // Attend la fin exacte de la durée du son
         yield return new WaitForSeconds(appuier_boutton.length);
-
-        // Réactive le son de la musique de fond
         musicSource.mute = false;
     }
 }
