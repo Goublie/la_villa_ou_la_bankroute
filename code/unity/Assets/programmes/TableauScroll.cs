@@ -45,4 +45,9 @@ public class TableauScroll : Tableau
             return false;
         }
     }
+
+    public override bool Add(Transaction transaction)
+    {
+        return Add(transaction.libelle, transaction.montant.ToString());
+    }
 }

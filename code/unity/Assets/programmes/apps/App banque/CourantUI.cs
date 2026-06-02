@@ -49,7 +49,7 @@ public class CourantUI : MonoBehaviour
         tab.Vider();
         for(int i = 0; i < histo.GetSize(); i++)
         {
-            tab.Add(histo.libelles[i], histo.montants[i].ToString(), "");
+            tab.Add(histo.GetHistorique()[i]);
             Debug.Log("Tableau actualisé");
         }
     }

@@ -60,6 +60,11 @@ public class Tableau : MonoBehaviour
         return false;
     }
 
+    public virtual bool Add(Transaction transaction)
+    {
+        return Add(transaction.libelle, transaction.montant.ToString());
+    }
+
     //Affiche le texte text dans la case à l'indice (y,x)
     public void Set(int indiceLigne, int indiceColonne, string text)
     {

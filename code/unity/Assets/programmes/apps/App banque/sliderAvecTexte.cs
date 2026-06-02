@@ -6,7 +6,7 @@ public class SliderAvecTexte : MonoBehaviour
 {
     [SerializeField] private GameData G;
     public Slider slider;
-    public argent soldeCompte;
+    private argent soldeCompte;
 
     
     void OnEnable()
@@ -35,8 +35,8 @@ public class SliderAvecTexte : MonoBehaviour
     void ActualiseMontant(float valeur)
     {
         argent montant = valeur * soldeCompte;
+        
         Debug.Log("valeur : " + valeur.ToString());
-        Debug.Log("montant : " + montant.ToString());
         Debug.Log("solde : " + soldeCompte.ToString());
     }
 }

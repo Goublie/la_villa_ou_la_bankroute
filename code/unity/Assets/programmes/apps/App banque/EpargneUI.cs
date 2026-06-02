@@ -72,7 +72,7 @@ public class EpargneUI : MonoBehaviour
         tableauEpgn.Vider();
         for(int i = 0; i < histo.GetSize(); i++)
         {
-            tableauEpgn.Add(histo.libelles[i], histo.montants[i].ToString(), "");
+            tableauEpgn.Add(histo.GetHistorique()[i]);
             Debug.Log("Tableau actualisé");
         }
     }
