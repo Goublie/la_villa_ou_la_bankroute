@@ -62,17 +62,26 @@ public class Tableau : MonoBehaviour
 
     public virtual bool Add(Transaction transaction)
     {
+        if(transaction.montant.centimes <= 0)
+        {
+            return Add(transaction.libelle, "", transaction.montant.ToString());
+        }
         return Add(transaction.libelle, transaction.montant.ToString());
     }
 
     //Met à jour la ligne du tableau dont le libelle correspond à libelleRecherche avec le nouveau montant et renvoie true en cas de réussite
-    public bool MettreAJourLigne(string libelleRecherche, string nouveauMontant)
+    public bool MettreAJourLigne(string libelleRecherche, argent nouveauMontant)
     {
         foreach (Ligne l in tableau)
         {
             // On vérifie que la ligne n'est pas vide pour éviter les erreurs
             if (!l.EstVide() && l.Get(0) == libelleRecherche) 
             {
+                if(nouveauMontant.centimes <= 0)
+                {
+                    l.Set(2, nouveauMontant); // Si le montant est négatif ou nul, on le met dans la troisième colonne
+                    return true;
+                }
                 l.Set(1, nouveauMontant); // On met à jour la colonne du montant
                 return true; 
             }
