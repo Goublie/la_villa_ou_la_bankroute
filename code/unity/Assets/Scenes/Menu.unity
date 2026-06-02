@@ -287,6 +287,7 @@ GameObject:
   - component: {fileID: 9689045}
   - component: {fileID: 9689044}
   - component: {fileID: 9689046}
+  - component: {fileID: 9689047}
   m_Layer: 0
   m_Name: Audio_Manager
   m_TagString: Untagged
@@ -344,6 +345,25 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::Menu_du_jeu
   playButton: {fileID: 1836208255}
   quitButton: {fileID: 126238183}
+--- !u!114 &9689047
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 9689043}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9eef3b6f21fe01e40a05a870d4e82cde, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::Audio_Manager
+  musicSource: {fileID: 1339880957}
+  SFXSource: {fileID: 1339880957}
+  musiqueMenu: {fileID: 8300000, guid: 0aaf933609daba14bb48b1feaedafc4b, type: 3}
+  musiqueJeu: {fileID: 8300000, guid: e793c0e2fdff3b64a9e482ecdc8f3c7c, type: 3}
+  appuier_boutton: {fileID: 8300000, guid: 07b30aa261102ec4294d27012db21cd2, type: 3}
+  playButton: {fileID: 0}
+  optionsButton: {fileID: 0}
 --- !u!1 &22894667 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 555243825792853531, guid: 635c6a2b452eb3f4e9166253f8ed2b02, type: 3}
@@ -891,7 +911,6 @@ GameObject:
   - component: {fileID: 907710335}
   - component: {fileID: 907710338}
   - component: {fileID: 907710339}
-  - component: {fileID: 907710340}
   m_Layer: 0
   m_Name: Main Camera
   m_TagString: MainCamera
@@ -1031,25 +1050,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::Menu_du_jeu
   playButton: {fileID: 1836208255}
   quitButton: {fileID: 126238183}
---- !u!114 &907710340
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 907710334}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 9eef3b6f21fe01e40a05a870d4e82cde, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::Audio_Manager
-  musicSource: {fileID: 1339880957}
-  SFXSource: {fileID: 2014858829}
-  musiqueMenu: {fileID: 8300000, guid: 0aaf933609daba14bb48b1feaedafc4b, type: 3}
-  musiqueJeu: {fileID: 8300000, guid: e793c0e2fdff3b64a9e482ecdc8f3c7c, type: 3}
-  appuier_boutton: {fileID: 8300000, guid: 07b30aa261102ec4294d27012db21cd2, type: 3}
-  playButton: {fileID: 0}
-  optionsButton: {fileID: 0}
 --- !u!1 &1112268598
 GameObject:
   m_ObjectHideFlags: 0
