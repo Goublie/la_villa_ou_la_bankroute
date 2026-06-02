@@ -4,9 +4,10 @@ using System.Collections.Generic;
 
 public class GestionnaireSlides : MonoBehaviour
 {
+    [SerializeField] private GameData G;
     public List<SliderAvecTexte> listeSliders = new List<SliderAvecTexte>();
-    private float maxTotalSlides = 100f;
-    private float currentTotalSlides = 0f;
+    private float maxTotalSlides = 1f;
+    private float TotalSlidesActuel = 0f;
 
     void Start()
     {
@@ -16,7 +17,6 @@ public class GestionnaireSlides : MonoBehaviour
         foreach (SliderAvecTexte sliderT in listeSliders)
         {
             // Configuration des sliders
-            sliderT.slider.minValue = 0f;
             sliderT.slider.maxValue = maxTotalSlides;
 
             sliderT.slider.onValueChanged.AddListener((valeur) => onSliderModif(sliderT, valeur));
@@ -26,19 +26,19 @@ public class GestionnaireSlides : MonoBehaviour
     void onSliderModif(SliderAvecTexte _sliderT, float _valeur)
     {
         //Calcul du total des sliders
-        currentTotalSlides = 0f;
+        TotalSlidesActuel = 0f;
         foreach (SliderAvecTexte sliderT in listeSliders)
         {
             if (sliderT != _sliderT)
             {
-                currentTotalSlides += sliderT.slider.value;
+                TotalSlidesActuel += sliderT.slider.value;
             }
         }
         
         //Vérification que le total ne dépasse pas le maximum
-        if (currentTotalSlides + _valeur > maxTotalSlides)
+        if (TotalSlidesActuel + _valeur > maxTotalSlides)
         {
-            _sliderT.slider.value = maxTotalSlides - currentTotalSlides;
+            _sliderT.slider.value = maxTotalSlides - TotalSlidesActuel;
         }
     }
 }

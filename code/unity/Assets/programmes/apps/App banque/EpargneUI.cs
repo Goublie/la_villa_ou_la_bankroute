@@ -65,15 +65,16 @@ public class EpargneUI : MonoBehaviour
         ActualiserTableau();
     }
 
-    //Ajoute une ligne au tableau d'affichage des opérations
+    //Actualise le tableau et ajoute une ligne au tableau d'affichage des opérations si nécessaire
     public void ActualiserTableau()
     {
         Historique histo = epgn.GetHistorique();
         tableauEpgn.Vider();
-        for(int i = 0; i < histo.GetSize(); i++)
+        
+        for(int i = histo.GetSize() - 1; i >= 0; i--)
         {
-            tableauEpgn.Add(histo.libelles[i], histo.montants[i].ToString(), "");
-            Debug.Log("Tableau actualisé");
+            tableauEpgn.Add(histo.GetHistorique()[i]);
+            Debug.Log("Tableau épargne actualisé");
         }
     }
 

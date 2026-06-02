@@ -1,27 +1,64 @@
 using UnityEngine;
 using UnityEngine.UI;
-using TMPro;
 
 public class SliderAvecTexte : MonoBehaviour
 {
     [SerializeField] private GameData G;
     public Slider slider;
-    public TextMeshProUGUI textCell;
+    
+    [SerializeField] private string nom; 
+    
+    [SerializeField] private Tableau tableauUI; 
+    
+    private argent soldeCompte;
 
-    private int SoldeCompte;
-
+    void OnEnable()
+    {
+        ActionPlay.moisPasse += RecupSolde;
+    }
+    
+    void OnDisable()
+    {
+        ActionPlay.moisPasse -= RecupSolde;
+    }
+    
     void Start()
     {
-        slider.onValueChanged.AddListener((valeur) => actualiseMontant(textCell, valeur));
+        RecupSolde();
+        slider.onValueChanged.AddListener((valeur) => ActualiseMontant(valeur));
     }
 
-    // Met à jour le montant affiché dans la case en fonction de la valeur du slider
-    void actualiseMontant(TextMeshProUGUI cell, float valeur)
+    private void RecupSolde()
     {
-        if (cell == null) return;
+        if(G != null)
+        {
+            soldeCompte = G.comptes["courant"].GetSolde();
+        }
+    }
 
-        float montant = valeur * SoldeCompte;
+    void ActualiseMontant(float valeur)
+    {
+        float vraieValeur = slider.value;
+    
+        argent montantCalcule = soldeCompte * vraieValeur;
+        
+        argent depense = -montantCalcule; 
+        
 
-        cell.text = montant.ToString("F2") + "€";
+        G.comptes["courant"].GetHistorique().ModifieOuAjoute(nom, depense);
+        
+        // 3. Mise à jour "Visuelle" (Le Tableau)
+        G.comptes["courant"].CalculSortie();
+        G.comptes["courant"].CalculSolde();
+        if (tableauUI != null)
+        {
+            // On essaie de mettre à jour le texte de la ligne.
+            // Si MettreAJourLigne renvoie "false", c'est que la ligne n'existe pas !
+            if (!tableauUI.MettreAJourLigne(nom, depense.ToString()))
+            {
+                // Dans ce cas, on demande au tableau de créer une nouvelle ligne
+                tableauUI.Add(nom, depense.ToString(), "");
+            }
+        }
     }
 }

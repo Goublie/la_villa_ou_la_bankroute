@@ -1,43 +1,78 @@
 using System;
 using System.Collections.Generic;
+using UnityEngine;
 
 [Serializable]
 public class Historique 
 {
-    public List<string> libelles;
-    public List<argent> montants;
+    private List<Transaction> histo;
 
-    private int size; // taille de libelles ET montants
     public Historique()
     {
-        libelles = new List<string>();
-        montants = new List<argent>();
-        size = 0;
+        histo = new List<Transaction>();
     }
 
+    //Ajoute une transaction à partir d'une transaction déjà créée
+    public void Add(Transaction transaction)
+    {
+        histo.Insert(0,transaction);
+    }
+
+    //Ajoute une transaction à l'historique à partir d'un labelle et d'un montant
     public void Add(string libelle, argent somme)
     {
-        libelles.Add(libelle);
-        montants.Add(somme);
-        size++;
+        Add(new Transaction(libelle,somme));
     }
 
-    //fonction qui retourne le monant a partir du libelle
-
+    //Retourne le montant associé au libelle, 0 si le libelle n'est pas trouvé
+    public int GetIndiceDeLibelle(string libelle)
+    {
+        for (int i=0; i<histo.Count; i++)
+        {
+            if (histo[i].libelle == libelle)
+            {
+                return i;
+            }
+        }
+        Debug.Log("Aucun montant associé à ce libelle");
+        return -1; //Valeur par défaut
+    }
+    
+    public void ModifieOuAjoute(string libelle, argent nouveauMontant)
+    {
+        int indice = GetIndiceDeLibelle(libelle);
+        
+        if(indice == -1)
+        {
+            // La dépense n'existe pas encore, on la crée
+            Add(libelle, nouveauMontant);
+        }
+        else
+        {
+            // Elle existe déjà, on la met à jour
+            histo[indice].montant = nouveauMontant;
+        }
+    }
     ///////////////
     /// GETTERS ///
     ///////////////
-    public int GetSize()
+    public List<Transaction> GetHistorique()
     {
-        return size;
-    }
-    public List<string> GetLibelles()
-    {
-        return libelles;
+        return histo;
     }
 
     public List<argent> GetMontants()
     {
-        return montants;
+        List<argent> ListMontants = new List<argent>();
+        foreach(Transaction t in histo)
+        {
+            ListMontants.Add(t.montant);
+        }
+        return ListMontants;
+    }
+
+    public int GetSize()
+    {
+        return histo.Count;
     }
 }

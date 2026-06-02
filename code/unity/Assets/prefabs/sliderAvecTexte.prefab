@@ -705,5 +705,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f1f25a46121aa9f499c4593f75c42dde, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::sliderAvecTexte
+  G: {fileID: 11400000, guid: 00f9a2cc968a86847bacedddfcfe8be5, type: 2}
   slider: {fileID: 6069119790600986428}
-  textCell: {fileID: 0}
+  soldeCompte:
+    centimes: 0

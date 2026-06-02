@@ -15,11 +15,12 @@ public class ActionPlay : MonoBehaviour
             invest.ComposerBenefices();
         }
 
-        //Active les fontions d'affichage
-        moisPasse?.Invoke();
-
         //Donne un salaire au joueur
         gameData.comptes["courant"].AjoutHistorique("salaire", gameData.salaire);
+        gameData.comptes["courant"].AjoutHistorique("plaisir",new argent(1));
+
+        //Active les fontions d'affichage
+        moisPasse?.Invoke();
     }
     
     private void incrementerMois()
