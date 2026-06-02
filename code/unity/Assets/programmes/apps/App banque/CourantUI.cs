@@ -43,6 +43,20 @@ public class CourantUI : MonoBehaviour
         ActualiserTableau();
     }
 
+    //Actualise l'affichage de la ligne à l'indice indice du tabeau d'affichage
+    public void ActualiserAffichageLigne(int indice)
+    {
+        if (tab == null)
+        {
+            Debug.LogError("Le tableau n'est pas assigné dans le CourantUI.");
+            return;
+        }
+
+        Transaction transac = compteCrnt.GetHistorique().GetHistorique()[indice];
+        tab.Set(indice, transac);
+
+    }
+
     public void ActualiserTableau()
     {
         Historique histo = compteCrnt.GetHistorique();

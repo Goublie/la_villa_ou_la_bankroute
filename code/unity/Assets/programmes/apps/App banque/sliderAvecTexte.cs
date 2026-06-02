@@ -1,22 +1,27 @@
 using UnityEngine;
 using UnityEngine.UI;
-using TMPro;
 
 public class SliderAvecTexte : MonoBehaviour
 {
     [SerializeField] private GameData G;
     public Slider slider;
+    
+    [SerializeField] private string nom; 
+    
+    [SerializeField] private Tableau tableauUI; 
+    
     private argent soldeCompte;
 
-    
     void OnEnable()
     {
         ActionPlay.moisPasse += RecupSolde;
     }
+    
     void OnDisable()
     {
         ActionPlay.moisPasse -= RecupSolde;
     }
+    
     void Start()
     {
         RecupSolde();
@@ -31,12 +36,25 @@ public class SliderAvecTexte : MonoBehaviour
         }
     }
 
-    // Met à jour le montant affiché dans la case en fonction de la valeur du slider
     void ActualiseMontant(float valeur)
     {
-        argent montant = valeur * soldeCompte;
+        argent montantCalcule = soldeCompte * valeur;
         
-        Debug.Log("valeur : " + valeur.ToString());
-        Debug.Log("solde : " + soldeCompte.ToString());
+        argent depense = -montantCalcule; 
+        
+        // 2. Mise à jour "Invisible" (Base de données)
+        G.comptes["courant"].GetHistorique().ModifieOuAjoute(nom, depense);
+        
+        // 3. Mise à jour "Visuelle" (Le Tableau)
+        if (tableauUI != null)
+        {
+            // On essaie de mettre à jour le texte de la ligne.
+            // Si MettreAJourLigne renvoie "false", c'est que la ligne n'existe pas !
+            if (tableauUI.MettreAJourLigne(nom, depense.ToString()) == false)
+            {
+                // Dans ce cas, on demande au tableau de créer une nouvelle ligne
+                tableauUI.Add(nom, depense.ToString(), "");
+            }
+        }
     }
 }

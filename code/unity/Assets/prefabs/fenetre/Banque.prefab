@@ -1481,7 +1481,7 @@ MonoBehaviour:
   m_FallbackScreenDPI: 96
   m_DefaultSpriteDPI: 96
   m_DynamicPixelsPerUnit: 1
-  m_PresetInfoIsWorld: 1
+  m_PresetInfoIsWorld: 0
 --- !u!114 &4810785592204888586
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1551,7 +1551,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 94c7c1a3f38bd9a46bc0c2aa3411678d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::GestionnaireSlides
-  G: {fileID: 0}
+  G: {fileID: 11400000, guid: 00f9a2cc968a86847bacedddfcfe8be5, type: 2}
   listeSliders: []
 --- !u!1 &5718115543464304446
 GameObject:
@@ -5521,7 +5521,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3311478261380166037, guid: 0c045710a5dfc9649b411fe4ade021e7, type: 3}
       propertyPath: m_PresetInfoIsWorld
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 3968883394138693477, guid: 0c045710a5dfc9649b411fe4ade021e7, type: 3}
       propertyPath: m_AnchorMax.x
@@ -5619,6 +5619,14 @@ PrefabInstance:
       propertyPath: G
       value: 
       objectReference: {fileID: 11400000, guid: 00f9a2cc968a86847bacedddfcfe8be5, type: 2}
+    - target: {fileID: 7379420106995320624, guid: 0c045710a5dfc9649b411fe4ade021e7, type: 3}
+      propertyPath: nom
+      value: Plaisir
+      objectReference: {fileID: 0}
+    - target: {fileID: 7379420106995320624, guid: 0c045710a5dfc9649b411fe4ade021e7, type: 3}
+      propertyPath: tableauUI
+      value: 
+      objectReference: {fileID: 2566154123256644243}
     - target: {fileID: 8364642074001772490, guid: 0c045710a5dfc9649b411fe4ade021e7, type: 3}
       propertyPath: m_AnchorMax.y
       value: 0
@@ -5799,6 +5807,14 @@ PrefabInstance:
       propertyPath: m_SizeDelta.y
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 7379420106995320624, guid: 0c045710a5dfc9649b411fe4ade021e7, type: 3}
+      propertyPath: nom
+      value: Nourriture
+      objectReference: {fileID: 0}
+    - target: {fileID: 7379420106995320624, guid: 0c045710a5dfc9649b411fe4ade021e7, type: 3}
+      propertyPath: tableauUI
+      value: 
+      objectReference: {fileID: 2566154123256644243}
     - target: {fileID: 8364642074001772490, guid: 0c045710a5dfc9649b411fe4ade021e7, type: 3}
       propertyPath: m_AnchorMax.y
       value: 0

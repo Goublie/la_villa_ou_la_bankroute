@@ -85,4 +85,12 @@ public class Ligne : MonoBehaviour
     {
         Set(indice, montant.ToString());
     }
+
+    //Set toutes les valeurs de la ligne dans l'ordre des argments
+    public void Set(string text1, string text2="", string text3="")
+    {
+        Set(0, text1);
+        Set(1, text2);
+        Set(2, text3);
+    }
 }

@@ -38,15 +38,20 @@ public class Historique
         return -1; //Valeur par défaut
     }
     
-    public void ModifieMontantDeLibelle(string libelle, argent nouveauMontant)
+    public void ModifieOuAjoute(string libelle, argent nouveauMontant)
     {
         int indice = GetIndiceDeLibelle(libelle);
-        //Si le libelle n'est pas dans le tableau
+        
         if(indice == -1)
         {
-            return;
+            // La dépense n'existe pas encore, on la crée
+            Add(libelle, nouveauMontant);
         }
-        histo[indice].montant = nouveauMontant;
+        else
+        {
+            // Elle existe déjà, on la met à jour
+            histo[indice].montant = nouveauMontant;
+        }
     }
     ///////////////
     /// GETTERS ///

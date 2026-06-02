@@ -7,7 +7,7 @@ public class Transaction
 
     public Transaction(string _libelle, argent _montant)
     {
-        if (libelle == "")
+        if (_libelle == "")
         {
             Debug.Log("Libelle vide");
             return;
