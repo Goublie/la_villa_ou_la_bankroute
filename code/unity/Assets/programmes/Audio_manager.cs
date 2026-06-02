@@ -20,6 +20,7 @@ public class Audio_Manager : MonoBehaviour
     public Button playButton;
     public Button optionsButton;
 
+
     private void Awake()
     {
         // On rend l'Audio Manager immortel pour qu'il gère la soundtrack partout
