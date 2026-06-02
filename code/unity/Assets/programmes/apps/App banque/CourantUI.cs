@@ -3,7 +3,7 @@ using TMPro;
 
 public class CourantUI : MonoBehaviour
 {
-    public GameData G; // données du jeu
+    public GameData G; 
     
     private CompteBanquaire compteCrnt;
     [SerializeField] TableauScroll tab; 
@@ -17,54 +17,48 @@ public class CourantUI : MonoBehaviour
 
     void OnEnable()
     {
-        ActionPlay.moisPasse += ActualiseAffichage;
+        // Quand le mois passe, on fait la mise à jour TOTALE (Texte + Tableau)
+        ActionPlay.moisPasse += NouveauMois;
         
-        if(compteCrnt != null) // Petite sécurité supplémentaire
+        if(compteCrnt != null) 
         {
-            compteCrnt.OnSoldeModifie += ActualiseAffichage;
+            // Quand le solde bouge (via slider), on met JUSTE le texte à jour
+            compteCrnt.OnSoldeModifie += RafraichirJusteLeSolde;
         }
         
-        ActualiseAffichage(); // On force le premier affichage à l'activation
+        NouveauMois(); // On force l'affichage complet à l'ouverture de l'onglet
     }
 
     void OnDisable()
     {
-        ActionPlay.moisPasse -= ActualiseAffichage;
+        ActionPlay.moisPasse -= NouveauMois;
         
         if(compteCrnt != null)
         {
-            compteCrnt.OnSoldeModifie -= ActualiseAffichage;
+            compteCrnt.OnSoldeModifie -= RafraichirJusteLeSolde;
         }
     }
 
-    private void ActualiseAffichage()
+    private void RafraichirJusteLeSolde()
     {
         solde.text = compteCrnt.GetSolde().ToString();
-        ActualiserTableau();
     }
 
-    //Actualise l'affichage de la ligne à l'indice indice du tabeau d'affichage
-    public void ActualiserAffichageLigne(int indice)
+    private void NouveauMois()
     {
-        if (tab == null)
-        {
-            Debug.LogError("Le tableau n'est pas assigné dans le CourantUI.");
-            return;
-        }
-
-        Transaction transac = compteCrnt.GetHistorique().GetHistorique()[indice];
-        tab.Set(indice, transac);
-
+        RafraichirJusteLeSolde();
+        ActualiserTableau();
     }
 
     public void ActualiserTableau()
     {
         Historique histo = compteCrnt.GetHistorique();
         tab.Vider();
-        for(int i = 0; i < histo.GetSize(); i++)
+        
+        // On lit la liste à l'envers pour que le plus récent finisse en haut
+        for(int i = histo.GetSize() - 1; i >= 0; i--)
         {
             tab.Add(histo.GetHistorique()[i]);
-            Debug.Log("Tableau actualisé");
         }
     }
 }

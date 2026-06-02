@@ -24,13 +24,13 @@ public class CompteBanquaire
     public CompteBanquaire(Historique _historique)
     {
         historique = _historique;
-        calculEntree();
-        calculSortie();
-        calculSolde();
+        CalculEntree();
+        CalculSortie();
+        CalculSolde();
     }
 
     //Calcul et renvoie la somme des entrées d'argent
-    public argent calculEntree()
+    public argent CalculEntree()
     {
         totalEntree = new argent(0);
         foreach(argent montant in historique.GetMontants())
@@ -44,7 +44,7 @@ public class CompteBanquaire
     }
 
     //Calcul et renvoie la somme des sorties d'argent
-    public argent calculSortie()
+    public argent CalculSortie()
     {
         totalSortie = new argent(0);
         foreach(argent montant in historique.GetMontants())
@@ -58,7 +58,7 @@ public class CompteBanquaire
     }
 
     //Calcul et renvoie le solde du compte
-    public argent calculSolde()
+    public argent CalculSolde()
     {
         solde = totalEntree + totalSortie;
         OnSoldeModifie?.Invoke();
@@ -95,7 +95,7 @@ public class CompteBanquaire
         {
             totalSortie += montant;
         }
-        calculSolde();
+        CalculSolde();
         OnSoldeModifie?.Invoke();
     }
 

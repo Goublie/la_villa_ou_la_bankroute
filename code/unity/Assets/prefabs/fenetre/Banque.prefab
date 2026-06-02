@@ -4485,6 +4485,10 @@ PrefabInstance:
       propertyPath: m_AnchoredPosition.y
       value: -22.5
       objectReference: {fileID: 0}
+    - target: {fileID: 5400989419599514900, guid: 2f78ec97b3c13974ea7a8b2bcf196213, type: 3}
+      propertyPath: conteneurLignes
+      value: 
+      objectReference: {fileID: 2849690855825098457}
     - target: {fileID: 5476300977762612903, guid: 2f78ec97b3c13974ea7a8b2bcf196213, type: 3}
       propertyPath: m_AnchorMax.y
       value: 1
@@ -4822,6 +4826,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b23ba8164d140174f8880840a4a8a1f6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::TableauScroll
+--- !u!224 &2849690855825098457 stripped
+RectTransform:
+  m_CorrespondingSourceObject: {fileID: 8656331899769138828, guid: 2f78ec97b3c13974ea7a8b2bcf196213, type: 3}
+  m_PrefabInstance: {fileID: 6894260354226677845}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &7595572382912384903
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -5142,6 +5151,10 @@ PrefabInstance:
       propertyPath: m_AnchoredPosition.y
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 5400989419599514900, guid: 2f78ec97b3c13974ea7a8b2bcf196213, type: 3}
+      propertyPath: conteneurLignes
+      value: 
+      objectReference: {fileID: 1245688577100980491}
     - target: {fileID: 5476300977762612903, guid: 2f78ec97b3c13974ea7a8b2bcf196213, type: 3}
       propertyPath: m_AnchorMax.y
       value: 0
@@ -5467,6 +5480,11 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 2f78ec97b3c13974ea7a8b2bcf196213, type: 3}
+--- !u!224 &1245688577100980491 stripped
+RectTransform:
+  m_CorrespondingSourceObject: {fileID: 8656331899769138828, guid: 2f78ec97b3c13974ea7a8b2bcf196213, type: 3}
+  m_PrefabInstance: {fileID: 7595572382912384903}
+  m_PrefabAsset: {fileID: 0}
 --- !u!114 &2566154123256644243 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 5400989419599514900, guid: 2f78ec97b3c13974ea7a8b2bcf196213, type: 3}

@@ -70,10 +70,11 @@ public class EpargneUI : MonoBehaviour
     {
         Historique histo = epgn.GetHistorique();
         tableauEpgn.Vider();
-        for(int i = 0; i < histo.GetSize(); i++)
+        
+        for(int i = histo.GetSize() - 1; i >= 0; i--)
         {
             tableauEpgn.Add(histo.GetHistorique()[i]);
-            Debug.Log("Tableau actualisé");
+            Debug.Log("Tableau épargne actualisé");
         }
     }
 
