@@ -37,7 +37,8 @@ public class Historique
         Debug.Log("Aucun montant associé à ce libelle");
         return -1; //Valeur par défaut
     }
-    
+
+    //Modifie le montant associé au libelle, ou ajoute la dépenses si le libelle n'existe pas encore    
     public void ModifieOuAjoute(string libelle, argent nouveauMontant)
     {
         int indice = GetIndiceDeLibelle(libelle);
@@ -53,6 +54,13 @@ public class Historique
             histo[indice].montant = nouveauMontant;
         }
     }
+
+    //Vide l'historique
+    public void Clear()
+    {
+        histo.Clear();
+    }
+
     ///////////////
     /// GETTERS ///
     ///////////////

@@ -15,9 +15,14 @@ public class ActionPlay : MonoBehaviour
             invest.ComposerBenefices();
         }
 
+        // Vide l'historique de tous les comptes pour le nouveau mois
+        foreach (var compte in gameData.comptes.Values)
+        {
+            compte.ViderHistorique();
+        }
+
         //Donne un salaire au joueur
         gameData.comptes["courant"].AjoutHistorique("salaire", gameData.salaire);
-        gameData.comptes["courant"].AjoutHistorique("plaisir",new argent(1));
 
         //Active les fontions d'affichage
         moisPasse?.Invoke();
