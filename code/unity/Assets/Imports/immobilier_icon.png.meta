@@ -103,12 +103,12 @@ TextureImporter:
       name: immobilier_icon_0
       rect:
         serializedVersion: 2
-        x: 363
-        y: 40
-        width: 675
-        height: 680
+        x: 0
+        y: 0
+        width: 671
+        height: 674
       alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -125,7 +125,7 @@ TextureImporter:
     customData: 
     physicsShape: []
     bones: []
-    spriteID: 4c630158000bc2f47b017aab384e37b7
+    spriteID: 
     internalID: 0
     vertices: []
     indices: 

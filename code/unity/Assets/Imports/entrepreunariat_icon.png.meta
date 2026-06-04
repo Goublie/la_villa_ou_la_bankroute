@@ -103,12 +103,12 @@ TextureImporter:
       name: entrepreunariat_icon_0
       rect:
         serializedVersion: 2
-        x: 364
-        y: 42
-        width: 674
-        height: 679
+        x: 0
+        y: 0
+        width: 667
+        height: 672
       alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -125,7 +125,7 @@ TextureImporter:
     customData: 
     physicsShape: []
     bones: []
-    spriteID: 5f99165ba0a777c4191d0398ca642704
+    spriteID: 
     internalID: 0
     vertices: []
     indices: 

@@ -103,12 +103,12 @@ TextureImporter:
       name: actualites_icon_0
       rect:
         serializedVersion: 2
-        x: 363
-        y: 40
-        width: 677
-        height: 680
-      alignment: 9
-      pivot: {x: 0.5, y: 0.5}
+        x: 0
+        y: 0
+        width: 668
+        height: 663
+      alignment: 0
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -125,7 +125,7 @@ TextureImporter:
     customData: 
     physicsShape: []
     bones: []
-    spriteID: b7431cea574217f42a6e2fcdf3066646
+    spriteID: 
     internalID: 0
     vertices: []
     indices: 
