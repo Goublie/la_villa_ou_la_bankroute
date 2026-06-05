@@ -13,6 +13,9 @@ public class InterviewPanelController : MonoBehaviour
     public string companyName;
     public string jobSalary;
 
+    [Tooltip("Référence vers les données globales du jeu")]
+    public GameData gameData;
+
     [Header("Screen references")]
     public GameObject panelOffresEmploi;   // 'Panel_Offres_d'emploi'
     public GameObject panelPosteActuel;    // 'Panel_Poste8actuel'
@@ -22,10 +25,10 @@ public class InterviewPanelController : MonoBehaviour
     private Button retourButton;
     private Button ouiButton;
 
-    // Value TMP fields inside 'Panel_Poste8actuel'.
-    private TMP_Text entrepriseValeur;
-    private TMP_Text salaireValeur;
-    private TMP_Text heuresValeur;
+    // Dashboard label TMP fields inside 'Panel_Poste8actuel'.
+    private TMP_Text entrepriseText;
+    private TMP_Text salaireText;
+    private TMP_Text heuresText;
 
     private void Start()
     {
@@ -36,12 +39,12 @@ public class InterviewPanelController : MonoBehaviour
         Transform ouiTransform = transform.Find("Bouton_Oui");
         if (ouiTransform != null) ouiButton = ouiTransform.GetComponent<Button>();
 
-        // --- Locate the dashboard value fields ---
+        // --- Locate the dashboard text fields inside 'Panel_Poste8actuel' ---
         if (panelPosteActuel != null)
         {
-            entrepriseValeur = FindValue(panelPosteActuel.transform, "Entreprise_Valeur");
-            salaireValeur = FindValue(panelPosteActuel.transform, "Salaire_brut_Valeur");
-            heuresValeur = FindValue(panelPosteActuel.transform, "Heures_Valeur");
+            entrepriseText = FindText(panelPosteActuel.transform, "Entreprise");
+            salaireText = FindText(panelPosteActuel.transform, "Salaire_brut");
+            heuresText = FindText(panelPosteActuel.transform, "Heures");
         }
 
         // --- Wire buttons ---
@@ -63,13 +66,45 @@ public class InterviewPanelController : MonoBehaviour
         if (panelPosteActuel != null) panelPosteActuel.SetActive(true);
         if (panelActionsRapides != null) panelActionsRapides.SetActive(true);
 
-        // Update the dashboard values.
-        if (entrepriseValeur != null) entrepriseValeur.text = companyName;
-        if (salaireValeur != null) salaireValeur.text = jobSalary;
-        if (heuresValeur != null) heuresValeur.text = "35 heures / semaine";
+        // Update the dashboard texts (label prefix preserved for readability).
+        if (entrepriseText != null) entrepriseText.text = "Entreprise : " + companyName;
+        if (salaireText != null) salaireText.text = "Salaire brut : " + jobSalary;
+        if (heuresText != null) heuresText.text = "Heures : 35 heures / semaine";
+
+        // --- MISE À JOUR DE LA BANQUE (GAMEDATA) ---
+        if (gameData != null)
+        {
+            int monthlySalary = GetMonthlySalary(jobSalary);
+            gameData.salaire = new argent(monthlySalary);
+            Debug.Log("Nouveau salaire mensuel de " + monthlySalary + " enregistré dans GameData pour " + companyName);
+        }
+        else
+        {
+            Debug.LogWarning("Attention : Le fichier GameData n'est pas assigné dans l'Inspector pour " + gameObject.name);
+        }
     }
 
-    private TMP_Text FindValue(Transform root, string childName)
+    /// <summary>
+    /// Prend le salaire sous forme de texte (ex: "€72,000 / an") et le convertit en salaire mensuel (int).
+    /// </summary>
+    private int GetMonthlySalary(string rawSalary)
+    {
+        // On nettoie la chaîne pour ne garder que les chiffres
+        string cleanString = rawSalary.Replace("€", "").Replace(",", "").Replace(" / an", "").Trim();
+
+        // On convertit le texte propre en nombre
+        if (int.TryParse(cleanString, out int yearlySalary))
+        {
+            return yearlySalary / 12;
+        }
+        else
+        {
+            Debug.LogWarning("Erreur : Impossible de convertir le salaire de l'offre -> " + rawSalary);
+            return 0;
+        }
+    }
+
+    private TMP_Text FindText(Transform root, string childName)
     {
         Transform t = root.Find(childName);
         return t != null ? t.GetComponent<TMP_Text>() : null;
