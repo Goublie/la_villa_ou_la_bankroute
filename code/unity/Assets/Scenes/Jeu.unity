@@ -740,9 +740,29 @@ PrefabInstance:
       value: SalariatBouton
       objectReference: {fileID: 0}
     - target: {fileID: 4059290798963567902, guid: 8beb7248c59e8d343906aaa6a4d8e3be, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Mode
+      value: 6
+      objectReference: {fileID: 0}
+    - target: {fileID: 4059290798963567902, guid: 8beb7248c59e8d343906aaa6a4d8e3be, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
       objectReference: {fileID: 1544387479}
+    - target: {fileID: 4059290798963567902, guid: 8beb7248c59e8d343906aaa6a4d8e3be, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: SetActive
+      objectReference: {fileID: 0}
+    - target: {fileID: 4059290798963567902, guid: 8beb7248c59e8d343906aaa6a4d8e3be, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
+      value: UnityEngine.GameObject, UnityEngine
+      objectReference: {fileID: 0}
+    - target: {fileID: 4059290798963567902, guid: 8beb7248c59e8d343906aaa6a4d8e3be, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_BoolArgument
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4059290798963567902, guid: 8beb7248c59e8d343906aaa6a4d8e3be, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_ObjectArgumentAssemblyTypeName
+      value: UnityEngine.Object, UnityEngine
+      objectReference: {fileID: 0}
     - target: {fileID: 8101441726720757484, guid: 8beb7248c59e8d343906aaa6a4d8e3be, type: 3}
       propertyPath: m_text
       value: Salariat
@@ -1270,7 +1290,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: 1039.7843, y: -15}
+  m_AnchoredPosition: {x: 1040.4138, y: -15}
   m_SizeDelta: {x: 66.12, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &727655283
@@ -2058,7 +2078,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: 1496.2064, y: -15}
+  m_AnchoredPosition: {x: 1497.1506, y: -15}
   m_SizeDelta: {x: 66.12, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1052962735
@@ -3790,7 +3810,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: 583.3621, y: -15}
+  m_AnchoredPosition: {x: 583.6769, y: -15}
   m_SizeDelta: {x: 66.12, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &2079047838
