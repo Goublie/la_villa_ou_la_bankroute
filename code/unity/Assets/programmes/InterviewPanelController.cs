@@ -17,9 +17,10 @@ public class InterviewPanelController : MonoBehaviour
     public GameData gameData;
 
     [Header("Screen references")]
-    public GameObject panelOffresEmploi;   // 'Panel_Offres_d'emploi'
-    public GameObject panelPosteActuel;    // 'Panel_Poste8actuel'
-    public GameObject panelActionsRapides; // 'Panel_Actions_Rapides'
+    public GameObject panelOffresEmploi;       // 'Panel_Offres_d'emploi'
+    public GameObject panelPosteActuel;        // 'Panel_Poste8actuel'
+    public GameObject panelActionsRapides;     // 'Panel_Actions_Rapides'
+    public GameObject panelPerformanceEmploye; // 'Panel_PerformanceEmploye' (kept in sync with the dashboard)
 
     [Header("Job satisfaction")]
     public JobSatisfactionController satisfactionController;
@@ -71,6 +72,7 @@ public class InterviewPanelController : MonoBehaviour
         gameObject.SetActive(false);
         if (panelPosteActuel != null) panelPosteActuel.SetActive(true);
         if (panelActionsRapides != null) panelActionsRapides.SetActive(true);
+        if (panelPerformanceEmploye != null) panelPerformanceEmploye.SetActive(true);
 
         // Update the job-satisfaction bar based on this offer's parameters.
         if (satisfactionController != null)

@@ -14,8 +14,9 @@ public class TravaillerPlusController : MonoBehaviour
     public Button boutonTravaillerPlusMain; // The existing "Travailler plus" button inside Panel_Actions_Rapides
     public Button boutonRetour;             // The back button inside this new panel
     public Button boutonOui;                // The "Oui" confirmation button inside this panel
-    public GameObject panelPosteActuel;     // Reference to Panel_Poste8actuel
-    public GameObject panelActionsRapides;  // Reference to Panel_Actions_Rapides
+    public GameObject panelPosteActuel;        // Reference to Panel_Poste8actuel
+    public GameObject panelActionsRapides;     // Reference to Panel_Actions_Rapides
+    public GameObject panelPerformanceEmploye; // Reference to Panel_PerformanceEmploye (kept in sync with the dashboard)
 
     [Header("Overtime references")]
     public JobSatisfactionController satisfactionController; // 'Panel_Satisfaction'
@@ -41,6 +42,7 @@ public class TravaillerPlusController : MonoBehaviour
 
         if (panelPosteActuel != null) panelPosteActuel.SetActive(true);
         if (panelActionsRapides != null) panelActionsRapides.SetActive(true);
+        if (panelPerformanceEmploye != null) panelPerformanceEmploye.SetActive(true);
     }
 
     /// <summary>
@@ -53,6 +55,7 @@ public class TravaillerPlusController : MonoBehaviour
         gameObject.SetActive(false);
         if (panelPosteActuel != null) panelPosteActuel.SetActive(true);
         if (panelActionsRapides != null) panelActionsRapides.SetActive(true);
+        if (panelPerformanceEmploye != null) panelPerformanceEmploye.SetActive(true);
 
         if (panelPosteActuel == null) return;
 

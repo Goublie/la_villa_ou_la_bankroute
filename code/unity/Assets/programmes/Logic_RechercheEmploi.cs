@@ -24,6 +24,7 @@ public class Logic_RechercheEmploi : MonoBehaviour
     private GameObject panelOffresEmploi;
     private GameObject panelActionsRapides;
     private GameObject panelPosteActuel;
+    private GameObject panelPerformanceEmploye;
 
     private Transform listeOffres;     // Container with the VerticalLayoutGroup
     private GameObject jobOfferTemplate; // The 'JobOffer_Item' used as a template
@@ -44,6 +45,8 @@ public class Logic_RechercheEmploi : MonoBehaviour
         panelOffresEmploi = FindChildGameObject("Panel_Offres_d'emploi");
         // The current-job panel is named 'Panel_Poste8actuel' in the prefab; match by prefix to be safe.
         panelPosteActuel = FindChildByPrefix("Panel_Poste");
+        // The performance card; its visibility is kept in sync with the current-job panel.
+        panelPerformanceEmploye = FindChildGameObject("Panel_PerformanceEmploye");
 
         // --- Cache the list container and the row template ---
         if (panelOffresEmploi != null)
@@ -91,6 +94,7 @@ public class Logic_RechercheEmploi : MonoBehaviour
         if (panelOffresEmploi != null) panelOffresEmploi.SetActive(false);
         if (panelActionsRapides != null) panelActionsRapides.SetActive(true);
         if (panelPosteActuel != null) panelPosteActuel.SetActive(true);
+        if (panelPerformanceEmploye != null) panelPerformanceEmploye.SetActive(true);
     }
 
     private void OnChercherEmploiClicked()
@@ -98,6 +102,7 @@ public class Logic_RechercheEmploi : MonoBehaviour
         // Hide the other two panels so the offers list takes the full screen.
         if (panelActionsRapides != null) panelActionsRapides.SetActive(false);
         if (panelPosteActuel != null) panelPosteActuel.SetActive(false);
+        if (panelPerformanceEmploye != null) panelPerformanceEmploye.SetActive(false);
 
         // Show the offers panel.
         if (panelOffresEmploi != null) panelOffresEmploi.SetActive(true);
