@@ -18,6 +18,9 @@ public class DemissionController : MonoBehaviour
     public Button boutonOui;
     public Button boutonNon;
 
+    [Header("Job satisfaction")]
+    public JobSatisfactionController satisfactionController;
+
     // Dashboard TMP fields inside 'panelPosteActuel'.
     private TMP_Text entrepriseText;
     private TMP_Text salaireText;
@@ -65,6 +68,10 @@ public class DemissionController : MonoBehaviour
         {
             gameData.salaire = new argent(0);
         }
+
+        // Reset the job-satisfaction bar to its empty state.
+        if (satisfactionController != null)
+            satisfactionController.ResetSatisfaction();
     }
 
     private TMP_Text FindText(Transform root, string childName)

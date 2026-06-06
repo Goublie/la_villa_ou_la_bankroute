@@ -21,6 +21,12 @@ public class InterviewPanelController : MonoBehaviour
     public GameObject panelPosteActuel;    // 'Panel_Poste8actuel'
     public GameObject panelActionsRapides; // 'Panel_Actions_Rapides'
 
+    [Header("Job satisfaction")]
+    public JobSatisfactionController satisfactionController;
+    [Range(1, 3)] public int stressStars;
+    [Range(1, 3)] public int prestigeStars;
+    [Range(1, 3)] public int equilibreStars;
+
     // Buttons inside this interview panel.
     private Button retourButton;
     private Button ouiButton;
@@ -65,6 +71,10 @@ public class InterviewPanelController : MonoBehaviour
         gameObject.SetActive(false);
         if (panelPosteActuel != null) panelPosteActuel.SetActive(true);
         if (panelActionsRapides != null) panelActionsRapides.SetActive(true);
+
+        // Update the job-satisfaction bar based on this offer's parameters.
+        if (satisfactionController != null)
+            satisfactionController.UpdateSatisfaction(stressStars, prestigeStars, equilibreStars);
 
         // Update the dashboard texts (label prefix preserved for readability).
         if (entrepriseText != null) entrepriseText.text = "Entreprise : " + companyName;
