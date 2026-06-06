@@ -72,15 +72,13 @@ public class InterviewPanelController : MonoBehaviour
         if (heuresText != null) heuresText.text = "Heures : 35 heures / semaine";
 
         // --- MISE À JOUR DE LA BANQUE (GAMEDATA) ---
+        // --- MISE À JOUR DE LA BANQUE (GAMEDATA) ---
         if (gameData != null)
         {
             int monthlySalary = GetMonthlySalary(jobSalary);
-            gameData.salaire = new argent(monthlySalary);
+            // On multiplie par 100 car la banque fonctionne en centimes !
+            gameData.salaire = new argent(monthlySalary * 100);
             Debug.Log("Nouveau salaire mensuel de " + monthlySalary + " enregistré dans GameData pour " + companyName);
-        }
-        else
-        {
-            Debug.LogWarning("Attention : Le fichier GameData n'est pas assigné dans l'Inspector pour " + gameObject.name);
         }
     }
 

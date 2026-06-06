@@ -1,46 +1,34 @@
 using UnityEngine;
-using TMPro; 
+using TMPro;
 
 public class HUDManager : MonoBehaviour
 {
-
     public GameData gameData;
-    public TextMeshProUGUI texteArgent;
+    public TextMeshProUGUI texteArgent; // C'est ta fameuse barre bleue centrale
     public TextMeshProUGUI texteEnergie;
     public TextMeshProUGUI texteSanteMentale;
 
-    void Start()
-    {
-        ActualiserAffichage();
-    }
-
-    void OnEnable()
-    {
-        gameData.comptes["courant"].OnSoldeModifie += ActualiserAffichage;
-        ActionPlay.moisPasse += ActualiserAffichage;
-    }
-
-   void OnDisable()
-    {
-        gameData.comptes["courant"].OnSoldeModifie -= ActualiserAffichage;
-        ActionPlay.moisPasse -= ActualiserAffichage;
-    }
-
-    // Fonction qui rafraîchit l'interface à l'écran
-    public void ActualiserAffichage()
+    // L'Update vérifie les données en permanence, l'affichage sera toujours en temps réel
+    void Update()
     {
         if (gameData == null) return;
 
         if (texteArgent != null)
         {
-            Debug.Log(gameData.comptes["courant"].GetSolde().ToString());
-            texteArgent.text = gameData.comptes["courant"].GetSolde().ToString();
+            // 1. On récupère le texte du salaire (ex: "4833,00 €")
+            string texteBrut = gameData.salaire.ToString();
+
+            // 2. On supprime TOUS les symboles '€' existants pour nettoyer la chaîne
+            string texteNettoye = texteBrut.Replace("€", "").Trim();
+
+            // 3. On affiche le score propre avec UN SEUL symbole € à la fin
+            texteArgent.text = texteNettoye + " €";
         }
 
-        if (texteEnergie != null) 
-            texteEnergie.text =  gameData.energie.ToString() + "%";
+        if (texteEnergie != null)
+            texteEnergie.text = gameData.energie.ToString() + "%";
 
-        if (texteSanteMentale != null) 
+        if (texteSanteMentale != null)
             texteSanteMentale.text = gameData.santeMentale.ToString() + "/100";
     }
 }

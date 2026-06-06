@@ -20,6 +20,7 @@ public class Logic_RechercheEmploi : MonoBehaviour
     }
 
     private Button chercherEmploiButton;
+    private Button boutonRetourMain;
     private GameObject panelOffresEmploi;
     private GameObject panelActionsRapides;
     private GameObject panelPosteActuel;
@@ -71,6 +72,25 @@ public class Logic_RechercheEmploi : MonoBehaviour
         {
             chercherEmploiButton.onClick.AddListener(OnChercherEmploiClicked);
         }
+
+        // --- Wire the 'back to dashboard' button (inside the offers panel) ---
+        if (panelOffresEmploi != null)
+        {
+            Transform retourBtn = panelOffresEmploi.transform.Find("Bouton_Retour_Main");
+            if (retourBtn != null)
+            {
+                boutonRetourMain = retourBtn.GetComponent<Button>();
+                boutonRetourMain.onClick.AddListener(OnRetourMainClicked);
+            }
+        }
+    }
+
+    private void OnRetourMainClicked()
+    {
+        // Hide the offers panel and restore the main dashboard.
+        if (panelOffresEmploi != null) panelOffresEmploi.SetActive(false);
+        if (panelActionsRapides != null) panelActionsRapides.SetActive(true);
+        if (panelPosteActuel != null) panelPosteActuel.SetActive(true);
     }
 
     private void OnChercherEmploiClicked()

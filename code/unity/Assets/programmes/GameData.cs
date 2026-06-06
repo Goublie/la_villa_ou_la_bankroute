@@ -7,7 +7,7 @@ public class GameData : ScriptableObject
 {
     public Dictionary<string, CompteBanquaire> comptes = new Dictionary<string, CompteBanquaire>(){{"courant",new CompteBanquaire()}};
 
-    public argent salaire = new argent(200000);
+    public argent salaire = new argent(0);
     public int energie = 100; 
     public int santeMentale = 100; 
     public int moisPasse = 0; 
