@@ -9,30 +9,54 @@ public class ActionPlay : MonoBehaviour
 
     public void Jouer()
     {
-        incrementerMois();
-        foreach (Investissement invest in gameData.investissements)
+        IncrementerMois();
+
+        if (gameData.investissements != null)
         {
-            invest.ComposerBenefices();
+            foreach (Investissement invest in gameData.investissements)
+            {
+                invest.ComposerBenefices();
+            }
         }
 
         // Vide l'historique de tous les comptes pour le nouveau mois
-        foreach (var compte in gameData.comptes.Values)
+        if (gameData.comptes != null)
         {
-            compte.ViderHistorique();
+            foreach (var compte in gameData.comptes.Values)
+            {
+                compte.ViderHistorique();
+            }
+            
+            // Donne un salaire au joueur
+            if (gameData.comptes.ContainsKey("courant"))
+            {
+                gameData.comptes["courant"].AjoutHistorique("salaire", gameData.salaire);
+            }
         }
 
-        //Donne un salaire au joueur
-        gameData.comptes["courant"].AjoutHistorique("salaire", gameData.salaire);
-
-        //Active les fontions d'affichage
+        // Active les fonctions d'affichage
         moisPasse?.Invoke();
     }
     
-    private void incrementerMois()
+    private void IncrementerMois()
     {
-        if (gameData != null)
+        if (gameData == null) return;
+
+        // Si on est en Décembre, on passe à Janvier et on change de scène
+        if (gameData.moisActuel == Mois.Decembre)
         {
-            gameData.moisPasse++;
+            gameData.moisActuel = Mois.Janvier;
+            Debug.Log("Fin d'année ! Appel du ScenesManager...");
+            if (ScenesManager.Instance != null)
+            {
+                ScenesManager.Instance.ChargerIntrospection();
+            }
+        }
+        else
+        {
+            // Sinon on passe au mois suivant
+            gameData.moisActuel = (Mois)((int)gameData.moisActuel + 1);
+            Debug.Log("Nouveau mois : " + gameData.moisActuel);
         }
     }
 }
