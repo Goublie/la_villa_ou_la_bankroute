@@ -30,6 +30,23 @@ public class JobSatisfactionController : MonoBehaviour
     }
 
     /// <summary>
+    /// Manually modify the satisfaction score by <paramref name="amount"/> (can be negative).
+    /// Adjusts the slider value directly, clamps it to [0, 100], and refreshes the
+    /// "X / 100" label and fill colour using the existing colour logic.
+    /// </summary>
+    public void ModifySatisfaction(int amount)
+    {
+        if (satisfactionSlider == null) return;
+
+        int score = Mathf.Clamp(Mathf.RoundToInt(satisfactionSlider.value) + amount, 0, 100);
+
+        satisfactionSlider.value = score;
+        if (valueText != null) valueText.text = score + " / 100";
+
+        SetFillColor(GetColorForScore(score));
+    }
+
+    /// <summary>
     /// Reset the bar to its empty/default state (value 0, "0 / 100", white fill).
     /// </summary>
     public void ResetSatisfaction()
