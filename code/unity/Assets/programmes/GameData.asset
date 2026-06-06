@@ -16,15 +16,6 @@ MonoBehaviour:
     centimes: 683300
   energie: 100
   santeMentale: 100
-  moisPasse: 1
-  investissements:
-  - sommeInvestie:
-      centimes: 101000
-    taux: 0.03
-    dureeMois: 12
-    moisEcoules: 1
-  - sommeInvestie:
-      centimes: 102000
-    taux: 0.03
-    dureeMois: 12
-    moisEcoules: 0
+  moisActuel: 6
+  moisPasse: 0
+  investissements: []
