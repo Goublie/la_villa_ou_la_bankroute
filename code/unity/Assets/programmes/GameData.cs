@@ -16,7 +16,7 @@ public class GameData : ScriptableObject
     public argent salaire = new argent(0);
     public int energie = 100; 
     public int santeMentale = 100; 
-    public int moisPasse = 0; 
+    public int nombreMoisPasses = 0; 
     public Mois moisActuel = Mois.Juillet; // Le jeu commence en Juillet
 
     public List<Investissement> investissements = new List<Investissement>(); // Liste des investissements du joueur

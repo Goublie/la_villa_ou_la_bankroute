@@ -14,12 +14,12 @@ public class SliderAvecTexte : MonoBehaviour
 
     void OnEnable()
     {
-        ActionPlay.moisPasse += RecupSolde;
+        ActionPlay.OnMoisPasse += RecupSolde;
     }
     
     void OnDisable()
     {
-        ActionPlay.moisPasse -= RecupSolde;
+        ActionPlay.OnMoisPasse -= RecupSolde;
     }
     
     void Start()

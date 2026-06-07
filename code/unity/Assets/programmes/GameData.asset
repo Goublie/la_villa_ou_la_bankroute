@@ -17,5 +17,5 @@ MonoBehaviour:
   energie: 100
   santeMentale: 100
   moisActuel: 6
-  moisPasse: 0
+  nombreMoisPasses: 0
   investissements: []
