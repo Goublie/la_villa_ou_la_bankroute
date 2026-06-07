@@ -3242,6 +3242,8 @@ GameObject:
   - component: {fileID: 265037901173856421}
   - component: {fileID: 4739329408261204044}
   - component: {fileID: 8317814606769934376}
+  - component: {fileID: 3122428105437290878}
+  - component: {fileID: 7956722579182509173}
   m_Layer: 0
   m_Name: Panel_PerformanceEmploye
   m_TagString: Untagged
@@ -3354,6 +3356,51 @@ MonoBehaviour:
   experienceValueText: {fileID: 1454644179945341287}
   fatigueValueText: {fileID: 3947490411868193373}
   burnoutValueText: {fileID: 3300608856664281303}
+--- !u!114 &3122428105437290878
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1556368309219147310}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b9ce783e93156fe4b9ad5ea476cabbc7, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::InterviewPanelController
+  companyName: 
+  jobSalary: 
+  gameData: {fileID: 0}
+  panelOffresEmploi: {fileID: 0}
+  panelPosteActuel: {fileID: 0}
+  panelActionsRapides: {fileID: 0}
+  panelPerformanceEmploye: {fileID: 0}
+  performanceController: {fileID: 0}
+  satisfactionController: {fileID: 0}
+  stressStars: 1
+  prestigeStars: 1
+  equilibreStars: 1
+--- !u!114 &7956722579182509173
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1556368309219147310}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 94a6795d8282dba4e8553e06daf4e533, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::TravaillerPlusController
+  boutonTravaillerPlusMain: {fileID: 0}
+  boutonRetour: {fileID: 0}
+  boutonOui: {fileID: 0}
+  panelPosteActuel: {fileID: 0}
+  panelActionsRapides: {fileID: 0}
+  panelPerformanceEmploye: {fileID: 0}
+  satisfactionController: {fileID: 0}
+  interviewController: {fileID: 0}
+  performanceController: {fileID: 0}
 --- !u!1 &1609639203521031309
 GameObject:
   m_ObjectHideFlags: 0
@@ -7791,6 +7838,7 @@ MonoBehaviour:
   panelPerformanceEmploye: {fileID: 1556368309219147310}
   satisfactionController: {fileID: 3085151020277163389}
   interviewController: {fileID: 8410254274568364937}
+  performanceController: {fileID: 8317814606769934376}
 --- !u!1 &3504547823478328791
 GameObject:
   m_ObjectHideFlags: 0
@@ -11511,6 +11559,7 @@ MonoBehaviour:
   panelPosteActuel: {fileID: 6090596731943293487}
   panelActionsRapides: {fileID: 616806297377829641}
   panelPerformanceEmploye: {fileID: 1556368309219147310}
+  performanceController: {fileID: 8317814606769934376}
   satisfactionController: {fileID: 3085151020277163389}
   stressStars: 2
   prestigeStars: 2
@@ -12964,6 +13013,7 @@ MonoBehaviour:
   panelPosteActuel: {fileID: 6090596731943293487}
   panelActionsRapides: {fileID: 616806297377829641}
   panelPerformanceEmploye: {fileID: 1556368309219147310}
+  performanceController: {fileID: 8317814606769934376}
   satisfactionController: {fileID: 3085151020277163389}
   stressStars: 3
   prestigeStars: 1
@@ -15366,6 +15416,7 @@ MonoBehaviour:
   panelPosteActuel: {fileID: 6090596731943293487}
   panelActionsRapides: {fileID: 616806297377829641}
   panelPerformanceEmploye: {fileID: 1556368309219147310}
+  performanceController: {fileID: 8317814606769934376}
   satisfactionController: {fileID: 3085151020277163389}
   stressStars: 3
   prestigeStars: 3
@@ -18661,6 +18712,7 @@ MonoBehaviour:
   panelPosteActuel: {fileID: 6090596731943293487}
   panelActionsRapides: {fileID: 616806297377829641}
   panelPerformanceEmploye: {fileID: 1556368309219147310}
+  performanceController: {fileID: 8317814606769934376}
   satisfactionController: {fileID: 3085151020277163389}
   stressStars: 3
   prestigeStars: 3

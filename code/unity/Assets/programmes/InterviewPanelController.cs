@@ -22,6 +22,9 @@ public class InterviewPanelController : MonoBehaviour
     public GameObject panelActionsRapides;     // 'Panel_Actions_Rapides'
     public GameObject panelPerformanceEmploye; // 'Panel_PerformanceEmploye' (kept in sync with the dashboard)
 
+    [Header("Employee performance")]
+    public EmployeePerformanceController performanceController; // 'Panel_PerformanceEmploye' controller
+
     [Header("Job satisfaction")]
     public JobSatisfactionController satisfactionController;
     [Range(1, 3)] public int stressStars;
@@ -77,6 +80,10 @@ public class InterviewPanelController : MonoBehaviour
         // Update the job-satisfaction bar based on this offer's parameters.
         if (satisfactionController != null)
             satisfactionController.UpdateSatisfaction(stressStars, prestigeStars, equilibreStars);
+
+        // Start tracking employee performance for this new job (default 35h/week).
+        if (performanceController != null)
+            performanceController.StartNewJob(stressStars, 35);
 
         // Update the dashboard texts (label prefix preserved for readability).
         if (entrepriseText != null) entrepriseText.text = "Entreprise : " + companyName;

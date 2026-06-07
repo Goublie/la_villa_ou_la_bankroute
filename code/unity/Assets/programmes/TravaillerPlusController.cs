@@ -21,6 +21,7 @@ public class TravaillerPlusController : MonoBehaviour
     [Header("Overtime references")]
     public JobSatisfactionController satisfactionController; // 'Panel_Satisfaction'
     public InterviewPanelController interviewController;     // Provides access to GameData (the bank)
+    public EmployeePerformanceController performanceController; // 'Panel_PerformanceEmploye' controller
 
     private void Start()
     {
@@ -70,6 +71,10 @@ public class TravaillerPlusController : MonoBehaviour
 
         if (heuresText != null)
             heuresText.text = "Heures : " + newHours + " heures / semaine";
+
+        // Keep the employee-performance controller's hours in sync.
+        if (performanceController != null)
+            performanceController.UpdateJobHours(newHours);
 
         // --- Salary: scale proportionally with the hours increase ---
         if (salaireText != null)
