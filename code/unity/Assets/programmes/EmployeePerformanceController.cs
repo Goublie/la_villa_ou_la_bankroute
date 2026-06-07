@@ -20,6 +20,16 @@ public class EmployeePerformanceController : MonoBehaviour
     public TextMeshProUGUI fatigueValueText;    // 'Valeur_Fatigue'
     public TextMeshProUGUI burnoutValueText;    // 'Valeur_Burnout'
 
+    [Header("Burn-out game over")]
+    public GameObject panelBurnoutGameOver; // 'Panel_BurnoutGameOver'
+    public GameObject panelPosteActuel;     // 'Panel_Poste8actuel'
+    public GameObject panelActionsRapides;  // 'Panel_Actions_Rapides'
+
+    [Header("Salary negotiation")]
+    public GameObject panelNegociationSalaire; // 'Panel_NegociationSalaire'
+    public GameData gameData;                   // Shared game-state ScriptableObject (bank/salary)
+    public TextMeshProUGUI texteSalaireAnnuelBrut; // Yearly gross salary label in 'Panel_Poste8actuel'
+
     // --- Current actual stat values (0-100) ---
     private int experienceScore;
     private int fatigueScore;
@@ -90,15 +100,21 @@ public class EmployeePerformanceController : MonoBehaviour
 
         if (monthsAtCurrentJob % 5 == 0)
         {
-            experienceScore += 15;
-
-            if (currentJobStress == 2) burnoutScore += 5;
-            if (currentJobStress >= 3) burnoutScore += 10;
-
-            if (currentJobHours >= 45)
+            // Hours-based progression rules. Burn-out is no longer affected by
+            // job stress or hours: it only rises when fatigue is maxed out (above).
+            if (currentJobHours < 40)
+            {
+                experienceScore += 10;
+            }
+            else if (currentJobHours == 40)
             {
                 fatigueScore += 10;
-                burnoutScore += 5;
+                experienceScore += 15;
+            }
+            else if (currentJobHours >= 45)
+            {
+                fatigueScore += 20;
+                experienceScore += 20;
             }
         }
 
@@ -107,6 +123,87 @@ public class EmployeePerformanceController : MonoBehaviour
         burnoutScore = Mathf.Clamp(burnoutScore, 0, 100);
 
         RefreshUI();
+
+        if (burnoutScore >= 100)
+        {
+            TriggerBurnout();
+        }
+    }
+
+    /// <summary>
+    /// Burn-out game over: shows the popup and hides the dashboard panels
+    /// (including this performance card).
+    /// </summary>
+    private void TriggerBurnout()
+    {
+        if (panelBurnoutGameOver != null) panelBurnoutGameOver.SetActive(true);
+        if (panelPosteActuel != null) panelPosteActuel.SetActive(false);
+        if (panelActionsRapides != null) panelActionsRapides.SetActive(false);
+        gameObject.SetActive(false);
+    }
+
+    /// <summary>
+    /// Wired to 'Bouton_RetourBurnout'. Closes the popup, fully resets the job
+    /// state (experience is preserved) and restores the dashboard panels.
+    /// </summary>
+    public void OnBurnoutRetourClicked()
+    {
+        if (panelBurnoutGameOver != null) panelBurnoutGameOver.SetActive(false);
+
+        hasJob = false;
+        monthsAtCurrentJob = 0;
+        fatigueScore = 20;
+        burnoutScore = 0;
+        currentJobHours = 0;
+        // Experience remains accumulated.
+
+        RefreshUI();
+
+        if (panelPosteActuel != null) panelPosteActuel.SetActive(true);
+        if (panelActionsRapides != null) panelActionsRapides.SetActive(true);
+        gameObject.SetActive(true);
+    }
+
+    /// <summary>
+    /// Wired to the main 'Bouton Négocier salaire'. Only opens the negotiation
+    /// panel when the employee is experienced enough (experience strictly above 70).
+    /// </summary>
+    public void OnNegocierSalaireClicked()
+    {
+        if (experienceScore > 70)
+        {
+            if (panelNegociationSalaire != null) panelNegociationSalaire.SetActive(true);
+        }
+    }
+
+    /// <summary>Wired to the negotiation panel buttons. Closes 'Panel_NegociationSalaire'.</summary>
+    public void CloseNegociationPanel()
+    {
+        if (panelNegociationSalaire != null) panelNegociationSalaire.SetActive(false);
+    }
+
+    /// <summary>
+    /// Wired to 'Bouton_AccepterNegociation'. Raises the monthly salary by 600 €,
+    /// refreshes the yearly-gross label (monthly × 12) and closes the panel.
+    /// Note: <see cref="GameData.salaire"/> is an <see cref="argent"/> value stored
+    /// in centimes, so +600 € is added via the float constructor (60000 centimes).
+    /// </summary>
+    public void OnAccepterNegociationClicked()
+    {
+        if (gameData != null)
+        {
+            // +600 € — the float ctor converts euros to centimes (600 * 100).
+            gameData.salaire += new argent(600f);
+
+            if (texteSalaireAnnuelBrut != null)
+            {
+                // Yearly gross = monthly × 12, converted from centimes to euros.
+                decimal yearlyEuros = (gameData.salaire.centimes * 12) / 100m;
+                texteSalaireAnnuelBrut.text = yearlyEuros.ToString("N0") + " €";
+            }
+        }
+
+        if (panelNegociationSalaire != null) panelNegociationSalaire.SetActive(false);
     }
 
     /// <summary>Pushes the current score values onto the sliders and labels.</summary>
