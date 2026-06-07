@@ -17,6 +17,16 @@ public class ActionPlay : MonoBehaviour
         OnMoisPasse = null;
     }
 
+    private void Start()
+    {
+        // Si aucun snapshot n'est enregistré (lancement de la partie), on prend la photo de départ (Mois 0 / juillet 2026)
+        if (gameData != null && gameData.historiqueSnapshots != null && gameData.historiqueSnapshots.Count == 0)
+        {
+            EnregistrerSnapshot();
+            Debug.Log("[What-If] Photographie de l'état initial enregistrée.");
+        }
+    }
+
     // Fonction principale appelée par le bouton pour terminer le mois en cours et jouer le suivant.
     public void Jouer()
     {
@@ -28,6 +38,9 @@ public class ActionPlay : MonoBehaviour
                 invest.ComposerBenefices();
             }
         }
+
+        // Prise de la photographie de fin de mois (juste avant le passage au mois suivant et le nettoyage des historiques)
+        EnregistrerSnapshot();
 
         //Passage officiel au mois calendrier suivant et incrémentation du compteur de temps global
         IncrementerMois();
@@ -52,6 +65,16 @@ public class ActionPlay : MonoBehaviour
         OnMoisPasse?.Invoke();
     }
     
+    // Enregistre un instantané de l'état actuel de la partie
+    private void EnregistrerSnapshot()
+    {
+        if (gameData != null && gameData.historiqueSnapshots != null)
+        {
+            SnapshotEtatJeu snapshot = new SnapshotEtatJeu(gameData);
+            gameData.historiqueSnapshots.Add(snapshot);
+        }
+    }
+
     // Incrémente le mois calendrier. Si le joueur termine le mois de décembre, 
     // déclenche un bilan de fin d'année (introspection) et réinitialise à janvier.
     private void IncrementerMois()

@@ -20,5 +20,5 @@ public class GameData : ScriptableObject
     public Mois moisActuel = Mois.Juillet; // Le jeu commence en Juillet
 
     public List<Investissement> investissements = new List<Investissement>(); // Liste des investissements du joueur
-
+    public List<SnapshotEtatJeu> historiqueSnapshots = new List<SnapshotEtatJeu>(); // Historique des photographies mensuelles du jeu pour le mode What-if
 }
