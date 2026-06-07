@@ -20,9 +20,24 @@ public class EpargneUI : MonoBehaviour
 
     void Start()
     {
-        G.comptes.Add("epargne",new Epargne(0.03f,12));
-        epgn = (Epargne)G.comptes["epargne"];
-        G.investissements.Add(epgn.invest);
+        // On vérifie si le compte d'épargne existe déjà dans les données globales du jeu (ScriptableObject)
+        // afin d'éviter une exception de clé dupliquée (ArgumentException) et de conserver le solde existant
+        // lors des ouvertures répétées de l'interface ou des rechargements de scène.
+        if (!G.comptes.ContainsKey("epargne"))
+        {
+            // Initialisation du compte d'épargne en passant la référence de GameData (G) pour la courbe de taux.
+            // On fournit 0.0175f (1.75%) comme taux d'intérêt initial réglementé de juillet 2026.
+            G.comptes.Add("epargne", new Epargne(G, 0.0175f, 12));
+            epgn = (Epargne)G.comptes["epargne"];
+            
+            // Ajout du produit d'épargne à la liste globale des investissements pour le calcul mensuel des intérêts
+            G.investissements.Add(epgn.invest);
+        }
+        else
+        {
+            epgn = (Epargne)G.comptes["epargne"];
+        }
+
         ActualiserAffichage();
     }
 
@@ -153,11 +168,11 @@ public class EpargneUI : MonoBehaviour
 
     void OnEnable()
     {
-        ActionPlay.moisPasse += ActualiserAffichage;
+        ActionPlay.OnMoisPasse += ActualiserAffichage;
     }
 
     private void OnDisable()
     {
-        ActionPlay.moisPasse -= ActualiserAffichage;
+        ActionPlay.OnMoisPasse -= ActualiserAffichage;
     }
 }
