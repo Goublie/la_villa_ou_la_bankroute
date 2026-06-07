@@ -49,7 +49,7 @@ public class SnapshotEtatJeu
                     long sommeTransactionsOriginales = 0;
                     foreach (Transaction t in transactions)
                     {
-                        if (t != null && t.montant != null)
+                        if (t != null)
                         {
                             sommeTransactionsOriginales += t.montant.centimes;
                         }
