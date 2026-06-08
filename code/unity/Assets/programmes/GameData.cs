@@ -11,7 +11,7 @@ using System.Collections.Generic;
 [CreateAssetMenu(fileName = "GameData", menuName = "Scriptable Objects/GameData")]
 public class GameData : ScriptableObject
 {
-    public Dictionary<string, CompteBanquaire> comptes = new Dictionary<string, CompteBanquaire>(){{"courant",new CompteBanquaire()}};
+    public Dictionary<string, CompteBanquaire> comptes = new Dictionary<string, CompteBanquaire>(){{"courant",new CompteBanquaire(new argent(100000))}};
 
     public argent salaire = new argent(0);
     public int energie = 100; 
