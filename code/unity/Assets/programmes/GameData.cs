@@ -20,7 +20,7 @@ public class GameData : ScriptableObject
     /// </summary>
     public void ResetData()
     {
-        salaire = 0;
+        salaire = new argent(0);
         energie = 100;
         santeMentale = 100;
         nombreMoisPasses = 0;

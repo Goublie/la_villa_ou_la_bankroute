@@ -27,7 +27,7 @@ public class ActionPlay : MonoBehaviour
     {
         if (gameData != null)
         {
-            gameData.moisPasse++;
+            gameData.nombreMoisPasses++;
         }
     }
 }
