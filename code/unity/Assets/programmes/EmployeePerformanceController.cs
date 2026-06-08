@@ -53,12 +53,12 @@ public class EmployeePerformanceController : MonoBehaviour
 
     private void OnEnable()
     {
-        ActionPlay.moisPasse += OnMonthPassed;
+        ActionPlay.OnMoisPasse += OnMonthPassed;
     }
 
     private void OnDisable()
     {
-        ActionPlay.moisPasse -= OnMonthPassed;
+        ActionPlay.OnMoisPasse -= OnMonthPassed;
     }
 
     /// <summary>
@@ -86,7 +86,7 @@ public class EmployeePerformanceController : MonoBehaviour
     }
 
     /// <summary>
-    /// Observer callback fired by <see cref="ActionPlay.moisPasse"/> every month.
+    /// Observer callback fired by <see cref="ActionPlay.OnMoisPasse"/> every month.
     /// Advances the employee's stats based on tenure, stress and hours worked.
     /// </summary>
     private void OnMonthPassed()
