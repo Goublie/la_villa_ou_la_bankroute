@@ -343,8 +343,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ee96f2c321fb02a42a3251416be6975f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Menu_du_jeu
-  playButton: {fileID: 1836208255}
-  quitButton: {fileID: 126238183}
 --- !u!114 &9689047
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -358,9 +356,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Audio_Manager
   musicSource: {fileID: 1339880957}
-  SFXSource: {fileID: 1339880957}
-  musiqueMenu: {fileID: 8300000, guid: 0aaf933609daba14bb48b1feaedafc4b, type: 3}
-  musiqueJeu: {fileID: 8300000, guid: e793c0e2fdff3b64a9e482ecdc8f3c7c, type: 3}
+  SFXSource: {fileID: 2014858829}
+  musiqueMenu: {fileID: 0}
+  musiqueJeu: {fileID: 0}
   appuier_boutton: {fileID: 8300000, guid: 07b30aa261102ec4294d27012db21cd2, type: 3}
   playButton: {fileID: 0}
   optionsButton: {fileID: 0}
@@ -741,6 +739,52 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 471883898}
   m_CullTransparentMesh: 1
+--- !u!1 &589448574
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 589448576}
+  - component: {fileID: 589448575}
+  m_Layer: 0
+  m_Name: SceneManager
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &589448575
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 589448574}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0b8e42952d597a84ebecada020f6b1e4, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::ScenesManager
+  G: {fileID: 0}
+  gameData: {fileID: 11400000, guid: 00f9a2cc968a86847bacedddfcfe8be5, type: 2}
+--- !u!4 &589448576
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 589448574}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 533.80383, y: 323.9895, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &816999341
 GameObject:
   m_ObjectHideFlags: 0
@@ -858,8 +902,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ee96f2c321fb02a42a3251416be6975f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Menu_du_jeu
-  playButton: {fileID: 1836208255}
-  quitButton: {fileID: 126238183}
 --- !u!114 &816999347
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1048,8 +1090,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ee96f2c321fb02a42a3251416be6975f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Menu_du_jeu
-  playButton: {fileID: 1836208255}
-  quitButton: {fileID: 126238183}
 --- !u!1 &1112268598
 GameObject:
   m_ObjectHideFlags: 0
@@ -1772,9 +1812,9 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 907710339}
-        m_TargetAssemblyTypeName: Menu_du_jeu, Assembly-CSharp
-        m_MethodName: StartGame
+      - m_Target: {fileID: 589448575}
+        m_TargetAssemblyTypeName: ScenesManager, Assembly-CSharp
+        m_MethodName: ChargerJeu
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -2109,3 +2149,4 @@ SceneRoots:
   - {fileID: 1112268601}
   - {fileID: 9689045}
   - {fileID: 1575519854}
+  - {fileID: 589448576}

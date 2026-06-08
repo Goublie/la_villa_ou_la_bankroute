@@ -12,10 +12,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c7652c5011b5cd84b90b9f01a8aeb942, type: 3}
   m_Name: GameData
   m_EditorClassIdentifier: Assembly-CSharp::GameData
-  salaire:
-    centimes: 200000
+  salaire: 0
   energie: 100
   santeMentale: 100
-  moisActuel: 6
-  moisPasse: 0
-  investissements: []
+  nombreMoisPasses: 0
+  investissements:
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
