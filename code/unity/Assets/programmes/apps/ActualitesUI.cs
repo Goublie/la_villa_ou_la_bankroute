@@ -52,7 +52,6 @@ public class ActualitesUI : MonoBehaviour
 
     void Start()
     {
-        InitialiserActualitesDeTest();
         ConfigurerNavigation();
         GenererBoutonsCategories();
         AfficherActualites();
