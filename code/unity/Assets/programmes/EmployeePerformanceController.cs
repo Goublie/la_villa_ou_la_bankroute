@@ -221,15 +221,15 @@ public class EmployeePerformanceController : MonoBehaviour
     /// </summary>
     public void OnAccepterNegociationClicked()
     {
-        if (gameData != null)
+        if (gameData != null && gameData.joueur != null)
         {
             // +600 € — the float ctor converts euros to centimes (600 * 100).
-            gameData.salaire += new argent(600f);
+            gameData.joueur.salaire += new argent(600f);
 
             if (texteSalaireAnnuelBrut != null)
             {
                 // Yearly gross = monthly × 12, converted from centimes to euros.
-                texteSalaireAnnuelBrut.text = "Salaire : " + (gameData.salaire * 12).ToString("N0") + "€ / an";
+                texteSalaireAnnuelBrut.text = "Salaire : " + (gameData.joueur.salaire * 12).ToString("N0") + "€ / an";
             }
         }
 

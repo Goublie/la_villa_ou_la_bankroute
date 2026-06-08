@@ -94,11 +94,11 @@ public class InterviewPanelController : MonoBehaviour
 
         // --- MISE À JOUR DE LA BANQUE (GAMEDATA) ---
         // --- MISE À JOUR DE LA BANQUE (GAMEDATA) ---
-        if (gameData != null)
+        if (gameData != null && gameData.joueur != null)
         {
             int monthlySalary = GetMonthlySalary(jobSalary);
             // On multiplie par 100 car la banque fonctionne en centimes !
-            gameData.salaire = new argent(monthlySalary * 100);
+            gameData.joueur.salaire = new argent(monthlySalary * 100);
             Debug.Log("Nouveau salaire mensuel de " + monthlySalary + " enregistré dans GameData pour " + companyName);
         }
     }

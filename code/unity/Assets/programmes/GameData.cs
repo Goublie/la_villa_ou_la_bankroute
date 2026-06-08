@@ -11,15 +11,24 @@ using System.Collections.Generic;
 [CreateAssetMenu(fileName = "GameData", menuName = "Scriptable Objects/GameData")]
 public class GameData : ScriptableObject
 {
-    public Dictionary<string, CompteBanquaire> comptes = new Dictionary<string, CompteBanquaire>(){{"courant",new CompteBanquaire(new argent(100000))}};
+    public DonneesJoueur joueur = new DonneesJoueur();
+    public DonneesEnvironnement env = new DonneesEnvironnement();
 
-    public argent salaire = new argent(0);
-    public int energie = 100; 
-    public int santeMentale = 100; 
     public int nombreMoisPasses = 0; 
     public Mois moisActuel = Mois.Juillet; // Le jeu commence en Juillet
-    public List<Investissement> investissements = new List<Investissement>(); // Liste des investissements du joueur
     public List<SnapshotEtatJeu> historiqueSnapshots = new List<SnapshotEtatJeu>(); // Historique des photographies mensuelles du jeu pour le mode What-if
+    
+    private void OnEnable()
+    {
+        if (joueur == null)
+        {
+            joueur = new DonneesJoueur();
+        }
+        if (env == null)
+        {
+            env = new DonneesEnvironnement();
+        }
+    }
     
     /// <summary>
     /// Réinitialise toutes les données de jeu à leur état par défaut.
@@ -27,9 +36,10 @@ public class GameData : ScriptableObject
     /// </summary>
     public void ResetData()
     {
-        comptes.Clear();
-        comptes = new Dictionary<string, CompteBanquaire>(){{"courant",new CompteBanquaire()}};
-        salaire = new argent(0);
+        joueur = new DonneesJoueur();
+        env = new DonneesEnvironnement();
         nombreMoisPasses = 0;
+        moisActuel = Mois.Juillet;
+        historiqueSnapshots.Clear();
     }
 }

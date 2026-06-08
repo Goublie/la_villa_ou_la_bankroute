@@ -16,13 +16,13 @@ public class HUDManager : MonoBehaviour
 
     void OnEnable()
     {
-        gameData.comptes["courant"].OnSoldeModifie += ActualiserAffichage;
+        gameData.joueur.comptes["courant"].OnSoldeModifie += ActualiserAffichage;
         ActionPlay.OnMoisPasse += ActualiserAffichage;
     }
 
    void OnDisable()
     {
-        gameData.comptes["courant"].OnSoldeModifie -= ActualiserAffichage;
+        gameData.joueur.comptes["courant"].OnSoldeModifie -= ActualiserAffichage;
         ActionPlay.OnMoisPasse -= ActualiserAffichage;
     }
 
@@ -31,16 +31,16 @@ public class HUDManager : MonoBehaviour
     {
         if (gameData == null) return;
 
-        if (texteArgent != null)
+        if (texteArgent != null && gameData.joueur != null && gameData.joueur.comptes != null && gameData.joueur.comptes.ContainsKey("courant"))
         {
-            Debug.Log(gameData.comptes["courant"].GetSolde().ToString());
-            texteArgent.text = gameData.comptes["courant"].GetSolde().ToString();
+            Debug.Log(gameData.joueur.comptes["courant"].GetSolde().ToString());
+            texteArgent.text = gameData.joueur.comptes["courant"].GetSolde().ToString();
         }
 
-        if (texteEnergie != null) 
-            texteEnergie.text =  gameData.energie.ToString() + "%";
+        if (texteEnergie != null && gameData.joueur != null) 
+            texteEnergie.text =  gameData.joueur.energie.ToString() + "%";
 
-        if (texteSanteMentale != null) 
-            texteSanteMentale.text = gameData.santeMentale.ToString() + "/100";
+        if (texteSanteMentale != null && gameData.joueur != null) 
+            texteSanteMentale.text = gameData.joueur.santeMentale.ToString() + "/100";
     }
 }

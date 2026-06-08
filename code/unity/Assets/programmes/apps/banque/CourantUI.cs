@@ -12,7 +12,7 @@ public class CourantUI : MonoBehaviour
 
     void Awake()
     {
-        compteCrnt = G.comptes["courant"];
+        compteCrnt = G.joueur.comptes["courant"];
     }
 
     void OnEnable()

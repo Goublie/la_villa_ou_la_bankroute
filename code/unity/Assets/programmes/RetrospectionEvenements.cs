@@ -47,9 +47,9 @@ public class RetrospectionEvenements : MonoBehaviour
 
         // Calcul des intérêts perçus réellement par le joueur
         long interetsReels = 0;
-        if (gameData.comptes.ContainsKey("epargne"))
+        if (gameData.joueur != null && gameData.joueur.comptes != null && gameData.joueur.comptes.ContainsKey("epargne"))
         {
-            foreach (Transaction t in gameData.comptes["epargne"].GetHistorique().GetHistorique())
+            foreach (Transaction t in gameData.joueur.comptes["epargne"].GetHistorique().GetHistorique())
             {
                 if (t.libelle == "interets")
                 {

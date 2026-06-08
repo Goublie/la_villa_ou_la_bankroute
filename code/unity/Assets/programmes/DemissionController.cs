@@ -84,9 +84,9 @@ public class DemissionController : MonoBehaviour
         if (heuresText != null) heuresText.text = "Heures : 0 heures / semaine";
 
         // Zero out the salary in the bank/game data.
-        if (gameData != null)
+        if (gameData != null && gameData.joueur != null)
         {
-            gameData.salaire = new argent(0);
+            gameData.joueur.salaire = new argent(0);
         }
 
         // Reset the job-satisfaction bar to its empty state.

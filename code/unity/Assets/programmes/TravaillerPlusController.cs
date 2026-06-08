@@ -75,15 +75,15 @@ public class TravaillerPlusController : MonoBehaviour
         performanceController.UpdateJobHours(performanceController.currentJobHours + 5);
 
         // 2. Increase the monthly gross salary by 800 € (yearly gross rises by 800 * 12).
-        performanceController.gameData.salaire += 800;
+        performanceController.gameData.joueur.salaire += 800;
 
         // 3. Refresh all UI text components (standardized formats).
         if (texteHeuresTravail != null)
             texteHeuresTravail.text = "Heures : " + performanceController.currentJobHours + " heures / semaine";
         if (performanceController.texteSalaireAnnuelBrut != null)
-            performanceController.texteSalaireAnnuelBrut.text = "Salaire : " + (performanceController.gameData.salaire * 12).ToString("N0") + "€ / an";
+            performanceController.texteSalaireAnnuelBrut.text = "Salaire : " + (performanceController.gameData.joueur.salaire * 12).ToString("N0") + "€ / an";
         if (texteSalaireTaskbar != null)
-            texteSalaireTaskbar.text = performanceController.gameData.salaire.ToString("F2") + " €";
+            texteSalaireTaskbar.text = performanceController.gameData.joueur.salaire.ToString("F2") + " €";
 
         // 4. Working more lowers job satisfaction (clamped 0-100 inside the controller).
         if (satisfactionController != null) satisfactionController.ModifySatisfaction(-15);
@@ -111,15 +111,15 @@ public class TravaillerPlusController : MonoBehaviour
         performanceController.UpdateJobHours(performanceController.currentJobHours - 5);
 
         // 2. Reduce the monthly gross salary by 800 € (yearly gross drops by 800 * 12).
-        performanceController.gameData.salaire -= 800;
+        performanceController.gameData.joueur.salaire -= 800;
 
         // 3. Refresh all UI text components (standardized formats).
         if (texteHeuresTravail != null)
             texteHeuresTravail.text = "Heures : " + performanceController.currentJobHours + " heures / semaine";
         if (performanceController.texteSalaireAnnuelBrut != null)
-            performanceController.texteSalaireAnnuelBrut.text = "Salaire : " + (performanceController.gameData.salaire * 12).ToString("N0") + "€ / an";
+            performanceController.texteSalaireAnnuelBrut.text = "Salaire : " + (performanceController.gameData.joueur.salaire * 12).ToString("N0") + "€ / an";
         if (texteSalaireTaskbar != null)
-            texteSalaireTaskbar.text = performanceController.gameData.salaire.ToString("F2") + " €";
+            texteSalaireTaskbar.text = performanceController.gameData.joueur.salaire.ToString("F2") + " €";
 
         // 4. Working less improves job satisfaction (clamped 0-100 inside the controller).
         if (satisfactionController != null) satisfactionController.ModifySatisfaction(15);

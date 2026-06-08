@@ -139,8 +139,8 @@ public class EntrepreneuriatUI : MonoBehaviour
             return;
         }
 
-        gameData.energie += 30;
-        gameData.santeMentale += 25;
+        gameData.joueur.energie += 30;
+        gameData.joueur.santeMentale += 25;
         TerminerAction("Le fondateur récupère de l'énergie et de la clarté.");
     }
 
@@ -156,13 +156,13 @@ public class EntrepreneuriatUI : MonoBehaviour
 
         if (energieText != null)
         {
-            energieText.text = "Énergie : " + (gameData != null ? gameData.energie + "/100" : "indisponible");
+            energieText.text = "Énergie : " + (gameData != null && gameData.joueur != null ? gameData.joueur.energie + "/100" : "indisponible");
         }
 
         if (santeMentaleText != null)
         {
             santeMentaleText.text = "Santé mentale : " +
-                (gameData != null ? gameData.santeMentale + "/100" : "indisponible");
+                (gameData != null && gameData.joueur != null ? gameData.joueur.santeMentale + "/100" : "indisponible");
         }
 
         if (progressionProduitText != null)
@@ -200,20 +200,20 @@ public class EntrepreneuriatUI : MonoBehaviour
             return false;
         }
 
-        if (gameData.energie < energieNecessaire)
+        if (gameData.joueur.energie < energieNecessaire)
         {
             TerminerAction("Énergie insuffisante pour cette action.");
             return false;
         }
 
-        if (gameData.santeMentale < santeMentaleNecessaire)
+        if (gameData.joueur.santeMentale < santeMentaleNecessaire)
         {
             TerminerAction("Santé mentale insuffisante pour cette action.");
             return false;
         }
 
-        gameData.energie -= energieNecessaire;
-        gameData.santeMentale -= santeMentaleNecessaire;
+        gameData.joueur.energie -= energieNecessaire;
+        gameData.joueur.santeMentale -= santeMentaleNecessaire;
         return true;
     }
 
@@ -242,12 +242,12 @@ public class EntrepreneuriatUI : MonoBehaviour
             return true;
         }
 
-        if (gameData == null || gameData.comptes == null)
+        if (gameData == null || gameData.joueur == null || gameData.joueur.comptes == null)
         {
             return false;
         }
 
-        return gameData.comptes.TryGetValue("courant", out compteCourant) && compteCourant != null;
+        return gameData.joueur.comptes.TryGetValue("courant", out compteCourant) && compteCourant != null;
     }
 
     private void AbonnerSolde()
@@ -292,10 +292,10 @@ public class EntrepreneuriatUI : MonoBehaviour
         tractionMarche = Mathf.Clamp(tractionMarche, 0, MaximumStat);
         reputation = Mathf.Clamp(reputation, 0, MaximumStat);
 
-        if (gameData != null)
+        if (gameData != null && gameData.joueur != null)
         {
-            gameData.energie = Mathf.Clamp(gameData.energie, 0, MaximumStat);
-            gameData.santeMentale = Mathf.Clamp(gameData.santeMentale, 0, MaximumStat);
+            gameData.joueur.energie = Mathf.Clamp(gameData.joueur.energie, 0, MaximumStat);
+            gameData.joueur.santeMentale = Mathf.Clamp(gameData.joueur.santeMentale, 0, MaximumStat);
         }
     }
 

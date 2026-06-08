@@ -25,99 +25,102 @@ public class SnapshotEtatJeu
 
         // 1. Clonage des données personnelles et d'allocation d'énergie
         this.joueur = new DonneesJoueur();
-        this.joueur.energie = gameData.energie;
-        this.joueur.santeMentale = gameData.santeMentale;
-        this.joueur.salaire = new argent(gameData.salaire.centimes);
-
-        // 2. Clonage en profondeur du dictionnaire des comptes (avec historique complet des transactions)
-        this.joueur.comptes = new Dictionary<string, CompteBanquaire>();
-        if (gameData.comptes != null)
+        if (gameData.joueur != null)
         {
-            foreach (var kvp in gameData.comptes)
+            this.joueur.energie = gameData.joueur.energie;
+            this.joueur.santeMentale = gameData.joueur.santeMentale;
+            this.joueur.salaire = new argent(gameData.joueur.salaire.centimes);
+
+            // 2. Clonage en profondeur du dictionnaire des comptes (avec historique complet des transactions)
+            this.joueur.comptes = new Dictionary<string, CompteBanquaire>();
+            if (gameData.joueur.comptes != null)
             {
-                CompteBanquaire compteOriginal = kvp.Value;
-                long soldeOriginal = compteOriginal.GetSolde().centimes;
-                
-                Historique histCopie = new Historique();
-                Historique histOriginal = compteOriginal.GetHistorique();
-                
-                if (histOriginal != null && histOriginal.GetHistorique() != null)
+                foreach (var kvp in gameData.joueur.comptes)
                 {
-                    List<Transaction> transactions = histOriginal.GetHistorique();
+                    CompteBanquaire compteOriginal = kvp.Value;
+                    long soldeOriginal = compteOriginal.GetSolde().centimes;
                     
-                    // Calcul de la somme des transactions enregistrées pour détecter d'éventuels soldes de départ non transactionnels
-                    long sommeTransactionsOriginales = 0;
-                    foreach (Transaction t in transactions)
+                    Historique histCopie = new Historique();
+                    Historique histOriginal = compteOriginal.GetHistorique();
+                    
+                    if (histOriginal != null && histOriginal.GetHistorique() != null)
                     {
-                        if (t != null)
+                        List<Transaction> transactions = histOriginal.GetHistorique();
+                        
+                        // Calcul de la somme des transactions enregistrées pour détecter d'éventuels soldes de départ non transactionnels
+                        long sommeTransactionsOriginales = 0;
+                        foreach (Transaction t in transactions)
                         {
-                            sommeTransactionsOriginales += t.montant.centimes;
+                            if (t != null)
+                            {
+                                sommeTransactionsOriginales += t.montant.centimes;
+                            }
+                        }
+                        
+                        // Réconciliation du solde de départ (ex: les 1000 € d'initialisation par défaut sans transaction)
+                        long decalageReconciliation = soldeOriginal - sommeTransactionsOriginales;
+                        if (decalageReconciliation != 0)
+                        {
+                            // On injecte le solde initial de régularisation en premier pour qu'il soit le plus ancien
+                            histCopie.Add(new Transaction("solde_initial", new argent(decalageReconciliation)));
+                        }
+
+                        // Copie en profondeur de toutes les transactions de la plus ancienne à la plus récente
+                        for (int i = transactions.Count - 1; i >= 0; i--)
+                        {
+                            Transaction transacOrig = transactions[i];
+                            if (transacOrig != null)
+                            {
+                                Transaction transacCopie = new Transaction(
+                                    transacOrig.libelle, 
+                                    new argent(transacOrig.montant.centimes)
+                                );
+                                histCopie.Add(transacCopie);
+                            }
                         }
                     }
-                    
-                    // Réconciliation du solde de départ (ex: les 1000 € d'initialisation par défaut sans transaction)
-                    long decalageReconciliation = soldeOriginal - sommeTransactionsOriginales;
-                    if (decalageReconciliation != 0)
+                    else
                     {
-                        // On injecte le solde initial de régularisation en premier pour qu'il soit le plus ancien
-                        histCopie.Add(new Transaction("solde_initial", new argent(decalageReconciliation)));
-                    }
-
-                    // Copie en profondeur de toutes les transactions de la plus ancienne à la plus récente
-                    for (int i = transactions.Count - 1; i >= 0; i--)
-                    {
-                        Transaction transacOrig = transactions[i];
-                        if (transacOrig != null)
+                        // Si pas de transactions, on initialise simplement le solde actuel comme point de départ
+                        if (soldeOriginal != 0)
                         {
-                            Transaction transacCopie = new Transaction(
-                                transacOrig.libelle, 
-                                new argent(transacOrig.montant.centimes)
-                            );
-                            histCopie.Add(transacCopie);
+                            histCopie.Add(new Transaction("solde_initial", new argent(soldeOriginal)));
                         }
                     }
-                }
-                else
-                {
-                    // Si pas de transactions, on initialise simplement le solde actuel comme point de départ
-                    if (soldeOriginal != 0)
-                    {
-                        histCopie.Add(new Transaction("solde_initial", new argent(soldeOriginal)));
-                    }
-                }
 
-                // Initialisation du compte avec son historique cloné
-                CompteBanquaire compteCopie = new CompteBanquaire(histCopie);
-                this.joueur.comptes.Add(kvp.Key, compteCopie);
+                    // Initialisation du compte avec son historique cloné
+                    CompteBanquaire compteCopie = new CompteBanquaire(histCopie);
+                    this.joueur.comptes.Add(kvp.Key, compteCopie);
+                }
             }
-        }
 
-        // 3. Clonage en profondeur de la liste des investissements
-        this.joueur.investissements = new List<Investissement>();
-        if (gameData.investissements != null)
-        {
-            foreach (var invest in gameData.investissements)
+            // 3. Clonage en profondeur de la liste des investissements
+            this.joueur.investissements = new List<Investissement>();
+            if (gameData.joueur.investissements != null)
             {
-                // Copie le capital investi et le taux d'intérêt de la période
-                this.joueur.investissements.Add(new Investissement(
-                    new argent(invest.sommeInvestie.centimes),
-                    invest.taux,
-                    12 // Durée de capitalisation standard
-                ));
+                foreach (var invest in gameData.joueur.investissements)
+                {
+                    // Copie le capital investi et le taux d'intérêt de la période
+                    this.joueur.investissements.Add(new Investissement(
+                        new argent(invest.sommeInvestie.centimes),
+                        invest.taux,
+                        12 // Durée de capitalisation standard
+                    ));
+                }
             }
         }
 
         // 4. Clonage des données de l'environnement macroéconomique
         this.env = new DonneesEnvironnement();
-        if (gameData.comptes != null && gameData.comptes.ContainsKey("epargne"))
+        if (gameData.joueur != null && gameData.joueur.comptes != null && gameData.joueur.comptes.ContainsKey("epargne"))
         {
-            Epargne epgn = (Epargne)gameData.comptes["epargne"];
+            Epargne epgn = (Epargne)gameData.joueur.comptes["epargne"];
             this.env.tauxEpargne = epgn.GetTaux();
         }
         else
         {
             // Taux réglementé initial de secours
-            this.env.tauxEpargne = 0.0175f;
+            this.env.tauxEpargne = gameData.env != null ? gameData.env.tauxEpargne : 0.0175f;
         }
     }
 }

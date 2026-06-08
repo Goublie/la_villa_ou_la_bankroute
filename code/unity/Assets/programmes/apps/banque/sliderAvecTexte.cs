@@ -25,31 +25,40 @@ public class SliderAvecTexte : MonoBehaviour
     void Start()
     {
         RecupSolde();
-        slider.onValueChanged.AddListener((valeur) => ActualiseMontant(valeur));
+        if (slider != null)
+        {
+            slider.onValueChanged.AddListener((valeur) => ActualiseMontant(valeur));
+        }
     }
 
     private void RecupSolde()
     {
-        if(G != null)
+        if (G != null && G.joueur != null && G.joueur.comptes != null && G.joueur.comptes.ContainsKey("courant"))
         {
-            soldeCompte = G.comptes["courant"].GetSolde();
+            soldeCompte = G.joueur.comptes["courant"].GetSolde();
         }
     }
 
     void ActualiseMontant(float valeur)
     {
+        if (G == null || G.joueur == null || G.joueur.comptes == null || !G.joueur.comptes.ContainsKey("courant"))
+        {
+            Debug.LogWarning("[SliderAvecTexte] GameData, joueur ou compte courant null lors de l'action.");
+            return;
+        }
+
+        if (slider == null) return;
         float vraieValeur = slider.value;
     
         argent montantCalcule = soldeCompte * vraieValeur;
         
         argent depense = -montantCalcule; 
         
-
-        G.comptes["courant"].GetHistorique().ModifieOuAjoute(nom, depense);
+        G.joueur.comptes["courant"].GetHistorique().ModifieOuAjoute(nom, depense);
         
         // 3. Mise à jour "Visuelle" (Le Tableau)
-        G.comptes["courant"].CalculSortie();
-        G.comptes["courant"].CalculSolde();
+        G.joueur.comptes["courant"].CalculSortie();
+        G.joueur.comptes["courant"].CalculSolde();
 
         Transaction transaction = new Transaction(nom, depense);
         if (tableauUI != null)

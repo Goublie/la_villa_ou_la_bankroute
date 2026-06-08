@@ -31,9 +31,9 @@ public class ActionPlay : MonoBehaviour
     public void Jouer()
     {
         //Calcul et versement des bénéfices mensuels sur les investissements du joueur
-        if (gameData.investissements != null)
+        if (gameData.joueur.investissements != null)
         {
-            foreach (Investissement invest in gameData.investissements)
+            foreach (Investissement invest in gameData.joueur.investissements)
             {
                 invest.ComposerBenefices();
             }
@@ -46,18 +46,18 @@ public class ActionPlay : MonoBehaviour
         IncrementerMois();
 
         //Remise à 0 des historiques du joueur        
-        if (gameData.comptes != null)
+        if (gameData.joueur.comptes != null)
         {
-            foreach (var compte in gameData.comptes.Values)
+            foreach (var compte in gameData.joueur.comptes.Values)
             {
                 // Vide l'historique des opérations du mois précédent pour démarrer le nouveau mois à zéro
                 compte.ViderHistorique();
             }
             
             // Versement du revenu d'activité (salaire) sur le compte courant du joueur pour le nouveau mois
-            if (gameData.comptes.ContainsKey("courant"))
+            if (gameData.joueur.comptes.ContainsKey("courant"))
             {
-                gameData.comptes["courant"].AjoutHistorique("salaire", gameData.salaire);
+                gameData.joueur.comptes["courant"].AjoutHistorique("salaire", gameData.joueur.salaire);
             }
         }
 
