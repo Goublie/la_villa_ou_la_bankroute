@@ -8,7 +8,7 @@ using System.Collections.Generic;
 public class DonneesJoueur
 {
     // Comptes bancaires du joueur (solde et historique des flux)
-    public Dictionary<string, CompteBanquaire> comptes = new Dictionary<string, CompteBanquaire>() { { "courant", new CompteBanquaire() } };
+    public Dictionary<string, CompteBanquaire> comptes = new Dictionary<string, CompteBanquaire>() { { "courant", new CompteBanquaire(new argent(100000)) } };
 
     // Le revenu d'activité régulier brut mensuel
     public argent salaire = new argent(0);

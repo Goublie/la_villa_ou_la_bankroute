@@ -289,7 +289,7 @@ GameObject:
   - component: {fileID: 9689046}
   - component: {fileID: 9689047}
   m_Layer: 0
-  m_Name: Audio_Manager
+  m_Name: AudioManager
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -307,6 +307,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9eef3b6f21fe01e40a05a870d4e82cde, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Audio_Manager
+  musicSource: {fileID: 0}
+  SFXSource: {fileID: 0}
+  musiqueMenu: {fileID: 0}
+  musiqueJeu: {fileID: 0}
+  appuier_boutton: {fileID: 0}
+  playButton: {fileID: 0}
+  optionsButton: {fileID: 0}
 --- !u!4 &9689045
 Transform:
   m_ObjectHideFlags: 0
@@ -761,7 +768,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0b8e42952d597a84ebecada020f6b1e4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::ScenesManager
-  G: {fileID: 0}
   gameData: {fileID: 11400000, guid: 00f9a2cc968a86847bacedddfcfe8be5, type: 2}
 --- !u!4 &589448576
 Transform:
