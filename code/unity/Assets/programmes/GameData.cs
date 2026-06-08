@@ -2,16 +2,39 @@
 using UnityEngine;
 using System.Collections.Generic;
 
+ public enum Mois
+{
+    Janvier, Fevrier, Mars, Avril, Mai, Juin,
+    Juillet, Aout, Septembre, Octobre, Novembre, Decembre
+}
+
 [CreateAssetMenu(fileName = "GameData", menuName = "Scriptable Objects/GameData")]
 public class GameData : ScriptableObject
 {
     public Dictionary<string, CompteBanquaire> comptes = new Dictionary<string, CompteBanquaire>(){{"courant",new CompteBanquaire()}};
 
-    public argent salaire = new argent(200000);
+    public argent salaire = new argent(0);
     public int energie = 100; 
     public int santeMentale = 100; 
-    public int moisPasse = 0; 
-
+    public int nombreMoisPasses = 0; 
+    public Mois moisActuel = Mois.Juillet; // Le jeu commence en Juillet
     public List<Investissement> investissements = new List<Investissement>(); // Liste des investissements du joueur
-
+    public List<SnapshotEtatJeu> historiqueSnapshots = new List<SnapshotEtatJeu>(); // Historique des photographies mensuelles du jeu pour le mode What-if
+    
+    /// <summary>
+    /// Réinitialise toutes les données de jeu à leur état par défaut.
+    /// Appelé lors du démarrage d'une nouvelle partie.
+    /// </summary>
+    public void ResetData()
+    {
+        comptes.Clear();
+        comptes = new Dictionary<string, CompteBanquaire>(){{"courant",new CompteBanquaire()}};
+        salaire = new argent(0);
+        energie = 100;
+        santeMentale = 100;
+        nombreMoisPasses = 0;
+        moisActuel = Mois.Juillet;
+        investissements.Clear();
+        historiqueSnapshots.Clear();        
+    }
 }

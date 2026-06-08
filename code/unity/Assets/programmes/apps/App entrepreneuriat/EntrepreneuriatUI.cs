@@ -26,13 +26,11 @@ public class EntrepreneuriatUI : MonoBehaviour
     [SerializeField] private string retourJoueur = "Choisissez une action pour développer votre entreprise.";
 
     private CompteBanquaire compteCourant;
-    private HUDManager hudManager;
     private bool ecouteSoldeActive;
 
     private void Awake()
     {
         TrouverCompteCourant();
-        hudManager = FindFirstObjectByType<HUDManager>();
         BornerValeurs();
     }
 
@@ -275,15 +273,6 @@ public class EntrepreneuriatUI : MonoBehaviour
         BornerValeurs();
         ActualiserAffichage();
 
-        if (hudManager == null)
-        {
-            hudManager = FindFirstObjectByType<HUDManager>();
-        }
-
-        if (hudManager != null)
-        {
-            hudManager.ActualiserAffichage();
-        }
     }
 
     private void BornerValeurs()
