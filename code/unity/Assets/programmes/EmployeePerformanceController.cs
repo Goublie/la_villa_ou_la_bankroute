@@ -27,6 +27,7 @@ public class EmployeePerformanceController : MonoBehaviour
 
     [Header("Salary negotiation")]
     public GameObject panelNegociationSalaire; // 'Panel_NegociationSalaire'
+    public GameObject panelNegociationEchec;   // 'Panel_NegociationEchec' (error popup)
     public GameData gameData;                   // Shared game-state ScriptableObject (bank/salary)
     public TextMeshProUGUI texteSalaireAnnuelBrut; // Yearly gross salary label in 'Panel_Poste8actuel'
 
@@ -39,7 +40,7 @@ public class EmployeePerformanceController : MonoBehaviour
     private int monthsAtCurrentJob;
     private bool hasJob;
     private int currentJobStress;
-    private int currentJobHours;
+    public int currentJobHours { get; private set; }
 
     private void Start()
     {
@@ -174,12 +175,22 @@ public class EmployeePerformanceController : MonoBehaviour
         {
             if (panelNegociationSalaire != null) panelNegociationSalaire.SetActive(true);
         }
+        else
+        {
+            if (panelNegociationEchec != null) panelNegociationEchec.SetActive(true);
+        }
     }
 
     /// <summary>Wired to the negotiation panel buttons. Closes 'Panel_NegociationSalaire'.</summary>
     public void CloseNegociationPanel()
     {
         if (panelNegociationSalaire != null) panelNegociationSalaire.SetActive(false);
+    }
+
+    /// <summary>Wired to 'Bouton_RetourEchec'. Closes the error popup 'Panel_NegociationEchec'.</summary>
+    public void CloseNegociationEchecPanel()
+    {
+        if (panelNegociationEchec != null) panelNegociationEchec.SetActive(false);
     }
 
     /// <summary>
@@ -198,8 +209,7 @@ public class EmployeePerformanceController : MonoBehaviour
             if (texteSalaireAnnuelBrut != null)
             {
                 // Yearly gross = monthly × 12, converted from centimes to euros.
-                decimal yearlyEuros = (gameData.salaire.centimes * 12) / 100m;
-                texteSalaireAnnuelBrut.text = yearlyEuros.ToString("N0") + " €";
+                texteSalaireAnnuelBrut.text = "Salaire Brut : " + (gameData.salaire * 12).ToString("N0") + "€ / an";
             }
         }
 
