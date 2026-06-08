@@ -21,4 +21,37 @@ public class DonneesJoueur
 
     // Liste des produits financiers et investissements actifs
     public List<Investissement> investissements = new List<Investissement>();
+
+    /// <summary>
+    /// Calcule le patrimoine total du joueur en sommant la valeur de tous ses actifs
+    /// qui implémentent l'interface IPatrimoine (comptes bancaires et investissements).
+    /// </summary>
+    public argent CalculPatrimoineTotal()
+    {
+        argent total = new argent(0);
+
+        if (comptes != null)
+        {
+            foreach (var compte in comptes.Values)
+            {
+                if (compte != null)
+                {
+                    total += compte.GetValeurPatrimoine();
+                }
+            }
+        }
+
+        if (investissements != null)
+        {
+            foreach (var invest in investissements)
+            {
+                if (invest != null)
+                {
+                    total += invest.GetValeurPatrimoine();
+                }
+            }
+        }
+
+        return total;
+    }
 }

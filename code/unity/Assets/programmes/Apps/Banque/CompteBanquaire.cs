@@ -2,7 +2,7 @@ using System;
 using UnityEngine;
 using System.Collections.Generic;
 
-public class CompteBanquaire
+public class CompteBanquaire : IPatrimoine
 {
     protected Historique historique; //Contient toutes les entrés/sorties d'argent lie la source à son montant
     private argent totalEntree; // somme total d'argent positif
@@ -122,5 +122,11 @@ public class CompteBanquaire
     public argent GetSolde()
     {
         return solde;
+    }
+
+    // Implémentation de IPatrimoine
+    public argent GetValeurPatrimoine()
+    {
+        return GetSolde();
     }
 }

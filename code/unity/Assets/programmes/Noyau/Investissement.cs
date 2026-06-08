@@ -2,7 +2,7 @@ using System;
 using UnityEngine;
 
 [Serializable]
-public class Investissement
+public class Investissement : IPatrimoine
 {
     public argent sommeInvestie; //La somme investie initialement
     [SerializeField] public float taux; //Le taux de rendement sur la période 1=100%
@@ -52,5 +52,11 @@ public class Investissement
             benefices = 0;
             moisEcoules = 0; 
         }
+    }
+
+    // Implémentation de IPatrimoine
+    public argent GetValeurPatrimoine()
+    {
+        return sommeInvestie;
     }
 }
