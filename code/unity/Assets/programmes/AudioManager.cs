@@ -3,7 +3,7 @@ using UnityEngine.UI;
 using UnityEngine.SceneManagement; // ◄ NE PAS OUBLIER : Pour gérer les scènes
 using System.Collections;
 
-public class Audio_Manager : MonoBehaviour
+public class AudioManager : MonoBehaviour
 {
     [Header("Audio Sources")]
     [SerializeField] private AudioSource musicSource;
