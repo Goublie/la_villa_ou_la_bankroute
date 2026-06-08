@@ -12,9 +12,8 @@ public class CompteBanquaire
 
     public event Action OnSoldeModifie;
 
-    public CompteBanquaire()
+    public CompteBanquaire(argent montantInitial = default)
     {
-        argent montantInitial = new argent(100000);
         historique = new Historique();
         totalEntree = montantInitial;
         totalSortie = new argent(0);
