@@ -357,8 +357,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::Audio_Manager
   musicSource: {fileID: 1339880957}
   SFXSource: {fileID: 2014858829}
-  musiqueMenu: {fileID: 8300000, guid: 0aaf933609daba14bb48b1feaedafc4b, type: 3}
-  musiqueJeu: {fileID: 8300000, guid: e793c0e2fdff3b64a9e482ecdc8f3c7c, type: 3}
+  musiqueMenu: {fileID: 0}
+  musiqueJeu: {fileID: 0}
   appuier_boutton: {fileID: 8300000, guid: 07b30aa261102ec4294d27012db21cd2, type: 3}
   playButton: {fileID: 0}
   optionsButton: {fileID: 0}
@@ -768,7 +768,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0b8e42952d597a84ebecada020f6b1e4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::ScenesManager
-  G: {fileID: 11400000, guid: 00f9a2cc968a86847bacedddfcfe8be5, type: 2}
+  G: {fileID: 0}
+  gameData: {fileID: 11400000, guid: 00f9a2cc968a86847bacedddfcfe8be5, type: 2}
 --- !u!4 &589448576
 Transform:
   m_ObjectHideFlags: 0
