@@ -20,12 +20,234 @@ public class EmployeePerformanceController : MonoBehaviour
     public TextMeshProUGUI fatigueValueText;    // 'Valeur_Fatigue'
     public TextMeshProUGUI burnoutValueText;    // 'Valeur_Burnout'
 
+    [Header("Burn-out game over")]
+    public GameObject panelBurnoutGameOver; // 'Panel_BurnoutGameOver'
+    public GameObject panelPosteActuel;     // 'Panel_Poste8actuel'
+    public GameObject panelActionsRapides;  // 'Panel_Actions_Rapides'
+    public GameObject panelRelationnel;     // 'Panel_Relationnel' (kept in sync with the dashboard)
+
+    [Header("Salary negotiation")]
+    public GameObject panelNegociationSalaire; // 'Panel_NegociationSalaire'
+    public GameObject panelNegociationEchec;   // 'Panel_NegociationEchec' (error popup)
+    public GameData gameData;                   // Shared game-state ScriptableObject (bank/salary)
+    public TextMeshProUGUI texteSalaireAnnuelBrut; // Yearly gross salary label in 'Panel_Poste8actuel'
+
+    // --- Current actual stat values (0-100) ---
+    private int experienceScore;
+    private int fatigueScore;
+    private int burnoutScore;
+
+    // --- Job context ---
+    private int monthsAtCurrentJob;
+    private bool hasJob;
+    private int currentJobStress;
+    public int currentJobHours { get; private set; }
+
     private void Start()
     {
         // Initialise every bar to its empty/default state.
         ApplyValue(experienceSlider, experienceValueText, 0);
         ApplyValue(fatigueSlider, fatigueValueText, 0);
         ApplyValue(burnoutSlider, burnoutValueText, 0);
+    }
+
+    private void OnEnable()
+    {
+        ActionPlay.moisPasse += OnMonthPassed;
+    }
+
+    private void OnDisable()
+    {
+        ActionPlay.moisPasse -= OnMonthPassed;
+    }
+
+    /// <summary>
+    /// Called when the player accepts a new job. Resets fatigue/burn-out, stores
+    /// the job context (stress level and weekly hours) and refreshes the UI.
+    /// Experience is intentionally preserved across jobs.
+    /// </summary>
+    public void StartNewJob(int stressLevel, int hoursPerWeek)
+    {
+        hasJob = true;
+        monthsAtCurrentJob = 0;
+        fatigueScore = 20;
+        burnoutScore = 0;
+        currentJobStress = stressLevel;
+        currentJobHours = hoursPerWeek;
+        // Experience remains unchanged.
+
+        RefreshUI();
+    }
+
+    /// <summary>Updates the stored weekly hours for the current job.</summary>
+    public void UpdateJobHours(int newHours)
+    {
+        currentJobHours = newHours;
+    }
+
+    /// <summary>
+    /// Observer callback fired by <see cref="ActionPlay.moisPasse"/> every month.
+    /// Advances the employee's stats based on tenure, stress and hours worked.
+    /// </summary>
+    private void OnMonthPassed()
+    {
+        if (!hasJob) return;
+
+        monthsAtCurrentJob++;
+
+        if (fatigueScore >= 100)
+        {
+            burnoutScore += 15;
+        }
+
+        if (monthsAtCurrentJob % 5 == 0)
+        {
+            // Hours-based progression rules. Burn-out is no longer affected by
+            // job stress or hours: it only rises when fatigue is maxed out (above).
+            if (currentJobHours < 40)
+            {
+                experienceScore += 10;
+            }
+            else if (currentJobHours == 40)
+            {
+                fatigueScore += 10;
+                experienceScore += 15;
+            }
+            else if (currentJobHours >= 45)
+            {
+                fatigueScore += 20;
+                experienceScore += 20;
+            }
+        }
+
+        experienceScore = Mathf.Clamp(experienceScore, 0, 100);
+        fatigueScore = Mathf.Clamp(fatigueScore, 0, 100);
+        burnoutScore = Mathf.Clamp(burnoutScore, 0, 100);
+
+        RefreshUI();
+
+        if (burnoutScore >= 100)
+        {
+            TriggerBurnout();
+        }
+    }
+
+    /// <summary>
+    /// Burn-out game over: shows the popup and hides the dashboard panels
+    /// (including this performance card).
+    /// </summary>
+    private void TriggerBurnout()
+    {
+        if (panelBurnoutGameOver != null) panelBurnoutGameOver.SetActive(true);
+        if (panelPosteActuel != null) panelPosteActuel.SetActive(false);
+        if (panelActionsRapides != null) panelActionsRapides.SetActive(false);
+        gameObject.SetActive(false);
+    }
+
+    /// <summary>
+    /// Wired to 'Bouton_RetourBurnout'. Closes the popup, fully resets the job
+    /// state (experience is preserved) and restores the dashboard panels.
+    /// </summary>
+    public void OnBurnoutRetourClicked()
+    {
+        if (panelBurnoutGameOver != null) panelBurnoutGameOver.SetActive(false);
+
+        hasJob = false;
+        monthsAtCurrentJob = 0;
+        fatigueScore = 20;
+        burnoutScore = 0;
+        currentJobHours = 0;
+        // Experience remains accumulated.
+
+        RefreshUI();
+
+        if (panelPosteActuel != null) panelPosteActuel.SetActive(true);
+        if (panelActionsRapides != null) panelActionsRapides.SetActive(true);
+        if (panelRelationnel != null) panelRelationnel.SetActive(true);
+        gameObject.SetActive(true);
+    }
+
+    /// <summary>
+    /// Wired to the main 'Bouton Négocier salaire'. Only opens the negotiation
+    /// panel when the employee is experienced enough (experience strictly above 70).
+    /// </summary>
+    public void OnNegocierSalaireClicked()
+    {
+        if (experienceScore > 70)
+        {
+            if (panelNegociationSalaire != null) panelNegociationSalaire.SetActive(true);
+        }
+        else
+        {
+            if (panelNegociationEchec != null) panelNegociationEchec.SetActive(true);
+        }
+
+        // Hide the dashboard so only the negotiation popup is visible (matches the networking flow).
+        if (panelPosteActuel != null) panelPosteActuel.SetActive(false);
+        if (panelActionsRapides != null) panelActionsRapides.SetActive(false);
+        if (panelRelationnel != null) panelRelationnel.SetActive(false);
+        gameObject.SetActive(false); // this script lives on Panel_PerformanceEmploye
+    }
+
+    /// <summary>Wired to the negotiation panel buttons. Closes 'Panel_NegociationSalaire'.</summary>
+    public void CloseNegociationPanel()
+    {
+        if (panelNegociationSalaire != null) panelNegociationSalaire.SetActive(false);
+
+        // Restore the dashboard (matches the networking flow).
+        if (panelPosteActuel != null) panelPosteActuel.SetActive(true);
+        if (panelActionsRapides != null) panelActionsRapides.SetActive(true);
+        if (panelRelationnel != null) panelRelationnel.SetActive(true);
+        gameObject.SetActive(true);
+    }
+
+    /// <summary>Wired to 'Bouton_RetourEchec'. Closes the error popup 'Panel_NegociationEchec'.</summary>
+    public void CloseNegociationEchecPanel()
+    {
+        if (panelNegociationEchec != null) panelNegociationEchec.SetActive(false);
+
+        // Restore the dashboard (matches the networking flow).
+        if (panelPosteActuel != null) panelPosteActuel.SetActive(true);
+        if (panelActionsRapides != null) panelActionsRapides.SetActive(true);
+        if (panelRelationnel != null) panelRelationnel.SetActive(true);
+        gameObject.SetActive(true);
+    }
+
+    /// <summary>
+    /// Wired to 'Bouton_AccepterNegociation'. Raises the monthly salary by 600 €,
+    /// refreshes the yearly-gross label (monthly × 12) and closes the panel.
+    /// Note: <see cref="GameData.salaire"/> is an <see cref="argent"/> value stored
+    /// in centimes, so +600 € is added via the float constructor (60000 centimes).
+    /// </summary>
+    public void OnAccepterNegociationClicked()
+    {
+        if (gameData != null)
+        {
+            // +600 € — the float ctor converts euros to centimes (600 * 100).
+            gameData.salaire += new argent(600f);
+
+            if (texteSalaireAnnuelBrut != null)
+            {
+                // Yearly gross = monthly × 12, converted from centimes to euros.
+                texteSalaireAnnuelBrut.text = "Salaire : " + (gameData.salaire * 12).ToString("N0") + "€ / an";
+            }
+        }
+
+        if (panelNegociationSalaire != null) panelNegociationSalaire.SetActive(false);
+
+        // Restore the dashboard (matches the networking flow).
+        if (panelPosteActuel != null) panelPosteActuel.SetActive(true);
+        if (panelActionsRapides != null) panelActionsRapides.SetActive(true);
+        if (panelRelationnel != null) panelRelationnel.SetActive(true);
+        gameObject.SetActive(true);
+    }
+
+    /// <summary>Pushes the current score values onto the sliders and labels.</summary>
+    private void RefreshUI()
+    {
+        ApplyValue(experienceSlider, experienceValueText, experienceScore);
+        ApplyValue(fatigueSlider, fatigueValueText, fatigueScore);
+        ApplyValue(burnoutSlider, burnoutValueText, burnoutScore);
     }
 
     /// <summary>Set the Expérience bar (0-100).</summary>

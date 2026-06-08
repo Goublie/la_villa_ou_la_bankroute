@@ -14,13 +14,19 @@ public class TravaillerPlusController : MonoBehaviour
     public Button boutonTravaillerPlusMain; // The existing "Travailler plus" button inside Panel_Actions_Rapides
     public Button boutonRetour;             // The back button inside this new panel
     public Button boutonOui;                // The "Oui" confirmation button inside this panel
+    public GameObject boutonOuiMoins;       // The new "Oui" (work less) button inside this panel
+    public TextMeshProUGUI texteMoinsHeures; // The new "work 5h less / week?" question text
+    public TextMeshProUGUI texteHeuresTravail; // Working-hours label in the 'Panel_PosteActuel' dashboard
+    public TextMeshProUGUI texteSalaireTaskbar; // Monthly salary label in the bottom blue taskbar
     public GameObject panelPosteActuel;        // Reference to Panel_Poste8actuel
     public GameObject panelActionsRapides;     // Reference to Panel_Actions_Rapides
     public GameObject panelPerformanceEmploye; // Reference to Panel_PerformanceEmploye (kept in sync with the dashboard)
+    public GameObject panelRelationnel;        // Reference to Panel_Relationnel (kept in sync with the dashboard)
 
     [Header("Overtime references")]
     public JobSatisfactionController satisfactionController; // 'Panel_Satisfaction'
     public InterviewPanelController interviewController;     // Provides access to GameData (the bank)
+    public EmployeePerformanceController performanceController; // 'Panel_PerformanceEmploye' controller
 
     private void Start()
     {
@@ -29,10 +35,21 @@ public class TravaillerPlusController : MonoBehaviour
         if (boutonOui != null) boutonOui.onClick.AddListener(OnOuiClicked);
     }
 
-    private void OnTravaillerPlusClicked()
+    public void OnTravaillerPlusClicked()
     {
         // Open the confirmation popup.
         gameObject.SetActive(true);
+
+        // Hide the dashboard so only this popup is visible (matches the networking flow).
+        if (panelPosteActuel != null) panelPosteActuel.SetActive(false);
+        if (panelActionsRapides != null) panelActionsRapides.SetActive(false);
+        if (panelPerformanceEmploye != null) panelPerformanceEmploye.SetActive(false);
+        if (panelRelationnel != null) panelRelationnel.SetActive(false);
+
+        // The "work less" question and button are always visible/active, regardless
+        // of the player's current working hours.
+        if (boutonOuiMoins != null) boutonOuiMoins.SetActive(true);
+        if (texteMoinsHeures != null) texteMoinsHeures.gameObject.SetActive(true);
     }
 
     private void OnRetourClicked()
@@ -43,78 +60,75 @@ public class TravaillerPlusController : MonoBehaviour
         if (panelPosteActuel != null) panelPosteActuel.SetActive(true);
         if (panelActionsRapides != null) panelActionsRapides.SetActive(true);
         if (panelPerformanceEmploye != null) panelPerformanceEmploye.SetActive(true);
+        if (panelRelationnel != null) panelRelationnel.SetActive(true);
     }
 
     /// <summary>
-    /// Confirms working overtime: +5 hours/week, proportionally higher salary,
-    /// updated bank entry and -15 job satisfaction.
+    /// Confirms working overtime: +5 hours/week, +800 €/month gross salary,
+    /// refreshed UI labels and -15 job satisfaction.
     /// </summary>
     private void OnOuiClicked()
     {
-        // Hide this confirmation popup and restore the dashboard panels.
+        if (performanceController == null) return;
+
+        // 1. Increase weekly hours by 5.
+        performanceController.UpdateJobHours(performanceController.currentJobHours + 5);
+
+        // 2. Increase the monthly gross salary by 800 € (yearly gross rises by 800 * 12).
+        performanceController.gameData.salaire += 800;
+
+        // 3. Refresh all UI text components (standardized formats).
+        if (texteHeuresTravail != null)
+            texteHeuresTravail.text = "Heures : " + performanceController.currentJobHours + " heures / semaine";
+        if (performanceController.texteSalaireAnnuelBrut != null)
+            performanceController.texteSalaireAnnuelBrut.text = "Salaire : " + (performanceController.gameData.salaire * 12).ToString("N0") + "€ / an";
+        if (texteSalaireTaskbar != null)
+            texteSalaireTaskbar.text = performanceController.gameData.salaire.ToString("F2") + " €";
+
+        // 4. Working more lowers job satisfaction (clamped 0-100 inside the controller).
+        if (satisfactionController != null) satisfactionController.ModifySatisfaction(-15);
+
+        // 5. Close this popup and restore the dashboard panels.
         gameObject.SetActive(false);
         if (panelPosteActuel != null) panelPosteActuel.SetActive(true);
         if (panelActionsRapides != null) panelActionsRapides.SetActive(true);
         if (panelPerformanceEmploye != null) panelPerformanceEmploye.SetActive(true);
-
-        if (panelPosteActuel == null) return;
-
-        // --- Locate the dashboard text fields inside 'Panel_Poste8actuel' ---
-        TMP_Text heuresText = FindText(panelPosteActuel.transform, "Heures");
-        TMP_Text salaireText = FindText(panelPosteActuel.transform, "Salaire_brut");
-
-        // --- Hours: parse the current value, add 5 ---
-        int oldHours = ExtractFirstInt(heuresText != null ? heuresText.text : null, 35);
-        if (oldHours <= 0) oldHours = 35; // safety against divide-by-zero
-        int newHours = oldHours + 5;
-
-        if (heuresText != null)
-            heuresText.text = "Heures : " + newHours + " heures / semaine";
-
-        // --- Salary: scale proportionally with the hours increase ---
-        if (salaireText != null)
-        {
-            // Strip thousands separators before parsing the annual amount.
-            int oldAnnual = ExtractFirstInt(salaireText.text != null ? salaireText.text.Replace(",", "") : null, 0);
-            int newAnnual = (int)(oldAnnual * ((float)newHours / oldHours));
-
-            salaireText.text = "Salaire brut : €" +
-                newAnnual.ToString("N0", System.Globalization.CultureInfo.InvariantCulture) + " / an";
-
-            // Update the bank (GameData) with the new monthly salary, in centimes.
-            if (interviewController != null && interviewController.gameData != null)
-            {
-                int monthlySalary = newAnnual / 12;
-                // The bank works in centimes, so multiply by 100.
-                interviewController.gameData.salaire = new argent(monthlySalary * 100);
-            }
-        }
-
-        // --- Job satisfaction: working more lowers it ---
-        if (satisfactionController != null)
-            satisfactionController.ModifySatisfaction(-15);
+        if (panelRelationnel != null) panelRelationnel.SetActive(true);
     }
 
     /// <summary>
-    /// Finds a direct child TMP_Text by name under <paramref name="root"/>.
+    /// Confirms working fewer hours: -5 hours/week, -800 €/month gross salary,
+    /// +15 job satisfaction. Only effective while the employee works more than 35h.
     /// </summary>
-    private TMP_Text FindText(Transform root, string childName)
+    public void OnOuiMoinsClicked()
     {
-        Transform t = root.Find(childName);
-        return t != null ? t.GetComponent<TMP_Text>() : null;
-    }
+        if (performanceController == null) return;
 
-    /// <summary>
-    /// Extracts the first integer found in <paramref name="text"/>, or <paramref name="fallback"/>.
-    /// </summary>
-    private int ExtractFirstInt(string text, int fallback)
-    {
-        if (string.IsNullOrEmpty(text)) return fallback;
+        // Already at the legal minimum: nothing to do.
+        if (performanceController.currentJobHours == 35) return;
 
-        System.Text.RegularExpressions.Match match =
-            System.Text.RegularExpressions.Regex.Match(text, @"\d+");
+        // 1. Reduce weekly hours by 5.
+        performanceController.UpdateJobHours(performanceController.currentJobHours - 5);
 
-        if (match.Success && int.TryParse(match.Value, out int value)) return value;
-        return fallback;
+        // 2. Reduce the monthly gross salary by 800 € (yearly gross drops by 800 * 12).
+        performanceController.gameData.salaire -= 800;
+
+        // 3. Refresh all UI text components (standardized formats).
+        if (texteHeuresTravail != null)
+            texteHeuresTravail.text = "Heures : " + performanceController.currentJobHours + " heures / semaine";
+        if (performanceController.texteSalaireAnnuelBrut != null)
+            performanceController.texteSalaireAnnuelBrut.text = "Salaire : " + (performanceController.gameData.salaire * 12).ToString("N0") + "€ / an";
+        if (texteSalaireTaskbar != null)
+            texteSalaireTaskbar.text = performanceController.gameData.salaire.ToString("F2") + " €";
+
+        // 4. Working less improves job satisfaction (clamped 0-100 inside the controller).
+        if (satisfactionController != null) satisfactionController.ModifySatisfaction(15);
+
+        // 5. Close this popup and restore the dashboard panels.
+        gameObject.SetActive(false);
+        if (panelPosteActuel != null) panelPosteActuel.SetActive(true);
+        if (panelActionsRapides != null) panelActionsRapides.SetActive(true);
+        if (panelPerformanceEmploye != null) panelPerformanceEmploye.SetActive(true);
+        if (panelRelationnel != null) panelRelationnel.SetActive(true);
     }
 }

@@ -1,2 +1,20 @@
 fileFormatVersion: 2
 guid: 94a6795d8282dba4e8553e06daf4e533
+MonoImporter:
+  externalObjects: {}
+  serializedVersion: 2
+  defaultReferences:
+  - boutonTravaillerPlusMain: {instanceID: 0}
+  - boutonRetour: {instanceID: 0}
+  - boutonOui: {instanceID: 0}
+  - panelPosteActuel: {instanceID: 0}
+  - panelActionsRapides: {instanceID: 0}
+  - panelPerformanceEmploye: {instanceID: 0}
+  - satisfactionController: {instanceID: 0}
+  - interviewController: {instanceID: 0}
+  - performanceController: {instanceID: 0}
+  executionOrder: 0
+  icon: {instanceID: 0}
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

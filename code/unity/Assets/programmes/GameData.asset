@@ -13,20 +13,18 @@ MonoBehaviour:
   m_Name: GameData
   m_EditorClassIdentifier: Assembly-CSharp::GameData
   salaire:
-    centimes: 0
+    centimes: 683300
   energie: 100
   santeMentale: 100
-  nombreMoisPasses: 0
-  moisActuel: 6
-  investissements: []
-  historiqueSnapshots:
-  - indexMois: 0
-    moisCalendrier: 6
-    joueur:
-      salaire:
-        centimes: 0
-      energie: 100
-      santeMentale: 100
-      investissements: []
-    env:
-      tauxEpargne: 0.0175
+  moisPasse: 1
+  investissements:
+  - sommeInvestie:
+      centimes: 101000
+    taux: 0.03
+    dureeMois: 12
+    moisEcoules: 1
+  - sommeInvestie:
+      centimes: 102000
+    taux: 0.03
+    dureeMois: 12
+    moisEcoules: 0

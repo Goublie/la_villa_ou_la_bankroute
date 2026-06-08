@@ -21,6 +21,10 @@ public class InterviewPanelController : MonoBehaviour
     public GameObject panelPosteActuel;        // 'Panel_Poste8actuel'
     public GameObject panelActionsRapides;     // 'Panel_Actions_Rapides'
     public GameObject panelPerformanceEmploye; // 'Panel_PerformanceEmploye' (kept in sync with the dashboard)
+    public GameObject panelRelationnel;        // 'Panel_Relationnel' (kept in sync with the dashboard)
+
+    [Header("Employee performance")]
+    public EmployeePerformanceController performanceController; // 'Panel_PerformanceEmploye' controller
 
     [Header("Job satisfaction")]
     public JobSatisfactionController satisfactionController;
@@ -73,14 +77,19 @@ public class InterviewPanelController : MonoBehaviour
         if (panelPosteActuel != null) panelPosteActuel.SetActive(true);
         if (panelActionsRapides != null) panelActionsRapides.SetActive(true);
         if (panelPerformanceEmploye != null) panelPerformanceEmploye.SetActive(true);
+        if (panelRelationnel != null) panelRelationnel.SetActive(true);
 
         // Update the job-satisfaction bar based on this offer's parameters.
         if (satisfactionController != null)
             satisfactionController.UpdateSatisfaction(stressStars, prestigeStars, equilibreStars);
 
+        // Start tracking employee performance for this new job (default 35h/week).
+        if (performanceController != null)
+            performanceController.StartNewJob(stressStars, 35);
+
         // Update the dashboard texts (label prefix preserved for readability).
         if (entrepriseText != null) entrepriseText.text = "Entreprise : " + companyName;
-        if (salaireText != null) salaireText.text = "Salaire brut : " + jobSalary;
+        if (salaireText != null) salaireText.text = "Salaire : " + jobSalary;
         if (heuresText != null) heuresText.text = "Heures : 35 heures / semaine";
 
         // --- MISE À JOUR DE LA BANQUE (GAMEDATA) ---
