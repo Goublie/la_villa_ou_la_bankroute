@@ -1547,7 +1547,7 @@ GameObject:
   - component: {fileID: 1575519851}
   - component: {fileID: 1575519850}
   m_Layer: 5
-  m_Name: "Luminosit\xE9_globale"
+  m_Name: LuminositeGlobale
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
