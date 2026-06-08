@@ -25,6 +25,7 @@ public class Logic_RechercheEmploi : MonoBehaviour
     private GameObject panelActionsRapides;
     private GameObject panelPosteActuel;
     private GameObject panelPerformanceEmploye;
+    private GameObject panelRelationnel;
 
     private Transform listeOffres;     // Container with the VerticalLayoutGroup
     private GameObject jobOfferTemplate; // The 'JobOffer_Item' used as a template
@@ -95,6 +96,7 @@ public class Logic_RechercheEmploi : MonoBehaviour
         if (panelActionsRapides != null) panelActionsRapides.SetActive(true);
         if (panelPosteActuel != null) panelPosteActuel.SetActive(true);
         if (panelPerformanceEmploye != null) panelPerformanceEmploye.SetActive(true);
+        if (panelRelationnel != null) panelRelationnel.SetActive(true);
     }
 
     private void OnChercherEmploiClicked()
@@ -103,6 +105,7 @@ public class Logic_RechercheEmploi : MonoBehaviour
         if (panelActionsRapides != null) panelActionsRapides.SetActive(false);
         if (panelPosteActuel != null) panelPosteActuel.SetActive(false);
         if (panelPerformanceEmploye != null) panelPerformanceEmploye.SetActive(false);
+        if (panelRelationnel != null) panelRelationnel.SetActive(false);
 
         // Show the offers panel.
         if (panelOffresEmploi != null) panelOffresEmploi.SetActive(true);

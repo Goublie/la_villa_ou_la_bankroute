@@ -24,6 +24,7 @@ public class EmployeePerformanceController : MonoBehaviour
     public GameObject panelBurnoutGameOver; // 'Panel_BurnoutGameOver'
     public GameObject panelPosteActuel;     // 'Panel_Poste8actuel'
     public GameObject panelActionsRapides;  // 'Panel_Actions_Rapides'
+    public GameObject panelRelationnel;     // 'Panel_Relationnel' (kept in sync with the dashboard)
 
     [Header("Salary negotiation")]
     public GameObject panelNegociationSalaire; // 'Panel_NegociationSalaire'
@@ -162,6 +163,7 @@ public class EmployeePerformanceController : MonoBehaviour
 
         if (panelPosteActuel != null) panelPosteActuel.SetActive(true);
         if (panelActionsRapides != null) panelActionsRapides.SetActive(true);
+        if (panelRelationnel != null) panelRelationnel.SetActive(true);
         gameObject.SetActive(true);
     }
 
@@ -179,18 +181,36 @@ public class EmployeePerformanceController : MonoBehaviour
         {
             if (panelNegociationEchec != null) panelNegociationEchec.SetActive(true);
         }
+
+        // Hide the dashboard so only the negotiation popup is visible (matches the networking flow).
+        if (panelPosteActuel != null) panelPosteActuel.SetActive(false);
+        if (panelActionsRapides != null) panelActionsRapides.SetActive(false);
+        if (panelRelationnel != null) panelRelationnel.SetActive(false);
+        gameObject.SetActive(false); // this script lives on Panel_PerformanceEmploye
     }
 
     /// <summary>Wired to the negotiation panel buttons. Closes 'Panel_NegociationSalaire'.</summary>
     public void CloseNegociationPanel()
     {
         if (panelNegociationSalaire != null) panelNegociationSalaire.SetActive(false);
+
+        // Restore the dashboard (matches the networking flow).
+        if (panelPosteActuel != null) panelPosteActuel.SetActive(true);
+        if (panelActionsRapides != null) panelActionsRapides.SetActive(true);
+        if (panelRelationnel != null) panelRelationnel.SetActive(true);
+        gameObject.SetActive(true);
     }
 
     /// <summary>Wired to 'Bouton_RetourEchec'. Closes the error popup 'Panel_NegociationEchec'.</summary>
     public void CloseNegociationEchecPanel()
     {
         if (panelNegociationEchec != null) panelNegociationEchec.SetActive(false);
+
+        // Restore the dashboard (matches the networking flow).
+        if (panelPosteActuel != null) panelPosteActuel.SetActive(true);
+        if (panelActionsRapides != null) panelActionsRapides.SetActive(true);
+        if (panelRelationnel != null) panelRelationnel.SetActive(true);
+        gameObject.SetActive(true);
     }
 
     /// <summary>
@@ -209,11 +229,17 @@ public class EmployeePerformanceController : MonoBehaviour
             if (texteSalaireAnnuelBrut != null)
             {
                 // Yearly gross = monthly × 12, converted from centimes to euros.
-                texteSalaireAnnuelBrut.text = "Salaire Brut : " + (gameData.salaire * 12).ToString("N0") + "€ / an";
+                texteSalaireAnnuelBrut.text = "Salaire : " + (gameData.salaire * 12).ToString("N0") + "€ / an";
             }
         }
 
         if (panelNegociationSalaire != null) panelNegociationSalaire.SetActive(false);
+
+        // Restore the dashboard (matches the networking flow).
+        if (panelPosteActuel != null) panelPosteActuel.SetActive(true);
+        if (panelActionsRapides != null) panelActionsRapides.SetActive(true);
+        if (panelRelationnel != null) panelRelationnel.SetActive(true);
+        gameObject.SetActive(true);
     }
 
     /// <summary>Pushes the current score values onto the sliders and labels.</summary>

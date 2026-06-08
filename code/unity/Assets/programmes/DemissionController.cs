@@ -14,7 +14,10 @@ public class DemissionController : MonoBehaviour
 
     [Header("References")]
     public Button boutonDemissionnerMain; // The existing resign button in Panel_Actions_Rapides
-    public GameObject panelPosteActuel;   // Reference to Panel_Poste8actuel
+    public GameObject panelPosteActuel;        // Reference to Panel_Poste8actuel
+    public GameObject panelActionsRapides;     // Reference to Panel_Actions_Rapides
+    public GameObject panelPerformanceEmploye; // Reference to Panel_PerformanceEmploye (kept in sync with the dashboard)
+    public GameObject panelRelationnel;        // Reference to Panel_Relationnel (kept in sync with the dashboard)
     public Button boutonOui;
     public Button boutonNon;
 
@@ -42,16 +45,27 @@ public class DemissionController : MonoBehaviour
         if (boutonOui != null) boutonOui.onClick.AddListener(OnOuiClicked);
     }
 
-    private void OnDemissionnerClicked()
+    public void OnDemissionnerClicked()
     {
         // Open the confirmation panel.
         gameObject.SetActive(true);
+
+        // Hide the dashboard so only this popup is visible (matches the networking flow).
+        if (panelPosteActuel != null) panelPosteActuel.SetActive(false);
+        if (panelActionsRapides != null) panelActionsRapides.SetActive(false);
+        if (panelPerformanceEmploye != null) panelPerformanceEmploye.SetActive(false);
+        if (panelRelationnel != null) panelRelationnel.SetActive(false);
     }
 
     private void OnNonClicked()
     {
-        // Cancel: just close the panel.
+        // Cancel: close the panel and restore the dashboard.
         gameObject.SetActive(false);
+
+        if (panelPosteActuel != null) panelPosteActuel.SetActive(true);
+        if (panelActionsRapides != null) panelActionsRapides.SetActive(true);
+        if (panelPerformanceEmploye != null) panelPerformanceEmploye.SetActive(true);
+        if (panelRelationnel != null) panelRelationnel.SetActive(true);
     }
 
     private void OnOuiClicked()
@@ -59,8 +73,14 @@ public class DemissionController : MonoBehaviour
         // Confirm resignation: close the panel and clear the current job.
         gameObject.SetActive(false);
 
+        // Restore the dashboard (matches the networking flow).
+        if (panelPosteActuel != null) panelPosteActuel.SetActive(true);
+        if (panelActionsRapides != null) panelActionsRapides.SetActive(true);
+        if (panelPerformanceEmploye != null) panelPerformanceEmploye.SetActive(true);
+        if (panelRelationnel != null) panelRelationnel.SetActive(true);
+
         if (entrepriseText != null) entrepriseText.text = "Entreprise : Aucune";
-        if (salaireText != null) salaireText.text = "Salaire brut : 0€ / an";
+        if (salaireText != null) salaireText.text = "Salaire : 0€ / an";
         if (heuresText != null) heuresText.text = "Heures : 0 heures / semaine";
 
         // Zero out the salary in the bank/game data.

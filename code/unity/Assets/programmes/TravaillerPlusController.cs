@@ -21,6 +21,7 @@ public class TravaillerPlusController : MonoBehaviour
     public GameObject panelPosteActuel;        // Reference to Panel_Poste8actuel
     public GameObject panelActionsRapides;     // Reference to Panel_Actions_Rapides
     public GameObject panelPerformanceEmploye; // Reference to Panel_PerformanceEmploye (kept in sync with the dashboard)
+    public GameObject panelRelationnel;        // Reference to Panel_Relationnel (kept in sync with the dashboard)
 
     [Header("Overtime references")]
     public JobSatisfactionController satisfactionController; // 'Panel_Satisfaction'
@@ -34,10 +35,16 @@ public class TravaillerPlusController : MonoBehaviour
         if (boutonOui != null) boutonOui.onClick.AddListener(OnOuiClicked);
     }
 
-    private void OnTravaillerPlusClicked()
+    public void OnTravaillerPlusClicked()
     {
         // Open the confirmation popup.
         gameObject.SetActive(true);
+
+        // Hide the dashboard so only this popup is visible (matches the networking flow).
+        if (panelPosteActuel != null) panelPosteActuel.SetActive(false);
+        if (panelActionsRapides != null) panelActionsRapides.SetActive(false);
+        if (panelPerformanceEmploye != null) panelPerformanceEmploye.SetActive(false);
+        if (panelRelationnel != null) panelRelationnel.SetActive(false);
 
         // The "work less" question and button are always visible/active, regardless
         // of the player's current working hours.
@@ -53,6 +60,7 @@ public class TravaillerPlusController : MonoBehaviour
         if (panelPosteActuel != null) panelPosteActuel.SetActive(true);
         if (panelActionsRapides != null) panelActionsRapides.SetActive(true);
         if (panelPerformanceEmploye != null) panelPerformanceEmploye.SetActive(true);
+        if (panelRelationnel != null) panelRelationnel.SetActive(true);
     }
 
     /// <summary>
@@ -73,7 +81,7 @@ public class TravaillerPlusController : MonoBehaviour
         if (texteHeuresTravail != null)
             texteHeuresTravail.text = "Heures : " + performanceController.currentJobHours + " heures / semaine";
         if (performanceController.texteSalaireAnnuelBrut != null)
-            performanceController.texteSalaireAnnuelBrut.text = "Salaire Brut : " + (performanceController.gameData.salaire * 12).ToString("N0") + "€ / an";
+            performanceController.texteSalaireAnnuelBrut.text = "Salaire : " + (performanceController.gameData.salaire * 12).ToString("N0") + "€ / an";
         if (texteSalaireTaskbar != null)
             texteSalaireTaskbar.text = performanceController.gameData.salaire.ToString("F2") + " €";
 
@@ -85,6 +93,7 @@ public class TravaillerPlusController : MonoBehaviour
         if (panelPosteActuel != null) panelPosteActuel.SetActive(true);
         if (panelActionsRapides != null) panelActionsRapides.SetActive(true);
         if (panelPerformanceEmploye != null) panelPerformanceEmploye.SetActive(true);
+        if (panelRelationnel != null) panelRelationnel.SetActive(true);
     }
 
     /// <summary>
@@ -108,7 +117,7 @@ public class TravaillerPlusController : MonoBehaviour
         if (texteHeuresTravail != null)
             texteHeuresTravail.text = "Heures : " + performanceController.currentJobHours + " heures / semaine";
         if (performanceController.texteSalaireAnnuelBrut != null)
-            performanceController.texteSalaireAnnuelBrut.text = "Salaire Brut : " + (performanceController.gameData.salaire * 12).ToString("N0") + "€ / an";
+            performanceController.texteSalaireAnnuelBrut.text = "Salaire : " + (performanceController.gameData.salaire * 12).ToString("N0") + "€ / an";
         if (texteSalaireTaskbar != null)
             texteSalaireTaskbar.text = performanceController.gameData.salaire.ToString("F2") + " €";
 
@@ -120,5 +129,6 @@ public class TravaillerPlusController : MonoBehaviour
         if (panelPosteActuel != null) panelPosteActuel.SetActive(true);
         if (panelActionsRapides != null) panelActionsRapides.SetActive(true);
         if (panelPerformanceEmploye != null) panelPerformanceEmploye.SetActive(true);
+        if (panelRelationnel != null) panelRelationnel.SetActive(true);
     }
 }
