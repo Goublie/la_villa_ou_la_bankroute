@@ -1,6 +1,6 @@
 using UnityEngine;
 using UnityEngine.UI;
-using UnityEngine.SceneManagement; // ◄ NE PAS OUBLIER : Pour gérer les scènes
+using UnityEngine.SceneManagement;
 using System.Collections;
 
 public class AudioManager : MonoBehaviour

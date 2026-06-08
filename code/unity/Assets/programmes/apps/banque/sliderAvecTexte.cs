@@ -14,12 +14,12 @@ public class SliderAvecTexte : MonoBehaviour
 
     void OnEnable()
     {
-        ActionPlay.moisPasse += RecupSolde;
+        ActionPlay.OnMoisPasse += RecupSolde;
     }
     
     void OnDisable()
     {
-        ActionPlay.moisPasse -= RecupSolde;
+        ActionPlay.OnMoisPasse -= RecupSolde;
     }
     
     void Start()
@@ -50,14 +50,15 @@ public class SliderAvecTexte : MonoBehaviour
         // 3. Mise à jour "Visuelle" (Le Tableau)
         G.comptes["courant"].CalculSortie();
         G.comptes["courant"].CalculSolde();
+
+        Transaction transaction = new Transaction(nom, depense);
         if (tableauUI != null)
         {
-            // On essaie de mettre à jour le texte de la ligne.
             // Si MettreAJourLigne renvoie "false", c'est que la ligne n'existe pas !
-            if (!tableauUI.MettreAJourLigne(nom, depense.ToString()))
+            if (!tableauUI.MettreAJourLigne(nom, depense))
             {
                 // Dans ce cas, on demande au tableau de créer une nouvelle ligne
-                tableauUI.Add(nom, depense.ToString(), "");
+                tableauUI.Add(transaction);
             }
         }
     }

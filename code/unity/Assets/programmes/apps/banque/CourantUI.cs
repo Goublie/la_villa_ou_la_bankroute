@@ -18,7 +18,7 @@ public class CourantUI : MonoBehaviour
     void OnEnable()
     {
         // Quand le mois passe, on fait la mise à jour TOTALE (Texte + Tableau)
-        ActionPlay.moisPasse += NouveauMois;
+        ActionPlay.OnMoisPasse += NouveauMois;
         
         if(compteCrnt != null) 
         {
@@ -31,7 +31,7 @@ public class CourantUI : MonoBehaviour
 
     void OnDisable()
     {
-        ActionPlay.moisPasse -= NouveauMois;
+        ActionPlay.OnMoisPasse -= NouveauMois;
         
         if(compteCrnt != null)
         {

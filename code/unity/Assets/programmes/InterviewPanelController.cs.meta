@@ -1,0 +1,18 @@
+fileFormatVersion: 2
+guid: b9ce783e93156fe4b9ad5ea476cabbc7
+MonoImporter:
+  externalObjects: {}
+  serializedVersion: 2
+  defaultReferences:
+  - gameData: {instanceID: 0}
+  - panelOffresEmploi: {instanceID: 0}
+  - panelPosteActuel: {instanceID: 0}
+  - panelActionsRapides: {instanceID: 0}
+  - panelPerformanceEmploye: {instanceID: 0}
+  - performanceController: {instanceID: 0}
+  - satisfactionController: {instanceID: 0}
+  executionOrder: 0
+  icon: {instanceID: 0}
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

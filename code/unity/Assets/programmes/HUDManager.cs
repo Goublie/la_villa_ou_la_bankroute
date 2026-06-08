@@ -17,13 +17,13 @@ public class HUDManager : MonoBehaviour
     void OnEnable()
     {
         gameData.comptes["courant"].OnSoldeModifie += ActualiserAffichage;
-        ActionPlay.moisPasse += ActualiserAffichage;
+        ActionPlay.OnMoisPasse += ActualiserAffichage;
     }
 
    void OnDisable()
     {
         gameData.comptes["courant"].OnSoldeModifie -= ActualiserAffichage;
-        ActionPlay.moisPasse -= ActualiserAffichage;
+        ActionPlay.OnMoisPasse -= ActualiserAffichage;
     }
 
     // Fonction qui rafraîchit l'interface à l'écran

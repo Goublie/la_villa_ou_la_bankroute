@@ -12,9 +12,8 @@ public class CompteBanquaire
 
     public event Action OnSoldeModifie;
 
-    public CompteBanquaire()
+    public CompteBanquaire(argent montantInitial = default)
     {
-        argent montantInitial = new argent(100000);
         historique = new Historique();
         totalEntree = montantInitial;
         totalSortie = new argent(0);
@@ -65,6 +64,7 @@ public class CompteBanquaire
         return solde;
     }
 
+    //Transfere de l'argent depuis le CompteBanquaire actuel vers le CompteBanquaire destination, en y ajoutant un libelle pour chaque compte, renvoie true en cas de réussite, false sinon.
     public bool Transferer(CompteBanquaire destination,string libeleSource, string libeleDestination, argent somme )
     {
         if (somme.centimes <= 0)
@@ -97,6 +97,15 @@ public class CompteBanquaire
         }
         CalculSolde();
         OnSoldeModifie?.Invoke();
+    }
+
+    // Vide l'historique et réinitialise les compteurs d'entrée/sortie pour le nouveau mois
+    public void ViderHistorique()
+    {
+        historique.Clear();
+        totalEntree = solde; // Le solde actuel devient la base du nouveau mois
+        totalSortie = new argent(0);
+        CalculSolde();
     }
 
     ///////////////
