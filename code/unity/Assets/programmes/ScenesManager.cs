@@ -33,9 +33,21 @@ public class ScenesManager : MonoBehaviour
         DontDestroyOnLoad(gameObject);
     }
 
+    [Header("Données de jeu à réinitialiser")]
+    public GameData gameData;
+
     public void ChargerJeu()
     {
         Debug.Log("ScenesManager : Chargement de 'Jeu'...");
+        if (gameData != null)
+        {
+            gameData.ResetData();
+            Debug.Log("ScenesManager : Données de jeu réinitialisées.");
+        }
+        else
+        {
+            Debug.LogWarning("ScenesManager : GameData manquant, impossible de réinitialiser.");
+        }
         SceneManager.LoadScene("Jeu");
     }
 

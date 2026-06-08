@@ -18,7 +18,23 @@ public class GameData : ScriptableObject
     public int santeMentale = 100; 
     public int nombreMoisPasses = 0; 
     public Mois moisActuel = Mois.Juillet; // Le jeu commence en Juillet
-
     public List<Investissement> investissements = new List<Investissement>(); // Liste des investissements du joueur
     public List<SnapshotEtatJeu> historiqueSnapshots = new List<SnapshotEtatJeu>(); // Historique des photographies mensuelles du jeu pour le mode What-if
+    
+    /// <summary>
+    /// Réinitialise toutes les données de jeu à leur état par défaut.
+    /// Appelé lors du démarrage d'une nouvelle partie.
+    /// </summary>
+    public void ResetData()
+    {
+        comptes.Clear();
+        comptes = new Dictionary<string, CompteBanquaire>(){{"courant",new CompteBanquaire()}};
+        salaire = new argent(0);
+        energie = 100;
+        santeMentale = 100;
+        nombreMoisPasses = 0;
+        moisActuel = Mois.Juillet;
+        investissements.Clear();
+        historiqueSnapshots.Clear();        
+    }
 }
