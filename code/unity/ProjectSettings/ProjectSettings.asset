@@ -787,11 +787,11 @@ PlayerSettings:
   captureStartupLogs: {}
   activeInputHandler: 1
   windowsGamepadBackendHint: 0
-  cloudProjectId: 79b2bfcf-60d2-4a17-b29d-95609dc8e194
+  cloudProjectId: 09c7f64f-093c-476b-89b4-1c6b93cdcc2a
   framebufferDepthMemorylessMode: 0
   qualitySettingsNames: []
-  projectName: La villa ou la bankroute
-  organizationId: unity_fe9bede95eb4aa16819c
+  projectName: Menu_du_jeu
+  organizationId: unity_0e1c62b049f1b37ea381
   cloudEnabled: 0
   legacyClampBlendShapeWeights: 0
   hmiLoadingImage: {fileID: 0}

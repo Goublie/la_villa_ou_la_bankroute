@@ -68,7 +68,7 @@ public class DemissionController : MonoBehaviour
         if (panelRelationnel != null) panelRelationnel.SetActive(true);
     }
 
-    private void OnOuiClicked()
+    public void OnOuiClicked()
     {
         // Confirm resignation: close the panel and clear the current job.
         gameObject.SetActive(false);

@@ -25,6 +25,7 @@ public class EmployeePerformanceController : MonoBehaviour
     public GameObject panelPosteActuel;     // 'Panel_Poste8actuel'
     public GameObject panelActionsRapides;  // 'Panel_Actions_Rapides'
     public GameObject panelRelationnel;     // 'Panel_Relationnel' (kept in sync with the dashboard)
+    public DemissionController demissionController; // Handles job reset logic
 
     [Header("Salary negotiation")]
     public GameObject panelNegociationSalaire; // 'Panel_NegociationSalaire'
@@ -141,6 +142,7 @@ public class EmployeePerformanceController : MonoBehaviour
         if (panelBurnoutGameOver != null) panelBurnoutGameOver.SetActive(true);
         if (panelPosteActuel != null) panelPosteActuel.SetActive(false);
         if (panelActionsRapides != null) panelActionsRapides.SetActive(false);
+        if (panelRelationnel != null) panelRelationnel.SetActive(false);
         gameObject.SetActive(false);
     }
 
@@ -151,6 +153,12 @@ public class EmployeePerformanceController : MonoBehaviour
     public void OnBurnoutRetourClicked()
     {
         if (panelBurnoutGameOver != null) panelBurnoutGameOver.SetActive(false);
+
+        // Call the resignation system to reset the job data
+        if (demissionController != null)
+        {
+            demissionController.OnOuiClicked();
+        }
 
         hasJob = false;
         monthsAtCurrentJob = 0;
@@ -165,6 +173,16 @@ public class EmployeePerformanceController : MonoBehaviour
         if (panelActionsRapides != null) panelActionsRapides.SetActive(true);
         if (panelRelationnel != null) panelRelationnel.SetActive(true);
         gameObject.SetActive(true);
+    }
+
+    /// <summary>
+    /// Decreases or increases the fatigue score by <paramref name="amount"/>.
+    /// Clamped to [0, 100] and refreshes the UI.
+    /// </summary>
+    public void ModifyFatigue(int amount)
+    {
+        fatigueScore = Mathf.Clamp(fatigueScore + amount, 0, 100);
+        RefreshUI();
     }
 
     /// <summary>
