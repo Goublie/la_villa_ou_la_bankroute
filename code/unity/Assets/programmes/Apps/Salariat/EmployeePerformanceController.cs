@@ -26,6 +26,7 @@ public class EmployeePerformanceController : MonoBehaviour
     public GameObject panelActionsRapides;  // 'Panel_Actions_Rapides'
     public GameObject panelRelationnel;     // 'Panel_Relationnel' (kept in sync with the dashboard)
     public DemissionController demissionController; // Handles job reset logic
+    public RelationalController relationalController; // Handles relationship scores
 
     [Header("Salary negotiation")]
     public GameObject panelNegociationSalaire; // 'Panel_NegociationSalaire'
@@ -99,6 +100,12 @@ public class EmployeePerformanceController : MonoBehaviour
         if (fatigueScore >= 100)
         {
             burnoutScore += 15;
+        }
+
+        // Fatigue reduction bonus: if colleagues relationship is maxed (100), reduce fatigue by 5.
+        if (relationalController != null && relationalController.ColleguesScore == 100)
+        {
+            fatigueScore -= 5;
         }
 
         if (monthsAtCurrentJob % 5 == 0)

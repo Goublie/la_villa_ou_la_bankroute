@@ -18,13 +18,12 @@ public class RelationalController : MonoBehaviour
     public Slider sliderCollegues;         // 'Slider_Collegues'
     public TextMeshProUGUI texteCollegues; // value label of 'Slider_Collegues'
 
-    [Header("Turn-based effects")]
-    public Button playButton; // Task Bar's Play Button
-    public EmployeePerformanceController performanceController;
-
     // --- Current relationship scores (0-100) ---
     private int patronScore = 0;
     private int colleguesScore = 0;
+
+    /// <summary>Returns the current relationship score with colleagues.</summary>
+    public int ColleguesScore => colleguesScore;
 
     private void Start()
     {
@@ -34,31 +33,6 @@ public class RelationalController : MonoBehaviour
 
         RefreshPatron();
         RefreshCollegues();
-    }
-
-    private void OnEnable()
-    {
-        if (playButton != null) playButton.onClick.AddListener(OnTurnPassed);
-    }
-
-    private void OnDisable()
-    {
-        if (playButton != null) playButton.onClick.RemoveListener(OnTurnPassed);
-    }
-
-    /// <summary>
-    /// Called when the player clicks the Play button. 
-    /// If colleagues relationship is maxed (100), reduces fatigue.
-    /// </summary>
-    private void OnTurnPassed()
-    {
-        if (colleguesScore == 100)
-        {
-            if (performanceController != null)
-            {
-                performanceController.ModifyFatigue(-5);
-            }
-        }
     }
 
     /// <summary>Adds <paramref name="amount"/> to the Boss score (clamped 0-100) and refreshes the UI.</summary>
