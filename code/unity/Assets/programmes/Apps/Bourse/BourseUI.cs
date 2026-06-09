@@ -62,6 +62,7 @@ public class BourseUI : MonoBehaviour, IPatrimoine
     private HUDManager hudManager;
     private ActionPlay actionPlay;
     private LineChart lineChart;
+    private bool graphiqueInitialise;
     private bool ecouteSoldeActive;
 
     private void Awake()
@@ -466,35 +467,26 @@ public class BourseUI : MonoBehaviour, IPatrimoine
             return;
         }
 
-        if (lineChart == null)
-        {
-            lineChart = graphiqueRoot.GetComponent<LineChart>();
-        }
-
-        if (lineChart == null)
-        {
-            lineChart = graphiqueRoot.gameObject.AddComponent<LineChart>();
-        }
-
-        if (lineChart == null)
+        if (!InitialiserGraphique())
         {
             AffecterTexte(historiqueText, ConstruireHistoriqueTexte(actif));
             return;
         }
 
         AffecterTexte(historiqueText, string.Empty);
-        lineChart.ClearData();
-        while (lineChart.series.Count < 1)
+        lineChart.RemoveData();
+        Line serie = lineChart.AddSerie<Line>(actif.nom);
+        if (serie == null)
         {
-            lineChart.AddSerie<Line>();
-        }
-        while (lineChart.series.Count > 1)
-        {
-            lineChart.series.RemoveAt(lineChart.series.Count - 1);
+            AffecterTexte(historiqueText, ConstruireHistoriqueTexte(actif));
+            return;
         }
 
-        lineChart.series[0].serieName = actif.nom;
-        lineChart.series[0].show = true;
+        serie.show = true;
+        serie.lineStyle.width = 4f;
+        serie.lineStyle.color = new Color32(34, 92, 210, 255);
+        serie.symbol.show = true;
+        serie.symbol.size = 8f;
 
         ObtenirPeriodeGraphique(
             actif,
@@ -509,6 +501,68 @@ public class BourseUI : MonoBehaviour, IPatrimoine
         }
 
         lineChart.SetAllDirty();
+        lineChart.RefreshChart();
+    }
+
+    private bool InitialiserGraphique()
+    {
+        if (lineChart == null)
+        {
+            lineChart = graphiqueRoot.GetComponent<LineChart>();
+        }
+
+        if (lineChart == null)
+        {
+            lineChart = graphiqueRoot.gameObject.AddComponent<LineChart>();
+        }
+
+        if (lineChart == null)
+        {
+            return false;
+        }
+
+        if (graphiqueInitialise)
+        {
+            return true;
+        }
+
+        lineChart.Init();
+        lineChart.theme.transparentBackground = true;
+        lineChart.EnsureChartComponent<Title>().show = false;
+        lineChart.EnsureChartComponent<Legend>().show = false;
+        lineChart.EnsureChartComponent<Tooltip>().show = true;
+
+        Color32 couleurAxes = new Color32(55, 65, 82, 255);
+        Color32 couleurGrille = new Color32(160, 170, 185, 100);
+        GridCoord grille = lineChart.EnsureChartComponent<GridCoord>();
+        grille.show = true;
+        grille.showBorder = true;
+        grille.borderWidth = 1f;
+        grille.borderColor = couleurAxes;
+        grille.left = 70f;
+        grille.right = 25f;
+        grille.top = 20f;
+        grille.bottom = 45f;
+
+        XAxis axeX = lineChart.EnsureChartComponent<XAxis>();
+        axeX.show = true;
+        axeX.type = Axis.AxisType.Category;
+        axeX.boundaryGap = false;
+        axeX.splitNumber = 6;
+        axeX.axisLine.lineStyle.color = couleurAxes;
+        axeX.axisLabel.textStyle.color = couleurAxes;
+
+        YAxis axeY = lineChart.EnsureChartComponent<YAxis>();
+        axeY.show = true;
+        axeY.type = Axis.AxisType.Value;
+        axeY.splitNumber = 4;
+        axeY.axisLine.lineStyle.color = couleurAxes;
+        axeY.axisLabel.textStyle.color = couleurAxes;
+        axeY.splitLine.show = true;
+        axeY.splitLine.lineStyle.color = couleurGrille;
+
+        graphiqueInitialise = true;
+        return true;
     }
 
     private string ConstruireHistoriqueTexte(ActifMarche actif)
