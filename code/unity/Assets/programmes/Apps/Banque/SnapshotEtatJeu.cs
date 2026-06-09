@@ -108,6 +108,10 @@ public class SnapshotEtatJeu
                     ));
                 }
             }
+
+            this.joueur.bourse = gameData.joueur.bourse != null
+                ? gameData.joueur.bourse.Copier()
+                : new DonneesBourse();
         }
 
         // 4. Clonage des données de l'environnement macroéconomique
