@@ -140,40 +140,4 @@ public static class Optimizer
 
         return resultats;
     }
-
-    /// <summary>
-    /// Extrait la trajectoire financière réelle du joueur sur la même période.
-    /// </summary>
-    public static List<SimulationResult> ObtenirHistoriqueReel(GameData gameData)
-    {
-        List<SimulationResult> resultats = new List<SimulationResult>();
-        if (gameData == null || gameData.historiqueSnapshots == null) return resultats;
-
-        int totalSnapshots = gameData.historiqueSnapshots.Count;
-        int startIndex = Mathf.Max(0, totalSnapshots - 13);
-
-        for (int i = startIndex; i < totalSnapshots; i++)
-        {
-            SnapshotEtatJeu snap = gameData.historiqueSnapshots[i];
-            
-            argent courant = snap.joueur.comptes.ContainsKey("courant")
-                ? snap.joueur.comptes["courant"].GetSolde()
-                : new argent(0);
-
-            argent epargne = snap.joueur.comptes.ContainsKey("epargne")
-                ? snap.joueur.comptes["epargne"].GetSolde()
-                : new argent(0);
-
-            resultats.Add(new SimulationResult
-            {
-                indexMois = snap.indexMois,
-                moisCalendrier = snap.moisCalendrier,
-                soldeCourant = courant,
-                soldeEpargne = epargne,
-                patrimoineTotal = courant + epargne
-            });
-        }
-
-        return resultats;
-    }
 }

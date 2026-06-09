@@ -5,7 +5,6 @@ using UnityEngine.UI;
 /// Attache un écouteur d'événement au bouton de fermeture pour recharger la scène
 /// de jeu sans réinitialiser les données (GameData).
 /// </summary>
-[RequireComponent(typeof(Button))]
 public class FermerRetrospective : MonoBehaviour
 {
     void Start()

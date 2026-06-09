@@ -42,4 +42,39 @@ public class GameData : ScriptableObject
         moisActuel = Mois.Juillet;
         historiqueSnapshots.Clear();
     }
+
+    /// <summary>
+    /// Extrait la trajectoire financière réelle du joueur sur la même période (les 12 derniers mois).
+    /// </summary>
+    public List<PointPatrimoine> ObtenirHistoriquePatrimoineReel()
+    {
+        List<PointPatrimoine> resultats = new List<PointPatrimoine>();
+        if (historiqueSnapshots == null) return resultats;
+
+        int totalSnapshots = historiqueSnapshots.Count;
+        int startIndex = Mathf.Max(0, totalSnapshots - 13);
+
+        for (int i = startIndex; i < totalSnapshots; i++)
+        {
+            SnapshotEtatJeu snap = historiqueSnapshots[i];
+            
+            resultats.Add(new PointPatrimoine
+            {
+                indexMois = snap.indexMois,
+                moisCalendrier = snap.moisCalendrier,
+                patrimoineTotal = snap.joueur != null ? snap.joueur.CalculPatrimoineTotal() : new argent(0)
+            });
+        }
+
+        return resultats;
+    }
 }
+
+[System.Serializable]
+public struct PointPatrimoine
+{
+    public int indexMois;
+    public Mois moisCalendrier;
+    public argent patrimoineTotal;
+}
+
