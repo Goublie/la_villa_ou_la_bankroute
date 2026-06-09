@@ -24,11 +24,13 @@ public class PositionBourse
 }
 
 [Serializable]
-public class DonneesBourse
+public class DonneesBourse : IPatrimoine
 {
     public List<PositionBourse> positions = new List<PositionBourse>();
     public int dernierMoisObserve = -1;
     public string dernierMessage = "Sélectionnez un actif pour commencer.";
+    public int valeurMarcheCentimes;
+    public int moisValorisation = -1;
 
     public PositionBourse TrouverPosition(string actifId)
     {
@@ -64,12 +66,47 @@ public class DonneesBourse
         positions.RemoveAll(position => position == null || position.quantite <= 0.000001f);
     }
 
+    public void DefinirValeurMarche(int valeurCentimes, int mois)
+    {
+        valeurMarcheCentimes = Math.Max(0, valeurCentimes);
+        moisValorisation = Math.Max(0, mois);
+    }
+
+    public int CalculerCapitalInvestiCentimes()
+    {
+        long total = 0;
+        if (positions != null)
+        {
+            foreach (PositionBourse position in positions)
+            {
+                if (position != null && position.quantite > 0f)
+                {
+                    total += Math.Max(0, position.coutTotalCentimes);
+                }
+            }
+        }
+
+        return total > int.MaxValue ? int.MaxValue : (int)total;
+    }
+
+    public argent GetValeurPatrimoine()
+    {
+        return new argent(valeurMarcheCentimes);
+    }
+
+    public argent GetGainsPertesLatents()
+    {
+        return new argent(valeurMarcheCentimes - CalculerCapitalInvestiCentimes());
+    }
+
     public DonneesBourse Copier()
     {
         DonneesBourse copie = new DonneesBourse
         {
             dernierMoisObserve = dernierMoisObserve,
             dernierMessage = dernierMessage,
+            valeurMarcheCentimes = valeurMarcheCentimes,
+            moisValorisation = moisValorisation,
             positions = new List<PositionBourse>()
         };
 

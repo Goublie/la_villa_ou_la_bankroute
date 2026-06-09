@@ -1,11 +1,10 @@
 using System;
 using System.Collections.Generic;
-using Newtonsoft.Json;
 using TMPro;
 using UnityEngine;
 using XCharts.Runtime;
 
-public class BourseUI : MonoBehaviour
+public class BourseUI : MonoBehaviour, IPatrimoine
 {
     private enum CategorieActif
     {
@@ -14,19 +13,6 @@ public class BourseUI : MonoBehaviour
         Crypto,
         Energie,
         Defensif
-    }
-
-    [Serializable]
-    private class PointMarche
-    {
-        public int Mois;
-        public float Close;
-    }
-
-    [Serializable]
-    private class PointLivret
-    {
-        public float Rendement_mensuel_pct;
     }
 
     private sealed class ActifMarche
@@ -224,6 +210,13 @@ public class BourseUI : MonoBehaviour
         MettreAJourMarchePourNouveauMois();
     }
 
+    public argent GetValeurPatrimoine()
+    {
+        DonneesBourse bourse = ObtenirDonneesBourse();
+        ActualiserValorisationPortefeuille(bourse);
+        return bourse != null ? bourse.GetValeurPatrimoine() : new argent(0);
+    }
+
     public void ActualiserAffichage()
     {
         ResoudreDependances();
@@ -233,6 +226,7 @@ public class BourseUI : MonoBehaviour
 
         ActifMarche actif = ActifSelectionne;
         DonneesBourse bourse = ObtenirDonneesBourse();
+        ActualiserValorisationPortefeuille(bourse);
         PositionBourse position = actif != null && bourse != null
             ? bourse.TrouverPosition(actif.id)
             : null;
@@ -316,42 +310,42 @@ public class BourseUI : MonoBehaviour
             CategorieActif.Indices,
             "Modéré",
             "Indice des grandes capitalisations françaises.",
-            ChargerCourbe("Bourse/cac40"));
+            MarcheBoursier.ObtenirCourbe("cac40"));
         AjouterActif(
             "nvidia",
             "Nvidia",
             CategorieActif.Actions,
             "Élevé",
             "Action technologique à forte croissance et forte volatilité.",
-            ChargerCourbe("Bourse/nvidia"));
+            MarcheBoursier.ObtenirCourbe("nvidia"));
         AjouterActif(
             "alphabet",
             "Alphabet",
             CategorieActif.Actions,
             "Modéré",
             "Groupe technologique diversifié, plus stable que les valeurs de rupture.",
-            ChargerCourbe("Bourse/alphabet"));
+            MarcheBoursier.ObtenirCourbe("alphabet"));
         AjouterActif(
             "bitcoin",
             "Bitcoin",
             CategorieActif.Crypto,
             "Très élevé",
             "Cryptoactif très volatil, sensible au sentiment de marché.",
-            ChargerCourbe("Bourse/bitcoin"));
+            MarcheBoursier.ObtenirCourbe("bitcoin"));
         AjouterActif(
             "totalenergies",
             "TotalEnergies",
             CategorieActif.Energie,
             "Modéré",
             "Action énergétique sensible aux prix des matières premières et à la transition.",
-            ChargerCourbe("Bourse/totalenergies"));
+            MarcheBoursier.ObtenirCourbe("totalenergies"));
         AjouterActif(
             "livret_a",
             "Livret A",
             CategorieActif.Defensif,
             "Faible",
             "Placement réglementé stable dont le rendement suit les données de taux du projet.",
-            ChargerCourbeLivretA());
+            MarcheBoursier.ObtenirCourbe("livret_a"));
     }
 
     private void AjouterActif(
@@ -378,84 +372,6 @@ public class BourseUI : MonoBehaviour
         };
         actif.prix.AddRange(prix);
         actifs.Add(actif);
-    }
-
-    private static List<float> ChargerCourbe(string cheminResources)
-    {
-        TextAsset fichier = Resources.Load<TextAsset>(cheminResources);
-        if (fichier == null)
-        {
-            return new List<float>();
-        }
-
-        try
-        {
-            List<PointMarche> points =
-                JsonConvert.DeserializeObject<List<PointMarche>>(fichier.text);
-            List<float> prix = new List<float>();
-            if (points != null)
-            {
-                foreach (PointMarche point in points)
-                {
-                    if (point != null && point.Close > 0f)
-                    {
-                        prix.Add(point.Close);
-                    }
-                }
-            }
-
-            return prix;
-        }
-        catch (Exception exception)
-        {
-            Debug.LogWarning(
-                "[Bourse] Lecture impossible pour " + cheminResources + " : " +
-                exception.Message);
-            return new List<float>();
-        }
-    }
-
-    private static List<float> ChargerCourbeLivretA()
-    {
-        TextAsset fichier =
-            Resources.Load<TextAsset>("livret_a_simulation_40ans_simplifie");
-        if (fichier == null)
-        {
-            return new List<float>();
-        }
-
-        try
-        {
-            Dictionary<string, List<PointLivret>> donnees =
-                JsonConvert.DeserializeObject<Dictionary<string, List<PointLivret>>>(
-                    fichier.text);
-            if (donnees == null ||
-                !donnees.TryGetValue("livret_a_simulation", out List<PointLivret> points) ||
-                points == null ||
-                points.Count == 0)
-            {
-                return new List<float>();
-            }
-
-            List<float> prix = new List<float> { 100f };
-            float valeur = 100f;
-            const int decalageJuillet2026 = 6;
-
-            for (int mois = 0; mois < 480; mois++)
-            {
-                int index = Mathf.Min(decalageJuillet2026 + mois, points.Count - 1);
-                valeur *= 1f + (points[index].Rendement_mensuel_pct / 100f);
-                prix.Add(valeur);
-            }
-
-            return prix;
-        }
-        catch (Exception exception)
-        {
-            Debug.LogWarning(
-                "[Bourse] Lecture impossible pour le Livret A : " + exception.Message);
-            return new List<float>();
-        }
     }
 
     private void ActualiserListeCategorie()
@@ -510,8 +426,6 @@ public class BourseUI : MonoBehaviour
             return "Portefeuille indisponible.";
         }
 
-        int valeurTotale = 0;
-        int coutTotal = 0;
         int positionsActives = 0;
 
         if (bourse.positions != null)
@@ -525,13 +439,12 @@ public class BourseUI : MonoBehaviour
                 }
 
                 positionsActives++;
-                valeurTotale += Mathf.RoundToInt(
-                    position.quantite * PrixActuel(actif) * 100f);
-                coutTotal += position.coutTotalCentimes;
             }
         }
 
-        int performance = valeurTotale - coutTotal;
+        int valeurTotale = bourse.GetValeurPatrimoine().centimes;
+        int coutTotal = bourse.CalculerCapitalInvestiCentimes();
+        int performance = bourse.GetGainsPertesLatents().centimes;
         float performancePourcent = coutTotal > 0
             ? performance * 100f / coutTotal
             : 0f;
@@ -583,11 +496,15 @@ public class BourseUI : MonoBehaviour
         lineChart.series[0].serieName = actif.nom;
         lineChart.series[0].show = true;
 
+        ObtenirPeriodeGraphique(
+            actif,
+            out int premierMois,
+            out int dernierMois);
         int moisActuel = IndexPrixActuel(actif);
-        int premierMois = Mathf.Max(0, moisActuel - 11);
-        for (int mois = premierMois; mois <= moisActuel; mois++)
+        for (int mois = premierMois; mois <= dernierMois; mois++)
         {
-            lineChart.AddXAxisData("M" + mois);
+            string suffixeProjection = mois > moisActuel ? "p" : string.Empty;
+            lineChart.AddXAxisData("M" + mois + suffixeProjection);
             lineChart.AddData(0, actif.prix[mois]);
         }
 
@@ -601,17 +518,22 @@ public class BourseUI : MonoBehaviour
             return string.Empty;
         }
 
+        ObtenirPeriodeGraphique(
+            actif,
+            out int premierMois,
+            out int dernierMois);
         int moisActuel = IndexPrixActuel(actif);
-        int premierMois = Mathf.Max(0, moisActuel - 5);
-        string resultat = "<b>Historique récent</b>\n";
-        for (int mois = premierMois; mois <= moisActuel; mois++)
+        string resultat = "<b>Courbe 12 mois</b>\n";
+        for (int mois = premierMois; mois <= dernierMois; mois++)
         {
             if (mois > premierMois)
             {
                 resultat += "  •  ";
             }
 
-            resultat += "M" + mois + " " + FormaterPrix(actif.prix[mois]);
+            string suffixeProjection = mois > moisActuel ? "p" : string.Empty;
+            resultat += "M" + mois + suffixeProjection + " " +
+                FormaterPrix(actif.prix[mois]);
         }
 
         return resultat;
@@ -664,6 +586,7 @@ public class BourseUI : MonoBehaviour
         }
 
         bourse.dernierMoisObserve = gameData != null ? gameData.nombreMoisPasses : 0;
+        ActualiserValorisationPortefeuille(bourse);
         bourse.dernierMessage = ConstruireMessageMarche();
         ActualiserAffichage();
     }
@@ -841,6 +764,40 @@ public class BourseUI : MonoBehaviour
         }
     }
 
+    private void ActualiserValorisationPortefeuille(DonneesBourse bourse)
+    {
+        if (bourse != null)
+        {
+            int mois = gameData != null ? gameData.nombreMoisPasses : 0;
+            MarcheBoursier.MettreAJourValorisation(bourse, mois);
+        }
+    }
+
+    private void ObtenirPeriodeGraphique(
+        ActifMarche actif,
+        out int premierMois,
+        out int dernierMois)
+    {
+        const int nombrePoints = 12;
+        int moisActuel = IndexPrixActuel(actif);
+        int pointsDisponibles = Mathf.Min(nombrePoints, actif.prix.Count);
+
+        premierMois = Mathf.Max(0, moisActuel - pointsDisponibles + 1);
+        dernierMois = premierMois + pointsDisponibles - 1;
+
+        if (dernierMois >= actif.prix.Count)
+        {
+            dernierMois = actif.prix.Count - 1;
+            premierMois = Mathf.Max(0, dernierMois - pointsDisponibles + 1);
+        }
+
+        if (pointsDisponibles == nombrePoints &&
+            dernierMois - premierMois + 1 < nombrePoints)
+        {
+            premierMois = Mathf.Max(0, dernierMois - nombrePoints + 1);
+        }
+    }
+
     private float PrixActuel(ActifMarche actif)
     {
         return actif != null && actif.prix.Count > 0
@@ -922,7 +879,7 @@ public class BourseUI : MonoBehaviour
             case CategorieActif.Indices:
                 return "Indices";
             case CategorieActif.Actions:
-                return "Actions";
+                return "Actions tech";
             case CategorieActif.Crypto:
                 return "Crypto";
             case CategorieActif.Energie:

@@ -27,7 +27,7 @@ public class DonneesJoueur
 
     /// <summary>
     /// Calcule le patrimoine total du joueur en sommant la valeur de tous ses actifs
-    /// qui implémentent l'interface IPatrimoine (comptes bancaires et investissements).
+    /// qui implémentent l'interface IPatrimoine.
     /// </summary>
     public argent CalculPatrimoineTotal()
     {
@@ -53,6 +53,11 @@ public class DonneesJoueur
                     total += invest.GetValeurPatrimoine();
                 }
             }
+        }
+
+        if (bourse != null)
+        {
+            total += bourse.GetValeurPatrimoine();
         }
 
         return total;
