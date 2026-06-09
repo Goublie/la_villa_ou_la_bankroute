@@ -27,24 +27,28 @@ public class EntrepreneuriatUI : MonoBehaviour
 
     private CompteBanquaire compteCourant;
     private HUDManager hudManager;
+    private ActionPlay actionPlay;
     private bool ecouteSoldeActive;
 
     private void Awake()
     {
+        ResoudreDependances();
         TrouverCompteCourant();
-        hudManager = FindFirstObjectByType<HUDManager>();
         BornerValeurs();
     }
 
     private void OnEnable()
     {
+        ResoudreDependances();
         TrouverCompteCourant();
         AbonnerSolde();
+        ActionPlay.OnMoisPasse += ActualiserAffichage;
         ActualiserAffichage();
     }
 
     private void OnDisable()
     {
+        ActionPlay.OnMoisPasse -= ActualiserAffichage;
         DesabonnerSolde();
     }
 
@@ -133,20 +137,23 @@ public class EntrepreneuriatUI : MonoBehaviour
 
     public void ReposerFondateur()
     {
-        if (gameData == null)
+        DonneesJoueur joueur = ObtenirJoueur();
+        if (joueur == null)
         {
             TerminerAction("Les données de jeu sont indisponibles.");
             return;
         }
 
-        gameData.joueur.energie += 30;
-        gameData.joueur.santeMentale += 25;
+        joueur.energie += 30;
+        joueur.santeMentale += 25;
         TerminerAction("Le fondateur récupère de l'énergie et de la clarté.");
     }
 
     public void ActualiserAffichage()
     {
+        ResoudreDependances();
         TrouverCompteCourant();
+        DonneesJoueur joueur = ObtenirJoueur();
 
         if (cashText != null)
         {
@@ -156,13 +163,13 @@ public class EntrepreneuriatUI : MonoBehaviour
 
         if (energieText != null)
         {
-            energieText.text = "Énergie : " + (gameData != null && gameData.joueur != null ? gameData.joueur.energie + "/100" : "indisponible");
+            energieText.text = "Énergie : " + (joueur != null ? joueur.energie + "/100" : "indisponible");
         }
 
         if (santeMentaleText != null)
         {
             santeMentaleText.text = "Santé mentale : " +
-                (gameData != null && gameData.joueur != null ? gameData.joueur.santeMentale + "/100" : "indisponible");
+                (joueur != null ? joueur.santeMentale + "/100" : "indisponible");
         }
 
         if (progressionProduitText != null)
@@ -194,26 +201,27 @@ public class EntrepreneuriatUI : MonoBehaviour
 
     private bool ConsommerRessources(int energieNecessaire, int santeMentaleNecessaire)
     {
-        if (gameData == null)
+        DonneesJoueur joueur = ObtenirJoueur();
+        if (joueur == null)
         {
             TerminerAction("Les données de jeu sont indisponibles.");
             return false;
         }
 
-        if (gameData.joueur.energie < energieNecessaire)
+        if (joueur.energie < energieNecessaire)
         {
             TerminerAction("Énergie insuffisante pour cette action.");
             return false;
         }
 
-        if (gameData.joueur.santeMentale < santeMentaleNecessaire)
+        if (joueur.santeMentale < santeMentaleNecessaire)
         {
             TerminerAction("Santé mentale insuffisante pour cette action.");
             return false;
         }
 
-        gameData.joueur.energie -= energieNecessaire;
-        gameData.joueur.santeMentale -= santeMentaleNecessaire;
+        joueur.energie -= energieNecessaire;
+        joueur.santeMentale -= santeMentaleNecessaire;
         return true;
     }
 
@@ -237,17 +245,74 @@ public class EntrepreneuriatUI : MonoBehaviour
 
     private bool TrouverCompteCourant()
     {
-        if (compteCourant != null)
+        DonneesJoueur joueur = ObtenirJoueur();
+        if (joueur == null || joueur.comptes == null)
         {
-            return true;
-        }
-
-        if (gameData == null || gameData.joueur == null || gameData.joueur.comptes == null)
-        {
+            RemplacerCompteCourant(null);
             return false;
         }
 
-        return gameData.joueur.comptes.TryGetValue("courant", out compteCourant) && compteCourant != null;
+        joueur.comptes.TryGetValue("courant", out CompteBanquaire compte);
+        RemplacerCompteCourant(compte);
+        return compteCourant != null;
+    }
+
+    private DonneesJoueur ObtenirJoueur()
+    {
+        ResoudreDependances();
+        if (gameData == null)
+        {
+            return null;
+        }
+
+        if (gameData.joueur == null)
+        {
+            gameData.joueur = new DonneesJoueur();
+        }
+
+        return gameData.joueur;
+    }
+
+    private void ResoudreDependances()
+    {
+        if (hudManager == null)
+        {
+            hudManager = FindFirstObjectByType<HUDManager>();
+        }
+
+        if (gameData == null && hudManager != null)
+        {
+            gameData = hudManager.gameData;
+        }
+
+        if (gameData == null)
+        {
+            if (actionPlay == null)
+            {
+                actionPlay = FindFirstObjectByType<ActionPlay>();
+            }
+
+            if (actionPlay != null)
+            {
+                gameData = actionPlay.gameData;
+            }
+        }
+    }
+
+    private void RemplacerCompteCourant(CompteBanquaire nouveauCompte)
+    {
+        if (ReferenceEquals(compteCourant, nouveauCompte))
+        {
+            return;
+        }
+
+        DesabonnerSolde();
+        compteCourant = nouveauCompte;
+
+        if (isActiveAndEnabled)
+        {
+            AbonnerSolde();
+        }
     }
 
     private void AbonnerSolde()
@@ -275,11 +340,6 @@ public class EntrepreneuriatUI : MonoBehaviour
         BornerValeurs();
         ActualiserAffichage();
 
-        if (hudManager == null)
-        {
-            hudManager = FindFirstObjectByType<HUDManager>();
-        }
-
         if (hudManager != null)
         {
             hudManager.ActualiserAffichage();
@@ -292,10 +352,11 @@ public class EntrepreneuriatUI : MonoBehaviour
         tractionMarche = Mathf.Clamp(tractionMarche, 0, MaximumStat);
         reputation = Mathf.Clamp(reputation, 0, MaximumStat);
 
-        if (gameData != null && gameData.joueur != null)
+        DonneesJoueur joueur = ObtenirJoueur();
+        if (joueur != null)
         {
-            gameData.joueur.energie = Mathf.Clamp(gameData.joueur.energie, 0, MaximumStat);
-            gameData.joueur.santeMentale = Mathf.Clamp(gameData.joueur.santeMentale, 0, MaximumStat);
+            joueur.energie = Mathf.Clamp(joueur.energie, 0, MaximumStat);
+            joueur.santeMentale = Mathf.Clamp(joueur.santeMentale, 0, MaximumStat);
         }
     }
 
