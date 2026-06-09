@@ -36,9 +36,9 @@ public class ScenesManager : MonoBehaviour
     [Header("Données de jeu à réinitialiser")]
     public GameData gameData;
 
-    public void ChargerJeu()
+    public void InitJeu()
     {
-        Debug.Log("ScenesManager : Chargement de 'Jeu'...");
+        Debug.Log("ScenesManager : Initialisation d'une nouvelle partie...");
         if (gameData != null)
         {
             gameData.ResetData();
@@ -48,13 +48,19 @@ public class ScenesManager : MonoBehaviour
         {
             Debug.LogWarning("ScenesManager : GameData manquant, impossible de réinitialiser.");
         }
+        ChargerJeu();
+    }
+
+    public void ChargerJeu()
+    {
+        Debug.Log("ScenesManager : Chargement de 'Jeu'...");
         SceneManager.LoadScene("Jeu");
     }
 
     public void ChargerIntrospection()
     {
-        Debug.Log("ScenesManager : Chargement de 'End'...");
-        SceneManager.LoadScene("End");    
+        Debug.Log("ScenesManager : Chargement de 'Retrospective'...");
+        SceneManager.LoadScene("Retrospective");    
     }
 
     public void ChargerMenu()
