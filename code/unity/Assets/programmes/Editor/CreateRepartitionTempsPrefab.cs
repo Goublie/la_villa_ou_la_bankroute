@@ -48,11 +48,11 @@ public class CreateRepartitionTempsPrefab
         containerRect.anchorMin = new Vector2(0, 0);
         containerRect.anchorMax = new Vector2(1, 1);
         containerRect.anchoredPosition = new Vector2(0, -25);
-        containerRect.sizeDelta = new Vector2(-100, -130);
+        containerRect.sizeDelta = new Vector2(-100, -100); // Margins adjusted since bottom button is removed
 
-        // Add a vertical layout group to organize sections (Description, Content, Button)
+        // Add a vertical layout group to organize sections (Description, Content)
         VerticalLayoutGroup layout = container.AddComponent<VerticalLayoutGroup>();
-        layout.padding = new RectOffset(20, 20, 20, 20);
+        layout.padding = new RectOffset(25, 25, 25, 25);
         layout.spacing = 30;
         layout.childAlignment = TextAnchor.MiddleCenter;
         layout.childControlHeight = true;
@@ -60,7 +60,7 @@ public class CreateRepartitionTempsPrefab
         layout.childForceExpandHeight = false;
         layout.childForceExpandWidth = true;
 
-        // Section 1: Description Text (Removed accents: "repartir", "differentes")
+        // Section 1: Description Text (No accents)
         GameObject descGo = new GameObject("DescriptionText", typeof(RectTransform));
         descGo.transform.SetParent(container.transform, false);
         TextMeshProUGUI descText = descGo.AddComponent<TextMeshProUGUI>();
@@ -91,7 +91,7 @@ public class CreateRepartitionTempsPrefab
         centerLayout.childForceExpandWidth = false;
         
         LayoutElement centerLayoutElement = centerGo.AddComponent<LayoutElement>();
-        centerLayoutElement.preferredHeight = 400;
+        centerLayoutElement.preferredHeight = 420; // Slightly taller
         centerLayoutElement.flexibleHeight = 1;
 
         // Left Container: Sliders List
@@ -164,7 +164,7 @@ public class CreateRepartitionTempsPrefab
         rightLayoutElement.flexibleWidth = 1;
         rightLayoutElement.flexibleHeight = 1;
 
-        // Section 2b: XCharts PieChart instead of static image
+        // Section 2b: XCharts PieChart
         GameObject chartGo = new GameObject("PieChart", typeof(RectTransform));
         chartGo.transform.SetParent(rightGo.transform, false);
         PieChart pieChart = chartGo.AddComponent<PieChart>();
@@ -176,7 +176,7 @@ public class CreateRepartitionTempsPrefab
         legend.show = true;
         legend.orient = Orient.Horizonal;
         
-        // Remove default sample data and setup our 4 categories (No accents)
+        // Remove default sample data and setup our 4 categories
         pieChart.ClearData();
         while (pieChart.series.Count < 1)
         {
@@ -201,7 +201,7 @@ public class CreateRepartitionTempsPrefab
         chartLayoutElement.flexibleHeight = 0;
         chartLayoutElement.flexibleWidth = 0;
 
-        // Total Time text (Removed accents: "alloue")
+        // Total Time text (No accents)
         GameObject totalGo = new GameObject("TotalText", typeof(RectTransform));
         totalGo.transform.SetParent(rightGo.transform, false);
         TextMeshProUGUI totalText = totalGo.AddComponent<TextMeshProUGUI>();
@@ -219,45 +219,6 @@ public class CreateRepartitionTempsPrefab
         LayoutElement totalLayout = totalGo.AddComponent<LayoutElement>();
         totalLayout.preferredHeight = 45;
         totalLayout.flexibleHeight = 0;
-
-        // Section 3: Validation Button Container (No accents)
-        GameObject btnContainerGo = new GameObject("ButtonContainer", typeof(RectTransform));
-        btnContainerGo.transform.SetParent(container.transform, false);
-        LayoutElement btnContainerLayout = btnContainerGo.AddComponent<LayoutElement>();
-        btnContainerLayout.preferredHeight = 70;
-        btnContainerLayout.flexibleHeight = 0;
-
-        GameObject btnGo = new GameObject("ValidateButton", typeof(RectTransform));
-        btnGo.transform.SetParent(btnContainerGo.transform, false);
-        Image btnImg = btnGo.AddComponent<Image>();
-        btnImg.color = new Color(0.7f, 0.7f, 0.7f, 1f); // Gray button background
-        Button btn = btnGo.AddComponent<Button>();
-        
-        RectTransform btnRect = btnGo.GetComponent<RectTransform>();
-        btnRect.anchorMin = new Vector2(0.5f, 0.5f);
-        btnRect.anchorMax = new Vector2(0.5f, 0.5f);
-        btnRect.pivot = new Vector2(0.5f, 0.5f);
-        btnRect.anchoredPosition = Vector2.zero;
-        btnRect.sizeDelta = new Vector2(320, 60);
-
-        GameObject btnTxtGo = new GameObject("Text", typeof(RectTransform));
-        btnTxtGo.transform.SetParent(btnGo.transform, false);
-        TextMeshProUGUI btnTxt = btnTxtGo.AddComponent<TextMeshProUGUI>();
-        if (titleTransform != null)
-        {
-            TextMeshProUGUI titleTxt = titleTransform.GetComponent<TextMeshProUGUI>();
-            btnTxt.font = titleTxt.font;
-            btnTxt.fontSharedMaterial = titleTxt.fontSharedMaterial;
-        }
-        btnTxt.text = "Valider & Lancer";
-        btnTxt.fontSize = 24;
-        btnTxt.color = Color.black;
-        btnTxt.alignment = TextAlignmentOptions.Center;
-        
-        RectTransform btnTxtRect = btnTxtGo.GetComponent<RectTransform>();
-        btnTxtRect.anchorMin = Vector2.zero;
-        btnTxtRect.anchorMax = Vector2.one;
-        btnTxtRect.sizeDelta = Vector2.zero;
 
         // Save as Prefab Variant
         string outDir = "Assets/prefabs/Apps/RepartitionTemps";
