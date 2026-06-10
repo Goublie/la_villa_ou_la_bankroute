@@ -15,6 +15,22 @@ public struct argent
     {
     }
 
+    /// <summary>
+    /// Retourne la valeur en euros sous forme de double précis.
+    /// </summary>
+    public double ToDouble()
+    {
+        return centimes / 100.0;
+    }
+
+    /// <summary>
+    /// Retourne la valeur en euros sous forme de float.
+    /// </summary>
+    public float ToFloat()
+    {
+        return centimes / 100f;
+    }
+
     public override string ToString()
     {
         //Conversion en décimal pour la précision

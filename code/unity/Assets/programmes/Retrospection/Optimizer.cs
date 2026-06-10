@@ -52,15 +52,7 @@ public static class Optimizer
         float interetsAccumules = 0f;
         int moisEcoulesEpargne = 0;
 
-        // On enregistre le point de départ dans les résultats de simulation
-        resultats.Add(new SimulationResult
-        {
-            indexMois = snapshotInitial.indexMois,
-            moisCalendrier = snapshotInitial.moisCalendrier,
-            soldeCourant = courantSimule,
-            soldeEpargne = epargneSimule,
-            patrimoineTotal = courantSimule + epargneSimule
-        });
+
 
         // Simulation mois par mois
         for (int i = startIndex + 1; i < totalSnapshots; i++)

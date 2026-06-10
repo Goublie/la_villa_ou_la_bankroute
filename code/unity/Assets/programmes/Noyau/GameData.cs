@@ -52,7 +52,8 @@ public class GameData : ScriptableObject
         if (historiqueSnapshots == null) return resultats;
 
         int totalSnapshots = historiqueSnapshots.Count;
-        int startIndex = Mathf.Max(0, totalSnapshots - 13);
+        // On récupère les 12 mois de l'année, en sautant le snapshot initial de baseline
+        int startIndex = totalSnapshots >= 13 ? (totalSnapshots - 12) : 1;
 
         for (int i = startIndex; i < totalSnapshots; i++)
         {

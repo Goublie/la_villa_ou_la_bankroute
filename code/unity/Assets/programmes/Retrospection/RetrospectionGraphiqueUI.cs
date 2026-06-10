@@ -1,6 +1,6 @@
 using System.Collections.Generic;
 using UnityEngine;
-using XCharts.Runtime; // Namespace requis pour manipuler XCharts
+using XCharts.Runtime;
 
 /// <summary>
 /// Gère le rendu graphique du patrimoine réel du joueur pour la rétrospection.
@@ -59,6 +59,13 @@ public class RetrospectionGraphiqueUI : MonoBehaviour
         serieJoueur.serieName = "Joueur (Réel)";
         serieJoueur.show = true;
 
+        // Configuration programmatique de l'axe Y pour afficher les euros
+        var yAxis = lineChart.GetChartComponent<YAxis>();
+        if (yAxis != null && yAxis.axisLabel != null)
+        {
+            yAxis.axisLabel.formatter = "{value} €";
+        }
+
         Debug.Log($"[What-If] Début du tracé du graphique. Nombre de points : {gameData.historiqueSnapshots.Count}");
 
         // 3. Remplissage des données à partir de l'historique des snapshots
@@ -72,7 +79,7 @@ public class RetrospectionGraphiqueUI : MonoBehaviour
             lineChart.AddXAxisData(labelMois);
 
             // Conversion du patrimoine total en euros
-            float totalEuros = pt.patrimoineTotal.centimes / 100f;
+            double totalEuros = pt.patrimoineTotal.ToDouble();
 
             // Ajout de la donnée dans la série
             lineChart.AddData(0, totalEuros);

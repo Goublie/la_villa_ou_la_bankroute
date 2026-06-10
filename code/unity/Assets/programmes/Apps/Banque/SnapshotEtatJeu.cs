@@ -38,7 +38,7 @@ public class SnapshotEtatJeu
                 foreach (var kvp in gameData.joueur.comptes)
                 {
                     CompteBanquaire compteOriginal = kvp.Value;
-                    long soldeOriginal = compteOriginal.GetSolde().centimes;
+                    int soldeOriginal = compteOriginal.GetSolde().centimes;
                     
                     Historique histCopie = new Historique();
                     Historique histOriginal = compteOriginal.GetHistorique();
@@ -48,7 +48,7 @@ public class SnapshotEtatJeu
                         List<Transaction> transactions = histOriginal.GetHistorique();
                         
                         // Calcul de la somme des transactions enregistrées pour détecter d'éventuels soldes de départ non transactionnels
-                        long sommeTransactionsOriginales = 0;
+                        int sommeTransactionsOriginales = 0;
                         foreach (Transaction t in transactions)
                         {
                             if (t != null)
@@ -58,7 +58,7 @@ public class SnapshotEtatJeu
                         }
                         
                         // Réconciliation du solde de départ (ex: les 1000 € d'initialisation par défaut sans transaction)
-                        long decalageReconciliation = soldeOriginal - sommeTransactionsOriginales;
+                        int decalageReconciliation = soldeOriginal - sommeTransactionsOriginales;
                         if (decalageReconciliation != 0)
                         {
                             // On injecte le solde initial de régularisation en premier pour qu'il soit le plus ancien
