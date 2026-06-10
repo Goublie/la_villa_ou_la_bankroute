@@ -24,9 +24,43 @@ public class PositionBourse
 }
 
 [Serializable]
+public class ImpactEvenementMarche
+{
+    public string evenementId;
+    public string actifId;
+    public int moisDebut;
+    public int dureeMois = -1;
+    public float coefficientPrix = 1f;
+    public float tendanceMensuellePourcent;
+    public float coefficientVolatilite = 1f;
+
+    public bool EstActif(int mois)
+    {
+        return mois >= moisDebut &&
+            (dureeMois < 0 || mois < moisDebut + dureeMois);
+    }
+
+    public ImpactEvenementMarche Copier()
+    {
+        return new ImpactEvenementMarche
+        {
+            evenementId = evenementId,
+            actifId = actifId,
+            moisDebut = moisDebut,
+            dureeMois = dureeMois,
+            coefficientPrix = coefficientPrix,
+            tendanceMensuellePourcent = tendanceMensuellePourcent,
+            coefficientVolatilite = coefficientVolatilite
+        };
+    }
+}
+
+[Serializable]
 public class DonneesBourse : IPatrimoine
 {
     public List<PositionBourse> positions = new List<PositionBourse>();
+    public List<ImpactEvenementMarche> impactsMarche =
+        new List<ImpactEvenementMarche>();
     public int dernierMoisObserve = -1;
     public string dernierMessage = "Sélectionnez un actif pour commencer.";
     public int valeurMarcheCentimes;
@@ -107,7 +141,8 @@ public class DonneesBourse : IPatrimoine
             dernierMessage = dernierMessage,
             valeurMarcheCentimes = valeurMarcheCentimes,
             moisValorisation = moisValorisation,
-            positions = new List<PositionBourse>()
+            positions = new List<PositionBourse>(),
+            impactsMarche = new List<ImpactEvenementMarche>()
         };
 
         if (positions != null)
@@ -117,6 +152,17 @@ public class DonneesBourse : IPatrimoine
                 if (position != null)
                 {
                     copie.positions.Add(position.Copier());
+                }
+            }
+        }
+
+        if (impactsMarche != null)
+        {
+            foreach (ImpactEvenementMarche impact in impactsMarche)
+            {
+                if (impact != null)
+                {
+                    copie.impactsMarche.Add(impact.Copier());
                 }
             }
         }

@@ -34,6 +34,9 @@ public class BourseUI : MonoBehaviour, IPatrimoine
         250000
     };
 
+    private const int MontantMinimumEuros = 10;
+    private const int MontantParDefautEuros = 500;
+
     [Header("Données partagées")]
     [SerializeField] private GameData gameData;
 
@@ -49,6 +52,7 @@ public class BourseUI : MonoBehaviour, IPatrimoine
     [SerializeField] private TMP_Text ordreText;
     [SerializeField] private TMP_Text portefeuilleText;
     [SerializeField] private TMP_Text journalText;
+    [SerializeField] private TMP_InputField montantInput;
 
     [Header("État de l'interface")]
     [SerializeField] private CategorieActif categorieSelectionnee;
@@ -70,6 +74,7 @@ public class BourseUI : MonoBehaviour, IPatrimoine
         ResoudreDependances();
         ChargerActifs();
         TrouverCompteCourant();
+        InitialiserSaisieMontant();
     }
 
     private void OnEnable()
@@ -113,14 +118,53 @@ public class BourseUI : MonoBehaviour, IPatrimoine
     public void MontantSuivant()
     {
         indexMontantOrdre = (indexMontantOrdre + 1) % MontantsOrdreCentimes.Length;
+        if (montantInput != null)
+        {
+            montantInput.SetTextWithoutNotify(
+                (MontantsOrdreCentimes[indexMontantOrdre] / 100).ToString());
+        }
         ActualiserAffichage();
+    }
+
+    public void SelectionnerCAC40()
+    {
+        SelectionnerActif("cac40");
+    }
+
+    public void SelectionnerNvidia()
+    {
+        SelectionnerActif("nvidia");
+    }
+
+    public void SelectionnerAlphabet()
+    {
+        SelectionnerActif("alphabet");
+    }
+
+    public void SelectionnerBitcoin()
+    {
+        SelectionnerActif("bitcoin");
+    }
+
+    public void SelectionnerTotalEnergies()
+    {
+        SelectionnerActif("totalenergies");
+    }
+
+    public void SelectionnerLivretA()
+    {
+        SelectionnerActif("livret_a");
     }
 
     public void Acheter()
     {
         ActifMarche actif = ActifSelectionne;
         DonneesBourse bourse = ObtenirDonneesBourse();
-        int montantCentimes = MontantOrdreCentimes;
+        if (!EssayerLireMontantOrdre(out int montantCentimes, out string erreur))
+        {
+            EcrireJournal(erreur);
+            return;
+        }
 
         if (actif == null || bourse == null)
         {
@@ -177,6 +221,12 @@ public class BourseUI : MonoBehaviour, IPatrimoine
             return;
         }
 
+        if (!EssayerLireMontantOrdre(out int montantCentimes, out string erreur))
+        {
+            EcrireJournal(erreur);
+            return;
+        }
+
         float prix = PrixActuel(actif);
         if (prix <= 0f)
         {
@@ -184,9 +234,22 @@ public class BourseUI : MonoBehaviour, IPatrimoine
             return;
         }
 
-        float quantiteDemandee = MontantOrdreCentimes / (prix * 100f);
-        float quantiteVendue = Mathf.Min(position.quantite, quantiteDemandee);
-        VendrePosition(actif, position, quantiteVendue, false);
+        int valeurPosition = Mathf.RoundToInt(position.quantite * prix * 100f);
+        if (montantCentimes > valeurPosition)
+        {
+            EcrireJournal(
+                "Position insuffisante : valeur disponible " +
+                FormaterArgent(valeurPosition) + ".");
+            return;
+        }
+
+        float quantiteDemandee = montantCentimes / (prix * 100f);
+        bool venteComplete = quantiteDemandee >= position.quantite;
+        VendrePosition(
+            actif,
+            position,
+            venteComplete ? position.quantite : quantiteDemandee,
+            venteComplete);
     }
 
     public void ToutVendre()
@@ -247,8 +310,8 @@ public class BourseUI : MonoBehaviour, IPatrimoine
             (compteCourant != null ? compteCourant.GetSolde().ToString() : "indisponible"));
         AffecterTexte(
             ordreText,
-            "<mark=#FFF1B8FF>  Montant de l'ordre : " +
-            FormaterArgent(MontantOrdreCentimes) + "  >  </mark>");
+            "<mark=#FFF1B8FF>  Montant entier en euros (minimum " +
+            MontantMinimumEuros + " EUR)  </mark>");
 
         if (actif != null)
         {
@@ -266,18 +329,6 @@ public class BourseUI : MonoBehaviour, IPatrimoine
             journalText,
             "<b>Journal du marché</b>\n" +
             (bourse != null ? bourse.dernierMessage : "Données indisponibles."));
-    }
-
-    private int MontantOrdreCentimes
-    {
-        get
-        {
-            indexMontantOrdre = Mathf.Clamp(
-                indexMontantOrdre,
-                0,
-                MontantsOrdreCentimes.Length - 1);
-            return MontantsOrdreCentimes[indexMontantOrdre];
-        }
     }
 
     private ActifMarche ActifSelectionne
@@ -492,12 +543,10 @@ public class BourseUI : MonoBehaviour, IPatrimoine
             actif,
             out int premierMois,
             out int dernierMois);
-        int moisActuel = IndexPrixActuel(actif);
         for (int mois = premierMois; mois <= dernierMois; mois++)
         {
-            string suffixeProjection = mois > moisActuel ? "p" : string.Empty;
-            lineChart.AddXAxisData("M" + mois + suffixeProjection);
-            lineChart.AddData(0, actif.prix[mois]);
+            lineChart.AddXAxisData("M" + mois);
+            lineChart.AddData(0, PrixAuMois(actif, mois));
         }
 
         lineChart.SetAllDirty();
@@ -576,7 +625,6 @@ public class BourseUI : MonoBehaviour, IPatrimoine
             actif,
             out int premierMois,
             out int dernierMois);
-        int moisActuel = IndexPrixActuel(actif);
         string resultat = "<b>Courbe 12 mois</b>\n";
         for (int mois = premierMois; mois <= dernierMois; mois++)
         {
@@ -585,9 +633,7 @@ public class BourseUI : MonoBehaviour, IPatrimoine
                 resultat += "  •  ";
             }
 
-            string suffixeProjection = mois > moisActuel ? "p" : string.Empty;
-            resultat += "M" + mois + suffixeProjection + " " +
-                FormaterPrix(actif.prix[mois]);
+            resultat += "M" + mois + " " + FormaterPrix(PrixAuMois(actif, mois));
         }
 
         return resultat;
@@ -834,28 +880,19 @@ public class BourseUI : MonoBehaviour, IPatrimoine
     {
         const int nombrePoints = 12;
         int moisActuel = IndexPrixActuel(actif);
-        int pointsDisponibles = Mathf.Min(nombrePoints, actif.prix.Count);
-
-        premierMois = Mathf.Max(0, moisActuel - pointsDisponibles + 1);
-        dernierMois = premierMois + pointsDisponibles - 1;
-
-        if (dernierMois >= actif.prix.Count)
-        {
-            dernierMois = actif.prix.Count - 1;
-            premierMois = Mathf.Max(0, dernierMois - pointsDisponibles + 1);
-        }
-
-        if (pointsDisponibles == nombrePoints &&
-            dernierMois - premierMois + 1 < nombrePoints)
-        {
-            premierMois = Mathf.Max(0, dernierMois - nombrePoints + 1);
-        }
+        dernierMois = Mathf.Min(moisActuel, actif.prix.Count - 1);
+        premierMois = Mathf.Max(0, dernierMois - nombrePoints + 1);
     }
 
     private float PrixActuel(ActifMarche actif)
     {
+        return PrixAuMois(actif, IndexPrixActuel(actif));
+    }
+
+    private float PrixAuMois(ActifMarche actif, int mois)
+    {
         return actif != null && actif.prix.Count > 0
-            ? actif.prix[IndexPrixActuel(actif)]
+            ? MarcheBoursier.ObtenirPrix(actif.id, mois, ObtenirDonneesBourse())
             : 0f;
     }
 
@@ -869,9 +906,10 @@ public class BourseUI : MonoBehaviour, IPatrimoine
     {
         int indexActuel = IndexPrixActuel(actif);
         int indexPasse = Mathf.Max(0, indexActuel - nombreMois);
-        float prixPasse = actif.prix[indexPasse];
+        float prixPasse = PrixAuMois(actif, indexPasse);
+        float prixActuel = PrixAuMois(actif, indexActuel);
         return prixPasse > 0f
-            ? ((actif.prix[indexActuel] / prixPasse) - 1f) * 100f
+            ? ((prixActuel / prixPasse) - 1f) * 100f
             : 0f;
     }
 
@@ -888,32 +926,122 @@ public class BourseUI : MonoBehaviour, IPatrimoine
         float moyenne = 0f;
         for (int index = debut; index <= indexActuel; index++)
         {
-            moyenne += ((actif.prix[index] / actif.prix[index - 1]) - 1f) * 100f;
+            float prixPrecedent = PrixAuMois(actif, index - 1);
+            float prix = PrixAuMois(actif, index);
+            moyenne += prixPrecedent > 0f
+                ? ((prix / prixPrecedent) - 1f) * 100f
+                : 0f;
         }
         moyenne /= nombre;
 
         float variance = 0f;
         for (int index = debut; index <= indexActuel; index++)
         {
-            float rendement =
-                ((actif.prix[index] / actif.prix[index - 1]) - 1f) * 100f;
+            float prixPrecedent = PrixAuMois(actif, index - 1);
+            float prix = PrixAuMois(actif, index);
+            float rendement = prixPrecedent > 0f
+                ? ((prix / prixPrecedent) - 1f) * 100f
+                : 0f;
             variance += (rendement - moyenne) * (rendement - moyenne);
         }
 
         return Mathf.Sqrt(variance / nombre);
     }
 
-    private static float CalculerRendementAnnualise(ActifMarche actif)
+    private float CalculerRendementAnnualise(ActifMarche actif)
     {
-        if (actif == null || actif.prix.Count < 2 || actif.prix[0] <= 0f)
+        int indexActuel = actif != null ? IndexPrixActuel(actif) : 0;
+        float prixInitial = actif != null ? PrixAuMois(actif, 0) : 0f;
+        if (actif == null || indexActuel < 1 || prixInitial <= 0f)
         {
             return 0f;
         }
 
-        float annees = (actif.prix.Count - 1) / 12f;
+        float annees = indexActuel / 12f;
         return
-            (Mathf.Pow(actif.prix[actif.prix.Count - 1] / actif.prix[0], 1f / annees) -
+            (Mathf.Pow(PrixAuMois(actif, indexActuel) / prixInitial, 1f / annees) -
              1f) * 100f;
+    }
+
+    private void InitialiserSaisieMontant()
+    {
+        if (montantInput == null)
+        {
+            return;
+        }
+
+        montantInput.contentType = TMP_InputField.ContentType.IntegerNumber;
+        montantInput.characterValidation =
+            TMP_InputField.CharacterValidation.Integer;
+        montantInput.characterLimit = 8;
+
+        if (string.IsNullOrWhiteSpace(montantInput.text))
+        {
+            montantInput.SetTextWithoutNotify(MontantParDefautEuros.ToString());
+        }
+    }
+
+    private bool EssayerLireMontantOrdre(
+        out int montantCentimes,
+        out string erreur)
+    {
+        montantCentimes = 0;
+        erreur = string.Empty;
+
+        if (montantInput == null)
+        {
+            erreur = "Le champ montant est indisponible.";
+            return false;
+        }
+
+        string texte = montantInput.text != null
+            ? montantInput.text.Trim()
+            : string.Empty;
+        if (texte.Length == 0)
+        {
+            erreur = "Saisissez un montant entier en euros.";
+            return false;
+        }
+
+        foreach (char caractere in texte)
+        {
+            if (caractere < '0' || caractere > '9')
+            {
+                erreur = "Le montant doit etre un entier positif, sans decimales.";
+                return false;
+            }
+        }
+
+        if (!int.TryParse(texte, out int montantEuros) ||
+            montantEuros < MontantMinimumEuros)
+        {
+            erreur = "Le montant minimum est de " + MontantMinimumEuros + " EUR.";
+            return false;
+        }
+
+        if (montantEuros > int.MaxValue / 100)
+        {
+            erreur = "Le montant saisi est trop eleve.";
+            return false;
+        }
+
+        montantCentimes = montantEuros * 100;
+        return true;
+    }
+
+    private void SelectionnerActif(string actifId)
+    {
+        ActifMarche actif = TrouverActif(actifId);
+        if (actif == null)
+        {
+            EcrireJournal("Cet actif est indisponible.");
+            return;
+        }
+
+        categorieSelectionnee = actif.categorie;
+        ActualiserListeCategorie();
+        indexActifSelectionne = actifsCategorie.IndexOf(actif);
+        ActualiserAffichage();
     }
 
     private ActifMarche TrouverActif(string actifId)

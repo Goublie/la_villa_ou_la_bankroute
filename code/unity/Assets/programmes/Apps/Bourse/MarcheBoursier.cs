@@ -67,7 +67,10 @@ public static class MarcheBoursier
                     continue;
                 }
 
-                int prixCentimes = ObtenirPrixCentimes(position.actifId, mois);
+                int prixCentimes = ObtenirPrixCentimes(
+                    position.actifId,
+                    mois,
+                    portefeuille);
                 valeurTotale += (long)Math.Round(
                     position.quantite * prixCentimes);
             }
@@ -78,16 +81,86 @@ public static class MarcheBoursier
             Mathf.Max(0, mois));
     }
 
-    private static int ObtenirPrixCentimes(string actifId, int mois)
+    public static float ObtenirPrix(
+        string actifId,
+        int mois,
+        DonneesBourse donnees)
     {
         List<float> courbe = ObtenirCourbe(actifId);
         if (courbe.Count == 0)
         {
-            return 0;
+            return 0f;
         }
 
         int index = Mathf.Clamp(mois, 0, courbe.Count - 1);
-        return Mathf.RoundToInt(courbe[index] * 100f);
+        float prix = courbe[index];
+
+        if (donnees == null || donnees.impactsMarche == null)
+        {
+            return prix;
+        }
+
+        foreach (ImpactEvenementMarche impact in donnees.impactsMarche)
+        {
+            if (impact == null ||
+                impact.actifId != actifId ||
+                !impact.EstActif(index))
+            {
+                continue;
+            }
+
+            int debut = Mathf.Clamp(impact.moisDebut, 0, courbe.Count - 1);
+            float prixDebut = courbe[debut];
+            float volatilite = Mathf.Max(0f, impact.coefficientVolatilite);
+            float tendance = Mathf.Pow(
+                Mathf.Max(0.01f, 1f + impact.tendanceMensuellePourcent / 100f),
+                Mathf.Max(0, index - debut));
+            float rapportMarche = prixDebut > 0f ? prix / prixDebut : 1f;
+            float rapportVolatilite =
+                1f + (rapportMarche - 1f) * volatilite;
+
+            prix *=
+                Mathf.Max(0f, impact.coefficientPrix) *
+                (rapportMarche > 0f ? rapportVolatilite / rapportMarche : 1f) *
+                tendance;
+        }
+
+        return Mathf.Max(0f, prix);
+    }
+
+    // Point d'entree volontairement simple pour de futurs evenements Actualites.
+    public static void AppliquerImpactEvenement(
+        DonneesBourse donnees,
+        ImpactEvenementMarche impact)
+    {
+        if (donnees == null ||
+            impact == null ||
+            string.IsNullOrEmpty(impact.actifId))
+        {
+            return;
+        }
+
+        if (donnees.impactsMarche == null)
+        {
+            donnees.impactsMarche = new List<ImpactEvenementMarche>();
+        }
+
+        if (!string.IsNullOrEmpty(impact.evenementId))
+        {
+            donnees.impactsMarche.RemoveAll(
+                existant => existant != null &&
+                    existant.evenementId == impact.evenementId);
+        }
+
+        donnees.impactsMarche.Add(impact.Copier());
+    }
+
+    private static int ObtenirPrixCentimes(
+        string actifId,
+        int mois,
+        DonneesBourse donnees)
+    {
+        return Mathf.RoundToInt(ObtenirPrix(actifId, mois, donnees) * 100f);
     }
 
     private static List<float> ChargerCourbeMarche(string actifId)
