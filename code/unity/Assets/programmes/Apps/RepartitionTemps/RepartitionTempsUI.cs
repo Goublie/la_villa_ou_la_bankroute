@@ -89,12 +89,25 @@ public class RepartitionTempsUI : MonoBehaviour
         if (sliderSalariat != null) sum += sliderSalariat.value;
         if (sliderBourse != null) sum += sliderBourse.value;
 
-        // Convert the proportion (0.0 to 1.0) into minutes (0 to 30)
+        // Convertis les proportions en minutes pour l'affichage
         float totalMinutes = sum * maxTotalTime;
+        int totalMinutesRounded = Mathf.RoundToInt(totalMinutes);
+        int maxTotalTimeRounded = Mathf.RoundToInt(maxTotalTime);
+
+        bool EstComplet = (totalMinutesRounded == maxTotalTimeRounded);
 
         if (totalText != null)
         {
-            totalText.text = "Temps alloue : " + Mathf.RoundToInt(totalMinutes) + " / " + maxTotalTime + " min";
+            totalText.text = "Temps alloue : " + totalMinutesRounded + " / " + maxTotalTime + " min";
+            
+            // Visual cue: Red when incomplete, green when fully allocated (early 2000s standard solid UI colors)
+            totalText.color = EstComplet ? new Color(0.1f, 0.5f, 0.1f) : new Color(0.8f, 0.1f, 0.1f);
+        }
+
+        // Disable close button unless all 30 minutes are allocated
+        if (cancelButton != null)
+        {
+            cancelButton.interactable = EstComplet;
         }
 
         if (pieChart != null)

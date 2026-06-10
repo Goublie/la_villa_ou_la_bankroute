@@ -4,7 +4,6 @@ using System.Collections.Generic;
 
 public class GestionnaireSlides : MonoBehaviour
 {
-
     public List<SliderAvecTexte> listeSliders = new List<SliderAvecTexte>();
     private float maxTotalSlides = 1f;
     private float TotalSlidesActuel = 0f;
