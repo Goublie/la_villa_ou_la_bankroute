@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Generic;
+using System.Text;
 using TMPro;
 using UnityEngine;
 using XCharts.Runtime;
@@ -297,12 +298,12 @@ public class BourseUI : MonoBehaviour, IPatrimoine
 
         AffecterTexte(
             categorieText,
-            "<mark=#DCE8FFFF>  Catégorie : " +
-            NomCategorie(categorieSelectionnee) + "  >  </mark>");
+            "<b>ACTIFS DISPONIBLES</b>");
         AffecterTexte(
             actifText,
             actif != null
-                ? "<mark=#DCE8FFFF>  Actif : " + actif.nom + "  >  </mark>"
+                ? "<mark=#DCE8FFFF>  Sélection : " + actif.nom +
+                    "  |  " + NomCategorie(actif.categorie) + "  </mark>"
                 : "Aucun actif disponible");
         AffecterTexte(
             cashText,
@@ -478,22 +479,6 @@ public class BourseUI : MonoBehaviour, IPatrimoine
             return "Portefeuille indisponible.";
         }
 
-        int positionsActives = 0;
-
-        if (bourse.positions != null)
-        {
-            foreach (PositionBourse position in bourse.positions)
-            {
-                ActifMarche actif = TrouverActif(position != null ? position.actifId : null);
-                if (position == null || actif == null || position.quantite <= 0f)
-                {
-                    continue;
-                }
-
-                positionsActives++;
-            }
-        }
-
         int valeurTotale = bourse.GetValeurPatrimoine().centimes;
         int coutTotal = bourse.CalculerCapitalInvestiCentimes();
         int performance = bourse.GetGainsPertesLatents().centimes;
@@ -501,13 +486,64 @@ public class BourseUI : MonoBehaviour, IPatrimoine
             ? performance * 100f / coutTotal
             : 0f;
 
-        return
-            "<b>Portefeuille</b>\n" +
-            "Positions : " + positionsActives +
-            "   Valeur totale : " + FormaterArgent(valeurTotale) + "\n" +
-            "Capital investi : " + FormaterArgent(coutTotal) + "\n" +
-            "Performance : " + FormaterMontantSigne(performance) +
-            " (" + FormaterPourcentage(performancePourcent) + ")";
+        StringBuilder resultat = new StringBuilder();
+        resultat.Append("<b>PORTEFEUILLE</b>\n")
+            .Append("Valeur : ").Append(FormaterArgent(valeurTotale))
+            .Append("   Investi : ").Append(FormaterArgent(coutTotal))
+            .Append("\nP/L total : ")
+            .Append(FormaterPerformanceColoree(performance, performancePourcent))
+            .Append("\n<size=16>----------------------------------------------------</size>");
+
+        int positionsActives = 0;
+        if (bourse.positions != null)
+        {
+            foreach (PositionBourse position in bourse.positions)
+            {
+                ActifMarche actif =
+                    TrouverActif(position != null ? position.actifId : null);
+                if (position == null || actif == null || position.quantite <= 0f)
+                {
+                    continue;
+                }
+
+                positionsActives++;
+                float prix = PrixActuel(actif);
+                int valeurPosition =
+                    Mathf.RoundToInt(position.quantite * prix * 100f);
+                int gainPerte = valeurPosition - position.coutTotalCentimes;
+                float gainPertePourcent = position.coutTotalCentimes > 0
+                    ? gainPerte * 100f / position.coutTotalCentimes
+                    : 0f;
+
+                resultat.Append("\n<b>").Append(actif.nom).Append("</b>")
+                    .Append("  |  Qté : ").Append(FormaterQuantite(position.quantite))
+                    .Append("  |  Prix : ").Append(FormaterPrix(prix))
+                    .Append("\nValeur : ").Append(FormaterArgent(valeurPosition))
+                    .Append("  |  Investi : ")
+                    .Append(FormaterArgent(position.coutTotalCentimes))
+                    .Append("  |  P/L : ")
+                    .Append(FormaterPerformanceColoree(
+                        gainPerte,
+                        gainPertePourcent));
+            }
+        }
+
+        if (positionsActives == 0)
+        {
+            resultat.Append("\n\n<i>Aucune position ouverte.</i>");
+        }
+
+        return resultat.ToString();
+    }
+
+    private static string FormaterPerformanceColoree(
+        int centimes,
+        float pourcentage)
+    {
+        string couleur = centimes >= 0 ? "#187A2F" : "#B02020";
+        return "<color=" + couleur + ">" +
+            FormaterMontantSigne(centimes) +
+            " (" + FormaterPourcentage(pourcentage) + ")</color>";
     }
 
     private void ActualiserGraphique(ActifMarche actif)
