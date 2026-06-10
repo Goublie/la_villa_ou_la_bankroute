@@ -23,7 +23,7 @@ public static class Optimizer
     /// La stratégie consiste à optimiser les placements en conservant un buffer fixe de 500 € sur le compte
     /// courant et en versant immédiatement tout excédent sur le Livret A.
     /// </summary>
-    public static List<SimulationResult> SimulerFourmi(GameData gameData)
+    public static List<SimulationResult> Simuler(GameData gameData)
     {
         List<SimulationResult> resultats = new List<SimulationResult>();
         if (gameData == null || gameData.historiqueSnapshots == null || gameData.historiqueSnapshots.Count < 2)

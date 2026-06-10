@@ -104,7 +104,9 @@ public class SnapshotEtatJeu
                     this.joueur.investissements.Add(new Investissement(
                         new argent(invest.sommeInvestie.centimes),
                         invest.taux,
-                        12 // Durée de capitalisation standard
+                        12, // Durée de capitalisation standard
+                        invest.versementCalendrier,
+                        invest.moisVersement
                     ));
                 }
             }

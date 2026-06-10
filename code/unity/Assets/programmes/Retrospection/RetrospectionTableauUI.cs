@@ -38,7 +38,7 @@ public class RetrospectionTableauUI : MonoBehaviour
 
         // Récupération des historiques
         List<PointPatrimoine> reel = gameData.ObtenirHistoriquePatrimoineReel();
-        List<Optimizer.SimulationResult> simule = Optimizer.SimulerFourmi(gameData);
+        List<Optimizer.SimulationResult> simule = Optimizer.Simuler(gameData);
 
         if (reel.Count == 0 || simule.Count == 0) return;
 

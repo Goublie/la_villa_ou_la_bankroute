@@ -24,7 +24,7 @@ public class Epargne : CompteBanquaire
             tauxInitial = predictions[6].Taux_annuel_pct / 100f;
         }
 
-        invest = new Investissement(solde, tauxInitial, _duree);
+        invest = new Investissement(solde, tauxInitial, _duree, true, Mois.Decembre);
         EcouterInterets();
 
         ActionPlay.OnMoisPasse += MettreAJourTaux;
@@ -41,7 +41,7 @@ public class Epargne : CompteBanquaire
             tauxInitial = predictions[6].Taux_annuel_pct / 100f;
         }
 
-        invest = new Investissement(solde, tauxInitial, _duree);
+        invest = new Investissement(solde, tauxInitial, _duree, true, Mois.Decembre);
         EcouterInterets();
 
         ActionPlay.OnMoisPasse += MettreAJourTaux;
