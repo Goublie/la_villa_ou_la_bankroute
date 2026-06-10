@@ -44,20 +44,25 @@ public class RetrospectionGraphiqueUI : MonoBehaviour
         // 1. Nettoyage des anciennes données
         lineChart.ClearData();
 
-        // 2. S'assurer qu'il y a exactement 1 série pour le joueur
-        while (lineChart.series.Count < 1)
+        // 2. S'assurer qu'il y a exactement 2 séries (Joueur Réel et Optimal Fourmi)
+        while (lineChart.series.Count < 2)
         {
             lineChart.AddSerie<Line>();
         }
-        while (lineChart.series.Count > 1)
+        while (lineChart.series.Count > 2)
         {
             lineChart.series.RemoveAt(lineChart.series.Count - 1);
         }
 
-        // Configuration de la série unique
+        // Configuration de la série 0 : Joueur (Réel)
         var serieJoueur = lineChart.series[0];
         serieJoueur.serieName = "Joueur (Réel)";
         serieJoueur.show = true;
+
+        // Configuration de la série 1 : Optimal
+        var serieSimule = lineChart.series[1];
+        serieSimule.serieName = "Optimal";
+        serieSimule.show = true;
 
         // Configuration programmatique de l'axe Y pour afficher les euros
         var yAxis = lineChart.GetChartComponent<YAxis>();
@@ -66,25 +71,32 @@ public class RetrospectionGraphiqueUI : MonoBehaviour
             yAxis.axisLabel.formatter = "{value} €";
         }
 
-        Debug.Log($"[What-If] Début du tracé du graphique. Nombre de points : {gameData.historiqueSnapshots.Count}");
+        Debug.Log("[What-If] Début du tracé du graphique.");
 
-        // 3. Remplissage des données à partir de l'historique des snapshots
+        // 3. Remplissage des données à partir de l'historique des snapshots et de la simulation
         List<PointPatrimoine> historiqueReel = gameData.ObtenirHistoriquePatrimoineReel();
-        for (int i = 0; i < historiqueReel.Count; i++)
+        List<Optimizer.SimulationResult> historiqueSimule = Optimizer.Simuler(gameData);
+
+        int maxPoints = Mathf.Min(historiqueReel.Count, historiqueSimule.Count);
+
+        for (int i = 0; i < maxPoints; i++)
         {
-            PointPatrimoine pt = historiqueReel[i];
-            string labelMois = pt.moisCalendrier.ToString();
+            PointPatrimoine ptReel = historiqueReel[i];
+            Optimizer.SimulationResult ptSimule = historiqueSimule[i];
+            string labelMois = ptReel.moisCalendrier.ToString();
             
-            // Ajout de l'étiquette sur l'axe X
+            // Ajout de l'étiquette sur l'axe X (une seule fois par index de mois)
             lineChart.AddXAxisData(labelMois);
 
-            // Conversion du patrimoine total en euros
-            double totalEuros = pt.patrimoineTotal.ToDouble();
+            // Conversion des patrimoines en euros (double)
+            double eurosReel = ptReel.patrimoineTotal.ToDouble();
+            double eurosSimule = ptSimule.patrimoineTotal.ToDouble();
 
-            // Ajout de la donnée dans la série
-            lineChart.AddData(0, totalEuros);
+            // Ajout des données dans les séries respectives
+            lineChart.AddData(0, eurosReel);
+            lineChart.AddData(1, eurosSimule);
 
-            Debug.Log($"[What-If] Index {i} - Mois : {labelMois} | Total : {totalEuros} €");
+            Debug.Log($"[What-If] Index {i} - Mois : {labelMois} | Réel : {eurosReel} € | Optimisé : {eurosSimule} €");
         }
 
         // 4. Force le rafraîchissement

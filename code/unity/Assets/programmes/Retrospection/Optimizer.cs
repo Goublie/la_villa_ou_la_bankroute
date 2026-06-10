@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 
 /// <summary>
-/// Moteur d'optimisation What-if qui simule la stratégie financière optimale "Fourmi"
+/// Moteur d'optimisation What-if qui simule la stratégie financière optimale
 /// et la compare à la trajectoire réelle du joueur sur les 12 derniers mois.
 /// </summary>
 public static class Optimizer
@@ -19,9 +19,8 @@ public static class Optimizer
     }
 
     /// <summary>
-    /// Simule la stratégie optimale "Fourmi" sur les 12 derniers mois de jeu.
-    /// La stratégie "Fourmi" consiste à maintenir le même niveau de vie (mêmes dépenses de consommation)
-    /// que le joueur, mais à optimiser les placements en conservant un buffer fixe de 500 € sur le compte
+    /// Simule la stratégie optimale sur les 12 derniers mois de jeu.
+    /// La stratégie consiste à optimiser les placements en conservant un buffer fixe de 500 € sur le compte
     /// courant et en versant immédiatement tout excédent sur le Livret A.
     /// </summary>
     public static List<SimulationResult> SimulerFourmi(GameData gameData)
@@ -59,8 +58,12 @@ public static class Optimizer
         {
             SnapshotEtatJeu snapActuel = gameData.historiqueSnapshots[i];
             
-            // 1. Versement du salaire réel perçu par le joueur ce mois-ci
-            argent salaireCeMois = snapActuel.joueur.salaire;
+            // 1. Versement du salaire réel perçu par le joueur ce mois-ci.
+            // Le salaire perçu au cours du mois i (snapActuel) est le salaire actif à la fin du mois i-1 (historiqueSnapshots[i-1]).
+            // Cela résout le décalage temporel où le simulateur créditait le salaire un mois trop tôt par rapport au jeu réel.
+            argent salaireCeMois = (gameData.historiqueSnapshots[i - 1].joueur != null)
+                ? gameData.historiqueSnapshots[i - 1].joueur.salaire
+                : new argent(0);
             courantSimule += salaireCeMois;
 
             // 2. Calcul et accumulation mensuelle des intérêts du Livret A
@@ -78,28 +81,7 @@ public static class Optimizer
                 moisEcoulesEpargne = 0;
             }
 
-            // 3. Déduction des dépenses réelles de consommation du joueur pour ce mois.
-            // On calcule la somme de toutes les dépenses réelles du joueur (transactions négatives
-            // du compte courant, hors transferts vers l'épargne). La stratégie Fourmi conserve
-            // le même niveau de vie (mêmes dépenses) mais optimise le placement de l'excédent.
-            long depensesConsommation = 0;
-            if (snapActuel.joueur.comptes.ContainsKey("courant"))
-            {
-                var compteCourantReel = snapActuel.joueur.comptes["courant"];
-                if (compteCourantReel.GetHistorique() != null && compteCourantReel.GetHistorique().GetHistorique() != null)
-                {
-                    foreach (var transac in compteCourantReel.GetHistorique().GetHistorique())
-                    {
-                        // Les transactions de type "courant vers epargne" sont des placements d'épargne,
-                        // pas des dépenses de consommation (nourriture, plaisir, etc.). On les exclut.
-                        if (transac.montant.centimes < 0 && transac.libelle != "courant vers epargne")
-                        {
-                            depensesConsommation += -transac.montant.centimes;
-                        }
-                    }
-                }
-            }
-            courantSimule.centimes -= (int)depensesConsommation;
+            // 3. Déduction des dépenses réelles : Ignorées pour l'instant (la stratégie se concentre exclusivement sur l'épargne pure sans dépenses).
 
             // 4. Optimisation des flux : maintien d'un buffer courant de 500 € (50 000 centimes)
             int cibleBuffer = 50000;

@@ -11,6 +11,7 @@ public class ScenesManager : MonoBehaviour
 
     private AsyncOperation _preloadedSceneOperation;
     private string _preloadedSceneName;
+    private bool _gameInitialized = false;
     public static ScenesManager Instance
     {
         get
@@ -54,6 +55,16 @@ public class ScenesManager : MonoBehaviour
     private void OnSceneLoaded(Scene scene, LoadSceneMode mode)
     {
         Debug.Log($"[ScenesManager] Scène chargée : {scene.name}. Planification du préchargement différé...");
+
+        if (scene.name == "Jeu" && !_gameInitialized)
+        {
+            Debug.Log("[ScenesManager] Démarrage direct dans la scène Jeu sans initialisation. Réinitialisation des données...");
+            if (gameData != null)
+            {
+                gameData.ResetData();
+            }
+            _gameInitialized = true;
+        }
         
         // Nettoyage de l'opération terminée
         _preloadedSceneOperation = null;
@@ -124,6 +135,7 @@ public class ScenesManager : MonoBehaviour
     public void InitJeu()
     {
         Debug.Log("ScenesManager : Initialisation d'une nouvelle partie...");
+        _gameInitialized = true;
         if (gameData != null)
         {
             gameData.ResetData();
