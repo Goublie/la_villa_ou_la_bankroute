@@ -35,7 +35,7 @@ public class ActionPlay : MonoBehaviour
         {
             foreach (Investissement invest in gameData.joueur.investissements)
             {
-                invest.ComposerBenefices();
+                invest.ComposerBenefices(gameData.moisActuel);
             }
         }
 

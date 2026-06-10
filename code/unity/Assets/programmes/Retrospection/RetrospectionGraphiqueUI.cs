@@ -1,6 +1,6 @@
 using System.Collections.Generic;
 using UnityEngine;
-using XCharts.Runtime; // Namespace requis pour manipuler XCharts
+using XCharts.Runtime;
 
 /// <summary>
 /// Gère le rendu graphique du patrimoine réel du joueur pour la rétrospection.
@@ -44,52 +44,59 @@ public class RetrospectionGraphiqueUI : MonoBehaviour
         // 1. Nettoyage des anciennes données
         lineChart.ClearData();
 
-        // 2. S'assurer qu'il y a exactement 1 série pour le joueur
-        while (lineChart.series.Count < 1)
+        // 2. S'assurer qu'il y a exactement 2 séries (Joueur Réel et Optimal Fourmi)
+        while (lineChart.series.Count < 2)
         {
             lineChart.AddSerie<Line>();
         }
-        while (lineChart.series.Count > 1)
+        while (lineChart.series.Count > 2)
         {
             lineChart.series.RemoveAt(lineChart.series.Count - 1);
         }
 
-        // Configuration de la série unique
+        // Configuration de la série 0 : Joueur (Réel)
         var serieJoueur = lineChart.series[0];
         serieJoueur.serieName = "Joueur (Réel)";
         serieJoueur.show = true;
 
-        Debug.Log($"[What-If] Début du tracé du graphique. Nombre de snapshots : {gameData.historiqueSnapshots.Count}");
+        // Configuration de la série 1 : Optimal
+        var serieSimule = lineChart.series[1];
+        serieSimule.serieName = "Optimal";
+        serieSimule.show = true;
 
-        // 3. Remplissage des données à partir de l'historique des snapshots
-        for (int i = 0; i < gameData.historiqueSnapshots.Count; i++)
+        // Configuration programmatique de l'axe Y pour afficher les euros
+        var yAxis = lineChart.GetChartComponent<YAxis>();
+        if (yAxis != null && yAxis.axisLabel != null)
         {
-            SnapshotEtatJeu snapshot = gameData.historiqueSnapshots[i];
-            string labelMois = snapshot.moisCalendrier.ToString();
+            yAxis.axisLabel.formatter = "{value} €";
+        }
+
+        Debug.Log("[What-If] Début du tracé du graphique.");
+
+        // 3. Remplissage des données à partir de l'historique des snapshots et de la simulation
+        List<PointPatrimoine> historiqueReel = gameData.ObtenirHistoriquePatrimoineReel();
+        List<Optimizer.SimulationResult> historiqueSimule = Optimizer.Simuler(gameData);
+
+        int maxPoints = Mathf.Min(historiqueReel.Count, historiqueSimule.Count);
+
+        for (int i = 0; i < maxPoints; i++)
+        {
+            PointPatrimoine ptReel = historiqueReel[i];
+            Optimizer.SimulationResult ptSimule = historiqueSimule[i];
+            string labelMois = ptReel.moisCalendrier.ToString();
             
-            // Ajout de l'étiquette sur l'axe X
+            // Ajout de l'étiquette sur l'axe X (une seule fois par index de mois)
             lineChart.AddXAxisData(labelMois);
 
-            // Récupération des soldes
-            long courantCents = 0;
-            if (snapshot.joueur != null && snapshot.joueur.comptes != null && snapshot.joueur.comptes.ContainsKey("courant"))
-            {
-                courantCents = snapshot.joueur.comptes["courant"].GetSolde().centimes;
-            }
+            // Conversion des patrimoines en euros (double)
+            double eurosReel = ptReel.patrimoineTotal.ToDouble();
+            double eurosSimule = ptSimule.patrimoineTotal.ToDouble();
 
-            long epargneCents = 0;
-            if (snapshot.joueur != null && snapshot.joueur.comptes != null && snapshot.joueur.comptes.ContainsKey("epargne"))
-            {
-                epargneCents = snapshot.joueur.comptes["epargne"].GetSolde().centimes;
-            }
+            // Ajout des données dans les séries respectives
+            lineChart.AddData(0, eurosReel);
+            lineChart.AddData(1, eurosSimule);
 
-            // Somme du courant et de l'épargne en euros
-            float totalEuros = (courantCents + epargneCents) / 100f;
-
-            // Ajout de la donnée dans la série
-            lineChart.AddData(0, totalEuros);
-
-            Debug.Log($"[What-If] Index {i} - Mois : {labelMois} | Courant : {courantCents / 100f} € | Épargne : {epargneCents / 100f} € | Total : {totalEuros} €");
+            Debug.Log($"[What-If] Index {i} - Mois : {labelMois} | Réel : {eurosReel} € | Optimisé : {eurosSimule} €");
         }
 
         // 4. Force le rafraîchissement

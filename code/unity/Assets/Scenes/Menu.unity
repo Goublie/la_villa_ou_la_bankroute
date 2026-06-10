@@ -1813,7 +1813,7 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 589448575}
         m_TargetAssemblyTypeName: ScenesManager, Assembly-CSharp
-        m_MethodName: ChargerJeu
+        m_MethodName: InitJeu
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}

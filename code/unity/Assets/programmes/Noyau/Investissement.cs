@@ -8,10 +8,12 @@ public class Investissement : IPatrimoine
     [SerializeField] public float taux; //Le taux de rendement sur la période 1=100%
     [SerializeField] int dureeMois; //La durée à laquele les intérets peuvent se cumuler
     [SerializeField] int moisEcoules; //Le nombre de mois écoulés depuis le début de l'investissement
+    [SerializeField] public bool versementCalendrier = false; // Permet ou non d'activer un versement à mois fixe
+    [SerializeField] public Mois moisVersement = Mois.Decembre; // Le mois de versement des intérêts (si versementCalendrier est vrai)
     float benefices; //Les bénéfices accumulés, calculés chaque mois
     public event Action<argent> OnBeneficesVerses;
 
-    public Investissement(argent sommeInvestie, float taux, int dureeMois)
+    public Investissement(argent sommeInvestie, float taux, int dureeMois, bool versementCalendrier = false, Mois moisVersement = Mois.Decembre)
     {
         if (sommeInvestie.centimes < 0)
         {
@@ -27,19 +29,21 @@ public class Investissement : IPatrimoine
         this.sommeInvestie = sommeInvestie;
         this.taux = taux;
         this.dureeMois = dureeMois;
+        this.versementCalendrier = versementCalendrier;
+        this.moisVersement = moisVersement;
         this.benefices = 0;
         this.moisEcoules = 0;
     }
 
     //Cacul les bénéfices, puis si la période d'investissement est écoulée, compose les bénéfices
-    public void ComposerBenefices()
+    public void ComposerBenefices(Mois moisActuel)
     {
         Debug.Log("Calcul benef");        
         // Calcul des bénéfices mensuels
         benefices += sommeInvestie.centimes * (taux / dureeMois);
         moisEcoules++;
 
-        if (moisEcoules >= dureeMois)
+        if (moisEcoules >= dureeMois || (versementCalendrier && moisActuel == moisVersement))
         {
             // On arrondit pour éviter les erreurs de type float
             int benef = Mathf.RoundToInt(benefices);

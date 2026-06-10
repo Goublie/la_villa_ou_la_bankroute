@@ -37,12 +37,12 @@ public class RetrospectionEvenements : MonoBehaviour
     {
         if (gameData == null || texteConseils == null) return;
 
-        List<Optimizer.SimulationResult> reel = Optimizer.ObtenirHistoriqueReel(gameData);
-        List<Optimizer.SimulationResult> simule = Optimizer.SimulerFourmi(gameData);
+        List<PointPatrimoine> reel = gameData.ObtenirHistoriquePatrimoineReel();
+        List<Optimizer.SimulationResult> simule = Optimizer.Simuler(gameData);
 
         if (reel.Count == 0 || simule.Count == 0) return;
 
-        Optimizer.SimulationResult bilanReel = reel[reel.Count - 1];
+        PointPatrimoine bilanReel = reel[reel.Count - 1];
         Optimizer.SimulationResult bilanSimule = simule[simule.Count - 1];
 
         // Calcul des intérêts perçus réellement par le joueur
