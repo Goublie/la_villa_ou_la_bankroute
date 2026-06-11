@@ -5,6 +5,7 @@ using XCharts.Runtime;
 
 public class RepartitionTempsUI : MonoBehaviour
 {
+    public GameData gameData;
     private PieChart pieChart;
     private TextMeshProUGUI totalText;
     private Button cancelButton;
@@ -18,7 +19,11 @@ public class RepartitionTempsUI : MonoBehaviour
 
     void Start()
     {
-        // 1. Automatic reference resolution of child UI components
+        if (gameData == null)
+        {
+            Debug.LogError("GameDate manquant dans le RepartitionTempsUI");
+        }
+
         pieChart = transform.Find("Fond/TimeAllocationContent/CenterContent/InfoPanel/PieChart")?.GetComponent<PieChart>();
         totalText = transform.Find("Fond/TimeAllocationContent/CenterContent/InfoPanel/TotalText")?.GetComponent<TextMeshProUGUI>();
         cancelButton = transform.Find("cancel")?.GetComponent<Button>();
@@ -28,19 +33,19 @@ public class RepartitionTempsUI : MonoBehaviour
         sliderSalariat = transform.Find("Fond/TimeAllocationContent/CenterContent/SlidersList/Slider_Salariat/Slider")?.GetComponent<Slider>();
         sliderBourse = transform.Find("Fond/TimeAllocationContent/CenterContent/SlidersList/Slider_Bourse/Slider")?.GetComponent<Slider>();
 
-        // 2. Configure slider value change listeners (safeguarding sum to 100% / 1.0f)
+        //Configurer les ecouteurs de changement de valeur des sliders (securite somme max a 100% / 1.0f)
         ConfigureSliderListener(sliderBanque, 0);
         ConfigureSliderListener(sliderActualites, 1);
         ConfigureSliderListener(sliderSalariat, 2);
         ConfigureSliderListener(sliderBourse, 3);
 
-        // 3. Register close button (cancel) to print validation values in the console
+        //Associer le bouton de fermeture (cancel) pour valider et afficher les valeurs dans la console
         if (cancelButton != null)
         {
             cancelButton.onClick.AddListener(OnCloseAndValidate);
         }
 
-        // 4. Perform initial visual update
+        //Effectuer la premiere mise a jour visuelle
         UpdateChartAndText();
     }
 
@@ -55,14 +60,14 @@ public class RepartitionTempsUI : MonoBehaviour
     {
         float totalOther = GetTotalOtherSliders(changedSlider);
 
-        // Built-in safeguard constraint: enforce that the sum of all sliders never exceeds 100% (1.0f)
+        // Contrainte de securite integree : s'assurer que la somme de tous les sliders ne depasse jamais 100% (1.0f)
         if (totalOther + val > 1.0f)
         {
             val = 1.0f - totalOther;
-            changedSlider.value = val; // Force clamp the slider value
+            changedSlider.value = val; // Forcer la valeur bridee du slider
         }
 
-        // Update the corresponding slice in XCharts (expressed in minutes)
+        // Mettre a jour la tranche correspondante dans XCharts (exprimee en minutes)
         if (pieChart != null)
         {
             pieChart.UpdateData(0, index, val * maxTotalTime);
@@ -100,11 +105,11 @@ public class RepartitionTempsUI : MonoBehaviour
         {
             totalText.text = "Temps alloue : " + totalMinutesRounded + " / " + maxTotalTime + " min";
             
-            // Visual cue: Red when incomplete, green when fully allocated (early 2000s standard solid UI colors)
+            // Indication visuelle : rouge si incomplet, vert si entierement alloue (couleurs pleines style XP)
             totalText.color = EstComplet ? new Color(0.1f, 0.5f, 0.1f) : new Color(0.8f, 0.1f, 0.1f);
         }
 
-        // Disable close button unless all 30 minutes are allocated
+        // Desactiver le bouton de fermeture tant que les 30 minutes ne sont pas reparties
         if (cancelButton != null)
         {
             cancelButton.interactable = EstComplet;
@@ -112,7 +117,7 @@ public class RepartitionTempsUI : MonoBehaviour
 
         if (pieChart != null)
         {
-            pieChart.RefreshChart(); // Force XCharts redraw
+            pieChart.RefreshChart(); // Forcer le rafraichissement visuel d'XCharts
         }
     }
 
@@ -123,12 +128,36 @@ public class RepartitionTempsUI : MonoBehaviour
         float valSalariat = sliderSalariat ? sliderSalariat.value : 0f;
         float valBourse = sliderBourse ? sliderBourse.value : 0f;
 
-        // Convert the slider values into minutes for the validation output
+        // Convertir les valeurs des sliders en minutes pour l'affichage de validation
         float minBanque = valBanque * maxTotalTime;
         float minActualites = valActualites * maxTotalTime;
         float minSalariat = valSalariat * maxTotalTime;
         float minBourse = valBourse * maxTotalTime;
         float total = minBanque + minActualites + minSalariat + minBourse;
+
+        if (gameData == null)
+        {
+            Debug.LogError("GameData manquant dans le RepartitionTempsUI");
+        }
+
+        if (gameData != null)
+        {
+            gameData.joueur.tempsInitialBanque = Mathf.RoundToInt(minBanque);
+            gameData.joueur.tempsInitialActualites = Mathf.RoundToInt(minActualites);
+            gameData.joueur.tempsInitialSalariat = Mathf.RoundToInt(minSalariat);
+            gameData.joueur.tempsInitialBourse = Mathf.RoundToInt(minBourse);
+
+            gameData.joueur.tempsRestantBanque = minBanque * 60f;
+            gameData.joueur.tempsRestantActualites = minActualites * 60f;
+            gameData.joueur.tempsRestantSalariat = minSalariat * 60f;
+            gameData.joueur.tempsRestantBourse = minBourse * 60f;
+            
+            Debug.Log("[RepartitionTempsUI] Temps alloues enregistres avec succes dans GameData.");
+        }
+        else
+        {
+            Debug.LogError("[RepartitionTempsUI] Validation impossible : GameData est null !");
+        }
 
         // Print final allocated values in minutes to the console
         Debug.Log("=== VALIDATION DE LA REPARTITION DU TEMPS ===");
@@ -137,5 +166,8 @@ public class RepartitionTempsUI : MonoBehaviour
         Debug.Log("Salariat : " + Mathf.RoundToInt(minSalariat) + " min");
         Debug.Log("Bourse : " + Mathf.RoundToInt(minBourse) + " min");
         Debug.Log("Total alloue : " + Mathf.RoundToInt(total) + " / " + maxTotalTime + " min");
+
+        // Close the window to transition back to the desktop
+        gameObject.SetActive(false);
     }
 }
