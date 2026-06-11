@@ -21,9 +21,11 @@ public class RepartitionTempsUI : MonoBehaviour
     {
         if (gameData == null)
         {
-            Debug.LogError("GameDate manquant dans le RepartitionTempsUI");
+       
+            Debug.LogError("[RepartitionTempsUI] GameData non attaché");
         }
 
+        // Resolution des references
         pieChart = transform.Find("Fond/TimeAllocationContent/CenterContent/InfoPanel/PieChart")?.GetComponent<PieChart>();
         totalText = transform.Find("Fond/TimeAllocationContent/CenterContent/InfoPanel/TotalText")?.GetComponent<TextMeshProUGUI>();
         cancelButton = transform.Find("cancel")?.GetComponent<Button>();
@@ -33,25 +35,29 @@ public class RepartitionTempsUI : MonoBehaviour
         sliderSalariat = transform.Find("Fond/TimeAllocationContent/CenterContent/SlidersList/Slider_Salariat/Slider")?.GetComponent<Slider>();
         sliderBourse = transform.Find("Fond/TimeAllocationContent/CenterContent/SlidersList/Slider_Bourse/Slider")?.GetComponent<Slider>();
 
-        //Configurer les ecouteurs de changement de valeur des sliders (securite somme max a 100% / 1.0f)
-        ConfigureSliderListener(sliderBanque, 0);
-        ConfigureSliderListener(sliderActualites, 1);
-        ConfigureSliderListener(sliderSalariat, 2);
-        ConfigureSliderListener(sliderBourse, 3);
+        // Configuration des sliders (min/max a 30, snappe sur les entiers) et de leurs ecouteurs
+        ConfigureSlider(sliderBanque, 0);
+        ConfigureSlider(sliderActualites, 1);
+        ConfigureSlider(sliderSalariat, 2);
+        ConfigureSlider(sliderBourse, 3);
 
-        //Associer le bouton de fermeture (cancel) pour valider et afficher les valeurs dans la console
+        // Ecoute du bouton de fermeture
         if (cancelButton != null)
         {
             cancelButton.onClick.AddListener(OnCloseAndValidate);
         }
 
-        //Effectuer la premiere mise a jour visuelle
+        // Premiere mise a jour visuelle
         UpdateChartAndText();
     }
 
-    private void ConfigureSliderListener(Slider slider, int index)
+    private void ConfigureSlider(Slider slider, int index)
     {
         if (slider == null) return;
+        
+        slider.minValue = 0f;
+        slider.maxValue = maxTotalTime;
+        slider.wholeNumbers = true; // Force le blocage a chaque unite (minute)
         
         slider.onValueChanged.AddListener((val) => OnSliderValueChanged(slider, index, val));
     }
@@ -60,17 +66,17 @@ public class RepartitionTempsUI : MonoBehaviour
     {
         float totalOther = GetTotalOtherSliders(changedSlider);
 
-        // Contrainte de securite integree : s'assurer que la somme de tous les sliders ne depasse jamais 100% (1.0f)
-        if (totalOther + val > 1.0f)
+        // Contrainte de securite integree : s'assurer que la somme totale ne depasse pas maxTotalTime (30 min)
+        if (totalOther + val > maxTotalTime)
         {
-            val = 1.0f - totalOther;
-            changedSlider.value = val; // Forcer la valeur bridee du slider
+            val = maxTotalTime - totalOther;
+            changedSlider.value = val; // Force la valeur bridee snappee a l'unite
         }
 
-        // Mettre a jour la tranche correspondante dans XCharts (exprimee en minutes)
+        // Mettre a jour la tranche correspondante dans XCharts (directement en minutes)
         if (pieChart != null)
         {
-            pieChart.UpdateData(0, index, val * maxTotalTime);
+            pieChart.UpdateData(0, index, val);
         }
 
         UpdateChartAndText();
@@ -94,18 +100,16 @@ public class RepartitionTempsUI : MonoBehaviour
         if (sliderSalariat != null) sum += sliderSalariat.value;
         if (sliderBourse != null) sum += sliderBourse.value;
 
-        // Convertis les proportions en minutes pour l'affichage
-        float totalMinutes = sum * maxTotalTime;
-        int totalMinutesRounded = Mathf.RoundToInt(totalMinutes);
+        int totalMinutesRounded = Mathf.RoundToInt(sum);
         int maxTotalTimeRounded = Mathf.RoundToInt(maxTotalTime);
 
         bool EstComplet = (totalMinutesRounded == maxTotalTimeRounded);
 
         if (totalText != null)
         {
-            totalText.text = "Temps alloue : " + totalMinutesRounded + " / " + maxTotalTime + " min";
+            totalText.text = "Temps alloue : " + totalMinutesRounded + " / " + maxTotalTimeRounded + " min";
             
-            // Indication visuelle : rouge si incomplet, vert si entierement alloue (couleurs pleines style XP)
+            // Indication visuelle style XP
             totalText.color = EstComplet ? new Color(0.1f, 0.5f, 0.1f) : new Color(0.8f, 0.1f, 0.1f);
         }
 
@@ -128,16 +132,17 @@ public class RepartitionTempsUI : MonoBehaviour
         float valSalariat = sliderSalariat ? sliderSalariat.value : 0f;
         float valBourse = sliderBourse ? sliderBourse.value : 0f;
 
-        // Convertir les valeurs des sliders en minutes pour l'affichage de validation
-        float minBanque = valBanque * maxTotalTime;
-        float minActualites = valActualites * maxTotalTime;
-        float minSalariat = valSalariat * maxTotalTime;
-        float minBourse = valBourse * maxTotalTime;
+        // Les valeurs sont deja en minutes
+        float minBanque = valBanque;
+        float minActualites = valActualites;
+        float minSalariat = valSalariat;
+        float minBourse = valBourse;
         float total = minBanque + minActualites + minSalariat + minBourse;
 
         if (gameData == null)
         {
-            Debug.LogError("GameData manquant dans le RepartitionTempsUI");
+            ManagerTemps mt = FindFirstObjectByType<ManagerTemps>();
+            if (mt != null) gameData = mt.gameData;
         }
 
         if (gameData != null)
@@ -159,7 +164,7 @@ public class RepartitionTempsUI : MonoBehaviour
             Debug.LogError("[RepartitionTempsUI] Validation impossible : GameData est null !");
         }
 
-        // Print final allocated values in minutes to the console
+        // Affichage console de validation
         Debug.Log("=== VALIDATION DE LA REPARTITION DU TEMPS ===");
         Debug.Log("Banque : " + Mathf.RoundToInt(minBanque) + " min");
         Debug.Log("Actualites : " + Mathf.RoundToInt(minActualites) + " min");
@@ -167,7 +172,7 @@ public class RepartitionTempsUI : MonoBehaviour
         Debug.Log("Bourse : " + Mathf.RoundToInt(minBourse) + " min");
         Debug.Log("Total alloue : " + Mathf.RoundToInt(total) + " / " + maxTotalTime + " min");
 
-        // Close the window to transition back to the desktop
+        // Fermer la fenetre pour retourner au bureau
         gameObject.SetActive(false);
     }
 }
