@@ -15,7 +15,7 @@ EditorBuildSettings:
     path: Assets/Scenes/Menu.unity
     guid: 0e67a2999a93e9d49afcb6929f749894
   - enabled: 1
-    path: Assets/Scenes/End.unity
+    path: Assets/Scenes/Retrospective.unity
     guid: e452739a4f165524db298af7abd73241
   - enabled: 0
     path: Assets/Scenes/Arrivee_dans_le_jeu.unity
