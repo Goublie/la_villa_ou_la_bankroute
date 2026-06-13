@@ -1,16 +1,53 @@
 using UnityEngine;
+using UnityEngine.UI;
 using System.Collections.Generic;
 
 public class Tableau : MonoBehaviour
 {
     public List<Ligne> tableau;    
 
+    [Tooltip("Laissez vide pour utiliser les largeurs par défaut du prefab Ligne. Sinon, renseignez la largeur en pixels pour chaque colonne (-1 pour flexible/étirable).")]
+    public List<float> largeursColonnes;
+
     public void Start()
     {
        tableau = new List<Ligne>(GetComponentsInChildren<Ligne>());
 
+        // Appliquer la configuration des colonnes aux lignes existantes
+        foreach (Ligne l in tableau)
+        {
+            AppliquerConfigurationColonnes(l);
+        }
+
         //On vide le tableau au début du jeu
         Vider();
+    }
+
+    public void AppliquerConfigurationColonnes(Ligne ligne)
+    {
+        if (largeursColonnes == null || largeursColonnes.Count == 0) return;
+
+        Case[] casesLigne = ligne.GetComponentsInChildren<Case>(true);
+        for (int i = 0; i < casesLigne.Length && i < largeursColonnes.Count; i++)
+        {
+            LayoutElement le = casesLigne[i].GetComponent<LayoutElement>();
+            if (le == null)
+            {
+                le = casesLigne[i].gameObject.AddComponent<LayoutElement>();
+            }
+
+            float width = largeursColonnes[i];
+            if (width >= 0f)
+            {
+                le.preferredWidth = width;
+                le.flexibleWidth = 0f; // Fixe
+            }
+            else
+            {
+                le.preferredWidth = -1f;
+                le.flexibleWidth = 1f; // S'étire pour remplir le reste
+            }
+        }
     }
 
     //Renvoie true si toutes les lignes sont vides
@@ -44,16 +81,14 @@ public class Tableau : MonoBehaviour
         return tableau[y].Get(x);
     }
 
-    //Ajoute le texte dans la première case de la première ligne vide du tableau et renvoie true en cas de réussite
-    public virtual bool Add(string text1, string text2="", string text3="")
+    //Ajoute les valeurs dans la première ligne vide du tableau et renvoie true en cas de réussite
+    public virtual bool Add(params object[] valeurs)
     {
         foreach (Ligne l in tableau)
         {
             if (l.EstVide())
             {
-                l.Set(0, text1);
-                l.Set(1, text2);
-                l.Set(2, text3);
+                l.Set(valeurs);
                 return true;
             }
         }
@@ -95,10 +130,10 @@ public class Tableau : MonoBehaviour
         tableau[indiceLigne].Set(indiceColonne, text);
     }
 
-    //Modifie la ligne à l'indice indice avec les textes en argument
-    public void Set(int indice, string text1, string text2="", string text3="")
+    //Modifie la ligne à l'indice indice avec les valeurs en argument
+    public void Set(int indice, params object[] valeurs)
     {
-        tableau[indice].Set(text1, text2, text3);
+        tableau[indice].Set(valeurs);
     }
 
     public void Set(int indice, Transaction transac)

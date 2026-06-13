@@ -86,11 +86,27 @@ public class Ligne : MonoBehaviour
         Set(indice, montant.ToString());
     }
 
-    //Set toutes les valeurs de la ligne dans l'ordre des argments
-    public void Set(string text1, string text2="", string text3="")
+    //Set toutes les valeurs de la ligne dans l'ordre des arguments de manière flexible
+    public void Set(params object[] valeurs)
     {
-        Set(0, text1);
-        Set(1, text2);
-        Set(2, text3);
+        for (int i = 0; i < valeurs.Length && i < cases.Count; i++)
+        {
+            if (valeurs[i] == null)
+            {
+                cases[i].Vider();
+            }
+            else if (valeurs[i] is argent mt)
+            {
+                cases[i].Set(mt);
+            }
+            else if (valeurs[i] is int valInt)
+            {
+                cases[i].Set(valInt);
+            }
+            else
+            {
+                cases[i].Set(valeurs[i].ToString());
+            }
+        }
     }
 }
