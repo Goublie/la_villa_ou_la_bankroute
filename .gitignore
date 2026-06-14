@@ -38,3 +38,5 @@ sysinfo.txt
 /[Aa]ssets/Plugins/iOS/
 # Note : Gardez vos packages s'ils sont dans le dossier Assets, 
 # mais ignorez les fichiers de cache externes.
+code/unity/Assets/AI Toolkit/
+code/unity/Assets/AI Toolkit.meta

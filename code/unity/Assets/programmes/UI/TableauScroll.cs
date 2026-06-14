@@ -7,16 +7,14 @@ public class TableauScroll : Tableau
     
     [SerializeField] Transform conteneurLignes; 
 
-    public override bool Add(string text1, string text2="", string text3="")
+    public override bool Add(params object[] valeurs)
     {
         // On cherche une ligne vide existante
         foreach (Ligne l in tableau)
         {
             if (l.EstVide())
             {
-                l.Set(0, text1);
-                l.Set(1, text2);
-                l.Set(2, text3);
+                l.Set(valeurs);
                 
                 //On force cette ligne à remonter tout en haut visuellement
                 l.transform.SetAsFirstSibling(); 
@@ -30,12 +28,13 @@ public class TableauScroll : Tableau
         {
             Ligne nouvelleLigne = Instantiate(prefabLigne, conteneurLignes, false);
             
+            // Appliquer la configuration des colonnes à la nouvelle ligne
+            AppliquerConfigurationColonnes(nouvelleLigne);
+            
             //On place la nouvelle ligne tout en haut visuellement 
             nouvelleLigne.transform.SetAsFirstSibling();
             
-            nouvelleLigne.Set(0, text1);
-            nouvelleLigne.Set(1, text2);
-            nouvelleLigne.Set(2, text3);
+            nouvelleLigne.Set(valeurs);
             
             tableau.Add(nouvelleLigne); 
             
