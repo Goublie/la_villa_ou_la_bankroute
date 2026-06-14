@@ -1,13 +1,26 @@
 using UnityEngine;
+using UnityEngine.UI;
 using System.Collections.Generic;
 
 public class Tableau : MonoBehaviour
 {
     public List<Ligne> tableau;    
 
+    [Tooltip("Laissez vide pour utiliser les largeurs par défaut du prefab Ligne. Sinon, renseignez la largeur en pixels pour chaque colonne (-1 pour flexible/étirable).")]
+    public List<float> largeursColonnes;
+
     public void Start()
     {
        tableau = new List<Ligne>(GetComponentsInChildren<Ligne>());
+
+        // Appliquer la configuration des colonnes aux lignes existantes
+        if (largeursColonnes != null && largeursColonnes.Count > 0)
+        {
+            foreach (Ligne l in tableau)
+            {
+                AppliquerConfigurationColonnes(l);
+            }
+        }
 
         //On vide le tableau au début du jeu
         Vider();
@@ -116,5 +129,34 @@ public class Tableau : MonoBehaviour
     public void Set(int indiceLigne, int indiceColonne, argent data)
     {
         Set(indiceLigne, indiceColonne, data.ToString());
+    }
+
+    public void AppliquerConfigurationColonnes(Ligne ligne)
+    {
+        if (largeursColonnes == null || largeursColonnes.Count == 0) return;
+
+        Case[] casesLigne = ligne.GetComponentsInChildren<Case>(true);
+        for (int i = 0; i < casesLigne.Length && i < largeursColonnes.Count; i++)
+        {
+            LayoutElement le = casesLigne[i].GetComponent<LayoutElement>();
+            if (le == null)
+            {
+                le = casesLigne[i].gameObject.AddComponent<LayoutElement>();
+            }
+
+            float width = largeursColonnes[i];
+            if (width >= 0f)
+            {
+                le.preferredWidth = width;
+                le.flexibleWidth = 0f; // Fixe
+                le.minWidth = width;
+            }
+            else
+            {
+                le.preferredWidth = -1f;
+                le.flexibleWidth = 1f; // S'étire pour remplir le reste
+                le.minWidth = 0f;
+            }
+        }
     }
 }
