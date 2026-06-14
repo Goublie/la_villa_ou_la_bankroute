@@ -45,7 +45,7 @@
 	[] 
 
 [] Scene Jeu
-	[] Boucle de la musique
+	[X] Boucle de la musique
 	[] Affichage du mois de l'année
 
 [] Scene Retrospection / What-if
@@ -53,7 +53,7 @@
 	[] RetrospectionEvenementUI (s'occupe d'afficher l'onglet avec les événements passés)
 
 [] Scene Menu
-	[] Modification prefab option (prefab variant de fenêtre, petite fenêtre type erreur)
+	[] Modification prefab option (prefab variant de fenêtre, petite fenêtre type erreur) - Lucas
 	[] 
 
 [] Scene de Game Over
