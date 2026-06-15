@@ -58,6 +58,12 @@ public static class ServicePatrimoine
             totalCentimes += joueur.bourse.GetValeurPatrimoine().centimes;
         }
 
+        if (joueur.entrepreneuriat != null)
+        {
+            totalCentimes +=
+                joueur.entrepreneuriat.GetValeurPatrimoine().centimes;
+        }
+
         if (totalCentimes > int.MaxValue)
         {
             totalCentimes = int.MaxValue;

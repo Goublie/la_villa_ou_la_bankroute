@@ -43,6 +43,11 @@ public class DonneesJoueur
     public DonneesBourse bourse;
 
     /// <summary>
+    /// Etat persistant de l'entreprise et de son projet courant.
+    /// </summary>
+    public DonneesEntrepreneuriat entrepreneuriat;
+
+    /// <summary>
     /// Cree un joueur avec son compte courant initial.
     /// </summary>
     public DonneesJoueur()
@@ -78,6 +83,12 @@ public class DonneesJoueur
         {
             bourse = new DonneesBourse();
         }
+
+        if (entrepreneuriat == null)
+        {
+            entrepreneuriat = new DonneesEntrepreneuriat();
+        }
+        entrepreneuriat.InitialiserSiNecessaire();
     }
 
     /// <summary>
@@ -105,7 +116,10 @@ public class DonneesJoueur
             santeMentale = santeMentale,
             comptes = new Dictionary<string, CompteBanquaire>(),
             investissements = new List<Investissement>(),
-            bourse = bourse != null ? bourse.Copier() : new DonneesBourse()
+            bourse = bourse != null ? bourse.Copier() : new DonneesBourse(),
+            entrepreneuriat = entrepreneuriat != null
+                ? entrepreneuriat.Copier()
+                : new DonneesEntrepreneuriat()
         };
 
         if (comptes != null)

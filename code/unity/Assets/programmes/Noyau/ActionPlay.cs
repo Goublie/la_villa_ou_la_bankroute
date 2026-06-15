@@ -34,6 +34,9 @@ public class ActionPlay : MonoBehaviour
                 .AppliquerEvolutionMensuelle(
                     gameData.nombreMoisPasses);
         }
+        CreerServiceEntrepreneuriat(gameData.joueur)?
+            .AppliquerEvolutionMensuelle(
+                gameData.nombreMoisPasses);
         if (gameData.historiqueSnapshots != null &&
             gameData.historiqueSnapshots.Count == 0)
         {
@@ -99,6 +102,10 @@ public class ActionPlay : MonoBehaviour
                 gameData.env.tauxEpargne = epargne.GetTaux();
             }
         }
+
+        CreerServiceEntrepreneuriat(joueur)?
+            .AppliquerEvolutionMensuelle(
+                gameData.nombreMoisPasses);
     }
 
     private void OuvrirNouveauMois(DonneesJoueur joueur)
@@ -117,6 +124,22 @@ public class ActionPlay : MonoBehaviour
         banque.ObtenirCompteCourant().AjoutHistorique(
             "salaire",
             joueur.salaire);
+    }
+
+    private static ServiceEntrepreneuriat CreerServiceEntrepreneuriat(
+        DonneesJoueur joueur)
+    {
+        if (joueur == null || joueur.entrepreneuriat == null)
+        {
+            return null;
+        }
+
+        ServiceBanque banque = new ServiceBanque(joueur);
+        return new ServiceEntrepreneuriat(
+            joueur.entrepreneuriat,
+            joueur,
+            banque.ObtenirCompteCourant(),
+            banque);
     }
 
     private void EnregistrerSnapshot()
