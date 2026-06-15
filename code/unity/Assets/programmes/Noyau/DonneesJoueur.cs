@@ -22,9 +22,12 @@ public class DonneesJoueur
     // Liste des produits financiers et investissements actifs
     public List<Investissement> investissements = new List<Investissement>();
 
+    // Portefeuille d'actifs cotés géré par l'application Bourse
+    public DonneesBourse bourse = new DonneesBourse();
+
     /// <summary>
     /// Calcule le patrimoine total du joueur en sommant la valeur de tous ses actifs
-    /// qui implémentent l'interface IPatrimoine (comptes bancaires et investissements).
+    /// qui implémentent l'interface IPatrimoine.
     /// </summary>
     public argent CalculPatrimoineTotal()
     {
@@ -50,6 +53,11 @@ public class DonneesJoueur
                     total += invest.GetValeurPatrimoine();
                 }
             }
+        }
+
+        if (bourse != null)
+        {
+            total += bourse.GetValeurPatrimoine();
         }
 
         return total;

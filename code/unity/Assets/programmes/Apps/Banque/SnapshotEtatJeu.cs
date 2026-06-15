@@ -108,6 +108,18 @@ public class SnapshotEtatJeu
                     ));
                 }
             }
+
+            if (gameData.joueur.bourse != null)
+            {
+                MarcheBoursier.MettreAJourValorisation(
+                    gameData.joueur.bourse,
+                    gameData.nombreMoisPasses);
+                this.joueur.bourse = gameData.joueur.bourse.Copier();
+            }
+            else
+            {
+                this.joueur.bourse = new DonneesBourse();
+            }
         }
 
         // 4. Clonage des données de l'environnement macroéconomique

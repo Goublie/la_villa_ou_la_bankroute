@@ -44,6 +44,12 @@ public class ActionPlay : MonoBehaviour
 
         //Passage officiel au mois calendrier suivant et incrémentation du compteur de temps global
         IncrementerMois();
+        if (gameData != null && gameData.joueur != null)
+        {
+            MarcheBoursier.MettreAJourValorisation(
+                gameData.joueur.bourse,
+                gameData.nombreMoisPasses);
+        }
 
         //Remise à 0 des historiques du joueur        
         if (gameData.joueur.comptes != null)
