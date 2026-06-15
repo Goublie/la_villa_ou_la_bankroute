@@ -101,12 +101,39 @@ public class PositionBourse
 [Serializable]
 public class ImpactEvenementMarche
 {
+    /// <summary>
+    /// Identifiant stable permettant de remplacer un impact deja applique.
+    /// </summary>
     public string evenementId;
+
+    /// <summary>
+    /// Identifiant de l'actif financier cible dans le catalogue.
+    /// </summary>
     public string actifId;
+
+    /// <summary>
+    /// Premier index absolu de mois auquel l'impact est actif.
+    /// </summary>
     public int moisDebut;
+
+    /// <summary>
+    /// Nombre de mois actifs, ou -1 pour une duree illimitee.
+    /// </summary>
     public int dureeMois = -1;
+
+    /// <summary>
+    /// Multiplicateur immediat du prix, ou 0.9 pour une baisse de 10 %.
+    /// </summary>
     public float coefficientPrix = 1f;
+
+    /// <summary>
+    /// Tendance additionnelle appliquee chaque mois, en pourcentage.
+    /// </summary>
     public float tendanceMensuellePourcent;
+
+    /// <summary>
+    /// Multiplicateur de l'ecart au marche utilise pour la volatilite.
+    /// </summary>
     public float coefficientVolatilite = 1f;
 
     /// <summary>

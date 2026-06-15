@@ -2,172 +2,94 @@ using System;
 using UnityEngine;
 
 /// <summary>
-/// Orchestre la cloture du mois courant et l'ouverture du mois suivant.
+/// Adaptateur Unity qui transmet le clic de passage de mois au service
+/// d'orchestration puis notifie les interfaces.
 /// </summary>
 public class ActionPlay : MonoBehaviour
 {
     public GameData gameData;
 
     /// <summary>
-    /// Notification visuelle envoyee apres la fin de toutes les mutations.
+    /// Notification visuelle envoyee apres toutes les mutations metier.
     /// </summary>
+    /// <remarks>
+    /// Aucun service metier ne doit dependre de cet evenement statique. Il est
+    /// conserve pour les MonoBehaviour existants et leurs references prefab.
+    /// </remarks>
     public static event Action OnMoisPasse;
 
-    private void Awake()
+    private ServicePassageMensuel servicePassageMensuel;
+
+    [RuntimeInitializeOnLoadMethod(
+        RuntimeInitializeLoadType.SubsystemRegistration)]
+    private static void ReinitialiserNotifications()
     {
-        // Les objets de la scene precedente ne doivent pas rester abonnes.
-        // Les services metier ne dependent plus de cet evenement statique.
+        // Le reset au demarrage du runtime evite qu'un Awake efface des
+        // abonnements valides selon l'ordre d'initialisation de la scene.
         OnMoisPasse = null;
     }
 
     private void Start()
     {
-        if (gameData == null)
+        if (!EssayerCreerService())
         {
             return;
         }
 
-        gameData.joueur?.InitialiserSiNecessaire();
-        if (gameData.joueur != null && gameData.joueur.bourse != null)
+        ResultatOperation resultat =
+            servicePassageMensuel.InitialiserPartie();
+        if (!resultat.Succes)
         {
-            new ServiceBourse(gameData.joueur.bourse)
-                .AppliquerEvolutionMensuelle(
-                    gameData.nombreMoisPasses);
-        }
-        CreerServiceEntrepreneuriat(gameData.joueur)?
-            .AppliquerEvolutionMensuelle(
-                gameData.nombreMoisPasses);
-        if (gameData.historiqueSnapshots != null &&
-            gameData.historiqueSnapshots.Count == 0)
-        {
-            EnregistrerSnapshot();
+            Debug.LogError("[Temps] " + resultat.Message);
         }
     }
 
     /// <summary>
-    /// Termine le mois courant puis prepare le mois suivant.
+    /// Termine le mois courant, ouvre le suivant puis rafraichit les UI.
     /// </summary>
     /// <remarks>
-    /// Ordre volontaire : evolutions du mois, valorisation et snapshot de
-    /// cloture, changement de calendrier, nettoyage des historiques, salaire,
-    /// puis notification des UI. Cet ordre evite qu'un snapshot depende de
-    /// l'ouverture d'une application.
+    /// Effets de bord : fait evoluer les agregats, cree un snapshot, avance
+    /// le calendrier, verse le salaire et peut charger l'introspection lors
+    /// du passage de decembre a janvier.
     /// </remarks>
     public void Jouer()
     {
-        if (gameData == null || gameData.joueur == null)
+        if (!EssayerCreerService())
         {
-            Debug.LogError("[Temps] GameData ou DonneesJoueur manquant.");
             return;
         }
 
-        DonneesJoueur joueur = gameData.joueur;
-        joueur.InitialiserSiNecessaire();
-
-        AppliquerEvolutionsMensuelles(joueur);
-        if (joueur.bourse != null)
+        ResultatPassageMensuel resultat =
+            servicePassageMensuel.PasserAuMoisSuivant();
+        if (!resultat.Succes)
         {
-            new ServiceBourse(joueur.bourse)
-                .AppliquerEvolutionMensuelle(
-                    gameData.nombreMoisPasses);
+            Debug.LogError("[Temps] " + resultat.Message);
+            return;
         }
-        EnregistrerSnapshot();
 
-        IncrementerMois();
-        OuvrirNouveauMois(joueur);
         OnMoisPasse?.Invoke();
+        if (resultat.ChangementAnnee &&
+            ScenesManager.Instance != null)
+        {
+            ScenesManager.Instance.ChargerIntrospection();
+        }
     }
 
-    private void AppliquerEvolutionsMensuelles(DonneesJoueur joueur)
+    private bool EssayerCreerService()
     {
-        if (joueur.investissements != null)
+        if (servicePassageMensuel != null)
         {
-            foreach (Investissement investissement in joueur.investissements)
-            {
-                investissement?.AppliquerEvolutionMensuelle(
-                    gameData.nombreMoisPasses);
-            }
+            return true;
         }
 
-        if (joueur.comptes != null &&
-            joueur.comptes.TryGetValue(
-                ServiceBanque.LivretAId,
-                out CompteBanquaire compte) &&
-            compte is Epargne epargne)
+        if (gameData == null)
         {
-            epargne.AppliquerEvolutionMensuelle(
-                gameData.nombreMoisPasses);
-            if (gameData.env != null)
-            {
-                gameData.env.tauxEpargne = epargne.GetTaux();
-            }
+            Debug.LogError("[Temps] GameData manquant.");
+            return false;
         }
 
-        CreerServiceEntrepreneuriat(joueur)?
-            .AppliquerEvolutionMensuelle(
-                gameData.nombreMoisPasses);
-    }
-
-    private void OuvrirNouveauMois(DonneesJoueur joueur)
-    {
-        if (joueur.comptes == null)
-        {
-            return;
-        }
-
-        foreach (CompteBanquaire compte in joueur.comptes.Values)
-        {
-            compte?.ViderHistorique();
-        }
-
-        ServiceBanque banque = new ServiceBanque(joueur);
-        banque.ObtenirCompteCourant().AjoutHistorique(
-            "salaire",
-            joueur.salaire);
-    }
-
-    private static ServiceEntrepreneuriat CreerServiceEntrepreneuriat(
-        DonneesJoueur joueur)
-    {
-        if (joueur == null || joueur.entrepreneuriat == null)
-        {
-            return null;
-        }
-
-        ServiceBanque banque = new ServiceBanque(joueur);
-        return new ServiceEntrepreneuriat(
-            joueur.entrepreneuriat,
-            joueur,
-            banque.ObtenirCompteCourant(),
-            banque);
-    }
-
-    private void EnregistrerSnapshot()
-    {
-        if (gameData == null || gameData.historiqueSnapshots == null)
-        {
-            return;
-        }
-
-        gameData.historiqueSnapshots.Add(
-            new SnapshotEtatJeu(gameData));
-    }
-
-    private void IncrementerMois()
-    {
-        gameData.nombreMoisPasses++;
-        if (gameData.moisActuel == Mois.Decembre)
-        {
-            gameData.moisActuel = Mois.Janvier;
-            if (ScenesManager.Instance != null)
-            {
-                ScenesManager.Instance.ChargerIntrospection();
-            }
-        }
-        else
-        {
-            gameData.moisActuel =
-                (Mois)((int)gameData.moisActuel + 1);
-        }
+        servicePassageMensuel =
+            new ServicePassageMensuel(gameData);
+        return true;
     }
 }
