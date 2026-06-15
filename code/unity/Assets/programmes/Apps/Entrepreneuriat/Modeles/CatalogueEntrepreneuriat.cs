@@ -3,6 +3,17 @@
 /// </summary>
 public readonly struct DefinitionChoixEntrepreneurial
 {
+    /// <summary>
+    /// Cree les modificateurs d'un choix de creation.
+    /// </summary>
+    /// <param name="nom">Libelle affiche.</param>
+    /// <param name="difficulte">Variation de difficulte en points.</param>
+    /// <param name="potentiel">Variation de potentiel en points.</param>
+    /// <param name="concurrence">Variation de concurrence en points.</param>
+    /// <param name="coutEuros">Variation du cout de lancement en euros.</param>
+    /// <param name="probabilite">
+    /// Variation de probabilite de succes en points de pourcentage.
+    /// </param>
     public DefinitionChoixEntrepreneurial(
         string nom,
         int difficulte,
@@ -19,11 +30,22 @@ public readonly struct DefinitionChoixEntrepreneurial
         Probabilite = probabilite;
     }
 
+    /// <summary>Libelle affiche.</summary>
     public string Nom { get; }
+
+    /// <summary>Variation de difficulte en points.</summary>
     public int Difficulte { get; }
+
+    /// <summary>Variation de potentiel de marche en points.</summary>
     public int Potentiel { get; }
+
+    /// <summary>Variation de concurrence en points.</summary>
     public int Concurrence { get; }
+
+    /// <summary>Variation du cout de lancement en euros.</summary>
     public int CoutEuros { get; }
+
+    /// <summary>Variation de probabilite en points de pourcentage.</summary>
     public int Probabilite { get; }
 }
 
@@ -74,22 +96,30 @@ public static class CatalogueEntrepreneuriat
         new DefinitionChoixEntrepreneurial("Jeu video / simulation", 10, 14, 14, 2500, -3)
     };
 
+    /// <summary>Nombre de secteurs disponibles.</summary>
     public static int NombreSecteurs => Secteurs.Length;
+
+    /// <summary>Nombre de publics disponibles.</summary>
     public static int NombrePublics => Publics.Length;
+
+    /// <summary>Nombre de technologies disponibles.</summary>
     public static int NombreTechnologies => Technologies.Length;
 
+    /// <summary>Retourne les modificateurs du secteur indique.</summary>
     public static DefinitionChoixEntrepreneurial ObtenirSecteur(
         SecteurEntrepreneurial secteur)
     {
         return Secteurs[(int)secteur];
     }
 
+    /// <summary>Retourne les modificateurs du public indique.</summary>
     public static DefinitionChoixEntrepreneurial ObtenirPublic(
         PublicEntrepreneurial publicCible)
     {
         return Publics[(int)publicCible];
     }
 
+    /// <summary>Retourne les modificateurs de la technologie indiquee.</summary>
     public static DefinitionChoixEntrepreneurial ObtenirTechnologie(
         TechnologieEntrepreneuriale technologie)
     {

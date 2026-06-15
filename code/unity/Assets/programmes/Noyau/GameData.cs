@@ -1,44 +1,77 @@
-// Contient les données du jeu //
-using UnityEngine;
 using System.Collections.Generic;
+using UnityEngine;
 
- public enum Mois
+/// <summary>
+/// Mois civils utilises par le calendrier du jeu.
+/// </summary>
+public enum Mois
 {
-    Janvier, Fevrier, Mars, Avril, Mai, Juin,
-    Juillet, Aout, Septembre, Octobre, Novembre, Decembre
+    Janvier,
+    Fevrier,
+    Mars,
+    Avril,
+    Mai,
+    Juin,
+    Juillet,
+    Aout,
+    Septembre,
+    Octobre,
+    Novembre,
+    Decembre
 }
 
-[CreateAssetMenu(fileName = "GameData", menuName = "Scriptable Objects/GameData")]
+/// <summary>
+/// Racine ScriptableObject de l'etat courant et des snapshots de la partie.
+/// </summary>
+/// <remarks>
+/// L'objet est partage entre les scenes. Les donnees metier vivent dans les
+/// agregats serialisables et ne referencent aucun composant UI. Une sauvegarde
+/// durable sur disque devra serialiser ces agregats explicitement ; elle ne
+/// doit pas s'appuyer sur les dictionnaires Unity non pris en charge.
+/// </remarks>
+[CreateAssetMenu(
+    fileName = "GameData",
+    menuName = "Scriptable Objects/GameData")]
 public class GameData : ScriptableObject
 {
+    /// <summary>
+    /// Agregat personnel, financier et professionnel du joueur.
+    /// </summary>
     public DonneesJoueur joueur = new DonneesJoueur();
+
+    /// <summary>
+    /// Variables economiques externes partagees par les systemes.
+    /// </summary>
     public DonneesEnvironnement env = new DonneesEnvironnement();
 
-    public int nombreMoisPasses = 0; 
-    public Mois moisActuel = Mois.Juillet; // Le jeu commence en Juillet
-    public List<SnapshotEtatJeu> historiqueSnapshots = new List<SnapshotEtatJeu>(); // Historique des photographies mensuelles du jeu pour le mode What-if
-    
+    /// <summary>
+    /// Index absolu des mois ecoules depuis juillet 2026.
+    /// </summary>
+    public int nombreMoisPasses;
+
+    /// <summary>
+    /// Mois civil courant. Une nouvelle partie commence en juillet.
+    /// </summary>
+    public Mois moisActuel = Mois.Juillet;
+
+    /// <summary>
+    /// Photographies profondes mensuelles utilisees par le mode What If.
+    /// </summary>
+    public List<SnapshotEtatJeu> historiqueSnapshots =
+        new List<SnapshotEtatJeu>();
+
     private void OnEnable()
     {
-        if (joueur == null)
-        {
-            joueur = new DonneesJoueur();
-        }
-        joueur.InitialiserSiNecessaire();
-        if (env == null)
-        {
-            env = new DonneesEnvironnement();
-        }
-        if (historiqueSnapshots == null)
-        {
-            historiqueSnapshots = new List<SnapshotEtatJeu>();
-        }
+        AssurerAgregats();
     }
-    
+
     /// <summary>
-    /// Réinitialise toutes les données de jeu à leur état par défaut.
-    /// Appelé lors du démarrage d'une nouvelle partie.
+    /// Remplace l'etat courant par une nouvelle partie en juillet.
     /// </summary>
+    /// <remarks>
+    /// Effet de bord : supprime tous les snapshots et toutes les progressions
+    /// de la partie precedente.
+    /// </remarks>
     public void ResetData()
     {
         joueur = new DonneesJoueur();
@@ -52,6 +85,25 @@ public class GameData : ScriptableObject
         else
         {
             historiqueSnapshots.Clear();
+        }
+    }
+
+    private void AssurerAgregats()
+    {
+        if (joueur == null)
+        {
+            joueur = new DonneesJoueur();
+        }
+        joueur.InitialiserSiNecessaire();
+
+        if (env == null)
+        {
+            env = new DonneesEnvironnement();
+        }
+
+        if (historiqueSnapshots == null)
+        {
+            historiqueSnapshots = new List<SnapshotEtatJeu>();
         }
     }
 }

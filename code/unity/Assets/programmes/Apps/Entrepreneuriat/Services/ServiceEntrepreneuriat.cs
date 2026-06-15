@@ -33,6 +33,9 @@ public sealed class ServiceEntrepreneuriat : IEvolutionMensuelle
         MettreAJourValorisation();
     }
 
+    /// <summary>
+    /// Projet persistant actuellement gere par le service.
+    /// </summary>
     public ProjetEntrepreneurial Projet => donnees.projet;
 
     /// <summary>
@@ -542,16 +545,25 @@ public sealed class ServiceEntrepreneuriat : IEvolutionMensuelle
         MettreAJourValorisation();
     }
 
+    /// <summary>
+    /// Retourne la definition du secteur selectionne.
+    /// </summary>
     public DefinitionChoixEntrepreneurial ObtenirDefinitionSecteur()
     {
         return CatalogueEntrepreneuriat.ObtenirSecteur(Projet.secteur);
     }
 
+    /// <summary>
+    /// Retourne la definition du public selectionne.
+    /// </summary>
     public DefinitionChoixEntrepreneurial ObtenirDefinitionPublic()
     {
         return CatalogueEntrepreneuriat.ObtenirPublic(Projet.publicCible);
     }
 
+    /// <summary>
+    /// Retourne la definition de la technologie selectionnee.
+    /// </summary>
     public DefinitionChoixEntrepreneurial ObtenirDefinitionTechnologie()
     {
         return CatalogueEntrepreneuriat.ObtenirTechnologie(

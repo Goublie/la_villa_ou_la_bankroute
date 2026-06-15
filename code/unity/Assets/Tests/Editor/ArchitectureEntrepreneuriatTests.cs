@@ -67,6 +67,26 @@ public class ArchitectureEntrepreneuriatTests
     }
 
     [Test]
+    public void DevelopperProduit_RefuseSansProjetSansMutation()
+    {
+        ContexteEntrepreneuriat contexte =
+            new ContexteEntrepreneuriat();
+        int cashInitial = contexte.Courant.GetSolde().centimes;
+
+        ResultatOperation resultat =
+            contexte.Service.DevelopperProduit();
+
+        Assert.That(resultat.Succes, Is.False);
+        Assert.That(resultat.Code, Is.EqualTo("projet_absent"));
+        Assert.That(
+            contexte.Courant.GetSolde().centimes,
+            Is.EqualTo(cashInitial));
+        Assert.That(
+            contexte.Service.Projet.progressionProduit,
+            Is.EqualTo(0));
+    }
+
+    [Test]
     public void ReposerFondateur_BorneLesRessourcesA100()
     {
         ContexteEntrepreneuriat contexte =

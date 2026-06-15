@@ -138,6 +138,34 @@ public class ArchitectureBourseTests
     }
 
     [Test]
+    public void Valorisation_ExposeCapitalEtGainLatentCoherents()
+    {
+        ContexteBourse contexte = new ContexteBourse();
+        contexte.Service.Acheter(
+            contexte.Actif,
+            40000,
+            0,
+            contexte.Courant,
+            contexte.Banque);
+        contexte.Service.AppliquerEvolutionMensuelle(1);
+        PositionBourse position =
+            contexte.Donnees.TrouverPosition(contexte.Actif.Id);
+
+        int valeur =
+            contexte.Service.CalculerValeurPositionCentimes(position, 1);
+        int gain =
+            contexte.Service.CalculerGainPerteCentimes(position, 1);
+
+        Assert.That(
+            contexte.Donnees.CalculerCapitalInvestiCentimes(),
+            Is.EqualTo(40000));
+        Assert.That(gain, Is.EqualTo(valeur - 40000));
+        Assert.That(
+            contexte.Donnees.GetGainsPertesLatents().centimes,
+            Is.EqualTo(gain));
+    }
+
+    [Test]
     public void ImpactEvenement_ModifieLePrixSansMuterLaDefinition()
     {
         ContexteBourse contexte = new ContexteBourse();

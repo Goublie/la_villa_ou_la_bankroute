@@ -1,48 +1,116 @@
 using System;
 using UnityEngine;
 
+/// <summary>
+/// Valeur monetaire du jeu stockee sous forme de centimes entiers.
+/// </summary>
+/// <remarks>
+/// Les services metier doivent privilegier le constructeur en centimes.
+/// Le constructeur en euros flottants est conserve pour les anciens scripts
+/// Unity et arrondit une seule fois a la frontiere d'entree.
+/// </remarks>
 [Serializable]
-public struct argent
+public struct argent : IEquatable<argent>
 {
+    /// <summary>
+    /// Montant signe en centimes.
+    /// </summary>
     public int centimes;
 
+    /// <summary>
+    /// Cree un montant exact a partir de centimes.
+    /// </summary>
     public argent(int centimes)
     {
         this.centimes = centimes;
     }
 
-    public argent(float somme) : this(Mathf.RoundToInt(somme * 100f))
+    /// <summary>
+    /// Cree un montant depuis des euros et arrondit au centime le plus proche.
+    /// </summary>
+    public argent(float somme)
+        : this(Mathf.RoundToInt(somme * 100f))
     {
     }
 
+    /// <summary>
+    /// Formate le montant avec deux decimales et le symbole euro.
+    /// </summary>
     public override string ToString()
     {
-        //Conversion en décimal pour la précision
         decimal montant = centimes / 100m;
-        return montant.ToString("F2") + " €";
+        return montant.ToString("F2") + " \u20AC";
     }
 
-    // Formate le montant en euros selon un format numérique (ex: "N0", "F2").
+    /// <summary>
+    /// Formate la valeur en euros selon un format numerique .NET.
+    /// </summary>
     public string ToString(string format)
     {
         decimal montant = centimes / 100m;
         return montant.ToString(format);
     }
 
-    // Surcharge d'opérateurs pour pouvoir faire des maths directement avec ton type !
-    public static argent operator +(argent a, argent b) => new argent(a.centimes + b.centimes);
-    public static argent operator -(argent a, argent b) => new argent(a.centimes - b.centimes);
-    public static argent operator -(argent a) => new argent(-a.centimes);
-    // Soustrait un montant exprimé en euros (cohérent avec le constructeur argent(float) en euros).
-    public static argent operator -(argent a, int euros) => a - new argent((float)euros);
-    public static argent operator +(argent a, int euros) => a + new argent((float)euros);
-    public static argent operator *(argent a, float multiplicateur) => new argent((int)(a.centimes * multiplicateur));
-    public static argent operator *(float multiplicateur,argent a)
+    /// <inheritdoc />
+    public bool Equals(argent autre)
     {
-        return a * multiplicateur;
+        return centimes == autre.centimes;
     }
-    public static bool operator >(argent a, argent b) => a.centimes > b.centimes;
-    public static bool operator <(argent a, argent b) => a.centimes < b.centimes;
-    public static bool operator >=(argent a, argent b) => a.centimes >= b.centimes;
-    public static bool operator <=(argent a, argent b) => a.centimes <= b.centimes;
+
+    /// <inheritdoc />
+    public override bool Equals(object objet)
+    {
+        return objet is argent autre && Equals(autre);
+    }
+
+    /// <inheritdoc />
+    public override int GetHashCode()
+    {
+        return centimes;
+    }
+
+    public static argent operator +(argent a, argent b) =>
+        new argent(a.centimes + b.centimes);
+
+    public static argent operator -(argent a, argent b) =>
+        new argent(a.centimes - b.centimes);
+
+    public static argent operator -(argent a) =>
+        new argent(-a.centimes);
+
+    /// <summary>
+    /// Soustrait un nombre entier d'euros. API conservee pour les anciennes UI.
+    /// </summary>
+    public static argent operator -(argent a, int euros) =>
+        a - new argent((float)euros);
+
+    /// <summary>
+    /// Ajoute un nombre entier d'euros. API conservee pour les anciennes UI.
+    /// </summary>
+    public static argent operator +(argent a, int euros) =>
+        a + new argent((float)euros);
+
+    public static argent operator *(argent a, float multiplicateur) =>
+        new argent((int)(a.centimes * multiplicateur));
+
+    public static argent operator *(float multiplicateur, argent a) =>
+        a * multiplicateur;
+
+    public static bool operator >(argent a, argent b) =>
+        a.centimes > b.centimes;
+
+    public static bool operator <(argent a, argent b) =>
+        a.centimes < b.centimes;
+
+    public static bool operator >=(argent a, argent b) =>
+        a.centimes >= b.centimes;
+
+    public static bool operator <=(argent a, argent b) =>
+        a.centimes <= b.centimes;
+
+    public static bool operator ==(argent a, argent b) =>
+        a.Equals(b);
+
+    public static bool operator !=(argent a, argent b) =>
+        !a.Equals(b);
 }

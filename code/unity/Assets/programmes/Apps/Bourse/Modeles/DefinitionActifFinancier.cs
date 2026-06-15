@@ -38,10 +38,29 @@ public sealed class DefinitionActifFinancier
             : new List<float>();
     }
 
+    /// <summary>
+    /// Identifiant stable utilise par les positions et les evenements.
+    /// </summary>
     public string Id { get; }
+
+    /// <summary>
+    /// Nom affiche au joueur.
+    /// </summary>
     public string Nom { get; }
+
+    /// <summary>
+    /// Categorie fonctionnelle utilisee pour filtrer le catalogue.
+    /// </summary>
     public CategorieActifFinancier Categorie { get; }
+
+    /// <summary>
+    /// Niveau de risque descriptif affiche dans l'interface.
+    /// </summary>
     public string NiveauRisque { get; }
+
+    /// <summary>
+    /// Description courte de l'actif.
+    /// </summary>
     public string Description { get; }
 
     /// <summary>

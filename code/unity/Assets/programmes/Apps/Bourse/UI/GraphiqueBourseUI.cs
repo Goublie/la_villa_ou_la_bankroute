@@ -17,6 +17,9 @@ public sealed class GraphiqueBourseUI
     private LineChart graphique;
     private bool initialise;
 
+    /// <summary>
+    /// Cree l'adaptateur graphique dans la zone RectTransform indiquee.
+    /// </summary>
     public GraphiqueBourseUI(RectTransform racine)
     {
         this.racine = racine;
