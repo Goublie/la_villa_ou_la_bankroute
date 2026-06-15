@@ -102,10 +102,16 @@ public class EmployeePerformanceController : MonoBehaviour
             burnoutScore += 15;
         }
 
+        // Auto-detect the relational controller if not assigned in Inspector
+        if (relationalController == null)
+        {
+            relationalController = FindObjectOfType<RelationalController>();
+        }
+
         // Fatigue reduction bonus: if colleagues relationship is maxed (100), reduce fatigue by 5.
         if (relationalController != null && relationalController.ColleguesScore == 100)
         {
-            fatigueScore -= 5;
+            fatigueScore = Mathf.Clamp(fatigueScore - 5, 0, 100);
         }
 
         if (monthsAtCurrentJob % 5 == 0)
@@ -165,6 +171,24 @@ public class EmployeePerformanceController : MonoBehaviour
         if (demissionController != null)
         {
             demissionController.OnOuiClicked();
+        }
+
+        // Force reset the "Poste Actuel" panel UI and GameData manually in case the DemissionController reference is missing or fails
+        if (panelPosteActuel != null)
+        {
+            Transform tEntr = panelPosteActuel.transform.Find("Entreprise");
+            if (tEntr != null && tEntr.GetComponent<TMPro.TMP_Text>() != null) tEntr.GetComponent<TMPro.TMP_Text>().text = "Entreprise : Aucune";
+
+            Transform tSal = panelPosteActuel.transform.Find("Salaire_brut");
+            if (tSal != null && tSal.GetComponent<TMPro.TMP_Text>() != null) tSal.GetComponent<TMPro.TMP_Text>().text = "Salaire : 0€ / an";
+
+            Transform tHeures = panelPosteActuel.transform.Find("Heures");
+            if (tHeures != null && tHeures.GetComponent<TMPro.TMP_Text>() != null) tHeures.GetComponent<TMPro.TMP_Text>().text = "Heures : 0 heures / semaine";
+        }
+
+        if (gameData != null && gameData.joueur != null)
+        {
+            gameData.joueur.salaire = new argent(0);
         }
 
         hasJob = false;
