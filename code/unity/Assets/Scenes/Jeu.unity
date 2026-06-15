@@ -3213,7 +3213,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3827530694283083086, guid: 8beb7248c59e8d343906aaa6a4d8e3be, type: 3}
       propertyPath: m_Name
-      value: EntrepreunariatBouton
+      value: EntreprenariatApp
       objectReference: {fileID: 0}
     - target: {fileID: 4059290798963567902, guid: 8beb7248c59e8d343906aaa6a4d8e3be, type: 3}
       propertyPath: m_Interactable
@@ -3245,7 +3245,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8101441726720757484, guid: 8beb7248c59e8d343906aaa6a4d8e3be, type: 3}
       propertyPath: m_text
-      value: Entrepreunariat
+      value: Entreprenariat
       objectReference: {fileID: 0}
     - target: {fileID: 8101441726720757484, guid: 8beb7248c59e8d343906aaa6a4d8e3be, type: 3}
       propertyPath: m_margin.x
