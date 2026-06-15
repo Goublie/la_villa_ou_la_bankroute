@@ -2,64 +2,152 @@ using System;
 using System.Collections.Generic;
 
 /// <summary>
-/// Encapsule l'ensemble des données personnelles, financières et professionnelles propres au joueur.
+/// Agregat racine de l'etat personnel, financier et professionnel du joueur.
 /// </summary>
-[System.Serializable]
+/// <remarks>
+/// Cette classe ne contient aucune reference vers des composants UI Unity.
+/// Chaque sous-systeme sauvegardable doit y exposer ses donnees et fournir une
+/// copie profonde utilisable par les snapshots et le mode What If.
+/// </remarks>
+[Serializable]
 public class DonneesJoueur
 {
-    // Comptes bancaires du joueur (solde et historique des flux)
-    public Dictionary<string, CompteBanquaire> comptes = new Dictionary<string, CompteBanquaire>() { { "courant", new CompteBanquaire(new argent(100000)) } };
-
-    // Le revenu d'activité régulier brut mensuel
-    public argent salaire = new argent(0);
-
-    // Le capital temps restant à allouer chaque mois
-    public int energie = 100;
-
-    // L'indice de santé mentale régissant la fatigue et l'efficacité générale
-    public int santeMentale = 100;
-
-    // Liste des produits financiers et investissements actifs
-    public List<Investissement> investissements = new List<Investissement>();
-
-    // Portefeuille d'actifs cotés géré par l'application Bourse
-    public DonneesBourse bourse = new DonneesBourse();
+    /// <summary>
+    /// Comptes bancaires indexes par identifiant fonctionnel.
+    /// </summary>
+    public Dictionary<string, CompteBanquaire> comptes;
 
     /// <summary>
-    /// Calcule le patrimoine total du joueur en sommant la valeur de tous ses actifs
-    /// qui implémentent l'interface IPatrimoine.
+    /// Salaire mensuel, exprime en centimes.
+    /// </summary>
+    public argent salaire = new argent(0);
+
+    /// <summary>
+    /// Energie disponible, bornee entre 0 et 100.
+    /// </summary>
+    public int energie = 100;
+
+    /// <summary>
+    /// Sante mentale disponible, bornee entre 0 et 100.
+    /// </summary>
+    public int santeMentale = 100;
+
+    /// <summary>
+    /// Placements fixes autonomes, hors Livret A porte par les comptes.
+    /// </summary>
+    public List<Investissement> investissements;
+
+    /// <summary>
+    /// Etat persistant du portefeuille boursier.
+    /// </summary>
+    public DonneesBourse bourse;
+
+    /// <summary>
+    /// Cree un joueur avec son compte courant initial.
+    /// </summary>
+    public DonneesJoueur()
+    {
+        InitialiserSiNecessaire();
+    }
+
+    /// <summary>
+    /// Repare les collections absentes apres une migration de donnees.
+    /// </summary>
+    public void InitialiserSiNecessaire()
+    {
+        if (comptes == null)
+        {
+            comptes = new Dictionary<string, CompteBanquaire>();
+        }
+
+        if (!comptes.ContainsKey(ServiceBanque.CompteCourantId) ||
+            comptes[ServiceBanque.CompteCourantId] == null)
+        {
+            comptes[ServiceBanque.CompteCourantId] =
+                new CompteBanquaire(
+                    new argent(
+                        ServiceBanque.SoldeInitialCourantCentimes));
+        }
+
+        if (investissements == null)
+        {
+            investissements = new List<Investissement>();
+        }
+
+        if (bourse == null)
+        {
+            bourse = new DonneesBourse();
+        }
+    }
+
+    /// <summary>
+    /// Calcule le patrimoine total sans compter deux fois le Livret A.
     /// </summary>
     public argent CalculPatrimoineTotal()
     {
-        argent total = new argent(0);
+        return ServicePatrimoine.Calculer(this);
+    }
+
+    /// <summary>
+    /// Produit une copie profonde de l'etat du joueur.
+    /// </summary>
+    /// <remarks>
+    /// Les evenements C# ne sont volontairement pas copies. Les nouveaux
+    /// objets reconstruisent leurs abonnements internes, tandis que les UI
+    /// restent abonnees uniquement a l'etat reel.
+    /// </remarks>
+    public DonneesJoueur Copier()
+    {
+        DonneesJoueur copie = new DonneesJoueur
+        {
+            salaire = new argent(salaire.centimes),
+            energie = energie,
+            santeMentale = santeMentale,
+            comptes = new Dictionary<string, CompteBanquaire>(),
+            investissements = new List<Investissement>(),
+            bourse = bourse != null ? bourse.Copier() : new DonneesBourse()
+        };
 
         if (comptes != null)
         {
-            foreach (var compte in comptes.Values)
+            foreach (
+                KeyValuePair<string, CompteBanquaire> entree in comptes)
             {
-                if (compte != null)
+                if (entree.Value != null)
                 {
-                    total += compte.GetValeurPatrimoine();
+                    copie.comptes[entree.Key] = entree.Value.Copier();
                 }
             }
         }
 
         if (investissements != null)
         {
-            foreach (var invest in investissements)
+            foreach (Investissement investissement in investissements)
             {
-                if (invest != null)
+                if (investissement != null &&
+                    !EstMoteurInteretsLivretA(investissement))
                 {
-                    total += invest.GetValeurPatrimoine();
+                    copie.investissements.Add(investissement.Copier());
                 }
             }
         }
 
-        if (bourse != null)
+        copie.InitialiserSiNecessaire();
+        return copie;
+    }
+
+    private bool EstMoteurInteretsLivretA(
+        Investissement investissement)
+    {
+        if (comptes == null ||
+            !comptes.TryGetValue(
+                ServiceBanque.LivretAId,
+                out CompteBanquaire compte) ||
+            !(compte is Epargne epargne))
         {
-            total += bourse.GetValeurPatrimoine();
+            return false;
         }
 
-        return total;
+        return ReferenceEquals(investissement, epargne.invest);
     }
 }

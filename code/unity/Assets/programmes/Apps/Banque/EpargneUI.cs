@@ -1,172 +1,34 @@
+using System;
+using System.Globalization;
+using TMPro;
 using UnityEngine;
-using UnityEngine.UI;
-using TMPro; 
 
+/// <summary>
+/// Adapte les controles Unity de l'onglet Livret A au service bancaire.
+/// </summary>
 public class EpargneUI : MonoBehaviour
 {
-    //Informations à afficher dans l'onglet epargne
-    [SerializeField] GameData G; //Le compte d'épargne
-    
+    [SerializeField] private GameData G;
+    [SerializeField] private TMP_InputField inputCredit;
+    [SerializeField] private TMP_InputField inputDebit;
+    [SerializeField] private TableauScroll tableauEpgn;
+    [SerializeField] private TextMeshProUGUI texteSoldeEpgn;
+    [SerializeField] private TextMeshProUGUI texteTaux;
+
     private Epargne epgn;
+    private ServiceBanque serviceBanque;
 
-    //Liuex d'entrée des informations
-    [SerializeField] TMP_InputField inputCredit; //L'entrée du montant à crédit
-    [SerializeField] TMP_InputField inputDebit; //L'entrée du montant à débiter
-
-    //Lieux d'affichage des informations
-    [SerializeField] TableauScroll tableauEpgn; //Le tableau d'affichage des opérations
-    [SerializeField] TextMeshProUGUI texteSoldeEpgn; //Le texte affichant le solde du compte d'épargne
-    [SerializeField] TextMeshProUGUI texteTaux; //Le texte affichant le taux de rendement du compte d'épargne
-
-    void Start()
+    private void Awake()
     {
-        // On vérifie si le compte d'épargne existe déjà dans les données globales du jeu (ScriptableObject)
-        // afin d'éviter une exception de clé dupliquée (ArgumentException) et de conserver le solde existant
-        // lors des ouvertures répétées de l'interface ou des rechargements de scène.
-        if (!G.joueur.comptes.ContainsKey("epargne"))
-        {
-            // Initialisation du compte d'épargne en passant la référence de GameData (G) pour la courbe de taux.
-            // On fournit 0.0175f (1.75%) comme taux d'intérêt initial réglementé de juillet 2026.
-            G.joueur.comptes.Add("epargne", new Epargne(G, 0.0175f, 12));
-            epgn = (Epargne)G.joueur.comptes["epargne"];
-            
-            // Ajout du produit d'épargne à la liste globale des investissements pour le calcul mensuel des intérêts
-            G.joueur.investissements.Add(epgn.invest);
-        }
-        else
-        {
-            epgn = (Epargne)G.joueur.comptes["epargne"];
-        }
+        ResoudreEtat();
+    }
 
+    private void Start()
+    {
         ActualiserAffichage();
     }
 
-    //Actualise l'affichage du solde et du taux
-    public void ActualiserAffichage()
-    {
-        if (epgn == null)
-        {
-            Debug.LogError("Le compte epargne n'est pas assigné dans le GestionBanqueUI.");
-            return;
-        }
-        if (inputCredit == null)
-        {
-            Debug.LogError("L'entrée du crédit n'est pas assignée dans le GestionBanqueUI.");
-            return;
-        }
-        if (inputDebit == null)
-        {
-            Debug.LogError("L'entrée du débit n'est pas assignée dans le GestionBanqueUI.");
-            return;
-        }
-        if (tableauEpgn == null)
-        {
-            Debug.LogError("Le tableau n'est pas assigné dans le GestionBanqueUI.");
-            return;
-        }
-        if (texteSoldeEpgn == null)
-        {
-            Debug.LogError("Le texte du solde n'est pas assigné dans le GestionBanqueUI.");
-            return;
-        }
-        if (texteTaux == null)
-        {
-            Debug.LogError("Le texte du taux n'est pas assigné dans le GestionBanqueUI.");
-            return;
-        }
-        
-        texteSoldeEpgn.text = "Solde : " + epgn.GetSolde().ToString();
-        texteTaux.text = "Taux : " + (epgn.GetTaux() * 100).ToString("F2") + " %";
-        ActualiserTableau();
-    }
-
-    //Actualise le tableau et ajoute une ligne au tableau d'affichage des opérations si nécessaire
-    public void ActualiserTableau()
-    {
-        Historique histo = epgn.GetHistorique();
-        tableauEpgn.Vider();
-        
-        for(int i = histo.GetSize() - 1; i >= 0; i--)
-        {
-            tableauEpgn.Add(histo.GetHistorique()[i]);
-            Debug.Log("Tableau épargne actualisé");
-        }
-    }
-
-    //Gère la saisie du crédit
-    public void saisieCredit()
-    {
-        if (inputCredit == null)
-        {
-            Debug.LogError("L'entrée du crédit n'est pas assignée dans le GestionBanqueUI.");
-            return;
-        }
-        
-        string montantStr = inputCredit.text;
-        
-        if (string.IsNullOrEmpty(montantStr))
-        {
-            return;
-        }
-
-        float montant;
-        if (!float.TryParse(montantStr, out montant))
-        {
-            Debug.Log("Veuillez entrer un montant valide.");
-            return;
-        }
-
-        if (montant < 0)
-        {
-            Debug.Log("Le montant doit être positif.");
-            return;
-        }
-
-        argent somme = new argent(montant);
-
-        //On transfere les montant
-        G.joueur.comptes["courant"].Transferer(epgn, "courant vers epargne", "Credit",  somme);
-        ActualiserAffichage();
-    }
-
-    //Gère la saisie du débit
-    public void saisieDebit()
-    {
-        //On récupère le montant entré par l'utilisateur
-        if (inputDebit == null)
-        {
-            Debug.LogError("L'entrée du débit n'est pas assignée dans le GestionBanqueUI.");
-            return;
-        }
-        string montantStr = inputDebit.text;
-        
-        if (string.IsNullOrEmpty(montantStr))
-        {
-            Debug.Log("Veuillez entrer un montant.");
-            return;
-        }
-
-        float montant;
-
-        if (!float.TryParse(montantStr, out montant))
-        {
-            Debug.Log("Veuillez entrer un montant valide.");
-            return;
-        }
-
-        if (montant < 0)
-        {
-            Debug.Log("Le montant doit être positif.");
-            return;
-        }
-
-        argent somme = new argent(montant);
-        epgn.Transferer(G.joueur.comptes["courant"], "Debit", "Versement depuis le compte epargne",  somme);
-        ActualiserAffichage();
-        Debug.Log("Saisie d'un débit");
-    }
-
-    void OnEnable()
+    private void OnEnable()
     {
         ActionPlay.OnMoisPasse += ActualiserAffichage;
     }
@@ -174,5 +36,148 @@ public class EpargneUI : MonoBehaviour
     private void OnDisable()
     {
         ActionPlay.OnMoisPasse -= ActualiserAffichage;
+    }
+
+    /// <summary>
+    /// Rafraichit le solde, le taux et l'historique visibles.
+    /// </summary>
+    public void ActualiserAffichage()
+    {
+        if (!ResoudreEtat())
+        {
+            return;
+        }
+
+        if (texteSoldeEpgn != null)
+        {
+            texteSoldeEpgn.text = "Solde : " + epgn.GetSolde();
+        }
+
+        if (texteTaux != null)
+        {
+            texteTaux.text =
+                "Taux : " + (epgn.GetTaux() * 100f).ToString("F2") + " %";
+        }
+
+        ActualiserTableau();
+    }
+
+    /// <summary>
+    /// Reconstruit le tableau des operations si sa reference est assignee.
+    /// </summary>
+    public void ActualiserTableau()
+    {
+        if (epgn == null || tableauEpgn == null)
+        {
+            return;
+        }
+
+        Historique historique = epgn.GetHistorique();
+        tableauEpgn.Vider();
+        for (int i = historique.GetSize() - 1; i >= 0; i--)
+        {
+            tableauEpgn.Add(historique.GetHistorique()[i]);
+        }
+    }
+
+    /// <summary>
+    /// Transfere le montant saisi du compte courant vers le Livret A.
+    /// </summary>
+    public void saisieCredit()
+    {
+        ExecuterTransfert(inputCredit, versEpargne: true);
+    }
+
+    /// <summary>
+    /// Transfere le montant saisi du Livret A vers le compte courant.
+    /// </summary>
+    public void saisieDebit()
+    {
+        ExecuterTransfert(inputDebit, versEpargne: false);
+    }
+
+    private void ExecuterTransfert(
+        TMP_InputField champ,
+        bool versEpargne)
+    {
+        if (!ResoudreEtat() ||
+            !EssayerLireMontant(champ, out argent montant))
+        {
+            return;
+        }
+
+        CompteBanquaire courant =
+            serviceBanque.ObtenirCompteCourant();
+        ResultatOperation resultat = versEpargne
+            ? serviceBanque.Transferer(
+                courant,
+                epgn,
+                montant,
+                "courant vers epargne",
+                "Credit")
+            : serviceBanque.Transferer(
+                epgn,
+                courant,
+                montant,
+                "Debit",
+                "Versement depuis le compte epargne");
+
+        if (!resultat.Succes)
+        {
+            Debug.LogWarning("[Banque] " + resultat.Message);
+        }
+
+        ActualiserAffichage();
+    }
+
+    private bool ResoudreEtat()
+    {
+        if (G == null || G.joueur == null)
+        {
+            return false;
+        }
+
+        G.joueur.InitialiserSiNecessaire();
+        serviceBanque = serviceBanque ?? new ServiceBanque(G.joueur);
+        epgn = serviceBanque.ObtenirLivretA(G.nombreMoisPasses);
+        return epgn != null;
+    }
+
+    private static bool EssayerLireMontant(
+        TMP_InputField champ,
+        out argent montant)
+    {
+        montant = new argent(0);
+        if (champ == null || string.IsNullOrWhiteSpace(champ.text))
+        {
+            return false;
+        }
+
+        string saisie = champ.text.Trim();
+        if (!decimal.TryParse(
+                saisie,
+                NumberStyles.Number,
+                CultureInfo.CurrentCulture,
+                out decimal euros) &&
+            !decimal.TryParse(
+                saisie,
+                NumberStyles.Number,
+                CultureInfo.InvariantCulture,
+                out euros))
+        {
+            return false;
+        }
+
+        decimal centimes = decimal.Round(
+            euros * 100m,
+            0,
+            MidpointRounding.AwayFromZero);
+        if (centimes <= 0m || centimes > int.MaxValue)
+        {
+            return false;
+        }
+
+        montant = new argent((int)centimes);
+        return true;
     }
 }

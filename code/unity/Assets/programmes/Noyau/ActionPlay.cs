@@ -1,100 +1,132 @@
 using System;
 using UnityEngine;
 
-/// Script responsable de la logique lors de l'appuis sur le bouton du passage de mois.
+/// <summary>
+/// Orchestre la cloture du mois courant et l'ouverture du mois suivant.
+/// </summary>
 public class ActionPlay : MonoBehaviour
 {
-    
-    public GameData gameData; //Stocke les données du jeu.
+    public GameData gameData;
 
-    public static event Action OnMoisPasse; // Permet de notifier tous les abonnés que le mois a changé, pour qu'ils agissent
+    /// <summary>
+    /// Notification visuelle envoyee apres la fin de toutes les mutations.
+    /// </summary>
+    public static event Action OnMoisPasse;
 
     private void Awake()
     {
-        //On réinitialise l'événement statique lors de l'initialisation de la scène
-        //pour casser les anciens liens d'abonnement (notamment avec d'anciens objets Epargne)
-        //et ainsi éviter des exceptions de type NullReferenceException après rechargement.
+        // Les objets de la scene precedente ne doivent pas rester abonnes.
+        // Les services metier ne dependent plus de cet evenement statique.
         OnMoisPasse = null;
     }
 
     private void Start()
     {
-        // Si aucun snapshot n'est enregistré (lancement de la partie), on prend la photo de départ (Mois 0 / juillet 2026)
-        if (gameData != null && gameData.historiqueSnapshots != null && gameData.historiqueSnapshots.Count == 0)
+        if (gameData == null)
+        {
+            return;
+        }
+
+        gameData.joueur?.InitialiserSiNecessaire();
+        if (gameData.historiqueSnapshots != null &&
+            gameData.historiqueSnapshots.Count == 0)
         {
             EnregistrerSnapshot();
-            Debug.Log("[What-If] Photographie de l'état initial enregistrée.");
         }
     }
 
-    // Fonction principale appelée par le bouton pour terminer le mois en cours et jouer le suivant.
+    /// <summary>
+    /// Termine le mois courant puis prepare le mois suivant.
+    /// </summary>
+    /// <remarks>
+    /// Ordre volontaire : evolutions du mois, valorisation et snapshot de
+    /// cloture, changement de calendrier, nettoyage des historiques, salaire,
+    /// puis notification des UI. Cet ordre evite qu'un snapshot depende de
+    /// l'ouverture d'une application.
+    /// </remarks>
     public void Jouer()
     {
-        //Calcul et versement des bénéfices mensuels sur les investissements du joueur
-        if (gameData.joueur.investissements != null)
+        if (gameData == null || gameData.joueur == null)
         {
-            foreach (Investissement invest in gameData.joueur.investissements)
-            {
-                invest.ComposerBenefices();
-            }
+            Debug.LogError("[Temps] GameData ou DonneesJoueur manquant.");
+            return;
         }
 
-        // Prise de la photographie de fin de mois (juste avant le passage au mois suivant et le nettoyage des historiques)
+        DonneesJoueur joueur = gameData.joueur;
+        joueur.InitialiserSiNecessaire();
+
+        AppliquerEvolutionsMensuelles(joueur);
+        MarcheBoursier.MettreAJourValorisation(
+            joueur.bourse,
+            gameData.nombreMoisPasses);
         EnregistrerSnapshot();
 
-        //Passage officiel au mois calendrier suivant et incrémentation du compteur de temps global
         IncrementerMois();
-        if (gameData != null && gameData.joueur != null)
-        {
-            MarcheBoursier.MettreAJourValorisation(
-                gameData.joueur.bourse,
-                gameData.nombreMoisPasses);
-        }
-
-        //Remise à 0 des historiques du joueur        
-        if (gameData.joueur.comptes != null)
-        {
-            foreach (var compte in gameData.joueur.comptes.Values)
-            {
-                // Vide l'historique des opérations du mois précédent pour démarrer le nouveau mois à zéro
-                compte.ViderHistorique();
-            }
-            
-            // Versement du revenu d'activité (salaire) sur le compte courant du joueur pour le nouveau mois
-            if (gameData.joueur.comptes.ContainsKey("courant"))
-            {
-                gameData.joueur.comptes["courant"].AjoutHistorique("salaire", gameData.joueur.salaire);
-            }
-        }
-
-        // Notification à tous les abonnés (mise à jour de l'affichage UI, réajustement des taux d'intérêt du Livret A)
+        OuvrirNouveauMois(joueur);
         OnMoisPasse?.Invoke();
     }
-    
-    // Enregistre un instantané de l'état actuel de la partie
-    private void EnregistrerSnapshot()
+
+    private void AppliquerEvolutionsMensuelles(DonneesJoueur joueur)
     {
-        if (gameData != null && gameData.historiqueSnapshots != null)
+        if (joueur.investissements != null)
         {
-            SnapshotEtatJeu snapshot = new SnapshotEtatJeu(gameData);
-            gameData.historiqueSnapshots.Add(snapshot);
+            foreach (Investissement investissement in joueur.investissements)
+            {
+                investissement?.AppliquerEvolutionMensuelle(
+                    gameData.nombreMoisPasses);
+            }
+        }
+
+        if (joueur.comptes != null &&
+            joueur.comptes.TryGetValue(
+                ServiceBanque.LivretAId,
+                out CompteBanquaire compte) &&
+            compte is Epargne epargne)
+        {
+            epargne.AppliquerEvolutionMensuelle(
+                gameData.nombreMoisPasses);
+            if (gameData.env != null)
+            {
+                gameData.env.tauxEpargne = epargne.GetTaux();
+            }
         }
     }
 
-    // Incrémente le mois calendrier. Si le joueur termine le mois de décembre, 
-    // déclenche un bilan de fin d'année (introspection) et réinitialise à janvier.
+    private void OuvrirNouveauMois(DonneesJoueur joueur)
+    {
+        if (joueur.comptes == null)
+        {
+            return;
+        }
+
+        foreach (CompteBanquaire compte in joueur.comptes.Values)
+        {
+            compte?.ViderHistorique();
+        }
+
+        ServiceBanque banque = new ServiceBanque(joueur);
+        banque.ObtenirCompteCourant().AjoutHistorique(
+            "salaire",
+            joueur.salaire);
+    }
+
+    private void EnregistrerSnapshot()
+    {
+        if (gameData == null || gameData.historiqueSnapshots == null)
+        {
+            return;
+        }
+
+        gameData.historiqueSnapshots.Add(
+            new SnapshotEtatJeu(gameData));
+    }
+
     private void IncrementerMois()
     {
-        if (gameData == null) return;
-
-        // Incrémente le nombre total de mois passés dans le jeu
         gameData.nombreMoisPasses++;
-
-        // Si on est en Décembre, on passe à Janvier et on change de scène
         if (gameData.moisActuel == Mois.Decembre)
         {
             gameData.moisActuel = Mois.Janvier;
-            Debug.Log("Fin d'année ! Appel du ScenesManager...");
             if (ScenesManager.Instance != null)
             {
                 ScenesManager.Instance.ChargerIntrospection();
@@ -102,9 +134,8 @@ public class ActionPlay : MonoBehaviour
         }
         else
         {
-            // Sinon on passe au mois suivant
-            gameData.moisActuel = (Mois)((int)gameData.moisActuel + 1);
-            Debug.Log("Nouveau mois : " + gameData.moisActuel);
+            gameData.moisActuel =
+                (Mois)((int)gameData.moisActuel + 1);
         }
     }
 }

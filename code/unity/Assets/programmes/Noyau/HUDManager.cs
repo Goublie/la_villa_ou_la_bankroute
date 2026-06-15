@@ -1,46 +1,89 @@
+using TMPro;
 using UnityEngine;
-using TMPro; 
 
+/// <summary>
+/// Affiche les ressources globales du joueur dans le HUD.
+/// </summary>
 public class HUDManager : MonoBehaviour
 {
-
     public GameData gameData;
     public TextMeshProUGUI texteArgent;
     public TextMeshProUGUI texteEnergie;
     public TextMeshProUGUI texteSanteMentale;
 
-    void Start()
+    private CompteBanquaire compteCourantAbonne;
+
+    private void Start()
     {
         ActualiserAffichage();
     }
 
-    void OnEnable()
+    private void OnEnable()
     {
-        gameData.joueur.comptes["courant"].OnSoldeModifie += ActualiserAffichage;
+        AbonnerCompteCourant();
         ActionPlay.OnMoisPasse += ActualiserAffichage;
     }
 
-   void OnDisable()
+    private void OnDisable()
     {
-        gameData.joueur.comptes["courant"].OnSoldeModifie -= ActualiserAffichage;
+        DesabonnerCompteCourant();
         ActionPlay.OnMoisPasse -= ActualiserAffichage;
     }
 
-    // Fonction qui rafraîchit l'interface à l'écran
+    /// <summary>
+    /// Rafraichit le cash, l'energie et la sante mentale.
+    /// </summary>
     public void ActualiserAffichage()
     {
-        if (gameData == null) return;
-
-        if (texteArgent != null && gameData.joueur != null && gameData.joueur.comptes != null && gameData.joueur.comptes.ContainsKey("courant"))
+        if (gameData == null || gameData.joueur == null)
         {
-            Debug.Log(gameData.joueur.comptes["courant"].GetSolde().ToString());
-            texteArgent.text = gameData.joueur.comptes["courant"].GetSolde().ToString();
+            return;
         }
 
-        if (texteEnergie != null && gameData.joueur != null) 
-            texteEnergie.text =  gameData.joueur.energie.ToString() + "%";
+        gameData.joueur.InitialiserSiNecessaire();
+        AbonnerCompteCourant();
+        if (texteArgent != null && compteCourantAbonne != null)
+        {
+            texteArgent.text = compteCourantAbonne.GetSolde().ToString();
+        }
 
-        if (texteSanteMentale != null && gameData.joueur != null) 
-            texteSanteMentale.text = gameData.joueur.santeMentale.ToString() + "/100";
+        if (texteEnergie != null)
+        {
+            texteEnergie.text = gameData.joueur.energie + "%";
+        }
+
+        if (texteSanteMentale != null)
+        {
+            texteSanteMentale.text =
+                gameData.joueur.santeMentale + "/100";
+        }
+    }
+
+    private void AbonnerCompteCourant()
+    {
+        if (gameData == null || gameData.joueur == null)
+        {
+            return;
+        }
+
+        CompteBanquaire compte =
+            new ServiceBanque(gameData.joueur).ObtenirCompteCourant();
+        if (ReferenceEquals(compte, compteCourantAbonne))
+        {
+            return;
+        }
+
+        DesabonnerCompteCourant();
+        compteCourantAbonne = compte;
+        compteCourantAbonne.OnSoldeModifie += ActualiserAffichage;
+    }
+
+    private void DesabonnerCompteCourant()
+    {
+        if (compteCourantAbonne != null)
+        {
+            compteCourantAbonne.OnSoldeModifie -= ActualiserAffichage;
+            compteCourantAbonne = null;
+        }
     }
 }

@@ -1,115 +1,140 @@
 using System;
-using System.Collections.Generic;
-using UnityEngine;
-using Newtonsoft.Json;
 
-// Classe représentant un compte d'épargne (modélisé selon le Livret A).
-// Le taux d'intérêt suit une courbe de prédiction issue de la simulation.
-public class Epargne : CompteBanquaire
+/// <summary>
+/// Represente le Livret A du joueur : un compte transferable associe a un
+/// placement a rendement fixe.
+/// </summary>
+/// <remarks>
+/// Le compte est l'unique source de valeur patrimoniale. L'objet
+/// <see cref="invest"/> sert uniquement au calcul des interets et ne doit pas
+/// etre ajoute une seconde fois a la liste des investissements du joueur.
+/// </remarks>
+[Serializable]
+public class Epargne : CompteBanquaire, IEvolutionMensuelle
 {
+    /// <summary>
+    /// Moteur de calcul des interets du Livret A.
+    /// </summary>
     public Investissement invest;
-    private GameData gameData;
 
-    private static List<PrevisionLivretA> predictions;
-    private static bool isLoaded = false;
-
-    public Epargne(GameData _gameData, float _tauxParDefaut, int _duree) : base()
+    /// <summary>
+    /// Cree un Livret A vide.
+    /// </summary>
+    public Epargne(float tauxParDefaut, int dureeMois)
+        : base()
     {
-        this.gameData = _gameData;
-        ChargerPredictions();
-
-        float tauxInitial = _tauxParDefaut;
-        if (isLoaded && predictions.Count > 6)
-        {
-            tauxInitial = predictions[6].Taux_annuel_pct / 100f;
-        }
-
-        invest = new Investissement(solde, tauxInitial, _duree);
-        EcouterInterets();
-
-        ActionPlay.OnMoisPasse += MettreAJourTaux;
+        InitialiserInvestissement(
+            new Investissement(solde, tauxParDefaut, dureeMois));
     }
 
-    public Epargne(Historique _historique, GameData _gameData, float _tauxParDefaut, int _duree) : base(_historique)
+    /// <summary>
+    /// Constructeur conserve pour compatibilite avec les anciennes UI.
+    /// </summary>
+    public Epargne(GameData gameData, float tauxParDefaut, int dureeMois)
+        : this(
+            ServiceLivretA.ObtenirTauxAnnuel(
+                gameData != null ? gameData.nombreMoisPasses : 0,
+                tauxParDefaut),
+            dureeMois)
     {
-        this.gameData = _gameData;
-        ChargerPredictions();
-
-        float tauxInitial = _tauxParDefaut;
-        if (isLoaded && predictions.Count > 6)
-        {
-            tauxInitial = predictions[6].Taux_annuel_pct / 100f;
-        }
-
-        invest = new Investissement(solde, tauxInitial, _duree);
-        EcouterInterets();
-
-        ActionPlay.OnMoisPasse += MettreAJourTaux;
     }
 
-    private void EcouterInterets()
+    /// <summary>
+    /// Reconstruit un Livret A depuis un historique.
+    /// </summary>
+    public Epargne(
+        Historique historique,
+        GameData gameData,
+        float tauxParDefaut,
+        int dureeMois)
+        : base(historique)
     {
-        invest.OnBeneficesVerses += (interets) => base.AjoutHistorique("interets", interets);
+        float tauxInitial = ServiceLivretA.ObtenirTauxAnnuel(
+            gameData != null ? gameData.nombreMoisPasses : 0,
+            tauxParDefaut);
+        InitialiserInvestissement(
+            new Investissement(solde, tauxInitial, dureeMois));
     }
 
+    private Epargne(
+        Historique historique,
+        argent totalEntree,
+        argent totalSortie,
+        argent solde,
+        argent soldeFinMois,
+        Investissement investissement)
+        : base(
+            historique,
+            totalEntree,
+            totalSortie,
+            solde,
+            soldeFinMois)
+    {
+        InitialiserInvestissement(investissement);
+    }
+
+    /// <summary>
+    /// Ajoute un mouvement au Livret A et maintient son capital remunere
+    /// synchronise avec le solde du compte.
+    /// </summary>
     public override void AjoutHistorique(string source, argent montant)
     {
         base.AjoutHistorique(source, montant);
         invest.sommeInvestie += montant;
     }
 
-    private void ChargerPredictions()
+    /// <summary>
+    /// Applique le taux du mois et capitalise les interets en decembre.
+    /// </summary>
+    /// <param name="mois">
+    /// Index absolu du mois ecoule depuis juillet 2026.
+    /// </param>
+    public void AppliquerEvolutionMensuelle(int mois)
     {
-        if (isLoaded) return;
+        invest.DefinirTaux(
+            ServiceLivretA.ObtenirTauxAnnuel(mois, invest.taux));
+        invest.AccumulerBeneficesMensuels();
 
-        try
+        if (ServiceLivretA.ObtenirMoisCalendrier(mois) == Mois.Decembre)
         {
-            TextAsset jsonAsset = Resources.Load<TextAsset>("livret_a_simulation_40ans_simplifie");
-            if (jsonAsset == null)
-            {
-                Debug.LogError("[Économie] Impossible de trouver le fichier 'livret_a_simulation_40ans_simplifie' dans Resources.");
-                return;
-            }
-
-            // Désérialisation générique directe avec Newtonsoft.Json (pas besoin de classe wrapper intermédiaire)
-            var data = JsonConvert.DeserializeObject<Dictionary<string, List<PrevisionLivretA>>>(jsonAsset.text);
-            if (data != null && data.ContainsKey("livret_a_simulation"))
-            {
-                predictions = data["livret_a_simulation"];
-                isLoaded = true;
-                Debug.Log($"[Économie] Chargement de {predictions.Count} mois de prédictions pour le Livret A.");
-            }
-        }
-        catch (Exception e)
-        {
-            Debug.LogError($"[Économie] Erreur de décodage des prédictions Newtonsoft : {e.Message}");
+            invest.VerserBeneficesAccumules();
         }
     }
 
-    // Met à jour le taux d'intérêt selon le nombre de mois écoulés dans le jeu
-    private void MettreAJourTaux()
-    {
-        if (!isLoaded || gameData == null) return;
-
-        // Début du jeu en juillet 2026 (index 6, correspondant au Mois 7 du fichier JSON)
-        int indexPrediction = 6 + gameData.nombreMoisPasses;
-
-        if (indexPrediction >= predictions.Count)
-        {
-            indexPrediction = predictions.Count - 1;
-        }
-
-        if (indexPrediction >= 0 && indexPrediction < predictions.Count)
-        {
-            PrevisionLivretA entree = predictions[indexPrediction];
-            float nouveauTaux = entree.Taux_annuel_pct / 100f;
-            invest.taux = nouveauTaux;
-            Debug.Log($"[Économie] Taux Livret A mis à jour pour {entree.Periode} -> {entree.Taux_annuel_pct}% (taux = {nouveauTaux})");
-        }
-    }
-
+    /// <summary>
+    /// Retourne le taux annuel courant, ou 0.0175 pour 1,75 %.
+    /// </summary>
     public float GetTaux()
     {
         return invest.taux;
+    }
+
+    /// <summary>
+    /// Produit une copie profonde du compte, de son historique et des interets
+    /// encore non capitalises.
+    /// </summary>
+    public override CompteBanquaire Copier()
+    {
+        return new Epargne(
+            historique.Copier(),
+            new argent(GetTotalEntree().centimes),
+            new argent(GetTotalSortie().centimes),
+            new argent(solde.centimes),
+            new argent(GetSoldeFinMois().centimes),
+            invest.Copier());
+    }
+
+    private void InitialiserInvestissement(Investissement investissement)
+    {
+        invest = investissement ??
+            new Investissement(new argent(0), 0.0175f, 12);
+        invest.OnBeneficesVerses += EnregistrerInterets;
+    }
+
+    private void EnregistrerInterets(argent interets)
+    {
+        // Le placement a deja augmente son capital. Appeler base evite de
+        // l'augmenter une seconde fois via la surcharge AjoutHistorique.
+        base.AjoutHistorique("interets", interets);
     }
 }

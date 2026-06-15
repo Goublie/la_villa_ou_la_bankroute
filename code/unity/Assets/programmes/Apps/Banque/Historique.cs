@@ -2,85 +2,144 @@ using System;
 using System.Collections.Generic;
 using UnityEngine;
 
+/// <summary>
+/// Conserve les operations d'un compte, de la plus recente a la plus ancienne.
+/// </summary>
 [Serializable]
-public class Historique 
+public class Historique
 {
-    private List<Transaction> histo;
+    private List<Transaction> histo = new List<Transaction>();
 
-    public Historique()
-    {
-        histo = new List<Transaction>();
-    }
-
-    //Ajoute une transaction à partir d'une transaction déjà créée
+    /// <summary>
+    /// Ajoute une transaction en tete de l'historique.
+    /// </summary>
     public void Add(Transaction transaction)
     {
-        histo.Insert(0,transaction);
+        if (transaction == null)
+        {
+            return;
+        }
+
+        AssurerListe();
+        histo.Insert(0, transaction);
     }
 
-    //Ajoute une transaction à l'historique à partir d'un labelle et d'un montant
+    /// <summary>
+    /// Cree puis ajoute une transaction signee.
+    /// </summary>
     public void Add(string libelle, argent somme)
     {
-        Add(new Transaction(libelle,somme));
+        Add(new Transaction(libelle, somme));
     }
 
-    //Retourne le montant associé au libelle, 0 si le libelle n'est pas trouvé
+    /// <summary>
+    /// Retourne l'indice du premier libelle correspondant, ou -1.
+    /// </summary>
     public int GetIndiceDeLibelle(string libelle)
     {
-        for (int i=0; i<histo.Count; i++)
+        AssurerListe();
+        for (int i = 0; i < histo.Count; i++)
         {
-            if (histo[i].libelle == libelle)
+            if (histo[i] != null && histo[i].libelle == libelle)
             {
                 return i;
             }
         }
-        Debug.Log("Aucun montant associé à ce libelle");
-        return -1; //Valeur par défaut
+
+        return -1;
     }
 
-    //Modifie le montant associé au libelle, ou ajoute la dépenses si le libelle n'existe pas encore    
+    /// <summary>
+    /// Modifie la premiere operation portant ce libelle ou en cree une.
+    /// </summary>
+    /// <remarks>
+    /// Cette methode est conservee pour les depenses mensuelles pilotees par
+    /// les sliders. Les nouvelles operations ponctuelles doivent de preference
+    /// ajouter une transaction distincte.
+    /// </remarks>
     public void ModifieOuAjoute(string libelle, argent nouveauMontant)
     {
         int indice = GetIndiceDeLibelle(libelle);
-        
-        if(indice == -1)
+        if (indice < 0)
         {
-            // La dépense n'existe pas encore, on la crée
             Add(libelle, nouveauMontant);
+            return;
         }
-        else
-        {
-            // Elle existe déjà, on la met à jour
-            histo[indice].montant = nouveauMontant;
-        }
+
+        histo[indice].montant = nouveauMontant;
     }
 
-    //Vide l'historique
+    /// <summary>
+    /// Efface les operations de la periode courante.
+    /// </summary>
     public void Clear()
     {
+        AssurerListe();
         histo.Clear();
     }
 
-    ///////////////
-    /// GETTERS ///
-    ///////////////
+    /// <summary>
+    /// Retourne la liste mutable historique pour compatibilite avec les UI.
+    /// </summary>
     public List<Transaction> GetHistorique()
     {
+        AssurerListe();
         return histo;
     }
 
+    /// <summary>
+    /// Retourne une copie de la liste des montants signes.
+    /// </summary>
     public List<argent> GetMontants()
     {
-        List<argent> ListMontants = new List<argent>();
-        foreach(Transaction t in histo)
+        AssurerListe();
+        List<argent> montants = new List<argent>();
+        foreach (Transaction transaction in histo)
         {
-            ListMontants.Add(t.montant);
+            if (transaction != null)
+            {
+                montants.Add(transaction.montant);
+            }
         }
-        return ListMontants;
+
+        return montants;
     }
 
+    /// <summary>
+    /// Retourne le nombre d'operations.
+    /// </summary>
     public int GetSize()
     {
+        AssurerListe();
         return histo.Count;
+    }
+
+    /// <summary>
+    /// Produit une copie profonde de toutes les transactions.
+    /// </summary>
+    public Historique Copier()
+    {
+        Historique copie = new Historique();
+        AssurerListe();
+
+        // Add insere en tete : la copie doit donc parcourir du plus ancien
+        // au plus recent pour conserver exactement l'ordre d'origine.
+        for (int i = histo.Count - 1; i >= 0; i--)
+        {
+            if (histo[i] != null)
+            {
+                copie.Add(histo[i].Copier());
+            }
+        }
+
+        return copie;
+    }
+
+    private void AssurerListe()
+    {
+        if (histo == null)
+        {
+            histo = new List<Transaction>();
+        }
     }
 }

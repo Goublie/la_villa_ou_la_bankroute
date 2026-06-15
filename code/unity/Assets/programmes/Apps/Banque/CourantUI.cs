@@ -1,64 +1,86 @@
+using TMPro;
 using UnityEngine;
-using TMPro; 
 
+/// <summary>
+/// Affiche le solde et l'historique du compte courant.
+/// </summary>
 public class CourantUI : MonoBehaviour
 {
-    public GameData G; 
-    
+    public GameData G;
+
+    [SerializeField] private TableauScroll tab;
+    [SerializeField] private TextMeshProUGUI solde;
+
     private CompteBanquaire compteCrnt;
-    [SerializeField] TableauScroll tab; 
 
-    [SerializeField] TextMeshProUGUI solde;
-
-    void Awake()
+    private void Awake()
     {
-        compteCrnt = G.joueur.comptes["courant"];
+        ResoudreCompte();
     }
 
-    void OnEnable()
+    private void OnEnable()
     {
-        // Quand le mois passe, on fait la mise à jour TOTALE (Texte + Tableau)
         ActionPlay.OnMoisPasse += NouveauMois;
-        
-        if(compteCrnt != null) 
+        ResoudreCompte();
+        if (compteCrnt != null)
         {
-            // Quand le solde bouge (via slider), on met JUSTE le texte à jour
             compteCrnt.OnSoldeModifie += RafraichirJusteLeSolde;
         }
-        
-        NouveauMois(); // On force l'affichage complet à l'ouverture de l'onglet
+
+        NouveauMois();
     }
 
-    void OnDisable()
+    private void OnDisable()
     {
         ActionPlay.OnMoisPasse -= NouveauMois;
-        
-        if(compteCrnt != null)
+        if (compteCrnt != null)
         {
             compteCrnt.OnSoldeModifie -= RafraichirJusteLeSolde;
         }
     }
 
+    /// <summary>
+    /// Reconstruit le tableau des operations du mois.
+    /// </summary>
+    public void ActualiserTableau()
+    {
+        if (compteCrnt == null || tab == null)
+        {
+            return;
+        }
+
+        Historique historique = compteCrnt.GetHistorique();
+        tab.Vider();
+        for (int i = historique.GetSize() - 1; i >= 0; i--)
+        {
+            tab.Add(historique.GetHistorique()[i]);
+        }
+    }
+
     private void RafraichirJusteLeSolde()
     {
-        solde.text = compteCrnt.GetSolde().ToString();
+        if (solde != null && compteCrnt != null)
+        {
+            solde.text = compteCrnt.GetSolde().ToString();
+        }
     }
 
     private void NouveauMois()
     {
+        ResoudreCompte();
         RafraichirJusteLeSolde();
         ActualiserTableau();
     }
 
-    public void ActualiserTableau()
+    private void ResoudreCompte()
     {
-        Historique histo = compteCrnt.GetHistorique();
-        tab.Vider();
-        
-        // On lit la liste à l'envers pour que le plus récent finisse en haut
-        for(int i = histo.GetSize() - 1; i >= 0; i--)
+        if (G == null || G.joueur == null)
         {
-            tab.Add(histo.GetHistorique()[i]);
+            compteCrnt = null;
+            return;
         }
+
+        compteCrnt =
+            new ServiceBanque(G.joueur).ObtenirCompteCourant();
     }
 }

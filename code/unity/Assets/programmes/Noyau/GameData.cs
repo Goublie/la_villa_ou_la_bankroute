@@ -24,9 +24,14 @@ public class GameData : ScriptableObject
         {
             joueur = new DonneesJoueur();
         }
+        joueur.InitialiserSiNecessaire();
         if (env == null)
         {
             env = new DonneesEnvironnement();
+        }
+        if (historiqueSnapshots == null)
+        {
+            historiqueSnapshots = new List<SnapshotEtatJeu>();
         }
     }
     
@@ -40,6 +45,13 @@ public class GameData : ScriptableObject
         env = new DonneesEnvironnement();
         nombreMoisPasses = 0;
         moisActuel = Mois.Juillet;
-        historiqueSnapshots.Clear();
+        if (historiqueSnapshots == null)
+        {
+            historiqueSnapshots = new List<SnapshotEtatJeu>();
+        }
+        else
+        {
+            historiqueSnapshots.Clear();
+        }
     }
 }

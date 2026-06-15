@@ -1,93 +1,141 @@
 using System;
-using UnityEngine;
-using System.Collections.Generic;
 
+/// <summary>
+/// Represente un compte monetaire possedant un solde et un historique signe.
+/// </summary>
+[Serializable]
 public class CompteBanquaire : IPatrimoine
 {
-    protected Historique historique; //Contient toutes les entrés/sorties d'argent lie la source à son montant
-    private argent totalEntree; // somme total d'argent positif
-    private argent totalSortie; // somme total d'argent négatif
-    protected argent solde; // solde du compte au début du mois
-    private argent soldeFinMois; // Solde du compte après calcul
+    protected Historique historique;
+    private argent totalEntree;
+    private argent totalSortie;
+    protected argent solde;
+    private argent soldeFinMois;
 
+    /// <summary>
+    /// Signale qu'une operation a modifie le solde.
+    /// </summary>
     public event Action OnSoldeModifie;
 
+    /// <summary>
+    /// Cree un compte avec un montant initial exprime en centimes.
+    /// </summary>
     public CompteBanquaire(argent montantInitial = default)
     {
         historique = new Historique();
-        totalEntree = montantInitial;
-        totalSortie = new argent(0);
+        totalEntree = montantInitial.centimes >= 0
+            ? montantInitial
+            : new argent(0);
+        totalSortie = montantInitial.centimes < 0
+            ? montantInitial
+            : new argent(0);
         solde = montantInitial;
+        soldeFinMois = montantInitial;
     }
 
-    public CompteBanquaire(Historique _historique)
+    /// <summary>
+    /// Reconstruit un compte depuis un historique dont la somme porte le solde.
+    /// </summary>
+    public CompteBanquaire(Historique historique)
     {
-        historique = _historique;
-        CalculEntree();
-        CalculSortie();
-        CalculSolde();
+        this.historique = historique ?? new Historique();
+        RecalculerTotaux();
     }
 
-    //Calcul et renvoie la somme des entrées d'argent
+    protected CompteBanquaire(
+        Historique historique,
+        argent totalEntree,
+        argent totalSortie,
+        argent solde,
+        argent soldeFinMois)
+    {
+        this.historique = historique ?? new Historique();
+        this.totalEntree = totalEntree;
+        this.totalSortie = totalSortie;
+        this.solde = solde;
+        this.soldeFinMois = soldeFinMois;
+    }
+
+    /// <summary>
+    /// Calcule la somme des entrees positives en centimes.
+    /// </summary>
     public argent CalculEntree()
     {
         totalEntree = new argent(0);
-        foreach(argent montant in historique.GetMontants())
+        foreach (argent montant in historique.GetMontants())
         {
-            if(montant.centimes >= 0)
+            if (montant.centimes >= 0)
             {
-                totalEntree +=montant;
+                totalEntree += montant;
             }
         }
+
         return totalEntree;
     }
 
-    //Calcul et renvoie la somme des sorties d'argent
+    /// <summary>
+    /// Calcule la somme des sorties negatives en centimes.
+    /// </summary>
     public argent CalculSortie()
     {
         totalSortie = new argent(0);
-        foreach(argent montant in historique.GetMontants())
+        foreach (argent montant in historique.GetMontants())
         {
-            if(montant.centimes < 0)
+            if (montant.centimes < 0)
             {
-                totalSortie +=montant;
+                totalSortie += montant;
             }
         }
+
         return totalSortie;
     }
 
-    //Calcul et renvoie le solde du compte
+    /// <summary>
+    /// Recalcule le solde depuis les totaux courants.
+    /// </summary>
     public argent CalculSolde()
     {
         solde = totalEntree + totalSortie;
-        OnSoldeModifie?.Invoke();
+        soldeFinMois = solde;
         return solde;
     }
 
-    //Transfere de l'argent depuis le CompteBanquaire actuel vers le CompteBanquaire destination, en y ajoutant un libelle pour chaque compte, renvoie true en cas de réussite, false sinon.
-    public bool Transferer(CompteBanquaire destination,string libeleSource, string libeleDestination, argent somme )
+    /// <summary>
+    /// Transfere une somme strictement positive vers un autre compte.
+    /// </summary>
+    /// <remarks>
+    /// Cette methode modifie les deux historiques et les deux soldes. Elle est
+    /// conservee comme API compatible ; les nouvelles commandes passent par
+    /// <see cref="ServiceBanque"/> afin de recevoir un resultat detaille.
+    /// </remarks>
+    public bool Transferer(
+        CompteBanquaire destination,
+        string libelleSource,
+        string libelleDestination,
+        argent somme)
     {
-        if (somme.centimes <= 0)
+        if (destination == null ||
+            somme.centimes <= 0 ||
+            solde < somme)
         {
-            Debug.Log("transfert d'une somme négative impossible");
             return false;
         }
-        if(solde < somme)
-        {
-            Debug.Log("La somme du compte source est trop faible");
-            return false;
-        }
-        AjoutHistorique(libeleSource, -somme);
-        destination.AjoutHistorique(libeleDestination, somme);
+
+        AjoutHistorique(libelleSource, -somme);
+        destination.AjoutHistorique(libelleDestination, somme);
         return true;
     }
 
-    //Ajoute une transaction à l'istorique et recalcule le solde et le montant des sorties ou entrées
+    /// <summary>
+    /// Ajoute une operation signee et actualise le solde.
+    /// </summary>
+    /// <remarks>
+    /// Effet de bord : declenche une fois <see cref="OnSoldeModifie"/>.
+    /// </remarks>
     public virtual void AjoutHistorique(string libelle, argent montant)
     {
-        Debug.Log("Ajout dans l'historique");
-        historique.Add(libelle,montant);
-        if (montant.centimes >0)
+        historique.Add(libelle, montant);
+        if (montant.centimes > 0)
         {
             totalEntree += montant;
         }
@@ -95,38 +143,77 @@ public class CompteBanquaire : IPatrimoine
         {
             totalSortie += montant;
         }
+
         CalculSolde();
         OnSoldeModifie?.Invoke();
     }
 
-    // Vide l'historique et réinitialise les compteurs d'entrée/sortie pour le nouveau mois
+    /// <summary>
+    /// Clot la periode et reporte le solde comme base du nouveau mois.
+    /// </summary>
     public void ViderHistorique()
     {
         historique.Clear();
-        totalEntree = solde; // Le solde actuel devient la base du nouveau mois
-        totalSortie = new argent(0);
-        CalculSolde();
+        totalEntree = solde.centimes >= 0 ? solde : new argent(0);
+        totalSortie = solde.centimes < 0 ? solde : new argent(0);
+        soldeFinMois = solde;
+        OnSoldeModifie?.Invoke();
     }
 
-    ///////////////
-    /// GETTERS ///
-    ///////////////
-
-    //Renvoie l'historique du compte
+    /// <summary>
+    /// Retourne l'historique de la periode courante.
+    /// </summary>
     public Historique GetHistorique()
     {
         return historique;
     }
 
-    //Renvoie le solde du compte
+    /// <summary>
+    /// Retourne le solde courant en centimes.
+    /// </summary>
     public argent GetSolde()
     {
         return solde;
     }
 
-    // Implémentation de IPatrimoine
+    /// <inheritdoc />
     public argent GetValeurPatrimoine()
     {
         return GetSolde();
+    }
+
+    /// <summary>
+    /// Produit une copie profonde du compte et de son historique.
+    /// </summary>
+    public virtual CompteBanquaire Copier()
+    {
+        return new CompteBanquaire(
+            historique.Copier(),
+            new argent(totalEntree.centimes),
+            new argent(totalSortie.centimes),
+            new argent(solde.centimes),
+            new argent(soldeFinMois.centimes));
+    }
+
+    protected argent GetTotalEntree()
+    {
+        return totalEntree;
+    }
+
+    protected argent GetTotalSortie()
+    {
+        return totalSortie;
+    }
+
+    protected argent GetSoldeFinMois()
+    {
+        return soldeFinMois;
+    }
+
+    private void RecalculerTotaux()
+    {
+        CalculEntree();
+        CalculSortie();
+        CalculSolde();
     }
 }

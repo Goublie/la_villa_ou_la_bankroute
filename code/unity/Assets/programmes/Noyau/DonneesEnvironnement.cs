@@ -1,11 +1,24 @@
 using System;
 
 /// <summary>
-/// Encapsule l'ensemble des variables macroéconomiques et environnementales externes au joueur (marchés, taux, news).
+/// Agregat des variables economiques externes au joueur.
 /// </summary>
-[System.Serializable]
+[Serializable]
 public class DonneesEnvironnement
 {
-    // Le taux d'intérêt annuel réglementé du Livret A (modélisé selon les prédictions)
+    /// <summary>
+    /// Taux annuel courant du Livret A, ou 0.0175 pour 1,75 %.
+    /// </summary>
     public float tauxEpargne = 0.0175f;
+
+    /// <summary>
+    /// Produit une copie independante pour un snapshot.
+    /// </summary>
+    public DonneesEnvironnement Copier()
+    {
+        return new DonneesEnvironnement
+        {
+            tauxEpargne = tauxEpargne
+        };
+    }
 }
