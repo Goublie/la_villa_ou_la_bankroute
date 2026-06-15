@@ -28,6 +28,12 @@ public class ActionPlay : MonoBehaviour
         }
 
         gameData.joueur?.InitialiserSiNecessaire();
+        if (gameData.joueur != null && gameData.joueur.bourse != null)
+        {
+            new ServiceBourse(gameData.joueur.bourse)
+                .AppliquerEvolutionMensuelle(
+                    gameData.nombreMoisPasses);
+        }
         if (gameData.historiqueSnapshots != null &&
             gameData.historiqueSnapshots.Count == 0)
         {
@@ -56,9 +62,12 @@ public class ActionPlay : MonoBehaviour
         joueur.InitialiserSiNecessaire();
 
         AppliquerEvolutionsMensuelles(joueur);
-        MarcheBoursier.MettreAJourValorisation(
-            joueur.bourse,
-            gameData.nombreMoisPasses);
+        if (joueur.bourse != null)
+        {
+            new ServiceBourse(joueur.bourse)
+                .AppliquerEvolutionMensuelle(
+                    gameData.nombreMoisPasses);
+        }
         EnregistrerSnapshot();
 
         IncrementerMois();

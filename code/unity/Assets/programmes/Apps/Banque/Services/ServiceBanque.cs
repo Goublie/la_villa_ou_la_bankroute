@@ -108,6 +108,76 @@ public sealed class ServiceBanque
             "transfert_effectue");
     }
 
+    /// <summary>
+    /// Debite un compte sans compte bancaire destinataire.
+    /// </summary>
+    /// <remarks>
+    /// Cette operation est utilisee lorsqu'un flux quitte la banque pour
+    /// acheter un actif ou payer une depense metier. Elle valide les fonds et
+    /// inscrit la sortie dans l'historique du compte.
+    /// </remarks>
+    public ResultatOperation Debiter(
+        CompteBanquaire compte,
+        argent montant,
+        string libelle)
+    {
+        if (compte == null)
+        {
+            return ResultatOperation.Echec(
+                "Compte bancaire introuvable.",
+                "compte_absent");
+        }
+
+        if (montant.centimes <= 0)
+        {
+            return ResultatOperation.Echec(
+                "Le montant doit etre strictement positif.",
+                "montant_invalide");
+        }
+
+        if (compte.GetSolde() < montant)
+        {
+            return ResultatOperation.Echec(
+                "Fonds insuffisants.",
+                "fonds_insuffisants");
+        }
+
+        compte.AjoutHistorique(libelle, -montant);
+        return ResultatOperation.Reussite(
+            "Debit effectue.",
+            montant,
+            "debit_effectue");
+    }
+
+    /// <summary>
+    /// Credite un compte depuis un flux metier externe a la banque.
+    /// </summary>
+    public ResultatOperation Crediter(
+        CompteBanquaire compte,
+        argent montant,
+        string libelle)
+    {
+        if (compte == null)
+        {
+            return ResultatOperation.Echec(
+                "Compte bancaire introuvable.",
+                "compte_absent");
+        }
+
+        if (montant.centimes <= 0)
+        {
+            return ResultatOperation.Echec(
+                "Le montant doit etre strictement positif.",
+                "montant_invalide");
+        }
+
+        compte.AjoutHistorique(libelle, montant);
+        return ResultatOperation.Reussite(
+            "Credit effectue.",
+            montant,
+            "credit_effectue");
+    }
+
     private void AssurerComptes()
     {
         if (joueur == null)

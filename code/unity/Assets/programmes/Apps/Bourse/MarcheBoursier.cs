@@ -3,6 +3,14 @@ using System.Collections.Generic;
 using Newtonsoft.Json;
 using UnityEngine;
 
+/// <summary>
+/// Charge les series historiques et calcule les prix affectes par les
+/// evenements de marche.
+/// </summary>
+/// <remarks>
+/// Cette couche est la source de prix du domaine Bourse. Elle ne connait ni
+/// boutons, ni textes, ni prefabs.
+/// </remarks>
 public static class MarcheBoursier
 {
     [Serializable]
@@ -30,6 +38,9 @@ public static class MarcheBoursier
     private static readonly Dictionary<string, List<float>> Courbes =
         new Dictionary<string, List<float>>();
 
+    /// <summary>
+    /// Retourne la serie mensuelle d'un actif, exprimee en euros.
+    /// </summary>
     public static List<float> ObtenirCourbe(string actifId)
     {
         if (string.IsNullOrEmpty(actifId))
@@ -48,6 +59,13 @@ public static class MarcheBoursier
         return courbe;
     }
 
+    /// <summary>
+    /// Recalcule la valeur totale d'un portefeuille pour le mois indique.
+    /// </summary>
+    /// <remarks>
+    /// Effet de bord : met a jour le cache patrimonial de
+    /// <paramref name="portefeuille"/>.
+    /// </remarks>
     public static void MettreAJourValorisation(
         DonneesBourse portefeuille,
         int mois)
@@ -81,6 +99,9 @@ public static class MarcheBoursier
             Mathf.Max(0, mois));
     }
 
+    /// <summary>
+    /// Retourne le prix en euros apres application des impacts actifs.
+    /// </summary>
     public static float ObtenirPrix(
         string actifId,
         int mois,
@@ -128,7 +149,13 @@ public static class MarcheBoursier
         return Mathf.Max(0f, prix);
     }
 
-    // Point d'entree volontairement simple pour de futurs evenements Actualites.
+    /// <summary>
+    /// Ajoute ou remplace un impact provenant d'un evenement metier.
+    /// </summary>
+    /// <remarks>
+    /// L'impact est copie afin qu'une actualite ne puisse pas modifier
+    /// retroactivement l'etat enregistre dans le portefeuille.
+    /// </remarks>
     public static void AppliquerImpactEvenement(
         DonneesBourse donnees,
         ImpactEvenementMarche impact)
