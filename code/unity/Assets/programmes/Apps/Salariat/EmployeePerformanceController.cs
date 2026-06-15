@@ -231,7 +231,7 @@ public class EmployeePerformanceController : MonoBehaviour
             if (panelNegociationEchec != null) panelNegociationEchec.SetActive(true);
         }
 
-        // Hide the dashboard so only the negotiation popup is visible (matches the networking flow).
+        // Hide the dashboard so only the negotiation popup is visible
         if (panelPosteActuel != null) panelPosteActuel.SetActive(false);
         if (panelActionsRapides != null) panelActionsRapides.SetActive(false);
         if (panelRelationnel != null) panelRelationnel.SetActive(false);
@@ -250,7 +250,7 @@ public class EmployeePerformanceController : MonoBehaviour
         gameObject.SetActive(true);
     }
 
-    /// <summary>Wired to 'Bouton_RetourEchec'. Closes the error popup 'Panel_NegociationEchec'.</summary>
+    /// <summary>Wired to the negotiation echec panel buttons. Closes 'Panel_NegociationEchec'.</summary>
     public void CloseNegociationEchecPanel()
     {
         if (panelNegociationEchec != null) panelNegociationEchec.SetActive(false);
