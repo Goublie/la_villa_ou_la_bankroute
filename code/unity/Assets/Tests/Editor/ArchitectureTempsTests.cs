@@ -150,6 +150,87 @@ public class ArchitectureTempsTests
         }
     }
 
+    [Test]
+    public void RepartitionTemps_DefinitLesMinutesEtSecondesRestantes()
+    {
+        DonneesRepartitionTemps donnees = new DonneesRepartitionTemps();
+        ServiceRepartitionTemps service =
+            new ServiceRepartitionTemps(donnees);
+
+        ResultatOperation resultat =
+            service.DefinirAllocation(10, 5, 5, 10, 0);
+
+        Assert.That(resultat.Succes, Is.True);
+        Assert.That(donnees.CalculerTotalMinutes(), Is.EqualTo(30));
+        Assert.That(
+            donnees.banque.secondesRestantes,
+            Is.EqualTo(600f));
+        Assert.That(
+            donnees.bourse.secondesRestantes,
+            Is.EqualTo(600f));
+    }
+
+    [Test]
+    public void RepartitionTemps_RefuseUnBudgetIncomplet()
+    {
+        DonneesRepartitionTemps donnees = new DonneesRepartitionTemps();
+        ServiceRepartitionTemps service =
+            new ServiceRepartitionTemps(donnees);
+
+        ResultatOperation resultat =
+            service.DefinirAllocation(10, 5, 5, 5, 0);
+
+        Assert.That(resultat.Succes, Is.False);
+        Assert.That(resultat.Code, Is.EqualTo("budget_incomplet"));
+        Assert.That(donnees.CalculerTotalMinutes(), Is.EqualTo(0));
+    }
+
+    [Test]
+    public void RepartitionTemps_ConsommerBorneLeTempsAZero()
+    {
+        DonneesRepartitionTemps donnees = new DonneesRepartitionTemps();
+        ServiceRepartitionTemps service =
+            new ServiceRepartitionTemps(donnees);
+        service.DefinirAllocation(30, 0, 0, 0, 0);
+
+        bool resteDuTemps =
+            service.Consommer(TypeApplicationTemps.Banque, 2000f);
+
+        Assert.That(resteDuTemps, Is.False);
+        Assert.That(
+            service.ObtenirSecondesRestantes(TypeApplicationTemps.Banque),
+            Is.EqualTo(0f));
+    }
+
+    [Test]
+    public void PassageMensuel_ReinitialiseTempsApresSnapshot()
+    {
+        GameData gameData = CreerGameData();
+        try
+        {
+            new ServiceRepartitionTemps(gameData.joueur.tempsApplications)
+                .DefinirAllocation(10, 5, 5, 10, 0);
+
+            new ServicePassageMensuel(gameData)
+                .PasserAuMoisSuivant();
+
+            Assert.That(
+                gameData.historiqueSnapshots[0]
+                    .joueur.tempsApplications.CalculerTotalMinutes(),
+                Is.EqualTo(30));
+            Assert.That(
+                gameData.joueur.tempsApplications.CalculerTotalMinutes(),
+                Is.EqualTo(0));
+            Assert.That(
+                gameData.joueur.tempsApplications.ATempsRestant(),
+                Is.False);
+        }
+        finally
+        {
+            Object.DestroyImmediate(gameData);
+        }
+    }
+
     private static GameData CreerGameData()
     {
         GameData gameData =

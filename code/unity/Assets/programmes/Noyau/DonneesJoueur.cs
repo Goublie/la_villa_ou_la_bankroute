@@ -53,6 +53,11 @@ public class DonneesJoueur
     public DonneesSalariat salariat;
 
     /// <summary>
+    /// Repartition du temps mensuel disponible par application.
+    /// </summary>
+    public DonneesRepartitionTemps tempsApplications;
+
+    /// <summary>
     /// Cree un joueur avec son compte courant initial.
     /// </summary>
     public DonneesJoueur()
@@ -100,6 +105,12 @@ public class DonneesJoueur
             salariat = new DonneesSalariat();
         }
         salariat.InitialiserSiNecessaire();
+
+        if (tempsApplications == null)
+        {
+            tempsApplications = new DonneesRepartitionTemps();
+        }
+        tempsApplications.InitialiserSiNecessaire();
     }
 
     /// <summary>
@@ -133,7 +144,10 @@ public class DonneesJoueur
                 : new DonneesEntrepreneuriat(),
             salariat = salariat != null
                 ? salariat.Copier()
-                : new DonneesSalariat()
+                : new DonneesSalariat(),
+            tempsApplications = tempsApplications != null
+                ? tempsApplications.Copier()
+                : new DonneesRepartitionTemps()
         };
 
         if (comptes != null)

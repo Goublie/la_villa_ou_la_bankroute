@@ -159,6 +159,12 @@ public sealed class ServicePassageMensuel
                 "salaire");
         }
 
+        if (joueur.tempsApplications != null)
+        {
+            new ServiceRepartitionTemps(joueur.tempsApplications)
+                .ReinitialiserAllocation();
+        }
+
         ActualiserValeursOuverture(mois, banque);
     }
 
