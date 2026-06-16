@@ -215,6 +215,15 @@ public class EmployeePerformanceController : MonoBehaviour
         fatigueScore = Mathf.Clamp(fatigueScore + amount, 0, 100);
         RefreshUI();
     }
+    /// <summary>
+    /// Augmente ou diminue le score d'expérience de <paramref name="amount"/>.
+    /// Fixé entre [0, 100] et actualise l'UI.
+    /// </summary>
+    public void ModifyExperience(int amount)
+    {
+        experienceScore = Mathf.Clamp(experienceScore + amount, 0, 100);
+        RefreshUI();
+    }
 
     /// <summary>
     /// Wired to the main 'Bouton Négocier salaire'. Only opens the negotiation
