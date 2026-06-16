@@ -84,7 +84,7 @@ public class SalariatUI : MonoBehaviour
         btnDemissionner?.onClick.AddListener(() => Debug.Log("Action non implémentée : Démissionner"));
     }
 
-    private void InitialiserAffichage()
+    public void InitialiserAffichage()
     {
         if (txtEntreprise != null) txtEntreprise.text = entrepriseNom;
         if (txtAnciennete != null) txtAnciennete.text = $"{ancienneteMois} mois";

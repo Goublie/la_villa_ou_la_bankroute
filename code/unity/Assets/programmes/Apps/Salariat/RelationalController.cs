@@ -22,6 +22,9 @@ public class RelationalController : MonoBehaviour
     private int patronScore = 0;
     private int colleguesScore = 0;
 
+    /// <summary>Returns the current relationship score with colleagues.</summary>
+    public int ColleguesScore => colleguesScore;
+
     private void Start()
     {
         // Initialise both scores and force the UI to the empty/default state.

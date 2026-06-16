@@ -25,6 +25,8 @@ public class EmployeePerformanceController : MonoBehaviour
     public GameObject panelPosteActuel;     // 'Panel_Poste8actuel'
     public GameObject panelActionsRapides;  // 'Panel_Actions_Rapides'
     public GameObject panelRelationnel;     // 'Panel_Relationnel' (kept in sync with the dashboard)
+    public DemissionController demissionController; // Handles job reset logic
+    public RelationalController relationalController; // Handles relationship scores
 
     [Header("Salary negotiation")]
     public GameObject panelNegociationSalaire; // 'Panel_NegociationSalaire'
@@ -100,6 +102,18 @@ public class EmployeePerformanceController : MonoBehaviour
             burnoutScore += 15;
         }
 
+        // Auto-detect the relational controller if not assigned in Inspector
+        if (relationalController == null)
+        {
+            relationalController = FindObjectOfType<RelationalController>();
+        }
+
+        // Fatigue reduction bonus: if colleagues relationship is maxed (100), reduce fatigue by 5.
+        if (relationalController != null && relationalController.ColleguesScore == 100)
+        {
+            fatigueScore = Mathf.Clamp(fatigueScore - 5, 0, 100);
+        }
+
         if (monthsAtCurrentJob % 5 == 0)
         {
             // Hours-based progression rules. Burn-out is no longer affected by
@@ -141,6 +155,7 @@ public class EmployeePerformanceController : MonoBehaviour
         if (panelBurnoutGameOver != null) panelBurnoutGameOver.SetActive(true);
         if (panelPosteActuel != null) panelPosteActuel.SetActive(false);
         if (panelActionsRapides != null) panelActionsRapides.SetActive(false);
+        if (panelRelationnel != null) panelRelationnel.SetActive(false);
         gameObject.SetActive(false);
     }
 
@@ -151,6 +166,30 @@ public class EmployeePerformanceController : MonoBehaviour
     public void OnBurnoutRetourClicked()
     {
         if (panelBurnoutGameOver != null) panelBurnoutGameOver.SetActive(false);
+
+        // Call the resignation system to reset the job data
+        if (demissionController != null)
+        {
+            demissionController.OnOuiClicked();
+        }
+
+        // Force reset the "Poste Actuel" panel UI and GameData manually in case the DemissionController reference is missing or fails
+        if (panelPosteActuel != null)
+        {
+            Transform tEntr = panelPosteActuel.transform.Find("Entreprise");
+            if (tEntr != null && tEntr.GetComponent<TMPro.TMP_Text>() != null) tEntr.GetComponent<TMPro.TMP_Text>().text = "Entreprise : Aucune";
+
+            Transform tSal = panelPosteActuel.transform.Find("Salaire_brut");
+            if (tSal != null && tSal.GetComponent<TMPro.TMP_Text>() != null) tSal.GetComponent<TMPro.TMP_Text>().text = "Salaire : 0€ / an";
+
+            Transform tHeures = panelPosteActuel.transform.Find("Heures");
+            if (tHeures != null && tHeures.GetComponent<TMPro.TMP_Text>() != null) tHeures.GetComponent<TMPro.TMP_Text>().text = "Heures : 0 heures / semaine";
+        }
+
+        if (gameData != null && gameData.joueur != null)
+        {
+            gameData.joueur.salaire = new argent(0);
+        }
 
         hasJob = false;
         monthsAtCurrentJob = 0;
@@ -168,6 +207,25 @@ public class EmployeePerformanceController : MonoBehaviour
     }
 
     /// <summary>
+    /// Decreases or increases the fatigue score by <paramref name="amount"/>.
+    /// Clamped to [0, 100] and refreshes the UI.
+    /// </summary>
+    public void ModifyFatigue(int amount)
+    {
+        fatigueScore = Mathf.Clamp(fatigueScore + amount, 0, 100);
+        RefreshUI();
+    }
+    /// <summary>
+    /// Augmente ou diminue le score d'expérience de <paramref name="amount"/>.
+    /// Fixé entre [0, 100] et actualise l'UI.
+    /// </summary>
+    public void ModifyExperience(int amount)
+    {
+        experienceScore = Mathf.Clamp(experienceScore + amount, 0, 100);
+        RefreshUI();
+    }
+
+    /// <summary>
     /// Wired to the main 'Bouton Négocier salaire'. Only opens the negotiation
     /// panel when the employee is experienced enough (experience strictly above 70).
     /// </summary>
@@ -182,7 +240,7 @@ public class EmployeePerformanceController : MonoBehaviour
             if (panelNegociationEchec != null) panelNegociationEchec.SetActive(true);
         }
 
-        // Hide the dashboard so only the negotiation popup is visible (matches the networking flow).
+        // Hide the dashboard so only the negotiation popup is visible
         if (panelPosteActuel != null) panelPosteActuel.SetActive(false);
         if (panelActionsRapides != null) panelActionsRapides.SetActive(false);
         if (panelRelationnel != null) panelRelationnel.SetActive(false);
@@ -201,7 +259,7 @@ public class EmployeePerformanceController : MonoBehaviour
         gameObject.SetActive(true);
     }
 
-    /// <summary>Wired to 'Bouton_RetourEchec'. Closes the error popup 'Panel_NegociationEchec'.</summary>
+    /// <summary>Wired to the negotiation echec panel buttons. Closes 'Panel_NegociationEchec'.</summary>
     public void CloseNegociationEchecPanel()
     {
         if (panelNegociationEchec != null) panelNegociationEchec.SetActive(false);
