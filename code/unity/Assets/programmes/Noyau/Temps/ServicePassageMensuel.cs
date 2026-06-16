@@ -116,6 +116,11 @@ public sealed class ServicePassageMensuel
             evolutions.Add(new ServiceBourse(joueur.bourse));
         }
 
+        if (joueur.salariat != null)
+        {
+            evolutions.Add(new ServiceSalariat(joueur.salariat, joueur));
+        }
+
         ServiceEntrepreneuriat entrepreneuriat =
             CreerServiceEntrepreneuriat(joueur, banque);
         if (entrepreneuriat != null)

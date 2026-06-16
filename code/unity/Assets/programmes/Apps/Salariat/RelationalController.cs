@@ -1,60 +1,127 @@
+using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
-using TMPro;
 
 /// <summary>
-/// Manages the "Relationnel" stats card. Lives on 'Panel_Relationnel'.
-/// Tracks the player's relationship scores with their Boss (Patron) and
-/// Colleagues (Collègues) and exposes public methods so other systems can
-/// modify those scores. Each score drives a 0-100 slider and a "X / 100" label.
+/// Facade Unity de la carte relationnelle du Salariat.
 /// </summary>
 public class RelationalController : MonoBehaviour
 {
     [Header("Patron (Boss)")]
-    public Slider sliderPatron;            // 'Slider_Patron'
-    public TextMeshProUGUI textePatron;    // value label of 'Slider_Patron'
+    public Slider sliderPatron;
+    public TextMeshProUGUI textePatron;
 
-    [Header("Collègues (Colleagues)")]
-    public Slider sliderCollegues;         // 'Slider_Collegues'
-    public TextMeshProUGUI texteCollegues; // value label of 'Slider_Collegues'
+    [Header("Collegues (Colleagues)")]
+    public Slider sliderCollegues;
+    public TextMeshProUGUI texteCollegues;
 
-    // --- Current relationship scores (0-100) ---
-    private int patronScore = 0;
-    private int colleguesScore = 0;
+    [SerializeField] private GameData gameData;
+
+    private ServiceSalariat service;
+    private DonneesSalariat donnees;
+
+    public int PatronScore =>
+        donnees != null ? donnees.relationPatron : 0;
+
+    public int ColleguesScore =>
+        donnees != null ? donnees.relationCollegues : 0;
 
     private void Start()
     {
-        // Initialise both scores and force the UI to the empty/default state.
-        patronScore = 0;
-        colleguesScore = 0;
-
+        ResoudreService();
         RefreshPatron();
         RefreshCollegues();
     }
 
-    /// <summary>Adds <paramref name="amount"/> to the Boss score (clamped 0-100) and refreshes the UI.</summary>
+    private void OnEnable()
+    {
+        ResoudreService();
+        RefreshPatron();
+        RefreshCollegues();
+    }
+
+    /// <summary>
+    /// Modifie la relation patron puis rafraichit l'UI.
+    /// </summary>
     public void ModifyPatronScore(int amount)
     {
-        patronScore = Mathf.Clamp(patronScore + amount, 0, 100);
-        RefreshPatron();
+        if (ResoudreService())
+        {
+            service.ModifierRelationPatron(amount);
+            RefreshPatron();
+        }
     }
 
-    /// <summary>Adds <paramref name="amount"/> to the Colleagues score (clamped 0-100) and refreshes the UI.</summary>
+    /// <summary>
+    /// Modifie la relation collegues puis rafraichit l'UI.
+    /// </summary>
     public void ModifyColleguesScore(int amount)
     {
-        colleguesScore = Mathf.Clamp(colleguesScore + amount, 0, 100);
-        RefreshCollegues();
+        if (ResoudreService())
+        {
+            service.ModifierRelationCollegues(amount);
+            RefreshCollegues();
+        }
     }
 
     private void RefreshPatron()
     {
-        if (sliderPatron != null) sliderPatron.value = patronScore;
-        if (textePatron != null) textePatron.text = patronScore + " / 100";
+        int valeur = PatronScore;
+        if (sliderPatron != null)
+        {
+            sliderPatron.value = valeur;
+        }
+
+        if (textePatron != null)
+        {
+            textePatron.text = valeur + " / 100";
+        }
     }
 
     private void RefreshCollegues()
     {
-        if (sliderCollegues != null) sliderCollegues.value = colleguesScore;
-        if (texteCollegues != null) texteCollegues.text = colleguesScore + " / 100";
+        int valeur = ColleguesScore;
+        if (sliderCollegues != null)
+        {
+            sliderCollegues.value = valeur;
+        }
+
+        if (texteCollegues != null)
+        {
+            texteCollegues.text = valeur + " / 100";
+        }
+    }
+
+    private bool ResoudreService()
+    {
+        if (gameData == null)
+        {
+            EmployeePerformanceController performance =
+                Object.FindFirstObjectByType<EmployeePerformanceController>();
+            if (performance != null)
+            {
+                gameData = performance.gameData;
+            }
+        }
+
+        if (gameData == null)
+        {
+            ActionPlay actionPlay =
+                Object.FindFirstObjectByType<ActionPlay>();
+            if (actionPlay != null)
+            {
+                gameData = actionPlay.gameData;
+            }
+        }
+
+        if (gameData == null || gameData.joueur == null)
+        {
+            return false;
+        }
+
+        gameData.joueur.InitialiserSiNecessaire();
+        donnees = gameData.joueur.salariat;
+        service = new ServiceSalariat(donnees, gameData.joueur);
+        return true;
     }
 }

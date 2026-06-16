@@ -1,30 +1,33 @@
+using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
-using TMPro;
 
 /// <summary>
-/// Controls a single interview panel. The "Oui" button accepts the job (updates the
-/// dashboard 'Panel_Poste8actuel' and returns to the main screen) while the "Retour"
-/// button cancels and goes back to the job-offers list.
+/// Controle un panel d'entretien et transmet l'acceptation d'offre au service Salariat.
 /// </summary>
+/// <remarks>
+/// Ce composant conserve les references Unity du prefab et met a jour les panels visibles.
+/// L'etat metier du poste est stocke dans <see cref="DonneesSalariat"/> via
+/// <see cref="ServiceSalariat"/>, afin que la Banque et le passage mensuel lisent la meme source.
+/// </remarks>
 public class InterviewPanelController : MonoBehaviour
 {
     [Header("Job data")]
     public string companyName;
     public string jobSalary;
 
-    [Tooltip("Référence vers les données globales du jeu")]
+    [Tooltip("Reference vers les donnees globales du jeu")]
     public GameData gameData;
 
     [Header("Screen references")]
-    public GameObject panelOffresEmploi;       // 'Panel_Offres_d'emploi'
-    public GameObject panelPosteActuel;        // 'Panel_Poste8actuel'
-    public GameObject panelActionsRapides;     // 'Panel_Actions_Rapides'
-    public GameObject panelPerformanceEmploye; // 'Panel_PerformanceEmploye' (kept in sync with the dashboard)
-    public GameObject panelRelationnel;        // 'Panel_Relationnel' (kept in sync with the dashboard)
+    public GameObject panelOffresEmploi;
+    public GameObject panelPosteActuel;
+    public GameObject panelActionsRapides;
+    public GameObject panelPerformanceEmploye;
+    public GameObject panelRelationnel;
 
     [Header("Employee performance")]
-    public EmployeePerformanceController performanceController; // 'Panel_PerformanceEmploye' controller
+    public EmployeePerformanceController performanceController;
 
     [Header("Job satisfaction")]
     public JobSatisfactionController satisfactionController;
@@ -32,25 +35,27 @@ public class InterviewPanelController : MonoBehaviour
     [Range(1, 3)] public int prestigeStars;
     [Range(1, 3)] public int equilibreStars;
 
-    // Buttons inside this interview panel.
     private Button retourButton;
     private Button ouiButton;
 
-    // Dashboard label TMP fields inside 'Panel_Poste8actuel'.
     private TMP_Text entrepriseText;
     private TMP_Text salaireText;
     private TMP_Text heuresText;
 
     private void Start()
     {
-        // --- Locate this panel's buttons ---
         Transform retourTransform = transform.Find("Bouton_Retour");
-        if (retourTransform != null) retourButton = retourTransform.GetComponent<Button>();
+        if (retourTransform != null)
+        {
+            retourButton = retourTransform.GetComponent<Button>();
+        }
 
         Transform ouiTransform = transform.Find("Bouton_Oui");
-        if (ouiTransform != null) ouiButton = ouiTransform.GetComponent<Button>();
+        if (ouiTransform != null)
+        {
+            ouiButton = ouiTransform.GetComponent<Button>();
+        }
 
-        // --- Locate the dashboard text fields inside 'Panel_Poste8actuel' ---
         if (panelPosteActuel != null)
         {
             entrepriseText = FindText(panelPosteActuel.transform, "Entreprise");
@@ -58,74 +63,151 @@ public class InterviewPanelController : MonoBehaviour
             heuresText = FindText(panelPosteActuel.transform, "Heures");
         }
 
-        // --- Wire buttons ---
-        if (retourButton != null) retourButton.onClick.AddListener(OnRetourClicked);
-        if (ouiButton != null) ouiButton.onClick.AddListener(OnOuiClicked);
+        if (retourButton != null)
+        {
+            retourButton.onClick.AddListener(OnRetourClicked);
+        }
+
+        if (ouiButton != null)
+        {
+            ouiButton.onClick.AddListener(OnOuiClicked);
+        }
     }
 
     private void OnRetourClicked()
     {
-        // Cancel the interview: go back to the offers list.
         gameObject.SetActive(false);
-        if (panelOffresEmploi != null) panelOffresEmploi.SetActive(true);
+        if (panelOffresEmploi != null)
+        {
+            panelOffresEmploi.SetActive(true);
+        }
     }
 
     private void OnOuiClicked()
     {
-        // Accept the job: close the interview and return to the dashboard.
         gameObject.SetActive(false);
-        if (panelPosteActuel != null) panelPosteActuel.SetActive(true);
-        if (panelActionsRapides != null) panelActionsRapides.SetActive(true);
-        if (panelPerformanceEmploye != null) panelPerformanceEmploye.SetActive(true);
-        if (panelRelationnel != null) panelRelationnel.SetActive(true);
+        AfficherTableauBord(true);
 
-        // Update the job-satisfaction bar based on this offer's parameters.
         if (satisfactionController != null)
-            satisfactionController.UpdateSatisfaction(stressStars, prestigeStars, equilibreStars);
-
-        // Start tracking employee performance for this new job (default 35h/week).
-        if (performanceController != null)
-            performanceController.StartNewJob(stressStars, 35);
-
-        // Update the dashboard texts (label prefix preserved for readability).
-        if (entrepriseText != null) entrepriseText.text = "Entreprise : " + companyName;
-        if (salaireText != null) salaireText.text = "Salaire : " + jobSalary;
-        if (heuresText != null) heuresText.text = "Heures : 35 heures / semaine";
-
-        // --- MISE À JOUR DE LA BANQUE (GAMEDATA) ---
-        // --- MISE À JOUR DE LA BANQUE (GAMEDATA) ---
-        if (gameData != null && gameData.joueur != null)
         {
-            int monthlySalary = GetMonthlySalary(jobSalary);
-            // On multiplie par 100 car la banque fonctionne en centimes !
-            gameData.joueur.salaire = new argent(monthlySalary * 100);
-            Debug.Log("Nouveau salaire mensuel de " + monthlySalary + " enregistré dans GameData pour " + companyName);
+            satisfactionController.UpdateSatisfaction(
+                stressStars,
+                prestigeStars,
+                equilibreStars);
+        }
+
+        GameData donneesJeu = ResoudreGameData();
+        if (donneesJeu != null && donneesJeu.joueur != null)
+        {
+            donneesJeu.joueur.InitialiserSiNecessaire();
+            int salaireMensuelCentimes = GetMonthlySalaryCentimes(jobSalary);
+
+            new ServiceSalariat(donneesJeu.joueur.salariat, donneesJeu.joueur)
+                .AccepterPoste(
+                    companyName,
+                    salaireMensuelCentimes,
+                    35,
+                    stressStars,
+                    prestigeStars,
+                    equilibreStars);
+        }
+
+        if (performanceController != null)
+        {
+            performanceController.StartNewJob(stressStars, 35);
+        }
+
+        if (entrepriseText != null)
+        {
+            entrepriseText.text = "Entreprise : " + companyName;
+        }
+
+        if (salaireText != null)
+        {
+            salaireText.text = "Salaire : " + jobSalary;
+        }
+
+        if (heuresText != null)
+        {
+            heuresText.text = "Heures : 35 heures / semaine";
         }
     }
 
     /// <summary>
-    /// Prend le salaire sous forme de texte (ex: "€72,000 / an") et le convertit en salaire mensuel (int).
+    /// Convertit un salaire annuel affiche en salaire mensuel exprime en centimes.
     /// </summary>
-    private int GetMonthlySalary(string rawSalary)
+    /// <param name="rawSalary">Texte de salaire, par exemple "72 000 EUR / an".</param>
+    /// <returns>Salaire mensuel en centimes, ou 0 si la valeur n'est pas lisible.</returns>
+    private int GetMonthlySalaryCentimes(string rawSalary)
     {
-        // On nettoie la chaîne pour ne garder que les chiffres
-        string cleanString = rawSalary.Replace("€", "").Replace(",", "").Replace(" / an", "").Trim();
+        string chiffres = string.Empty;
+        foreach (char caractere in rawSalary)
+        {
+            if (char.IsDigit(caractere))
+            {
+                chiffres += caractere;
+            }
+        }
 
-        // On convertit le texte propre en nombre
-        if (int.TryParse(cleanString, out int yearlySalary))
+        if (int.TryParse(chiffres, out int yearlySalary))
         {
-            return yearlySalary / 12;
+            return (yearlySalary / 12) * 100;
         }
-        else
-        {
-            Debug.LogWarning("Erreur : Impossible de convertir le salaire de l'offre -> " + rawSalary);
-            return 0;
-        }
+
+        Debug.LogWarning(
+            "Impossible de convertir le salaire de l'offre -> " + rawSalary);
+        return 0;
     }
 
     private TMP_Text FindText(Transform root, string childName)
     {
         Transform t = root.Find(childName);
         return t != null ? t.GetComponent<TMP_Text>() : null;
+    }
+
+    private void AfficherTableauBord(bool visible)
+    {
+        if (panelPosteActuel != null)
+        {
+            panelPosteActuel.SetActive(visible);
+        }
+
+        if (panelActionsRapides != null)
+        {
+            panelActionsRapides.SetActive(visible);
+        }
+
+        if (panelPerformanceEmploye != null)
+        {
+            panelPerformanceEmploye.SetActive(visible);
+        }
+
+        if (panelRelationnel != null)
+        {
+            panelRelationnel.SetActive(visible);
+        }
+    }
+
+    private GameData ResoudreGameData()
+    {
+        if (gameData != null)
+        {
+            return gameData;
+        }
+
+        if (performanceController != null &&
+            performanceController.gameData != null)
+        {
+            gameData = performanceController.gameData;
+            return gameData;
+        }
+
+        ActionPlay actionPlay = Object.FindFirstObjectByType<ActionPlay>();
+        if (actionPlay != null)
+        {
+            gameData = actionPlay.gameData;
+        }
+
+        return gameData;
     }
 }

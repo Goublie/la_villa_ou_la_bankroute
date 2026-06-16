@@ -48,6 +48,11 @@ public class DonneesJoueur
     public DonneesEntrepreneuriat entrepreneuriat;
 
     /// <summary>
+    /// Etat persistant du parcours salarie.
+    /// </summary>
+    public DonneesSalariat salariat;
+
+    /// <summary>
     /// Cree un joueur avec son compte courant initial.
     /// </summary>
     public DonneesJoueur()
@@ -89,6 +94,12 @@ public class DonneesJoueur
             entrepreneuriat = new DonneesEntrepreneuriat();
         }
         entrepreneuriat.InitialiserSiNecessaire();
+
+        if (salariat == null)
+        {
+            salariat = new DonneesSalariat();
+        }
+        salariat.InitialiserSiNecessaire();
     }
 
     /// <summary>
@@ -119,7 +130,10 @@ public class DonneesJoueur
             bourse = bourse != null ? bourse.Copier() : new DonneesBourse(),
             entrepreneuriat = entrepreneuriat != null
                 ? entrepreneuriat.Copier()
-                : new DonneesEntrepreneuriat()
+                : new DonneesEntrepreneuriat(),
+            salariat = salariat != null
+                ? salariat.Copier()
+                : new DonneesSalariat()
         };
 
         if (comptes != null)

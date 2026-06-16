@@ -1,159 +1,164 @@
+using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
-using TMPro;
-using System.Collections.Generic;
 
 /// <summary>
-/// Structure représentant une offre d'emploi.
+/// Facade d'affichage generale de l'onglet Salariat.
 /// </summary>
-[System.Serializable]
-public class OffreEmploi
-{
-    public string nomEntreprise;
-    public int salaireAnnuel;
-    public int heuresSemaine;
-    public int prestige; // Score sur 5
-}
-
-/// <summary>
-/// Gère l'interface et la logique de la rubrique Salariat.
-/// </summary>
+/// <remarks>
+/// Les controles metier restent dans <see cref="ServiceSalariat"/> et les
+/// interactions du prefab sont portees par les controleurs specialises. Cette
+/// classe lit seulement <see cref="DonneesSalariat"/> pour afficher un resume
+/// coherent si elle est utilisee par une variante de l'UI.
+/// </remarks>
 public class SalariatUI : MonoBehaviour
 {
-    [Header("Données de Test")]
-    public List<OffreEmploi> offresTest = new List<OffreEmploi>();
+    [Header("Data")]
+    [SerializeField] private GameData gameData;
 
     [Header("Rubrique : Poste Actuel")]
-    [SerializeField] private string entrepriseNom = "Entreprise Alpha";
-    [SerializeField] private int ancienneteMois = 6;
-    [SerializeField] private int salaireBrut = 2800;
-    [SerializeField] private int heuresTravail = 35;
-
-    [Space(10)]
     [SerializeField] private TextMeshProUGUI txtEntreprise;
     [SerializeField] private TextMeshProUGUI txtAnciennete;
     [SerializeField] private TextMeshProUGUI txtSalaire;
     [SerializeField] private TextMeshProUGUI txtHeures;
-    
     [SerializeField] private Slider jaugeSatisfaction;
-    [SerializeField] private Image fillSatisfaction; // L'image de remplissage pour changer la couleur
+    [SerializeField] private Image fillSatisfaction;
 
-    [Header("Rubrique : Actions Rapides")]
-    [SerializeField] private Button btnTravaillerPlus;
-    [SerializeField] private Button btnChercherEmploi;
-    [SerializeField] private Button btnNegocierSalaire;
-    [SerializeField] private Button btnNetworking;
-    [SerializeField] private Button btnFormation;
-    [SerializeField] private Button btnDemissionner;
-
-    [Header("Fenêtre : Chercher un Emploi")]
+    [Header("Fenetre : Chercher un Emploi")]
     [SerializeField] private GameObject panelOffresEmploi;
 
-    void Start()
+    private DonneesSalariat donnees;
+
+    private void OnEnable()
     {
-        InitialiserDonneesTest();
-        ConfigurerBoutons();
+        ActionPlay.OnMoisPasse += InitialiserAffichage;
         InitialiserAffichage();
-        
-        // On masque le panel de recherche par défaut
-        if (panelOffresEmploi != null)
-            panelOffresEmploi.SetActive(false);
     }
 
-    private void InitialiserDonneesTest()
+    private void OnDisable()
     {
-        if (offresTest.Count == 0)
+        ActionPlay.OnMoisPasse -= InitialiserAffichage;
+    }
+
+    /// <summary>
+    /// Rafraichit le resume depuis l'agregat persistant du joueur.
+    /// </summary>
+    public void InitialiserAffichage()
+    {
+        if (!ResoudreDonnees())
         {
-            offresTest.Add(new OffreEmploi { nomEntreprise = "Tech Solutions", salaireAnnuel = 42000, heuresSemaine = 39, prestige = 4 });
-            offresTest.Add(new OffreEmploi { nomEntreprise = "Global Services", salaireAnnuel = 35000, heuresSemaine = 35, prestige = 3 });
-            offresTest.Add(new OffreEmploi { nomEntreprise = "Innovate Corp", salaireAnnuel = 50000, heuresSemaine = 40, prestige = 5 });
-            offresTest.Add(new OffreEmploi { nomEntreprise = "Local Startup", salaireAnnuel = 30000, heuresSemaine = 35, prestige = 2 });
+            AfficherEtatVide();
+            return;
         }
-    }
 
-    private void ConfigurerBoutons()
-    {
-        if (btnChercherEmploi != null)
-            btnChercherEmploi.onClick.AddListener(OuvrirRechercheEmploi);
+        if (txtEntreprise != null)
+        {
+            txtEntreprise.text = donnees.entreprise;
+        }
 
-        // Actions non implémentées pour le moment
-        btnTravaillerPlus?.onClick.AddListener(() => Debug.Log("Action non implémentée : Travailler plus"));
-        btnNegocierSalaire?.onClick.AddListener(() => Debug.Log("Action non implémentée : Négocier le salaire"));
-        btnNetworking?.onClick.AddListener(() => Debug.Log("Action non implémentée : Faire du networking"));
-        btnFormation?.onClick.AddListener(() => Debug.Log("Action non implémentée : Formation"));
-        btnDemissionner?.onClick.AddListener(() => Debug.Log("Action non implémentée : Démissionner"));
-    }
+        if (txtAnciennete != null)
+        {
+            txtAnciennete.text = donnees.ancienneteMois + " mois";
+        }
 
-    private void InitialiserAffichage()
-    {
-        if (txtEntreprise != null) txtEntreprise.text = entrepriseNom;
-        if (txtAnciennete != null) txtAnciennete.text = $"{ancienneteMois} mois";
-        
         if (txtSalaire != null)
         {
-            txtSalaire.text = $"{salaireBrut} € Brut";
-            txtSalaire.color = Color.green; // Salaire affiché en vert
+            txtSalaire.text =
+                new argent(donnees.salaireMensuelCentimes).ToString() +
+                " brut / mois";
+            txtSalaire.color = Color.green;
         }
 
-        if (txtHeures != null) txtHeures.text = $"{heuresTravail}h / semaine";
-
-        CalculerSatisfaction();
-    }
-
-    /// <summary>
-    /// Calcule la satisfaction initiale. 
-    /// Logique : augmente avec le salaire, baisse avec les heures de travail.
-    /// </summary>
-    private void CalculerSatisfaction()
-    {
-        // Calcul arbitraire pour illustrer la consigne
-        float scoreSalaire = (salaireBrut / 5000f) * 100f;
-        float malusHeures = (heuresTravail - 35) * 5f;
-        float satisfaction = Mathf.Clamp(scoreSalaire - malusHeures + 50f, 0f, 100f);
-
-        if (jaugeSatisfaction != null)
+        if (txtHeures != null)
         {
-            jaugeSatisfaction.value = satisfaction;
-            CalculerCouleurJauge(satisfaction);
+            txtHeures.text = donnees.heuresSemaine + "h / semaine";
         }
+
+        AfficherSatisfaction(donnees.satisfaction);
     }
 
     /// <summary>
-    /// Change la couleur de la jauge selon la valeur de satisfaction.
-    /// </summary>
-    private void CalculerCouleurJauge(float value)
-    {
-        if (fillSatisfaction == null) return;
-
-        if (value < 35)
-            fillSatisfaction.color = Color.red;
-        else if (value < 65)
-            fillSatisfaction.color = new Color(1f, 0.5f, 0f); // Orange
-        else
-            fillSatisfaction.color = Color.green;
-    }
-
-    /// <summary>
-    /// Active le panel de recherche d'emploi.
+    /// Active le panel de recherche d'emploi s'il existe dans le prefab.
     /// </summary>
     public void OuvrirRechercheEmploi()
     {
         if (panelOffresEmploi != null)
         {
             panelOffresEmploi.SetActive(true);
-            AfficherOffres();
         }
     }
 
-    /// <summary>
-    /// Simule l'affichage des offres d'emploi dans la console.
-    /// </summary>
-    private void AfficherOffres()
+    private bool ResoudreDonnees()
     {
-        Debug.Log("--- Liste des Offres d'Emploi Disponibles ---");
-        foreach (var offre in offresTest)
+        if (gameData == null)
         {
-            Debug.Log($"Entreprise : {offre.nomEntreprise} | Salaire : {offre.salaireAnnuel}€/an | Heures : {offre.heuresSemaine}h | Prestige : {offre.prestige}/5");
+            ActionPlay actionPlay =
+                Object.FindFirstObjectByType<ActionPlay>();
+            if (actionPlay != null)
+            {
+                gameData = actionPlay.gameData;
+            }
+        }
+
+        if (gameData == null || gameData.joueur == null)
+        {
+            return false;
+        }
+
+        gameData.joueur.InitialiserSiNecessaire();
+        donnees = gameData.joueur.salariat;
+        return donnees != null;
+    }
+
+    private void AfficherEtatVide()
+    {
+        if (txtEntreprise != null)
+        {
+            txtEntreprise.text = "Aucune";
+        }
+
+        if (txtAnciennete != null)
+        {
+            txtAnciennete.text = "0 mois";
+        }
+
+        if (txtSalaire != null)
+        {
+            txtSalaire.text = "0.00 EUR brut / mois";
+        }
+
+        if (txtHeures != null)
+        {
+            txtHeures.text = "0h / semaine";
+        }
+
+        AfficherSatisfaction(0);
+    }
+
+    private void AfficherSatisfaction(int score)
+    {
+        int valeur = Mathf.Clamp(score, 0, 100);
+        if (jaugeSatisfaction != null)
+        {
+            jaugeSatisfaction.value = valeur;
+        }
+
+        if (fillSatisfaction == null)
+        {
+            return;
+        }
+
+        if (valeur < 35)
+        {
+            fillSatisfaction.color = Color.red;
+        }
+        else if (valeur < 65)
+        {
+            fillSatisfaction.color = new Color(1f, 0.5f, 0f);
+        }
+        else
+        {
+            fillSatisfaction.color = Color.green;
         }
     }
 }

@@ -68,7 +68,7 @@ public class DemissionController : MonoBehaviour
         if (panelRelationnel != null) panelRelationnel.SetActive(true);
     }
 
-    private void OnOuiClicked()
+    public void OnOuiClicked()
     {
         // Confirm resignation: close the panel and clear the current job.
         gameObject.SetActive(false);
@@ -83,10 +83,14 @@ public class DemissionController : MonoBehaviour
         if (salaireText != null) salaireText.text = "Salaire : 0€ / an";
         if (heuresText != null) heuresText.text = "Heures : 0 heures / semaine";
 
-        // Zero out the salary in the bank/game data.
-        if (gameData != null && gameData.joueur != null)
+        GameData donneesJeu = ResoudreGameData();
+        if (donneesJeu != null && donneesJeu.joueur != null)
         {
-            gameData.joueur.salaire = new argent(0);
+            donneesJeu.joueur.InitialiserSiNecessaire();
+            new ServiceSalariat(
+                donneesJeu.joueur.salariat,
+                donneesJeu.joueur)
+                .Demissionner();
         }
 
         // Reset the job-satisfaction bar to its empty state.
@@ -98,5 +102,21 @@ public class DemissionController : MonoBehaviour
     {
         Transform t = root.Find(childName);
         return t != null ? t.GetComponent<TMP_Text>() : null;
+    }
+
+    private GameData ResoudreGameData()
+    {
+        if (gameData != null)
+        {
+            return gameData;
+        }
+
+        ActionPlay actionPlay = Object.FindFirstObjectByType<ActionPlay>();
+        if (actionPlay != null)
+        {
+            gameData = actionPlay.gameData;
+        }
+
+        return gameData;
     }
 }
