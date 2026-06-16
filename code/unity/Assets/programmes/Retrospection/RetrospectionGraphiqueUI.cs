@@ -1,6 +1,6 @@
 using System.Collections.Generic;
 using UnityEngine;
-using XCharts.Runtime; // Namespace requis pour manipuler XCharts
+using XCharts.Runtime;
 
 /// <summary>
 /// Gère le rendu graphique du patrimoine réel du joueur pour la rétrospection.
@@ -59,37 +59,32 @@ public class RetrospectionGraphiqueUI : MonoBehaviour
         serieJoueur.serieName = "Joueur (Réel)";
         serieJoueur.show = true;
 
-        Debug.Log($"[What-If] Début du tracé du graphique. Nombre de snapshots : {gameData.historiqueSnapshots.Count}");
+        // Configuration programmatique de l'axe Y pour afficher les euros
+        var yAxis = lineChart.GetChartComponent<YAxis>();
+        if (yAxis != null && yAxis.axisLabel != null)
+        {
+            yAxis.axisLabel.formatter = "{value} €";
+        }
+
+        Debug.Log($"[What-If] Début du tracé du graphique. Nombre de points : {gameData.historiqueSnapshots.Count}");
 
         // 3. Remplissage des données à partir de l'historique des snapshots
-        for (int i = 0; i < gameData.historiqueSnapshots.Count; i++)
+        List<PointPatrimoine> historiqueReel = gameData.ObtenirHistoriquePatrimoineReel();
+        for (int i = 0; i < historiqueReel.Count; i++)
         {
-            SnapshotEtatJeu snapshot = gameData.historiqueSnapshots[i];
-            string labelMois = snapshot.moisCalendrier.ToString();
+            PointPatrimoine pt = historiqueReel[i];
+            string labelMois = pt.moisCalendrier.ToString();
             
             // Ajout de l'étiquette sur l'axe X
             lineChart.AddXAxisData(labelMois);
 
-            // Récupération des soldes
-            long courantCents = 0;
-            if (snapshot.joueur != null && snapshot.joueur.comptes != null && snapshot.joueur.comptes.ContainsKey("courant"))
-            {
-                courantCents = snapshot.joueur.comptes["courant"].GetSolde().centimes;
-            }
-
-            long epargneCents = 0;
-            if (snapshot.joueur != null && snapshot.joueur.comptes != null && snapshot.joueur.comptes.ContainsKey("epargne"))
-            {
-                epargneCents = snapshot.joueur.comptes["epargne"].GetSolde().centimes;
-            }
-
-            // Somme du courant et de l'épargne en euros
-            float totalEuros = (courantCents + epargneCents) / 100f;
+            // Conversion du patrimoine total en euros
+            double totalEuros = pt.patrimoineTotal.ToDouble();
 
             // Ajout de la donnée dans la série
             lineChart.AddData(0, totalEuros);
 
-            Debug.Log($"[What-If] Index {i} - Mois : {labelMois} | Courant : {courantCents / 100f} € | Épargne : {epargneCents / 100f} € | Total : {totalEuros} €");
+            Debug.Log($"[What-If] Index {i} - Mois : {labelMois} | Total : {totalEuros} €");
         }
 
         // 4. Force le rafraîchissement

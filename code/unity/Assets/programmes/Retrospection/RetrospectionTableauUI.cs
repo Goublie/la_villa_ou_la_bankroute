@@ -37,7 +37,7 @@ public class RetrospectionTableauUI : MonoBehaviour
         if (gameData == null || tableauComparatif == null) return;
 
         // Récupération des historiques
-        List<Optimizer.SimulationResult> reel = Optimizer.ObtenirHistoriqueReel(gameData);
+        List<PointPatrimoine> reel = gameData.ObtenirHistoriquePatrimoineReel();
         List<Optimizer.SimulationResult> simule = Optimizer.SimulerFourmi(gameData);
 
         if (reel.Count == 0 || simule.Count == 0) return;
@@ -46,7 +46,7 @@ public class RetrospectionTableauUI : MonoBehaviour
         tableauComparatif.Vider();
 
         // Extraction des résultats du dernier mois
-        Optimizer.SimulationResult bilanReel = reel[reel.Count - 1];
+        PointPatrimoine bilanReel = reel[reel.Count - 1];
         Optimizer.SimulationResult bilanSimule = simule[simule.Count - 1];
 
         // Calcul de la différence (manque à gagner)
