@@ -32,7 +32,7 @@ Date de l'audit : 2026-06-16.
 | `main` | `12216fd` | ancetre deja integre dans l'architecture |
 | `refactor/architecture-apps` | `7c7b64e` | reference architecturale |
 
-Les branches locales annoncees `Python`, `codex/entreprenariat`,
+Les branches locales annoncees `Python`, l'ancienne branche Entrepreneuriat,
 `entrepreneuriat`, `marketing` et `scene/jeu` ne sont pas presentes comme refs
 locales dans ce clone au moment de l'audit. Elles n'ont pas ete supprimees par
 cette mission.
@@ -157,7 +157,7 @@ Categorie :
 - Traitement conseille :
   - porter la fonctionnalite dans un agregat/service si elle modifie l'etat ;
   - ne pas reprendre `ManagerTemps` tel quel ;
-  - ne pas conserver les scripts editor de generation.
+  - ne pas conserver les scripts editor temporaires.
 
 ### `origin/main` - C. A selectionner
 
@@ -302,13 +302,13 @@ Commits inaccessibles trouves :
 
 | Commit | Message | Diagnostic |
 | --- | --- | --- |
-| `e6420be` | Merge origin/jeu dans codex/entreprenariat | ancien etat de travail Entrepreneuriat avec beaucoup de bruit et ancienne architecture |
-| `574b257` | index on codex/entreprenariat | etat d'index/stash |
-| `934bd7a` | On codex/entreprenariat: codex-pre-merge-audio-case-collision | etat stash lie au fichier audio |
+| `e6420be` | Merge origin/jeu dans l'ancienne branche Entrepreneuriat | ancien etat de travail Entrepreneuriat avec beaucoup de bruit et ancienne architecture |
+| `574b257` | index sur l'ancienne branche Entrepreneuriat | etat d'index/stash |
+| `934bd7a` | sauvegarde pre-merge liee au fichier audio | etat stash lie au fichier audio |
 | `5b8ecfa` | Ajoute l'application bourse | commit initial amende ensuite par `feature/bourse` |
 | `7973422` | Merge scene/jeu et adaptation de l'entreprenariat | ancien sommet local Entrepreneuriat identifiable via reflog |
-| `5cd4f4e` | WIP on codex/entreprenariat | etat stash lie au fichier audio |
-| `8c389d3` | index on codex/entreprenariat | etat d'index/stash |
+| `5cd4f4e` | WIP sur l'ancienne branche Entrepreneuriat | etat stash lie au fichier audio |
+| `8c389d3` | index sur l'ancienne branche Entrepreneuriat | etat d'index/stash |
 
 Tag local de securite cree, non pousse :
 
