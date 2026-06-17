@@ -15,7 +15,7 @@ public class FermerRetrospective : MonoBehaviour
     private void Start()
     {
         Button bouton = GetComponent<Button>();
-        if (bouton != null)
+        if (bouton != null && !PossedeDejaUnLienPersistant(bouton))
         {
             bouton.onClick.AddListener(Fermer);
         }
@@ -35,5 +35,21 @@ public class FermerRetrospective : MonoBehaviour
         Debug.LogWarning(
             "[Retrospective] ScenesManager introuvable, chargement direct de Jeu.");
         SceneManager.LoadScene("Jeu");
+    }
+
+    private bool PossedeDejaUnLienPersistant(Button bouton)
+    {
+        for (int index = 0;
+             index < bouton.onClick.GetPersistentEventCount();
+             index++)
+        {
+            if (bouton.onClick.GetPersistentTarget(index) == this &&
+                bouton.onClick.GetPersistentMethodName(index) == nameof(Fermer))
+            {
+                return true;
+            }
+        }
+
+        return false;
     }
 }
