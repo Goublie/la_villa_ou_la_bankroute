@@ -5,7 +5,20 @@
         "titre": "Bulle des puces IA",
         "importance": "Modérée",
         "message": "🔴 ALERTE MARCHÉ : Vent de panique à Wall Street ! Les valeurs technologiques s'effondrent après l'éclatement de la bulle spéculative sur l'IA.",
-        "impacts": "Nvidia -45% | Google -25% | Bitcoin -30%"
+        "impacts": [
+            {
+                "actif": "Nvidia",
+                "variation": -0.45
+            },
+            {
+                "actif": "Google",
+                "variation": -0.25
+            },
+            {
+                "actif": "Bitcoin",
+                "variation": -0.3
+            }
+        ]
     },
     {
         "id": "002",
@@ -13,7 +26,20 @@
         "titre": "Pénurie mondiale de silicium",
         "importance": "Forte",
         "message": "⚠️ FLASH INFO : Les usines de semi-conducteurs sont à sec. Les stocks mondiaux de silicium sont au plus bas, la production s'arrête.",
-        "impacts": "Nvidia +35% | Google -15% | CAC 40 -10%"
+        "impacts": [
+            {
+                "actif": "Nvidia",
+                "variation": 0.35
+            },
+            {
+                "actif": "Google",
+                "variation": -0.15
+            },
+            {
+                "actif": "CAC 40",
+                "variation": -0.1
+            }
+        ]
     },
     {
         "id": "003",
@@ -21,7 +47,20 @@
         "titre": "Révolution Quantique",
         "importance": "Critique",
         "message": "🧬 RUPTURE TECHNOLOGIQUE : Des chercheurs annoncent la maîtrise du premier ordinateur quantique commercial. Le chiffrement classique tremble !",
-        "impacts": "Google +50% | Bitcoin -60% | Nvidia +20%"
+        "impacts": [
+            {
+                "actif": "Google",
+                "variation": 0.5
+            },
+            {
+                "actif": "Bitcoin",
+                "variation": -0.6
+            },
+            {
+                "actif": "Nvidia",
+                "variation": 0.2
+            }
+        ]
     },
     {
         "id": "004",
@@ -29,7 +68,20 @@
         "titre": "Faille Zero-Day critique",
         "importance": "Forte",
         "message": "⚡ CYBER-ATTAQUE : Une faille critique non corrigée paralyse des millions de serveurs à travers le monde. Le chaos numérique commence.",
-        "impacts": "Google -18% | Nvidia -12% | CAC 40 -5%"
+        "impacts": [
+            {
+                "actif": "Google",
+                "variation": -0.18
+            },
+            {
+                "actif": "Nvidia",
+                "variation": -0.12
+            },
+            {
+                "actif": "CAC 40",
+                "variation": -0.05
+            }
+        ]
     },
     {
         "id": "005",
@@ -37,7 +89,16 @@
         "titre": "Réglementation antitrust UE",
         "importance": "Modérée",
         "message": "🇪🇺 DIRECT BRUXELLES : La Commission Européenne frappe fort et impose un démantèlement partiel des monopoles de la Tech.",
-        "impacts": "Google -12% | CAC 40 -3%"
+        "impacts": [
+            {
+                "actif": "Google",
+                "variation": -0.12
+            },
+            {
+                "actif": "CAC 40",
+                "variation": -0.03
+            }
+        ]
     },
     {
         "id": "006",
@@ -45,7 +106,20 @@
         "titre": "Taxe sur les superprofits Tech",
         "importance": "Modérée",
         "message": "💸 FISCALITÉ : Un accord mondial est signé pour taxer lourdement les superprofits des géants du numérique.",
-        "impacts": "Nvidia -10% | Google -8% | CAC 40 -4%"
+        "impacts": [
+            {
+                "actif": "Nvidia",
+                "variation": -0.1
+            },
+            {
+                "actif": "Google",
+                "variation": -0.08
+            },
+            {
+                "actif": "CAC 40",
+                "variation": -0.04
+            }
+        ]
     },
     {
         "id": "007",
@@ -53,7 +127,16 @@
         "titre": "Fusion majeure dans la Silicon Valley",
         "importance": "Forte",
         "message": "🤝 MEGA-FUSION : Coup de tonnerre dans l'industrie, deux titans du logiciel unissent leurs forces pour écraser la concurrence.",
-        "impacts": "Google +15% | Nvidia +8%"
+        "impacts": [
+            {
+                "actif": "Google",
+                "variation": 0.15
+            },
+            {
+                "actif": "Nvidia",
+                "variation": 0.08
+            }
+        ]
     },
     {
         "id": "008",
@@ -61,7 +144,12 @@
         "titre": "Boycott des réseaux sociaux",
         "importance": "Faible",
         "message": "📱 #Disconnect : Une campagne citoyenne massive pousse des millions d'utilisateurs à supprimer leurs comptes des réseaux sociaux.",
-        "impacts": "Google -5%"
+        "impacts": [
+            {
+                "actif": "Google",
+                "variation": -0.05
+            }
+        ]
     },
     {
         "id": "009",
@@ -69,7 +157,16 @@
         "titre": "Avancée sur les puces neuronales",
         "importance": "Forte",
         "message": "🧠 BIOTECH : La première puce cérébrale grand public reçoit l'homologation médicale. L'humain connecté devient réalité.",
-        "impacts": "Nvidia +22% | Google +12%"
+        "impacts": [
+            {
+                "actif": "Nvidia",
+                "variation": 0.22
+            },
+            {
+                "actif": "Google",
+                "variation": 0.12
+            }
+        ]
     },
     {
         "id": "010",
@@ -77,7 +174,16 @@
         "titre": "Panne mondiale de serveurs Cloud",
         "importance": "Modérée",
         "message": "🌐 ÉCRAN NOIR : Moitié du web mondial est inaccessible. Un incendie majeur a détruit le principal hub de serveurs cloud.",
-        "impacts": "Google -8% | CAC 40 -4%"
+        "impacts": [
+            {
+                "actif": "Google",
+                "variation": -0.08
+            },
+            {
+                "actif": "CAC 40",
+                "variation": -0.04
+            }
+        ]
     },
     {
         "id": "011",
@@ -85,7 +191,16 @@
         "titre": "Adoption de l'IA par l'État",
         "importance": "Modérée",
         "message": "🏛️ MODERNISATION : L'administration publique automatise 70% de ses services de gestion grâce à de nouveaux modèles d'IA.",
-        "impacts": "Google +10% | Nvidia +14%"
+        "impacts": [
+            {
+                "actif": "Google",
+                "variation": 0.1
+            },
+            {
+                "actif": "Nvidia",
+                "variation": 0.14
+            }
+        ]
     },
     {
         "id": "012",
@@ -93,7 +208,16 @@
         "titre": "Cyberattaque étatique d'envergure",
         "importance": "Critique",
         "message": "💥 GUERRE NUMÉRIQUE : Un État souverain sabote les infrastructures bancaires occidentales. Les marchés traditionnels se figent.",
-        "impacts": "CAC 40 -12% | Bitcoin +25%"
+        "impacts": [
+            {
+                "actif": "CAC 40",
+                "variation": -0.12
+            },
+            {
+                "actif": "Bitcoin",
+                "variation": 0.25
+            }
+        ]
     },
     {
         "id": "013",
@@ -101,7 +225,12 @@
         "titre": "Nouveau système d'exploitation",
         "importance": "Modérée",
         "message": "💻 TECH DROP : Une interface révolutionnaire basée sur la pensée et la voix vient remplacer définitivement l'usage de la souris.",
-        "impacts": "Google +12%"
+        "impacts": [
+            {
+                "actif": "Google",
+                "variation": 0.12
+            }
+        ]
     },
     {
         "id": "014",
@@ -109,7 +238,16 @@
         "titre": "Nvidia bat les prévisions de 200%",
         "importance": "Forte",
         "message": "📈 RÉSULTATS : Les bénéfices trimestriels annoncés dépassent l'entendement. La frénésie acheteuse s'empare de l'action !",
-        "impacts": "Nvidia +28% | CAC 40 +4%"
+        "impacts": [
+            {
+                "actif": "Nvidia",
+                "variation": 0.28
+            },
+            {
+                "actif": "CAC 40",
+                "variation": 0.04
+            }
+        ]
     },
     {
         "id": "015",
@@ -117,7 +255,16 @@
         "titre": "Interdiction des puces vers l'Asie",
         "importance": "Forte",
         "message": "🗺️ EMBARGO GÉOPOLITIQUE : La Maison-Blanche bloque toutes les exportations de processeurs avancés vers les marchés asiatiques.",
-        "impacts": "Nvidia -22% | Or +8%"
+        "impacts": [
+            {
+                "actif": "Nvidia",
+                "variation": -0.22
+            },
+            {
+                "actif": "Or",
+                "variation": 0.08
+            }
+        ]
     },
     {
         "id": "016",
@@ -125,7 +272,12 @@
         "titre": "Brevet révolutionnaire algorithmique",
         "importance": "Modérée",
         "message": "📜 PROPRIÉTÉ INTELLECTUELLE : Un brevet secret sur la compression absolue de données vient d'être accordé. Une mine d'or.",
-        "impacts": "Google +15%"
+        "impacts": [
+            {
+                "actif": "Google",
+                "variation": 0.15
+            }
+        ]
     },
     {
         "id": "017",
@@ -133,7 +285,12 @@
         "titre": "Scandale de fuite de données",
         "importance": "Modérée",
         "message": "🔓 ENQUÊTE EXCLUSIVE : Vos profils psychologiques, messages privés et mots de passe vendus aux enchères sur le darknet.",
-        "impacts": "Google -14%"
+        "impacts": [
+            {
+                "actif": "Google",
+                "variation": -0.14
+            }
+        ]
     },
     {
         "id": "018",
@@ -141,7 +298,16 @@
         "titre": "Remplacement des devs par l'IA",
         "importance": "Forte",
         "message": "🤖 RESTRUCTURATION INDUSTRIELLE : Les entreprises tech réduisent massivement leurs équipes de dev au profit d'agents autonomes.",
-        "impacts": "Google +20% | Nvidia +25%"
+        "impacts": [
+            {
+                "actif": "Google",
+                "variation": 0.2
+            },
+            {
+                "actif": "Nvidia",
+                "variation": 0.25
+            }
+        ]
     },
     {
         "id": "019",
@@ -149,7 +315,16 @@
         "titre": "Grève historique des fonderies",
         "importance": "Forte",
         "message": "🛠️ GRÈVE GÉNÉRALE : Les ouvriers des plus grandes usines de puces cessent le travail. Les chaînes d'assemblage mondiales sont paralysées.",
-        "impacts": "Nvidia -15% | Matériaux +18%"
+        "impacts": [
+            {
+                "actif": "Nvidia",
+                "variation": -0.15
+            },
+            {
+                "actif": "Matériaux",
+                "variation": 0.18
+            }
+        ]
     },
     {
         "id": "020",
@@ -157,7 +332,16 @@
         "titre": "Obsolescence de puces de minage",
         "importance": "Modérée",
         "message": "⛏️ FIN D'UNE ÈRE : Un changement d'architecture logicielle rend obsolète l'intégralité du matériel de minage existant.",
-        "impacts": "Bitcoin -20% | Nvidia -12%"
+        "impacts": [
+            {
+                "actif": "Bitcoin",
+                "variation": -0.2
+            },
+            {
+                "actif": "Nvidia",
+                "variation": -0.12
+            }
+        ]
     },
     {
         "id": "021",
@@ -165,7 +349,16 @@
         "titre": "Explosion du marché de la VR",
         "importance": "Modérée",
         "message": "👓 VENTES RECORDS : Les casques de réalité mixte s'arrachent pour Noël. Le métavers économique trouve enfin son public.",
-        "impacts": "Nvidia +12% | Google +6%"
+        "impacts": [
+            {
+                "actif": "Nvidia",
+                "variation": 0.12
+            },
+            {
+                "actif": "Google",
+                "variation": 0.06
+            }
+        ]
     },
     {
         "id": "022",
@@ -173,7 +366,16 @@
         "titre": "Concurrent OpenSource puissant",
         "importance": "Modérée",
         "message": "🔓 COMMUNAUTÉ : Un modèle d'intelligence artificielle gratuit et géré par la communauté surpasse les solutions payantes du marché.",
-        "impacts": "Google -10% | Nvidia -5%"
+        "impacts": [
+            {
+                "actif": "Google",
+                "variation": -0.1
+            },
+            {
+                "actif": "Nvidia",
+                "variation": -0.05
+            }
+        ]
     },
     {
         "id": "023",
@@ -181,7 +383,16 @@
         "titre": "Investissement souverain dans l'IA",
         "importance": "Forte",
         "message": "💰 FONDS SOUVERAIN : Un consortium de pays pétroliers injecte 100 milliards de dollars pour financer l'infrastructure IA de demain.",
-        "impacts": "Nvidia +18% | Google +10%"
+        "impacts": [
+            {
+                "actif": "Nvidia",
+                "variation": 0.18
+            },
+            {
+                "actif": "Google",
+                "variation": 0.1
+            }
+        ]
     },
     {
         "id": "024",
@@ -189,7 +400,12 @@
         "titre": "Plafonnement des tarifs Data Centers",
         "importance": "Faible",
         "message": "⚡ DÉCRET ÉNERGIE : Face à la crise, l'État impose un tarif d'électricité préférentiel et fixe pour les serveurs stratégiques.",
-        "impacts": "Google +5%"
+        "impacts": [
+            {
+                "actif": "Google",
+                "variation": 0.05
+            }
+        ]
     },
     {
         "id": "025",
@@ -197,7 +413,12 @@
         "titre": "Rachat historique par Nvidia",
         "importance": "Forte",
         "message": "🦅 OPA HOSTILE : Le leader du hardware avale le plus grand éditeur de moteurs de jeux vidéo du monde.",
-        "impacts": "Nvidia +16%"
+        "impacts": [
+            {
+                "actif": "Nvidia",
+                "variation": 0.16
+            }
+        ]
     },
     {
         "id": "026",
@@ -205,7 +426,20 @@
         "titre": "Krach boursier du Nasdaq",
         "importance": "Critique",
         "message": "📉 ALERTE ROUGE : Panique générale à Wall Street, l'indice des valeurs technologiques enregistre sa pire séance depuis 2000.",
-        "impacts": "Nvidia -35% | Google -22% | Bitcoin -25%"
+        "impacts": [
+            {
+                "actif": "Nvidia",
+                "variation": -0.35
+            },
+            {
+                "actif": "Google",
+                "variation": -0.22
+            },
+            {
+                "actif": "Bitcoin",
+                "variation": -0.25
+            }
+        ]
     },
     {
         "id": "027",
@@ -213,7 +447,12 @@
         "titre": "Taxation du streaming et cloud",
         "importance": "Faible",
         "message": "📺 TAXE CULTURE : Une nouvelle redevance numérique est votée pour financer la création artistique traditionnelle.",
-        "impacts": "Google -4%"
+        "impacts": [
+            {
+                "actif": "Google",
+                "variation": -0.04
+            }
+        ]
     },
     {
         "id": "028",
@@ -221,7 +460,16 @@
         "titre": "Alternative économique au silicium",
         "importance": "Forte",
         "message": "🌱 BIO-COMPOSANTS : Des chercheurs réussissent à stocker de l'information sur des molécules organiques synthétiques.",
-        "impacts": "Nvidia -18% | Nouveaux Actifs +30%"
+        "impacts": [
+            {
+                "actif": "Nvidia",
+                "variation": -0.18
+            },
+            {
+                "actif": "Nouveaux Actifs",
+                "variation": 0.3
+            }
+        ]
     },
     {
         "id": "029",
@@ -229,7 +477,16 @@
         "titre": "IA déclarée entité juridique",
         "importance": "Critique",
         "message": "⚖️ JURISPRUDENCE : Une Cour Suprême accorde pour la première fois la personnalité juridique autonome à un système d'IA.",
-        "impacts": "Google -15% | Incertitude Marché -10%"
+        "impacts": [
+            {
+                "actif": "Google",
+                "variation": -0.15
+            },
+            {
+                "actif": "Incertitude Marché",
+                "variation": -0.1
+            }
+        ]
     },
     {
         "id": "030",
@@ -237,7 +494,12 @@
         "titre": "Spéculation extrême puissance calcul",
         "importance": "Modérée",
         "message": "⚡ MARCHÉ NOIR : La demande de serveurs est telle que les jetons de puissance de calcul s'échangent comme de l'or.",
-        "impacts": "Nvidia +15%"
+        "impacts": [
+            {
+                "actif": "Nvidia",
+                "variation": 0.15
+            }
+        ]
     },
     {
         "id": "031",
@@ -245,7 +507,20 @@
         "titre": "Choc Pétrolier au Moyen-Orient",
         "importance": "Critique",
         "message": "🛢️ ÉDITION SPÉCIALE : Fermeture soudaine des terminaux pétroliers majeurs du Golfe. Le prix du baril s'envole vers les sommets.",
-        "impacts": "TotalEnergies +40% | Or +20% | CAC 40 -15%"
+        "impacts": [
+            {
+                "actif": "TotalEnergies",
+                "variation": 0.4
+            },
+            {
+                "actif": "Or",
+                "variation": 0.2
+            },
+            {
+                "actif": "CAC 40",
+                "variation": -0.15
+            }
+        ]
     },
     {
         "id": "032",
@@ -253,7 +528,16 @@
         "titre": "Accord de transition accélérée",
         "importance": "Forte",
         "message": "🌍 COP EXTRAORDINAIRE : Traité contraignant signé par 150 pays pour interdire le financement de tout nouveau projet d'énergie fossile.",
-        "impacts": "TotalEnergies -30% | CAC 40 +10%"
+        "impacts": [
+            {
+                "actif": "TotalEnergies",
+                "variation": -0.3
+            },
+            {
+                "actif": "CAC 40",
+                "variation": 0.1
+            }
+        ]
     },
     {
         "id": "033",
@@ -261,7 +545,16 @@
         "titre": "Nationalisation du cuivre",
         "importance": "Modérée",
         "message": "⛏️ SOUVERAINETÉ : Le premier producteur mondial de cuivre saisit toutes les mines privées de son territoire.",
-        "impacts": "Or +15% | TotalEnergies -10%"
+        "impacts": [
+            {
+                "actif": "Or",
+                "variation": 0.15
+            },
+            {
+                "actif": "TotalEnergies",
+                "variation": -0.1
+            }
+        ]
     },
     {
         "id": "034",
@@ -269,7 +562,16 @@
         "titre": "Embargo commercial transatlantique",
         "importance": "Forte",
         "message": "🚢 TENSIONS DIPLOMATIQUES : Rupture commerciale entre les deux blocs économiques majeurs. Les cargos font demi-tour.",
-        "impacts": "CAC 40 -12% | EUR/USD -6%"
+        "impacts": [
+            {
+                "actif": "CAC 40",
+                "variation": -0.12
+            },
+            {
+                "actif": "EUR/USD",
+                "variation": -0.06
+            }
+        ]
     },
     {
         "id": "035",
@@ -277,7 +579,16 @@
         "titre": "Nouvelle taxe carbone européenne",
         "importance": "Modérée",
         "message": "🌱 FRONTIÈRE VERTE : L'Europe met en place son nouveau mécanisme de barrière carbone, pénalisant l'industrie lourde.",
-        "impacts": "TotalEnergies -12% | CAC 40 -4%"
+        "impacts": [
+            {
+                "actif": "TotalEnergies",
+                "variation": -0.12
+            },
+            {
+                "actif": "CAC 40",
+                "variation": -0.04
+            }
+        ]
     },
     {
         "id": "036",
@@ -285,7 +596,12 @@
         "titre": "Découverte d'un gisement d'or géant",
         "importance": "Forte",
         "message": "🪙 RUMBLE DANS LA JUNGLE : Un gisement d'or colossal, estimé à 10% des réserves mondiales, est découvert par des prospecteurs.",
-        "impacts": "Or -25%"
+        "impacts": [
+            {
+                "actif": "Or",
+                "variation": -0.25
+            }
+        ]
     },
     {
         "id": "037",
@@ -293,7 +609,16 @@
         "titre": "Tensions maritimes en Mer de Chine",
         "importance": "Forte",
         "message": "⚓ ALERTE MILITAIRE : Des navires de guerre se font face dans un détroit commercial ultra-stratégique. Les marchés retiennent leur souffle.",
-        "impacts": "CAC 40 -10% | Or +12%"
+        "impacts": [
+            {
+                "actif": "CAC 40",
+                "variation": -0.1
+            },
+            {
+                "actif": "Or",
+                "variation": 0.12
+            }
+        ]
     },
     {
         "id": "038",
@@ -301,7 +626,16 @@
         "titre": "Sabotage d'un pipeline stratégique",
         "importance": "Forte",
         "message": "🔥 EXPLOSION : Une section sous-marine du principal gazoduc alimentant le continent a été détruite par un acte de malveillance.",
-        "impacts": "TotalEnergies +22% | CAC 40 -6%"
+        "impacts": [
+            {
+                "actif": "TotalEnergies",
+                "variation": 0.22
+            },
+            {
+                "actif": "CAC 40",
+                "variation": -0.06
+            }
+        ]
     },
     {
         "id": "039",
@@ -309,7 +643,16 @@
         "titre": "Fusion nucléaire commerciale",
         "importance": "Critique",
         "message": "⚛️ EURÊKA : Un laboratoire valide un gain net d'énergie stable sur un réacteur à fusion. L'énergie infinie est à portée de main !",
-        "impacts": "TotalEnergies -50% | CAC 40 +25%"
+        "impacts": [
+            {
+                "actif": "TotalEnergies",
+                "variation": -0.5
+            },
+            {
+                "actif": "CAC 40",
+                "variation": 0.25
+            }
+        ]
     },
     {
         "id": "040",
@@ -317,7 +660,16 @@
         "titre": "Subventions au renouvelable",
         "importance": "Modérée",
         "message": "☀️ GREEN NEW DEAL : Un chèque massif de l'État est débloqué pour équiper chaque toiture industrielle de panneaux solaires.",
-        "impacts": "TotalEnergies -8% | CAC 40 +5%"
+        "impacts": [
+            {
+                "actif": "TotalEnergies",
+                "variation": -0.08
+            },
+            {
+                "actif": "CAC 40",
+                "variation": 0.05
+            }
+        ]
     },
     {
         "id": "041",
@@ -325,7 +677,16 @@
         "titre": "Blocus sur le lithium",
         "importance": "Forte",
         "message": "🔋 GUERRE DES BATTERIES : Un cartel sud-américain bloque l'exportation de lithium brut pour forcer la construction d'usines locales.",
-        "impacts": "Nvidia -14% | Composants +25%"
+        "impacts": [
+            {
+                "actif": "Nvidia",
+                "variation": -0.14
+            },
+            {
+                "actif": "Composants",
+                "variation": 0.25
+            }
+        ]
     },
     {
         "id": "042",
@@ -333,7 +694,16 @@
         "titre": "Guerre de l'eau (Afrique du Nord)",
         "importance": "Modérée",
         "message": "💧 URGENCE GÉOPOLITIQUE : Conflit armé déclaré autour du contrôle d'un grand barrage hydraulique transfrontalier.",
-        "impacts": "Or +10% | Instabilité -5%"
+        "impacts": [
+            {
+                "actif": "Or",
+                "variation": 0.1
+            },
+            {
+                "actif": "Instabilité",
+                "variation": -0.05
+            }
+        ]
     },
     {
         "id": "043",
@@ -341,7 +711,16 @@
         "titre": "Crise politique majeure en Europe",
         "importance": "Forte",
         "message": "🇪🇺 INSTITUTIONS EN PÉRIL : Une dissolution surprise et l'absence de majorité gouvernementale plongent la zone euro dans l'inconnu.",
-        "impacts": "EUR/USD -12% | CAC 40 -14%"
+        "impacts": [
+            {
+                "actif": "EUR/USD",
+                "variation": -0.12
+            },
+            {
+                "actif": "CAC 40",
+                "variation": -0.14
+            }
+        ]
     },
     {
         "id": "044",
@@ -349,7 +728,16 @@
         "titre": "Rapprochement commercial USA-UE",
         "importance": "Modérée",
         "message": "🤝 PACTE DE L'ATLANTIQUE : Signature d'un traité d'exemption de droits de douane sur les technologies et l'industrie.",
-        "impacts": "CAC 40 +8% | EUR/USD +4%"
+        "impacts": [
+            {
+                "actif": "CAC 40",
+                "variation": 0.08
+            },
+            {
+                "actif": "EUR/USD",
+                "variation": 0.04
+            }
+        ]
     },
     {
         "id": "045",
@@ -357,7 +745,16 @@
         "titre": "Élections US : Protectionnisme",
         "importance": "Critique",
         "message": "🇺🇸 AMERICA FIRST : Le nouveau président américain annonce des barrières douanières immédiates de 25% sur toutes les importations.",
-        "impacts": "CAC 40 -15% | EUR/USD -10%"
+        "impacts": [
+            {
+                "actif": "CAC 40",
+                "variation": -0.15
+            },
+            {
+                "actif": "EUR/USD",
+                "variation": -0.1
+            }
+        ]
     },
     {
         "id": "046",
@@ -365,7 +762,12 @@
         "titre": "Taxe mondiale sur le fret maritime",
         "importance": "Modérée",
         "message": "🌊 COMMERCE GLOBAL : L'Organisation Maritime Internationale applique une surtaxe environnementale sévère sur le transport par conteneurs.",
-        "impacts": "CAC 40 -7%"
+        "impacts": [
+            {
+                "actif": "CAC 40",
+                "variation": -0.07
+            }
+        ]
     },
     {
         "id": "047",
@@ -373,7 +775,16 @@
         "titre": "Découverte d'uranium en France",
         "importance": "Modérée",
         "message": "📢 BULLETIN ÉCONOMIQUE : Changement de tendance important repéré sur l'actif : Découverte d'uranium en France.",
-        "impacts": "TotalEnergies -5% | CAC 40 +6%"
+        "impacts": [
+            {
+                "actif": "TotalEnergies",
+                "variation": -0.05
+            },
+            {
+                "actif": "CAC 40",
+                "variation": 0.06
+            }
+        ]
     },
     {
         "id": "048",
@@ -381,7 +792,16 @@
         "titre": "Effondrement des pays de l'OPEP",
         "importance": "Forte",
         "message": "📢 BULLETIN ÉCONOMIQUE : Changement de tendance important repéré sur l'actif : Effondrement des pays de l'OPEP.",
-        "impacts": "TotalEnergies -35% | Or -10%"
+        "impacts": [
+            {
+                "actif": "TotalEnergies",
+                "variation": -0.35
+            },
+            {
+                "actif": "Or",
+                "variation": -0.1
+            }
+        ]
     },
     {
         "id": "049",
@@ -389,7 +809,16 @@
         "titre": "Boom de l'hydrogène vert",
         "importance": "Modérée",
         "message": "📢 BULLETIN ÉCONOMIQUE : Changement de tendance important repéré sur l'actif : Boom de l'hydrogène vert.",
-        "impacts": "TotalEnergies -10% | Nouvel Indice +20%"
+        "impacts": [
+            {
+                "actif": "TotalEnergies",
+                "variation": -0.1
+            },
+            {
+                "actif": "Nouvel Indice",
+                "variation": 0.2
+            }
+        ]
     },
     {
         "id": "050",
@@ -397,7 +826,16 @@
         "titre": "Rationnement d'électricité industriel",
         "importance": "Forte",
         "message": "📢 BULLETIN ÉCONOMIQUE : Changement de tendance important repéré sur l'actif : Rationnement d'électricité industriel.",
-        "impacts": "CAC 40 -14% | Nvidia -10%"
+        "impacts": [
+            {
+                "actif": "CAC 40",
+                "variation": -0.14
+            },
+            {
+                "actif": "Nvidia",
+                "variation": -0.1
+            }
+        ]
     },
     {
         "id": "051",
@@ -405,7 +843,16 @@
         "titre": "Accord douanier sino-européen",
         "importance": "Modérée",
         "message": "📢 BULLETIN ÉCONOMIQUE : Changement de tendance important repéré sur l'actif : Accord douanier sino-européen.",
-        "impacts": "CAC 40 +9% | EUR/USD +3%"
+        "impacts": [
+            {
+                "actif": "CAC 40",
+                "variation": 0.09
+            },
+            {
+                "actif": "EUR/USD",
+                "variation": 0.03
+            }
+        ]
     },
     {
         "id": "052",
@@ -413,7 +860,12 @@
         "titre": "Nationalisation de TotalEnergies",
         "importance": "Forte",
         "message": "📢 BULLETIN ÉCONOMIQUE : Changement de tendance important repéré sur l'actif : Nationalisation de TotalEnergies.",
-        "impacts": "TotalEnergies -20% (Actionnaires)"
+        "impacts": [
+            {
+                "actif": "TotalEnergies",
+                "variation": -0.2
+            }
+        ]
     },
     {
         "id": "053",
@@ -421,7 +873,16 @@
         "titre": "Incident nucléaire civil mineur",
         "importance": "Modérée",
         "message": "📢 BULLETIN ÉCONOMIQUE : Changement de tendance important repéré sur l'actif : Incident nucléaire civil mineur.",
-        "impacts": "CAC 40 -8% | Énergie -15%"
+        "impacts": [
+            {
+                "actif": "CAC 40",
+                "variation": -0.08
+            },
+            {
+                "actif": "Énergie",
+                "variation": -0.15
+            }
+        ]
     },
     {
         "id": "054",
@@ -429,7 +890,16 @@
         "titre": "Découverte pétrole de schiste",
         "importance": "Modérée",
         "message": "📢 BULLETIN ÉCONOMIQUE : Changement de tendance important repéré sur l'actif : Découverte pétrole de schiste.",
-        "impacts": "TotalEnergies +15% | Or -5%"
+        "impacts": [
+            {
+                "actif": "TotalEnergies",
+                "variation": 0.15
+            },
+            {
+                "actif": "Or",
+                "variation": -0.05
+            }
+        ]
     },
     {
         "id": "055",
@@ -437,7 +907,12 @@
         "titre": "Interdiction du plastique de synthèse",
         "importance": "Modérée",
         "message": "📢 BULLETIN ÉCONOMIQUE : Changement de tendance important repéré sur l'actif : Interdiction du plastique de synthèse.",
-        "impacts": "TotalEnergies -14%"
+        "impacts": [
+            {
+                "actif": "TotalEnergies",
+                "variation": -0.14
+            }
+        ]
     },
     {
         "id": "056",
@@ -445,7 +920,12 @@
         "titre": "Spéculation sur quotas carbone",
         "importance": "Faible",
         "message": "📢 BULLETIN ÉCONOMIQUE : Changement de tendance important repéré sur l'actif : Spéculation sur quotas carbone.",
-        "impacts": "Marché Carbone +30%"
+        "impacts": [
+            {
+                "actif": "Marché Carbone",
+                "variation": 0.3
+            }
+        ]
     },
     {
         "id": "057",
@@ -453,7 +933,7 @@
         "titre": "Guerre commerciale panneaux solaires",
         "importance": "Faible",
         "message": "📢 BULLETIN ÉCONOMIQUE : Changement de tendance important repéré sur l'actif : Guerre commerciale panneaux solaires.",
-        "impacts": "Marché Énergie ±5%"
+        "impacts": []
     },
     {
         "id": "058",
@@ -461,7 +941,20 @@
         "titre": "Fermeture des détroits pétroliers",
         "importance": "Critique",
         "message": "📢 BULLETIN ÉCONOMIQUE : Changement de tendance important repéré sur l'actif : Fermeture des détroits pétroliers.",
-        "impacts": "TotalEnergies +35% | Or +18% | CAC 40 -18%"
+        "impacts": [
+            {
+                "actif": "TotalEnergies",
+                "variation": 0.35
+            },
+            {
+                "actif": "Or",
+                "variation": 0.18
+            },
+            {
+                "actif": "CAC 40",
+                "variation": -0.18
+            }
+        ]
     },
     {
         "id": "059",
@@ -469,7 +962,16 @@
         "titre": "Plan de relance industriel européen",
         "importance": "Forte",
         "message": "📢 BULLETIN ÉCONOMIQUE : Changement de tendance important repéré sur l'actif : Plan de relance industriel européen.",
-        "impacts": "CAC 40 +15% | EUR/USD +6%"
+        "impacts": [
+            {
+                "actif": "CAC 40",
+                "variation": 0.15
+            },
+            {
+                "actif": "EUR/USD",
+                "variation": 0.06
+            }
+        ]
     },
     {
         "id": "060",
@@ -477,7 +979,12 @@
         "titre": "Crash d'un supertanker (Manche)",
         "importance": "Modérée",
         "message": "📢 BULLETIN ÉCONOMIQUE : Changement de tendance important repéré sur l'actif : Crash d'un supertanker (Manche).",
-        "impacts": "TotalEnergies -12%"
+        "impacts": [
+            {
+                "actif": "TotalEnergies",
+                "variation": -0.12
+            }
+        ]
     },
     {
         "id": "061",
@@ -485,7 +992,16 @@
         "titre": "Interdiction bancaire des cryptos",
         "importance": "Critique",
         "message": "🚫 SÉCURITÉ FINANCIÈRE : Ordre souverain fait aux banques de bloquer immédiatement tout virement vers les plateformes d'échange crypto.",
-        "impacts": "Bitcoin -75% | Nvidia -20%"
+        "impacts": [
+            {
+                "actif": "Bitcoin",
+                "variation": -0.75
+            },
+            {
+                "actif": "Nvidia",
+                "variation": -0.2
+            }
+        ]
     },
     {
         "id": "062",
@@ -493,7 +1009,16 @@
         "titre": "Bitcoin comme monnaie de réserve",
         "importance": "Critique",
         "message": "₿ HISTORIQUE : Un État du G20 annonce avoir converti 5% de ses réserves de change stratégiques en Bitcoins.",
-        "impacts": "Bitcoin +120% | EUR/USD -10%"
+        "impacts": [
+            {
+                "actif": "Bitcoin",
+                "variation": 1.2
+            },
+            {
+                "actif": "EUR/USD",
+                "variation": -0.1
+            }
+        ]
     },
     {
         "id": "063",
@@ -501,7 +1026,16 @@
         "titre": "Faillite d'une plateforme d'échange",
         "importance": "Critique",
         "message": "💥 ESCROQUERIE : Le numéro 1 mondial des exchanges crypto gèle les retraits. Les dirigeants ont pris la fuite avec les caisses.",
-        "impacts": "Bitcoin -45% | Nvidia -10%"
+        "impacts": [
+            {
+                "actif": "Bitcoin",
+                "variation": -0.45
+            },
+            {
+                "actif": "Nvidia",
+                "variation": -0.1
+            }
+        ]
     },
     {
         "id": "064",
@@ -509,7 +1043,16 @@
         "titre": "Rapport Fed sur l'inflation",
         "importance": "Modérée",
         "message": "📢 BULLETIN ÉCONOMIQUE : Changement de tendance important repéré sur l'actif : Rapport Fed sur l'inflation.",
-        "impacts": "EUR/USD +5% | CAC 40 -4%"
+        "impacts": [
+            {
+                "actif": "EUR/USD",
+                "variation": 0.05
+            },
+            {
+                "actif": "CAC 40",
+                "variation": -0.04
+            }
+        ]
     },
     {
         "id": "065",
@@ -517,7 +1060,12 @@
         "titre": "Adoption institutionnelle massive",
         "importance": "Forte",
         "message": "📢 BULLETIN ÉCONOMIQUE : Changement de tendance important repéré sur l'actif : Adoption institutionnelle massive.",
-        "impacts": "Bitcoin +45%"
+        "impacts": [
+            {
+                "actif": "Bitcoin",
+                "variation": 0.45
+            }
+        ]
     },
     {
         "id": "066",
@@ -525,7 +1073,12 @@
         "titre": "Réglementation stablecoins stricte",
         "importance": "Modérée",
         "message": "📢 BULLETIN ÉCONOMIQUE : Changement de tendance important repéré sur l'actif : Réglementation stablecoins stricte.",
-        "impacts": "Bitcoin -15%"
+        "impacts": [
+            {
+                "actif": "Bitcoin",
+                "variation": -0.15
+            }
+        ]
     },
     {
         "id": "067",
@@ -533,7 +1086,12 @@
         "titre": "Attaque 51% sur blockchain mineure",
         "importance": "Modérée",
         "message": "📢 BULLETIN ÉCONOMIQUE : Changement de tendance important repéré sur l'actif : Attaque 51% sur blockchain mineure.",
-        "impacts": "Bitcoin -10%"
+        "impacts": [
+            {
+                "actif": "Bitcoin",
+                "variation": -0.1
+            }
+        ]
     },
     {
         "id": "068",
@@ -541,7 +1099,12 @@
         "titre": "Mise à jour majeure réseau Bitcoin",
         "importance": "Modérée",
         "message": "📢 BULLETIN ÉCONOMIQUE : Changement de tendance important repéré sur l'actif : Mise à jour majeure réseau Bitcoin.",
-        "impacts": "Bitcoin +18%"
+        "impacts": [
+            {
+                "actif": "Bitcoin",
+                "variation": 0.18
+            }
+        ]
     },
     {
         "id": "069",
@@ -549,7 +1112,16 @@
         "titre": "Création de l'Euro Numérique",
         "importance": "Forte",
         "message": "📢 BULLETIN ÉCONOMIQUE : Changement de tendance important repéré sur l'actif : Création de l'Euro Numérique.",
-        "impacts": "EUR/USD +12% | Bitcoin -15%"
+        "impacts": [
+            {
+                "actif": "EUR/USD",
+                "variation": 0.12
+            },
+            {
+                "actif": "Bitcoin",
+                "variation": -0.15
+            }
+        ]
     },
     {
         "id": "070",
@@ -557,7 +1129,16 @@
         "titre": "Fuite de capitaux hors du dollar",
         "importance": "Forte",
         "message": "📢 BULLETIN ÉCONOMIQUE : Changement de tendance important repéré sur l'actif : Fuite de capitaux hors du dollar.",
-        "impacts": "EUR/USD +14% | Or +10%"
+        "impacts": [
+            {
+                "actif": "EUR/USD",
+                "variation": 0.14
+            },
+            {
+                "actif": "Or",
+                "variation": 0.1
+            }
+        ]
     },
     {
         "id": "071",
@@ -565,7 +1146,12 @@
         "titre": "Spéculation extrême des particuliers",
         "importance": "Modérée",
         "message": "📢 BULLETIN ÉCONOMIQUE : Changement de tendance important repéré sur l'actif : Spéculation extrême des particuliers.",
-        "impacts": "Bitcoin +30% | Volatilité"
+        "impacts": [
+            {
+                "actif": "Bitcoin",
+                "variation": 0.3
+            }
+        ]
     },
     {
         "id": "072",
@@ -573,7 +1159,16 @@
         "titre": "Interdiction du minage PoW (Europe)",
         "importance": "Forte",
         "message": "📢 BULLETIN ÉCONOMIQUE : Changement de tendance important repéré sur l'actif : Interdiction du minage PoW (Europe).",
-        "impacts": "Bitcoin -25% | Nvidia -15%"
+        "impacts": [
+            {
+                "actif": "Bitcoin",
+                "variation": -0.25
+            },
+            {
+                "actif": "Nvidia",
+                "variation": -0.15
+            }
+        ]
     },
     {
         "id": "073",
@@ -581,7 +1176,16 @@
         "titre": "Validation d'un ETF Ethereum spot",
         "importance": "Forte",
         "message": "📢 BULLETIN ÉCONOMIQUE : Changement de tendance important repéré sur l'actif : Validation d'un ETF Ethereum spot.",
-        "impacts": "Bitcoin +20% | Crypto +40%"
+        "impacts": [
+            {
+                "actif": "Bitcoin",
+                "variation": 0.2
+            },
+            {
+                "actif": "Crypto",
+                "variation": 0.4
+            }
+        ]
     },
     {
         "id": "074",
@@ -589,7 +1193,16 @@
         "titre": "Baisse historique des taux Fed",
         "importance": "Forte",
         "message": "📢 BULLETIN ÉCONOMIQUE : Changement de tendance important repéré sur l'actif : Baisse historique des taux Fed.",
-        "impacts": "CAC 40 +12% | Bitcoin +25%"
+        "impacts": [
+            {
+                "actif": "CAC 40",
+                "variation": 0.12
+            },
+            {
+                "actif": "Bitcoin",
+                "variation": 0.25
+            }
+        ]
     },
     {
         "id": "075",
@@ -597,7 +1210,16 @@
         "titre": "Hausse surprise des taux BCE",
         "importance": "Forte",
         "message": "📢 BULLETIN ÉCONOMIQUE : Changement de tendance important repéré sur l'actif : Hausse surprise des taux BCE.",
-        "impacts": "EUR/USD +10% | CAC 40 -8%"
+        "impacts": [
+            {
+                "actif": "EUR/USD",
+                "variation": 0.1
+            },
+            {
+                "actif": "CAC 40",
+                "variation": -0.08
+            }
+        ]
     },
     {
         "id": "076",
@@ -605,7 +1227,12 @@
         "titre": "Scandale blanchiment d'envergure",
         "importance": "Modérée",
         "message": "📢 BULLETIN ÉCONOMIQUE : Changement de tendance important repéré sur l'actif : Scandale blanchiment d'envergure.",
-        "impacts": "Bitcoin -18%"
+        "impacts": [
+            {
+                "actif": "Bitcoin",
+                "variation": -0.18
+            }
+        ]
     },
     {
         "id": "077",
@@ -613,7 +1240,12 @@
         "titre": "Krach éclair du marché crypto",
         "importance": "Forte",
         "message": "📢 BULLETIN ÉCONOMIQUE : Changement de tendance important repéré sur l'actif : Krach éclair du marché crypto.",
-        "impacts": "Bitcoin -30% en 1 heure"
+        "impacts": [
+            {
+                "actif": "Bitcoin",
+                "variation": -0.3
+            }
+        ]
     },
     {
         "id": "078",
@@ -621,7 +1253,12 @@
         "titre": "Un grand hedge fund achète du BTC",
         "importance": "Modérée",
         "message": "📢 BULLETIN ÉCONOMIQUE : Changement de tendance important repéré sur l'actif : Un grand hedge fund achète du BTC.",
-        "impacts": "Bitcoin +15%"
+        "impacts": [
+            {
+                "actif": "Bitcoin",
+                "variation": 0.15
+            }
+        ]
     },
     {
         "id": "079",
@@ -629,7 +1266,12 @@
         "titre": "Arnaque crypto d'un fonds souverain",
         "importance": "Modérée",
         "message": "📢 BULLETIN ÉCONOMIQUE : Changement de tendance important repéré sur l'actif : Arnaque crypto d'un fonds souverain.",
-        "impacts": "Bitcoin -22%"
+        "impacts": [
+            {
+                "actif": "Bitcoin",
+                "variation": -0.22
+            }
+        ]
     },
     {
         "id": "080",
@@ -637,7 +1279,16 @@
         "titre": "Démonétisation d'une monnaie fiat",
         "importance": "Forte",
         "message": "📢 BULLETIN ÉCONOMIQUE : Changement de tendance important repéré sur l'actif : Démonétisation d'une monnaie fiat.",
-        "impacts": "Bitcoin +35% | Or +12%"
+        "impacts": [
+            {
+                "actif": "Bitcoin",
+                "variation": 0.35
+            },
+            {
+                "actif": "Or",
+                "variation": 0.12
+            }
+        ]
     },
     {
         "id": "081",
@@ -645,7 +1296,20 @@
         "titre": "Panique bancaire aux USA",
         "importance": "Critique",
         "message": "📢 BULLETIN ÉCONOMIQUE : Changement de tendance important repéré sur l'actif : Panique bancaire aux USA.",
-        "impacts": "Or +25% | Bitcoin +40% | CAC 40 -15%"
+        "impacts": [
+            {
+                "actif": "Or",
+                "variation": 0.25
+            },
+            {
+                "actif": "Bitcoin",
+                "variation": 0.4
+            },
+            {
+                "actif": "CAC 40",
+                "variation": -0.15
+            }
+        ]
     },
     {
         "id": "082",
@@ -653,7 +1317,16 @@
         "titre": "Partenariat Google x Fondation Web3",
         "importance": "Modérée",
         "message": "📢 BULLETIN ÉCONOMIQUE : Changement de tendance important repéré sur l'actif : Partenariat Google x Fondation Web3.",
-        "impacts": "Google +5% | Bitcoin +12%"
+        "impacts": [
+            {
+                "actif": "Google",
+                "variation": 0.05
+            },
+            {
+                "actif": "Bitcoin",
+                "variation": 0.12
+            }
+        ]
     },
     {
         "id": "083",
@@ -661,7 +1334,16 @@
         "titre": "Lancement d'une crypto indexée Or",
         "importance": "Faible",
         "message": "📢 BULLETIN ÉCONOMIQUE : Changement de tendance important repéré sur l'actif : Lancement d'une crypto indexée Or.",
-        "impacts": "Or +3% | Bitcoin -5%"
+        "impacts": [
+            {
+                "actif": "Or",
+                "variation": 0.03
+            },
+            {
+                "actif": "Bitcoin",
+                "variation": -0.05
+            }
+        ]
     },
     {
         "id": "084",
@@ -669,7 +1351,12 @@
         "titre": "Rumeurs de régulation open-source",
         "importance": "Modérée",
         "message": "📢 BULLETIN ÉCONOMIQUE : Changement de tendance important repéré sur l'actif : Rumeurs de régulation open-source.",
-        "impacts": "Bitcoin -12%"
+        "impacts": [
+            {
+                "actif": "Bitcoin",
+                "variation": -0.12
+            }
+        ]
     },
     {
         "id": "085",
@@ -677,7 +1364,12 @@
         "titre": "Bulle spéculative sur les memecoins",
         "importance": "Faible",
         "message": "📢 BULLETIN ÉCONOMIQUE : Changement de tendance important repéré sur l'actif : Bulle spéculative sur les memecoins.",
-        "impacts": "Bitcoin +8%"
+        "impacts": [
+            {
+                "actif": "Bitcoin",
+                "variation": 0.08
+            }
+        ]
     },
     {
         "id": "086",
@@ -685,7 +1377,16 @@
         "titre": "Arrivée massive liquidités asiatiques",
         "importance": "Forte",
         "message": "📢 BULLETIN ÉCONOMIQUE : Changement de tendance important repéré sur l'actif : Arrivée massive liquidités asiatiques.",
-        "impacts": "Bitcoin +30% | Nvidia +5%"
+        "impacts": [
+            {
+                "actif": "Bitcoin",
+                "variation": 0.3
+            },
+            {
+                "actif": "Nvidia",
+                "variation": 0.05
+            }
+        ]
     },
     {
         "id": "087",
@@ -693,7 +1394,12 @@
         "titre": "Taxation à 50% plus-values crypto",
         "importance": "Forte",
         "message": "📢 BULLETIN ÉCONOMIQUE : Changement de tendance important repéré sur l'actif : Taxation à 50% plus-values crypto.",
-        "impacts": "Bitcoin -35%"
+        "impacts": [
+            {
+                "actif": "Bitcoin",
+                "variation": -0.35
+            }
+        ]
     },
     {
         "id": "088",
@@ -701,7 +1407,12 @@
         "titre": "Intégration crypto navigateurs",
         "importance": "Faible",
         "message": "📢 BULLETIN ÉCONOMIQUE : Changement de tendance important repéré sur l'actif : Intégration crypto navigateurs.",
-        "impacts": "Secteur Tech +4%"
+        "impacts": [
+            {
+                "actif": "Secteur Tech",
+                "variation": 0.04
+            }
+        ]
     },
     {
         "id": "089",
@@ -709,7 +1420,12 @@
         "titre": "Adoption Bitcoin par géant retail",
         "importance": "Modérée",
         "message": "📢 BULLETIN ÉCONOMIQUE : Changement de tendance important repéré sur l'actif : Adoption Bitcoin par géant retail.",
-        "impacts": "Bitcoin +14%"
+        "impacts": [
+            {
+                "actif": "Bitcoin",
+                "variation": 0.14
+            }
+        ]
     },
     {
         "id": "090",
@@ -717,7 +1433,12 @@
         "titre": "Crash stablecoin algorithmique",
         "importance": "Critique",
         "message": "📢 BULLETIN ÉCONOMIQUE : Changement de tendance important repéré sur l'actif : Crash stablecoin algorithmique.",
-        "impacts": "Bitcoin -40%"
+        "impacts": [
+            {
+                "actif": "Bitcoin",
+                "variation": -0.4
+            }
+        ]
     },
     {
         "id": "091",
@@ -725,7 +1446,20 @@
         "titre": "Explosion des taux d'intérêt",
         "importance": "Critique",
         "message": "🏦 CRÉDIT IMMOBILIER : La Banque Centrale augmente ses taux directeurs au plus haut depuis 25 ans. Les acheteurs n'ont plus d'argent.",
-        "impacts": "Paris -20% | Lyon -18% | Bordeaux -22%"
+        "impacts": [
+            {
+                "actif": "Paris",
+                "variation": -0.2
+            },
+            {
+                "actif": "Lyon",
+                "variation": -0.18
+            },
+            {
+                "actif": "Bordeaux",
+                "variation": -0.22
+            }
+        ]
     },
     {
         "id": "092",
@@ -733,7 +1467,16 @@
         "titre": "Loi encadrement strict des loyers",
         "importance": "Critique",
         "message": "📜 LOGEMENT POUR TOUS : Vote surprise d'un décret imposant un gel et une baisse autoritaire de tous les loyers dans les grandes villes.",
-        "impacts": "Paris -15% | Rendement net -25%"
+        "impacts": [
+            {
+                "actif": "Paris",
+                "variation": -0.15
+            },
+            {
+                "actif": "Rendement net",
+                "variation": -0.25
+            }
+        ]
     },
     {
         "id": "093",
@@ -741,7 +1484,20 @@
         "titre": "Plan Grand Sud & Télétravail",
         "importance": "Critique",
         "message": "☀️ EXODE PROVENCE : Le gouvernement finance une prime d'installation pour décentraliser les cadres parisiens vers le Sud.",
-        "impacts": "Marseille +25% | Toulouse +15% | Paris -8%"
+        "impacts": [
+            {
+                "actif": "Marseille",
+                "variation": 0.25
+            },
+            {
+                "actif": "Toulouse",
+                "variation": 0.15
+            },
+            {
+                "actif": "Paris",
+                "variation": -0.08
+            }
+        ]
     },
     {
         "id": "094",
@@ -749,7 +1505,12 @@
         "titre": "Nouvelles normes DPE obligatoires",
         "importance": "Forte",
         "message": "📋 PASSOIRE ÉNERGÉTIQUE : Il est désormais strictement interdit de louer un logement classé E, F ou G sans travaux lourds.",
-        "impacts": "Immobilier ancien -15%"
+        "impacts": [
+            {
+                "actif": "Immobilier ancien",
+                "variation": -0.15
+            }
+        ]
     },
     {
         "id": "095",
@@ -757,7 +1518,12 @@
         "titre": "Taxe massive résidences secondaires",
         "importance": "Forte",
         "message": "🏡 IMPÔT LOCAL : Pour lutter contre la crise du logement, les résidences secondaires seront désormais taxées à hauteur de 200%.",
-        "impacts": "Zones côtières -20%"
+        "impacts": [
+            {
+                "actif": "Zones côtières",
+                "variation": -0.2
+            }
+        ]
     },
     {
         "id": "096",
@@ -765,7 +1531,12 @@
         "titre": "Faillite d'un grand promoteur",
         "importance": "Forte",
         "message": "📢 BULLETIN ÉCONOMIQUE : Changement de tendance important repéré sur l'actif : Faillite d'un grand promoteur.",
-        "impacts": "Neuf -12% | Confiance en baisse"
+        "impacts": [
+            {
+                "actif": "Neuf",
+                "variation": -0.12
+            }
+        ]
     },
     {
         "id": "097",
@@ -773,7 +1544,12 @@
         "titre": "Subvention verte rénovation",
         "importance": "Modérée",
         "message": "📢 BULLETIN ÉCONOMIQUE : Changement de tendance important repéré sur l'actif : Subvention verte rénovation.",
-        "impacts": "Rendement net +5% après travaux"
+        "impacts": [
+            {
+                "actif": "Rendement net",
+                "variation": 0.05
+            }
+        ]
     },
     {
         "id": "098",
@@ -781,7 +1557,20 @@
         "titre": "Exode urbain massif des Parisiens",
         "importance": "Forte",
         "message": "📢 BULLETIN ÉCONOMIQUE : Changement de tendance important repéré sur l'actif : Exode urbain massif des Parisiens.",
-        "impacts": "Paris -12% | Nantes +15% | Bordeaux +18%"
+        "impacts": [
+            {
+                "actif": "Paris",
+                "variation": -0.12
+            },
+            {
+                "actif": "Nantes",
+                "variation": 0.15
+            },
+            {
+                "actif": "Bordeaux",
+                "variation": 0.18
+            }
+        ]
     },
     {
         "id": "099",
@@ -789,7 +1578,16 @@
         "titre": "Effondrement marché des bureaux",
         "importance": "Forte",
         "message": "📢 BULLETIN ÉCONOMIQUE : Changement de tendance important repéré sur l'actif : Effondrement marché des bureaux.",
-        "impacts": "Immobilier pro -30% | SCPI -15%"
+        "impacts": [
+            {
+                "actif": "Immobilier pro",
+                "variation": -0.3
+            },
+            {
+                "actif": "SCPI",
+                "variation": -0.15
+            }
+        ]
     },
     {
         "id": "100",
@@ -797,7 +1595,16 @@
         "titre": "Développement de super-métropoles",
         "importance": "Modérée",
         "message": "📢 BULLETIN ÉCONOMIQUE : Changement de tendance important repéré sur l'actif : Développement de super-métropoles.",
-        "impacts": "Lyon +12% | Toulouse +10%"
+        "impacts": [
+            {
+                "actif": "Lyon",
+                "variation": 0.12
+            },
+            {
+                "actif": "Toulouse",
+                "variation": 0.1
+            }
+        ]
     },
     {
         "id": "101",
@@ -805,7 +1612,16 @@
         "titre": "Réglementation Airbnb radicale",
         "importance": "Forte",
         "message": "📢 BULLETIN ÉCONOMIQUE : Changement de tendance important repéré sur l'actif : Réglementation Airbnb radicale.",
-        "impacts": "Paris -10% | Rendement -40%"
+        "impacts": [
+            {
+                "actif": "Paris",
+                "variation": -0.1
+            },
+            {
+                "actif": "Rendement",
+                "variation": -0.4
+            }
+        ]
     },
     {
         "id": "102",
@@ -813,7 +1629,16 @@
         "titre": "Gel constructions neuves (ZAN)",
         "importance": "Forte",
         "message": "📢 BULLETIN ÉCONOMIQUE : Changement de tendance important repéré sur l'actif : Gel constructions neuves (ZAN).",
-        "impacts": "Prix du Neuf +20% | Terrains +35%"
+        "impacts": [
+            {
+                "actif": "Prix du Neuf",
+                "variation": 0.2
+            },
+            {
+                "actif": "Terrains",
+                "variation": 0.35
+            }
+        ]
     },
     {
         "id": "103",
@@ -821,7 +1646,16 @@
         "titre": "Baisse généralisée du crédit",
         "importance": "Modérée",
         "message": "📢 BULLETIN ÉCONOMIQUE : Changement de tendance important repéré sur l'actif : Baisse généralisée du crédit.",
-        "impacts": "Transactions -25% | Prix -6%"
+        "impacts": [
+            {
+                "actif": "Transactions",
+                "variation": -0.25
+            },
+            {
+                "actif": "Prix",
+                "variation": -0.06
+            }
+        ]
     },
     {
         "id": "104",
@@ -829,7 +1663,12 @@
         "titre": "Boom économique région lyonnaise",
         "importance": "Modérée",
         "message": "📢 BULLETIN ÉCONOMIQUE : Changement de tendance important repéré sur l'actif : Boom économique région lyonnaise.",
-        "impacts": "Lyon +14%"
+        "impacts": [
+            {
+                "actif": "Lyon",
+                "variation": 0.14
+            }
+        ]
     },
     {
         "id": "105",
@@ -837,7 +1676,12 @@
         "titre": "Inondations records à Bordeaux",
         "importance": "Forte",
         "message": "📢 BULLETIN ÉCONOMIQUE : Changement de tendance important repéré sur l'actif : Inondations records à Bordeaux.",
-        "impacts": "Bordeaux -15%"
+        "impacts": [
+            {
+                "actif": "Bordeaux",
+                "variation": -0.15
+            }
+        ]
     },
     {
         "id": "106",
@@ -845,7 +1689,12 @@
         "titre": "Plan réhabilitation de Marseille",
         "importance": "Modérée",
         "message": "📢 BULLETIN ÉCONOMIQUE : Changement de tendance important repéré sur l'actif : Plan réhabilitation de Marseille.",
-        "impacts": "Marseille +15%"
+        "impacts": [
+            {
+                "actif": "Marseille",
+                "variation": 0.15
+            }
+        ]
     },
     {
         "id": "107",
@@ -853,7 +1702,12 @@
         "titre": "Nouveaux pôles tech à Toulouse",
         "importance": "Modérée",
         "message": "📢 BULLETIN ÉCONOMIQUE : Changement de tendance important repéré sur l'actif : Nouveaux pôles tech à Toulouse.",
-        "impacts": "Toulouse +12%"
+        "impacts": [
+            {
+                "actif": "Toulouse",
+                "variation": 0.12
+            }
+        ]
     },
     {
         "id": "108",
@@ -861,7 +1715,12 @@
         "titre": "Ligne TGV accélérée vers Nantes",
         "importance": "Modérée",
         "message": "📢 BULLETIN ÉCONOMIQUE : Changement de tendance important repéré sur l'actif : Ligne TGV accélérée vers Nantes.",
-        "impacts": "Nantes +16%"
+        "impacts": [
+            {
+                "actif": "Nantes",
+                "variation": 0.16
+            }
+        ]
     },
     {
         "id": "109",
@@ -869,7 +1728,12 @@
         "titre": "Crise des SCPI de rendement",
         "importance": "Forte",
         "message": "📢 BULLETIN ÉCONOMIQUE : Changement de tendance important repéré sur l'actif : Crise des SCPI de rendement.",
-        "impacts": "Valorisation parts -15%"
+        "impacts": [
+            {
+                "actif": "Valorisation parts",
+                "variation": -0.15
+            }
+        ]
     },
     {
         "id": "110",
@@ -877,7 +1741,12 @@
         "titre": "Plafond des prix immo parisien",
         "importance": "Forte",
         "message": "📢 BULLETIN ÉCONOMIQUE : Changement de tendance important repéré sur l'actif : Plafond des prix immo parisien.",
-        "impacts": "Paris -12% bloqué"
+        "impacts": [
+            {
+                "actif": "Paris",
+                "variation": -0.12
+            }
+        ]
     },
     {
         "id": "111",
@@ -885,7 +1754,12 @@
         "titre": "Taxe foncière en hausse de +50%",
         "importance": "Forte",
         "message": "📢 BULLETIN ÉCONOMIQUE : Changement de tendance important repéré sur l'actif : Taxe foncière en hausse de +50%.",
-        "impacts": "Rendement locatif net -8%"
+        "impacts": [
+            {
+                "actif": "Rendement locatif net",
+                "variation": -0.08
+            }
+        ]
     },
     {
         "id": "112",
@@ -893,7 +1767,12 @@
         "titre": "Pénurie de ciment et de briques",
         "importance": "Modérée",
         "message": "📢 BULLETIN ÉCONOMIQUE : Changement de tendance important repéré sur l'actif : Pénurie de ciment et de briques.",
-        "impacts": "Coût construction +25%"
+        "impacts": [
+            {
+                "actif": "Coût construction",
+                "variation": 0.25
+            }
+        ]
     },
     {
         "id": "113",
@@ -901,7 +1780,12 @@
         "titre": "Arrivée de capitaux étrangers",
         "importance": "Modérée",
         "message": "📢 BULLETIN ÉCONOMIQUE : Changement de tendance important repéré sur l'actif : Arrivée de capitaux étrangers.",
-        "impacts": "Paris de prestige +10%"
+        "impacts": [
+            {
+                "actif": "Paris de prestige",
+                "variation": 0.1
+            }
+        ]
     },
     {
         "id": "114",
@@ -909,7 +1793,12 @@
         "titre": "Baisse des frais de notaire",
         "importance": "Modérée",
         "message": "📢 BULLETIN ÉCONOMIQUE : Changement de tendance important repéré sur l'actif : Baisse des frais de notaire.",
-        "impacts": "Volume transactions +15%"
+        "impacts": [
+            {
+                "actif": "Volume transactions",
+                "variation": 0.15
+            }
+        ]
     },
     {
         "id": "115",
@@ -917,7 +1806,7 @@
         "titre": "Encadrement des taux d'usure",
         "importance": "Faible",
         "message": "📢 BULLETIN ÉCONOMIQUE : Changement de tendance important repéré sur l'actif : Encadrement des taux d'usure.",
-        "impacts": "Déblocage léger du crédit"
+        "impacts": []
     },
     {
         "id": "116",
@@ -925,7 +1814,12 @@
         "titre": "Prêt à Taux Zéro élargi à 100%",
         "importance": "Forte",
         "message": "📢 BULLETIN ÉCONOMIQUE : Changement de tendance important repéré sur l'actif : Prêt à Taux Zéro élargi à 100%.",
-        "impacts": "Primo-accédants +30%"
+        "impacts": [
+            {
+                "actif": "Primo-accédants",
+                "variation": 0.3
+            }
+        ]
     },
     {
         "id": "117",
@@ -933,7 +1827,12 @@
         "titre": "Saisie massive de biens vacants",
         "importance": "Modérée",
         "message": "📢 BULLETIN ÉCONOMIQUE : Changement de tendance important repéré sur l'actif : Saisie massive de biens vacants.",
-        "impacts": "Prix marché -5%"
+        "impacts": [
+            {
+                "actif": "Prix marché",
+                "variation": -0.05
+            }
+        ]
     },
     {
         "id": "118",
@@ -941,7 +1840,12 @@
         "titre": "Création zones franches immo",
         "importance": "Modérée",
         "message": "📢 BULLETIN ÉCONOMIQUE : Changement de tendance important repéré sur l'actif : Création zones franches immo.",
-        "impacts": "Quartiers cibles +18%"
+        "impacts": [
+            {
+                "actif": "Quartiers cibles",
+                "variation": 0.18
+            }
+        ]
     },
     {
         "id": "119",
@@ -949,7 +1853,12 @@
         "titre": "Incitations fiscales Pinel réactivées",
         "importance": "Modérée",
         "message": "📢 BULLETIN ÉCONOMIQUE : Changement de tendance important repéré sur l'actif : Incitations fiscales Pinel réactivées.",
-        "impacts": "Investissement neuf +15%"
+        "impacts": [
+            {
+                "actif": "Investissement neuf",
+                "variation": 0.15
+            }
+        ]
     },
     {
         "id": "120",
@@ -957,7 +1866,12 @@
         "titre": "Nationalisation agences de gestion",
         "importance": "Forte",
         "message": "📢 BULLETIN ÉCONOMIQUE : Changement de tendance important repéré sur l'actif : Nationalisation agences de gestion.",
-        "impacts": "Frais fixes bloqués | Rendement -5%"
+        "impacts": [
+            {
+                "actif": "Rendement",
+                "variation": -0.05
+            }
+        ]
     },
     {
         "id": "121",
@@ -965,7 +1879,12 @@
         "titre": "Héritage surprise de l'Oncle",
         "importance": "Critique",
         "message": "✉️ LETTRE RECOMMANDÉE : Maître Dupond, notaire, vous informe : 'Suite au décès de votre grand-oncle d'Amérique, vous êtes désigné légataire de ses liquidités...'",
-        "impacts": "Compte courant +45 000 € | Bonheur +20%"
+        "impacts": [
+            {
+                "actif": "Bonheur",
+                "variation": 0.2
+            }
+        ]
     },
     {
         "id": "122",
@@ -973,7 +1892,16 @@
         "titre": "Burnout Sévère",
         "importance": "Critique",
         "message": "🛌 EFFONDREMENT COGNITIF : Un matin, votre corps refuse de se lever. Votre médecin pose un diagnostic sans appel : épuisement professionnel complet. Repos forcé.",
-        "impacts": "Santé -50% | Bonheur -40% | Bloqué 2 mois"
+        "impacts": [
+            {
+                "actif": "Santé",
+                "variation": -0.5
+            },
+            {
+                "actif": "Bonheur",
+                "variation": -0.4
+            }
+        ]
     },
     {
         "id": "123",
@@ -981,7 +1909,16 @@
         "titre": "Divorce à l'amiable",
         "importance": "Critique",
         "message": "💔 COUP DE FIL DE L'AVOCAT : La sentence est signée. L'accord amiable implique le partage immédiat de vos comptes bancaires et la liquidation du patrimoine commun.",
-        "impacts": "Compte courant -50% | Bonheur -35%"
+        "impacts": [
+            {
+                "actif": "Compte courant",
+                "variation": -0.5
+            },
+            {
+                "actif": "Bonheur",
+                "variation": -0.35
+            }
+        ]
     },
     {
         "id": "124",
@@ -989,7 +1926,12 @@
         "titre": "Panne de voiture majeure",
         "importance": "Modérée",
         "message": "🔧 DEVIS GARAGE : 'Bonjour, le moteur de votre véhicule est hors-service. Le remplacement du bloc et de la transmission s'élève à 4 200 €.'",
-        "impacts": "Compte courant -4 200 € | Bonheur -10%"
+        "impacts": [
+            {
+                "actif": "Bonheur",
+                "variation": -0.1
+            }
+        ]
     },
     {
         "id": "125",
@@ -997,7 +1939,12 @@
         "titre": "Mariage et festivités",
         "importance": "Forte",
         "message": "🥂 JOUR J : Le traiteur, la robe, le domaine d'exception... Vous avez dit OUI ! C'était magique, mais la facture finale pique un peu vos économies.",
-        "impacts": "Compte courant -15 000 € | Bonheur +40%"
+        "impacts": [
+            {
+                "actif": "Bonheur",
+                "variation": 0.4
+            }
+        ]
     },
     {
         "id": "126",
@@ -1005,7 +1952,12 @@
         "titre": "Naissance de jumeaux",
         "importance": "Forte",
         "message": "👶👶 POP-UP MATERNITÉ : Félicitations ! Ce n'était pas un, mais deux bébés qui pointaient le bout de leur nez. Préparez-vous à doubler les couches et à oublier le sommeil !",
-        "impacts": "Bonheur +50% | Charges mensuelles +600 €"
+        "impacts": [
+            {
+                "actif": "Bonheur",
+                "variation": 0.5
+            }
+        ]
     },
     {
         "id": "127",
@@ -1013,7 +1965,7 @@
         "titre": "Passion Trading compulsif",
         "importance": "Modérée",
         "message": "📱 NOTIFICATION PHONE : Il est 3h du matin, vous êtes pris d'une frénésie spéculative sur un coup de tête après avoir lu un thread Reddit. Vous achetez massivement.",
-        "impacts": "Achat forcé 1 000 € Bitcoin"
+        "impacts": []
     },
     {
         "id": "128",
@@ -1021,7 +1973,12 @@
         "titre": "Contrôle fiscal individuel",
         "importance": "Forte",
         "message": "🏛️ COURRIER DU FISC : L'administration a passé vos trois dernières années de déclarations à la loupe. Bilan : redressement immédiat pour oubli de déclaration.",
-        "impacts": "Compte courant -8 500 € | Bonheur -25%"
+        "impacts": [
+            {
+                "actif": "Bonheur",
+                "variation": -0.25
+            }
+        ]
     },
     {
         "id": "129",
@@ -1029,7 +1986,12 @@
         "titre": "Cambriolage du domicile",
         "importance": "Forte",
         "message": "🚨 ALERTE DOMOTIQUE : Vous rentrez chez vous et découvrez la porte fracturée. Vos bijoux, votre ordinateur et vos objets de valeur ont disparu. La franchise de l'assurance est élevée.",
-        "impacts": "Compte courant -3 800 € | Bonheur -30%"
+        "impacts": [
+            {
+                "actif": "Bonheur",
+                "variation": -0.3
+            }
+        ]
     },
     {
         "id": "130",
@@ -1037,7 +1999,7 @@
         "titre": "Adoption d'un chien de race",
         "importance": "Faible",
         "message": "🐕 COUP DE COEUR : Vous craquez devant ce chiot samoyède pure race. Vous repartez avec lui, son carnet de santé et un budget croquettes revu à la hausse.",
-        "impacts": "Compte courant -1 500 € | Charges +80 €/mois"
+        "impacts": []
     },
     {
         "id": "131",
@@ -1045,7 +2007,12 @@
         "titre": "Intoxication alimentaire grave",
         "importance": "Faible",
         "message": "🤢 SERVICE D'URGENCE : Ce plateau de fruits de mer n'était pas frais du tout. Vous passez les 4 prochains jours cloué au lit avec de la fièvre.",
-        "impacts": "Santé -25% | Semaine perdue"
+        "impacts": [
+            {
+                "actif": "Santé",
+                "variation": -0.25
+            }
+        ]
     },
     {
         "id": "132",
@@ -1053,7 +2020,12 @@
         "titre": "Voyage de luxe imprévu",
         "importance": "Modérée",
         "message": "✈️ INSTAGRAM MOMENT : Vos amis réservent une villa privée de rêve à Bali sur un coup de tête. Vous ne voulez pas être celui qui refuse : vous sortez la carte Gold.",
-        "impacts": "Compte courant -6 000 € | Bonheur +35%"
+        "impacts": [
+            {
+                "actif": "Bonheur",
+                "variation": 0.35
+            }
+        ]
     },
     {
         "id": "133",
@@ -1061,7 +2033,12 @@
         "titre": "Gains au loto de quartier",
         "importance": "Modérée",
         "message": "🎫 TIRAGE GAGNANT : Incroyable ! Votre ticket acheté à la kermesse associative locale s'avère être le gros lot de la tombola annuelle.",
-        "impacts": "Compte courant +5 000 € | Bonheur +15%"
+        "impacts": [
+            {
+                "actif": "Bonheur",
+                "variation": 0.15
+            }
+        ]
     },
     {
         "id": "134",
@@ -1069,7 +2046,12 @@
         "titre": "Achat compulsif montre de luxe",
         "importance": "Modérée",
         "message": "⌚ VRAI GENTLEMAN : Vous passez devant la vitrine de cet horloger de la Place Vendôme. L'occasion fait le larron, vous vous offrez ce garde-temps automatique.",
-        "impacts": "Compte courant -7 500 € | Bonheur +10%"
+        "impacts": [
+            {
+                "actif": "Bonheur",
+                "variation": 0.1
+            }
+        ]
     },
     {
         "id": "135",
@@ -1077,7 +2059,12 @@
         "titre": "Frais dentaires non remboursés",
         "importance": "Faible",
         "message": "🦷 CABINET DENTAIRE : Deux couronnes et un implant non pris en charge par votre mutuelle de base. Le chèque fait mal aux gencives.",
-        "impacts": "Compte courant -2 200 € | Santé +5%"
+        "impacts": [
+            {
+                "actif": "Santé",
+                "variation": 0.05
+            }
+        ]
     },
     {
         "id": "136",
@@ -1085,7 +2072,12 @@
         "titre": "Inondation de la cave",
         "importance": "Faible",
         "message": "🌊 DÉGÂT DES EAUX : La canalisation collective a rompu durant la nuit. Vos vieux souvenirs, meubles stockés et appareils électroniques baignent dans 30cm d'eau.",
-        "impacts": "Compte courant -1 800 € | Bonheur -12%"
+        "impacts": [
+            {
+                "actif": "Bonheur",
+                "variation": -0.12
+            }
+        ]
     },
     {
         "id": "137",
@@ -1093,7 +2085,12 @@
         "titre": "Abonnement annuel golf/spa",
         "importance": "Faible",
         "message": "⛳ CLUB SÉLECT : Vous signez votre adhésion exclusive au country club privé de la région. Idéal pour votre swing et votre réseau social.",
-        "impacts": "Compte courant -3 000 € | Santé +15%"
+        "impacts": [
+            {
+                "actif": "Santé",
+                "variation": 0.15
+            }
+        ]
     },
     {
         "id": "138",
@@ -1101,7 +2098,7 @@
         "titre": "Aide financière à un ami proche",
         "importance": "Modérée",
         "message": "🤝 MESSAGERIE : 'Salut... J'ai une énorme galère de loyer et de boîte. Tu serais ma seule option pour un prêt d'honneur de quelques mois ? Dépannage entre frères.'",
-        "impacts": "Compte courant -5 000 € | Réseau +15"
+        "impacts": []
     },
     {
         "id": "139",
@@ -1109,7 +2106,7 @@
         "titre": "Remplacement chaudière urgence",
         "importance": "Modérée",
         "message": "❄️ ALERTE HIVER : La chaudière rend l'âme en plein mois de janvier. Le chauffagiste est formel : elle est trop vieille, il faut tout remplacer immédiatement.",
-        "impacts": "Compte courant -6 500 €"
+        "impacts": []
     },
     {
         "id": "140",
@@ -1117,7 +2114,12 @@
         "titre": "Stage de développement personnel",
         "importance": "Faible",
         "message": "🧘 SÉJOUR RETRAITE : Trois jours de silence, de méditation guidée et de marche pieds nus dans la forêt pour vous reconnecter avec votre moi intérieur.",
-        "impacts": "Compte courant -1 200 € | Bonheur +20%"
+        "impacts": [
+            {
+                "actif": "Bonheur",
+                "variation": 0.2
+            }
+        ]
     },
     {
         "id": "141",
@@ -1125,7 +2127,7 @@
         "titre": "Frais d'avocat litige voisin",
         "importance": "Faible",
         "message": "⚖️ LETTRE D'AVOCAT : Le voisin refuse d'élaguer ses arbres centenaires qui menacent votre verrière. Vous engagez une procédure judiciaire formelle.",
-        "impacts": "Compte courant -2 500 €"
+        "impacts": []
     },
     {
         "id": "142",
@@ -1133,7 +2135,7 @@
         "titre": "Vol de votre vélo électrique",
         "importance": "Faible",
         "message": "🚲 PLACE PUBLIQUE : Vous revenez à l'emplacement de votre vélo : seul le cadenas sectionné gît sur le trottoir. L'antivol n'a pas suffi.",
-        "impacts": "Compte courant -2 000 €"
+        "impacts": []
     },
     {
         "id": "143",
@@ -1141,7 +2143,7 @@
         "titre": "Perte du smartphone dernier cri",
         "importance": "Faible",
         "message": "📱 POCHE VIDE : Dans la bousculade du métro ou suite à une étourderie, votre téléphone a disparu. Impossible de le géolocaliser, il faut en racheter un.",
-        "impacts": "Compte courant -1 300 €"
+        "impacts": []
     },
     {
         "id": "144",
@@ -1149,7 +2151,7 @@
         "titre": "Déménagement imprévu",
         "importance": "Modérée",
         "message": "📦 CARTONS INTERMINABLES : Le propriétaire récupère le logement pour y loger son fils. Vous avez trois mois pour trouver ailleurs, payer la caution et l'agence.",
-        "impacts": "Compte courant -4 000 €"
+        "impacts": []
     },
     {
         "id": "145",
@@ -1157,7 +2159,7 @@
         "titre": "Amende routière record",
         "importance": "Faible",
         "message": "📸 FLASH : Un radar fixe vous a intercepté en grand excès de vitesse sur une portion déserte. Retrait de points et amende forfaitaire majorée.",
-        "impacts": "Compte courant -375 €"
+        "impacts": []
     },
     {
         "id": "146",
@@ -1165,7 +2167,7 @@
         "titre": "Cadeau d'anniversaire onéreux",
         "importance": "Faible",
         "message": "🎁 COMPTE DE FÉES : Pour marquer le coup du cap des 30 ans de votre moitié, vous réservez une table dans un restaurant 3 étoiles Michelin.",
-        "impacts": "Compte courant -1 000 €"
+        "impacts": []
     },
     {
         "id": "147",
@@ -1173,7 +2175,7 @@
         "titre": "Panne d'électroménager totale",
         "importance": "Faible",
         "message": "⚡ COURT-CIRCUIT : Le lave-linge fuit et fait sauter le disjoncteur général, entraînant le décès technique simultané du frigo américain.",
-        "impacts": "Compte courant -1 500 €"
+        "impacts": []
     },
     {
         "id": "148",
@@ -1181,7 +2183,7 @@
         "titre": "Ravalement de façade obligatoire",
         "importance": "Forte",
         "message": "🏢 COPROPRIÉTÉ : Le syndic vote à la majorité absolue les travaux obligatoires de ravalement d'immeuble et d'isolation par l'extérieur. Votre quote-part est salée.",
-        "impacts": "Compte courant -12 000 €"
+        "impacts": []
     },
     {
         "id": "149",
@@ -1189,7 +2191,7 @@
         "titre": "Formation payante non certifiée",
         "importance": "Faible",
         "message": "🎓 ACADÉMIE EN LIGNE : Vous vous inscrivez à un Masterclass vendu par un gourou de la finance sur internet. Le contenu est assez basique mais instructif.",
-        "impacts": "Compte courant -2 000 € | XP +5"
+        "impacts": []
     },
     {
         "id": "150",
@@ -1197,7 +2199,12 @@
         "titre": "Blessure au sport (frais kiné)",
         "importance": "Faible",
         "message": "🏥 CRAQUEMENT RUPTURE : Entorse sévère du genou lors du match de foot du dimanche. Plusieurs séances de rééducation non prises en charge au programme.",
-        "impacts": "Santé -15% | Compte courant -600 €"
+        "impacts": [
+            {
+                "actif": "Santé",
+                "variation": -0.15
+            }
+        ]
     },
     {
         "id": "151",
@@ -1205,7 +2212,7 @@
         "titre": "Rachat de crédit consommation",
         "importance": "Modérée",
         "message": "🏦 CONSOLIDATION DETTES : Vous décidez de solder d'un coup sec votre vieux crédit revolving pour assainir vos finances personnelles.",
-        "impacts": "Compte courant -5 000 €"
+        "impacts": []
     },
     {
         "id": "152",
@@ -1213,7 +2220,7 @@
         "titre": "Arnaque aux faux livrets d'épargne",
         "importance": "Forte",
         "message": "📞 ALERTE ESCROQUERIE : Le conseiller financier au téléphone était un faux ! Le site web miroitant un livret d'épargne à 6% a disparu des écrans.",
-        "impacts": "Compte courant -10 000 €"
+        "impacts": []
     },
     {
         "id": "153",
@@ -1221,7 +2228,7 @@
         "titre": "Achat d'une oeuvre d'art moderne",
         "importance": "Modérée",
         "message": "🎨 VERNISSAGE GALLERY : Vous vous laissez séduire par une toile contemporaine d'un artiste émergent. Un coup de cœur esthétique spéculatif.",
-        "impacts": "Compte courant -8 000 €"
+        "impacts": []
     },
     {
         "id": "154",
@@ -1229,7 +2236,7 @@
         "titre": "Frais de scolarité grande école",
         "importance": "Forte",
         "message": "🏫 RENTRÉE ÉLITE : Inscription validée pour le cursus d'excellence. Les frais d'études annuels doivent être réglés en totalité avant octobre.",
-        "impacts": "Compte courant -14 000 €"
+        "impacts": []
     },
     {
         "id": "155",
@@ -1237,7 +2244,7 @@
         "titre": "Remplacement complet de la toiture",
         "importance": "Forte",
         "message": "🏠 EXPERTISE COUVREUR : Les infiltrations d'eau sous les tuiles ont pourri la charpente. Pas le choix, il faut refaire l'isolation et la couverture à neuf.",
-        "impacts": "Compte courant -18 000 €"
+        "impacts": []
     },
     {
         "id": "156",
@@ -1245,7 +2252,7 @@
         "titre": "Sponsoring d'un projet local",
         "importance": "Faible",
         "message": "🏆 CLUB SPORTIF : Vous financez l'achat des nouveaux maillots de l'équipe de rugby de votre ville. Votre nom s'affiche fièrement sur le stade.",
-        "impacts": "Compte courant -3 000 € | Réseau +12"
+        "impacts": []
     },
     {
         "id": "157",
@@ -1253,7 +2260,7 @@
         "titre": "Anniversaire de mariage surprise",
         "importance": "Modérée",
         "message": "🎉 SURPRISE : Vous organisez une fête mémorable réunissant 50 proches à l'occasion de votre anniversaire de mariage. Champagne pour tout le monde !",
-        "impacts": "Compte courant -4 500 €"
+        "impacts": []
     },
     {
         "id": "158",
@@ -1261,7 +2268,7 @@
         "titre": "Réparation d'urgence carrosserie",
         "importance": "Faible",
         "message": "🚗 Rayure anonyme : Vous retrouvez votre véhicule stationné sur un parking enfoncé sur tout le flanc gauche. L'auteur est parti sans laisser d'adresse.",
-        "impacts": "Compte courant -1 200 €"
+        "impacts": []
     },
     {
         "id": "159",
@@ -1269,7 +2276,16 @@
         "titre": "Période de dépression saisonnière",
         "importance": "Faible",
         "message": "☁️ COUPS DE BLUES : Le manque de lumière et l'accumulation de fatigue affectent votre jauge d'énergie. Vous tournez au ralenti pendant quelques semaines.",
-        "impacts": "Santé -20% | Bonheur -20%"
+        "impacts": [
+            {
+                "actif": "Santé",
+                "variation": -0.2
+            },
+            {
+                "actif": "Bonheur",
+                "variation": -0.2
+            }
+        ]
     },
     {
         "id": "160",
@@ -1277,7 +2293,7 @@
         "titre": "Souscription assurance inutile",
         "importance": "Faible",
         "message": "✍️ PETITES LIGNES : En achetant votre nouvel écran de télé, vous avez signé sans faire attention une extension de garantie et assurance perte de clés.",
-        "impacts": "Charges +45 €/mois"
+        "impacts": []
     },
     {
         "id": "161",
@@ -1285,7 +2301,12 @@
         "titre": "Chasseur de têtes agressif",
         "importance": "Critique",
         "message": "💼 MESSAGE LINKEDIN : 'Bonjour, votre profil a retenu toute notre attention pour un poste de Direction au sein d'un groupe concurrent. Vos conditions seront les nôtres.'",
-        "impacts": "Revenus mensuels +25% | Réseau +15"
+        "impacts": [
+            {
+                "actif": "Revenus mensuels",
+                "variation": 0.25
+            }
+        ]
     },
     {
         "id": "162",
@@ -1293,7 +2314,12 @@
         "titre": "Licenciement Économique brut",
         "importance": "Critique",
         "message": "📁 CONVOCATION RH : 'Nous avons le regret de vous annoncer la suppression de votre poste dans le cadre du plan de sauvegarde de l'emploi de l'entreprise.'",
-        "impacts": "Revenus mensuels = 0 | Bonheur -20%"
+        "impacts": [
+            {
+                "actif": "Bonheur",
+                "variation": -0.2
+            }
+        ]
     },
     {
         "id": "163",
@@ -1301,7 +2327,7 @@
         "titre": "Levée de fonds Série A réussie",
         "importance": "Critique",
         "message": "🚀 COMMUNIQUÉ DE PRESSE : Votre startup boucle un tour de table historique de 5 millions d'euros auprès de fonds d'amorçage d'élite. Vos actions prennent de la valeur !",
-        "impacts": "Compte courant +120 000 € | Réseau +50"
+        "impacts": []
     },
     {
         "id": "164",
@@ -1309,7 +2335,7 @@
         "titre": "Vol de code source par un stagiaire",
         "importance": "Forte",
         "message": "🖥️ FUITE DE DONNÉES : Un ancien stagiaire a copié l'intégralité du dépôt propriétaire de votre logiciel pour le revendre à un concurrent étranger. Procédure juridique lancée.",
-        "impacts": "Réseau -25 | Compte courant -10 000 €"
+        "impacts": []
     },
     {
         "id": "165",
@@ -1317,7 +2343,7 @@
         "titre": "Le Mentor Ultime rencontré",
         "importance": "Critique",
         "message": "🤝 ENTRETIEN EXCLUSIF : Un grand capitaine d'industrie séduit par votre audace décide de vous prendre sous son aile et de vous ouvrir son carnet d'adresses secret.",
-        "impacts": "Réseau +45 | XP +25"
+        "impacts": []
     },
     {
         "id": "166",
@@ -1325,7 +2351,12 @@
         "titre": "Concurrence déloyale américaine",
         "importance": "Forte",
         "message": "🇺🇸 OFFENSIVE COMMERCIALE : Un géant américain du secteur s'installe sur le marché français et casse les prix de 50% pour asphyxier votre activité.",
-        "impacts": "Revenus professionnels -40%"
+        "impacts": [
+            {
+                "actif": "Revenus professionnels",
+                "variation": -0.4
+            }
+        ]
     },
     {
         "id": "167",
@@ -1333,7 +2364,12 @@
         "titre": "Promotion Interne surprise",
         "importance": "Forte",
         "message": "👔 ACCORD DE BRANCHE : Le conseil d'administration vous nomme Directeur de Département avec prise de fonction immédiate et revalorisation salariale.",
-        "impacts": "Revenus mensuels +15% | XP +20"
+        "impacts": [
+            {
+                "actif": "Revenus mensuels",
+                "variation": 0.15
+            }
+        ]
     },
     {
         "id": "168",
@@ -1341,7 +2377,12 @@
         "titre": "Faillite d'un client majeur",
         "importance": "Forte",
         "message": "🧾 CRÉANCE DOUTEUSE : Votre plus gros client s'est déclaré en cessation de paiements. Ses factures en attente ne seront probablement jamais réglées.",
-        "impacts": "Revenus professionnels -25%"
+        "impacts": [
+            {
+                "actif": "Revenus professionnels",
+                "variation": -0.25
+            }
+        ]
     },
     {
         "id": "169",
@@ -1349,7 +2390,12 @@
         "titre": "Séminaire annuel triomphal",
         "importance": "Modérée",
         "message": "🎤 STANDING OVATION : Votre présentation de clôture lors de la convention annuelle de l'entreprise a captivé l'auditoire. Vos pairs vous adulent.",
-        "impacts": "Réseau +20 | Bonheur +15%"
+        "impacts": [
+            {
+                "actif": "Bonheur",
+                "variation": 0.15
+            }
+        ]
     },
     {
         "id": "170",
@@ -1357,7 +2403,12 @@
         "titre": "Bug critique en production",
         "importance": "Modérée",
         "message": "🚨 CANAL SLACK #URGENT : 'Le serveur de prod est tombé, toutes les transactions de l'application échouent ! Tous les ingénieurs sur le pont immédiatement !'",
-        "impacts": "Santé -15% | XP +8"
+        "impacts": [
+            {
+                "actif": "Santé",
+                "variation": -0.15
+            }
+        ]
     },
     {
         "id": "171",
@@ -1365,7 +2416,7 @@
         "titre": "Audit de conformité réglementaire",
         "importance": "Modérée",
         "message": "📋 CONTROLE DE CERTIFICATION : Les inspecteurs demandent une mise aux normes immédiate de vos processus industriels sous peine de fermeture administrative.",
-        "impacts": "Compte courant -5 000 €"
+        "impacts": []
     },
     {
         "id": "172",
@@ -1373,7 +2424,7 @@
         "titre": "Obtention d'une certification Cloud",
         "importance": "Modérée",
         "message": "🎖️ EXAMEN RÉUSSI : Vous validez l'accréditation technique la plus prestigieuse de l'industrie. Votre valeur sur le marché du travail explose.",
-        "impacts": "XP +15"
+        "impacts": []
     },
     {
         "id": "173",
@@ -1381,7 +2432,16 @@
         "titre": "Proposition d'expatriation",
         "importance": "Forte",
         "message": "🌏 OFFRE DE MOBILITÉ : La direction vous propose de prendre les rênes de la nouvelle filiale à Singapour. Package d'expatriation complet à la clé.",
-        "impacts": "Revenus +35% | Bonheur -10%"
+        "impacts": [
+            {
+                "actif": "Revenus",
+                "variation": 0.35
+            },
+            {
+                "actif": "Bonheur",
+                "variation": -0.1
+            }
+        ]
     },
     {
         "id": "174",
@@ -1389,7 +2449,7 @@
         "titre": "Grève générale dans l'entreprise",
         "importance": "Faible",
         "message": "🪧 PIQUET DE GRÈVE : Des revendications syndicales bloquent totalement les accès aux bureaux et aux serveurs de production. Activité au point mort.",
-        "impacts": "Production bloquée 2 semaines"
+        "impacts": []
     },
     {
         "id": "175",
@@ -1397,7 +2457,7 @@
         "titre": "Rachat de votre startup par un géant",
         "importance": "Critique",
         "message": "🦅 RACHAT VALIDÉ : L'offre publique d'achat de la multinationale a été acceptée par les actionnaires. Vous touchez votre prime de sortie d'un coup sec.",
-        "impacts": "Compte courant +250 000 €"
+        "impacts": []
     },
     {
         "id": "176",
@@ -1405,7 +2465,7 @@
         "titre": "Erreur d'arbitrage stratégique",
         "importance": "Forte",
         "message": "📉 MAUVAIS CHOIX : Votre décision de lancer ce nouveau produit s'avère être un fiasco commercial complet. Le Conseil vous demande des comptes.",
-        "impacts": "XP -20 | Réseau -10"
+        "impacts": []
     },
     {
         "id": "177",
@@ -1413,7 +2473,7 @@
         "titre": "Prime de performance exceptionnelle",
         "importance": "Modérée",
         "message": "💰 BONUS ANNUEL : En récompense de vos objectifs dépassés de 150%, la direction générale vous octroie une prime exceptionnelle sur votre prochain bulletin.",
-        "impacts": "Compte courant +8 000 €"
+        "impacts": []
     },
     {
         "id": "178",
@@ -1421,7 +2481,12 @@
         "titre": "Accusation de plagiat infondée",
         "importance": "Modérée",
         "message": "⚖️ LITIGE MARQUE : Un concurrent jaloux vous envoie une mise en demeure pour contrefaçon de brevet afin de ralentir votre croissance commerciale.",
-        "impacts": "Réseau -15 | Bonheur -10%"
+        "impacts": [
+            {
+                "actif": "Bonheur",
+                "variation": -0.1
+            }
+        ]
     },
     {
         "id": "179",
@@ -1429,7 +2494,7 @@
         "titre": "Création d'un side-project rentable",
         "importance": "Forte",
         "message": "💻 SAAS REVENUES : Votre petite application codée le week-end vient de passer le cap des 100 abonnés payants. Un flux récurrent de cash automatisé commence !",
-        "impacts": "Revenus mensuels +800 €"
+        "impacts": []
     },
     {
         "id": "180",
@@ -1437,7 +2502,16 @@
         "titre": "Conflit ouvert avec le CEO",
         "importance": "Forte",
         "message": "⚡ TONNERRE DANS LE BUREAU : Une divergence stratégique profonde éclate en pleine réunion de direction. Les rapports humains sont définitivement brisés.",
-        "impacts": "Bonheur -20% | Risque licenciement +40%"
+        "impacts": [
+            {
+                "actif": "Bonheur",
+                "variation": -0.2
+            },
+            {
+                "actif": "Risque licenciement",
+                "variation": 0.4
+            }
+        ]
     },
     {
         "id": "181",
@@ -1445,7 +2519,7 @@
         "titre": "Invitation à un réseau d'affaires d'élite",
         "importance": "Forte",
         "message": "🥂 CERCLE PRIVÉ : Vous recevez votre carton d'admission pour intégrer le club des entrepreneurs influents de la capitale. Un levier de réseau immense.",
-        "impacts": "Réseau +35 | Droits -3 000 €"
+        "impacts": []
     },
     {
         "id": "182",
@@ -1453,7 +2527,7 @@
         "titre": "Perte de votre meilleur développeur",
         "importance": "Forte",
         "message": "👋 LETTRE DE DÉMISSION : Votre ingénieur clé s'en va rejoindre une licorne de la Silicon Valley pour un salaire impossible à égaler pour vous.",
-        "impacts": "Délais projet doublés"
+        "impacts": []
     },
     {
         "id": "183",
@@ -1461,7 +2535,12 @@
         "titre": "Pivot réussi vers le modèle B2B",
         "importance": "Forte",
         "message": "🔄 TRANSFORMATION : Changement de modèle économique validé ! Les contrats d'entreprises récurrents remplacent la précarité de la vente au détail.",
-        "impacts": "Revenus long terme +30% | XP +25"
+        "impacts": [
+            {
+                "actif": "Revenus long terme",
+                "variation": 0.3
+            }
+        ]
     },
     {
         "id": "184",
@@ -1469,7 +2548,12 @@
         "titre": "Refus d'augmentation annuelle",
         "importance": "Modérée",
         "message": "📉 ENTRETIEN ANNUEL : 'Malgré la qualité de votre travail, le contexte budgétaire actuel ne nous permet pas d'accéder à votre demande salariale.'",
-        "impacts": "Bonheur -18%"
+        "impacts": [
+            {
+                "actif": "Bonheur",
+                "variation": -0.18
+            }
+        ]
     },
     {
         "id": "185",
@@ -1477,7 +2561,16 @@
         "titre": "Intégration d'un nouvel associé",
         "importance": "Modérée",
         "message": "✍️ PACK D'ASSOCIÉS : Signature finale de l'arrivée de votre cofondateur technique. Vous cédez des parts mais divisez la charge mentale par deux.",
-        "impacts": "Stress -15% | Dilution 15%"
+        "impacts": [
+            {
+                "actif": "Stress",
+                "variation": -0.15
+            },
+            {
+                "actif": "Dilution",
+                "variation": 0.15
+            }
+        ]
     },
     {
         "id": "186",
@@ -1485,7 +2578,7 @@
         "titre": "Obsolescence de vos compétences",
         "importance": "Forte",
         "message": "📉 RETARD TECHNIQUE : L'apparition d'un nouveau standard technologique open-source rend vos méthodologies de travail totalement dépassées.",
-        "impacts": "Nécessite formation (-4 000 €)"
+        "impacts": []
     },
     {
         "id": "187",
@@ -1493,7 +2586,12 @@
         "titre": "Surcharge de travail / Surchauffe",
         "importance": "Modérée",
         "message": "⏳ NUITS BLANCHES : Les lancements de projets s'enchaînent sans répit. Vous accumulez les heures supplémentaires au détriment de votre sommeil.",
-        "impacts": "Santé -20% | XP +12"
+        "impacts": [
+            {
+                "actif": "Santé",
+                "variation": -0.2
+            }
+        ]
     },
     {
         "id": "188",
@@ -1501,7 +2599,12 @@
         "titre": "Succès d'une campagne marketing",
         "importance": "Modérée",
         "message": "🎯 BUZZ SENSATION : Votre vidéo de communication devient virale sur les réseaux. Les commandes affluent sur le site de manière exponentielle.",
-        "impacts": "Revenus temporaires +15%"
+        "impacts": [
+            {
+                "actif": "Revenus temporaires",
+                "variation": 0.15
+            }
+        ]
     },
     {
         "id": "189",
@@ -1509,7 +2612,16 @@
         "titre": "Arrivée d'un manager toxique",
         "importance": "Forte",
         "message": "👹 RESTRUCTURATION : Votre nouveau supérieur direct applique des méthodes de management par la terreur. L'ambiance d'équipe devient irrespirable.",
-        "impacts": "Bonheur -25% | Santé -15%"
+        "impacts": [
+            {
+                "actif": "Bonheur",
+                "variation": -0.25
+            },
+            {
+                "actif": "Santé",
+                "variation": -0.15
+            }
+        ]
     },
     {
         "id": "190",
@@ -1517,7 +2629,7 @@
         "titre": "Proposition d'entrer au capital",
         "importance": "Forte",
         "message": "📈 ACTIONS : Les fondateurs vous proposent d'acheter des parts de l'entreprise à un prix préférentiel avant la prochaine phase de croissance.",
-        "impacts": "Achat requis (-20 000 €)"
+        "impacts": []
     },
     {
         "id": "191",
@@ -1525,7 +2637,7 @@
         "titre": "Vol de matériel informatique",
         "importance": "Faible",
         "message": "💻 BUREAU VIDE : Durant le week-end, les locaux ont été visités. Les ordinateurs portables de développement ont été dérobés.",
-        "impacts": "Compte courant -3 000 €"
+        "impacts": []
     },
     {
         "id": "192",
@@ -1533,7 +2645,12 @@
         "titre": "Contrat cadre signé pour 3 ans",
         "importance": "Forte",
         "message": "🖋️ SIGNATURE HISTORIQUE : Le premier groupe industriel du pays valide votre référencement comme fournisseur exclusif pour les trois prochaines années.",
-        "impacts": "Sécurité des revenus +40%"
+        "impacts": [
+            {
+                "actif": "Sécurité des revenus",
+                "variation": 0.4
+            }
+        ]
     },
     {
         "id": "193",
@@ -1541,7 +2658,7 @@
         "titre": "Piratage de la base de données clients",
         "importance": "Critique",
         "message": "🔒 RANÇONGICIEL : Des hackers ont chiffré vos serveurs et réclament une rançon sous peine de diffuser l'intégralité du fichier client en ligne.",
-        "impacts": "Réseau -40 | Amende -15 000 €"
+        "impacts": []
     },
     {
         "id": "194",
@@ -1549,7 +2666,7 @@
         "titre": "Hackathon interne remporté",
         "importance": "Faible",
         "message": "🏆 PREMIER PRIX : Votre prototype de détection de fraude remporte le concours d'innovation interne devant 20 autres équipes.",
-        "impacts": "XP +10 | Prime +1 500 €"
+        "impacts": []
     },
     {
         "id": "195",
@@ -1557,7 +2674,12 @@
         "titre": "Inauguration de nouveaux bureaux",
         "importance": "Faible",
         "message": "🥂 COUPE DE CHAMPAGNE : Emménagement réussi dans de magnifiques locaux au cœur du quartier d'affaires. Parfait pour l'image de marque.",
-        "impacts": "Réseau +8 | Motivation +10%"
+        "impacts": [
+            {
+                "actif": "Motivation",
+                "variation": 0.1
+            }
+        ]
     },
     {
         "id": "196",
@@ -1565,7 +2687,12 @@
         "titre": "Baisse globale des grilles salariales",
         "importance": "Forte",
         "message": "📉 PLAN D'AUSTÉRITÉ : Face aux pertes du groupe, la direction impose une révision générale à la baisse des avantages et des variables contractuels.",
-        "impacts": "Revenus mensuels -8%"
+        "impacts": [
+            {
+                "actif": "Revenus mensuels",
+                "variation": -0.08
+            }
+        ]
     },
     {
         "id": "197",
@@ -1573,7 +2700,7 @@
         "titre": "Dépôt de brevet validé",
         "importance": "Forte",
         "message": "📜 INPI : Votre demande de protection industrielle concernant votre algorithme de routage est officiellement acceptée. Barrière à la concurrence établie.",
-        "impacts": "Actif Valorisé +40 000 €"
+        "impacts": []
     },
     {
         "id": "198",
@@ -1581,7 +2708,7 @@
         "titre": "Amende CNIL (Non-conformité)",
         "importance": "Forte",
         "message": "🏛️ SANCTION ADMINISTRATIVE : L'autorité de contrôle constate de graves manquements dans la gestion du consentement des utilisateurs sur votre site.",
-        "impacts": "Compte courant -25 000 €"
+        "impacts": []
     },
     {
         "id": "199",
@@ -1589,7 +2716,7 @@
         "titre": "Passage réussi en télétravail 100%",
         "importance": "Modérée",
         "message": "🏡 HOME OFFICE : L'avenant à votre contrat est signé. Vous n'avez plus l'obligation de venir sur site, économisant fatigue et transports.",
-        "impacts": "Frais transport -150 €/mois"
+        "impacts": []
     },
     {
         "id": "200",
@@ -1597,6 +2724,6 @@
         "titre": "Démission collective de votre équipe",
         "importance": "Critique",
         "message": "👋 EFFET DOMINO : Suite au départ du chef de projet, l'intégralité des ingénieurs pose sa démission le même jour, vous laissant seul aux commandes.",
-        "impacts": "Projets gelés | Stress max"
+        "impacts": []
     }
 ]
