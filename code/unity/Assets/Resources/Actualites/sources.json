@@ -1,0 +1,183 @@
+[
+    {
+        "id": "src_waffle_street",
+        "nom": "Waffle Street Journal",
+        "type": "presse_financiere",
+        "domaines": [
+            "Boursiers"
+        ],
+        "fiabilite": 0.8
+    },
+    {
+        "id": "src_bloomburger",
+        "nom": "Bloomburger",
+        "type": "presse_financiere",
+        "domaines": [
+            "Boursiers"
+        ],
+        "fiabilite": 0.75
+    },
+    {
+        "id": "src_fourbes",
+        "nom": "Fourbes",
+        "type": "presse_financiere",
+        "domaines": [
+            "Boursiers"
+        ],
+        "fiabilite": 0.6
+    },
+    {
+        "id": "src_bbc_noise",
+        "nom": "BBC Noise",
+        "type": "presse_generaliste",
+        "domaines": [
+            "Boursiers",
+            "Professionnels"
+        ],
+        "fiabilite": 0.75
+    },
+    {
+        "id": "src_canard_dechaine",
+        "nom": "Le Canard Déchaîné",
+        "type": "presse_generaliste",
+        "domaines": [
+            "Boursiers",
+            "Professionnels"
+        ],
+        "fiabilite": 0.7
+    },
+    {
+        "id": "src_the_world",
+        "nom": "The World",
+        "type": "presse_generaliste",
+        "domaines": [
+            "Boursiers",
+            "Professionnels"
+        ],
+        "fiabilite": 0.65
+    },
+    {
+        "id": "src_alienation",
+        "nom": "Aliénation",
+        "type": "presse_generaliste",
+        "domaines": [
+            "Boursiers",
+            "Professionnels"
+        ],
+        "fiabilite": 0.55
+    },
+    {
+        "id": "src_loups",
+        "nom": "L'Oups",
+        "type": "presse_generaliste",
+        "domaines": [
+            "Boursiers",
+            "Professionnels"
+        ],
+        "fiabilite": 0.5
+    },
+    {
+        "id": "src_le_fiasco",
+        "nom": "Le Fiasco",
+        "type": "presse_generaliste",
+        "domaines": [
+            "Boursiers",
+            "Professionnels"
+        ],
+        "fiabilite": 0.45
+    },
+    {
+        "id": "src_bfmtkt",
+        "nom": "BFMTKT",
+        "type": "tv_reseaux",
+        "domaines": [
+            "Boursiers",
+            "Professionnels"
+        ],
+        "fiabilite": 0.4
+    },
+    {
+        "id": "src_linkedout",
+        "nom": "LinkedOut",
+        "type": "tv_reseaux",
+        "domaines": [
+            "Boursiers",
+            "Professionnels"
+        ],
+        "fiabilite": 0.35
+    },
+    {
+        "id": "src_cnuls",
+        "nom": "C'Nuls",
+        "type": "tv_reseaux",
+        "domaines": [
+            "Boursiers",
+            "Professionnels"
+        ],
+        "fiabilite": 0.3
+    },
+    {
+        "id": "src_tiptop",
+        "nom": "TipTop",
+        "type": "tv_reseaux",
+        "domaines": [
+            "Boursiers",
+            "Professionnels"
+        ],
+        "fiabilite": 0.15
+    },
+    {
+        "id": "src_cercle_famille",
+        "nom": "Cercle Famille",
+        "type": "humain_perso",
+        "domaines": [
+            "Personnels"
+        ],
+        "fiabilite": 0.95
+    },
+    {
+        "id": "src_beau_frere",
+        "nom": "Le Beau-Frère Sachant",
+        "type": "humain_perso",
+        "domaines": [
+            "Personnels"
+        ],
+        "fiabilite": 0.55
+    },
+    {
+        "id": "src_voisin",
+        "nom": "Le Voisin du Dessus",
+        "type": "humain_perso",
+        "domaines": [
+            "Personnels"
+        ],
+        "fiabilite": 0.3
+    },
+    {
+        "id": "src_rh",
+        "nom": "Le RH de Service",
+        "type": "humain_pro",
+        "domaines": [
+            "Professionnels"
+        ],
+        "fiabilite": 0.8
+    },
+    {
+        "id": "src_collegue_louche",
+        "nom": "Collègue Louche",
+        "type": "humain_pro",
+        "domaines": [
+            "Professionnels"
+        ],
+        "fiabilite": 0.4
+    },
+    {
+        "id": "src_barber_sevran",
+        "nom": "Le Barber de Sevran",
+        "type": "humain_pro",
+        "domaines": [
+            "Professionnels"
+        ],
+        "fiabilite": 0.25
+    }
+]
