@@ -33,29 +33,39 @@ public class PhaseRepartitionTempsController : MonoBehaviour
     private ServiceRepartitionTemps service;
     private GameObject bloqueurModal;
     private float prochaineActualisation;
+    private static PhaseRepartitionTempsController instanceCourante;
 
     [RuntimeInitializeOnLoadMethod(
         RuntimeInitializeLoadType.SubsystemRegistration)]
     private static void ReinitialiserEtatStatique()
     {
-        // Les scenes de test peuvent recharger le runtime sans redemarrer le
-        // domaine. La logique statique se limite a des recherches ponctuelles,
-        // donc aucun etat n'est conserve entre deux parties.
+        instanceCourante = null;
     }
 
     private void OnEnable()
     {
+        if (instanceCourante != null && instanceCourante != this)
+        {
+            Debug.LogError(
+                "[Temps] Plusieurs PhaseRepartitionTempsController actifs.");
+        }
+
+        instanceCourante = this;
         RepartitionTempsUI.AllocationValidee += OnAllocationValidee;
     }
 
     private void OnDisable()
     {
         RepartitionTempsUI.AllocationValidee -= OnAllocationValidee;
+        if (instanceCourante == this)
+        {
+            instanceCourante = null;
+        }
     }
 
     private void Start()
     {
-        ActualiserPhase(true);
+        ActualiserPhase(true, false);
     }
 
     private void Update()
@@ -67,7 +77,7 @@ public class PhaseRepartitionTempsController : MonoBehaviour
 
         prochaineActualisation =
             Time.unscaledTime + IntervalleActualisationSecondes;
-        ActualiserPhase(true);
+        ActualiserPhase(true, false);
     }
 
     /// <summary>
@@ -80,8 +90,7 @@ public class PhaseRepartitionTempsController : MonoBehaviour
         GameData donneesPartie)
     {
         PhaseRepartitionTempsController controleur =
-            Object.FindFirstObjectByType<PhaseRepartitionTempsController>(
-                FindObjectsInactive.Include);
+            TrouverControleur(true);
         if (controleur == null)
         {
             return false;
@@ -92,8 +101,14 @@ public class PhaseRepartitionTempsController : MonoBehaviour
             controleur.gameData = donneesPartie;
         }
 
-        controleur.ActualiserPhase(true);
-        return true;
+        bool phaseDisponible = controleur.ActualiserPhase(true, true);
+        if (!phaseDisponible)
+        {
+            Debug.LogError(
+                "[Temps] La phase RepartitionTemps n'a pas pu etre ouverte.");
+        }
+
+        return phaseDisponible;
     }
 
     /// <summary>
@@ -101,39 +116,56 @@ public class PhaseRepartitionTempsController : MonoBehaviour
     /// </summary>
     /// <param name="ouvrirSiNonValidee">Lorsque true, force l'ouverture de la
     /// fenetre si la repartition mensuelle attend encore une validation.</param>
-    public void ActualiserPhase(bool ouvrirSiNonValidee)
+    public bool ActualiserPhase(bool ouvrirSiNonValidee)
+    {
+        return ActualiserPhase(ouvrirSiNonValidee, false);
+    }
+
+    private bool ActualiserPhase(bool ouvrirSiNonValidee, bool journaliserErreurs)
     {
         if (!ResoudreService())
         {
             AppliquerInteractable(false);
-            return;
+            if (journaliserErreurs)
+            {
+                Debug.LogError(
+                    "[Temps] GameData introuvable pour RepartitionTemps.");
+            }
+
+            return false;
         }
 
         bool allocationValidee = service.EstAllocationValidee();
+        bool fenetreDisponible = true;
         if (!allocationValidee && ouvrirSiNonValidee)
         {
-            OuvrirFenetreRepartition();
+            fenetreDisponible = OuvrirFenetreRepartition(journaliserErreurs);
         }
 
         AppliquerInteractable(allocationValidee);
-        ActiverBloqueurModal(!allocationValidee);
+        bool bloqueurDisponible =
+            ActiverBloqueurModal(!allocationValidee, journaliserErreurs);
+        return allocationValidee ||
+            (fenetreDisponible && bloqueurDisponible && FenetreVisible());
     }
 
     private void OnAllocationValidee()
     {
-        ActualiserPhase(false);
+        ActualiserPhase(false, false);
     }
 
-    private void OuvrirFenetreRepartition()
+    private bool OuvrirFenetreRepartition(bool journaliserErreurs)
     {
-        ResoudreFenetre();
+        ResoudreFenetre(journaliserErreurs);
         if (fenetreRepartitionTemps == null)
         {
-            return;
+            return false;
         }
 
+        ActiverParentsFenetre(journaliserErreurs);
         fenetreRepartitionTemps.SetActive(true);
         fenetreRepartitionTemps.transform.SetAsLastSibling();
+        return FenetreVisible();
     }
 
     private void AppliquerInteractable(bool allocationValidee)
@@ -162,13 +194,19 @@ public class PhaseRepartitionTempsController : MonoBehaviour
                 service.PeutOuvrir(TypeApplicationTemps.Entrepreneuriat));
     }
 
-    private void ActiverBloqueurModal(bool actif)
+    private bool ActiverBloqueurModal(bool actif, bool journaliserErreurs)
     {
-        ResoudreFenetre();
+        ResoudreFenetre(journaliserErreurs);
         if (fenetreRepartitionTemps == null ||
             fenetreRepartitionTemps.transform.parent == null)
         {
-            return;
+            if (journaliserErreurs)
+            {
+                Debug.LogError(
+                    "[Temps] Parent de la fenetre RepartitionTemps introuvable.");
+            }
+
+            return false;
         }
 
         if (bloqueurModal == null)
@@ -201,6 +239,8 @@ public class PhaseRepartitionTempsController : MonoBehaviour
                 fenetreRepartitionTemps.transform.GetSiblingIndex());
             fenetreRepartitionTemps.transform.SetAsLastSibling();
         }
+
+        return true;
     }
 
     private bool ResoudreService()
@@ -226,7 +266,7 @@ public class PhaseRepartitionTempsController : MonoBehaviour
         return true;
     }
 
-    private void ResoudreFenetre()
+    private void ResoudreFenetre(bool journaliserErreurs)
     {
         if (fenetreRepartitionTemps != null)
         {
@@ -239,6 +279,17 @@ public class PhaseRepartitionTempsController : MonoBehaviour
         if (ui != null)
         {
             fenetreRepartitionTemps = ui.gameObject;
+        }
+
+        if (fenetreRepartitionTemps == null && journaliserErreurs)
+        {
+            Debug.LogError(
+                "[Temps] Fenetre RepartitionTemps introuvable dans la scene.");
+        }
+        else if (fenetreRepartitionTemps == gameObject && journaliserErreurs)
+        {
+            Debug.LogError(
+                "[Temps] Le controleur ne doit pas etre attache a la fenetre RepartitionTemps.");
         }
     }
 
@@ -292,5 +343,88 @@ public class PhaseRepartitionTempsController : MonoBehaviour
         {
             bouton.interactable = interactable;
         }
+    }
+
+    private static PhaseRepartitionTempsController TrouverControleur(
+        bool journaliserErreurs)
+    {
+        if (instanceCourante != null)
+        {
+            return instanceCourante;
+        }
+
+        PhaseRepartitionTempsController[] controleurs =
+            Object.FindObjectsByType<PhaseRepartitionTempsController>(
+                FindObjectsInactive.Include,
+                FindObjectsSortMode.None);
+        if (controleurs.Length == 0)
+        {
+            if (journaliserErreurs)
+            {
+                Debug.LogError(
+                    "[Temps] Aucun PhaseRepartitionTempsController trouve dans la scene.");
+            }
+
+            return null;
+        }
+
+        if (controleurs.Length > 1 && journaliserErreurs)
+        {
+            Debug.LogError(
+                "[Temps] Plusieurs PhaseRepartitionTempsController trouves dans la scene.");
+        }
+
+        foreach (PhaseRepartitionTempsController controleur in controleurs)
+        {
+            if (controleur != null && controleur.isActiveAndEnabled)
+            {
+                instanceCourante = controleur;
+                return controleur;
+            }
+        }
+
+        if (journaliserErreurs)
+        {
+            Debug.LogError(
+                "[Temps] PhaseRepartitionTempsController trouve mais inactif.");
+        }
+
+        return controleurs[0];
+    }
+
+    private void ActiverParentsFenetre(bool journaliserErreurs)
+    {
+        if (fenetreRepartitionTemps == null)
+        {
+            return;
+        }
+
+        Transform parent = fenetreRepartitionTemps.transform.parent;
+        if (parent == null)
+        {
+            if (journaliserErreurs)
+            {
+                Debug.LogError(
+                    "[Temps] La fenetre RepartitionTemps n'a pas de parent actif.");
+            }
+
+            return;
+        }
+
+        while (parent != null)
+        {
+            if (!parent.gameObject.activeSelf)
+            {
+                parent.gameObject.SetActive(true);
+            }
+
+            parent = parent.parent;
+        }
+    }
+
+    private bool FenetreVisible()
+    {
+        return fenetreRepartitionTemps != null &&
+            fenetreRepartitionTemps.activeInHierarchy;
     }
 }

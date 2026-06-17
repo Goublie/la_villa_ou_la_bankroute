@@ -61,8 +61,13 @@ public class ActionPlay : MonoBehaviour
 
         if (!PeutPasserAuMoisSuivant(gameData))
         {
-            PhaseRepartitionTempsController
-                .OuvrirPhaseObligatoireSiNecessaire(gameData);
+            if (!PhaseRepartitionTempsController
+                    .OuvrirPhaseObligatoireSiNecessaire(gameData))
+            {
+                Debug.LogError(
+                    "[Temps] Impossible d'ouvrir la repartition obligatoire.");
+            }
+
             Debug.LogWarning(
                 "[Temps] Repartition mensuelle obligatoire non validee.");
             return;
@@ -90,8 +95,13 @@ public class ActionPlay : MonoBehaviour
             return;
         }
 
-        PhaseRepartitionTempsController
-            .OuvrirPhaseObligatoireSiNecessaire(gameData);
+        if (!PhaseRepartitionTempsController
+                .OuvrirPhaseObligatoireSiNecessaire(gameData))
+        {
+            Debug.LogError(
+                "[Temps] Impossible d'ouvrir la repartition du nouveau mois.");
+        }
+
         OnMoisPasse?.Invoke();
     }
 
