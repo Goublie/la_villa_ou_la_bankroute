@@ -59,6 +59,15 @@ public class ActionPlay : MonoBehaviour
             return;
         }
 
+        if (!PeutPasserAuMoisSuivant(gameData))
+        {
+            PhaseRepartitionTempsController
+                .OuvrirPhaseObligatoireSiNecessaire(gameData);
+            Debug.LogWarning(
+                "[Temps] Repartition mensuelle obligatoire non validee.");
+            return;
+        }
+
         ResultatPassageMensuel resultat =
             servicePassageMensuel.PasserAuMoisSuivant();
         if (!resultat.Succes)
@@ -67,7 +76,6 @@ public class ActionPlay : MonoBehaviour
             return;
         }
 
-        OnMoisPasse?.Invoke();
         if (DoitChargerGameOver(gameData) &&
             ScenesManager.Instance != null)
         {
@@ -79,7 +87,12 @@ public class ActionPlay : MonoBehaviour
             ScenesManager.Instance != null)
         {
             ScenesManager.Instance.ChargerIntrospection();
+            return;
         }
+
+        PhaseRepartitionTempsController
+            .OuvrirPhaseObligatoireSiNecessaire(gameData);
+        OnMoisPasse?.Invoke();
     }
 
     private bool EssayerCreerService()
@@ -117,5 +130,25 @@ public class ActionPlay : MonoBehaviour
 
         DonneesSalariat salariat = gameData.joueur.salariat;
         return salariat != null && salariat.burnout >= 100;
+    }
+
+    /// <summary>
+    /// Indique si le bouton de passage mensuel peut produire un nouveau mois.
+    /// </summary>
+    /// <remarks>
+    /// Le controle UI des boutons reste dans
+    /// <see cref="PhaseRepartitionTempsController"/>, mais cette garde rend le
+    /// verrou robuste meme si un bouton conserve un listener actif.
+    /// </remarks>
+    public static bool PeutPasserAuMoisSuivant(GameData gameData)
+    {
+        if (gameData == null || gameData.joueur == null)
+        {
+            return false;
+        }
+
+        gameData.joueur.InitialiserSiNecessaire();
+        return new ServiceRepartitionTemps(gameData.joueur.tempsApplications)
+            .EstAllocationValidee();
     }
 }

@@ -60,6 +60,7 @@ public sealed class ServiceRepartitionTemps
         Appliquer(donnees.salariat, minutesSalariat);
         Appliquer(donnees.bourse, minutesBourse);
         Appliquer(donnees.entrepreneuriat, minutesEntrepreneuriat);
+        donnees.allocationValidee = true;
         return ResultatOperation.Reussite(
             "Temps alloue.",
             default,
@@ -102,7 +103,22 @@ public sealed class ServiceRepartitionTemps
     /// </summary>
     public bool PeutOuvrir(TypeApplicationTemps type)
     {
-        return ObtenirSecondesRestantes(type) > 0f;
+        return EstAllocationValidee() &&
+            ObtenirSecondesRestantes(type) > 0f;
+    }
+
+    /// <summary>
+    /// Indique si la repartition mensuelle a ete validee.
+    /// </summary>
+    /// <remarks>
+    /// Le passage au mois suivant se base sur cet etat, pas sur le temps
+    /// restant, afin qu'un joueur ayant consomme ses trente minutes puisse
+    /// quand meme terminer le mois.
+    /// </remarks>
+    public bool EstAllocationValidee()
+    {
+        donnees.InitialiserSiNecessaire();
+        return donnees.allocationValidee;
     }
 
     /// <summary>

@@ -161,6 +161,7 @@ public class ArchitectureTempsTests
             service.DefinirAllocation(10, 5, 5, 10, 0);
 
         Assert.That(resultat.Succes, Is.True);
+        Assert.That(service.EstAllocationValidee(), Is.True);
         Assert.That(donnees.CalculerTotalMinutes(), Is.EqualTo(30));
         Assert.That(
             donnees.banque.secondesRestantes,
@@ -168,6 +169,63 @@ public class ArchitectureTempsTests
         Assert.That(
             donnees.bourse.secondesRestantes,
             Is.EqualTo(600f));
+    }
+
+    [Test]
+    public void RepartitionTemps_AllocationValideeActiveLaPhaseDeJeu()
+    {
+        GameData gameData = CreerGameData();
+        try
+        {
+            ServiceRepartitionTemps service =
+                new ServiceRepartitionTemps(gameData.joueur.tempsApplications);
+
+            ResultatOperation resultat =
+                service.DefinirAllocation(10, 5, 5, 5, 5);
+
+            Assert.That(resultat.Succes, Is.True);
+            Assert.That(service.EstAllocationValidee(), Is.True);
+            Assert.That(ActionPlay.PeutPasserAuMoisSuivant(gameData), Is.True);
+        }
+        finally
+        {
+            Object.DestroyImmediate(gameData);
+        }
+    }
+
+    [Test]
+    public void RepartitionTemps_EntrepreneuriatPeutRecevoirDuTemps()
+    {
+        DonneesRepartitionTemps donnees = new DonneesRepartitionTemps();
+        ServiceRepartitionTemps service =
+            new ServiceRepartitionTemps(donnees);
+
+        service.DefinirAllocation(5, 5, 5, 5, 10);
+
+        Assert.That(
+            service.PeutOuvrir(TypeApplicationTemps.Entrepreneuriat),
+            Is.True);
+        Assert.That(
+            service.ObtenirSecondesRestantes(
+                TypeApplicationTemps.Entrepreneuriat),
+            Is.EqualTo(600f));
+    }
+
+    [Test]
+    public void RepartitionTemps_ZeroMinuteResteInaccessible()
+    {
+        DonneesRepartitionTemps donnees = new DonneesRepartitionTemps();
+        ServiceRepartitionTemps service =
+            new ServiceRepartitionTemps(donnees);
+
+        service.DefinirAllocation(30, 0, 0, 0, 0);
+
+        Assert.That(
+            service.PeutOuvrir(TypeApplicationTemps.Banque),
+            Is.True);
+        Assert.That(
+            service.PeutOuvrir(TypeApplicationTemps.Bourse),
+            Is.False);
     }
 
     [Test]
@@ -182,6 +240,7 @@ public class ArchitectureTempsTests
 
         Assert.That(resultat.Succes, Is.False);
         Assert.That(resultat.Code, Is.EqualTo("budget_incomplet"));
+        Assert.That(service.EstAllocationValidee(), Is.False);
         Assert.That(donnees.CalculerTotalMinutes(), Is.EqualTo(0));
     }
 
@@ -219,11 +278,44 @@ public class ArchitectureTempsTests
                     .joueur.tempsApplications.CalculerTotalMinutes(),
                 Is.EqualTo(30));
             Assert.That(
+                gameData.historiqueSnapshots[0]
+                    .joueur.tempsApplications.allocationValidee,
+                Is.True);
+            Assert.That(
                 gameData.joueur.tempsApplications.CalculerTotalMinutes(),
                 Is.EqualTo(0));
             Assert.That(
+                gameData.joueur.tempsApplications.allocationValidee,
+                Is.False);
+            Assert.That(
                 gameData.joueur.tempsApplications.ATempsRestant(),
                 Is.False);
+        }
+        finally
+        {
+            Object.DestroyImmediate(gameData);
+        }
+    }
+
+    [Test]
+    public void Initialisation_ReinitialiseAllocationNonValidee()
+    {
+        GameData gameData = CreerGameData();
+        try
+        {
+            ServiceRepartitionTemps service =
+                new ServiceRepartitionTemps(gameData.joueur.tempsApplications);
+            service.DefinirAllocation(10, 5, 5, 5, 5);
+
+            new ServicePassageMensuel(gameData).InitialiserPartie();
+
+            Assert.That(
+                gameData.joueur.tempsApplications.CalculerTotalMinutes(),
+                Is.EqualTo(0));
+            Assert.That(
+                gameData.joueur.tempsApplications.allocationValidee,
+                Is.False);
+            Assert.That(ActionPlay.PeutPasserAuMoisSuivant(gameData), Is.False);
         }
         finally
         {

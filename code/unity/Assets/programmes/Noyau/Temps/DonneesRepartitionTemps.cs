@@ -66,6 +66,18 @@ public class DonneesRepartitionTemps
     public const int BudgetMensuelMinutes = 30;
 
     public int budgetMensuelMinutes = BudgetMensuelMinutes;
+
+    /// <summary>
+    /// Indique si le joueur a valide la repartition du mois courant.
+    /// </summary>
+    /// <remarks>
+    /// Les minutes et secondes peuvent etre a zero pendant la phase de choix.
+    /// Ce booleen distingue cet etat d'une allocation deja validee mais
+    /// entierement consommee, ce qui permet de verrouiller les apps et le
+    /// passage mensuel avant la validation obligatoire.
+    /// </remarks>
+    public bool allocationValidee;
+
     public AllocationTempsApplication banque =
         new AllocationTempsApplication();
     public AllocationTempsApplication actualites =
@@ -139,11 +151,12 @@ public class DonneesRepartitionTemps
     public bool ATempsRestant()
     {
         InitialiserSiNecessaire();
-        return banque.secondesRestantes > 0f ||
+        return allocationValidee && (
+            banque.secondesRestantes > 0f ||
             actualites.secondesRestantes > 0f ||
             salariat.secondesRestantes > 0f ||
             bourse.secondesRestantes > 0f ||
-            entrepreneuriat.secondesRestantes > 0f;
+            entrepreneuriat.secondesRestantes > 0f);
     }
 
     /// <summary>
@@ -157,6 +170,7 @@ public class DonneesRepartitionTemps
         RemettreAZero(salariat);
         RemettreAZero(bourse);
         RemettreAZero(entrepreneuriat);
+        allocationValidee = false;
     }
 
     /// <summary>
@@ -168,6 +182,7 @@ public class DonneesRepartitionTemps
         return new DonneesRepartitionTemps
         {
             budgetMensuelMinutes = budgetMensuelMinutes,
+            allocationValidee = allocationValidee,
             banque = banque.Copier(),
             actualites = actualites.Copier(),
             salariat = salariat.Copier(),

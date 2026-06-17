@@ -1,3 +1,4 @@
+using System;
 using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
@@ -14,6 +15,17 @@ using XCharts.Runtime;
 /// </remarks>
 public class RepartitionTempsUI : MonoBehaviour
 {
+    /// <summary>
+    /// Notification emise apres une allocation mensuelle validee avec succes.
+    /// </summary>
+    /// <remarks>
+    /// Le controleur de phase s'y abonne pour fermer le verrou modal et
+    /// reactiver les applications ayant du temps. Les donnees sont deja
+    /// persistees par <see cref="ServiceRepartitionTemps"/> quand l'evenement
+    /// est declenche.
+    /// </remarks>
+    public static event Action AllocationValidee;
+
     public GameData gameData;
 
     private readonly List<SliderAllocation> sliders =
@@ -26,11 +38,19 @@ public class RepartitionTempsUI : MonoBehaviour
     private Button cancelButton;
     private bool miseAJourInterne;
 
+    [RuntimeInitializeOnLoadMethod(
+        RuntimeInitializeLoadType.SubsystemRegistration)]
+    private static void ReinitialiserEvenements()
+    {
+        AllocationValidee = null;
+    }
+
     private void Start()
     {
         ResoudreService();
         ResoudreReferences();
         ConfigurerSliders();
+        SynchroniserDepuisDonnees();
         ActualiserAffichage();
     }
 
@@ -38,6 +58,7 @@ public class RepartitionTempsUI : MonoBehaviour
     {
         if (sliders.Count > 0)
         {
+            SynchroniserDepuisDonnees();
             ActualiserAffichage();
         }
     }
@@ -150,6 +171,7 @@ public class RepartitionTempsUI : MonoBehaviour
             return;
         }
 
+        AssurerDonneesGraphique();
         for (int index = 0; index < sliders.Count; index++)
         {
             pieChart.UpdateData(
@@ -183,7 +205,48 @@ public class RepartitionTempsUI : MonoBehaviour
             return;
         }
 
+        AllocationValidee?.Invoke();
         gameObject.SetActive(false);
+    }
+
+    private void SynchroniserDepuisDonnees()
+    {
+        if (donnees == null)
+        {
+            return;
+        }
+
+        miseAJourInterne = true;
+        foreach (SliderAllocation entree in sliders)
+        {
+            AllocationTempsApplication allocation =
+                donnees.Obtenir(entree.type);
+            entree.slider.value =
+                allocation == null ? 0f : allocation.minutesInitiales;
+        }
+        miseAJourInterne = false;
+    }
+
+    private void AssurerDonneesGraphique()
+    {
+        Serie serie = pieChart.GetSerie(0);
+        if (serie == null)
+        {
+            serie = pieChart.AddSerie<Pie>("RepartitionTemps");
+        }
+
+        if (serie == null || serie.dataCount == sliders.Count)
+        {
+            return;
+        }
+
+        // Le prefab a deja porte quatre entrees. On regenere la liste pour
+        // garantir que le graphique et les sliders restent toujours alignes.
+        serie.ClearData();
+        foreach (SliderAllocation entree in sliders)
+        {
+            pieChart.AddData(0, entree.slider.value, NomGraphique(entree.type));
+        }
     }
 
     private int Lire(TypeApplicationTemps type)
@@ -234,12 +297,31 @@ public class RepartitionTempsUI : MonoBehaviour
         return DonneesRepartitionTemps.BudgetMensuelMinutes;
     }
 
+    private static string NomGraphique(TypeApplicationTemps type)
+    {
+        switch (type)
+        {
+            case TypeApplicationTemps.Banque:
+                return "Banque";
+            case TypeApplicationTemps.Actualites:
+                return "Actualites";
+            case TypeApplicationTemps.Salariat:
+                return "Salariat";
+            case TypeApplicationTemps.Bourse:
+                return "Bourse";
+            case TypeApplicationTemps.Entrepreneuriat:
+                return "Entrepreneuriat";
+            default:
+                return "Application";
+        }
+    }
+
     private bool ResoudreService()
     {
         if (gameData == null)
         {
             ActionPlay actionPlay =
-                Object.FindFirstObjectByType<ActionPlay>();
+                UnityEngine.Object.FindFirstObjectByType<ActionPlay>();
             if (actionPlay != null)
             {
                 gameData = actionPlay.gameData;

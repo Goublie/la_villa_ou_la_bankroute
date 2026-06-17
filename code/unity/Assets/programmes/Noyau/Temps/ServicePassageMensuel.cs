@@ -35,6 +35,8 @@ public sealed class ServicePassageMensuel
 
         if (gameData.historiqueSnapshots.Count == 0)
         {
+            new ServiceRepartitionTemps(gameData.joueur.tempsApplications)
+                .ReinitialiserAllocation();
             EnregistrerSnapshot();
         }
 

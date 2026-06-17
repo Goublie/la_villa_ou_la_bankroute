@@ -187,6 +187,35 @@ public class ArchitectureSalariatTests
         }
     }
 
+    [Test]
+    public void EvolutionNaturelle_EmploiQuaranteCinqHeuresAtteintBurnout()
+    {
+        GameData gameData = ScriptableObject.CreateInstance<GameData>();
+        try
+        {
+            gameData.ResetData();
+            ServiceSalariat salariat = new ServiceSalariat(
+                gameData.joueur.salariat,
+                gameData.joueur);
+            salariat.AccepterPoste("Global Services", 300000, 45, 3, 1, 1);
+
+            for (int mois = 0;
+                 mois < 40 && gameData.joueur.salariat.burnout < 100;
+                 mois++)
+            {
+                salariat.AppliquerEvolutionMensuelle(mois);
+            }
+
+            Assert.That(gameData.joueur.salariat.fatigue, Is.EqualTo(100));
+            Assert.That(gameData.joueur.salariat.burnout, Is.EqualTo(100));
+            Assert.That(ActionPlay.DoitChargerGameOver(gameData), Is.True);
+        }
+        finally
+        {
+            Object.DestroyImmediate(gameData);
+        }
+    }
+
     private sealed class ContexteSalariat
     {
         public readonly DonneesJoueur Joueur = new DonneesJoueur();
