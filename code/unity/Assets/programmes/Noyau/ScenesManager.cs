@@ -89,6 +89,15 @@ public class ScenesManager : MonoBehaviour
     }
 
     /// <summary>
+    /// Charge la scene terminale GameOver.
+    /// </summary>
+    public void ChargerGameOver()
+    {
+        Debug.Log("ScenesManager : Chargement de 'GameOver'...");
+        SceneManager.LoadScene("GameOver");
+    }
+
+    /// <summary>
     /// Retourne au menu principal sans modifier l'etat courant du jeu.
     /// </summary>
     public void ChargerMenu()

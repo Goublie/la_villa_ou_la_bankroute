@@ -68,6 +68,13 @@ public class ActionPlay : MonoBehaviour
         }
 
         OnMoisPasse?.Invoke();
+        if (DoitChargerGameOver(gameData) &&
+            ScenesManager.Instance != null)
+        {
+            ScenesManager.Instance.ChargerGameOver();
+            return;
+        }
+
         if (resultat.ChangementAnnee &&
             ScenesManager.Instance != null)
         {
@@ -91,5 +98,24 @@ public class ActionPlay : MonoBehaviour
         servicePassageMensuel =
             new ServicePassageMensuel(gameData);
         return true;
+    }
+
+    /// <summary>
+    /// Indique si la partie doit basculer vers GameOver apres le passage mensuel.
+    /// </summary>
+    /// <remarks>
+    /// Le test est porte par l'adaptateur de scene, pas par SalariatUI, afin
+    /// qu'un burnout atteignant 100 soit traite meme si la fenetre Salariat est
+    /// fermee ou inactive.
+    /// </remarks>
+    public static bool DoitChargerGameOver(GameData gameData)
+    {
+        if (gameData == null || gameData.joueur == null)
+        {
+            return false;
+        }
+
+        DonneesSalariat salariat = gameData.joueur.salariat;
+        return salariat != null && salariat.burnout >= 100;
     }
 }

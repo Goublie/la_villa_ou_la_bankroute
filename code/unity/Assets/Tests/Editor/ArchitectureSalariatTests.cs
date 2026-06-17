@@ -162,6 +162,31 @@ public class ArchitectureSalariatTests
         }
     }
 
+    [Test]
+    public void BurnoutMaximal_DeclencheGameOverSansInterface()
+    {
+        GameData gameData = ScriptableObject.CreateInstance<GameData>();
+        try
+        {
+            gameData.ResetData();
+            ServiceSalariat salariat = new ServiceSalariat(
+                gameData.joueur.salariat,
+                gameData.joueur);
+            salariat.AccepterPoste("Global Services", 300000, 45, 3, 1, 1);
+            gameData.joueur.salariat.fatigue = 100;
+            gameData.joueur.salariat.burnout = 90;
+
+            new ServicePassageMensuel(gameData).PasserAuMoisSuivant();
+
+            Assert.That(gameData.joueur.salariat.burnout, Is.EqualTo(100));
+            Assert.That(ActionPlay.DoitChargerGameOver(gameData), Is.True);
+        }
+        finally
+        {
+            Object.DestroyImmediate(gameData);
+        }
+    }
+
     private sealed class ContexteSalariat
     {
         public readonly DonneesJoueur Joueur = new DonneesJoueur();
