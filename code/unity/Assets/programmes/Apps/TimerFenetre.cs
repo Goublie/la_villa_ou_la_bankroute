@@ -116,7 +116,7 @@ public class TimerFenetre : MonoBehaviour
     {
         if (chronoText == null)
         {
-            chronoText = transform.Find("Chrono")
+            chronoText = transform.Find("TopBar/Chrono")
                 ?.GetComponent<TextMeshProUGUI>();
         }
     }

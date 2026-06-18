@@ -71,7 +71,7 @@ public class RepartitionTempsUI : MonoBehaviour
         totalText = transform
             .Find("Fond/TimeAllocationContent/CenterContent/InfoPanel/TotalText")
             ?.GetComponent<TextMeshProUGUI>();
-        cancelButton = transform.Find("cancel")?.GetComponent<Button>();
+        cancelButton = transform.Find("TopBar/cancel")?.GetComponent<Button>();
 
         sliders.Clear();
         AjouterSlider(TypeApplicationTemps.Banque, "Slider_Banque");
