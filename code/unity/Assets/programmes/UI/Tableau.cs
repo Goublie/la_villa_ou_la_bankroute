@@ -6,12 +6,21 @@ public class Tableau : MonoBehaviour
 {
     public List<Ligne> tableau;    
 
+    [Tooltip("Ligne d'en-tête statique (optionnelle) à exclure de la liste de données.")]
+    public Ligne ligneEnTete;
+
     [Tooltip("Laissez vide pour utiliser les largeurs par défaut du prefab Ligne. Sinon, renseignez la largeur en pixels pour chaque colonne (-1 pour flexible/étirable).")]
     public List<float> largeursColonnes;
 
     public void Start()
     {
-       tableau = new List<Ligne>(GetComponentsInChildren<Ligne>());
+        tableau = new List<Ligne>(GetComponentsInChildren<Ligne>());
+
+        if (ligneEnTete != null)
+        {
+            tableau.Remove(ligneEnTete);
+            AppliquerConfigurationColonnes(ligneEnTete);
+        }
 
         // Appliquer la configuration des colonnes aux lignes existantes
         foreach (Ligne l in tableau)

@@ -635,7 +635,7 @@ MonoBehaviour:
   m_FallbackScreenDPI: 96
   m_DefaultSpriteDPI: 96
   m_DynamicPixelsPerUnit: 1
-  m_PresetInfoIsWorld: 0
+  m_PresetInfoIsWorld: 1
 --- !u!114 &8224181320356243873
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -707,5 +707,5 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::sliderAvecTexte
   G: {fileID: 11400000, guid: 00f9a2cc968a86847bacedddfcfe8be5, type: 2}
   slider: {fileID: 6069119790600986428}
-  soldeCompte:
-    centimes: 0
+  nom: 
+  tableauUI: {fileID: 0}
