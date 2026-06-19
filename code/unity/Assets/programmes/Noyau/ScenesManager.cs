@@ -1,5 +1,6 @@
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using UnityEngine.UI;
 
 /// <summary>
 /// Point de navigation central entre les scenes principales du jeu.
@@ -12,6 +13,9 @@ using UnityEngine.SceneManagement;
 public class ScenesManager : MonoBehaviour
 {
     private static ScenesManager _instance;
+
+    private Button boutonJouer;
+    private Button boutonQuitter;
 
     [Header("Donnees de jeu a reinitialiser")]
     public GameData gameData;
@@ -35,6 +39,13 @@ public class ScenesManager : MonoBehaviour
         }
     }
 
+    [RuntimeInitializeOnLoadMethod(
+        RuntimeInitializeLoadType.SubsystemRegistration)]
+    private static void ReinitialiserInstance()
+    {
+        _instance = null;
+    }
+
     private void Awake()
     {
         if (_instance != null && _instance != this)
@@ -45,6 +56,44 @@ public class ScenesManager : MonoBehaviour
 
         _instance = this;
         DontDestroyOnLoad(gameObject);
+    }
+
+    private void OnEnable()
+    {
+        if (_instance == this)
+        {
+            SceneManager.sceneLoaded += OnSceneLoaded;
+        }
+    }
+
+    private void Start()
+    {
+        if (_instance == this)
+        {
+            ConfigurerBoutonsMenu(SceneManager.GetActiveScene());
+        }
+    }
+
+    private void OnDisable()
+    {
+        if (_instance == this)
+        {
+            SceneManager.sceneLoaded -= OnSceneLoaded;
+            RetirerListenersMenu();
+        }
+    }
+
+    private void OnDestroy()
+    {
+        if (_instance == this)
+        {
+            _instance = null;
+        }
+    }
+
+    private void OnSceneLoaded(Scene scene, LoadSceneMode mode)
+    {
+        ConfigurerBoutonsMenu(scene);
     }
 
     /// <summary>
@@ -113,5 +162,63 @@ public class ScenesManager : MonoBehaviour
     {
         Debug.Log("ScenesManager : Fermeture.");
         Application.Quit();
+    }
+
+    private void ConfigurerBoutonsMenu(Scene scene)
+    {
+        RetirerListenersMenu();
+        if (scene.name != "Menu")
+        {
+            return;
+        }
+
+        boutonJouer = TrouverBouton(scene, "Jouer");
+        boutonQuitter = TrouverBouton(scene, "Quitter");
+
+        if (boutonJouer != null)
+        {
+            boutonJouer.onClick.RemoveListener(InitJeu);
+            boutonJouer.onClick.AddListener(InitJeu);
+        }
+
+        if (boutonQuitter != null)
+        {
+            boutonQuitter.onClick.RemoveListener(QuitterJeu);
+            boutonQuitter.onClick.AddListener(QuitterJeu);
+        }
+    }
+
+    private void RetirerListenersMenu()
+    {
+        if (boutonJouer != null)
+        {
+            boutonJouer.onClick.RemoveListener(InitJeu);
+        }
+
+        if (boutonQuitter != null)
+        {
+            boutonQuitter.onClick.RemoveListener(QuitterJeu);
+        }
+
+        boutonJouer = null;
+        boutonQuitter = null;
+    }
+
+    private static Button TrouverBouton(Scene scene, string nomObjet)
+    {
+        Button[] boutons = Object.FindObjectsByType<Button>(
+            FindObjectsInactive.Include,
+            FindObjectsSortMode.None);
+        foreach (Button bouton in boutons)
+        {
+            if (bouton != null &&
+                bouton.gameObject.scene == scene &&
+                bouton.name == nomObjet)
+            {
+                return bouton;
+            }
+        }
+
+        return null;
     }
 }
