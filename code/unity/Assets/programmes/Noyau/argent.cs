@@ -82,13 +82,13 @@ public struct argent : IEquatable<argent>
     /// Soustrait un nombre entier d'euros. API conservee pour les anciennes UI.
     /// </summary>
     public static argent operator -(argent a, int euros) =>
-        a - new argent((float)euros);
+        new argent(a.centimes - euros * 100);
 
     /// <summary>
     /// Ajoute un nombre entier d'euros. API conservee pour les anciennes UI.
     /// </summary>
     public static argent operator +(argent a, int euros) =>
-        a + new argent((float)euros);
+        new argent(a.centimes + euros * 100);
 
     public static argent operator *(argent a, float multiplicateur) =>
         new argent((int)(a.centimes * multiplicateur));

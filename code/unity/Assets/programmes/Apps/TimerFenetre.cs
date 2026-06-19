@@ -13,18 +13,8 @@ using UnityEngine.UI;
 /// </remarks>
 public class TimerFenetre : MonoBehaviour
 {
-    public enum AppType
-    {
-        Aucun,
-        Banque,
-        Actualites,
-        Salariat,
-        Bourse,
-        Entrepreneuriat
-    }
-
     [Header("Configuration")]
-    public AppType typeApplication = AppType.Aucun;
+    public TypeApplicationTemps typeApplication = TypeApplicationTemps.Aucun;
     public GameData gameData;
 
     [Header("Raccourci (optionnel)")]
@@ -35,7 +25,7 @@ public class TimerFenetre : MonoBehaviour
 
     private void OnEnable()
     {
-        if (typeApplication == AppType.Aucun)
+        if (typeApplication == TypeApplicationTemps.Aucun)
         {
             return;
         }
@@ -43,7 +33,7 @@ public class TimerFenetre : MonoBehaviour
         ResoudreService();
         ResoudreChrono();
 
-        if (service == null || !service.PeutOuvrir(Convertir(typeApplication)))
+        if (service == null || !service.PeutOuvrir(typeApplication))
         {
             UpdateRaccourci(false);
             gameObject.SetActive(false);
@@ -55,14 +45,13 @@ public class TimerFenetre : MonoBehaviour
 
     private void Update()
     {
-        if (typeApplication == AppType.Aucun ||
+        if (typeApplication == TypeApplicationTemps.Aucun ||
             !ResoudreService())
         {
             return;
         }
 
-        TypeApplicationTemps type = Convertir(typeApplication);
-        bool resteDuTemps = service.Consommer(type, Time.deltaTime);
+        bool resteDuTemps = service.Consommer(typeApplication, Time.deltaTime);
         ActualiserChrono();
 
         if (!resteDuTemps)
@@ -81,7 +70,7 @@ public class TimerFenetre : MonoBehaviour
         }
 
         chronoText.text = FormatTime(
-            service.ObtenirSecondesRestantes(Convertir(typeApplication)));
+            service.ObtenirSecondesRestantes(typeApplication));
     }
 
     private bool ResoudreService()
@@ -126,25 +115,6 @@ public class TimerFenetre : MonoBehaviour
         if (raccourciBureau != null)
         {
             raccourciBureau.interactable = interactable;
-        }
-    }
-
-    private static TypeApplicationTemps Convertir(AppType type)
-    {
-        switch (type)
-        {
-            case AppType.Banque:
-                return TypeApplicationTemps.Banque;
-            case AppType.Actualites:
-                return TypeApplicationTemps.Actualites;
-            case AppType.Salariat:
-                return TypeApplicationTemps.Salariat;
-            case AppType.Bourse:
-                return TypeApplicationTemps.Bourse;
-            case AppType.Entrepreneuriat:
-                return TypeApplicationTemps.Entrepreneuriat;
-            default:
-                return TypeApplicationTemps.Aucun;
         }
     }
 

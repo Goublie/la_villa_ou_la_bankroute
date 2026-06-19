@@ -301,23 +301,7 @@ public class RepartitionTempsUI : MonoBehaviour
 
     private static string NomGraphique(TypeApplicationTemps type)
     {
-        switch (type)
-        {
-            case TypeApplicationTemps.Banque:
-                return "Banque";
-            case TypeApplicationTemps.Actualites:
-                return "Actualites";
-            case TypeApplicationTemps.Salariat:
-                return "Salariat";
-            case TypeApplicationTemps.Bourse:
-                return "Bourse";
-            case TypeApplicationTemps.Entrepreneuriat:
-                return "Entrepreneuriat";
-            case TypeApplicationTemps.Immobilier:
-                return "Immobilier";
-            default:
-                return "Application";
-        }
+        return type.ToString();
     }
 
     private bool ResoudreService()
