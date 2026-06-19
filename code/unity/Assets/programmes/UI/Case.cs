@@ -46,7 +46,5 @@ public class Case : MonoBehaviour
     public void Awake()
     {
         composantTexte = GetComponentInChildren<TextMeshProUGUI>();
-        //On vide la case au début du jeu
-        Vider();
     }
 }

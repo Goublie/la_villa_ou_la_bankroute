@@ -9,8 +9,6 @@ public class Ligne : MonoBehaviour
     public void Awake()
     {
         cases = new List<Case>(GetComponentsInChildren<Case>());
-        //On vide la ligne au début du jeu
-        Vider();
     }
 
     public string Get(int indice)

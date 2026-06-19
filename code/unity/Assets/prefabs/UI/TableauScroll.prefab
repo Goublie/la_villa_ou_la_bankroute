@@ -152,7 +152,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::TableauScroll
   tableau: []
-  ligneEnTete: {fileID: 0}
+  ligneEnTete: {fileID: 1785839155753473230}
   largeursColonnes: []
   prefabLigne: {fileID: 3317698415354892082, guid: 7ea8421a0e6179b41881a6ca3e0da387, type: 3}
   conteneurLignes: {fileID: 8656331899769138828}
@@ -518,6 +518,10 @@ PrefabInstance:
       propertyPath: m_AnchoredPosition.y
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 605399767905730943, guid: 133a23716098c704184052a806f702ce, type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: -0.6000061
+      objectReference: {fileID: 0}
     - target: {fileID: 848965649297161270, guid: 133a23716098c704184052a806f702ce, type: 3}
       propertyPath: m_Enabled
       value: 0
@@ -761,6 +765,10 @@ PrefabInstance:
     - target: {fileID: 6336791365492332444, guid: 133a23716098c704184052a806f702ce, type: 3}
       propertyPath: m_AnchoredPosition.y
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6825133385391222969, guid: 133a23716098c704184052a806f702ce, type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: -0.6000061
       objectReference: {fileID: 0}
     - target: {fileID: 8413147425814029182, guid: 133a23716098c704184052a806f702ce, type: 3}
       propertyPath: m_AnchorMax.y
@@ -1009,6 +1017,10 @@ PrefabInstance:
       propertyPath: m_AnchoredPosition.y
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 7766715079756583645, guid: 7ea8421a0e6179b41881a6ca3e0da387, type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: -0.6000061
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -1170,6 +1182,10 @@ PrefabInstance:
     - target: {fileID: 7102065271502173688, guid: 7ea8421a0e6179b41881a6ca3e0da387, type: 3}
       propertyPath: m_AnchoredPosition.x
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7766715079756583645, guid: 7ea8421a0e6179b41881a6ca3e0da387, type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: -0.6000061
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -1356,6 +1372,10 @@ PrefabInstance:
       propertyPath: m_AnchoredPosition.y
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 7766715079756583645, guid: 7ea8421a0e6179b41881a6ca3e0da387, type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: -0.6000061
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -1529,6 +1549,10 @@ PrefabInstance:
     - target: {fileID: 7102065271502173688, guid: 7ea8421a0e6179b41881a6ca3e0da387, type: 3}
       propertyPath: m_AnchoredPosition.y
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7766715079756583645, guid: 7ea8421a0e6179b41881a6ca3e0da387, type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: -0.6000061
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
