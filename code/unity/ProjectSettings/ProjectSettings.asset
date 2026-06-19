@@ -12,8 +12,8 @@ PlayerSettings:
   targetDevice: 2
   useOnDemandResources: 0
   accelerometerFrequency: 60
-  companyName: DefaultCompany
-  productName: La villa ou la bankroute
+  companyName: MyLip
+  productName: "BANKROUT\u20AC"
   defaultCursor: {fileID: 0}
   cursorHotspot: {x: 0, y: 0}
   m_SplashScreenBackgroundColor: {r: 0.13725491, g: 0.12156863, b: 0.1254902, a: 1}
@@ -144,8 +144,9 @@ PlayerSettings:
   loadStoreDebugModeEnabled: 0
   visionOSBundleVersion: 1.0
   tvOSBundleVersion: 1.0
-  bundleVersion: 1.0
-  preloadedAssets: []
+  bundleVersion: 0.3
+  preloadedAssets:
+  - {fileID: -944628639613478452, guid: 2bcd2660ca9b64942af0de543d8d7100, type: 3}
   metroInputSource: 0
   wsaTransparentSwapchain: 0
   m_HolographicPauseOnTrackingLoss: 1
@@ -295,7 +296,14 @@ PlayerSettings:
   AndroidAppBundleSizeToValidate: 150
   AndroidReportGooglePlayAppDependencies: 1
   androidSymbolsSizeThreshold: 800
-  m_BuildTargetIcons: []
+  m_BuildTargetIcons:
+  - m_BuildTarget: 
+    m_Icons:
+    - serializedVersion: 2
+      m_Icon: {fileID: 2800000, guid: 1966ef81da1ded34c940819d6d843bb7, type: 3}
+      m_Width: 128
+      m_Height: 128
+      m_Kind: 0
   m_BuildTargetPlatformIcons:
   - m_BuildTarget: iPhone
     m_Icons:
@@ -394,7 +402,10 @@ PlayerSettings:
       m_Height: 1024
       m_Kind: 4
       m_SubKind: App Store
-  m_BuildTargetBatching: []
+  m_BuildTargetBatching:
+  - m_BuildTarget: Standalone
+    m_StaticBatching: 1
+    m_DynamicBatching: 0
   m_BuildTargetShaderSettings: []
   m_BuildTargetGraphicsJobs: []
   m_BuildTargetGraphicsJobMode: []
@@ -681,7 +692,25 @@ PlayerSettings:
   webGLCloseOnQuit: 0
   webWasm2023: 0
   webEnableSubmoduleStrippingCompatibility: 0
-  scriptingDefineSymbols: {}
+  scriptingDefineSymbols:
+    Android: dUI_TextMeshPro
+    EmbeddedLinux: dUI_TextMeshPro
+    GameCoreScarlett: dUI_TextMeshPro
+    GameCoreXboxOne: dUI_TextMeshPro
+    Kepler: dUI_TextMeshPro
+    LinuxHeadlessSimulation: dUI_TextMeshPro
+    Nintendo Switch: dUI_TextMeshPro
+    Nintendo Switch 2: dUI_TextMeshPro
+    PS4: dUI_TextMeshPro
+    PS5: dUI_TextMeshPro
+    QNX: dUI_TextMeshPro
+    Standalone: SENTIS_ANALYTICS_ENABLED;APP_UI_EDITOR_ONLY;dUI_TextMeshPro
+    VisionOS: dUI_TextMeshPro
+    WebGL: dUI_TextMeshPro
+    Windows Store Apps: dUI_TextMeshPro
+    XboxOne: dUI_TextMeshPro
+    iPhone: dUI_TextMeshPro
+    tvOS: dUI_TextMeshPro
   additionalCompilerArguments: {}
   platformArchitecture: {}
   scriptingBackend:
@@ -702,8 +731,8 @@ PlayerSettings:
   editorAssembliesCompatibilityLevel: 1
   m_RenderingPath: 1
   m_MobileRenderingPath: 1
-  metroPackageName: La villa ou la bankroute
-  metroPackageVersion: 
+  metroPackageName: Lavillaoulabankroute
+  metroPackageVersion: 1.0.0.0
   metroCertificatePath: 
   metroCertificatePassword: 
   metroCertificateSubject: 
@@ -711,7 +740,7 @@ PlayerSettings:
   metroCertificateNotAfter: 0000000000000000
   metroApplicationDescription: La villa ou la bankroute
   wsaImages: {}
-  metroTileShortName: 
+  metroTileShortName: La villa ou la bankroute
   metroTileShowName: 0
   metroMediumTileShowName: 0
   metroLargeTileShowName: 0
@@ -758,7 +787,13 @@ PlayerSettings:
   XboxOneOverrideIdentityName: 
   XboxOneOverrideIdentityPublisher: 
   vrEditorSettings: {}
-  cloudServicesEnabled: {}
+  cloudServicesEnabled:
+    Build: 0
+    Game Performance: 0
+    Legacy Analytics: 0
+    Purchasing: 0
+    UDP: 0
+    Unity Ads: 0
   luminIcon:
     m_Name: 
     m_ModelFolderPath: 
@@ -780,10 +815,10 @@ PlayerSettings:
   captureStartupLogs: {}
   activeInputHandler: 1
   windowsGamepadBackendHint: 0
-  cloudProjectId: 09c7f64f-093c-476b-89b4-1c6b93cdcc2a
+  cloudProjectId: 9e96a0c5-6c2e-4a39-8215-b2b2cabcd021
   framebufferDepthMemorylessMode: 0
   qualitySettingsNames: []
-  projectName: Menu_du_jeu
+  projectName: La villa ou la bankroute
   organizationId: unity_0e1c62b049f1b37ea381
   cloudEnabled: 0
   legacyClampBlendShapeWeights: 0
