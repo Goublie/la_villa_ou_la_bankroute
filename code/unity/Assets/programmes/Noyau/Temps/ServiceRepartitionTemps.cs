@@ -30,13 +30,15 @@ public sealed class ServiceRepartitionTemps
         int minutesActualites,
         int minutesSalariat,
         int minutesBourse,
-        int minutesEntrepreneuriat)
+        int minutesEntrepreneuriat,
+        int minutesImmobilier)
     {
         if (minutesBanque < 0 ||
             minutesActualites < 0 ||
             minutesSalariat < 0 ||
             minutesBourse < 0 ||
-            minutesEntrepreneuriat < 0)
+            minutesEntrepreneuriat < 0 ||
+            minutesImmobilier < 0)
         {
             return ResultatOperation.Echec(
                 "Le temps alloue ne peut pas etre negatif.",
@@ -47,7 +49,8 @@ public sealed class ServiceRepartitionTemps
             minutesActualites +
             minutesSalariat +
             minutesBourse +
-            minutesEntrepreneuriat;
+            minutesEntrepreneuriat +
+            minutesImmobilier;
         if (total != donnees.budgetMensuelMinutes)
         {
             return ResultatOperation.Echec(
@@ -60,6 +63,7 @@ public sealed class ServiceRepartitionTemps
         Appliquer(donnees.salariat, minutesSalariat);
         Appliquer(donnees.bourse, minutesBourse);
         Appliquer(donnees.entrepreneuriat, minutesEntrepreneuriat);
+        Appliquer(donnees.immobilier, minutesImmobilier);
         donnees.allocationValidee = true;
         return ResultatOperation.Reussite(
             "Temps alloue.",

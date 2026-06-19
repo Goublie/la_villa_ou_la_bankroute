@@ -27,6 +27,7 @@ public class PhaseRepartitionTempsController : MonoBehaviour
     public Button boutonSalariat;
     public Button boutonBourse;
     public Button boutonEntrepreneuriat;
+    public Button boutonImmobilier;
 
     private const float IntervalleActualisationSecondes = 0.5f;
 
@@ -192,6 +193,10 @@ public class PhaseRepartitionTempsController : MonoBehaviour
             boutonEntrepreneuriat,
             allocationValidee &&
                 service.PeutOuvrir(TypeApplicationTemps.Entrepreneuriat));
+        SetInteractable(
+            boutonImmobilier,
+            allocationValidee &&
+                service.PeutOuvrir(TypeApplicationTemps.Immobilier));
     }
 
     private bool ActiverBloqueurModal(bool actif, bool journaliserErreurs)
@@ -318,6 +323,10 @@ public class PhaseRepartitionTempsController : MonoBehaviour
         if (boutonEntrepreneuriat == null)
         {
             boutonEntrepreneuriat = TrouverBouton("EntreprenariatApp");
+        }
+        if (boutonImmobilier == null)
+        {
+            boutonImmobilier = TrouverBouton("ImmobilierBouton");
         }
     }
 

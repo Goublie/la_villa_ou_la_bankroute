@@ -36,7 +36,6 @@ public class RepartitionTempsUI : MonoBehaviour
     private PieChart pieChart;
     private TextMeshProUGUI totalText;
     private Button cancelButton;
-    private bool miseAJourInterne;
 
     [RuntimeInitializeOnLoadMethod(
         RuntimeInitializeLoadType.SubsystemRegistration)]
@@ -63,6 +62,19 @@ public class RepartitionTempsUI : MonoBehaviour
         }
     }
 
+    private void OnDestroy()
+    {
+        foreach (SliderAllocation entree in sliders)
+        {
+            entree.composant.ValeurModifiee -= OnSliderValueChanged;
+        }
+
+        if (cancelButton != null)
+        {
+            cancelButton.onClick.RemoveListener(OnCloseAndValidate);
+        }
+    }
+
     private void ResoudreReferences()
     {
         pieChart = transform
@@ -78,6 +90,7 @@ public class RepartitionTempsUI : MonoBehaviour
         AjouterSlider(TypeApplicationTemps.Actualites, "Slider_Actualites");
         AjouterSlider(TypeApplicationTemps.Salariat, "Slider_Salariat");
         AjouterSlider(TypeApplicationTemps.Bourse, "Slider_Bourse");
+        AjouterSlider(TypeApplicationTemps.Immobilier, "Slider_Immo");
         AjouterSlider(
             TypeApplicationTemps.Entrepreneuriat,
             "Slider_Entrepreneuriat");
@@ -91,15 +104,18 @@ public class RepartitionTempsUI : MonoBehaviour
 
     private void AjouterSlider(TypeApplicationTemps type, string nom)
     {
-        Slider slider = transform
-            .Find(
-                "Fond/TimeAllocationContent/CenterContent/SlidersList/" +
-                nom +
-                "/Slider")
-            ?.GetComponent<Slider>();
-        if (slider != null)
+        Transform racineSlider = transform.Find(
+            "Fond/TimeAllocationContent/CenterContent/SlidersList/" + nom);
+        SliderTempsAvecValeur composant = racineSlider
+            ?.GetComponent<SliderTempsAvecValeur>();
+        if (composant != null && composant.Slider != null)
         {
-            sliders.Add(new SliderAllocation(type, slider));
+            sliders.Add(new SliderAllocation(type, composant));
+        }
+        else
+        {
+            Debug.LogError(
+                "[RepartitionTempsUI] Slider neutre introuvable : " + nom);
         }
     }
 
@@ -109,33 +125,29 @@ public class RepartitionTempsUI : MonoBehaviour
         for (int index = 0; index < sliders.Count; index++)
         {
             SliderAllocation entree = sliders[index];
-            entree.slider.minValue = 0f;
-            entree.slider.maxValue = budget;
-            entree.slider.wholeNumbers = true;
+            entree.composant.Configurer(budget);
             entree.indexGraphique = index;
-            entree.slider.onValueChanged.RemoveAllListeners();
-            entree.slider.onValueChanged.AddListener(
-                valeur => OnSliderValueChanged(entree, valeur));
+            entree.composant.ValeurModifiee -= OnSliderValueChanged;
+            entree.composant.ValeurModifiee += OnSliderValueChanged;
         }
     }
 
     private void OnSliderValueChanged(
-        SliderAllocation entree,
+        SliderTempsAvecValeur composant,
         float valeur)
     {
-        if (miseAJourInterne)
+        SliderAllocation entree = TrouverSlider(composant);
+        if (entree == null)
         {
             return;
         }
 
         int budget = ObtenirBudget();
-        float autres = CalculerTotalSans(entree.slider);
+        float autres = CalculerTotalSans(composant);
         if (autres + valeur > budget)
         {
-            miseAJourInterne = true;
             valeur = budget - autres;
-            entree.slider.value = valeur;
-            miseAJourInterne = false;
+            composant.DefinirValeurSansNotification(valeur);
         }
 
         ActualiserAffichage();
@@ -143,6 +155,11 @@ public class RepartitionTempsUI : MonoBehaviour
 
     private void ActualiserAffichage()
     {
+        foreach (SliderAllocation entree in sliders)
+        {
+            entree.composant.ActualiserAffichage();
+        }
+
         int total = Mathf.RoundToInt(CalculerTotal());
         int budget = ObtenirBudget();
         bool allocationComplete = total == budget;
@@ -197,7 +214,8 @@ public class RepartitionTempsUI : MonoBehaviour
             Lire(TypeApplicationTemps.Actualites),
             Lire(TypeApplicationTemps.Salariat),
             Lire(TypeApplicationTemps.Bourse),
-            Lire(TypeApplicationTemps.Entrepreneuriat));
+            Lire(TypeApplicationTemps.Entrepreneuriat),
+            Lire(TypeApplicationTemps.Immobilier));
         if (!resultat.Succes)
         {
             Debug.LogWarning("[RepartitionTempsUI] " + resultat.Message);
@@ -216,15 +234,13 @@ public class RepartitionTempsUI : MonoBehaviour
             return;
         }
 
-        miseAJourInterne = true;
         foreach (SliderAllocation entree in sliders)
         {
             AllocationTempsApplication allocation =
                 donnees.Obtenir(entree.type);
-            entree.slider.value =
-                allocation == null ? 0f : allocation.minutesInitiales;
+            entree.composant.DefinirValeurSansNotification(
+                allocation == null ? 0f : allocation.minutesInitiales);
         }
-        miseAJourInterne = false;
     }
 
     private void AssurerDonneesGraphique()
@@ -273,18 +289,32 @@ public class RepartitionTempsUI : MonoBehaviour
         return total;
     }
 
-    private float CalculerTotalSans(Slider sliderExclu)
+    private float CalculerTotalSans(SliderTempsAvecValeur composantExclu)
     {
         float total = 0f;
         foreach (SliderAllocation entree in sliders)
         {
-            if (entree.slider != sliderExclu)
+            if (entree.composant != composantExclu)
             {
                 total += entree.slider.value;
             }
         }
 
         return total;
+    }
+
+    private SliderAllocation TrouverSlider(
+        SliderTempsAvecValeur composant)
+    {
+        foreach (SliderAllocation entree in sliders)
+        {
+            if (entree.composant == composant)
+            {
+                return entree;
+            }
+        }
+
+        return null;
     }
 
     private int ObtenirBudget()
@@ -299,21 +329,7 @@ public class RepartitionTempsUI : MonoBehaviour
 
     private static string NomGraphique(TypeApplicationTemps type)
     {
-        switch (type)
-        {
-            case TypeApplicationTemps.Banque:
-                return "Banque";
-            case TypeApplicationTemps.Actualites:
-                return "Actualites";
-            case TypeApplicationTemps.Salariat:
-                return "Salariat";
-            case TypeApplicationTemps.Bourse:
-                return "Bourse";
-            case TypeApplicationTemps.Entrepreneuriat:
-                return "Entrepreneuriat";
-            default:
-                return "Application";
-        }
+        return type.ToString();
     }
 
     private bool ResoudreService()
@@ -342,13 +358,16 @@ public class RepartitionTempsUI : MonoBehaviour
     private sealed class SliderAllocation
     {
         public readonly TypeApplicationTemps type;
-        public readonly Slider slider;
+        public readonly SliderTempsAvecValeur composant;
+        public Slider slider => composant.Slider;
         public int indexGraphique;
 
-        public SliderAllocation(TypeApplicationTemps type, Slider slider)
+        public SliderAllocation(
+            TypeApplicationTemps type,
+            SliderTempsAvecValeur composant)
         {
             this.type = type;
-            this.slider = slider;
+            this.composant = composant;
         }
     }
 }
