@@ -158,7 +158,7 @@ public class ArchitectureTempsTests
             new ServiceRepartitionTemps(donnees);
 
         ResultatOperation resultat =
-            service.DefinirAllocation(10, 5, 5, 10, 0);
+            service.DefinirAllocation(10, 5, 5, 10, 0, 0);
 
         Assert.That(resultat.Succes, Is.True);
         Assert.That(service.EstAllocationValidee(), Is.True);
@@ -181,7 +181,7 @@ public class ArchitectureTempsTests
                 new ServiceRepartitionTemps(gameData.joueur.tempsApplications);
 
             ResultatOperation resultat =
-                service.DefinirAllocation(10, 5, 5, 5, 5);
+                service.DefinirAllocation(10, 5, 5, 5, 5, 0);
 
             Assert.That(resultat.Succes, Is.True);
             Assert.That(service.EstAllocationValidee(), Is.True);
@@ -200,7 +200,7 @@ public class ArchitectureTempsTests
         ServiceRepartitionTemps service =
             new ServiceRepartitionTemps(donnees);
 
-        service.DefinirAllocation(5, 5, 5, 5, 10);
+        service.DefinirAllocation(5, 5, 5, 5, 10, 0);
 
         Assert.That(
             service.PeutOuvrir(TypeApplicationTemps.Entrepreneuriat),
@@ -218,7 +218,7 @@ public class ArchitectureTempsTests
         ServiceRepartitionTemps service =
             new ServiceRepartitionTemps(donnees);
 
-        service.DefinirAllocation(30, 0, 0, 0, 0);
+        service.DefinirAllocation(30, 0, 0, 0, 0, 0);
 
         Assert.That(
             service.PeutOuvrir(TypeApplicationTemps.Banque),
@@ -236,7 +236,7 @@ public class ArchitectureTempsTests
             new ServiceRepartitionTemps(donnees);
 
         ResultatOperation resultat =
-            service.DefinirAllocation(10, 5, 5, 5, 0);
+            service.DefinirAllocation(10, 5, 5, 5, 0, 0);
 
         Assert.That(resultat.Succes, Is.False);
         Assert.That(resultat.Code, Is.EqualTo("budget_incomplet"));
@@ -250,7 +250,7 @@ public class ArchitectureTempsTests
         DonneesRepartitionTemps donnees = new DonneesRepartitionTemps();
         ServiceRepartitionTemps service =
             new ServiceRepartitionTemps(donnees);
-        service.DefinirAllocation(30, 0, 0, 0, 0);
+        service.DefinirAllocation(30, 0, 0, 0, 0, 0);
 
         bool resteDuTemps =
             service.Consommer(TypeApplicationTemps.Banque, 2000f);
@@ -268,7 +268,7 @@ public class ArchitectureTempsTests
         try
         {
             new ServiceRepartitionTemps(gameData.joueur.tempsApplications)
-                .DefinirAllocation(10, 5, 5, 10, 0);
+                .DefinirAllocation(10, 5, 5, 10, 0, 0);
 
             new ServicePassageMensuel(gameData)
                 .PasserAuMoisSuivant();
@@ -305,7 +305,7 @@ public class ArchitectureTempsTests
         {
             ServiceRepartitionTemps service =
                 new ServiceRepartitionTemps(gameData.joueur.tempsApplications);
-            service.DefinirAllocation(10, 5, 5, 5, 5);
+            service.DefinirAllocation(10, 5, 5, 5, 5, 0);
 
             new ServicePassageMensuel(gameData).InitialiserPartie();
 
@@ -331,3 +331,4 @@ public class ArchitectureTempsTests
         return gameData;
     }
 }
+
