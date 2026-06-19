@@ -1,3 +1,5 @@
+using System;
+
 public sealed class ServiceImposition
 {
     // ── Barème progressif 2024 (ramené au mois, en centimes) ─────────────────
