@@ -704,7 +704,7 @@ PlayerSettings:
     PS4: dUI_TextMeshPro
     PS5: dUI_TextMeshPro
     QNX: dUI_TextMeshPro
-    Standalone: SENTIS_ANALYTICS_ENABLED;APP_UI_EDITOR_ONLY
+    Standalone: SENTIS_ANALYTICS_ENABLED;APP_UI_EDITOR_ONLY;dUI_TextMeshPro
     VisionOS: dUI_TextMeshPro
     WebGL: dUI_TextMeshPro
     Windows Store Apps: dUI_TextMeshPro
