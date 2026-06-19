@@ -10,6 +10,7 @@ public class HUDManager : MonoBehaviour
     public TextMeshProUGUI texteArgent;
     public TextMeshProUGUI texteEnergie;
     public TextMeshProUGUI texteSanteMentale;
+    public TextMeshProUGUI texteMois;
 
     private CompteBanquaire compteCourantAbonne;
 
@@ -56,6 +57,21 @@ public class HUDManager : MonoBehaviour
         {
             texteSanteMentale.text =
                 gameData.joueur.santeMentale + "/100";
+        }
+
+        if (texteMois != null)
+        {
+            int moisDepart = 1;
+            int anneeDepart = 2026;
+
+            int totalMois = moisDepart + gameData.nombreMoisPasses - 1;
+
+            int moisCourant = (totalMois % 12) + 1;
+            int anneeCourante = anneeDepart + (totalMois / 12);
+
+            string strMois = moisCourant.ToString("D2");
+
+            texteMois.text = strMois + "/" + anneeCourante;
         }
     }
 
