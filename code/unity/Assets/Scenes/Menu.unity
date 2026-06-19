@@ -307,16 +307,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9eef3b6f21fe01e40a05a870d4e82cde, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Audio_Manager
-<<<<<<< HEAD
-=======
-  musicSource: {fileID: 0}
-  SFXSource: {fileID: 0}
-  musiqueMenu: {fileID: 0}
-  musiqueJeu: {fileID: 0}
-  appuier_boutton: {fileID: 0}
-  playButton: {fileID: 0}
-  optionsButton: {fileID: 0}
->>>>>>> main
 --- !u!4 &9689045
 Transform:
   m_ObjectHideFlags: 0
@@ -358,16 +348,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9eef3b6f21fe01e40a05a870d4e82cde, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Audio_Manager
-<<<<<<< HEAD
-=======
-  musicSource: {fileID: 1339880957}
-  SFXSource: {fileID: 2014858829}
-  musiqueMenu: {fileID: 0}
-  musiqueJeu: {fileID: 0}
-  appuier_boutton: {fileID: 8300000, guid: 07b30aa261102ec4294d27012db21cd2, type: 3}
-  playButton: {fileID: 0}
-  optionsButton: {fileID: 0}
->>>>>>> main
 --- !u!1 &22894667 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 555243825792853531, guid: 635c6a2b452eb3f4e9166253f8ed2b02, type: 3}
