@@ -1,17 +1,23 @@
-using UnityEngine;
-using UnityEngine.UI;
-using UnityEngine.SceneManagement;
 using System.Collections;
+using UnityEngine;
+using UnityEngine.SceneManagement;
+using UnityEngine.UI;
 
+/// <summary>
+/// Gere une unique paire de sources audio persistantes et reconnecte les sons
+/// des boutons du Menu apres chaque changement de scene.
+/// </summary>
 public class AudioManager : MonoBehaviour
 {
+    public static AudioManager Instance { get; private set; }
+
     [Header("Audio Sources")]
     [SerializeField] private AudioSource musicSource;
     [SerializeField] private AudioSource SFXSource;
 
     [Header("Musiques de fond (Soundtrack)")]
-    public AudioClip musiqueMenu; // ◄ Ta musique pour le menu principal
-    public AudioClip musiqueJeu;  // ◄ Ta musique pour les niveaux de jeu
+    public AudioClip musiqueMenu;
+    public AudioClip musiqueJeu;
 
     [Header("Audio Clips SFX")]
     public AudioClip appuier_boutton;
@@ -20,73 +26,122 @@ public class AudioManager : MonoBehaviour
     public Button playButton;
     public Button optionsButton;
 
+    /// <summary>
+    /// Nombre de demandes de son traitees par l'instance persistante.
+    /// Cette valeur permet de verifier qu'un clic ne declenche qu'un listener.
+    /// </summary>
+    public int NombreClicsTraites { get; private set; }
+
+    [RuntimeInitializeOnLoadMethod(
+        RuntimeInitializeLoadType.SubsystemRegistration)]
+    private static void ReinitialiserInstance()
+    {
+        Instance = null;
+    }
 
     private void Awake()
     {
-        // On rend l'Audio Manager immortel pour qu'il gère la soundtrack partout
-        DontDestroyOnLoad(gameObject);
+        if (Instance != null && Instance != this)
+        {
+            Destroy(gameObject);
+            return;
+        }
 
-        // On s'abonne à l'événement de chargement de scène de Unity
-        SceneManager.sceneLoaded += OnSceneLoaded;
+        Instance = this;
+        DontDestroyOnLoad(gameObject);
+    }
+
+    private void OnEnable()
+    {
+        if (Instance == this)
+        {
+            SceneManager.sceneLoaded += OnSceneLoaded;
+        }
+    }
+
+    private void Start()
+    {
+        if (Instance == this)
+        {
+            GererScene(SceneManager.GetActiveScene());
+        }
+    }
+
+    private void OnDisable()
+    {
+        if (Instance == this)
+        {
+            SceneManager.sceneLoaded -= OnSceneLoaded;
+            RetirerListenersBoutons();
+        }
     }
 
     private void OnDestroy()
     {
-        // Bonne pratique : on se désabonne si l'objet est détruit pour éviter les fuites de mémoire
-        SceneManager.sceneLoaded -= OnSceneLoaded;
+        if (Instance == this)
+        {
+            Instance = null;
+        }
     }
 
-    public void Start()
-    {
-        // Configuration initiale des boutons de la scène Menu
-        ConfigurerBoutons();
-    }
-
-    // Cette fonction se déclenche AUTOMATIQUEMENT dès qu'une scène change
     private void OnSceneLoaded(Scene scene, LoadSceneMode mode)
     {
-        // 1. On adapte la musique selon la scène actuelle
-        if (scene.name == "Menu") // ◄ Remplace par le nom EXACT de ta scène Menu
-        {
-            ChangerMusiqueFond(musiqueMenu);
+        GererScene(scene);
+    }
 
-            // Comme on est revenu au menu, on doit retrouver et reconnecter les boutons
-            ConfigurerBoutons();
-        }
-        else // Si on est dans le jeu (Niveau 1, Niveau 2, etc.)
-        {
-            ChangerMusiqueFond(musiqueJeu);
-        }
+    private void GererScene(Scene scene)
+    {
+        ChangerMusiqueFond(
+            scene.name == "Menu" ? musiqueMenu : musiqueJeu);
+        ConfigurerBoutons(scene);
     }
 
     private void ChangerMusiqueFond(AudioClip nouvelleMusique)
     {
-        if (musicSource == null || nouvelleMusique == null) return;
+        if (musicSource == null || nouvelleMusique == null)
+        {
+            return;
+        }
 
-        // Si la musique demandée est DEJA en train de jouer, on ne fait rien (évite de couper le son au redémarrage)
-        if (musicSource.clip == nouvelleMusique) return;
+        musicSource.loop = true;
+        if (musicSource.clip == nouvelleMusique)
+        {
+            if (!musicSource.isPlaying)
+            {
+                musicSource.Play();
+            }
 
-        // On change de piste et on la lance en boucle
+            return;
+        }
+
         musicSource.Stop();
         musicSource.clip = nouvelleMusique;
-        musicSource.loop = true;
         musicSource.Play();
     }
 
-    private void ConfigurerBoutons()
+    private void ConfigurerBoutons(Scene scene)
     {
-        // On cherche les boutons dans la scène actuelle s'ils n'ont pas été assignés dans l'Inspector
-        if (playButton == null) playButton = GameObject.Find("Jouer")?.GetComponent<Button>();
-        if (optionsButton == null) optionsButton = GameObject.Find("Options")?.GetComponent<Button>();
+        RetirerListenersBoutons();
+        if (scene.name != "Menu")
+        {
+            return;
+        }
 
-        // On applique les écouteurs de son
-        if (playButton != null) playButton.onClick.AddListener(PlayBruitBouton);
-        if (optionsButton != null) optionsButton.onClick.AddListener(PlayBruitBouton);
+        playButton = TrouverBouton(scene, "Jouer");
+        optionsButton = TrouverBouton(scene, "Options");
+        AjouterListener(playButton);
+        AjouterListener(optionsButton);
     }
 
+    /// <summary>
+    /// Joue le son de clic en coupant temporairement la musique de fond.
+    /// </summary>
     public void PlayBruitBouton()
     {
-        if (musicSource != null && SFXSource != null && appuier_boutton != null)
+        NombreClicsTraites++;
+        if (musicSource != null &&
+            SFXSource != null &&
+            appuier_boutton != null)
         {
             StartCoroutine(MuteMusicDuringSFX());
         }
@@ -98,5 +153,50 @@ public class AudioManager : MonoBehaviour
         SFXSource.PlayOneShot(appuier_boutton);
         yield return new WaitForSeconds(appuier_boutton.length);
         musicSource.mute = false;
+    }
+
+    private void AjouterListener(Button bouton)
+    {
+        if (bouton == null)
+        {
+            return;
+        }
+
+        bouton.onClick.RemoveListener(PlayBruitBouton);
+        bouton.onClick.AddListener(PlayBruitBouton);
+    }
+
+    private void RetirerListenersBoutons()
+    {
+        if (playButton != null)
+        {
+            playButton.onClick.RemoveListener(PlayBruitBouton);
+        }
+
+        if (optionsButton != null)
+        {
+            optionsButton.onClick.RemoveListener(PlayBruitBouton);
+        }
+
+        playButton = null;
+        optionsButton = null;
+    }
+
+    private static Button TrouverBouton(Scene scene, string nomObjet)
+    {
+        Button[] boutons = Object.FindObjectsByType<Button>(
+            FindObjectsInactive.Include,
+            FindObjectsSortMode.None);
+        foreach (Button bouton in boutons)
+        {
+            if (bouton != null &&
+                bouton.gameObject.scene == scene &&
+                bouton.name == nomObjet)
+            {
+                return bouton;
+            }
+        }
+
+        return null;
     }
 }
