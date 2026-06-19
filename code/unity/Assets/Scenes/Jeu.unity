@@ -6465,6 +6465,7 @@ MonoBehaviour:
   boutonSalariat: {fileID: 411224593}
   boutonBourse: {fileID: 1502579821}
   boutonEntrepreneuriat: {fileID: 592646138}
+  boutonImmobilier: {fileID: 882532796}
 --- !u!1001 &1200956240
 PrefabInstance:
   m_ObjectHideFlags: 0
