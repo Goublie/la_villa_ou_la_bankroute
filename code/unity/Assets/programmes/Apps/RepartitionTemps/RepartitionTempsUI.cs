@@ -78,6 +78,7 @@ public class RepartitionTempsUI : MonoBehaviour
         AjouterSlider(TypeApplicationTemps.Actualites, "Slider_Actualites");
         AjouterSlider(TypeApplicationTemps.Salariat, "Slider_Salariat");
         AjouterSlider(TypeApplicationTemps.Bourse, "Slider_Bourse");
+        AjouterSlider(TypeApplicationTemps.Immobilier, "Slider_Immo");
         AjouterSlider(
             TypeApplicationTemps.Entrepreneuriat,
             "Slider_Entrepreneuriat");
@@ -197,7 +198,8 @@ public class RepartitionTempsUI : MonoBehaviour
             Lire(TypeApplicationTemps.Actualites),
             Lire(TypeApplicationTemps.Salariat),
             Lire(TypeApplicationTemps.Bourse),
-            Lire(TypeApplicationTemps.Entrepreneuriat));
+            Lire(TypeApplicationTemps.Entrepreneuriat),
+            Lire(TypeApplicationTemps.Immobilier));
         if (!resultat.Succes)
         {
             Debug.LogWarning("[RepartitionTempsUI] " + resultat.Message);
@@ -311,6 +313,8 @@ public class RepartitionTempsUI : MonoBehaviour
                 return "Bourse";
             case TypeApplicationTemps.Entrepreneuriat:
                 return "Entrepreneuriat";
+            case TypeApplicationTemps.Immobilier:
+                return "Immobilier";
             default:
                 return "Application";
         }

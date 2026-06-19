@@ -10,7 +10,8 @@ public enum TypeApplicationTemps
     Actualites,
     Salariat,
     Bourse,
-    Entrepreneuriat
+    Entrepreneuriat,
+    Immobilier
 }
 
 /// <summary>
@@ -88,6 +89,8 @@ public class DonneesRepartitionTemps
         new AllocationTempsApplication();
     public AllocationTempsApplication entrepreneuriat =
         new AllocationTempsApplication();
+    public AllocationTempsApplication immobilier =
+        new AllocationTempsApplication();
 
     /// <summary>
     /// Repare les sous-objets absents ou les valeurs hors bornes.
@@ -101,12 +104,14 @@ public class DonneesRepartitionTemps
         bourse = bourse ?? new AllocationTempsApplication();
         entrepreneuriat =
             entrepreneuriat ?? new AllocationTempsApplication();
+        immobilier = immobilier ?? new AllocationTempsApplication();
 
         banque.InitialiserSiNecessaire();
         actualites.InitialiserSiNecessaire();
         salariat.InitialiserSiNecessaire();
         bourse.InitialiserSiNecessaire();
         entrepreneuriat.InitialiserSiNecessaire();
+        immobilier.InitialiserSiNecessaire();
     }
 
     /// <summary>
@@ -127,6 +132,8 @@ public class DonneesRepartitionTemps
                 return bourse;
             case TypeApplicationTemps.Entrepreneuriat:
                 return entrepreneuriat;
+            case TypeApplicationTemps.Immobilier:
+                return immobilier;
             default:
                 return null;
         }
@@ -142,7 +149,8 @@ public class DonneesRepartitionTemps
             actualites.minutesInitiales +
             salariat.minutesInitiales +
             bourse.minutesInitiales +
-            entrepreneuriat.minutesInitiales;
+            entrepreneuriat.minutesInitiales +
+            immobilier.minutesInitiales;
     }
 
     /// <summary>
@@ -156,7 +164,8 @@ public class DonneesRepartitionTemps
             actualites.secondesRestantes > 0f ||
             salariat.secondesRestantes > 0f ||
             bourse.secondesRestantes > 0f ||
-            entrepreneuriat.secondesRestantes > 0f);
+            entrepreneuriat.secondesRestantes > 0f ||
+            immobilier.secondesRestantes > 0f);
     }
 
     /// <summary>
@@ -170,6 +179,7 @@ public class DonneesRepartitionTemps
         RemettreAZero(salariat);
         RemettreAZero(bourse);
         RemettreAZero(entrepreneuriat);
+        RemettreAZero(immobilier);
         allocationValidee = false;
     }
 
@@ -187,7 +197,8 @@ public class DonneesRepartitionTemps
             actualites = actualites.Copier(),
             salariat = salariat.Copier(),
             bourse = bourse.Copier(),
-            entrepreneuriat = entrepreneuriat.Copier()
+            entrepreneuriat = entrepreneuriat.Copier(),
+            immobilier = immobilier.Copier()
         };
     }
 
