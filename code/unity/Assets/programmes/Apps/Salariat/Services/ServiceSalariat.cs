@@ -32,12 +32,6 @@ public sealed class ServiceSalariat : IEvolutionMensuelle
     /// <summary>
     /// Enregistre l'acceptation d'un poste et synchronise le salaire bancaire.
     /// </summary>
-    /// <param name="entreprise">Nom affiche de l'entreprise.</param>
-    /// <param name="salaireMensuelCentimes">Salaire mensuel en centimes.</param>
-    /// <param name="heuresSemaine">Temps de travail hebdomadaire en heures.</param>
-    /// <param name="stress">Niveau de stress de l'offre.</param>
-    /// <param name="prestige">Niveau de prestige de l'offre.</param>
-    /// <param name="equilibre">Niveau d'equilibre vie pro / perso.</param>
     public ResultatOperation AccepterPoste(
         string entreprise,
         int salaireMensuelCentimes,
@@ -208,34 +202,30 @@ public sealed class ServiceSalariat : IEvolutionMensuelle
 
         donnees.ancienneteMois++;
 
+        // Conséquences existantes
         if (donnees.fatigue >= 100)
         {
-            donnees.burnout += 15;
+            donnees.burnout = BornerScore(donnees.burnout + 15);
         }
 
         if (donnees.relationCollegues >= 100)
         {
-            donnees.fatigue -= 5;
+            donnees.fatigue = BornerScore(donnees.fatigue - 5);
         }
 
-        // Le rythme de progression original etait quinquennal. Le service
-        // conserve ce gameplay, mais le rend independant de l'ouverture de l'UI.
-        if (donnees.ancienneteMois % 5 == 0)
+        // --- NOUVELLES RÈGLES DE PROGRESSION (À CHAQUE MOIS) ---
+
+        // 1. Expérience : augmente de 5 à chaque tour
+        donnees.experience = BornerScore(donnees.experience + 5);
+
+        // 2. Fatigue : selon les heures travaillées par semaine
+        if (donnees.heuresSemaine >= 45) // Priorité aux heures les plus hautes
         {
-            if (donnees.heuresSemaine < 40)
-            {
-                donnees.experience += 10;
-            }
-            else if (donnees.heuresSemaine == 40)
-            {
-                donnees.fatigue += 10;
-                donnees.experience += 15;
-            }
-            else if (donnees.heuresSemaine >= 45)
-            {
-                donnees.fatigue += 20;
-                donnees.experience += 20;
-            }
+            donnees.fatigue = BornerScore(donnees.fatigue + 10);
+        }
+        else if (donnees.heuresSemaine >= 40) // J'ai mis >= au lieu de == pour inclure 41, 42 etc.
+        {
+            donnees.fatigue = BornerScore(donnees.fatigue + 5);
         }
 
         donnees.InitialiserSiNecessaire();

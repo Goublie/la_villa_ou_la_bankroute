@@ -104,12 +104,18 @@ public class EmployeePerformanceController : MonoBehaviour
 
     private void OnMonthPassed()
     {
+        Debug.Log("🔔 L'événement OnMoisPasse a été reçu par la carte de performance !");
+
         if (!ResoudreService())
         {
+            Debug.LogWarning("❌ Impossible de charger les données du joueur.");
             return;
         }
 
+        Debug.Log("📊 Valeur de l'expérience en base de données AVANT rafraîchissement : " + donnees.experience);
+
         RefreshUI();
+
         if (donnees.burnout >= 100)
         {
             TriggerBurnout();
@@ -375,8 +381,9 @@ public class EmployeePerformanceController : MonoBehaviour
         }
 
         argent salaireAnnuel = gameData.joueur.salaire * 12f;
+        // ◄ FIX FORMATTAGE
         texteSalaireAnnuelBrut.text =
-            "Salaire : " + salaireAnnuel.ToString("N0") + " EUR / an";
+            "Salaire brut : " + salaireAnnuel.ToString("N0") + " € / an";
     }
 
     private bool ResoudreService()

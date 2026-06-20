@@ -124,7 +124,9 @@ public class InterviewPanelController : MonoBehaviour
 
         if (salaireText != null)
         {
-            salaireText.text = "Salaire : " + jobSalary;
+            // ◄ FIX FORMATTAGE : On enlève les résidus (ex: "€", "/ an") de la string originale pour la recomposer proprement
+            string cleanSalary = jobSalary.Replace("€", "").Replace("EUR", "").Replace("/ an", "").Replace(",", " ").Trim();
+            salaireText.text = "Salaire brut : " + cleanSalary + " € / an";
         }
 
         if (heuresText != null)

@@ -135,9 +135,10 @@ public class TravaillerPlusController : MonoBehaviour
 
         if (performanceController.texteSalaireAnnuelBrut != null)
         {
+            // ◄ FIX FORMATTAGE
             performanceController.texteSalaireAnnuelBrut.text =
-                "Salaire : " + (salaireMensuel * 12f).ToString("N0") +
-                " EUR / an";
+                "Salaire brut : " + (salaireMensuel * 12f).ToString("N0") +
+                " € / an";
         }
 
         if (texteSalaireTaskbar != null)
