@@ -11,13 +11,18 @@ public class Case : MonoBehaviour
     //renvoie le texte affiché dans la case
     public string GetTexte()
     {
-        return composantTexte.text;
+        AssurerComposantTexte();
+        return composantTexte != null ? composantTexte.text : string.Empty;
     }
 
     // Affiche le texte text dans la case
     public void Set(string texte)
     {
-        composantTexte.text = texte;
+        AssurerComposantTexte();
+        if (composantTexte != null)
+        {
+            composantTexte.text = texte;
+        }
     }
 
     //Affiche un nombre dans la case
@@ -47,7 +52,7 @@ public class Case : MonoBehaviour
 
     public void Awake()
     {
-        composantTexte = GetComponentInChildren<TextMeshProUGUI>();
+        AssurerComposantTexte();
         fondImage = GetComponent<Image>();
     }
 
@@ -62,10 +67,18 @@ public class Case : MonoBehaviour
 
     public void SetCouleurTexte(Color couleur)
     {
-        if (composantTexte == null) composantTexte = GetComponentInChildren<TextMeshProUGUI>();
+        AssurerComposantTexte();
         if (composantTexte != null)
         {
             composantTexte.color = couleur;
+        }
+    }
+
+    private void AssurerComposantTexte()
+    {
+        if (composantTexte == null)
+        {
+            composantTexte = GetComponentInChildren<TextMeshProUGUI>(true);
         }
     }
 }
