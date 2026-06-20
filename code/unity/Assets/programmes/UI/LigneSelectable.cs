@@ -8,7 +8,7 @@ public class LigneSelectable : Ligne, IPointerClickHandler, IPointerDownHandler,
     [Header("Sélection")]
     [SerializeField] private Color couleurSelection = Color.gray;
 
-    private TableauSelectionManager manager;
+    private TableauScrollSelectable manager;
     private Image fondImage;
     private bool aVerifieSelection = false;
 
@@ -28,7 +28,7 @@ public class LigneSelectable : Ligne, IPointerClickHandler, IPointerDownHandler,
 
     private void Start()
     {
-        manager = GetComponentInParent<TableauSelectionManager>();
+        manager = GetComponentInParent<TableauScrollSelectable>();
         
         if (manager != null && manager.GetLigneSelectionnee() != this)
         {

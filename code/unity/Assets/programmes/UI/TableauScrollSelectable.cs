@@ -1,19 +1,12 @@
 using UnityEngine;
 using UnityEngine.Events;
 
-[RequireComponent(typeof(TableauScroll))]
-public class TableauSelectionManager : MonoBehaviour
+public class TableauScrollSelectable : TableauScroll
 {
     [Header("Evénements")]
     public UnityEvent<LigneSelectable> OnSelectionChanged;
 
     private LigneSelectable ligneSelectionnee;
-    private TableauScroll tableauScroll;
-
-    private void Awake()
-    {
-        tableauScroll = GetComponent<TableauScroll>();
-    }
 
     public void Selectionner(LigneSelectable nouvelleLigne)
     {
@@ -39,13 +32,13 @@ public class TableauSelectionManager : MonoBehaviour
     public void CheckAutoSelection()
     {
         // Si aucune ligne n'est sélectionnée, on sélectionne la première ligne non-vide
-        if (ligneSelectionnee == null && tableauScroll != null && tableauScroll.tableau != null)
+        if (ligneSelectionnee == null && tableau != null)
         {
-            foreach (Ligne l in tableauScroll.tableau)
+            foreach (Ligne l in tableau)
             {
                 if (!l.EstVide())
                 {
-                    LigneSelectable ls = l.GetComponent<LigneSelectable>();
+                    LigneSelectable ls = l as LigneSelectable;
                     if (ls != null)
                     {
                         Selectionner(ls);

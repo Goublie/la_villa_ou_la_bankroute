@@ -12,6 +12,28 @@ public class Tableau : MonoBehaviour
     [Tooltip("Laissez vide pour utiliser les largeurs par défaut du prefab Ligne. Sinon, renseignez la largeur en pixels pour chaque colonne (-1 pour flexible/étirable).")]
     public List<float> largeursColonnes;
 
+    [Header("Apparence Globale")]
+    public Color couleurFondCases = Color.white;
+    public Color couleurLigne = Color.black;
+    public Color couleurTexte = Color.black;
+
+    protected virtual void OnValidate()
+    {
+        AppliquerApparence();
+    }
+
+    public virtual void AppliquerApparence()
+    {
+        Image imgTableau = GetComponent<Image>();
+        if (imgTableau != null) imgTableau.color = couleurLigne;
+
+        Ligne[] toutesLignes = GetComponentsInChildren<Ligne>(true);
+        foreach (Ligne l in toutesLignes)
+        {
+            if (l != null) l.SetApparence(couleurFondCases, couleurLigne, couleurTexte);
+        }
+    }
+
     public void Start()
     {
         tableau = new List<Ligne>(GetComponentsInChildren<Ligne>());

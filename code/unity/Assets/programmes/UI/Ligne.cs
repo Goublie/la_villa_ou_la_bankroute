@@ -53,6 +53,14 @@ public class Ligne : MonoBehaviour
         }
     }
 
+    public void SetApparence(Color fondCases, Color ligneBordure, Color texte)
+    {
+        this.couleurFondCases = fondCases;
+        this.couleurLigne = ligneBordure;
+        this.couleurTexte = texte;
+        AppliquerCouleurs();
+    }
+
     public string Get(int indice)
     {
         return cases[indice].GetTexte();

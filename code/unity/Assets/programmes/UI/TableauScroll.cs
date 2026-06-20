@@ -7,6 +7,16 @@ public class TableauScroll : Tableau
     
     [SerializeField] Transform conteneurLignes; 
 
+    public override void AppliquerApparence()
+    {
+        base.AppliquerApparence();
+        if (conteneurLignes != null)
+        {
+            Image imgConteneur = conteneurLignes.GetComponent<Image>();
+            if (imgConteneur != null) imgConteneur.color = couleurLigne;
+        }
+    }
+
     public override bool Add(params object[] valeurs)
     {
         // On cherche une ligne vide existante
@@ -27,6 +37,9 @@ public class TableauScroll : Tableau
         if (prefabLigne != null && conteneurLignes != null)
         {
             Ligne nouvelleLigne = Instantiate(prefabLigne, conteneurLignes, false);
+            
+            // Appliquer l'apparence globale
+            nouvelleLigne.SetApparence(couleurFondCases, couleurLigne, couleurTexte);
             
             // Appliquer la configuration des colonnes à la nouvelle ligne
             AppliquerConfigurationColonnes(nouvelleLigne);
