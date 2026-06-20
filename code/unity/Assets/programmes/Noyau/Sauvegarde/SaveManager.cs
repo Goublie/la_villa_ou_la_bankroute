@@ -27,8 +27,9 @@ public class SaveManager : MonoBehaviour
         Instance = this;
         DontDestroyOnLoad(gameObject);
 
-        // Chemins physiques validés sur Windows
-        cheminSauvegarde = Path.Combine(Application.persistentDataPath, "sauvegarde_jeu.json");
+        // MODIFICATION ICI : On force le chemin vers la racine du projet Unity
+        string dossierRacine = Directory.GetCurrentDirectory();
+        cheminSauvegarde = Path.Combine(dossierRacine, "sauvegarde_jeu.json");
         cheminTemporaire = cheminSauvegarde + ".tmp";
         cheminBackup = cheminSauvegarde + ".bak";
 
@@ -101,7 +102,7 @@ public class SaveManager : MonoBehaviour
 
         if (!File.Exists(cheminAUtiliser))
         {
-            Debug.LogWarning("[SaveManager] Aucun fichier de sauvegarde trouvé.");
+            Debug.LogWarning($"[SaveManager] Aucun fichier de sauvegarde trouvé à l'emplacement : {cheminAUtiliser}");
             return false;
         }
 
