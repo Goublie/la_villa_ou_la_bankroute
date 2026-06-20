@@ -4,10 +4,6 @@ using UnityEngine.Events;
 [RequireComponent(typeof(TableauScroll))]
 public class TableauSelectionManager : MonoBehaviour
 {
-    [Header("Apparence")]
-    public Color couleurSelection = new Color(0.8f, 0.8f, 0.8f, 1f); // Gris
-    public Color couleurDefaut = new Color(1f, 1f, 1f, 1f); // Blanc
-
     [Header("Evénements")]
     public UnityEvent<LigneSelectable> OnSelectionChanged;
 
@@ -23,14 +19,14 @@ public class TableauSelectionManager : MonoBehaviour
     {
         if (ligneSelectionnee != null && ligneSelectionnee != nouvelleLigne)
         {
-            ligneSelectionnee.SetSelectedCouleur(couleurDefaut);
+            ligneSelectionnee.SetSelectionState(false);
         }
 
         ligneSelectionnee = nouvelleLigne;
 
         if (ligneSelectionnee != null)
         {
-            ligneSelectionnee.SetSelectedCouleur(couleurSelection);
+            ligneSelectionnee.SetSelectionState(true);
             OnSelectionChanged?.Invoke(ligneSelectionnee);
         }
     }

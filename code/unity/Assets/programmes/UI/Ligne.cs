@@ -1,4 +1,5 @@
 using UnityEngine;
+using UnityEngine.UI;
 using TMPro;
 using System.Collections.Generic;
 public class Ligne : MonoBehaviour
@@ -6,9 +7,50 @@ public class Ligne : MonoBehaviour
 
     private List<Case> cases;
 
-    public void Awake()
+    [Header("Apparence")]
+    [SerializeField] protected Color couleurFondCases = Color.white;
+    [SerializeField] private Color couleurLigne = Color.black;
+    [SerializeField] private Color couleurTexte = Color.black;
+
+    public virtual void Awake()
     {
         cases = new List<Case>(GetComponentsInChildren<Case>());
+        AppliquerCouleurs();
+    }
+
+    private void OnValidate()
+    {
+        // Permet de voir le changement de couleur directement dans l'éditeur
+        AppliquerCouleurs();
+    }
+
+    private void AppliquerCouleurs()
+    {
+        Image fond = GetComponent<Image>();
+        if (fond != null) fond.color = couleurLigne;
+
+        if (cases == null || cases.Count == 0)
+        {
+            cases = new List<Case>(GetComponentsInChildren<Case>());
+        }
+
+        foreach (Case c in cases)
+        {
+            if (c != null)
+            {
+                c.SetCouleur(couleurFondCases);
+                c.SetCouleurTexte(couleurTexte);
+            }
+        }
+    }
+
+    public void AppliquerCouleurCases(Color couleur)
+    {
+        if (cases == null) return;
+        foreach (Case c in cases)
+        {
+            if (c != null) c.SetCouleur(couleur);
+        }
     }
 
     public string Get(int indice)

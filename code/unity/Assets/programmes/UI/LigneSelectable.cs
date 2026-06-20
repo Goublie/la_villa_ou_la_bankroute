@@ -2,30 +2,27 @@ using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.EventSystems;
 
-[RequireComponent(typeof(Ligne), typeof(Image))]
-public class LigneSelectable : MonoBehaviour, IPointerClickHandler, IPointerDownHandler, IPointerUpHandler
+[RequireComponent(typeof(Image))]
+public class LigneSelectable : Ligne, IPointerClickHandler, IPointerDownHandler, IPointerUpHandler
 {
+    [Header("Sélection")]
+    [SerializeField] private Color couleurSelection = Color.gray;
+
     private TableauSelectionManager manager;
     private Image fondImage;
-    private Ligne ligne;
     private bool aVerifieSelection = false;
 
-    private void Awake()
+    public override void Awake()
     {
-        ligne = GetComponent<Ligne>();
+        //initialise les cases
+        base.Awake();
+        
         fondImage = GetComponent<Image>();
         
-        // Empêche Unity de supprimer le mesh si la couleur est transparente (alpha=0),
-        // ce qui empêcherait la détection des clics !
+        //force la détection des clics
         if (fondImage != null)
         {
             fondImage.canvasRenderer.cullTransparentMesh = false;
-        }
-
-        Image[] imagesEnfants = GetComponentsInChildren<Image>(true);
-        foreach (Image img in imagesEnfants)
-        {
-            img.canvasRenderer.cullTransparentMesh = false;
         }
     }
 
@@ -35,14 +32,14 @@ public class LigneSelectable : MonoBehaviour, IPointerClickHandler, IPointerDown
         
         if (manager != null && manager.GetLigneSelectionnee() != this)
         {
-            SetSelectedCouleur(manager.couleurDefaut);
+            SetSelectionState(false);
         }
     }
 
     private void Update()
     {
         // Auto-sélection de la première ligne au remplissage
-        if (!aVerifieSelection && !ligne.EstVide())
+        if (!aVerifieSelection && !EstVide())
         {
             aVerifieSelection = true;
             if (manager != null && manager.GetLigneSelectionnee() == null)
@@ -50,7 +47,7 @@ public class LigneSelectable : MonoBehaviour, IPointerClickHandler, IPointerDown
                 manager.CheckAutoSelection();
             }
         }
-        else if (ligne.EstVide())
+        else if (EstVide())
         {
             // Réinitialise le flag si la ligne est vidée
             aVerifieSelection = false;
@@ -59,37 +56,30 @@ public class LigneSelectable : MonoBehaviour, IPointerClickHandler, IPointerDown
 
     public void OnPointerClick(PointerEventData eventData)
     {
-        Debug.Log("Ligne cliquée ! EstVide : " + ligne.EstVide() + " | Manager = " + (manager != null ? "TROUVÉ" : "NULL"));
-        
         if (manager != null)
         {
             manager.Selectionner(this);
-            Debug.Log("Sélection appliquée avec la couleur : " + manager.couleurSelection);
         }
     }
 
     public void OnPointerDown(PointerEventData eventData)
     {
-        // Nécessaire pour que OnPointerClick soit correctement détecté par Unity 
-        // quand des enfants (comme le texte) interceptent le raycast initial.
     }
 
     public void OnPointerUp(PointerEventData eventData)
     {
     }
 
-    public void SetSelectedCouleur(Color couleur)
+    public void SetSelectionState(bool estSelectionne)
     {
-        if (fondImage != null)
+        if (estSelectionne)
         {
-            fondImage.color = couleur;
+            AppliquerCouleurCases(couleurSelection);
         }
-
-        // Appliquer la couleur à toutes les images enfants (les cases) pour s'assurer que le changement est visible
-        Image[] imagesEnfants = GetComponentsInChildren<Image>(true);
-        foreach (Image img in imagesEnfants)
+        else
         {
-            img.color = couleur;
+            // On restaure la couleur de fond configurée dans la Ligne
+            AppliquerCouleurCases(couleurFondCases);
         }
     }
 }
