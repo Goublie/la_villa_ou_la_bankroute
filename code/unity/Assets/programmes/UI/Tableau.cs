@@ -12,6 +12,9 @@ public class Tableau : MonoBehaviour
     [Tooltip("Laissez vide pour utiliser les largeurs par défaut du prefab Ligne. Sinon, renseignez la largeur en pixels pour chaque colonne (-1 pour flexible/étirable).")]
     public List<float> largeursColonnes;
 
+    [Header("Structure")]
+    [Range(1, 10)] public int nombreColonnes = 3;
+
     [Header("Apparence Globale")]
     public Color couleurFondCases = Color.white;
     public Color couleurLigne = Color.black;
@@ -20,6 +23,32 @@ public class Tableau : MonoBehaviour
     protected virtual void OnValidate()
     {
         AppliquerApparence();
+        
+#if UNITY_EDITOR
+        UnityEditor.EditorApplication.delayCall += () =>
+        {
+            if (this == null) return;
+            
+            // Éviter de modifier directement le prefab sur le disque (ce qui génère des erreurs)
+            // On s'assure qu'on est bien dans une scène (ou le Prefab Mode)
+            if (!this.gameObject.scene.IsValid()) return; 
+
+            AppliquerStructure();
+        };
+#endif
+    }
+
+    public void AppliquerStructure()
+    {
+        Ligne[] toutesLignes = GetComponentsInChildren<Ligne>(true);
+        foreach (Ligne l in toutesLignes)
+        {
+            if (l != null)
+            {
+                l.AjusterNombreColonnes(nombreColonnes);
+                AppliquerConfigurationColonnes(l);
+            }
+        }
     }
 
     public virtual void AppliquerApparence()
@@ -56,9 +85,21 @@ public class Tableau : MonoBehaviour
 
     public void AppliquerConfigurationColonnes(Ligne ligne)
     {
-        if (largeursColonnes == null || largeursColonnes.Count == 0) return;
-
         Case[] casesLigne = ligne.GetComponentsInChildren<Case>(true);
+
+        if (largeursColonnes == null || largeursColonnes.Count == 0)
+        {
+            // Répartition équitable
+            foreach(Case c in casesLigne)
+            {
+                LayoutElement le = c.GetComponent<LayoutElement>();
+                if (le == null) le = c.gameObject.AddComponent<LayoutElement>();
+                le.preferredWidth = -1f;
+                le.flexibleWidth = 1f;
+            }
+            return;
+        }
+
         for (int i = 0; i < casesLigne.Length && i < largeursColonnes.Count; i++)
         {
             LayoutElement le = casesLigne[i].GetComponent<LayoutElement>();

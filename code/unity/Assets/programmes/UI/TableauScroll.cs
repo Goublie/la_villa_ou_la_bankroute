@@ -41,7 +41,8 @@ public class TableauScroll : Tableau
             // Appliquer l'apparence globale
             nouvelleLigne.SetApparence(couleurFondCases, couleurLigne, couleurTexte);
             
-            // Appliquer la configuration des colonnes à la nouvelle ligne
+            // Appliquer le bon nombre de colonnes et la configuration
+            nouvelleLigne.AjusterNombreColonnes(nombreColonnes);
             AppliquerConfigurationColonnes(nouvelleLigne);
             
             //On place la nouvelle ligne tout en haut visuellement 
