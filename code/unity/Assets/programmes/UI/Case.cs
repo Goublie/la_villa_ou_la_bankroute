@@ -1,10 +1,12 @@
 using UnityEngine;
+using UnityEngine.UI;
 using TMPro;
 using System.Collections.Generic;
 
 public class Case : MonoBehaviour
 {
     private TextMeshProUGUI composantTexte;
+    private Image fondImage;
 
     //renvoie le texte affiché dans la case
     public string GetTexte()
@@ -46,7 +48,24 @@ public class Case : MonoBehaviour
     public void Awake()
     {
         composantTexte = GetComponentInChildren<TextMeshProUGUI>();
-        //On vide la case au début du jeu
-        Vider();
+        fondImage = GetComponent<Image>();
+    }
+
+    public void SetCouleur(Color couleur)
+    {
+        if (fondImage == null) fondImage = GetComponent<Image>();
+        if (fondImage != null)
+        {
+            fondImage.color = couleur;
+        }
+    }
+
+    public void SetCouleurTexte(Color couleur)
+    {
+        if (composantTexte == null) composantTexte = GetComponentInChildren<TextMeshProUGUI>();
+        if (composantTexte != null)
+        {
+            composantTexte.color = couleur;
+        }
     }
 }

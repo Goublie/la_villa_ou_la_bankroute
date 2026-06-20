@@ -1,4 +1,5 @@
 using UnityEngine;
+using UnityEngine.UI;
 using TMPro;
 using System.Collections.Generic;
 public class Ligne : MonoBehaviour
@@ -6,11 +7,104 @@ public class Ligne : MonoBehaviour
 
     private List<Case> cases;
 
-    public void Awake()
+    [Header("Apparence")]
+    [SerializeField] protected Color couleurFondCases = Color.white;
+    [SerializeField] private Color couleurLigne = Color.black;
+    [SerializeField] private Color couleurTexte = Color.black;
+
+    public virtual void Awake()
     {
         cases = new List<Case>(GetComponentsInChildren<Case>());
-        //On vide la ligne au début du jeu
-        Vider();
+        AppliquerCouleurs();
+    }
+
+    private void OnValidate()
+    {
+        // Permet de voir le changement de couleur directement dans l'éditeur
+        AppliquerCouleurs();
+    }
+
+    private void AppliquerCouleurs()
+    {
+        Image fond = GetComponent<Image>();
+        if (fond != null) fond.color = couleurLigne;
+
+        if (cases == null || cases.Count == 0)
+        {
+            cases = new List<Case>(GetComponentsInChildren<Case>());
+        }
+
+        foreach (Case c in cases)
+        {
+            if (c != null)
+            {
+                c.SetCouleur(couleurFondCases);
+                c.SetCouleurTexte(couleurTexte);
+            }
+        }
+    }
+
+    public void AppliquerCouleurCases(Color couleur)
+    {
+        if (cases == null) return;
+        foreach (Case c in cases)
+        {
+            if (c != null) c.SetCouleur(couleur);
+        }
+    }
+
+    public void SetApparence(Color fondCases, Color ligneBordure, Color texte)
+    {
+        this.couleurFondCases = fondCases;
+        this.couleurLigne = ligneBordure;
+        this.couleurTexte = texte;
+        AppliquerCouleurs();
+    }
+
+    public void AjusterNombreColonnes(int nbColonnes)
+    {
+        if (nbColonnes <= 0) return;
+
+        // Rafraîchir systématiquement la liste pour éviter de pointer vers des objets détruits (MissingReferenceException)
+        Case[] enfants = GetComponentsInChildren<Case>();
+        cases = new List<Case>();
+        foreach (Case c in enfants)
+        {
+            if (c != null) cases.Add(c);
+        }
+
+        if (cases.Count == 0) return; // Impossible de dupliquer sans un modèle existant
+
+        Case modele = cases[0];
+
+        // Créer les cases manquantes
+        while (cases.Count < nbColonnes)
+        {
+            // Instancier en gardant le même parent
+            Case nouvelleCase = Instantiate(modele, modele.transform.parent);
+            nouvelleCase.name = "case";
+            nouvelleCase.Vider();
+            cases.Add(nouvelleCase);
+        }
+
+        // Supprimer les cases en trop
+        while (cases.Count > nbColonnes)
+        {
+            Case caseEnTrop = cases[cases.Count - 1];
+            cases.RemoveAt(cases.Count - 1);
+            
+            if (caseEnTrop != null)
+            {
+                if (Application.isPlaying)
+                {
+                    Destroy(caseEnTrop.gameObject);
+                }
+                else
+                {
+                    DestroyImmediate(caseEnTrop.gameObject, true);
+                }
+            }
+        }
     }
 
     public string Get(int indice)
