@@ -1,7 +1,7 @@
 using System;
-using System.Collections.Generic;
 using System.IO;
 using UnityEngine;
+using Newtonsoft.Json;
 
 public class SaveManager : MonoBehaviour
 {
@@ -12,6 +12,7 @@ public class SaveManager : MonoBehaviour
     [SerializeField] private GameData gameData;
 
     private string cheminSauvegarde;
+    private JsonSerializerSettings jsonSettings;
 
     private void Awake()
     {
@@ -25,10 +26,17 @@ public class SaveManager : MonoBehaviour
 
         // Définit le chemin de sauvegarde persistant selon l'OS (Windows, Mac...)
         cheminSauvegarde = Path.Combine(Application.persistentDataPath, "sauvegarde_jeu.json");
+
+        // Configuration pour que Newtonsoft gère l'héritage (ex: CompteBanquaire -> Epargne)
+        jsonSettings = new JsonSerializerSettings
+        {
+            TypeNameHandling = TypeNameHandling.Auto,
+            Formatting = Formatting.Indented // JSON lisible pour vos tests
+        };
     }
 
     /// <summary>
-    /// Sauvegarde l'état actuel de la partie sur le disque.
+    /// Sauvegarde l'état actuel du jeu (Joueur, Environnement, Temps) sur le disque.
     /// </summary>
     public void SauvegarderPartie()
     {
@@ -40,47 +48,30 @@ public class SaveManager : MonoBehaviour
 
         try
         {
-            PackageSauvegarde paquet = new PackageSauvegarde();
-            paquet.nombreMoisPasses = gameData.nombreMoisPasses;
-            paquet.moisActuel = gameData.moisActuel;
-
-            // 1. On sérialise l'environnement et le joueur en chaînes JSON individuelles
-            // JsonUtility va ignorer le dictionnaire 'comptes' automatiquement (ce qui nous arrange ici)
-            paquet.envJson = JsonUtility.ToJson(gameData.env);
-            paquet.joueurJson = JsonUtility.ToJson(gameData.joueur);
-
-            // 2. On aplatit manuellement le dictionnaire de comptes pour conserver le type exact (ex: Epargne)
-            paquet.comptesSauvegardes = new List<CompteSauvegardeDto>();
-            if (gameData.joueur.comptes != null)
+            // On prépare le paquet sans l'historique des snapshots (What If) pour alléger le fichier
+            PackageSauvegarde paquet = new PackageSauvegarde
             {
-                foreach (KeyValuePair<string, CompteBanquaire> kvp in gameData.joueur.comptes)
-                {
-                    if (kvp.Value == null) continue;
+                joueur = gameData.joueur,
+                env = gameData.env,
+                nombreMoisPasses = gameData.nombreMoisPasses,
+                moisActuel = gameData.moisActuel
+            };
 
-                    CompteSauvegardeDto dto = new CompteSauvegardeDto
-                    {
-                        cleDictionnaire = kvp.Key,
-                        typeComplet = kvp.Value.GetType().AssemblyQualifiedName, // Sauvegarde la variante de classe exacte
-                        donneesJson = JsonUtility.ToJson(kvp.Value) // Sérialise l'objet du compte
-                    };
-                    paquet.comptesSauvegardes.Add(dto);
-                }
-            }
+            // Conversion directe en texte JSON (gère les dictionnaires nativement)
+            string json = JsonConvert.SerializeObject(paquet, jsonSettings);
 
-            // 3. Conversion du paquet global en texte et écriture sur le disque
-            string jsonGlobal = JsonUtility.ToJson(paquet, true);
-            File.WriteAllText(cheminSauvegarde, jsonGlobal);
-
+            // Écriture physique sur le disque
+            File.WriteAllText(cheminSauvegarde, json);
             Debug.Log($"[SaveManager] Partie sauvegardée avec succès dans : {cheminSauvegarde}");
         }
         catch (Exception e)
         {
-            Debug.LogError($"[SaveManager] Échec lors de la sauvegarde : {e.Message}");
+            Debug.LogError($"[SaveManager] Échec de la sauvegarde : {e.Message}");
         }
     }
 
     /// <summary>
-    /// Charge le fichier de sauvegarde et réinjecte les données dans le GameData de Runtime.
+    /// Charge la sauvegarde depuis le disque et réinjecte les données dans le GameData.
     /// </summary>
     public bool ChargerPartie()
     {
@@ -92,63 +83,46 @@ public class SaveManager : MonoBehaviour
 
         try
         {
-            // 1. Lecture du fichier JSON global
-            string jsonGlobal = File.ReadAllText(cheminSauvegarde);
-            PackageSauvegarde paquet = JsonUtility.FromJson<PackageSauvegarde>(jsonGlobal);
+            // Lecture du fichier JSON
+            string json = File.ReadAllText(cheminSauvegarde);
 
-            // 2. Restauration des données primitives du calendrier
+            // Reconstruction du paquet de données
+            PackageSauvegarde paquet = JsonConvert.DeserializeObject<PackageSauvegarde>(json, jsonSettings);
+
+            // Injection directe dans ton ScriptableObject de Runtime
+            gameData.joueur = paquet.joueur;
+            gameData.env = paquet.env;
             gameData.nombreMoisPasses = paquet.nombreMoisPasses;
             gameData.moisActuel = paquet.moisActuel;
 
-            // 3. Reconstruction des objets racine
-            gameData.env = JsonUtility.FromJson<DonneesEnvironnement>(paquet.envJson);
-            gameData.joueur = JsonUtility.FromJson<DonneesJoueur>(paquet.joueurJson);
+            // Restauration des liaisons internes (méthode déjà présente dans ton DonneesJoueur.cs)
+            gameData.joueur.InitialiserSiNecessaire();
 
-            // 4. Reconstruction dynamique et typée du dictionnaire de comptes bancaires
-            gameData.joueur.comptes = new Dictionary<string, CompteBanquaire>();
-            foreach (CompteSauvegardeDto item in paquet.comptesSauvegardes)
-            {
-                Type typeExact = Type.GetType(item.typeComplet);
-                if (typeExact != null)
-                {
-                    // L'astuce magique : on force JsonUtility à instancier le vrai type d'origine (ex: Epargne)
-                    CompteBanquaire compteReconstruit = (CompteBanquaire)JsonUtility.FromJson(item.donneesJson, typeExact);
-                    gameData.joueur.comptes.Add(item.cleDictionnaire, compteReconstruit);
-                }
-            }
-
-            // 5. Nettoyage de l'historique What If et ré-initialisation métier
+            // On vide les anciens snapshots du What If car on reprend une nouvelle timeline
             if (gameData.historiqueSnapshots != null)
             {
                 gameData.historiqueSnapshots.Clear();
             }
-            gameData.joueur.InitialiserSiNecessaire();
 
-            Debug.Log("[SaveManager] Partie chargée avec succès !");
+            Debug.Log("[SaveManager] Partie chargée et injectée avec succès !");
             return true;
         }
         catch (Exception e)
         {
-            Debug.LogError($"[SaveManager] Échec lors du chargement : {e.Message}");
+            Debug.LogError($"[SaveManager] Échec du chargement : {e.Message}");
             return false;
         }
     }
 }
 
+/// <summary>
+/// Structure intermédiaire contenant uniquement les données à écrire sur le disque.
+/// </summary>
 [Serializable]
 public class PackageSauvegarde
 {
+    public DonneesJoueur joueur;
+    public DonneesEnvironnement env;
     public int nombreMoisPasses;
     public Mois moisActuel;
-    public string envJson;
-    public string joueurJson;
-    public List<CompteSauvegardeDto> comptesSauvegardes;
-}
-
-[Serializable]
-public class CompteSauvegardeDto
-{
-    public string cleDictionnaire; 
-    public string typeComplet;      
-    public string donneesJson;     
 }
