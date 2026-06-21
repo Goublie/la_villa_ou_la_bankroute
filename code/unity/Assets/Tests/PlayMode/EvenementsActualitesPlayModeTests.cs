@@ -1,8 +1,10 @@
 using System;
 using System.Collections;
+using System.Collections.Generic;
 using System.Reflection;
 using NUnit.Framework;
 using UnityEngine;
+using UnityEngine.EventSystems;
 using UnityEngine.SceneManagement;
 using UnityEngine.TestTools;
 
@@ -34,11 +36,14 @@ public class EvenementsActualitesPlayModeTests
         object gameData = ObtenirGameData();
         object donnees = LireMembre(gameData, "evenements");
         int rumeursAvant = Compter(LireMembre(donnees, "rumeurs"));
+        int publicationsAvant = Compter(
+            LireMembre(donnees, "publications"));
+        uint aleatoireAvant = (uint)LireMembre(donnees, "etatAleatoire");
+        AutoriserActualites(gameData);
         Component actualites = TrouverComposantDansScene(
             TrouverType("ActualitesUI"));
 
         actualites.gameObject.SetActive(true);
-        Invoquer(actualites, "RafraichirDepuisHistorique");
         yield return null;
         yield return null;
 
@@ -64,8 +69,150 @@ public class EvenementsActualitesPlayModeTests
             Compter(LireMembre(donnees, "rumeurs")),
             Is.EqualTo(rumeursAvant));
         Assert.That(
+            Compter(LireMembre(donnees, "publications")),
+            Is.EqualTo(publicationsAvant));
+        Assert.That(
+            (uint)LireMembre(donnees, "etatAleatoire"),
+            Is.EqualTo(aleatoireAvant));
+        Assert.That(
             Compter(LireMembre(actualites, "actualitesList")),
             Is.EqualTo(2));
+        Assert.That(CompterLignesVisibles(actualites), Is.EqualTo(2));
+    }
+
+    [UnityTest]
+    public IEnumerator Actualites_DateEtSelection_SuiventLeHudEtLaLigneCliquee()
+    {
+        Component actualites = OuvrirEtRafraichirActualites();
+        yield return null;
+        yield return null;
+
+        Component hud = TrouverComposantDansScene(TrouverType("HUDManager"));
+        object texteMois = LireMembre(hud, "texteMois");
+        string dateHud = (string)LireMembre(texteMois, "text");
+        IList items = (IList)LireMembre(actualites, "actualitesList");
+        Assert.That(items, Has.Count.EqualTo(2));
+        foreach (object item in items)
+        {
+            Assert.That((string)LireMembre(item, "date"), Is.EqualTo(dateHud));
+        }
+
+        List<Component> lignes = ObtenirLignesVisibles(actualites);
+        Assert.That(lignes, Has.Count.EqualTo(2));
+        object tableau = LireMembre(actualites, "tableauSelectable");
+        Assert.That(
+            Invoquer(tableau, "GetLigneSelectionnee"),
+            Is.SameAs(lignes[0]));
+        Assert.That(
+            LireTexte(LireMembre(actualites, "txtDetailTitre")),
+            Is.EqualTo((string)Invoquer(lignes[0], "Get", 2)));
+
+        Cliquer(lignes[1]);
+        yield return null;
+
+        Assert.That(
+            Invoquer(tableau, "GetLigneSelectionnee"),
+            Is.SameAs(lignes[1]));
+        Assert.That(
+            LireTexte(LireMembre(actualites, "txtDetailTitre")),
+            Is.EqualTo((string)Invoquer(lignes[1], "Get", 2)));
+    }
+
+    [UnityTest]
+    public IEnumerator Actualites_EvenementConfirme_AfficheImportanceEtEffetsDeclares()
+    {
+        object gameData = ObtenirGameData();
+        object donnees = LireMembre(gameData, "evenements");
+        int mois = (int)LireMembre(gameData, "nombreMoisPasses");
+        AjouterEvenementConfirmeTest(donnees, mois);
+
+        Component actualites = OuvrirEtRafraichirActualites();
+        yield return null;
+        yield return null;
+
+        Component ligne = TrouverLigneParTitre(actualites, "Événement UI confirmé");
+        Assert.That(ligne, Is.Not.Null);
+        Cliquer(ligne);
+        yield return null;
+
+        string description = LireTexte(
+            LireMembre(actualites, "txtDetailDescription"));
+        string effets = LireTexte(LireMembre(actualites, "txtDetailEffets"));
+        Assert.That(description, Does.Contain("Importance : Forte"));
+        Assert.That(description, Does.Contain("Catégorie : Boursiers"));
+        Assert.That(effets, Does.Contain("Effets sur la partie"));
+        Assert.That(effets, Does.Contain("Nvidia"));
+        Assert.That(effets, Does.Contain("+12.5 %"));
+    }
+
+    [UnityTest]
+    public IEnumerator Actualites_CategoriesReelles_FiltrentSansAncienLibelle()
+    {
+        object gameData = ObtenirGameData();
+        object donnees = LireMembre(gameData, "evenements");
+        int mois = (int)LireMembre(gameData, "nombreMoisPasses");
+        AjouterPublicationRumeurTest(
+            donnees,
+            mois,
+            "test-boursiers",
+            "Boursiers");
+        AjouterPublicationRumeurTest(
+            donnees,
+            mois,
+            "test-personnels",
+            "Personnels");
+        AjouterPublicationRumeurTest(
+            donnees,
+            mois,
+            "test-professionnels",
+            "Professionnels");
+
+        Component actualites = OuvrirEtRafraichirActualites();
+        yield return null;
+        yield return null;
+
+        CollectionAssert.IsSubsetOf(
+            new[] { "Toutes", "Boursiers", "Personnels", "Professionnels" },
+            ObtenirTextesBoutonsCategories(actualites));
+        CollectionAssert.DoesNotContain(
+            ObtenirTousTextes(actualites),
+            "Cate1");
+        CollectionAssert.DoesNotContain(
+            ObtenirTousTextes(actualites),
+            "Cate2");
+        CollectionAssert.DoesNotContain(
+            ObtenirTousTextes(actualites),
+            "????");
+
+        foreach (string categorie in new[]
+        {
+            "Boursiers",
+            "Personnels",
+            "Professionnels"
+        })
+        {
+            Invoquer(actualites, "FiltrerParCategorie", categorie);
+            yield return null;
+
+            IDictionary associations =
+                (IDictionary)LireMembre(actualites, "itemsParLigne");
+            Assert.That(associations.Count, Is.GreaterThan(0));
+            foreach (DictionaryEntry association in associations)
+            {
+                Assert.That(
+                    (string)LireMembre(association.Value, "categorie"),
+                    Is.EqualTo(categorie));
+            }
+
+            Component premiere = ObtenirLignesVisibles(actualites)[0];
+            object tableau = LireMembre(actualites, "tableauSelectable");
+            Assert.That(
+                Invoquer(tableau, "GetLigneSelectionnee"),
+                Is.SameAs(premiere));
+            Assert.That(
+                LireTexte(LireMembre(actualites, "txtDetailTitre")),
+                Is.EqualTo((string)Invoquer(premiere, "Get", 2)));
+        }
     }
 
     [UnityTest]
@@ -101,10 +248,10 @@ public class EvenementsActualitesPlayModeTests
 
         object gameData = ObtenirGameData();
         object donnees = LireMembre(gameData, "evenements");
+        AutoriserActualites(gameData);
         Component actualites = TrouverComposantDansScene(
             TrouverType("ActualitesUI"));
         actualites.gameObject.SetActive(true);
-        Invoquer(actualites, "RafraichirDepuisHistorique");
         yield return null;
         yield return null;
 
@@ -146,6 +293,203 @@ public class EvenementsActualitesPlayModeTests
         Component controleur = TrouverComposantDansScene(
             TrouverType("PhaseRepartitionTempsController"));
         return LireMembre(controleur, "gameData");
+    }
+
+    private static Component OuvrirEtRafraichirActualites()
+    {
+        AutoriserActualites(ObtenirGameData());
+        Component actualites = TrouverComposantDansScene(
+            TrouverType("ActualitesUI"));
+        actualites.gameObject.SetActive(true);
+        Assert.That(actualites.gameObject.activeInHierarchy, Is.True);
+        return actualites;
+    }
+
+    private static void AutoriserActualites(object gameData)
+    {
+        object joueur = LireMembre(gameData, "joueur");
+        object donneesTemps = LireMembre(joueur, "tempsApplications");
+        object service = Activator.CreateInstance(
+            TrouverType("ServiceRepartitionTemps"),
+            new[] { donneesTemps });
+        Invoquer(service, "DefinirAllocation", 0, 30, 0, 0, 0, 0);
+        object typeActualites = Enum.Parse(
+            TrouverType("TypeApplicationTemps"),
+            "Actualites");
+        Assert.That(
+            (bool)Invoquer(service, "PeutOuvrir", typeActualites),
+            Is.True,
+            "L'allocation de test doit autoriser l'ouverture d'Actualites.");
+    }
+
+    private static List<Component> ObtenirLignesVisibles(Component actualites)
+    {
+        object tableau = LireMembre(actualites, "tableauActualites");
+        IEnumerable lignes = (IEnumerable)LireMembre(tableau, "tableau");
+        List<Component> visibles = new List<Component>();
+        foreach (object ligne in lignes)
+        {
+            if (!(bool)Invoquer(ligne, "EstVide"))
+            {
+                visibles.Add((Component)ligne);
+            }
+        }
+
+        visibles.Sort((gauche, droite) =>
+            gauche.transform.GetSiblingIndex().CompareTo(
+                droite.transform.GetSiblingIndex()));
+        return visibles;
+    }
+
+    private static Component TrouverLigneParTitre(
+        Component actualites,
+        string titre)
+    {
+        foreach (Component ligne in ObtenirLignesVisibles(actualites))
+        {
+            if ((string)Invoquer(ligne, "Get", 2) == titre)
+            {
+                return ligne;
+            }
+        }
+        return null;
+    }
+
+    private static void Cliquer(Component ligne)
+    {
+        PointerEventData donnees = new PointerEventData(EventSystem.current);
+        ExecuteEvents.Execute<IPointerClickHandler>(
+            ligne.gameObject,
+            donnees,
+            ExecuteEvents.pointerClickHandler);
+    }
+
+    private static string LireTexte(object composantTexte)
+    {
+        return (string)LireMembre(composantTexte, "text");
+    }
+
+    private static List<string> ObtenirTousTextes(Component racine)
+    {
+        Type typeTexte = TrouverType("TMPro.TextMeshProUGUI");
+        UnityEngine.Object[] objets = Resources.FindObjectsOfTypeAll(typeTexte);
+        List<string> textes = new List<string>();
+        foreach (UnityEngine.Object objet in objets)
+        {
+            Component texte = objet as Component;
+            if (texte != null &&
+                (texte.transform == racine.transform ||
+                    texte.transform.IsChildOf(racine.transform)))
+            {
+                textes.Add(LireTexte(texte));
+            }
+        }
+        return textes;
+    }
+
+    private static List<string> ObtenirTextesBoutonsCategories(
+        Component actualites)
+    {
+        IList boutons = (IList)LireMembre(actualites, "categoryButtons");
+        List<string> textes = new List<string> { "Toutes" };
+        foreach (object objet in boutons)
+        {
+            Component bouton = objet as Component;
+            if (bouton == null || !bouton.gameObject.activeSelf)
+            {
+                continue;
+            }
+
+            Type typeTexte = TrouverType("TMPro.TextMeshProUGUI");
+            Component texte = bouton.GetComponentInChildren(typeTexte, true);
+            textes.Add(LireTexte(texte));
+        }
+        return textes;
+    }
+
+    private static void AjouterPublicationRumeurTest(
+        object donnees,
+        int mois,
+        string id,
+        string categorie)
+    {
+        object rumeur = Activator.CreateInstance(TrouverType("RumeurPartie"));
+        EcrireMembre(rumeur, "id", id);
+        EcrireMembre(rumeur, "evenementId", "evenement-" + id);
+        EcrireMembre(rumeur, "sourceId", "source-test");
+        EcrireMembre(rumeur, "categorie", categorie);
+        EcrireMembre(rumeur, "titrePublic", "Titre " + categorie);
+        EcrireMembre(rumeur, "textePublic", "Description " + categorie);
+        EcrireMembre(rumeur, "moisApparition", mois);
+        EcrireMembre(rumeur, "moisResolution", mois + 1);
+        EcrireMembre(rumeur, "probabiliteConfirmation", 0.75f);
+        ((IList)LireMembre(donnees, "rumeurs")).Add(rumeur);
+
+        object publication = Activator.CreateInstance(
+            TrouverType("PublicationActualite"));
+        EcrireMembre(publication, "id", "publication-" + id);
+        EcrireMembre(
+            publication,
+            "type",
+            Enum.Parse(TrouverType("TypePublicationActualite"), "Rumeur"));
+        EcrireMembre(publication, "objetId", id);
+        EcrireMembre(publication, "sourceId", "source-test");
+        EcrireMembre(publication, "sourceNom", "Source test");
+        EcrireMembre(publication, "categorie", categorie);
+        EcrireMembre(publication, "titre", "Titre " + categorie);
+        EcrireMembre(publication, "texte", "Description " + categorie);
+        EcrireMembre(publication, "moisPublication", mois);
+        EcrireMembre(publication, "ordrePublication", 10000 + mois);
+        EcrireMembre(
+            publication,
+            "etatRumeur",
+            Enum.Parse(TrouverType("EtatRumeur"), "EnAttente"));
+        ((IList)LireMembre(donnees, "publications")).Add(publication);
+    }
+
+    private static void AjouterEvenementConfirmeTest(object donnees, int mois)
+    {
+        const string rumeurId = "rumeur-evenement-ui";
+        object evenement = Activator.CreateInstance(
+            TrouverType("EvenementConfirmePartie"));
+        EcrireMembre(evenement, "definitionId", "evenement-ui");
+        EcrireMembre(evenement, "rumeurId", rumeurId);
+        EcrireMembre(evenement, "sourceId", "source-ui");
+        EcrireMembre(evenement, "categorie", "Boursiers");
+        EcrireMembre(evenement, "importance", "Forte");
+        EcrireMembre(evenement, "titre", "Événement UI confirmé");
+        EcrireMembre(evenement, "message", "Description événement UI");
+        EcrireMembre(evenement, "moisConfirmation", mois);
+        object impact = Activator.CreateInstance(
+            TrouverType("ImpactDefinitionEvenement"));
+        EcrireMembre(impact, "actif", "Nvidia");
+        EcrireMembre(impact, "variation", 0.125f);
+        ((IList)LireMembre(evenement, "impacts")).Add(impact);
+        ((IList)LireMembre(donnees, "evenementsConfirmes")).Add(evenement);
+
+        object publication = Activator.CreateInstance(
+            TrouverType("PublicationActualite"));
+        EcrireMembre(publication, "id", "publication-evenement-ui");
+        EcrireMembre(
+            publication,
+            "type",
+            Enum.Parse(
+                TrouverType("TypePublicationActualite"),
+                "EvenementConfirme"));
+        EcrireMembre(publication, "objetId", rumeurId);
+        EcrireMembre(publication, "sourceId", "source-ui");
+        EcrireMembre(publication, "sourceNom", "Source UI");
+        EcrireMembre(publication, "categorie", "Boursiers");
+        EcrireMembre(publication, "importance", "Forte");
+        EcrireMembre(publication, "titre", "Événement UI confirmé");
+        EcrireMembre(publication, "texte", "Description événement UI");
+        EcrireMembre(publication, "moisPublication", mois);
+        EcrireMembre(publication, "ordrePublication", 20000 + mois);
+        EcrireMembre(
+            publication,
+            "etatRumeur",
+            Enum.Parse(TrouverType("EtatRumeur"), "Confirmee"));
+        ((IList)LireMembre(donnees, "publications")).Add(publication);
     }
 
     private static int CompterRumeursEnAttente(object donnees)
@@ -272,6 +616,17 @@ public class EvenementsActualitesPlayModeTests
             BindingFlags.NonPublic);
         Assert.That(propriete, Is.Not.Null, "Membre introuvable : " + nom);
         return propriete.GetValue(cible);
+    }
+
+    private static void EcrireMembre(object cible, string nom, object valeur)
+    {
+        Type type = cible.GetType();
+        FieldInfo champ = type.GetField(
+            nom,
+            BindingFlags.Instance | BindingFlags.Public |
+            BindingFlags.NonPublic);
+        Assert.That(champ, Is.Not.Null, "Champ introuvable : " + nom);
+        champ.SetValue(cible, valeur);
     }
 
     private static object Invoquer(
