@@ -9,6 +9,9 @@ public class Tableau : MonoBehaviour
     [Tooltip("Ligne d'en-tête statique (optionnelle) à exclure de la liste de données.")]
     public Ligne ligneEnTete;
 
+    [Tooltip("Si coché et que ligneEnTete est vide, la toute première ligne sera automatiquement protégée en tant qu'en-tête.")]
+    public bool premiereLigneEstEnTete = true;
+
     [Tooltip("Laissez vide pour utiliser les largeurs par défaut du prefab Ligne. Sinon, renseignez la largeur en pixels pour chaque colonne (-1 pour flexible/étirable).")]
     public List<float> largeursColonnes;
 
@@ -65,7 +68,14 @@ public class Tableau : MonoBehaviour
 
     public void Start()
     {
-        tableau = new List<Ligne>(GetComponentsInChildren<Ligne>());
+        Ligne[] toutesLignes = GetComponentsInChildren<Ligne>();
+        tableau = new List<Ligne>(toutesLignes);
+
+        // Assigner automatiquement la première ligne comme en-tête si demandé
+        if (premiereLigneEstEnTete && ligneEnTete == null && toutesLignes.Length > 0)
+        {
+            ligneEnTete = toutesLignes[0];
+        }
 
         if (ligneEnTete != null)
         {
