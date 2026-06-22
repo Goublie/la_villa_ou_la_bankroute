@@ -1,25 +1,24 @@
-using System;
 using System.Collections.Generic;
-using UnityEngine;
 using TMPro;
+using UnityEngine;
 
 /// <summary>
-/// Gère la génération de conseils financiers et l'affichage des événements
-/// marquants de la période de rétrospective.
+/// Affiche une explication du bilan et de la derniere decision What If.
 /// </summary>
 public class RetrospectionEvenements : MonoBehaviour
 {
-    [Header("Données de jeu")]
+    [Header("Donnees de jeu")]
     public GameData gameData;
 
     [Header("Composant Texte Conseils")]
-    public TextMeshProUGUI texteConseils; // Le champ de texte pour afficher le bilan
+    public TextMeshProUGUI texteConseils;
 
     private void Start()
     {
         if (texteConseils == null)
         {
-            texteConseils = GetComponentInChildren<TextMeshProUGUI>(true);
+            texteConseils =
+                GetComponentInChildren<TextMeshProUGUI>(true);
         }
 
         if (gameData == null)
@@ -30,67 +29,187 @@ public class RetrospectionEvenements : MonoBehaviour
         GenererConseils();
     }
 
-    /// <summary>
-    /// Analyse la période écoulée et affiche des conseils et recommandations personnalisés.
-    /// </summary>
     public void GenererConseils()
     {
-        if (gameData == null || texteConseils == null) return;
-
-        List<Optimizer.SimulationResult> reel = Optimizer.ObtenirHistoriqueReel(gameData);
-        List<Optimizer.SimulationResult> simule = Optimizer.SimulerFourmi(gameData);
-
-        if (reel.Count == 0 || simule.Count == 0) return;
-
-        Optimizer.SimulationResult bilanReel = reel[reel.Count - 1];
-        Optimizer.SimulationResult bilanSimule = simule[simule.Count - 1];
-
-        // Calcul des intérêts perçus réellement par le joueur
-        long interetsReels = 0;
-        if (gameData.joueur != null && gameData.joueur.comptes != null && gameData.joueur.comptes.ContainsKey("epargne"))
+        if (gameData == null || texteConseils == null)
         {
-            foreach (Transaction t in gameData.joueur.comptes["epargne"].GetHistorique().GetHistorique())
-            {
-                if (t.libelle == "interets")
-                {
-                    interetsReels += t.montant.centimes;
-                }
-            }
+            return;
         }
 
-        // Calcul du manque à gagner sur les intérêts
-        long interetsSimules = 0;
-        foreach (var r in simule)
+        List<Optimizer.SimulationResult> reel =
+            Optimizer.ObtenirHistoriqueReel(gameData);
+        List<Optimizer.SimulationResult> alternatif =
+            Optimizer.ObtenirHistoriqueWhatIf(gameData);
+
+        if (reel.Count == 0 || alternatif.Count == 0)
         {
-            // Dans la simulation Fourmi, l'écart sur le Livret A vient de l'optimisation des dépôts
-            // On peut estimer le manque à gagner global sur le patrimoine final
+            texteConseils.text =
+                "<color=#00e676><b>Bilan What If</b></color>\n\n" +
+                "Le moteur est actif, mais aucun mois complet n'a encore " +
+                "ete cloture. Revenez apres le prochain passage mensuel.";
+            return;
         }
 
-        argent manqueAGagner = bilanSimule.patrimoineTotal - bilanReel.patrimoineTotal;
+        Optimizer.SimulationResult bilanReel =
+            reel[reel.Count - 1];
+        Optimizer.SimulationResult bilanAlternatif =
+            alternatif[alternatif.Count - 1];
 
-        // Rédaction du bilan en français expliquant la logique économique
-        string bilanText = "<color=#00e676><b>Bilan d'Optimisation What-If</b></color>\n\n";
-        bilanText += $"• Votre patrimoine de fin de période : <b>{bilanReel.patrimoineTotal}</b>\n";
-        bilanText += $"• Patrimoine atteignable (stratégie Fourmi) : <b>{bilanSimule.patrimoineTotal}</b>\n\n";
+        int ecart = DifferenceSaturee(
+            bilanAlternatif.patrimoineTotal.centimes,
+            bilanReel.patrimoineTotal.centimes);
 
-        if (manqueAGagner.centimes > 5000) // Manque à gagner supérieur à 50 €
+        string texte =
+            "<color=#00e676><b>Bilan d'optimisation What If</b></color>\n\n" +
+            "• Votre patrimoine reel : <b>" +
+            bilanReel.patrimoineTotal +
+            "</b>\n" +
+            "• Scenario alternatif : <b>" +
+            bilanAlternatif.patrimoineTotal +
+            "</b>\n\n";
+
+        if (ecart > 5000)
         {
-            bilanText += $"<color=#ff4d4d><b>Manque à gagner : {manqueAGagner}</b></color>\n\n";
-            bilanText += "<b>Conseil Financier :</b>\n";
-            bilanText += "Vous avez laissé dormir trop d'argent sur votre compte courant non rémunéré. ";
-            bilanText += "La stratégie optimale démontre qu'en conservant un simple buffer de 500 € pour vos dépenses courantes ";
-            bilanText += "et en plaçant systématiquement le reste sur votre Livret A, ";
-            bilanText += $"vous auriez accumulé <b>{manqueAGagner}</b> de plus grâce aux intérêts composés et à la rigueur d'épargne.\n\n";
-            bilanText += "<i>Pensez à automatiser vos virements vers l'épargne dès le début du mois !</i>";
+            texte +=
+                "<color=#ff4d4d><b>Manque a gagner : " +
+                new argent(ecart) +
+                "</b></color>\n\n" +
+                "Le moteur a trouve une repartition boursiere qui aurait " +
+                "mieux valorise votre patrimoine, avec les memes revenus " +
+                "et depenses externes.";
+        }
+        else if (ecart < -5000)
+        {
+            int avantageReel =
+                ecart == int.MinValue
+                    ? int.MaxValue
+                    : -ecart;
+
+            texte +=
+                "<color=#00e676><b>Votre strategie reelle a fait mieux de " +
+                new argent(avantageReel) +
+                ".</b></color>\n\n" +
+                "Le scenario What If n'est pas une verite parfaite : il " +
+                "compare une strategie calculee avec les informations " +
+                "connues a chaque mois.";
         }
         else
         {
-            bilanText += "<color=#00e676><b>Félicitations !</b></color>\n\n";
-            bilanText += "Votre gestion financière est excellente et très proche de l'optimum théorique. ";
-            bilanText += "Vous avez su limiter l'argent oisif sur votre compte courant et maximiser l'usage de votre Livret A.";
+            texte +=
+                "<color=#00e676><b>Trajectoires tres proches.</b></color>\n\n" +
+                "Vos choix reels sont restes proches de la meilleure " +
+                "allocation identifiee par le moteur.";
         }
 
-        texteConseils.text = bilanText;
-        Debug.Log("[What-If] Conseils personnalisés générés.");
+        DecisionWhatIf derniereDecision =
+            ObtenirDerniereDecision(gameData.whatIf);
+
+        if (derniereDecision != null)
+        {
+            texte +=
+                "\n\n<b>Derniere decision du moteur :</b>\n" +
+                ConstruireResumeDecision(derniereDecision);
+        }
+
+        texteConseils.text = texte;
+        Debug.Log(
+            "[What-If] Conseils personnalises generes.");
+    }
+
+    private static DecisionWhatIf ObtenirDerniereDecision(
+        DonneesWhatIf donnees)
+    {
+        if (donnees?.decisions == null)
+        {
+            return null;
+        }
+
+        DecisionWhatIf meilleure = null;
+
+        foreach (DecisionWhatIf decision in donnees.decisions)
+        {
+            if (decision != null &&
+                (meilleure == null ||
+                 decision.indexMois > meilleure.indexMois))
+            {
+                meilleure = decision;
+            }
+        }
+
+        return meilleure?.Copier();
+    }
+
+    private static string ConstruireResumeDecision(
+        DecisionWhatIf decision)
+    {
+        string resume = string.IsNullOrWhiteSpace(
+            decision.explication)
+            ? "Allocation alternative calculee."
+            : decision.explication.Trim();
+
+        List<string> allocations = new List<string>();
+
+        if (decision.allocations != null)
+        {
+            foreach (
+                AllocationActifWhatIf allocation
+                in decision.allocations)
+            {
+                if (allocation == null ||
+                    allocation.pourcentage <= 0 ||
+                    string.IsNullOrWhiteSpace(
+                        allocation.actifId))
+                {
+                    continue;
+                }
+
+                string nom =
+                    allocation.actifId ==
+                    MoteurRechercheFaisceauWhatIf.LiquiditesId
+                        ? "Liquidites"
+                        : allocation.actifId;
+
+                allocations.Add(
+                    nom +
+                    " " +
+                    allocation.pourcentage +
+                    " %");
+            }
+        }
+
+        allocations.Sort(System.StringComparer.Ordinal);
+
+        if (allocations.Count > 0)
+        {
+            resume +=
+                "\nAllocation : " +
+                string.Join(", ", allocations) +
+                ".";
+        }
+
+        resume +=
+            "\nRendement mensuel attendu : " +
+            decision.rendementAttenduPourcent.ToString("0.00") +
+            " %, risque estime : " +
+            decision.risqueEstime.ToString("0.00") +
+            ".";
+
+        return resume;
+    }
+
+    private static int DifferenceSaturee(
+        int gauche,
+        int droite)
+    {
+        long difference = (long)gauche - droite;
+
+        if (difference > int.MaxValue)
+        {
+            return int.MaxValue;
+        }
+
+        return difference < int.MinValue
+            ? int.MinValue
+            : (int)difference;
     }
 }
