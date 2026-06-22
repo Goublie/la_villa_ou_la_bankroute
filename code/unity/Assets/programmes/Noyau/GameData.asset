@@ -12,19 +12,280 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c7652c5011b5cd84b90b9f01a8aeb942, type: 3}
   m_Name: GameData
   m_EditorClassIdentifier: Assembly-CSharp::GameData
-  salaire:
-    centimes: 683300
-  energie: 100
-  santeMentale: 100
-  moisPasse: 1
-  investissements:
-  - sommeInvestie:
-      centimes: 101000
-    taux: 0.03
-    dureeMois: 12
-    moisEcoules: 1
-  - sommeInvestie:
-      centimes: 102000
-    taux: 0.03
-    dureeMois: 12
-    moisEcoules: 0
+  joueur:
+    salaire:
+      centimes: 10000000
+    energie: 100
+    santeMentale: 100
+    investissements: []
+    bourse:
+      positions: []
+      impactsMarche: []
+      dernierMoisObserve: 2
+      dernierMessage: 'Nvidia : +12,0 % ce mois.'
+      valeurMarcheCentimes: 0
+      moisValorisation: 2
+    entrepreneuriat:
+      projet:
+        secteur: 0
+        publicCible: 0
+        technologie: 0
+        estCree: 0
+        progressionProduit: 0
+        tractionMarche: 0
+        reputation: 5
+        connaissanceMarche: 0
+        tresorerieCentimes: 0
+        nombrePivots: 0
+        bonusCompatibilite: 0
+        valorisationCentimes: 6175000
+      dernierMessage: Choisissez un secteur, un public et une technologie.
+      dernierMoisObserve: 2
+      migrationPrefabEffectuee: 0
+      etatAleatoire: 2463534242
+    salariat:
+      aEmploi: 0
+      entreprise: Aucune
+      salaireMensuelCentimes: 0
+      heuresSemaine: 0
+      stressPoste: 0
+      ancienneteMois: 0
+      experience: 0
+      fatigue: 20
+      burnout: 0
+      relationPatron: 0
+      relationCollegues: 0
+      satisfaction: 0
+    tempsApplications:
+      budgetMensuelMinutes: 30
+      allocationValidee: 1
+      banque:
+        minutesInitiales: 4
+        secondesRestantes: 240
+      actualites:
+        minutesInitiales: 4
+        secondesRestantes: 240
+      salariat:
+        minutesInitiales: 5
+        secondesRestantes: 300
+      bourse:
+        minutesInitiales: 6
+        secondesRestantes: 360
+      entrepreneuriat:
+        minutesInitiales: 5
+        secondesRestantes: 300
+      immobilier:
+        minutesInitiales: 6
+        secondesRestantes: 360
+  env:
+    tauxEpargne: 0.0175
+  nombreMoisPasses: 2
+  moisActuel: 8
+  historiqueSnapshots:
+  - indexMois: 0
+    moisCalendrier: 6
+    joueur:
+      salaire:
+        centimes: 0
+      energie: 100
+      santeMentale: 100
+      investissements: []
+      bourse:
+        positions: []
+        impactsMarche: []
+        dernierMoisObserve: 0
+        dernierMessage: 'CAC 40 : +0,0 % ce mois.'
+        valeurMarcheCentimes: 0
+        moisValorisation: 0
+      entrepreneuriat:
+        projet:
+          secteur: 0
+          publicCible: 0
+          technologie: 0
+          estCree: 0
+          progressionProduit: 0
+          tractionMarche: 0
+          reputation: 5
+          connaissanceMarche: 0
+          tresorerieCentimes: 0
+          nombrePivots: 0
+          bonusCompatibilite: 0
+          valorisationCentimes: 6175000
+        dernierMessage: Choisissez un secteur, un public et une technologie.
+        dernierMoisObserve: 0
+        migrationPrefabEffectuee: 0
+        etatAleatoire: 2463534242
+      salariat:
+        aEmploi: 0
+        entreprise: Aucune
+        salaireMensuelCentimes: 0
+        heuresSemaine: 0
+        stressPoste: 0
+        ancienneteMois: 0
+        experience: 0
+        fatigue: 20
+        burnout: 0
+        relationPatron: 0
+        relationCollegues: 0
+        satisfaction: 0
+      tempsApplications:
+        budgetMensuelMinutes: 30
+        allocationValidee: 0
+        banque:
+          minutesInitiales: 0
+          secondesRestantes: 0
+        actualites:
+          minutesInitiales: 0
+          secondesRestantes: 0
+        salariat:
+          minutesInitiales: 0
+          secondesRestantes: 0
+        bourse:
+          minutesInitiales: 0
+          secondesRestantes: 0
+        entrepreneuriat:
+          minutesInitiales: 0
+          secondesRestantes: 0
+        immobilier:
+          minutesInitiales: 0
+          secondesRestantes: 0
+    env:
+      tauxEpargne: 0.0175
+  - indexMois: 0
+    moisCalendrier: 6
+    joueur:
+      salaire:
+        centimes: 10000000
+      energie: 100
+      santeMentale: 100
+      investissements: []
+      bourse:
+        positions: []
+        impactsMarche: []
+        dernierMoisObserve: 0
+        dernierMessage: 'CAC 40 : +0,0 % ce mois.'
+        valeurMarcheCentimes: 0
+        moisValorisation: 0
+      entrepreneuriat:
+        projet:
+          secteur: 0
+          publicCible: 0
+          technologie: 0
+          estCree: 0
+          progressionProduit: 0
+          tractionMarche: 0
+          reputation: 5
+          connaissanceMarche: 0
+          tresorerieCentimes: 0
+          nombrePivots: 0
+          bonusCompatibilite: 0
+          valorisationCentimes: 6175000
+        dernierMessage: Choisissez un secteur, un public et une technologie.
+        dernierMoisObserve: 0
+        migrationPrefabEffectuee: 0
+        etatAleatoire: 2463534242
+      salariat:
+        aEmploi: 0
+        entreprise: Aucune
+        salaireMensuelCentimes: 0
+        heuresSemaine: 0
+        stressPoste: 0
+        ancienneteMois: 0
+        experience: 0
+        fatigue: 20
+        burnout: 0
+        relationPatron: 0
+        relationCollegues: 0
+        satisfaction: 0
+      tempsApplications:
+        budgetMensuelMinutes: 30
+        allocationValidee: 1
+        banque:
+          minutesInitiales: 11
+          secondesRestantes: 660
+        actualites:
+          minutesInitiales: 11
+          secondesRestantes: 660
+        salariat:
+          minutesInitiales: 8
+          secondesRestantes: 480
+        bourse:
+          minutesInitiales: 0
+          secondesRestantes: 0
+        entrepreneuriat:
+          minutesInitiales: 0
+          secondesRestantes: 0
+        immobilier:
+          minutesInitiales: 0
+          secondesRestantes: 0
+    env:
+      tauxEpargne: 0.0175
+  - indexMois: 1
+    moisCalendrier: 7
+    joueur:
+      salaire:
+        centimes: 10000000
+      energie: 100
+      santeMentale: 100
+      investissements: []
+      bourse:
+        positions: []
+        impactsMarche: []
+        dernierMoisObserve: 1
+        dernierMessage: 'Nvidia : +12,1 % ce mois.'
+        valeurMarcheCentimes: 0
+        moisValorisation: 1
+      entrepreneuriat:
+        projet:
+          secteur: 0
+          publicCible: 0
+          technologie: 0
+          estCree: 0
+          progressionProduit: 0
+          tractionMarche: 0
+          reputation: 5
+          connaissanceMarche: 0
+          tresorerieCentimes: 0
+          nombrePivots: 0
+          bonusCompatibilite: 0
+          valorisationCentimes: 6175000
+        dernierMessage: Choisissez un secteur, un public et une technologie.
+        dernierMoisObserve: 1
+        migrationPrefabEffectuee: 0
+        etatAleatoire: 2463534242
+      salariat:
+        aEmploi: 0
+        entreprise: Aucune
+        salaireMensuelCentimes: 0
+        heuresSemaine: 0
+        stressPoste: 0
+        ancienneteMois: 0
+        experience: 0
+        fatigue: 20
+        burnout: 0
+        relationPatron: 0
+        relationCollegues: 0
+        satisfaction: 0
+      tempsApplications:
+        budgetMensuelMinutes: 30
+        allocationValidee: 1
+        banque:
+          minutesInitiales: 5
+          secondesRestantes: 300
+        actualites:
+          minutesInitiales: 5
+          secondesRestantes: 300
+        salariat:
+          minutesInitiales: 6
+          secondesRestantes: 360
+        bourse:
+          minutesInitiales: 6
+          secondesRestantes: 360
+        entrepreneuriat:
+          minutesInitiales: 2
+          secondesRestantes: 120
+        immobilier:
+          minutesInitiales: 6
+          secondesRestantes: 360
+    env:
+      tauxEpargne: 0.0175

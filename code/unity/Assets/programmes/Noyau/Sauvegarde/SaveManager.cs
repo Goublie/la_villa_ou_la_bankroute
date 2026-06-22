@@ -2,6 +2,8 @@ using System;
 using System.IO;
 using System.Reflection;
 using UnityEngine;
+using UnityEngine.UI;
+using UnityEngine.SceneManagement; // Requis pour s'abonner aux changements de scènes
 using Newtonsoft.Json;
 using Newtonsoft.Json.Serialization; // Requis pour bloquer les événements C#
 
@@ -27,9 +29,8 @@ public class SaveManager : MonoBehaviour
         Instance = this;
         DontDestroyOnLoad(gameObject);
 
-        // MODIFICATION ICI : On force le chemin vers la racine du projet Unity
-        string dossierRacine = Directory.GetCurrentDirectory();
-        cheminSauvegarde = Path.Combine(dossierRacine, "sauvegarde_jeu.json");
+        // Chemins physiques validés sur Windows
+        cheminSauvegarde = Path.Combine(Application.persistentDataPath, "sauvegarde_jeu.json");
         cheminTemporaire = cheminSauvegarde + ".tmp";
         cheminBackup = cheminSauvegarde + ".bak";
 
@@ -40,6 +41,41 @@ public class SaveManager : MonoBehaviour
             Formatting = Formatting.Indented,
             ContractResolver = new IgnoreEventsContractResolver() // Sécurité totale pour OnSoldeModifie
         };
+    }
+
+    private void Start()
+    {
+        LierBoutonSauvegarde();
+    }
+
+    private void OnEnable()
+    {
+        SceneManager.sceneLoaded += OnSceneLoaded;
+    }
+
+    private void OnDisable()
+    {
+        SceneManager.sceneLoaded -= OnSceneLoaded;
+    }
+
+    private void OnSceneLoaded(Scene scene, LoadSceneMode mode)
+    {
+        LierBoutonSauvegarde();
+    }
+
+    private void LierBoutonSauvegarde()
+    {
+        GameObject buttonGo = GameObject.Find("SauvegardeBouton");
+        if (buttonGo != null)
+        {
+            Button btn = buttonGo.GetComponent<Button>();
+            if (btn != null)
+            {
+                btn.onClick.RemoveListener(SauvegarderPartie);
+                btn.onClick.AddListener(SauvegarderPartie);
+                Debug.Log("[SaveManager] Bouton Sauvegarde lié dynamiquement au Singleton actif.");
+            }
+        }
     }
 
     /// <summary>
@@ -148,19 +184,51 @@ public class PackageSauvegarde
 }
 
 /// <summary>
-/// Force Newtonsoft à ignorer TOUS les événements C# pour éviter les crashs de sérialisation
+/// Force Newtonsoft à inclure les champs privés/protégés d'Unity et à ignorer les événements C#
 /// </summary>
 public class IgnoreEventsContractResolver : DefaultContractResolver
 {
+    protected override System.Collections.Generic.IList<JsonProperty> CreateProperties(Type type, MemberSerialization memberSerialization)
+    {
+        // On force Newtonsoft à aller chercher TOUS les champs (publics, privés, protégés, instance)
+        var flags = BindingFlags.Public | BindingFlags.NonPublic | BindingFlags.Instance;
+        var members = type.GetMembers(flags);
+        
+        var properties = new System.Collections.Generic.List<JsonProperty>();
+
+        foreach (var member in members)
+        {
+            if (member.MemberType == MemberTypes.Field)
+            {
+                // On crée la propriété pour chaque champ trouvé
+                var prop = CreateProperty(member, memberSerialization);
+                if (prop != null)
+                {
+                    properties.Add(prop);
+                }
+            }
+        }
+
+        return properties; // Une List<T> implémente bien IList<T>, le compilateur accepte ça
+    }
+
     protected override JsonProperty CreateProperty(MemberInfo member, MemberSerialization memberSerialization)
     {
         JsonProperty property = base.CreateProperty(member, memberSerialization);
         
-        // Si la propriété est un délégué ou un événement C# (comme Action, Delegate, etc.)
+        // Configuration par défaut pour les champs non-publics détectés
+        if (member is FieldInfo field && !field.IsPublic)
+        {
+            property.Readable = true;
+            property.Writable = true;
+        }
+
+        // Sécurité anti-bug : Si la propriété est un délégué ou un événement C# (comme Action, Delegate, etc.)
         if (typeof(Delegate).IsAssignableFrom(property.PropertyType))
         {
-            property.Ignored = true; // Newtonsoft l'ignore proprement
+            property.Ignored = true; 
         }
+        
         return property;
     }
 }
