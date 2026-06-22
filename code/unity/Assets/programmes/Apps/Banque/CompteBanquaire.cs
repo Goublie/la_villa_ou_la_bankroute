@@ -1,4 +1,5 @@
 using System;
+using UnityEngine;
 
 /// <summary>
 /// Represente un compte monetaire possedant un solde et un historique signe.

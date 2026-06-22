@@ -5,11 +5,11 @@ using UnityEngine;
 /// Etat persistant d'un pret immobilier contracte par le joueur.
 /// </summary>
 [Serializable]
-public class DonneesPret
+public class DonneesPret : IPatrimoine
 {
     public argent montantEmprunte;
     public int dureeAns;
-    public float tauxAnnuel; // Stocké en pourcentage (ex: 3.5f pour 3.5%)
+    public float tauxAnnuel;
     public argent mensualite;
     public int moisRestants;
     public argent capitalRestantDu;
@@ -24,5 +24,14 @@ public class DonneesPret
         this.mensualite = mensualite;
         this.moisRestants = duree * 12;
         this.capitalRestantDu = montant;
+    }
+
+    /// <summary>
+    /// Implémentation de IPatrimoine. Un prêt est un passif (une dette), 
+    /// sa valeur réduit donc le patrimoine global.
+    /// </summary>
+    public argent GetValeurPatrimoine()
+    {
+        return -capitalRestantDu;
     }
 }
