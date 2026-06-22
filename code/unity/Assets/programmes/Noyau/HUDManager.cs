@@ -61,7 +61,7 @@ public class HUDManager : MonoBehaviour
 
         if (texteMois != null)
         {
-            int moisDepart = 1;
+            int moisDepart = 7;
             int anneeDepart = 2026;
 
             int totalMois = moisDepart + gameData.nombreMoisPasses - 1;
