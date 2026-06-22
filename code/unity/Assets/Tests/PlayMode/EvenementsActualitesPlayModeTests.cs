@@ -282,9 +282,49 @@ public class EvenementsActualitesPlayModeTests
             (int)LireMembre(donnees, "dernierMoisTraite"),
             Is.EqualTo(3));
         Assert.That(CompterRumeursEnAttente(donnees), Is.EqualTo(2));
-        Assert.That(
-            Compter(LireMembre(bourse, "impactsMarche")),
-            Is.EqualTo(0));
+        IList impacts = (IList)LireMembre(bourse, "impactsMarche");
+        IList confirmations =
+            (IList)LireMembre(donnees, "evenementsConfirmes");
+        HashSet<string> clesImpacts = new HashSet<string>();
+        int nombreImpactsAttendus = 0;
+        foreach (object confirmation in confirmations)
+        {
+            if ((bool)LireMembre(
+                    confirmation,
+                    "consommeParMoteurImpacts"))
+            {
+                nombreImpactsAttendus +=
+                    Compter(LireMembre(confirmation, "impacts"));
+            }
+        }
+        Assert.That(impacts.Count, Is.EqualTo(nombreImpactsAttendus));
+        foreach (object impact in impacts)
+        {
+            string evenementId =
+                (string)LireMembre(impact, "evenementId");
+            string actifId = (string)LireMembre(impact, "actifId");
+            Assert.That(
+                clesImpacts.Add(evenementId + ":" + actifId),
+                Is.True,
+                "Un impact ne doit pas etre duplique pour un evenement et un actif.");
+            Assert.That(
+                (int)LireMembre(impact, "dureeMois"),
+                Is.EqualTo(1));
+
+            bool confirmationConsommee = false;
+            foreach (object confirmation in confirmations)
+            {
+                if ((string)LireMembre(confirmation, "rumeurId") == evenementId &&
+                    (bool)LireMembre(
+                        confirmation,
+                        "consommeParMoteurImpacts"))
+                {
+                    confirmationConsommee = true;
+                    break;
+                }
+            }
+            Assert.That(confirmationConsommee, Is.True);
+        }
         yield return null;
     }
 

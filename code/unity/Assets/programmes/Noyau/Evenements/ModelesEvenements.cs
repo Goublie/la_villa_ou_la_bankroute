@@ -142,6 +142,16 @@ public enum EtatEvenementPartie
 }
 
 /// <summary>
+/// Etat persistant du traitement d'un evenement par les moteurs d'impacts.
+/// </summary>
+public enum EtatTraitementImpactsEvenement
+{
+    EnAttente,
+    Applique,
+    RejeteInvalide
+}
+
+/// <summary>
 /// Evenement cree apres confirmation d'une rumeur.
 /// </summary>
 [Serializable]
@@ -165,6 +175,17 @@ public class EvenementConfirmePartie
     public bool consommeParMoteurImpacts;
 
     /// <summary>
+    /// Etat persistant evitant le retraitement mensuel d'un evenement.
+    /// </summary>
+    public EtatTraitementImpactsEvenement etatTraitementImpacts =
+        EtatTraitementImpactsEvenement.EnAttente;
+
+    /// <summary>
+    /// Diagnostic persistant du traitement des impacts.
+    /// </summary>
+    public string diagnosticTraitementImpacts = string.Empty;
+
+    /// <summary>
     /// Produit une copie profonde, notamment de la liste d'impacts.
     /// </summary>
     public EvenementConfirmePartie Copier()
@@ -181,6 +202,8 @@ public class EvenementConfirmePartie
             moisConfirmation = moisConfirmation,
             etat = etat,
             consommeParMoteurImpacts = consommeParMoteurImpacts,
+            etatTraitementImpacts = etatTraitementImpacts,
+            diagnosticTraitementImpacts = diagnosticTraitementImpacts,
             impacts = new List<ImpactDefinitionEvenement>()
         };
 
@@ -328,7 +351,29 @@ public class DonneesEvenements
     {
         InitialiserSiNecessaire();
         return evenementsConfirmes.FindAll(
-            evenement => evenement != null && !evenement.consommeParMoteurImpacts);
+            evenement =>
+                evenement != null &&
+                !evenement.consommeParMoteurImpacts &&
+                evenement.etatTraitementImpacts ==
+                    EtatTraitementImpactsEvenement.EnAttente);
+    }
+
+    /// <summary>
+    /// Retourne uniquement les confirmations relevant du moteur Bourse.
+    /// Les evenements personnels et professionnels restent disponibles pour
+    /// leurs futurs moteurs specialises.
+    /// </summary>
+    public List<EvenementConfirmePartie>
+        ObtenirConfirmationsBoursieresAConsommer()
+    {
+        InitialiserSiNecessaire();
+        return evenementsConfirmes.FindAll(
+            evenement =>
+                evenement != null &&
+                evenement.categorie == CategoriesEvenements.Boursiers &&
+                !evenement.consommeParMoteurImpacts &&
+                evenement.etatTraitementImpacts ==
+                    EtatTraitementImpactsEvenement.EnAttente);
     }
 
     /// <summary>

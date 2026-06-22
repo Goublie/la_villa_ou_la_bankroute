@@ -49,6 +49,10 @@ public sealed class ServicePassageMensuel
                 "orchestration_evenements_impossible");
         }
 
+        ResultatConsommationImpactsBoursiers resultatImpacts =
+            ConsommerImpactsBoursiers(
+                evenements,
+                gameData.nombreMoisPasses);
         ActualiserValeursOuverture(gameData.nombreMoisPasses);
 
         if (gameData.historiqueSnapshots.Count == 0)
@@ -59,7 +63,9 @@ public sealed class ServicePassageMensuel
         }
 
         return ResultatOperation.Reussite(
-            "Partie initialisee.",
+            CompleterMessageAvecDiagnostics(
+                "Partie initialisee.",
+                resultatImpacts),
             default,
             "temps_initialise");
     }
@@ -78,8 +84,9 @@ public sealed class ServicePassageMensuel
     /// 3. snapshot profond de cloture ;
     /// 4. calendrier ;
     /// 5. resolution des rumeurs et publications du nouveau mois ;
-    /// 6. report des comptes et salaire ;
-    /// 7. valorisations d'ouverture.
+    /// 6. consommation atomique des impacts boursiers confirmes ;
+    /// 7. report des comptes et salaire ;
+    /// 8. valorisations d'ouverture.
     /// Le salaire du nouveau mois ne peut ainsi jamais contaminer le snapshot
     /// du mois cloture.
     /// </remarks>
@@ -116,11 +123,17 @@ public sealed class ServicePassageMensuel
                 gameData.nombreMoisPasses);
         }
 
+        ResultatConsommationImpactsBoursiers resultatImpacts =
+            ConsommerImpactsBoursiers(
+                evenements,
+                gameData.nombreMoisPasses);
         OuvrirNouveauMois(gameData.nombreMoisPasses);
 
         return new ResultatPassageMensuel(
             true,
-            "Le mois suivant est ouvert.",
+            CompleterMessageAvecDiagnostics(
+                "Le mois suivant est ouvert.",
+                resultatImpacts),
             indexCloture,
             gameData.nombreMoisPasses,
             changementAnnee);
@@ -267,6 +280,25 @@ public sealed class ServicePassageMensuel
     {
         gameData.historiqueSnapshots.Add(
             new SnapshotEtatJeu(gameData));
+    }
+
+    private ResultatConsommationImpactsBoursiers
+        ConsommerImpactsBoursiers(
+            ServiceOrchestrationEvenements orchestration,
+            int mois)
+    {
+        return new ServiceEvenementsEconomiques(gameData)
+            .ConsommerConfirmationsBoursieres(orchestration, mois);
+    }
+
+    private static string CompleterMessageAvecDiagnostics(
+        string message,
+        ResultatConsommationImpactsBoursiers resultat)
+    {
+        string diagnostics = resultat?.ConstruireMessageDiagnostics();
+        return string.IsNullOrEmpty(diagnostics)
+            ? message
+            : message + " Diagnostics impacts : " + diagnostics;
     }
 
     private void AssurerRacine()

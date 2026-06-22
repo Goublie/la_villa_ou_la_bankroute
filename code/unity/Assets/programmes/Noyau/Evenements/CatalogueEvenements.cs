@@ -1,5 +1,7 @@
 using System;
 using System.Collections.Generic;
+using System.Globalization;
+using System.Text;
 using UnityEngine;
 
 /// <summary>
@@ -46,13 +48,14 @@ public sealed class CatalogueEvenements
 
     private static readonly Dictionary<string, string>
         CorrespondancesActifsBourse =
-        new Dictionary<string, string>(StringComparer.OrdinalIgnoreCase)
+        new Dictionary<string, string>(StringComparer.Ordinal)
         {
-            { "CAC 40", "cac40" },
-            { "Nvidia", "nvidia" },
-            { "Google", "alphabet" },
-            { "Bitcoin", "bitcoin" },
-            { "TotalEnergies", "totalenergies" }
+            { "cac40", "cac40" },
+            { "nvidia", "nvidia" },
+            { "google", "alphabet" },
+            { "alphabet", "alphabet" },
+            { "bitcoin", "bitcoin" },
+            { "totalenergies", "totalenergies" }
         };
 
     private readonly List<DefinitionEvenement> evenements;
@@ -190,8 +193,31 @@ public sealed class CatalogueEvenements
         }
 
         return CorrespondancesActifsBourse.TryGetValue(
-            cibleImpact,
+            NormaliserCleActif(cibleImpact),
             out actifId);
+    }
+
+    /// <summary>
+    /// Produit une cle comparable en ignorant casse, accents, espaces et
+    /// ponctuation, sans inventer de correspondance semantique.
+    /// </summary>
+    private static string NormaliserCleActif(string valeur)
+    {
+        string decomposee = valeur.Trim().Normalize(
+            NormalizationForm.FormD);
+        StringBuilder cle = new StringBuilder(decomposee.Length);
+        foreach (char caractere in decomposee)
+        {
+            UnicodeCategory categorie =
+                CharUnicodeInfo.GetUnicodeCategory(caractere);
+            if (categorie != UnicodeCategory.NonSpacingMark &&
+                char.IsLetterOrDigit(caractere))
+            {
+                cle.Append(char.ToLowerInvariant(caractere));
+            }
+        }
+
+        return cle.ToString();
     }
 
     private static void ValiderEtConstruire(
@@ -364,7 +390,9 @@ public sealed class CatalogueEvenements
                         "Variation invalide pour l'evenement " + evenement.id);
                 }
 
-                if (!CorrespondancesActifsBourse.ContainsKey(impact.actif))
+                if (!EssayerObtenirActifBourse(
+                        impact.actif,
+                        out _))
                 {
                     ciblesInconnues.Add(impact.actif);
                 }
