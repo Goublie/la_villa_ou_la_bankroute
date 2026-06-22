@@ -90,9 +90,11 @@ public class EntrepreneuriatUI : MonoBehaviour
     private HUDManager hudManager;
     private ActionPlay actionPlay;
     private bool ecouteSoldeActive;
+    private DropdownChoixEntrepreneuriat[] dropdownsChoix;
 
     private void Awake()
     {
+        dropdownsChoix = GetComponentsInChildren<DropdownChoixEntrepreneuriat>(true);
         ResoudreDependances();
         MigrerEtatPrefab();
     }
@@ -127,9 +129,35 @@ public class EntrepreneuriatUI : MonoBehaviour
         Executer(service?.ChoisirTechnologieSuivante());
     }
 
+    public void ActualiserDepuisDropdowns()
+    {
+        if (service == null || service.Projet.estCree || dropdownsChoix == null) return;
+        
+        foreach (var dd in dropdownsChoix)
+        {
+            if (dd.dropdown != null)
+            {
+                if (dd.typeChoix == TypeChoixDropdown.Secteur)
+                    service.Projet.secteur = (SecteurEntrepreneurial)dd.ObtenirIndexSelectionne();
+                else if (dd.typeChoix == TypeChoixDropdown.Public)
+                    service.Projet.publicCible = (PublicEntrepreneurial)dd.ObtenirIndexSelectionne();
+                else if (dd.typeChoix == TypeChoixDropdown.Technologie)
+                    service.Projet.technologie = (TechnologieEntrepreneuriale)dd.ObtenirIndexSelectionne();
+            }
+        }
+        
+        ActualiserAffichage();
+    }
+
     public void CreerProjet()
     {
-        Executer(service?.CreerProjet());
+        UnityEngine.Debug.Log(">> Bouton CreerProjet cliqué !");
+        ActualiserDepuisDropdowns();
+        UnityEngine.Debug.Log(">> ActualiserDepuisDropdowns termine.");
+        var resultat = service?.CreerProjet();
+        UnityEngine.Debug.Log(">> Resultat CreerProjet : " + (resultat.HasValue ? resultat.Value.Message : "NULL"));
+        Executer(resultat);
+        UnityEngine.Debug.Log(">> Fin de CreerProjet dans UI.");
     }
 
     public void DevelopperProduit()
@@ -190,6 +218,17 @@ public class EntrepreneuriatUI : MonoBehaviour
             santeMentaleText,
             "Sante mentale : " +
             gameData.joueur.santeMentale + "/100");
+
+        if (dropdownsChoix != null)
+        {
+            foreach(var dd in dropdownsChoix)
+            {
+                if (dd.dropdown != null)
+                {
+                    dd.dropdown.interactable = !projet.estCree;
+                }
+            }
+        }
 
         if (projet.estCree)
         {
