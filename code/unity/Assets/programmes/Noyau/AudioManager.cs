@@ -120,7 +120,6 @@ public class AudioManager : MonoBehaviour
         }
 
         musicSource.loop = true;
-
         if (musicSource.clip == nouvelleMusique)
         {
             if (!musicSource.isPlaying)
