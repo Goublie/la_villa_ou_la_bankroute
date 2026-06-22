@@ -31,6 +31,24 @@ public sealed class ServicePassageMensuel
     public ResultatOperation InitialiserPartie()
     {
         AssurerRacine();
+        if (!EssayerCreerServiceEvenements(
+                out ServiceOrchestrationEvenements evenements,
+                out string erreurCatalogue))
+        {
+            return ResultatOperation.Echec(
+                erreurCatalogue,
+                "catalogue_evenements_invalide");
+        }
+
+        ResultatOrchestrationEvenements resultatEvenements =
+            evenements.TraiterMois(gameData.nombreMoisPasses);
+        if (!resultatEvenements.Succes)
+        {
+            return ResultatOperation.Echec(
+                resultatEvenements.Message,
+                "orchestration_evenements_impossible");
+        }
+
         ActualiserValeursOuverture(gameData.nombreMoisPasses);
 
         if (gameData.historiqueSnapshots.Count == 0)
@@ -59,14 +77,24 @@ public sealed class ServicePassageMensuel
     /// 2. marche et entreprise ;
     /// 3. snapshot profond de cloture ;
     /// 4. calendrier ;
-    /// 5. report des comptes et salaire ;
-    /// 6. valorisations d'ouverture.
+    /// 5. resolution des rumeurs et publications du nouveau mois ;
+    /// 6. report des comptes et salaire ;
+    /// 7. valorisations d'ouverture.
     /// Le salaire du nouveau mois ne peut ainsi jamais contaminer le snapshot
     /// du mois cloture.
     /// </remarks>
     public ResultatPassageMensuel PasserAuMoisSuivant()
     {
         AssurerRacine();
+        if (!EssayerCreerServiceEvenements(
+                out ServiceOrchestrationEvenements evenements,
+                out string erreurCatalogue))
+        {
+            return ResultatPassageMensuel.Echec(
+                erreurCatalogue,
+                gameData.nombreMoisPasses);
+        }
+
         int indexCloture = gameData.nombreMoisPasses;
         Mois moisCloture = gameData.moisActuel;
 
@@ -78,6 +106,15 @@ public sealed class ServicePassageMensuel
         gameData.moisActuel = changementAnnee
             ? Mois.Janvier
             : (Mois)((int)moisCloture + 1);
+
+        ResultatOrchestrationEvenements resultatEvenements =
+            evenements.TraiterMois(gameData.nombreMoisPasses);
+        if (!resultatEvenements.Succes)
+        {
+            return ResultatPassageMensuel.Echec(
+                resultatEvenements.Message,
+                gameData.nombreMoisPasses);
+        }
 
         OuvrirNouveauMois(gameData.nombreMoisPasses);
 
@@ -245,10 +282,36 @@ public sealed class ServicePassageMensuel
             gameData.env = new DonneesEnvironnement();
         }
 
+        if (gameData.evenements == null)
+        {
+            gameData.evenements = new DonneesEvenements();
+        }
+        gameData.evenements.InitialiserSiNecessaire();
+
         if (gameData.historiqueSnapshots == null)
         {
             gameData.historiqueSnapshots =
                 new List<SnapshotEtatJeu>();
         }
+    }
+
+    private bool EssayerCreerServiceEvenements(
+        out ServiceOrchestrationEvenements service,
+        out string erreur)
+    {
+        ResultatChargementCatalogue chargement =
+            CatalogueEvenements.ChargerDepuisResources();
+        if (!chargement.EstValide)
+        {
+            service = null;
+            erreur = chargement.ConstruireMessageErreurs();
+            return false;
+        }
+
+        service = ServiceOrchestrationEvenements.CreerPourJeu(
+            gameData.evenements,
+            chargement.Catalogue);
+        erreur = string.Empty;
+        return true;
     }
 }
