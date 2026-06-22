@@ -190,7 +190,8 @@ public static class ServiceFluxMensuelsWhatIf
                 LiquiderPositions(
                     donnees,
                     prixObservesCentimes,
-                    depenseRestante);
+                    depenseRestante,
+                    indexMois);
             depenseRestante = Math.Max(
                 0,
                 depenseRestante -
@@ -228,7 +229,8 @@ public static class ServiceFluxMensuelsWhatIf
     private static int LiquiderPositions(
         DonneesWhatIf donnees,
         IReadOnlyDictionary<string, int> prix,
-        int montantRecherche)
+        int montantRecherche,
+        int indexMois)
     {
         if (montantRecherche <= 0 ||
             donnees.portefeuille?.positions == null)
@@ -329,6 +331,14 @@ public static class ServiceFluxMensuelsWhatIf
                       (float)valorisee.prixCentimes;
 
             valorisee.position.RetirerQuantite(quantiteVendue);
+            ServiceJournalOrdresWhatIf.EnregistrerVenteForcee(
+                donnees,
+                indexMois,
+                valorisee.position.actifId,
+                quantiteVendue,
+                valorisee.prixCentimes,
+                venteCentimes,
+                "Couverture des depenses externes");
             leve = AdditionSaturee(leve, venteCentimes);
         }
 

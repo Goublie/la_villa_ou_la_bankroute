@@ -3,11 +3,11 @@ using System.Collections.Generic;
 using UnityEngine;
 
 /// <summary>
-/// Affiche le dernier bilan compare entre le joueur et le scenario What If.
+/// Affiche le dernier bilan comparé et le journal des ordres What If.
 /// </summary>
 public class RetrospectionTableauUI : MonoBehaviour
 {
-    [Header("Donnees de jeu")]
+    [Header("Données de jeu")]
     public GameData gameData;
 
     [Header("Composant Tableau")]
@@ -43,12 +43,24 @@ public class RetrospectionTableauUI : MonoBehaviour
 
         tableauComparatif.Vider();
 
+        AjouterBilanComparatif(reel, alternatif);
+        AjouterJournalOrdres();
+
+        Debug.Log(
+            "[What-If] Tableau comparatif et journal des ordres mis à jour.");
+    }
+
+    private void AjouterBilanComparatif(
+        List<Optimizer.SimulationResult> reel,
+        List<Optimizer.SimulationResult> alternatif)
+    {
+        tableauComparatif.Add(
+            "STRATÉGIE",
+            "PATRIMOINE",
+            "ÉCART / WHAT IF");
+
         if (reel.Count == 0 || alternatif.Count == 0)
         {
-            tableauComparatif.Add(
-                "STRATEGIE",
-                "PATRIMOINE",
-                "ECART");
             tableauComparatif.Add(
                 "Historique insuffisant",
                 "-",
@@ -66,22 +78,47 @@ public class RetrospectionTableauUI : MonoBehaviour
             bilanReel.patrimoineTotal.centimes);
 
         tableauComparatif.Add(
-            "STRATEGIE",
-            "PATRIMOINE",
-            "ECART / WHAT IF");
-
-        tableauComparatif.Add(
-            "Strategie What If",
+            "Stratégie What If",
             bilanAlternatif.patrimoineTotal.ToString(),
-            "Reference");
+            "Référence");
 
         tableauComparatif.Add(
-            "Joueur (Reel)",
+            "Joueur (Réel)",
             bilanReel.patrimoineTotal.ToString(),
             FormaterEcartJoueur(ecart));
+    }
 
-        Debug.Log(
-            "[What-If] Tableau comparatif mis a jour.");
+    private void AjouterJournalOrdres()
+    {
+        tableauComparatif.Add(
+            "12 DERNIERS MOIS",
+            "ORDRE WHAT IF",
+            "DÉTAIL");
+
+        List<LigneOperationRetrospectionWhatIf> lignes =
+            ServiceRetrospectionDetailleeWhatIf
+                .ConstruireLignesOrdres(
+                    gameData.whatIf,
+                    gameData.nombreMoisPasses);
+
+        if (lignes.Count == 0)
+        {
+            tableauComparatif.Add(
+                "-",
+                "Aucune opération",
+                "Le modèle n'a encore exécuté aucun achat ou vente.");
+            return;
+        }
+
+        foreach (
+            LigneOperationRetrospectionWhatIf ligne
+            in lignes)
+        {
+            tableauComparatif.Add(
+                ligne.mois,
+                ligne.operation,
+                ligne.detail);
+        }
     }
 
     private static string FormaterEcartJoueur(int avantageWhatIf)

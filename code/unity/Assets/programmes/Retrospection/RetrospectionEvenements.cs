@@ -3,11 +3,11 @@ using TMPro;
 using UnityEngine;
 
 /// <summary>
-/// Affiche une explication du bilan et de la derniere decision What If.
+/// Affiche le bilan, la dernière décision et les événements confirmés récents.
 /// </summary>
 public class RetrospectionEvenements : MonoBehaviour
 {
-    [Header("Donnees de jeu")]
+    [Header("Données de jeu")]
     public GameData gameData;
 
     [Header("Composant Texte Conseils")]
@@ -41,12 +41,21 @@ public class RetrospectionEvenements : MonoBehaviour
         List<Optimizer.SimulationResult> alternatif =
             Optimizer.ObtenirHistoriqueWhatIf(gameData);
 
+        string sectionEvenements =
+            ServiceRetrospectionDetailleeWhatIf
+                .ConstruireSectionEvenementsConfirmes(
+                    gameData.evenements,
+                    gameData.whatIf,
+                    gameData.nombreMoisPasses);
+
         if (reel.Count == 0 || alternatif.Count == 0)
         {
             texteConseils.text =
                 "<color=#00e676><b>Bilan What If</b></color>\n\n" +
                 "Le moteur est actif, mais aucun mois complet n'a encore " +
-                "ete cloture. Revenez apres le prochain passage mensuel.";
+                "été clôturé. Revenez après le prochain passage mensuel." +
+                "\n\n" +
+                sectionEvenements;
             return;
         }
 
@@ -61,22 +70,22 @@ public class RetrospectionEvenements : MonoBehaviour
 
         string texte =
             "<color=#00e676><b>Bilan d'optimisation What If</b></color>\n\n" +
-            "• Votre patrimoine reel : <b>" +
+            "• Votre patrimoine réel : <b>" +
             bilanReel.patrimoineTotal +
             "</b>\n" +
-            "• Scenario alternatif : <b>" +
+            "• Scénario alternatif : <b>" +
             bilanAlternatif.patrimoineTotal +
             "</b>\n\n";
 
         if (ecart > 5000)
         {
             texte +=
-                "<color=#ff4d4d><b>Manque a gagner : " +
+                "<color=#ff4d4d><b>Manque à gagner : " +
                 new argent(ecart) +
                 "</b></color>\n\n" +
-                "Le moteur a trouve une repartition boursiere qui aurait " +
-                "mieux valorise votre patrimoine, avec les memes revenus " +
-                "et depenses externes.";
+                "Le moteur a trouvé une répartition boursière qui aurait " +
+                "mieux valorisé votre patrimoine, avec les mêmes revenus " +
+                "et dépenses externes.";
         }
         else if (ecart < -5000)
         {
@@ -86,19 +95,19 @@ public class RetrospectionEvenements : MonoBehaviour
                     : -ecart;
 
             texte +=
-                "<color=#00e676><b>Votre strategie reelle a fait mieux de " +
+                "<color=#00e676><b>Votre stratégie réelle a fait mieux de " +
                 new argent(avantageReel) +
                 ".</b></color>\n\n" +
-                "Le scenario What If n'est pas une verite parfaite : il " +
-                "compare une strategie calculee avec les informations " +
-                "connues a chaque mois.";
+                "Le scénario What If n'est pas une vérité parfaite : il " +
+                "compare une stratégie calculée avec les informations " +
+                "connues à chaque mois.";
         }
         else
         {
             texte +=
-                "<color=#00e676><b>Trajectoires tres proches.</b></color>\n\n" +
-                "Vos choix reels sont restes proches de la meilleure " +
-                "allocation identifiee par le moteur.";
+                "<color=#00e676><b>Trajectoires très proches.</b></color>\n\n" +
+                "Vos choix réels sont restés proches de la meilleure " +
+                "allocation identifiée par le moteur.";
         }
 
         DecisionWhatIf derniereDecision =
@@ -107,13 +116,15 @@ public class RetrospectionEvenements : MonoBehaviour
         if (derniereDecision != null)
         {
             texte +=
-                "\n\n<b>Derniere decision du moteur :</b>\n" +
+                "\n\n<b>Dernière décision du moteur :</b>\n" +
                 ConstruireResumeDecision(derniereDecision);
         }
 
+        texte += "\n\n" + sectionEvenements;
+
         texteConseils.text = texte;
         Debug.Log(
-            "[What-If] Conseils personnalises generes.");
+            "[What-If] Conseils et événements confirmés générés.");
     }
 
     private static DecisionWhatIf ObtenirDerniereDecision(
@@ -144,7 +155,7 @@ public class RetrospectionEvenements : MonoBehaviour
     {
         string resume = string.IsNullOrWhiteSpace(
             decision.explication)
-            ? "Allocation alternative calculee."
+            ? "Allocation alternative calculée."
             : decision.explication.Trim();
 
         List<string> allocations = new List<string>();
@@ -166,7 +177,7 @@ public class RetrospectionEvenements : MonoBehaviour
                 string nom =
                     allocation.actifId ==
                     MoteurRechercheFaisceauWhatIf.LiquiditesId
-                        ? "Liquidites"
+                        ? "Liquidités"
                         : allocation.actifId;
 
                 allocations.Add(
@@ -190,7 +201,7 @@ public class RetrospectionEvenements : MonoBehaviour
         resume +=
             "\nRendement mensuel attendu : " +
             decision.rendementAttenduPourcent.ToString("0.00") +
-            " %, risque estime : " +
+            " %, risque estimé : " +
             decision.risqueEstime.ToString("0.00") +
             ".";
 

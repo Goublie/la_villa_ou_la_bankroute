@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 
 /// <summary>
@@ -153,6 +153,8 @@ public sealed class DonneesWhatIf
     public List<DecisionWhatIf> decisions = new List<DecisionWhatIf>();
     public List<PointHistoriqueWhatIf> historique =
         new List<PointHistoriqueWhatIf>();
+    public List<OrdreHistoriqueWhatIf> ordres =
+        new List<OrdreHistoriqueWhatIf>();
 
     public void InitialiserSiNecessaire()
     {
@@ -177,6 +179,11 @@ public sealed class DonneesWhatIf
             historique = new List<PointHistoriqueWhatIf>();
         }
 
+        if (ordres == null)
+        {
+            ordres = new List<OrdreHistoriqueWhatIf>();
+        }
+
         capitalInitialCentimes = Math.Max(0, capitalInitialCentimes);
         liquiditesCentimes = Math.Max(0, liquiditesCentimes);
     }
@@ -195,7 +202,8 @@ public sealed class DonneesWhatIf
             portefeuille = portefeuille.Copier(),
             configuration = configuration.Copier(),
             decisions = new List<DecisionWhatIf>(),
-            historique = new List<PointHistoriqueWhatIf>()
+            historique = new List<PointHistoriqueWhatIf>(),
+            ordres = new List<OrdreHistoriqueWhatIf>()
         };
 
         foreach (DecisionWhatIf decision in decisions)
@@ -211,6 +219,14 @@ public sealed class DonneesWhatIf
             if (point != null)
             {
                 copie.historique.Add(point.Copier());
+            }
+        }
+
+        foreach (OrdreHistoriqueWhatIf ordre in ordres)
+        {
+            if (ordre != null)
+            {
+                copie.ordres.Add(ordre.Copier());
             }
         }
 

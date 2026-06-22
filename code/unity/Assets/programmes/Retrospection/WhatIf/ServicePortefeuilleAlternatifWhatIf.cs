@@ -183,6 +183,14 @@ public static class ServicePortefeuilleAlternatifWhatIf
             resultat.ordresExecutes++;
         }
 
+        ServiceJournalOrdresWhatIf.EnregistrerReallocation(
+            donnees,
+            donnees.portefeuille.positions,
+            nouvellesPositions,
+            prixCentimesParActif,
+            indexMois,
+            cout);
+
         donnees.portefeuille.positions = nouvellesPositions;
         donnees.liquiditesCentimes = Math.Max(
             0,
