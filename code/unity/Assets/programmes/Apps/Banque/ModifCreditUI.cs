@@ -12,16 +12,9 @@ public class ModifCreditUI : MonoBehaviour
     [SerializeField] private Slider sliderTempsRestant; // Permet de réduire la durée
     [SerializeField] private Slider sliderMensualite;   // Reflète l'augmentation de la mensualité
     
-    [Header("Textes")]
-    [SerializeField] private TMP_Text texteTempsRestant;
-    [SerializeField] private TMP_Text texteMensualite;
-    [SerializeField] private TMP_Text texteInfo;
-    
-    [Header("Actions")]
-    [SerializeField] private Button boutonValider;
-    [SerializeField] private Button boutonRetour;
-    [SerializeField] private GameObject menuCredits;
-    [SerializeField] private GameObject menuModifCredit;
+    [Header("Affichage")]
+    [SerializeField] private Tableau tableauAncien;
+    [SerializeField] private Tableau tableauSimulation;
 
     private DonneesPret pretCible;
     private bool estEnMiseAJourAutomatique = false;
@@ -30,8 +23,14 @@ public class ModifCreditUI : MonoBehaviour
     {
         if (sliderTempsRestant != null) sliderTempsRestant.onValueChanged.AddListener(OnTempsChanged);
         if (sliderMensualite != null) sliderMensualite.onValueChanged.AddListener(OnMensualiteChanged);
-        if (boutonValider != null) boutonValider.onClick.AddListener(ValiderModification);
-        if (boutonRetour != null) boutonRetour.onClick.AddListener(Retour);
+    }
+
+    private void OnEnable()
+    {
+        if (listeCredits != null)
+        {
+            ChargerPret(listeCredits.ObtenirPretSelectionne());
+        }
     }
 
     public void ChargerPret(DonneesPret pret)
@@ -41,6 +40,20 @@ public class ModifCreditUI : MonoBehaviour
 
         estEnMiseAJourAutomatique = true;
         
+        if (tableauAncien != null)
+        {
+            foreach (var ligne in tableauAncien.tableau) ligne.Vider();
+            if (tableauAncien.tableau.Count > 0)
+            {
+                tableauAncien.tableau[0].Set(
+                    pretCible.capitalRestantDu.ToString(),
+                    pretCible.mensualite.ToString(),
+                    $"{pretCible.moisRestants} mois",
+                    $"{pretCible.tauxAnnuel:F2} %"
+                );
+            }
+        }
+
         sliderTempsRestant.minValue = 0;
         sliderTempsRestant.maxValue = pretCible.moisRestants;
         sliderTempsRestant.value = pretCible.moisRestants;
@@ -129,12 +142,25 @@ public class ModifCreditUI : MonoBehaviour
 
     private void AfficherTextes(int moisRestants, argent mensualite, string info)
     {
-        if (texteTempsRestant != null) texteTempsRestant.text = $"{moisRestants} mois";
-        if (texteMensualite != null) texteMensualite.text = $"{mensualite.ToString()} / mois";
-        if (texteInfo != null) texteInfo.text = info;
+        if (tableauSimulation != null)
+        {
+            foreach (var ligne in tableauSimulation.tableau)
+            {
+                ligne.Vider();
+            }
+            if (tableauSimulation.tableau.Count > 0)
+            {
+                tableauSimulation.tableau[0].Set(
+                    pretCible.capitalRestantDu.ToString(),
+                    mensualite.ToString(),
+                    $"{moisRestants} mois",
+                    $"{pretCible.tauxAnnuel:F2} %"
+                );
+            }
+        }
     }
 
-    private void ValiderModification()
+    public void ValiderModification()
     {
         if (pretCible == null) return;
         int moisVoulus = Mathf.RoundToInt(sliderTempsRestant.value);
@@ -155,10 +181,8 @@ public class ModifCreditUI : MonoBehaviour
         Retour();
     }
 
-    private void Retour()
+    public void Retour()
     {
-        if (menuModifCredit != null) menuModifCredit.SetActive(false);
-        if (menuCredits != null) menuCredits.SetActive(true);
         if (listeCredits != null) listeCredits.RafraichirListe();
     }
 }

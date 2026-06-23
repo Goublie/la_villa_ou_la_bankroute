@@ -11,24 +11,12 @@ public class CreditsUI : MonoBehaviour
     [Header("Composants")]
     [SerializeField] private TableauScrollSelectable tableauCredits;
     [SerializeField] private TMP_Text texteDetails;
-    [SerializeField] private Button boutonAllerVersModif;
-    
-    [Header("Navigation")]
-    [SerializeField] private ModifCreditUI interfaceModification;
-    [SerializeField] private GameObject menuCredits;
-    [SerializeField] private GameObject menuModifCredit;
 
     private Dictionary<LigneSelectable, DonneesPret> mapLignesPrets = new Dictionary<LigneSelectable, DonneesPret>();
     private DonneesPret pretSelectionne;
 
     private void Start()
     {
-        if (boutonAllerVersModif != null)
-        {
-            boutonAllerVersModif.onClick.AddListener(AllerVersModif);
-            boutonAllerVersModif.interactable = false;
-        }
-        
         if (texteDetails != null)
         {
             texteDetails.text = "Sélectionnez un crédit pour voir les détails.";
@@ -58,7 +46,6 @@ public class CreditsUI : MonoBehaviour
         mapLignesPrets.Clear();
         pretSelectionne = null;
         
-        if (boutonAllerVersModif != null) boutonAllerVersModif.interactable = false;
         if (texteDetails != null) texteDetails.text = "Sélectionnez un crédit pour voir les détails.";
 
         if (G == null || G.joueur == null || G.joueur.pretsImmobiliers == null) return;
@@ -91,22 +78,11 @@ public class CreditsUI : MonoBehaviour
             {
                 texteDetails.text = $"Détails du prêt :\nCapital restant dû : {pret.capitalRestantDu.ToString()}\nTaux : {pret.tauxAnnuel:F2}%\nMensualité : {pret.mensualite.ToString()}";
             }
-            if (boutonAllerVersModif != null)
-            {
-                boutonAllerVersModif.interactable = true;
-            }
         }
     }
 
-    private void AllerVersModif()
+    public DonneesPret ObtenirPretSelectionne()
     {
-        if (pretSelectionne != null && interfaceModification != null)
-        {
-            // Transition de menu
-            if (menuCredits != null) menuCredits.SetActive(false);
-            if (menuModifCredit != null) menuModifCredit.SetActive(true);
-
-            interfaceModification.ChargerPret(pretSelectionne);
-        }
+        return pretSelectionne;
     }
 }
