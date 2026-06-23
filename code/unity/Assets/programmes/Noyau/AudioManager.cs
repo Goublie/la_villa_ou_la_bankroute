@@ -7,7 +7,7 @@ using UnityEngine.SceneManagement;
 /// </summary>
 public class AudioManager : MonoBehaviour
 {
-    // ◄ FIX : Le Singleton permet d'accéder facilement à l'AudioManager et évite les doublons
+    // Le Singleton permet d'accéder facilement à l'AudioManager et évite les doublons
     public static AudioManager Instance { get; private set; }
 
     [Header("Musiques")]
@@ -18,7 +18,7 @@ public class AudioManager : MonoBehaviour
 
     private void Awake()
     {
-        // ◄ FIX CRUCIAL : Si un AudioManager existe déjà, on détruit le nouveau pour garder l'ancien
+        // Si un AudioManager existe déjà, on détruit le nouveau pour garder l'ancien
         if (Instance != null && Instance != this)
         {
             Destroy(gameObject);
@@ -51,7 +51,6 @@ public class AudioManager : MonoBehaviour
         if (Instance == this)
         {
             SceneManager.sceneLoaded -= OnSceneLoaded;
-            RetirerListenersBoutons();
         }
     }
 
@@ -63,77 +62,14 @@ public class AudioManager : MonoBehaviour
         }
     }
 
-    private void OnSceneLoaded(Scene scene, LoadSceneMode mode)
-    {
-        // ◄ DEBUG : Pour voir si ce message s'affiche au changement de scène
-        Debug.Log("AudioManager : Nouvelle scène détectée -> " + scene.name);
-        GererScene(scene);
-    }
-
-    private void GererScene(Scene scene)
-    {
-        ChangerMusiqueFond(scene.name == "Menu" ? musiqueMenu : musiqueJeu);
-        ConfigurerBoutons(scene);
-    }
-
-    private void ChangerMusiqueFond(AudioClip nouvelleMusique)
-    {
-        if (musicSource == null)
-        {
-            Debug.LogError("AudioManager : L'AudioSource 'musicSource' n'est pas assignée !");
-            return;
-        }
-
-        // ◄ FIX SÉCURITÉ : Si l'AudioSource est décochée, le code la recoche automatiquement
-        if (!musicSource.enabled)
-        {
-            Debug.LogWarning("AudioManager : 'musicSource' était désactivée ! Réactivation automatique.");
-            musicSource.enabled = true;
-        }
-
-        if (nouvelleMusique == null)
-        {
-            Debug.LogWarning("AudioManager : Impossible de changer de musique car le clip est NULL !");
-            return;
-        }
-
-        musicSource.loop = true;
-        if (musicSource.clip == nouvelleMusique)
-        {
-            if (!musicSource.isPlaying)
-            {
-                musicSource.Play();
-            }
-            return;
-        }
-
-        Debug.Log("AudioManager : Lancement de la musique -> " + nouvelleMusique.name);
-        musicSource.Stop();
-        musicSource.clip = nouvelleMusique;
-        musicSource.Play();
-    }
-
-    private void ConfigurerBoutons(Scene scene)
-    {
-        RetirerListenersBoutons();
-        if (scene.name != "Menu")
-        {
-            return;
-        }
-
-        playButton = TrouverBouton(scene, "Jouer");
-        optionsButton = TrouverBouton(scene, "Options");
-        
-        AjouterListener(playButton);
-        AjouterListener(optionsButton);
-    }
-
     /// <summary>
     /// Déclenché automatiquement à chaque fois qu'une scène est chargée.
     /// </summary>
     private void OnSceneLoaded(Scene scene, LoadSceneMode mode)
     {
-        // On vérifie le nom de la scène (ici "Menu" d'après ton historique Git)
+        Debug.Log("AudioManager : Nouvelle scène détectée -> " + scene.name);
+
+        // On vérifie le nom de la scène
         if (scene.name == "Menu")
         {
             JouerMusique(musiqueMenu);
@@ -175,23 +111,5 @@ public class AudioManager : MonoBehaviour
         {
             audioSource.mute = DevenirMuet;
         }
-    }
-
-    private static Button TrouverBouton(Scene scene, string nomObjet)
-    {
-        Button[] boutons = Object.FindObjectsByType<Button>(
-            FindObjectsInactive.Include,
-            FindObjectsSortMode.None);
-        foreach (Button bouton in boutons)
-        {
-            if (bouton != null &&
-                bouton.gameObject.scene == scene &&
-                bouton.name == nomObjet)
-            {
-                return bouton;
-            }
-        }
-
-        return null;
     }
 }
