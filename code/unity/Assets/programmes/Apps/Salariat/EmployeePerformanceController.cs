@@ -4,6 +4,7 @@ using UnityEngine.UI;
 
 /// <summary>
 /// Facade Unity de la carte de performance salariee.
+/// Gère également la synchronisation des données textuelles du poste actuel.
 /// </summary>
 public class EmployeePerformanceController : MonoBehaviour
 {
@@ -26,7 +27,7 @@ public class EmployeePerformanceController : MonoBehaviour
     public RelationalController relationalController;
 
     [Header("Salary negotiation")]
-    public Button boutonNegocierSalaire; // ◄ AJOUT : Glisse ici ton bouton de négociation pour pouvoir le griser
+    public Button boutonNegocierSalaire;
     public GameObject panelNegociationSalaire;
     public GameObject panelNegociationEchec;
     public GameData gameData;
@@ -34,15 +35,19 @@ public class EmployeePerformanceController : MonoBehaviour
 
     private ServiceSalariat service;
     private DonneesSalariat donnees;
-    private int toursRestantsAvantNegociation = 0; // ◄ AJOUT : Compteur de cooldown
+    private int toursRestantsAvantNegociation = 0;
+
+    // ◄ AJOUT : Cache interne pour retrouver automatiquement les textes du Tableau de Bord
+    private TextMeshProUGUI entrepriseTextInternal;
+    private TextMeshProUGUI heuresTextInternal;
 
     public int currentJobHours => donnees != null ? donnees.heuresSemaine : 0;
 
     private void Start()
     {
-        // ◄ SÉCURITÉ CRITIQUE : Écoute les tours ici pour ne rien rater si le joueur change d'onglet
         ActionPlay.OnMoisPasse += OnMonthPassed;
 
+        ControleEtTrouveTextesPoste();
         ResoudreService();
         RefreshUI();
         ActualiserEtatBoutonNegociation();
@@ -50,15 +55,40 @@ public class EmployeePerformanceController : MonoBehaviour
 
     private void OnDestroy()
     {
-        // Désabonnement à la destruction du script
         ActionPlay.OnMoisPasse -= OnMonthPassed;
     }
 
     private void OnEnable()
     {
+        ControleEtTrouveTextesPoste();
         ResoudreService();
         RefreshUI();
         ActualiserEtatBoutonNegociation();
+    }
+
+    /// <summary>
+    /// ◄ AJOUT : Cherche dynamiquement les composants de texte s'ils ne sont pas déjà liés
+    /// </summary>
+    private void ControleEtTrouveTextesPoste()
+    {
+        if (panelPosteActuel != null)
+        {
+            if (entrepriseTextInternal == null)
+            {
+                Transform t = panelPosteActuel.transform.Find("Entreprise");
+                if (t != null) entrepriseTextInternal = t.GetComponent<TextMeshProUGUI>();
+            }
+            if (heuresTextInternal == null)
+            {
+                Transform t = panelPosteActuel.transform.Find("Heures");
+                if (t != null) heuresTextInternal = t.GetComponent<TextMeshProUGUI>();
+            }
+            if (texteSalaireAnnuelBrut == null)
+            {
+                Transform t = panelPosteActuel.transform.Find("Salaire_brut");
+                if (t != null) texteSalaireAnnuelBrut = t.GetComponent<TextMeshProUGUI>();
+            }
+        }
     }
 
     public void StartNewJob(int stressLevel, int hoursPerWeek)
@@ -90,7 +120,6 @@ public class EmployeePerformanceController : MonoBehaviour
     {
         Debug.Log("🔔 L'événement OnMoisPasse a été reçu par la carte de performance !");
 
-        // ◄ AJOUT : On diminue le temps d'attente à chaque tour
         if (toursRestantsAvantNegociation > 0)
         {
             toursRestantsAvantNegociation--;
@@ -103,7 +132,7 @@ public class EmployeePerformanceController : MonoBehaviour
         }
 
         RefreshUI();
-        ActualiserEtatBoutonNegociation(); // ◄ Met à jour le bouton grisé ou non
+        ActualiserEtatBoutonNegociation();
 
         if (donnees.burnout >= 100)
         {
@@ -111,14 +140,10 @@ public class EmployeePerformanceController : MonoBehaviour
         }
     }
 
-    /// <summary>
-    /// ◄ AJOUT : Gère l'état interactif du bouton de négociation
-    /// </summary>
     private void ActualiserEtatBoutonNegociation()
     {
         if (boutonNegocierSalaire != null)
         {
-            // Le bouton est cliquable uniquement si le cooldown est terminé (à 0)
             boutonNegocierSalaire.interactable = (toursRestantsAvantNegociation <= 0);
         }
     }
@@ -156,7 +181,6 @@ public class EmployeePerformanceController : MonoBehaviour
     {
         if (!ResoudreService()) return;
 
-        // Sécurité supplémentaire : si le cooldown est actif, on bloque l'ouverture
         if (toursRestantsAvantNegociation > 0) return;
 
         if (donnees.experience > 70)
@@ -191,11 +215,7 @@ public class EmployeePerformanceController : MonoBehaviour
         if (ResoudreService())
         {
             service.NegocierSalaire();
-
-            // ◄ AJOUT : Déclenche les 12 tours de blocage
             toursRestantsAvantNegociation = 12;
-
-            ActualiserSalaireAnnuel();
             RefreshUI();
             ActualiserEtatBoutonNegociation();
         }
@@ -212,7 +232,6 @@ public class EmployeePerformanceController : MonoBehaviour
 
         ResultatOperation resultat = service.ModifierTempsTravail(deltaHeures, deltaSalaireCentimes, deltaSatisfaction);
         RefreshUI();
-        ActualiserSalaireAnnuel();
         return resultat;
     }
 
@@ -222,17 +241,45 @@ public class EmployeePerformanceController : MonoBehaviour
 
     private void RefreshUI()
     {
+        ControleEtTrouveTextesPoste();
+
         if (donnees == null)
         {
             ApplyValue(experienceSlider, experienceValueText, 0);
             ApplyValue(fatigueSlider, fatigueValueText, 0);
             ApplyValue(burnoutSlider, burnoutValueText, 0);
+
+            if (entrepriseTextInternal != null) entrepriseTextInternal.text = "Entreprise : Aucune";
+            if (heuresTextInternal != null) heuresTextInternal.text = "Heures : 0 heure / semaine";
+            if (texteSalaireAnnuelBrut != null) texteSalaireAnnuelBrut.text = "Salaire brut : 0 € / an";
             return;
         }
 
         ApplyValue(experienceSlider, experienceValueText, donnees.experience);
         ApplyValue(fatigueSlider, fatigueValueText, donnees.fatigue);
         ApplyValue(burnoutSlider, burnoutValueText, donnees.burnout);
+
+        // ◄ CONFIGURATION CRITIQUE : Synchronisation immédiate des textes avec les données chargées
+        if (donnees.aEmploi)
+        {
+            if (entrepriseTextInternal != null)
+                entrepriseTextInternal.text = "Entreprise : " + donnees.entreprise;
+
+            if (heuresTextInternal != null)
+                heuresTextInternal.text = "Heures : " + donnees.heuresSemaine + " heures / semaine";
+
+            if (texteSalaireAnnuelBrut != null && gameData != null && gameData.joueur != null)
+            {
+                argent salaireAnnuel = gameData.joueur.salaire * 12f;
+                texteSalaireAnnuelBrut.text = "Salaire brut : " + salaireAnnuel.ToString("N0") + " € / an";
+            }
+        }
+        else
+        {
+            if (entrepriseTextInternal != null) entrepriseTextInternal.text = "Entreprise : Aucune";
+            if (heuresTextInternal != null) heuresTextInternal.text = "Heures : 0 heure / semaine";
+            if (texteSalaireAnnuelBrut != null) texteSalaireAnnuelBrut.text = "Salaire brut : 0 € / an";
+        }
     }
 
     private void ApplyValue(Slider slider, TextMeshProUGUI valueText, int value)
@@ -255,13 +302,6 @@ public class EmployeePerformanceController : MonoBehaviour
         if (panelPosteActuel != null) panelPosteActuel.SetActive(visible);
         if (panelActionsRapides != null) panelActionsRapides.SetActive(visible);
         if (panelRelationnel != null) panelRelationnel.SetActive(visible);
-    }
-
-    private void ActualiserSalaireAnnuel()
-    {
-        if (texteSalaireAnnuelBrut == null || gameData == null || gameData.joueur == null) return;
-        argent salaireAnnuel = gameData.joueur.salaire * 12f;
-        texteSalaireAnnuelBrut.text = "Salaire brut : " + salaireAnnuel.ToString("N0") + " € / an";
     }
 
     private bool ResoudreService()
