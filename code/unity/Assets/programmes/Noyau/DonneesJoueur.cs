@@ -18,6 +18,11 @@ public class DonneesJoueur
     public Dictionary<string, CompteBanquaire> comptes;
 
     /// <summary>
+    /// Liste des prets immobiliers actifs du joueur.
+    /// </summary>
+    public List<DonneesPret> pretsImmobiliers;
+
+    /// <summary>
     /// Salaire mensuel, exprime en centimes.
     /// </summary>
     public argent salaire = new argent(0);
@@ -84,6 +89,12 @@ public class DonneesJoueur
                         ServiceBanque.SoldeInitialCourantCentimes));
         }
 
+        // INITIALISATION DU SYSTÈME DE PRÊT IMMOBILIER
+        if (pretsImmobiliers == null)
+        {
+            pretsImmobiliers = new List<DonneesPret>();
+        }
+
         if (investissements == null)
         {
             investissements = new List<Investissement>();
@@ -137,6 +148,7 @@ public class DonneesJoueur
             energie = energie,
             santeMentale = santeMentale,
             comptes = new Dictionary<string, CompteBanquaire>(),
+            pretsImmobiliers = new List<DonneesPret>(), // Copie de la liste de prêts
             investissements = new List<Investissement>(),
             bourse = bourse != null ? bourse.Copier() : new DonneesBourse(),
             entrepreneuriat = entrepreneuriat != null
@@ -158,6 +170,27 @@ public class DonneesJoueur
                 if (entree.Value != null)
                 {
                     copie.comptes[entree.Key] = entree.Value.Copier();
+                }
+            }
+        }
+
+        // COPIE PROFONDE DES PRÊTS IMMOBILIERS ACTIFS
+        if (pretsImmobiliers != null)
+        {
+            foreach (DonneesPret pret in pretsImmobiliers)
+            {
+                if (pret != null)
+                {
+                    // On recrée une copie propre pour isoler le snapshot du mode What If
+                    copie.pretsImmobiliers.Add(new DonneesPret(
+                        pret.montantEmprunte, 
+                        pret.dureeAns, 
+                        pret.tauxAnnuel, 
+                        pret.mensualite
+                    ) {
+                        moisRestants = pret.moisRestants,
+                        capitalRestantDu = pret.capitalRestantDu
+                    });
                 }
             }
         }

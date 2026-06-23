@@ -60,4 +60,34 @@ public class TableauScroll : Tableau
             return false;
         }
     }
+
+    public Ligne AjouterEtRetournerLigne(params object[] valeurs)
+    {
+        foreach (Ligne l in tableau)
+        {
+            if (l.EstVide())
+            {
+                l.Set(valeurs);
+                l.transform.SetAsFirstSibling(); 
+                return l;
+            }
+        }
+
+        if (prefabLigne != null && conteneurLignes != null)
+        {
+            Ligne nouvelleLigne = Instantiate(prefabLigne, conteneurLignes, false);
+            nouvelleLigne.SetApparence(couleurFondCases, couleurLigne, couleurTexte);
+            nouvelleLigne.AjusterNombreColonnes(nombreColonnes);
+            AppliquerConfigurationColonnes(nouvelleLigne);
+            nouvelleLigne.transform.SetAsFirstSibling();
+            nouvelleLigne.Set(valeurs);
+            tableau.Add(nouvelleLigne); 
+            return nouvelleLigne;
+        }
+        else
+        {
+            Debug.LogError("Attention : Le préfabriqué ou le conteneur n'est pas assigné !");
+            return null;
+        }
+    }
 }
