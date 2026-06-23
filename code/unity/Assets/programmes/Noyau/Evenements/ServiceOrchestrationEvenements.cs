@@ -174,15 +174,44 @@ public sealed class ServiceOrchestrationEvenements
     /// </summary>
     public bool MarquerConfirmationConsommee(string rumeurId)
     {
+        return MarquerTraitementImpacts(
+            rumeurId,
+            EtatTraitementImpactsEvenement.Applique,
+            string.Empty);
+    }
+
+
+    public bool MarquerConfirmationRejetee(
+        string rumeurId,
+        string diagnostic)
+    {
+        return MarquerTraitementImpacts(
+            rumeurId,
+            EtatTraitementImpactsEvenement.RejeteInvalide,
+            diagnostic);
+    }
+
+    private bool MarquerTraitementImpacts(
+        string rumeurId,
+        EtatTraitementImpactsEvenement etat,
+        string diagnostic)
+    {
         EvenementConfirmePartie evenement =
             donnees.evenementsConfirmes.Find(
                 element => element != null && element.rumeurId == rumeurId);
-        if (evenement == null || evenement.consommeParMoteurImpacts)
+        if (evenement == null ||
+            evenement.consommeParMoteurImpacts ||
+            evenement.etatTraitementImpacts !=
+                EtatTraitementImpactsEvenement.EnAttente)
         {
             return false;
         }
 
-        evenement.consommeParMoteurImpacts = true;
+        evenement.etatTraitementImpacts = etat;
+        evenement.diagnosticTraitementImpacts =
+            diagnostic ?? string.Empty;
+        evenement.consommeParMoteurImpacts =
+            etat == EtatTraitementImpactsEvenement.Applique;
         return true;
     }
 
@@ -345,6 +374,9 @@ public sealed class ServiceOrchestrationEvenements
             moisConfirmation = mois,
             etat = EtatEvenementPartie.Confirme,
             consommeParMoteurImpacts = false,
+            etatTraitementImpacts =
+                EtatTraitementImpactsEvenement.EnAttente,
+            diagnosticTraitementImpacts = string.Empty,
             impacts = CopierImpacts(definition.impacts)
         };
         donnees.evenementsConfirmes.Add(evenement);

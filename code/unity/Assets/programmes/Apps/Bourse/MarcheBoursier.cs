@@ -176,10 +176,30 @@ public static class MarcheBoursier
         {
             donnees.impactsMarche.RemoveAll(
                 existant => existant != null &&
-                    existant.evenementId == impact.evenementId);
+                    existant.evenementId == impact.evenementId &&
+                    existant.actifId == impact.actifId);
         }
 
         donnees.impactsMarche.Add(impact.Copier());
+    }
+
+    /// <summary>
+    /// Retire tous les impacts d'un evenement lorsque sa consommation ne peut
+    /// pas etre finalisee atomiquement.
+    /// </summary>
+    public static void RetirerImpactsEvenement(
+        DonneesBourse donnees,
+        string evenementId)
+    {
+        if (donnees?.impactsMarche == null ||
+            string.IsNullOrWhiteSpace(evenementId))
+        {
+            return;
+        }
+
+        donnees.impactsMarche.RemoveAll(
+            impact => impact != null &&
+                impact.evenementId == evenementId);
     }
 
     private static int ObtenirPrixCentimes(
