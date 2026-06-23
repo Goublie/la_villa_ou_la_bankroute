@@ -3385,6 +3385,10 @@ PrefabInstance:
       propertyPath: m_Size
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 787967540760475173, guid: aba2bd1967336d94aba9150e4567ebe8, type: 3}
+      propertyPath: m_Direction
+      value: 2
+      objectReference: {fileID: 0}
     - target: {fileID: 1021122456170803016, guid: aba2bd1967336d94aba9150e4567ebe8, type: 3}
       propertyPath: m_SizeDelta.x
       value: -20
@@ -5256,6 +5260,9 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: 5614941924026566190, guid: 133a23716098c704184052a806f702ce, type: 3}
       insertIndex: -1
       addedObject: {fileID: 6365493272787198378}
+    - targetCorrespondingSourceObject: {fileID: 5614941924026566190, guid: 133a23716098c704184052a806f702ce, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 6498617748680598195}
     - targetCorrespondingSourceObject: {fileID: 5593788003831206267, guid: 133a23716098c704184052a806f702ce, type: 3}
       insertIndex: -1
       addedObject: {fileID: 2677399457074623128}
@@ -5301,6 +5308,20 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 7245165895063327726}
   m_CullTransparentMesh: 1
+--- !u!114 &6498617748680598195
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7245165895063327726}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3245ec927659c4140ac4f8d17403cc18, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: UnityEngine.UI::UnityEngine.UI.ContentSizeFitter
+  m_HorizontalFit: 0
+  m_VerticalFit: 2
 --- !u!1 &7261659251930055867 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 5593788003831206267, guid: 133a23716098c704184052a806f702ce, type: 3}
