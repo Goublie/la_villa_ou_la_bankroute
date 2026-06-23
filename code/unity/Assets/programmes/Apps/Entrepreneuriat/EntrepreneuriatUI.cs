@@ -254,24 +254,10 @@ public class EntrepreneuriatUI : MonoBehaviour
         }
         else
         {
-            AffecterTexte(
-                progressionProduitText,
-                "<mark=#DCE8FFFF>  Secteur : " +
-                service.ObtenirDefinitionSecteur().Nom +
-                "  >  </mark>");
-            AffecterTexte(
-                tractionMarcheText,
-                "<mark=#DCE8FFFF>  Public : " +
-                service.ObtenirDefinitionPublic().Nom +
-                "  >  </mark>");
-            AffecterTexte(
-                reputationText,
-                "<mark=#DCE8FFFF>  Technologie : " +
-                service.ObtenirDefinitionTechnologie().Nom +
-                "  >  </mark>");
-            AffecterTexte(
-                valorisationText,
-                "<mark=#2E8B57FF><color=#FFFFFF><b>  CREER LE PROJET  </b></color></mark>");
+            AffecterTexte(progressionProduitText, "Progression produit : -- %");
+            AffecterTexte(tractionMarcheText, "Traction marche : -- %");
+            AffecterTexte(reputationText, "Reputation projet : -- %");
+            AffecterTexte(valorisationText, "Reussite : -- %\nValorisation : --");
         }
 
         AffecterTexte(
