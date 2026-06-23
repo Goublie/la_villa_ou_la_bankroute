@@ -256,6 +256,26 @@ public sealed class ServiceBourse : IEvolutionMensuelle
     }
 
     /// <summary>
+    /// Calcule la variation absolue (gain brut) entre le mois courant et un mois passe.
+    /// </summary>
+    public float CalculerVariationAbsolue(
+        DefinitionActifFinancier actif,
+        int mois,
+        int reculMois)
+    {
+        if (actif == null || actif.Prix.Count == 0)
+        {
+            return 0f;
+        }
+
+        int indexActuel = LimiterMois(actif, mois);
+        int indexPasse = Math.Max(0, indexActuel - Math.Max(0, reculMois));
+        float prixPasse = ObtenirPrix(actif, indexPasse);
+        float prixActuel = ObtenirPrix(actif, indexActuel);
+        return prixActuel - prixPasse;
+    }
+
+    /// <summary>
     /// Calcule l'ecart-type des rendements mensuels sur douze mois maximum.
     /// </summary>
     public float CalculerVolatilite(

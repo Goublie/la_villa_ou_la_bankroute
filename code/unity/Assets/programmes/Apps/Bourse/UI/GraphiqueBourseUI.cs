@@ -11,7 +11,7 @@ using XCharts.Runtime;
 /// </remarks>
 public sealed class GraphiqueBourseUI
 {
-    private const int NombrePoints = 12;
+    private const int NombrePoints = 6;
 
     private readonly RectTransform racine;
     private LineChart graphique;
@@ -57,6 +57,10 @@ public sealed class GraphiqueBourseUI
         serie.symbol.show = true;
         serie.symbol.size = 8f;
 
+        Title title = graphique.EnsureChartComponent<Title>();
+        title.show = true;
+        title.text = actif.Nom;
+
         ObtenirPeriode(
             actif,
             moisActuel,
@@ -64,7 +68,8 @@ public sealed class GraphiqueBourseUI
             out int dernierMois);
         for (int mois = premierMois; mois <= dernierMois; mois++)
         {
-            graphique.AddXAxisData("M" + mois);
+            string etiquetteMois = (mois == moisActuel) ? "Actuel" : ("M" + (mois - moisActuel));
+            graphique.AddXAxisData(etiquetteMois);
             graphique.AddData(0, service.ObtenirPrix(actif, mois));
         }
 
@@ -141,7 +146,7 @@ public sealed class GraphiqueBourseUI
 
         graphique.Init();
         graphique.theme.transparentBackground = true;
-        graphique.EnsureChartComponent<Title>().show = false;
+        graphique.EnsureChartComponent<Title>().show = true;
         graphique.EnsureChartComponent<Legend>().show = false;
         graphique.EnsureChartComponent<Tooltip>().show = true;
 
@@ -164,6 +169,8 @@ public sealed class GraphiqueBourseUI
         axeX.splitNumber = 6;
         axeX.axisLine.lineStyle.color = couleurAxes;
         axeX.axisLabel.textStyle.color = couleurAxes;
+        axeX.axisName.show = true;
+        axeX.axisName.name = "Mois";
 
         YAxis axeY = graphique.EnsureChartComponent<YAxis>();
         axeY.show = true;
@@ -171,6 +178,7 @@ public sealed class GraphiqueBourseUI
         axeY.splitNumber = 4;
         axeY.axisLine.lineStyle.color = couleurAxes;
         axeY.axisLabel.textStyle.color = couleurAxes;
+        axeY.axisLabel.formatter = "{value} €";
         axeY.splitLine.show = true;
         axeY.splitLine.lineStyle.color = couleurGrille;
 
