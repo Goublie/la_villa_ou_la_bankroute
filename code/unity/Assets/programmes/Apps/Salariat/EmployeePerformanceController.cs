@@ -5,11 +5,6 @@ using UnityEngine.UI;
 /// <summary>
 /// Facade Unity de la carte de performance salariee.
 /// </summary>
-/// <remarks>
-/// Les scores sont stockes dans <see cref="DonneesSalariat"/> et modifies par
-/// <see cref="ServiceSalariat"/>. Ce composant se limite aux panels, sliders et
-/// boutons du prefab Salariat.
-/// </remarks>
 public class EmployeePerformanceController : MonoBehaviour
 {
     [Header("Sliders (progress bars)")]
@@ -31,6 +26,7 @@ public class EmployeePerformanceController : MonoBehaviour
     public RelationalController relationalController;
 
     [Header("Salary negotiation")]
+    public Button boutonNegocierSalaire; // ◄ AJOUT : Glisse ici ton bouton de négociation pour pouvoir le griser
     public GameObject panelNegociationSalaire;
     public GameObject panelNegociationEchec;
     public GameData gameData;
@@ -38,47 +34,40 @@ public class EmployeePerformanceController : MonoBehaviour
 
     private ServiceSalariat service;
     private DonneesSalariat donnees;
+    private int toursRestantsAvantNegociation = 0; // ◄ AJOUT : Compteur de cooldown
 
-    public int currentJobHours =>
-        donnees != null ? donnees.heuresSemaine : 0;
+    public int currentJobHours => donnees != null ? donnees.heuresSemaine : 0;
 
     private void Start()
     {
+        // ◄ SÉCURITÉ CRITIQUE : Écoute les tours ici pour ne rien rater si le joueur change d'onglet
+        ActionPlay.OnMoisPasse += OnMonthPassed;
+
         ResoudreService();
         RefreshUI();
+        ActualiserEtatBoutonNegociation();
+    }
+
+    private void OnDestroy()
+    {
+        // Désabonnement à la destruction du script
+        ActionPlay.OnMoisPasse -= OnMonthPassed;
     }
 
     private void OnEnable()
     {
-        ActionPlay.OnMoisPasse += OnMonthPassed;
         ResoudreService();
         RefreshUI();
+        ActualiserEtatBoutonNegociation();
     }
 
-    private void OnDisable()
-    {
-        ActionPlay.OnMoisPasse -= OnMonthPassed;
-    }
-
-    /// <summary>
-    /// Signale l'acceptation d'un poste par un ancien flux du prefab.
-    /// </summary>
     public void StartNewJob(int stressLevel, int hoursPerWeek)
     {
-        if (!ResoudreService())
-        {
-            return;
-        }
+        if (!ResoudreService()) return;
 
         if (!donnees.aEmploi)
         {
-            service.AccepterPoste(
-                "Poste actuel",
-                gameData.joueur.salaire.centimes,
-                hoursPerWeek,
-                stressLevel,
-                1,
-                1);
+            service.AccepterPoste("Poste actuel", gameData.joueur.salaire.centimes, hoursPerWeek, stressLevel, 1, 1);
         }
         else
         {
@@ -88,16 +77,11 @@ public class EmployeePerformanceController : MonoBehaviour
         RefreshUI();
     }
 
-    /// <summary>
-    /// Met a jour les heures du poste courant.
-    /// </summary>
     public void UpdateJobHours(int newHours)
     {
         if (ResoudreService())
         {
-            service.ActualiserContextePoste(
-                donnees.stressPoste,
-                newHours);
+            service.ActualiserContextePoste(donnees.stressPoste, newHours);
             RefreshUI();
         }
     }
@@ -106,15 +90,20 @@ public class EmployeePerformanceController : MonoBehaviour
     {
         Debug.Log("🔔 L'événement OnMoisPasse a été reçu par la carte de performance !");
 
+        // ◄ AJOUT : On diminue le temps d'attente à chaque tour
+        if (toursRestantsAvantNegociation > 0)
+        {
+            toursRestantsAvantNegociation--;
+        }
+
         if (!ResoudreService())
         {
             Debug.LogWarning("❌ Impossible de charger les données du joueur.");
             return;
         }
 
-        Debug.Log("📊 Valeur de l'expérience en base de données AVANT rafraîchissement : " + donnees.experience);
-
         RefreshUI();
+        ActualiserEtatBoutonNegociation(); // ◄ Met à jour le bouton grisé ou non
 
         if (donnees.burnout >= 100)
         {
@@ -122,81 +111,57 @@ public class EmployeePerformanceController : MonoBehaviour
         }
     }
 
+    /// <summary>
+    /// ◄ AJOUT : Gère l'état interactif du bouton de négociation
+    /// </summary>
+    private void ActualiserEtatBoutonNegociation()
+    {
+        if (boutonNegocierSalaire != null)
+        {
+            // Le bouton est cliquable uniquement si le cooldown est terminé (à 0)
+            boutonNegocierSalaire.interactable = (toursRestantsAvantNegociation <= 0);
+        }
+    }
+
     private void TriggerBurnout()
     {
-        if (panelBurnoutGameOver != null)
-        {
-            panelBurnoutGameOver.SetActive(true);
-        }
-
+        if (panelBurnoutGameOver != null) panelBurnoutGameOver.SetActive(true);
         AfficherTableauBord(false);
         gameObject.SetActive(false);
     }
 
-    /// <summary>
-    /// Ferme le message de burn-out et remet le poste courant a zero.
-    /// </summary>
     public void OnBurnoutRetourClicked()
     {
-        if (panelBurnoutGameOver != null)
-        {
-            panelBurnoutGameOver.SetActive(false);
-        }
+        if (panelBurnoutGameOver != null) panelBurnoutGameOver.SetActive(false);
 
-        if (demissionController != null)
-        {
-            demissionController.OnOuiClicked();
-        }
-        else if (ResoudreService())
-        {
-            service.Demissionner();
-        }
+        if (demissionController != null) demissionController.OnOuiClicked();
+        else if (ResoudreService()) service.Demissionner();
 
         RefreshUI();
         AfficherTableauBord(true);
         gameObject.SetActive(true);
     }
 
-    /// <summary>
-    /// Modifie la fatigue en points.
-    /// </summary>
     public void ModifyFatigue(int amount)
     {
-        if (ResoudreService())
-        {
-            service.ModifierFatigue(amount);
-            RefreshUI();
-        }
+        if (ResoudreService()) { service.ModifierFatigue(amount); RefreshUI(); }
     }
 
-    /// <summary>
-    /// Modifie l'experience en points.
-    /// </summary>
     public void ModifyExperience(int amount)
     {
-        if (ResoudreService())
-        {
-            service.ModifierExperience(amount);
-            RefreshUI();
-        }
+        if (ResoudreService()) { service.ModifierExperience(amount); RefreshUI(); }
     }
 
-    /// <summary>
-    /// Ouvre la negociation si l'experience est suffisante.
-    /// </summary>
     public void OnNegocierSalaireClicked()
     {
-        if (!ResoudreService())
-        {
-            return;
-        }
+        if (!ResoudreService()) return;
+
+        // Sécurité supplémentaire : si le cooldown est actif, on bloque l'ouverture
+        if (toursRestantsAvantNegociation > 0) return;
 
         if (donnees.experience > 70)
         {
-            if (panelNegociationSalaire != null)
-            {
-                panelNegociationSalaire.SetActive(true);
-            }
+            if (panelNegociationSalaire != null) panelNegociationSalaire.SetActive(true);
         }
         else if (panelNegociationEchec != null)
         {
@@ -209,92 +174,51 @@ public class EmployeePerformanceController : MonoBehaviour
 
     public void CloseNegociationPanel()
     {
-        if (panelNegociationSalaire != null)
-        {
-            panelNegociationSalaire.SetActive(false);
-        }
-
+        if (panelNegociationSalaire != null) panelNegociationSalaire.SetActive(false);
         AfficherTableauBord(true);
         gameObject.SetActive(true);
     }
 
     public void CloseNegociationEchecPanel()
     {
-        if (panelNegociationEchec != null)
-        {
-            panelNegociationEchec.SetActive(false);
-        }
-
+        if (panelNegociationEchec != null) panelNegociationEchec.SetActive(false);
         AfficherTableauBord(true);
         gameObject.SetActive(true);
     }
 
-    /// <summary>
-    /// Valide une negociation salariale et synchronise les labels.
-    /// </summary>
     public void OnAccepterNegociationClicked()
     {
         if (ResoudreService())
         {
             service.NegocierSalaire();
+
+            // ◄ AJOUT : Déclenche les 12 tours de blocage
+            toursRestantsAvantNegociation = 12;
+
             ActualiserSalaireAnnuel();
             RefreshUI();
+            ActualiserEtatBoutonNegociation();
         }
 
         CloseNegociationPanel();
     }
 
-    /// <summary>
-    /// Ajuste heures, salaire et satisfaction depuis le panel Travailler plus.
-    /// </summary>
-    public ResultatOperation ModifierTempsTravail(
-        int deltaHeures,
-        int deltaSalaireCentimes,
-        int deltaSatisfaction)
+    public ResultatOperation ModifierTempsTravail(int deltaHeures, int deltaSalaireCentimes, int deltaSatisfaction)
     {
         if (!ResoudreService())
         {
-            return ResultatOperation.Echec(
-                "Donnees salariat indisponibles.",
-                "donnees_absentes");
+            return ResultatOperation.Echec("Donnees salariat indisponibles.", "donnees_absentes");
         }
 
-        ResultatOperation resultat =
-            service.ModifierTempsTravail(
-                deltaHeures,
-                deltaSalaireCentimes,
-                deltaSatisfaction);
+        ResultatOperation resultat = service.ModifierTempsTravail(deltaHeures, deltaSalaireCentimes, deltaSatisfaction);
         RefreshUI();
         ActualiserSalaireAnnuel();
         return resultat;
     }
 
-    public void UpdateExperience(int value)
-    {
-        if (ResoudreService())
-        {
-            donnees.experience = Mathf.Clamp(value, 0, 100);
-            RefreshUI();
-        }
-    }
-
-    public void UpdateFatigue(int value)
-    {
-        if (ResoudreService())
-        {
-            donnees.fatigue = Mathf.Clamp(value, 0, 100);
-            RefreshUI();
-        }
-    }
-
-    public void UpdateBurnout(int value)
-    {
-        if (ResoudreService())
-        {
-            donnees.burnout = Mathf.Clamp(value, 0, 100);
-            RefreshUI();
-        }
-    }
+    public void UpdateExperience(int value) { if (ResoudreService()) { donnees.experience = Mathf.Clamp(value, 0, 100); RefreshUI(); } }
+    public void UpdateFatigue(int value) { if (ResoudreService()) { donnees.fatigue = Mathf.Clamp(value, 0, 100); RefreshUI(); } }
+    public void UpdateBurnout(int value) { if (ResoudreService()) { donnees.burnout = Mathf.Clamp(value, 0, 100); RefreshUI(); } }
 
     private void RefreshUI()
     {
@@ -306,102 +230,49 @@ public class EmployeePerformanceController : MonoBehaviour
             return;
         }
 
-        ApplyValue(
-            experienceSlider,
-            experienceValueText,
-            donnees.experience);
-        ApplyValue(
-            fatigueSlider,
-            fatigueValueText,
-            donnees.fatigue);
-        ApplyValue(
-            burnoutSlider,
-            burnoutValueText,
-            donnees.burnout);
+        ApplyValue(experienceSlider, experienceValueText, donnees.experience);
+        ApplyValue(fatigueSlider, fatigueValueText, donnees.fatigue);
+        ApplyValue(burnoutSlider, burnoutValueText, donnees.burnout);
     }
 
-    private void ApplyValue(
-        Slider slider,
-        TextMeshProUGUI valueText,
-        int value)
+    private void ApplyValue(Slider slider, TextMeshProUGUI valueText, int value)
     {
         int score = Mathf.Clamp(value, 0, 100);
-        if (slider != null)
-        {
-            slider.value = score;
-        }
-
-        if (valueText != null)
-        {
-            valueText.text = score + " / 100";
-        }
-
+        if (slider != null) slider.value = score;
+        if (valueText != null) valueText.text = score + " / 100";
         SetFillColor(slider, Color.white);
     }
 
     private void SetFillColor(Slider slider, Color color)
     {
-        if (slider == null || slider.fillRect == null)
-        {
-            return;
-        }
-
+        if (slider == null || slider.fillRect == null) return;
         Image fillImage = slider.fillRect.GetComponent<Image>();
-        if (fillImage != null)
-        {
-            fillImage.color = color;
-        }
+        if (fillImage != null) fillImage.color = color;
     }
 
     private void AfficherTableauBord(bool visible)
     {
-        if (panelPosteActuel != null)
-        {
-            panelPosteActuel.SetActive(visible);
-        }
-
-        if (panelActionsRapides != null)
-        {
-            panelActionsRapides.SetActive(visible);
-        }
-
-        if (panelRelationnel != null)
-        {
-            panelRelationnel.SetActive(visible);
-        }
+        if (panelPosteActuel != null) panelPosteActuel.SetActive(visible);
+        if (panelActionsRapides != null) panelActionsRapides.SetActive(visible);
+        if (panelRelationnel != null) panelRelationnel.SetActive(visible);
     }
 
     private void ActualiserSalaireAnnuel()
     {
-        if (texteSalaireAnnuelBrut == null ||
-            gameData == null ||
-            gameData.joueur == null)
-        {
-            return;
-        }
-
+        if (texteSalaireAnnuelBrut == null || gameData == null || gameData.joueur == null) return;
         argent salaireAnnuel = gameData.joueur.salaire * 12f;
-        // ◄ FIX FORMATTAGE
-        texteSalaireAnnuelBrut.text =
-            "Salaire brut : " + salaireAnnuel.ToString("N0") + " € / an";
+        texteSalaireAnnuelBrut.text = "Salaire brut : " + salaireAnnuel.ToString("N0") + " € / an";
     }
 
     private bool ResoudreService()
     {
         if (gameData == null)
         {
-            ActionPlay actionPlay =
-                Object.FindFirstObjectByType<ActionPlay>();
-            if (actionPlay != null)
-            {
-                gameData = actionPlay.gameData;
-            }
+            ActionPlay actionPlay = Object.FindFirstObjectByType<ActionPlay>();
+            if (actionPlay != null) gameData = actionPlay.gameData;
         }
 
-        if (gameData == null || gameData.joueur == null)
-        {
-            return false;
-        }
+        if (gameData == null || gameData.joueur == null) return false;
 
         gameData.joueur.InitialiserSiNecessaire();
         donnees = gameData.joueur.salariat;

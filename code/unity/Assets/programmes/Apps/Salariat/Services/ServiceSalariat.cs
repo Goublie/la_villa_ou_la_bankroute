@@ -3,72 +3,42 @@ using System;
 /// <summary>
 /// Porte les regles metier du parcours salarie.
 /// </summary>
-/// <remarks>
-/// Le service modifie uniquement les agregats de donnees. Les controleurs UI
-/// restent responsables des panels, boutons et textes du prefab Salariat.
-/// </remarks>
 public sealed class ServiceSalariat : IEvolutionMensuelle
 {
-    public const int AugmentationNegociationCentimes = 60000;
+    // ◄ MODIFICATION : L'augmentation passe de 60000 (600€) à 20000 (200€) centimes
+    public const int AugmentationNegociationCentimes = 20000;
     public const int VariationSalaireTempsTravailCentimes = 80000;
 
     private readonly DonneesSalariat donnees;
     private readonly DonneesJoueur joueur;
 
-    /// <summary>
-    /// Cree un service lie aux donnees salariees et au joueur.
-    /// </summary>
-    public ServiceSalariat(
-        DonneesSalariat donnees,
-        DonneesJoueur joueur)
+    public ServiceSalariat(DonneesSalariat donnees, DonneesJoueur joueur)
     {
-        this.donnees = donnees ??
-            throw new ArgumentNullException(nameof(donnees));
-        this.joueur = joueur ??
-            throw new ArgumentNullException(nameof(joueur));
+        this.donnees = donnees ?? throw new ArgumentNullException(nameof(donnees));
+        this.joueur = joueur ?? throw new ArgumentNullException(nameof(joueur));
         this.donnees.InitialiserSiNecessaire();
     }
 
-    /// <summary>
-    /// Enregistre l'acceptation d'un poste et synchronise le salaire bancaire.
-    /// </summary>
-    public ResultatOperation AccepterPoste(
-        string entreprise,
-        int salaireMensuelCentimes,
-        int heuresSemaine,
-        int stress,
-        int prestige,
-        int equilibre)
+    public ResultatOperation AccepterPoste(string entreprise, int salaireMensuelCentimes, int heuresSemaine, int stress, int prestige, int equilibre)
     {
         if (salaireMensuelCentimes < 0)
         {
-            return ResultatOperation.Echec(
-                "Le salaire ne peut pas etre negatif.",
-                "salaire_invalide");
+            return ResultatOperation.Echec("Le salaire ne peut pas etre negatif.", "salaire_invalide");
         }
 
         donnees.aEmploi = true;
-        donnees.entreprise = string.IsNullOrWhiteSpace(entreprise)
-            ? "Entreprise inconnue"
-            : entreprise;
+        donnees.entreprise = string.IsNullOrWhiteSpace(entreprise) ? "Entreprise inconnue" : entreprise;
         donnees.salaireMensuelCentimes = salaireMensuelCentimes;
         donnees.heuresSemaine = Math.Max(0, heuresSemaine);
         donnees.stressPoste = Math.Max(0, stress);
         donnees.ancienneteMois = 0;
         donnees.fatigue = 20;
         donnees.burnout = 0;
-        donnees.satisfaction =
-            CalculerSatisfaction(stress, prestige, equilibre);
+        donnees.satisfaction = CalculerSatisfaction(stress, prestige, equilibre);
         SynchroniserSalaireJoueur();
-        return ResultatOperation.Reussite(
-            "Poste accepte.",
-            new argent(salaireMensuelCentimes),
-            "poste_accepte");
+        return ResultatOperation.Reussite("Poste accepte.", new argent(salaireMensuelCentimes), "poste_accepte");
     }
 
-    /// <summary>
-    /// Met a jour le stress et les heures du poste courant sans toucher au salaire.
-    /// </summary>
     public void ActualiserContextePoste(int stress, int heuresSemaine)
     {
         donnees.aEmploi = true;
@@ -77,9 +47,6 @@ public sealed class ServiceSalariat : IEvolutionMensuelle
         donnees.InitialiserSiNecessaire();
     }
 
-    /// <summary>
-    /// Termine le poste courant, remet le salaire a zero et conserve l'experience.
-    /// </summary>
     public ResultatOperation Demissionner()
     {
         donnees.aEmploi = false;
@@ -92,10 +59,7 @@ public sealed class ServiceSalariat : IEvolutionMensuelle
         donnees.burnout = 0;
         donnees.satisfaction = 0;
         SynchroniserSalaireJoueur();
-        return ResultatOperation.Reussite(
-            "Demission enregistree.",
-            default,
-            "demission");
+        return ResultatOperation.Reussite("Demission enregistree.", default, "demission");
     }
 
     /// <summary>
@@ -105,152 +69,60 @@ public sealed class ServiceSalariat : IEvolutionMensuelle
     {
         if (donnees.experience <= 70)
         {
-            return ResultatOperation.Echec(
-                "Experience insuffisante pour negocier.",
-                "experience_insuffisante");
+            return ResultatOperation.Echec("Experience insuffisante pour negocier.", "experience_insuffisante");
         }
 
-        donnees.salaireMensuelCentimes +=
-            AugmentationNegociationCentimes;
+        donnees.salaireMensuelCentimes += AugmentationNegociationCentimes;
+
+        // ◄ MODIFICATION : La barre d'expérience retourne à 0 après la négociation
+        donnees.experience = 0;
+
         SynchroniserSalaireJoueur();
-        return ResultatOperation.Reussite(
-            "Salaire augmente.",
-            new argent(AugmentationNegociationCentimes),
-            "negociation_reussie");
+        return ResultatOperation.Reussite("Salaire augmente.", new argent(AugmentationNegociationCentimes), "negociation_reussie");
     }
 
-    /// <summary>
-    /// Modifie l'experience en points et borne la valeur entre 0 et 100.
-    /// </summary>
-    public void ModifierExperience(int delta)
-    {
-        donnees.experience = BornerScore(donnees.experience + delta);
-    }
+    public void ModifierExperience(int delta) { donnees.experience = BornerScore(donnees.experience + delta); }
+    public void ModifierFatigue(int delta) { donnees.fatigue = BornerScore(donnees.fatigue + delta); }
+    public void ModifierSatisfaction(int delta) { donnees.satisfaction = BornerScore(donnees.satisfaction + delta); }
+    public void ModifierRelationPatron(int delta) { donnees.relationPatron = BornerScore(donnees.relationPatron + delta); }
+    public void ModifierRelationCollegues(int delta) { donnees.relationCollegues = BornerScore(donnees.relationCollegues + delta); }
 
-    /// <summary>
-    /// Modifie la fatigue en points et borne la valeur entre 0 et 100.
-    /// </summary>
-    public void ModifierFatigue(int delta)
+    public ResultatOperation ModifierTempsTravail(int deltaHeures, int deltaSalaireCentimes, int deltaSatisfaction)
     {
-        donnees.fatigue = BornerScore(donnees.fatigue + delta);
-    }
+        if (!donnees.aEmploi) return ResultatOperation.Echec("Aucun poste actif.", "poste_absent");
 
-    /// <summary>
-    /// Modifie la satisfaction en points et borne la valeur entre 0 et 100.
-    /// </summary>
-    public void ModifierSatisfaction(int delta)
-    {
-        donnees.satisfaction = BornerScore(donnees.satisfaction + delta);
-    }
-
-    /// <summary>
-    /// Modifie la relation avec le patron en points.
-    /// </summary>
-    public void ModifierRelationPatron(int delta)
-    {
-        donnees.relationPatron =
-            BornerScore(donnees.relationPatron + delta);
-    }
-
-    /// <summary>
-    /// Modifie la relation avec les collegues en points.
-    /// </summary>
-    public void ModifierRelationCollegues(int delta)
-    {
-        donnees.relationCollegues =
-            BornerScore(donnees.relationCollegues + delta);
-    }
-
-    /// <summary>
-    /// Ajuste les heures, le salaire et la satisfaction du poste courant.
-    /// </summary>
-    public ResultatOperation ModifierTempsTravail(
-        int deltaHeures,
-        int deltaSalaireCentimes,
-        int deltaSatisfaction)
-    {
-        if (!donnees.aEmploi)
-        {
-            return ResultatOperation.Echec(
-                "Aucun poste actif.",
-                "poste_absent");
-        }
-
-        int nouvellesHeures =
-            Math.Max(35, donnees.heuresSemaine + deltaHeures);
-        int nouveauSalaire =
-            Math.Max(0, donnees.salaireMensuelCentimes +
-                deltaSalaireCentimes);
+        int nouvellesHeures = Math.Max(35, donnees.heuresSemaine + deltaHeures);
+        int nouveauSalaire = Math.Max(0, donnees.salaireMensuelCentimes + deltaSalaireCentimes);
 
         donnees.heuresSemaine = nouvellesHeures;
         donnees.salaireMensuelCentimes = nouveauSalaire;
         ModifierSatisfaction(deltaSatisfaction);
         SynchroniserSalaireJoueur();
-        return ResultatOperation.Reussite(
-            "Temps de travail ajuste.",
-            new argent(deltaSalaireCentimes),
-            "temps_travail_ajuste");
+        return ResultatOperation.Reussite("Temps de travail ajuste.", new argent(deltaSalaireCentimes), "temps_travail_ajuste");
     }
 
-    /// <inheritdoc />
     public void AppliquerEvolutionMensuelle(int mois)
     {
-        if (!donnees.aEmploi)
-        {
-            return;
-        }
+        if (!donnees.aEmploi) return;
 
         donnees.ancienneteMois++;
 
-        // Conséquences existantes
-        if (donnees.fatigue >= 100)
-        {
-            donnees.burnout = BornerScore(donnees.burnout + 15);
-        }
+        if (donnees.fatigue >= 100) donnees.burnout = BornerScore(donnees.burnout + 15);
+        if (donnees.relationCollegues >= 100) donnees.fatigue = BornerScore(donnees.fatigue - 5);
 
-        if (donnees.relationCollegues >= 100)
-        {
-            donnees.fatigue = BornerScore(donnees.fatigue - 5);
-        }
-
-        // --- NOUVELLES RÈGLES DE PROGRESSION (À CHAQUE MOIS) ---
-
-        // 1. Expérience : augmente de 5 à chaque tour
         donnees.experience = BornerScore(donnees.experience + 5);
 
-        // 2. Fatigue : selon les heures travaillées par semaine
-        if (donnees.heuresSemaine >= 45) // Priorité aux heures les plus hautes
-        {
-            donnees.fatigue = BornerScore(donnees.fatigue + 10);
-        }
-        else if (donnees.heuresSemaine >= 40) // J'ai mis >= au lieu de == pour inclure 41, 42 etc.
-        {
-            donnees.fatigue = BornerScore(donnees.fatigue + 5);
-        }
+        if (donnees.heuresSemaine >= 45) donnees.fatigue = BornerScore(donnees.fatigue + 10);
+        else if (donnees.heuresSemaine >= 40) donnees.fatigue = BornerScore(donnees.fatigue + 5);
 
         donnees.InitialiserSiNecessaire();
     }
 
-    /// <summary>
-    /// Calcule la satisfaction d'un poste depuis les etoiles de l'offre.
-    /// </summary>
-    public static int CalculerSatisfaction(
-        int stress,
-        int prestige,
-        int equilibre)
+    public static int CalculerSatisfaction(int stress, int prestige, int equilibre)
     {
-        return BornerScore(
-            50 + (prestige * 15) + (equilibre * 15) -
-            (stress * 20));
+        return BornerScore(50 + (prestige * 15) + (equilibre * 15) - (stress * 20));
     }
 
-    private void SynchroniserSalaireJoueur()
-    {
-        joueur.salaire = new argent(donnees.salaireMensuelCentimes);
-    }
-
-    private static int BornerScore(int valeur)
-    {
-        return Math.Max(0, Math.Min(100, valeur));
-    }
+    private void SynchroniserSalaireJoueur() { joueur.salaire = new argent(donnees.salaireMensuelCentimes); }
+    private static int BornerScore(int valeur) { return Math.Max(0, Math.Min(100, valeur)); }
 }
