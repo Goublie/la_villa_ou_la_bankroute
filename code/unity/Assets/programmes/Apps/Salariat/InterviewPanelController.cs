@@ -5,11 +5,6 @@ using UnityEngine.UI;
 /// <summary>
 /// Controle un panel d'entretien et transmet l'acceptation d'offre au service Salariat.
 /// </summary>
-/// <remarks>
-/// Ce composant conserve les references Unity du prefab et met a jour les panels visibles.
-/// L'etat metier du poste est stocke dans <see cref="DonneesSalariat"/> via
-/// <see cref="ServiceSalariat"/>, afin que la Banque et le passage mensuel lisent la meme source.
-/// </remarks>
 public class InterviewPanelController : MonoBehaviour
 {
     [Header("Job data")]
@@ -72,6 +67,50 @@ public class InterviewPanelController : MonoBehaviour
         {
             ouiButton.onClick.AddListener(OnOuiClicked);
         }
+
+        // ◄ AJOUT : Au lancement, on va tout de suite vérifier si un emploi existe en mémoire
+        RestaurerPosteDepuisSauvegarde();
+    }
+
+    // ◄ AJOUT : Permet de rafraîchir l'affichage aussi si le script est réactivé
+    private void OnEnable()
+    {
+        RestaurerPosteDepuisSauvegarde();
+    }
+
+    /// <summary>
+    /// ◄ AJOUT : Va chercher les données professionnelles stockées dans GameData pour mettre à jour l'UI
+    /// </summary>
+    public void RestaurerPosteDepuisSauvegarde()
+    {
+        GameData donneesJeu = ResoudreGameData();
+        if (donneesJeu == null || donneesJeu.joueur == null || donneesJeu.joueur.salariat == null)
+        {
+            return;
+        }
+
+        var sauvegardeSalariat = donneesJeu.joueur.salariat;
+
+        // Si le GameData contient bien un emploi actif, on met à jour les textes du Tableau de Bord
+        if (sauvegardeSalariat.aEmploi)
+        {
+            if (entrepriseText != null)
+            {
+                entrepriseText.text = "Entreprise : " + sauvegardeSalariat.entreprise;
+            }
+
+            if (salaireText != null)
+            {
+                // On recalcule le salaire annuel à partir des centimes mensuels stockés
+                float salaireAnnuelEuros = (sauvegardeSalariat.salaireMensuelCentimes / 100f) * 12f;
+                salaireText.text = "Salaire brut : " + salaireAnnuelEuros.ToString("N0") + " € / an";
+            }
+
+            if (heuresText != null)
+            {
+                heuresText.text = "Heures : " + sauvegardeSalariat.heuresSemaine + " heures / semaine";
+            }
+        }
     }
 
     private void OnRetourClicked()
@@ -90,10 +129,7 @@ public class InterviewPanelController : MonoBehaviour
 
         if (satisfactionController != null)
         {
-            satisfactionController.UpdateSatisfaction(
-                stressStars,
-                prestigeStars,
-                equilibreStars);
+            satisfactionController.UpdateSatisfaction(stressStars, prestigeStars, equilibreStars);
         }
 
         GameData donneesJeu = ResoudreGameData();
@@ -117,29 +153,10 @@ public class InterviewPanelController : MonoBehaviour
             performanceController.StartNewJob(stressStars, 35);
         }
 
-        if (entrepriseText != null)
-        {
-            entrepriseText.text = "Entreprise : " + companyName;
-        }
-
-        if (salaireText != null)
-        {
-            // ◄ FIX FORMATTAGE : On enlève les résidus (ex: "€", "/ an") de la string originale pour la recomposer proprement
-            string cleanSalary = jobSalary.Replace("€", "").Replace("EUR", "").Replace("/ an", "").Replace(",", " ").Trim();
-            salaireText.text = "Salaire brut : " + cleanSalary + " € / an";
-        }
-
-        if (heuresText != null)
-        {
-            heuresText.text = "Heures : 35 heures / semaine";
-        }
+        // On force le rafraîchissement immédiat de l'UI après le clic
+        RestaurerPosteDepuisSauvegarde();
     }
 
-    /// <summary>
-    /// Convertit un salaire annuel affiche en salaire mensuel exprime en centimes.
-    /// </summary>
-    /// <param name="rawSalary">Texte de salaire, par exemple "72 000 EUR / an".</param>
-    /// <returns>Salaire mensuel en centimes, ou 0 si la valeur n'est pas lisible.</returns>
     private int GetMonthlySalaryCentimes(string rawSalary)
     {
         string chiffres = string.Empty;
@@ -156,8 +173,7 @@ public class InterviewPanelController : MonoBehaviour
             return (yearlySalary / 12) * 100;
         }
 
-        Debug.LogWarning(
-            "Impossible de convertir le salaire de l'offre -> " + rawSalary);
+        Debug.LogWarning("Impossible de convertir le salaire de l'offre -> " + rawSalary);
         return 0;
     }
 
@@ -169,36 +185,17 @@ public class InterviewPanelController : MonoBehaviour
 
     private void AfficherTableauBord(bool visible)
     {
-        if (panelPosteActuel != null)
-        {
-            panelPosteActuel.SetActive(visible);
-        }
-
-        if (panelActionsRapides != null)
-        {
-            panelActionsRapides.SetActive(visible);
-        }
-
-        if (panelPerformanceEmploye != null)
-        {
-            panelPerformanceEmploye.SetActive(visible);
-        }
-
-        if (panelRelationnel != null)
-        {
-            panelRelationnel.SetActive(visible);
-        }
+        if (panelPosteActuel != null) panelPosteActuel.SetActive(visible);
+        if (panelActionsRapides != null) panelActionsRapides.SetActive(visible);
+        if (panelPerformanceEmploye != null) panelPerformanceEmploye.SetActive(visible);
+        if (panelRelationnel != null) panelRelationnel.SetActive(visible);
     }
 
     private GameData ResoudreGameData()
     {
-        if (gameData != null)
-        {
-            return gameData;
-        }
+        if (gameData != null) return gameData;
 
-        if (performanceController != null &&
-            performanceController.gameData != null)
+        if (performanceController != null && performanceController.gameData != null)
         {
             gameData = performanceController.gameData;
             return gameData;
