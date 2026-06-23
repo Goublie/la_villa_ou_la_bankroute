@@ -1,3 +1,4 @@
+using System.IO;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
@@ -15,6 +16,7 @@ public class ScenesManager : MonoBehaviour
     private static ScenesManager _instance;
 
     private Button boutonJouer;
+    private Button boutonContinuer; // Ajout pour la sauvegarde
     private Button boutonQuitter;
 
     [Header("Donnees de jeu a reinitialiser")]
@@ -120,6 +122,22 @@ public class ScenesManager : MonoBehaviour
     }
 
     /// <summary>
+    /// Charge la sauvegarde existante puis bascule vers la scene de jeu.
+    /// </summary>
+    public void ContinuerJeu()
+    {
+        Debug.Log("ScenesManager : Tentative de chargement de la sauvegarde...");
+        if (SaveManager.Instance != null && SaveManager.Instance.ChargerPartie())
+        {
+            ChargerJeu();
+        }
+        else
+        {
+            Debug.LogError("ScenesManager : Échec du chargement de la partie.");
+        }
+    }
+
+    /// <summary>
     /// Charge la scene Jeu sans reinitialiser les donnees de la partie.
     /// </summary>
     public void ChargerJeu()
@@ -173,12 +191,25 @@ public class ScenesManager : MonoBehaviour
         }
 
         boutonJouer = TrouverBouton(scene, "Jouer");
+        boutonContinuer = TrouverBouton(scene, "Continuer"); // Recherche automatique du bouton
         boutonQuitter = TrouverBouton(scene, "Quitter");
 
         if (boutonJouer != null)
         {
             boutonJouer.onClick.RemoveListener(InitJeu);
             boutonJouer.onClick.AddListener(InitJeu);
+        }
+
+        if (boutonContinuer != null)
+        {
+            // Vérification de l'existence du fichier physique validé par Antigravity
+            string cheminSauvegarde = Path.Combine(Application.persistentDataPath, "sauvegarde_jeu.json");
+            bool sauvegardeExiste = File.Exists(cheminSauvegarde);
+
+            boutonContinuer.interactable = sauvegardeExiste; // Grisé si pas de fichier
+
+            boutonContinuer.onClick.RemoveListener(ContinuerJeu);
+            boutonContinuer.onClick.AddListener(ContinuerJeu);
         }
 
         if (boutonQuitter != null)
@@ -195,12 +226,18 @@ public class ScenesManager : MonoBehaviour
             boutonJouer.onClick.RemoveListener(InitJeu);
         }
 
+        if (boutonContinuer != null)
+        {
+            boutonContinuer.onClick.RemoveListener(ContinuerJeu);
+        }
+
         if (boutonQuitter != null)
         {
             boutonQuitter.onClick.RemoveListener(QuitterJeu);
         }
 
         boutonJouer = null;
+        boutonContinuer = null;
         boutonQuitter = null;
     }
 

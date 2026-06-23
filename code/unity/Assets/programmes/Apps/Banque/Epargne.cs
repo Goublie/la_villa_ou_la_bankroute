@@ -1,4 +1,5 @@
 using System;
+using Newtonsoft.Json; // Requis pour JsonConstructor
 
 /// <summary>
 /// Represente le Livret A du joueur : un compte transferable associe a un
@@ -16,6 +17,14 @@ public class Epargne : CompteBanquaire, IEvolutionMensuelle
     /// Moteur de calcul des interets du Livret A.
     /// </summary>
     public Investissement invest;
+
+    /// <summary>
+    /// Constructeur sans paramètre requis par Newtonsoft.Json pour la désérialisation.
+    /// </summary>
+    [JsonConstructor]
+    public Epargne() : base()
+    {
+    }
 
     /// <summary>
     /// Cree un Livret A vide.
