@@ -109,6 +109,45 @@ public static class ServicePretImmobilier
             pret.capitalRestantDu = new argent(Mathf.Max(0, nouveauRestant));
         }
     }
+
+    /// <summary>
+    /// Rembourse la totalité du capital restant dû et solde le prêt.
+    /// </summary>
+    public static void RemboursementAnticipe(DonneesPret pret, CompteBanquaire compteCourant)
+    {
+        if (pret.moisRestants <= 0) return;
+
+        compteCourant.AjoutHistorique("Remboursement anticipé", -pret.capitalRestantDu);
+        pret.moisRestants = 0;
+        pret.capitalRestantDu = new argent(0);
+        compteCourant.AjoutHistorique("Prêt Immobilier : SOLDÉ", new argent(0));
+    }
+
+    /// <summary>
+    /// Recalcule la mensualité d'un prêt selon une nouvelle durée restante (raccourcissement).
+    /// </summary>
+    public static void RenegocierPret(DonneesPret pret, int nouveauxMoisRestants)
+    {
+        if (nouveauxMoisRestants <= 0 || nouveauxMoisRestants >= pret.moisRestants) return;
+
+        if (pret.tauxAnnuel <= 0f)
+        {
+            pret.mensualite = new argent(pret.capitalRestantDu.centimes / nouveauxMoisRestants);
+        }
+        else
+        {
+            double tMensuel = (pret.tauxAnnuel / 100.0) / 12.0;
+            double capital = pret.capitalRestantDu.centimes;
+
+            double num = capital * tMensuel;
+            double den = 1.0 - Math.Pow(1.0 + tMensuel, -nouveauxMoisRestants);
+
+            pret.mensualite = new argent(Mathf.RoundToInt((float)(num / den)));
+        }
+
+        // On met à jour les mois restants sans toucher à dureeAns pour conserver l'historique
+        pret.moisRestants = nouveauxMoisRestants;
+    }
 }
 
 // ==========================================
