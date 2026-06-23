@@ -43,6 +43,11 @@ public class DonneesJoueur
     public DonneesBourse bourse;
 
     /// <summary>
+    /// Etat persistant du portefeuille immobilier.
+    /// </summary>
+    public DonneesImmobilier immobilier;
+
+    /// <summary>
     /// Etat persistant de l'entreprise et de son projet courant.
     /// </summary>
     public DonneesEntrepreneuriat entrepreneuriat;
@@ -93,6 +98,11 @@ public class DonneesJoueur
         {
             bourse = new DonneesBourse();
         }
+        
+        if (immobilier == null)
+        {
+            immobilier = new DonneesImmobilier();
+        }
 
         if (entrepreneuriat == null)
         {
@@ -139,6 +149,7 @@ public class DonneesJoueur
             comptes = new Dictionary<string, CompteBanquaire>(),
             investissements = new List<Investissement>(),
             bourse = bourse != null ? bourse.Copier() : new DonneesBourse(),
+            immobilier = immobilier != null ? immobilier.Copier() : new DonneesImmobilier(),
             entrepreneuriat = entrepreneuriat != null
                 ? entrepreneuriat.Copier()
                 : new DonneesEntrepreneuriat(),
