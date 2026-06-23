@@ -54,11 +54,12 @@ public class CreditsUI : MonoBehaviour
         {
             if (pret.moisRestants <= 0) continue;
 
-            // Colonnes: Montant Initial | Mensualité | Mois restants
+            // Colonnes: Montant Initial | Mensualité | Mois restants | Taux
             var ligne = tableauCredits.AjouterEtRetournerLigne(
                 pret.montantEmprunte.ToString(),
                 pret.mensualite.ToString(),
-                $"{pret.moisRestants} mois"
+                $"{pret.moisRestants} mois",
+                $"{pret.tauxAnnuel:F2} %"
             ) as LigneSelectable;
 
             if (ligne != null)
