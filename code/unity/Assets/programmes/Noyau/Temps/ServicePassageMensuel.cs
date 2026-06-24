@@ -135,6 +135,22 @@ public sealed class ServicePassageMensuel
             evolution.AppliquerEvolutionMensuelle(mois);
         }
 
+        // ==========================================
+        // AJOUT : ENCAISSEMENT DES LOYERS IMMOBILIERS
+        // ==========================================
+        if (joueur.immobilier != null && joueur.immobilier.biensPossedes != null)
+        {
+            CompteBanquaire compteCourant = banque.ObtenirCompteCourant();
+            foreach (BienImmobilier bien in joueur.immobilier.biensPossedes)
+            {
+                if (bien != null && bien.estLoue && bien.loyerMensuel.centimes > 0)
+                {
+                    banque.Crediter(compteCourant, bien.loyerMensuel, "loyer");
+                }
+            }
+        }
+        // ==========================================
+
         gameData.env.tauxEpargne =
             ServiceLivretA.ObtenirTauxAnnuel(
                 mois,
@@ -189,6 +205,28 @@ public sealed class ServicePassageMensuel
 
         CreerServiceEntrepreneuriat(joueur, banque)?
             .AppliquerEvolutionMensuelle(mois);
+
+        // ===================================================================
+        // AJOUT : ESTIMATION MENSUELLE & RECALCUL ANNUEL DES LOYERS (INDEXATION)
+        // ===================================================================
+        if (joueur.immobilier != null && joueur.immobilier.biensPossedes != null)
+        {
+            // 1. On met à jour la valeur du patrimoine chaque mois (pour l'UI et le score global via IPatrimoine)
+            foreach (BienImmobilier bien in joueur.immobilier.biensPossedes)
+            {
+                if (bien != null)
+                {
+                    bien.valeurActuelle = ServiceImmobilier.CalculerValeurActuelle(bien, mois);
+                }
+            }
+
+            // 2. Indexation annuelle des loyers (tous les 12 mois écoulés, hors initialisation mois 0)
+            if (mois > 0 && mois % 12 == 0)
+            {
+                ServiceImmobilier.ActualiserLoyersAnnuels(joueur, mois);
+            }
+        }
+        // ===================================================================
     }
 
     private static Epargne ObtenirLivretExistant(
@@ -205,8 +243,6 @@ public sealed class ServicePassageMensuel
             return null;
         }
 
-        // Le passage par le service retire une eventuelle ancienne reference
-        // du moteur d'interets dans la liste des placements autonomes.
         return banque.ObtenirLivretA(mois);
     }
 
