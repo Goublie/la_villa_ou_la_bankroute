@@ -9,6 +9,11 @@ public class ServiceRetrospectionDetailleeWhatIfTests
         DonneesWhatIf donnees = new DonneesWhatIf();
         donnees.InitialiserSiNecessaire();
 
+        int montantValide =
+            System.Math.Max(
+                ServiceBourse.MontantMinimumOrdreCentimes,
+                100);
+
         for (int mois = 0; mois < 15; mois++)
         {
             donnees.ordres.Add(
@@ -16,12 +21,14 @@ public class ServiceRetrospectionDetailleeWhatIfTests
                     mois,
                     TypeOrdreHistoriqueWhatIf.Achat,
                     "actif",
-                    100));
+                    montantValide));
         }
 
         List<LigneOperationRetrospectionWhatIf> lignes =
             ServiceRetrospectionDetailleeWhatIf
-                .ConstruireLignesOrdres(donnees, 14);
+                .ConstruireLignesOrdres(
+                    donnees,
+                    14);
 
         Assert.That(lignes.Count, Is.EqualTo(12));
         Assert.That(lignes[0].indexMois, Is.EqualTo(14));
@@ -49,7 +56,9 @@ public class ServiceRetrospectionDetailleeWhatIfTests
 
         LigneOperationRetrospectionWhatIf ligne =
             ServiceRetrospectionDetailleeWhatIf
-                .ConstruireLignesOrdres(donnees, 2)[0];
+                .ConstruireLignesOrdres(
+                    donnees,
+                    2)[0];
 
         Assert.That(ligne.operation, Is.EqualTo("ACHAT"));
         Assert.That(ligne.detail, Does.Contain("nvidia"));
@@ -65,26 +74,103 @@ public class ServiceRetrospectionDetailleeWhatIfTests
 
         donnees.ordres.Add(
             Ordre(
+                0,
+                TypeOrdreHistoriqueWhatIf.Achat,
+                "bitcoin",
+                10000));
+
+        donnees.ordres.Add(
+            Ordre(
                 1,
                 TypeOrdreHistoriqueWhatIf.VenteForcee,
                 "bitcoin",
                 10000));
 
-        LigneOperationRetrospectionWhatIf ligne =
+        List<LigneOperationRetrospectionWhatIf> lignes =
             ServiceRetrospectionDetailleeWhatIf
-                .ConstruireLignesOrdres(donnees, 1)[0];
+                .ConstruireLignesOrdres(
+                    donnees,
+                    1);
 
-        Assert.That(ligne.operation, Is.EqualTo("VENTE FORCÉE"));
+        Assert.That(
+            lignes[0].operation,
+            Is.EqualTo("VENTE FORCÉE"));
+    }
+
+    [Test]
+    public void VenteBlanche_NEstJamaisAffichee()
+    {
+        DonneesWhatIf donnees = new DonneesWhatIf();
+        donnees.InitialiserSiNecessaire();
+
+        donnees.ordres.Add(
+            new OrdreHistoriqueWhatIf
+            {
+                indexMois = 5,
+                type = TypeOrdreHistoriqueWhatIf.Vente,
+                actifId = "totalenergies",
+                quantite = 18.7371f,
+                prixUnitaireCentimes = 4812,
+                montantCentimes = 90163,
+                raison = "Reallocation mensuelle"
+            });
+
+        Assert.That(
+            ServiceRetrospectionDetailleeWhatIf
+                .ConstruireLignesOrdres(
+                    donnees,
+                    5),
+            Is.Empty);
+    }
+
+    [Test]
+    public void MicroOrdre_NEstJamaisAffiche()
+    {
+        DonneesWhatIf donnees = new DonneesWhatIf();
+        donnees.InitialiserSiNecessaire();
+
+        donnees.ordres.Add(
+            new OrdreHistoriqueWhatIf
+            {
+                indexMois = 1,
+                type = TypeOrdreHistoriqueWhatIf.Achat,
+                actifId = "nvidia",
+                quantite = 0.00003f,
+                prixUnitaireCentimes = 19834,
+                montantCentimes =
+                    System.Math.Max(
+                        0,
+                        ServiceBourse.MontantMinimumOrdreCentimes - 1),
+                raison = "Reallocation mensuelle"
+            });
+
+        Assert.That(
+            ServiceRetrospectionDetailleeWhatIf
+                .ConstruireLignesOrdres(
+                    donnees,
+                    1),
+            Is.Empty);
     }
 
     [Test]
     public void EvenementsConfirmes_ExcluentLesPlusAnciens()
     {
-        DonneesEvenements evenements = new DonneesEvenements();
+        DonneesEvenements evenements =
+            new DonneesEvenements();
+
         evenements.evenementsConfirmes.Add(
-            Evenement("ancien", "Ancien événement", 0, "Personnels"));
+            Evenement(
+                "ancien",
+                "Ancien événement",
+                0,
+                "Personnels"));
+
         evenements.evenementsConfirmes.Add(
-            Evenement("recent", "Événement récent", 5, "Personnels"));
+            Evenement(
+                "recent",
+                "Événement récent",
+                5,
+                "Personnels"));
 
         string texte =
             ServiceRetrospectionDetailleeWhatIf
@@ -93,14 +179,21 @@ public class ServiceRetrospectionDetailleeWhatIfTests
                     new DonneesWhatIf(),
                     12);
 
-        Assert.That(texte, Does.Not.Contain("Ancien événement"));
-        Assert.That(texte, Does.Contain("Événement récent"));
+        Assert.That(
+            texte,
+            Does.Not.Contain("Ancien événement"));
+
+        Assert.That(
+            texte,
+            Does.Contain("Événement récent"));
     }
 
     [Test]
     public void EvenementBoursier_AfficheSesImpacts()
     {
-        DonneesEvenements evenements = new DonneesEvenements();
+        DonneesEvenements evenements =
+            new DonneesEvenements();
+
         EvenementConfirmePartie evenement =
             Evenement(
                 "evt_bourse",
@@ -124,13 +217,55 @@ public class ServiceRetrospectionDetailleeWhatIfTests
                     new DonneesWhatIf(),
                     2);
 
-        Assert.That(texte, Does.Contain("nvidia -15 %"));
+        Assert.That(
+            texte,
+            Does.Contain("nvidia -15 %"));
+    }
+
+    [Test]
+    public void EvenementsConfirmes_ProduisentDesLignesDeTableau()
+    {
+        DonneesEvenements evenements =
+            new DonneesEvenements();
+
+        EvenementConfirmePartie evenement =
+            Evenement(
+                "evt_tableau",
+                "Annonce confirmée",
+                4,
+                CategoriesEvenements.Boursiers);
+
+        evenement.impacts.Add(
+            new ImpactDefinitionEvenement
+            {
+                actif = "nvidia",
+                variation = 0.08f
+            });
+
+        evenements.evenementsConfirmes.Add(evenement);
+
+        List<LigneOperationRetrospectionWhatIf> lignes =
+            ServiceRetrospectionDetailleeWhatIf
+                .ConstruireLignesEvenementsConfirmes(
+                    evenements,
+                    new DonneesWhatIf(),
+                    4);
+
+        Assert.That(lignes.Count, Is.EqualTo(1));
+        Assert.That(
+            lignes[0].operation,
+            Is.EqualTo("Annonce confirmée"));
+        Assert.That(
+            lignes[0].detail,
+            Does.Contain("nvidia +8 %"));
     }
 
     [Test]
     public void EvenementBoursier_IndiqueLePremierMoisDePriseEnCompte()
     {
-        DonneesEvenements evenements = new DonneesEvenements();
+        DonneesEvenements evenements =
+            new DonneesEvenements();
+
         EvenementConfirmePartie evenement =
             Evenement(
                 "evt_1",
@@ -150,17 +285,16 @@ public class ServiceRetrospectionDetailleeWhatIfTests
         DonneesWhatIf donnees = new DonneesWhatIf();
         donnees.InitialiserSiNecessaire();
 
-        DecisionWhatIf decision =
+        donnees.decisions.Add(
             new DecisionWhatIf
             {
                 indexMois = 4,
-                evenementsConnusIds = new List<string>
-                {
-                    "evt_1"
-                }
-            };
-
-        donnees.decisions.Add(decision);
+                evenementsConnusIds =
+                    new List<string>
+                    {
+                        "evt_1"
+                    }
+            });
 
         string texte =
             ServiceRetrospectionDetailleeWhatIf
@@ -176,7 +310,9 @@ public class ServiceRetrospectionDetailleeWhatIfTests
     [Test]
     public void EvenementNonBoursier_EstDeclareHorsOptimisation()
     {
-        DonneesEvenements evenements = new DonneesEvenements();
+        DonneesEvenements evenements =
+            new DonneesEvenements();
+
         evenements.evenementsConfirmes.Add(
             Evenement(
                 "evt_perso",
@@ -241,7 +377,8 @@ public class ServiceRetrospectionDetailleeWhatIfTests
             titre = titre,
             moisConfirmation = mois,
             categorie = categorie,
-            impacts = new List<ImpactDefinitionEvenement>()
+            impacts =
+                new List<ImpactDefinitionEvenement>()
         };
     }
 }
