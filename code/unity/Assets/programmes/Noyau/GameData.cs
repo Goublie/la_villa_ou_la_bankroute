@@ -45,6 +45,20 @@ public class GameData : ScriptableObject
     public DonneesEnvironnement env = new DonneesEnvironnement();
 
     /// <summary>
+    /// Historique persistant des rumeurs, confirmations et publications.
+    /// </summary>
+    public DonneesEvenements evenements = new DonneesEvenements();
+
+    /// <summary>
+    /// Etat persistant et complet de la strategie alternative What If.
+    /// </summary>
+    /// <remarks>
+    /// Cet agregat reste separe du joueur reel. Les snapshots mensuels
+    /// conservent uniquement les connaissances historiques necessaires.
+    /// </remarks>
+    public DonneesWhatIf whatIf = new DonneesWhatIf();
+
+    /// <summary>
     /// Index absolu des mois ecoules depuis juillet 2026.
     /// </summary>
     public int nombreMoisPasses;
@@ -76,6 +90,8 @@ public class GameData : ScriptableObject
     {
         joueur = new DonneesJoueur();
         env = new DonneesEnvironnement();
+        evenements = new DonneesEvenements();
+        whatIf = new DonneesWhatIf();
         nombreMoisPasses = 0;
         moisActuel = Mois.Juillet;
         if (historiqueSnapshots == null)
@@ -100,6 +116,18 @@ public class GameData : ScriptableObject
         {
             env = new DonneesEnvironnement();
         }
+
+        if (evenements == null)
+        {
+            evenements = new DonneesEvenements();
+        }
+        evenements.InitialiserSiNecessaire();
+
+        if (whatIf == null)
+        {
+            whatIf = new DonneesWhatIf();
+        }
+        whatIf.InitialiserSiNecessaire();
 
         if (historiqueSnapshots == null)
         {

@@ -1,4 +1,5 @@
 using System;
+using Newtonsoft.Json; // SOLUTION : Ajout du namespace pour le JsonConstructor
 
 /// <summary>
 /// Represente une operation financiere signee dans l'historique d'un compte.
@@ -20,6 +21,15 @@ public class Transaction
     /// Index absolu du mois de jeu, ou -1 pour les anciennes operations.
     /// </summary>
     public int indexMois;
+
+    /// <summary>
+    /// Constructeur sans paramètre requis par Newtonsoft.Json pour la désérialisation.
+    /// </summary>
+    [JsonConstructor]
+    public Transaction()
+    {
+        // Laisser vide : Newtonsoft va mapper directement "libelle", "montant" et "indexMois" depuis le JSON
+    }
 
     /// <summary>
     /// Cree une transaction.

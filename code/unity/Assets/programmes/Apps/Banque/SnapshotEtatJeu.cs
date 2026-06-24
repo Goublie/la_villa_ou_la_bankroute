@@ -31,6 +31,11 @@ public class SnapshotEtatJeu
     public DonneesEnvironnement env;
 
     /// <summary>
+    /// Copie profonde des rumeurs, confirmations et publications connues.
+    /// </summary>
+    public DonneesEvenements evenements;
+
+    /// <summary>
     /// Cree un snapshot sans conserver de reference mutable vers
     /// <paramref name="gameData"/>.
     /// </summary>
@@ -49,5 +54,8 @@ public class SnapshotEtatJeu
         env = gameData.env != null
             ? gameData.env.Copier()
             : new DonneesEnvironnement();
+        evenements = gameData.evenements != null
+            ? gameData.evenements.Copier()
+            : new DonneesEvenements();
     }
 }

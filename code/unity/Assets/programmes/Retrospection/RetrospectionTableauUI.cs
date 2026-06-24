@@ -3,8 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 
 /// <summary>
-/// Gère l'affichage du tableau comparatif dans la fenêtre de rétrospection.
-/// Remplit le tableau avec les résultats du joueur par rapport à la stratégie Fourmi.
+/// Affiche le dernier bilan comparé et le journal des ordres What If.
 /// </summary>
 public class RetrospectionTableauUI : MonoBehaviour
 {
@@ -18,7 +17,8 @@ public class RetrospectionTableauUI : MonoBehaviour
     {
         if (tableauComparatif == null)
         {
-            tableauComparatif = GetComponentInChildren<TableauScroll>(true);
+            tableauComparatif =
+                GetComponentInChildren<TableauScroll>(true);
         }
 
         if (gameData == null)
@@ -29,39 +29,130 @@ public class RetrospectionTableauUI : MonoBehaviour
         ActualiserTableau();
     }
 
-    /// <summary>
-    /// Remplit le tableau comparatif avec les soldes de fin de période.
-    /// </summary>
     public void ActualiserTableau()
     {
-        if (gameData == null || tableauComparatif == null) return;
+        if (gameData == null || tableauComparatif == null)
+        {
+            return;
+        }
 
-        // Récupération des historiques
-        List<Optimizer.SimulationResult> reel = Optimizer.ObtenirHistoriqueReel(gameData);
-        List<Optimizer.SimulationResult> simule = Optimizer.SimulerFourmi(gameData);
+        List<Optimizer.SimulationResult> reel =
+            Optimizer.ObtenirHistoriqueReel(gameData);
+        List<Optimizer.SimulationResult> alternatif =
+            Optimizer.ObtenirHistoriqueWhatIf(gameData);
 
-        if (reel.Count == 0 || simule.Count == 0) return;
-
-        // Vider le tableau avant de le remplir
         tableauComparatif.Vider();
 
-        // Extraction des résultats du dernier mois
-        Optimizer.SimulationResult bilanReel = reel[reel.Count - 1];
-        Optimizer.SimulationResult bilanSimule = simule[simule.Count - 1];
+        AjouterBilanComparatif(reel, alternatif);
+        AjouterJournalOrdres();
 
-        // Calcul de la différence (manque à gagner)
-        argent difference = bilanSimule.patrimoineTotal - bilanReel.patrimoineTotal;
+        Debug.Log(
+            "[What-If] Tableau comparatif et journal des ordres mis à jour.");
+    }
 
-        // En-tête des colonnes : Stratégie | Patrimoine Final | Écart
-        tableauComparatif.Add("STRATÉGIE", "PATRIMOINE", "ÉCART / OPTIMAL");
+    private void AjouterBilanComparatif(
+        List<Optimizer.SimulationResult> reel,
+        List<Optimizer.SimulationResult> alternatif)
+    {
+        tableauComparatif.Add(
+            "STRATÉGIE",
+            "PATRIMOINE",
+            "ÉCART / WHAT IF");
 
-        // Ligne 1 : Résultat optimal (Fourmi)
-        tableauComparatif.Add("Optimal (Fourmi)", bilanSimule.patrimoineTotal.ToString(), "Idéal");
+        if (reel.Count == 0 || alternatif.Count == 0)
+        {
+            tableauComparatif.Add(
+                "Historique insuffisant",
+                "-",
+                "-");
+            return;
+        }
 
-        // Ligne 2 : Résultat réel du joueur
-        string ecartStr = difference.centimes > 0 ? "-" + difference.ToString() : "0.00 €";
-        tableauComparatif.Add("Joueur (Réel)", bilanReel.patrimoineTotal.ToString(), ecartStr);
+        Optimizer.SimulationResult bilanReel =
+            reel[reel.Count - 1];
+        Optimizer.SimulationResult bilanAlternatif =
+            alternatif[alternatif.Count - 1];
 
-        Debug.Log("[What-If] Tableau comparatif mis à jour.");
+        int ecart = DifferenceSaturee(
+            bilanAlternatif.patrimoineTotal.centimes,
+            bilanReel.patrimoineTotal.centimes);
+
+        tableauComparatif.Add(
+            "Stratégie What If",
+            bilanAlternatif.patrimoineTotal.ToString(),
+            "Référence");
+
+        tableauComparatif.Add(
+            "Joueur (Réel)",
+            bilanReel.patrimoineTotal.ToString(),
+            FormaterEcartJoueur(ecart));
+    }
+
+    private void AjouterJournalOrdres()
+    {
+        tableauComparatif.Add(
+            "12 DERNIERS MOIS",
+            "ORDRE WHAT IF",
+            "DÉTAIL");
+
+        List<LigneOperationRetrospectionWhatIf> lignes =
+            ServiceRetrospectionDetailleeWhatIf
+                .ConstruireLignesOrdres(
+                    gameData.whatIf,
+                    gameData.nombreMoisPasses);
+
+        if (lignes.Count == 0)
+        {
+            tableauComparatif.Add(
+                "-",
+                "Aucune opération",
+                "Le modèle n'a encore exécuté aucun achat ou vente.");
+            return;
+        }
+
+        foreach (
+            LigneOperationRetrospectionWhatIf ligne
+            in lignes)
+        {
+            tableauComparatif.Add(
+                ligne.mois,
+                ligne.operation,
+                ligne.detail);
+        }
+    }
+
+    private static string FormaterEcartJoueur(int avantageWhatIf)
+    {
+        if (avantageWhatIf > 0)
+        {
+            return "-" + new argent(avantageWhatIf);
+        }
+
+        if (avantageWhatIf < 0)
+        {
+            int avantageJoueur =
+                avantageWhatIf == int.MinValue
+                    ? int.MaxValue
+                    : -avantageWhatIf;
+            return "+" + new argent(avantageJoueur);
+        }
+
+        return "0.00 EUR";
+    }
+
+    private static int DifferenceSaturee(
+        int gauche,
+        int droite)
+    {
+        long difference = (long)gauche - droite;
+
+        if (difference > int.MaxValue)
+        {
+            return int.MaxValue;
+        }
+
+        return difference < int.MinValue
+            ? int.MinValue
+            : (int)difference;
     }
 }
