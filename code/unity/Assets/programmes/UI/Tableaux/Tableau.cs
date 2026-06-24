@@ -87,8 +87,13 @@ public class Tableau : MonoBehaviour
         }
     }
 
-    public void Start()
+    private bool estInitialise = false;
+
+    public void Initialiser()
     {
+        if (estInitialise) return;
+        estInitialise = true;
+
         Ligne[] toutesLignes = GetComponentsInChildren<Ligne>();
         tableau = new List<Ligne>(toutesLignes);
 
@@ -110,8 +115,19 @@ public class Tableau : MonoBehaviour
             AppliquerConfigurationColonnes(l);
         }
 
-        //On vide le tableau au début du jeu
-        Vider();
+        // On vide le tableau uniquement lors de cette première initialisation
+        if (tableau != null)
+        {
+            foreach (Ligne l in tableau)
+            {
+                if (l != null) l.Vider();
+            }
+        }
+    }
+
+    public void Start()
+    {
+        Initialiser();
     }
 
     public void AppliquerConfigurationColonnes(Ligne ligne)

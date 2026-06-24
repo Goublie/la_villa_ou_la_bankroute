@@ -212,6 +212,21 @@ public sealed class ServicePassageMensuel
             evolution.AppliquerEvolutionMensuelle(mois);
         }
 
+        // ==========================================
+        // AJOUT : ENCAISSEMENT DES LOYERS IMMOBILIERS
+        // ==========================================
+        if (joueur.immobilier != null && joueur.immobilier.biensPossedes != null)
+        {
+            foreach (BienImmobilier bien in joueur.immobilier.biensPossedes)
+            {
+                if (bien != null && bien.estLoue && bien.loyerMensuel.centimes > 0)
+                {
+                    banque.Crediter(compteCourant, bien.loyerMensuel, "loyer");
+                }
+            }
+        }
+        // ==========================================
+
         gameData.env.tauxEpargne =
             ServiceLivretA.ObtenirTauxAnnuel(
                 mois,
@@ -266,6 +281,37 @@ public sealed class ServicePassageMensuel
 
         CreerServiceEntrepreneuriat(joueur, banque)?
             .AppliquerEvolutionMensuelle(mois);
+
+        // ===================================================================
+        // AJOUT : ESTIMATION MENSUELLE & RECALCUL ANNUEL DES LOYERS (INDEXATION) & ROTATION DU MARCHÉ
+        // ===================================================================
+        if (joueur.immobilier != null)
+        {
+            if (joueur.immobilier.biensPossedes != null)
+            {
+                // 1. On met à jour la valeur du patrimoine chaque mois
+                foreach (BienImmobilier bien in joueur.immobilier.biensPossedes)
+                {
+                    if (bien != null)
+                    {
+                        bien.valeurActuelle = ServiceImmobilier.CalculerValeurActuelle(bien, mois);
+                    }
+                }
+
+                // 2. Indexation annuelle des loyers (tous les 12 mois, sauf à l'initialisation mois 0)
+                if (mois > 0 && mois % 12 == 0)
+                {
+                    ServiceImmobilier.ActualiserLoyersAnnuels(joueur, mois);
+                }
+            }
+
+            // 3. Rafraîchissement automatique du marché toutes les échéances de 6 mois, et au mois 0 s'il n'y a pas d'annonces
+            if ((mois == 0 && (joueur.immobilier.annoncesActuelles == null || joueur.immobilier.annoncesActuelles.Count == 0)) || (mois > 0 && mois % 6 == 0))
+            {
+                ServiceImmobilier.RafraichirMarche(joueur, mois, 3);
+            }
+        }
+        // ===================================================================
     }
 
     private static Epargne ObtenirLivretExistant(
@@ -282,8 +328,6 @@ public sealed class ServicePassageMensuel
             return null;
         }
 
-        // Le passage par le service retire une eventuelle ancienne reference
-        // du moteur d'interets dans la liste des placements autonomes.
         return banque.ObtenirLivretA(mois);
     }
 
