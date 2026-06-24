@@ -66,6 +66,10 @@ public class UiModifierNiveauVie : MonoBehaviour
     {
         ResoudreDependances();
 
+        // Sécurité contre la sérialisation transparente de Unity (a = 0)
+        if (couleurActive.a == 0f) couleurActive = new Color(1f, 0.78f, 0f, 1f);
+        if (couleurInactive.a == 0f) couleurInactive = new Color(0.55f, 0.55f, 0.55f, 1f);
+
         // Charger les vraies valeurs du joueur dans l'état temporaire
         if (gameData?.joueur?.niveauVie != null)
         {
@@ -221,10 +225,26 @@ public class UiModifierNiveauVie : MonoBehaviour
         {
             if (pieces[i] == null) continue;
             bool estActive = (i + 1) <= niveauActif;
+            Color c = estActive ? couleurActive : couleurInactive;
+
+            // 1. Modifier la couleur de l'image de fond
             Image img = pieces[i].GetComponent<Image>();
             if (img != null)
             {
-                img.color = estActive ? couleurActive : couleurInactive;
+                img.color = c;
+            }
+
+            // 2. Modifier également le ColorBlock du bouton pour les transitions Color Tint
+            Button btn = pieces[i];
+            if (btn != null)
+            {
+                ColorBlock cb = btn.colors;
+                cb.normalColor = c;
+                cb.highlightedColor = c;
+                cb.pressedColor = c;
+                cb.selectedColor = c;
+                cb.disabledColor = c;
+                btn.colors = cb;
             }
         }
     }
