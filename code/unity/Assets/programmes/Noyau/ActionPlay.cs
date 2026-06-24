@@ -139,7 +139,22 @@ public class ActionPlay : MonoBehaviour
         }
 
         DonneesSalariat salariat = gameData.joueur.salariat;
-        return salariat != null && salariat.burnout >= 100;
+        if (salariat != null && salariat.burnout >= 100)
+        {
+            return true;
+        }
+
+        CompteBanquaire compteCourant = new ServiceBanque(gameData.joueur).ObtenirCompteCourant();
+        if (compteCourant != null)
+        {
+            string soldeString = compteCourant.GetSolde().ToString();
+            int soldeNumerique = ExtraireIntDepuisArgentString(soldeString);
+            if (soldeNumerique <= 0)
+            {
+                return true;
+            }
+        }
+        return false;
     }
 
     /// <summary>
@@ -160,5 +175,19 @@ public class ActionPlay : MonoBehaviour
         gameData.joueur.InitialiserSiNecessaire();
         return new ServiceRepartitionTemps(gameData.joueur.tempsApplications)
             .EstAllocationValidee();
+    }
+
+
+    private static int ExtraireIntDepuisArgentString(string text)
+    {
+        if (text.Contains(",")) text = text.Split(',')[0];
+        else if (text.Contains(".")) text = text.Split('.')[0];
+        string cleanText = "";
+        foreach (char c in text)
+        {
+            if (char.IsDigit(c) || c == '-') cleanText += c;
+        }
+        if (int.TryParse(cleanText, out int resultat)) return resultat;
+        return 0;
     }
 }
