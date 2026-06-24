@@ -31,6 +31,28 @@ public sealed class ServicePassageMensuel
     public ResultatOperation InitialiserPartie()
     {
         AssurerRacine();
+        if (!EssayerCreerServiceEvenements(
+                out ServiceOrchestrationEvenements evenements,
+                out string erreurCatalogue))
+        {
+            return ResultatOperation.Echec(
+                erreurCatalogue,
+                "catalogue_evenements_invalide");
+        }
+
+        ResultatOrchestrationEvenements resultatEvenements =
+            evenements.TraiterMois(gameData.nombreMoisPasses);
+        if (!resultatEvenements.Succes)
+        {
+            return ResultatOperation.Echec(
+                resultatEvenements.Message,
+                "orchestration_evenements_impossible");
+        }
+
+        ResultatConsommationImpactsBoursiers resultatImpacts =
+            ConsommerImpactsBoursiers(
+                evenements,
+                gameData.nombreMoisPasses);
         ActualiserValeursOuverture(gameData.nombreMoisPasses);
 
         if (gameData.historiqueSnapshots.Count == 0)
@@ -41,7 +63,9 @@ public sealed class ServicePassageMensuel
         }
 
         return ResultatOperation.Reussite(
-            "Partie initialisee.",
+            CompleterMessageAvecDiagnostics(
+                "Partie initialisee.",
+                resultatImpacts),
             default,
             "temps_initialise");
     }
@@ -59,14 +83,25 @@ public sealed class ServicePassageMensuel
     /// 2. marche et entreprise ;
     /// 3. snapshot profond de cloture ;
     /// 4. calendrier ;
-    /// 5. report des comptes et salaire ;
-    /// 6. valorisations d'ouverture.
+    /// 5. resolution des rumeurs et publications du nouveau mois ;
+    /// 6. consommation atomique des impacts boursiers confirmes ;
+    /// 7. report des comptes et salaire ;
+    /// 8. valorisations d'ouverture.
     /// Le salaire du nouveau mois ne peut ainsi jamais contaminer le snapshot
     /// du mois cloture.
     /// </remarks>
     public ResultatPassageMensuel PasserAuMoisSuivant()
     {
         AssurerRacine();
+        if (!EssayerCreerServiceEvenements(
+                out ServiceOrchestrationEvenements evenements,
+                out string erreurCatalogue))
+        {
+            return ResultatPassageMensuel.Echec(
+                erreurCatalogue,
+                gameData.nombreMoisPasses);
+        }
+
         int indexCloture = gameData.nombreMoisPasses;
         Mois moisCloture = gameData.moisActuel;
 
@@ -79,11 +114,26 @@ public sealed class ServicePassageMensuel
             ? Mois.Janvier
             : (Mois)((int)moisCloture + 1);
 
+        ResultatOrchestrationEvenements resultatEvenements =
+            evenements.TraiterMois(gameData.nombreMoisPasses);
+        if (!resultatEvenements.Succes)
+        {
+            return ResultatPassageMensuel.Echec(
+                resultatEvenements.Message,
+                gameData.nombreMoisPasses);
+        }
+
+        ResultatConsommationImpactsBoursiers resultatImpacts =
+            ConsommerImpactsBoursiers(
+                evenements,
+                gameData.nombreMoisPasses);
         OuvrirNouveauMois(gameData.nombreMoisPasses);
 
         return new ResultatPassageMensuel(
             true,
-            "Le mois suivant est ouvert.",
+            CompleterMessageAvecDiagnostics(
+                "Le mois suivant est ouvert.",
+                resultatImpacts),
             indexCloture,
             gameData.nombreMoisPasses,
             changementAnnee);
@@ -93,10 +143,31 @@ public sealed class ServicePassageMensuel
     {
         DonneesJoueur joueur = gameData.joueur;
         ServiceBanque banque = new ServiceBanque(joueur);
+        CompteBanquaire compteCourant = banque.ObtenirCompteCourant(); // Récupération du compte courant
         Epargne livret = ObtenirLivretExistant(joueur, banque, mois);
 
-        List<IEvolutionMensuelle> evolutions =
-            new List<IEvolutionMensuelle>();
+        List<IEvolutionMensuelle> evolutions = new List<IEvolutionMensuelle>();
+        
+        // --- INTÉGRATION PRÊTS IMMOBILIERS ---
+        if (joueur.pretsImmobiliers != null)
+        {
+            // On boucle à l'envers ou on nettoie après pour pouvoir supprimer les prêts terminés de la liste
+            for (int i = joueur.pretsImmobiliers.Count - 1; i >= 0; i--)
+            {
+                DonneesPret pret = joueur.pretsImmobiliers[i];
+                if (pret != null)
+                {
+                    // Applique le débit mensuel et l'amortissement du capital
+                    ServicePretImmobilier.AppliquerMensualite(pret, compteCourant);
+
+                    // Si le prêt est arrivé à échéance, on le retire des prêts actifs
+                    if (pret.moisRestants <= 0)
+                    {
+                        joueur.pretsImmobiliers.RemoveAt(i);
+                    }
+                }
+            }
+        }
         if (joueur.investissements != null)
         {
             foreach (Investissement investissement in joueur.investissements)
@@ -277,6 +348,25 @@ public sealed class ServicePassageMensuel
             new SnapshotEtatJeu(gameData));
     }
 
+    private ResultatConsommationImpactsBoursiers
+        ConsommerImpactsBoursiers(
+            ServiceOrchestrationEvenements orchestration,
+            int mois)
+    {
+        return new ServiceEvenementsEconomiques(gameData)
+            .ConsommerConfirmationsBoursieres(orchestration, mois);
+    }
+
+    private static string CompleterMessageAvecDiagnostics(
+        string message,
+        ResultatConsommationImpactsBoursiers resultat)
+    {
+        string diagnostics = resultat?.ConstruireMessageDiagnostics();
+        return string.IsNullOrEmpty(diagnostics)
+            ? message
+            : message + " Diagnostics impacts : " + diagnostics;
+    }
+
     private void AssurerRacine()
     {
         if (gameData.joueur == null)
@@ -290,10 +380,36 @@ public sealed class ServicePassageMensuel
             gameData.env = new DonneesEnvironnement();
         }
 
+        if (gameData.evenements == null)
+        {
+            gameData.evenements = new DonneesEvenements();
+        }
+        gameData.evenements.InitialiserSiNecessaire();
+
         if (gameData.historiqueSnapshots == null)
         {
             gameData.historiqueSnapshots =
                 new List<SnapshotEtatJeu>();
         }
+    }
+
+    private bool EssayerCreerServiceEvenements(
+        out ServiceOrchestrationEvenements service,
+        out string erreur)
+    {
+        ResultatChargementCatalogue chargement =
+            CatalogueEvenements.ChargerDepuisResources();
+        if (!chargement.EstValide)
+        {
+            service = null;
+            erreur = chargement.ConstruireMessageErreurs();
+            return false;
+        }
+
+        service = ServiceOrchestrationEvenements.CreerPourJeu(
+            gameData.evenements,
+            chargement.Catalogue);
+        erreur = string.Empty;
+        return true;
     }
 }

@@ -1,102 +1,115 @@
 using UnityEngine;
-using UnityEngine.UI;
 using UnityEngine.SceneManagement;
-using System.Collections;
 
+/// <summary>
+/// Gestionnaire audio persistant qui gère les musiques de fond (Menu et Jeu)
+/// et s'assure qu'elles bouclent correctement dans leurs scènes respectives.
+/// </summary>
 public class AudioManager : MonoBehaviour
 {
-    [Header("Audio Sources")]
-    [SerializeField] private AudioSource musicSource;
-    [SerializeField] private AudioSource SFXSource;
+    // Le Singleton permet d'accéder facilement à l'AudioManager et évite les doublons
+    public static AudioManager Instance { get; private set; }
 
-    [Header("Musiques de fond (Soundtrack)")]
-    public AudioClip musiqueMenu; // ◄ Ta musique pour le menu principal
-    public AudioClip musiqueJeu;  // ◄ Ta musique pour les niveaux de jeu
+    [Header("Musiques")]
+    public AudioClip musiqueMenu;
+    public AudioClip musiqueJeu;
 
-    [Header("Audio Clips SFX")]
-    public AudioClip appuier_boutton;
-
-    [Header("UI Buttons")]
-    public Button playButton;
-    public Button optionsButton;
-
+    private AudioSource audioSource;
 
     private void Awake()
     {
-        // On rend l'Audio Manager immortel pour qu'il gère la soundtrack partout
+        // Si un AudioManager existe déjà, on détruit le nouveau pour garder l'ancien
+        if (Instance != null && Instance != this)
+        {
+            Destroy(gameObject);
+            return;
+        }
+
+        Instance = this;
         DontDestroyOnLoad(gameObject);
 
-        // On s'abonne à l'événement de chargement de scène de Unity
+        // Récupération ou ajout de l'AudioSource
+        audioSource = GetComponent<AudioSource>();
+        if (audioSource == null)
+        {
+            audioSource = gameObject.AddComponent<AudioSource>();
+        }
+
+        // Configuration indispensable pour que la musique tourne en boucle
+        audioSource.loop = true;
+        audioSource.playOnAwake = false;
+    }
+
+    private void OnEnable()
+    {
+        // On s'abonne à l'événement de chargement de scène d'Unity
         SceneManager.sceneLoaded += OnSceneLoaded;
+    }
+
+    private void OnDisable()
+    {
+        if (Instance == this)
+        {
+            SceneManager.sceneLoaded -= OnSceneLoaded;
+        }
     }
 
     private void OnDestroy()
     {
-        // Bonne pratique : on se désabonne si l'objet est détruit pour éviter les fuites de mémoire
-        SceneManager.sceneLoaded -= OnSceneLoaded;
+        if (Instance == this)
+        {
+            Instance = null;
+        }
     }
 
-    public void Start()
-    {
-        // Configuration initiale des boutons de la scène Menu
-        ConfigurerBoutons();
-    }
-
-    // Cette fonction se déclenche AUTOMATIQUEMENT dès qu'une scène change
+    /// <summary>
+    /// Déclenché automatiquement à chaque fois qu'une scène est chargée.
+    /// </summary>
     private void OnSceneLoaded(Scene scene, LoadSceneMode mode)
     {
-        // 1. On adapte la musique selon la scène actuelle
-        if (scene.name == "Menu") // ◄ Remplace par le nom EXACT de ta scène Menu
-        {
-            ChangerMusiqueFond(musiqueMenu);
+        Debug.Log("AudioManager : Nouvelle scène détectée -> " + scene.name);
 
-            // Comme on est revenu au menu, on doit retrouver et reconnecter les boutons
-            ConfigurerBoutons();
+        // On vérifie le nom de la scène
+        if (scene.name == "Menu")
+        {
+            JouerMusique(musiqueMenu);
         }
-        else // Si on est dans le jeu (Niveau 1, Niveau 2, etc.)
+        else
         {
-            ChangerMusiqueFond(musiqueJeu);
-        }
-    }
-
-    private void ChangerMusiqueFond(AudioClip nouvelleMusique)
-    {
-        if (musicSource == null || nouvelleMusique == null) return;
-
-        // Si la musique demandée est DEJA en train de jouer, on ne fait rien (évite de couper le son au redémarrage)
-        if (musicSource.clip == nouvelleMusique) return;
-
-        // On change de piste et on la lance en boucle
-        musicSource.Stop();
-        musicSource.clip = nouvelleMusique;
-        musicSource.loop = true;
-        musicSource.Play();
-    }
-
-    private void ConfigurerBoutons()
-    {
-        // On cherche les boutons dans la scène actuelle s'ils n'ont pas été assignés dans l'Inspector
-        if (playButton == null) playButton = GameObject.Find("Jouer")?.GetComponent<Button>();
-        if (optionsButton == null) optionsButton = GameObject.Find("Options")?.GetComponent<Button>();
-
-        // On applique les écouteurs de son
-        if (playButton != null) playButton.onClick.AddListener(PlayBruitBouton);
-        if (optionsButton != null) optionsButton.onClick.AddListener(PlayBruitBouton);
-    }
-
-    public void PlayBruitBouton()
-    {
-        if (musicSource != null && SFXSource != null && appuier_boutton != null)
-        {
-            StartCoroutine(MuteMusicDuringSFX());
+            // Si ce n'est pas le menu, c'est qu'on est dans le jeu !
+            JouerMusique(musiqueJeu);
         }
     }
 
-    private IEnumerator MuteMusicDuringSFX()
+    /// <summary>
+    /// Change de piste audio uniquement si la nouvelle piste est différente de celle en cours.
+    /// </summary>
+    public void JouerMusique(AudioClip clip)
     {
-        musicSource.mute = true;
-        SFXSource.PlayOneShot(appuier_boutton);
-        yield return new WaitForSeconds(appuier_boutton.length);
-        musicSource.mute = false;
+        if (clip == null)
+        {
+            Debug.LogWarning("AudioManager : Tentative de jouer un clip nul (AudioClip manquant dans l'Inspecteur ?)");
+            return;
+        }
+
+        // Sécurité : Si la musique demandée est déjà en train de jouer, on ne fait rien (évite les coupures)
+        if (audioSource.clip == clip && audioSource.isPlaying)
+        {
+            return;
+        }
+
+        audioSource.clip = clip;
+        audioSource.Play();
+    }
+
+    /// <summary>
+    /// Permet de couper ou relancer la musique (optionnel, utile pour des menus d'options)
+    /// </summary>
+    public void SetMute(bool DevenirMuet)
+    {
+        if (audioSource != null)
+        {
+            audioSource.mute = DevenirMuet;
+        }
     }
 }

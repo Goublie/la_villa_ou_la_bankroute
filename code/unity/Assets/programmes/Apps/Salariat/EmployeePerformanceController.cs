@@ -4,12 +4,8 @@ using UnityEngine.UI;
 
 /// <summary>
 /// Facade Unity de la carte de performance salariee.
+/// Gère également la synchronisation des données textuelles du poste actuel.
 /// </summary>
-/// <remarks>
-/// Les scores sont stockes dans <see cref="DonneesSalariat"/> et modifies par
-/// <see cref="ServiceSalariat"/>. Ce composant se limite aux panels, sliders et
-/// boutons du prefab Salariat.
-/// </remarks>
 public class EmployeePerformanceController : MonoBehaviour
 {
     [Header("Sliders (progress bars)")]
@@ -31,6 +27,7 @@ public class EmployeePerformanceController : MonoBehaviour
     public RelationalController relationalController;
 
     [Header("Salary negotiation")]
+    public Button boutonNegocierSalaire;
     public GameObject panelNegociationSalaire;
     public GameObject panelNegociationEchec;
     public GameData gameData;
@@ -38,47 +35,69 @@ public class EmployeePerformanceController : MonoBehaviour
 
     private ServiceSalariat service;
     private DonneesSalariat donnees;
+    private int toursRestantsAvantNegociation = 0;
 
-    public int currentJobHours =>
-        donnees != null ? donnees.heuresSemaine : 0;
+    // ◄ AJOUT : Cache interne pour retrouver automatiquement les textes du Tableau de Bord
+    private TextMeshProUGUI entrepriseTextInternal;
+    private TextMeshProUGUI heuresTextInternal;
+
+    public int currentJobHours => donnees != null ? donnees.heuresSemaine : 0;
 
     private void Start()
     {
-        ResoudreService();
-        RefreshUI();
-    }
-
-    private void OnEnable()
-    {
         ActionPlay.OnMoisPasse += OnMonthPassed;
+
+        ControleEtTrouveTextesPoste();
         ResoudreService();
         RefreshUI();
+        ActualiserEtatBoutonNegociation();
     }
 
-    private void OnDisable()
+    private void OnDestroy()
     {
         ActionPlay.OnMoisPasse -= OnMonthPassed;
     }
 
+    private void OnEnable()
+    {
+        ControleEtTrouveTextesPoste();
+        ResoudreService();
+        RefreshUI();
+        ActualiserEtatBoutonNegociation();
+    }
+
     /// <summary>
-    /// Signale l'acceptation d'un poste par un ancien flux du prefab.
+    /// ◄ AJOUT : Cherche dynamiquement les composants de texte s'ils ne sont pas déjà liés
     /// </summary>
+    private void ControleEtTrouveTextesPoste()
+    {
+        if (panelPosteActuel != null)
+        {
+            if (entrepriseTextInternal == null)
+            {
+                Transform t = panelPosteActuel.transform.Find("Entreprise");
+                if (t != null) entrepriseTextInternal = t.GetComponent<TextMeshProUGUI>();
+            }
+            if (heuresTextInternal == null)
+            {
+                Transform t = panelPosteActuel.transform.Find("Heures");
+                if (t != null) heuresTextInternal = t.GetComponent<TextMeshProUGUI>();
+            }
+            if (texteSalaireAnnuelBrut == null)
+            {
+                Transform t = panelPosteActuel.transform.Find("Salaire_brut");
+                if (t != null) texteSalaireAnnuelBrut = t.GetComponent<TextMeshProUGUI>();
+            }
+        }
+    }
+
     public void StartNewJob(int stressLevel, int hoursPerWeek)
     {
-        if (!ResoudreService())
-        {
-            return;
-        }
+        if (!ResoudreService()) return;
 
         if (!donnees.aEmploi)
         {
-            service.AccepterPoste(
-                "Poste actuel",
-                gameData.joueur.salaire.centimes,
-                hoursPerWeek,
-                stressLevel,
-                1,
-                1);
+            service.AccepterPoste("Poste actuel", gameData.joueur.salaire.centimes, hoursPerWeek, stressLevel, 1, 1);
         }
         else
         {
@@ -88,109 +107,85 @@ public class EmployeePerformanceController : MonoBehaviour
         RefreshUI();
     }
 
-    /// <summary>
-    /// Met a jour les heures du poste courant.
-    /// </summary>
     public void UpdateJobHours(int newHours)
     {
         if (ResoudreService())
         {
-            service.ActualiserContextePoste(
-                donnees.stressPoste,
-                newHours);
+            service.ActualiserContextePoste(donnees.stressPoste, newHours);
             RefreshUI();
         }
     }
 
     private void OnMonthPassed()
     {
+        Debug.Log("🔔 L'événement OnMoisPasse a été reçu par la carte de performance !");
+
+        if (toursRestantsAvantNegociation > 0)
+        {
+            toursRestantsAvantNegociation--;
+        }
+
         if (!ResoudreService())
         {
+            Debug.LogWarning("❌ Impossible de charger les données du joueur.");
             return;
         }
 
         RefreshUI();
+        ActualiserEtatBoutonNegociation();
+
         if (donnees.burnout >= 100)
         {
             TriggerBurnout();
         }
     }
 
+    private void ActualiserEtatBoutonNegociation()
+    {
+        if (boutonNegocierSalaire != null)
+        {
+            boutonNegocierSalaire.interactable = (toursRestantsAvantNegociation <= 0);
+        }
+    }
+
     private void TriggerBurnout()
     {
-        if (panelBurnoutGameOver != null)
-        {
-            panelBurnoutGameOver.SetActive(true);
-        }
-
+        if (panelBurnoutGameOver != null) panelBurnoutGameOver.SetActive(true);
         AfficherTableauBord(false);
         gameObject.SetActive(false);
     }
 
-    /// <summary>
-    /// Ferme le message de burn-out et remet le poste courant a zero.
-    /// </summary>
     public void OnBurnoutRetourClicked()
     {
-        if (panelBurnoutGameOver != null)
-        {
-            panelBurnoutGameOver.SetActive(false);
-        }
+        if (panelBurnoutGameOver != null) panelBurnoutGameOver.SetActive(false);
 
-        if (demissionController != null)
-        {
-            demissionController.OnOuiClicked();
-        }
-        else if (ResoudreService())
-        {
-            service.Demissionner();
-        }
+        if (demissionController != null) demissionController.OnOuiClicked();
+        else if (ResoudreService()) service.Demissionner();
 
         RefreshUI();
         AfficherTableauBord(true);
         gameObject.SetActive(true);
     }
 
-    /// <summary>
-    /// Modifie la fatigue en points.
-    /// </summary>
     public void ModifyFatigue(int amount)
     {
-        if (ResoudreService())
-        {
-            service.ModifierFatigue(amount);
-            RefreshUI();
-        }
+        if (ResoudreService()) { service.ModifierFatigue(amount); RefreshUI(); }
     }
 
-    /// <summary>
-    /// Modifie l'experience en points.
-    /// </summary>
     public void ModifyExperience(int amount)
     {
-        if (ResoudreService())
-        {
-            service.ModifierExperience(amount);
-            RefreshUI();
-        }
+        if (ResoudreService()) { service.ModifierExperience(amount); RefreshUI(); }
     }
 
-    /// <summary>
-    /// Ouvre la negociation si l'experience est suffisante.
-    /// </summary>
     public void OnNegocierSalaireClicked()
     {
-        if (!ResoudreService())
-        {
-            return;
-        }
+        if (!ResoudreService()) return;
+
+        if (toursRestantsAvantNegociation > 0) return;
 
         if (donnees.experience > 70)
         {
-            if (panelNegociationSalaire != null)
-            {
-                panelNegociationSalaire.SetActive(true);
-            }
+            if (panelNegociationSalaire != null) panelNegociationSalaire.SetActive(true);
         }
         else if (panelNegociationEchec != null)
         {
@@ -203,198 +198,121 @@ public class EmployeePerformanceController : MonoBehaviour
 
     public void CloseNegociationPanel()
     {
-        if (panelNegociationSalaire != null)
-        {
-            panelNegociationSalaire.SetActive(false);
-        }
-
+        if (panelNegociationSalaire != null) panelNegociationSalaire.SetActive(false);
         AfficherTableauBord(true);
         gameObject.SetActive(true);
     }
 
     public void CloseNegociationEchecPanel()
     {
-        if (panelNegociationEchec != null)
-        {
-            panelNegociationEchec.SetActive(false);
-        }
-
+        if (panelNegociationEchec != null) panelNegociationEchec.SetActive(false);
         AfficherTableauBord(true);
         gameObject.SetActive(true);
     }
 
-    /// <summary>
-    /// Valide une negociation salariale et synchronise les labels.
-    /// </summary>
     public void OnAccepterNegociationClicked()
     {
         if (ResoudreService())
         {
             service.NegocierSalaire();
-            ActualiserSalaireAnnuel();
+            toursRestantsAvantNegociation = 12;
             RefreshUI();
+            ActualiserEtatBoutonNegociation();
         }
 
         CloseNegociationPanel();
     }
 
-    /// <summary>
-    /// Ajuste heures, salaire et satisfaction depuis le panel Travailler plus.
-    /// </summary>
-    public ResultatOperation ModifierTempsTravail(
-        int deltaHeures,
-        int deltaSalaireCentimes,
-        int deltaSatisfaction)
+    public ResultatOperation ModifierTempsTravail(int deltaHeures, int deltaSalaireCentimes, int deltaSatisfaction)
     {
         if (!ResoudreService())
         {
-            return ResultatOperation.Echec(
-                "Donnees salariat indisponibles.",
-                "donnees_absentes");
+            return ResultatOperation.Echec("Donnees salariat indisponibles.", "donnees_absentes");
         }
 
-        ResultatOperation resultat =
-            service.ModifierTempsTravail(
-                deltaHeures,
-                deltaSalaireCentimes,
-                deltaSatisfaction);
+        ResultatOperation resultat = service.ModifierTempsTravail(deltaHeures, deltaSalaireCentimes, deltaSatisfaction);
         RefreshUI();
-        ActualiserSalaireAnnuel();
         return resultat;
     }
 
-    public void UpdateExperience(int value)
-    {
-        if (ResoudreService())
-        {
-            donnees.experience = Mathf.Clamp(value, 0, 100);
-            RefreshUI();
-        }
-    }
-
-    public void UpdateFatigue(int value)
-    {
-        if (ResoudreService())
-        {
-            donnees.fatigue = Mathf.Clamp(value, 0, 100);
-            RefreshUI();
-        }
-    }
-
-    public void UpdateBurnout(int value)
-    {
-        if (ResoudreService())
-        {
-            donnees.burnout = Mathf.Clamp(value, 0, 100);
-            RefreshUI();
-        }
-    }
+    public void UpdateExperience(int value) { if (ResoudreService()) { donnees.experience = Mathf.Clamp(value, 0, 100); RefreshUI(); } }
+    public void UpdateFatigue(int value) { if (ResoudreService()) { donnees.fatigue = Mathf.Clamp(value, 0, 100); RefreshUI(); } }
+    public void UpdateBurnout(int value) { if (ResoudreService()) { donnees.burnout = Mathf.Clamp(value, 0, 100); RefreshUI(); } }
 
     private void RefreshUI()
     {
+        ControleEtTrouveTextesPoste();
+
         if (donnees == null)
         {
             ApplyValue(experienceSlider, experienceValueText, 0);
             ApplyValue(fatigueSlider, fatigueValueText, 0);
             ApplyValue(burnoutSlider, burnoutValueText, 0);
+
+            if (entrepriseTextInternal != null) entrepriseTextInternal.text = "Entreprise : Aucune";
+            if (heuresTextInternal != null) heuresTextInternal.text = "Heures : 0 heure / semaine";
+            if (texteSalaireAnnuelBrut != null) texteSalaireAnnuelBrut.text = "Salaire brut : 0 € / an";
             return;
         }
 
-        ApplyValue(
-            experienceSlider,
-            experienceValueText,
-            donnees.experience);
-        ApplyValue(
-            fatigueSlider,
-            fatigueValueText,
-            donnees.fatigue);
-        ApplyValue(
-            burnoutSlider,
-            burnoutValueText,
-            donnees.burnout);
+        ApplyValue(experienceSlider, experienceValueText, donnees.experience);
+        ApplyValue(fatigueSlider, fatigueValueText, donnees.fatigue);
+        ApplyValue(burnoutSlider, burnoutValueText, donnees.burnout);
+
+        // ◄ CONFIGURATION CRITIQUE : Synchronisation immédiate des textes avec les données chargées
+        if (donnees.aEmploi)
+        {
+            if (entrepriseTextInternal != null)
+                entrepriseTextInternal.text = "Entreprise : " + donnees.entreprise;
+
+            if (heuresTextInternal != null)
+                heuresTextInternal.text = "Heures : " + donnees.heuresSemaine + " heures / semaine";
+
+            if (texteSalaireAnnuelBrut != null && gameData != null && gameData.joueur != null)
+            {
+                argent salaireAnnuel = gameData.joueur.salaire * 12f;
+                texteSalaireAnnuelBrut.text = "Salaire brut : " + salaireAnnuel.ToString("N0") + " € / an";
+            }
+        }
+        else
+        {
+            if (entrepriseTextInternal != null) entrepriseTextInternal.text = "Entreprise : Aucune";
+            if (heuresTextInternal != null) heuresTextInternal.text = "Heures : 0 heure / semaine";
+            if (texteSalaireAnnuelBrut != null) texteSalaireAnnuelBrut.text = "Salaire brut : 0 € / an";
+        }
     }
 
-    private void ApplyValue(
-        Slider slider,
-        TextMeshProUGUI valueText,
-        int value)
+    private void ApplyValue(Slider slider, TextMeshProUGUI valueText, int value)
     {
         int score = Mathf.Clamp(value, 0, 100);
-        if (slider != null)
-        {
-            slider.value = score;
-        }
-
-        if (valueText != null)
-        {
-            valueText.text = score + " / 100";
-        }
-
+        if (slider != null) slider.value = score;
+        if (valueText != null) valueText.text = score + " / 100";
         SetFillColor(slider, Color.white);
     }
 
     private void SetFillColor(Slider slider, Color color)
     {
-        if (slider == null || slider.fillRect == null)
-        {
-            return;
-        }
-
+        if (slider == null || slider.fillRect == null) return;
         Image fillImage = slider.fillRect.GetComponent<Image>();
-        if (fillImage != null)
-        {
-            fillImage.color = color;
-        }
+        if (fillImage != null) fillImage.color = color;
     }
 
     private void AfficherTableauBord(bool visible)
     {
-        if (panelPosteActuel != null)
-        {
-            panelPosteActuel.SetActive(visible);
-        }
-
-        if (panelActionsRapides != null)
-        {
-            panelActionsRapides.SetActive(visible);
-        }
-
-        if (panelRelationnel != null)
-        {
-            panelRelationnel.SetActive(visible);
-        }
-    }
-
-    private void ActualiserSalaireAnnuel()
-    {
-        if (texteSalaireAnnuelBrut == null ||
-            gameData == null ||
-            gameData.joueur == null)
-        {
-            return;
-        }
-
-        argent salaireAnnuel = gameData.joueur.salaire * 12f;
-        texteSalaireAnnuelBrut.text =
-            "Salaire : " + salaireAnnuel.ToString("N0") + " EUR / an";
+        if (panelPosteActuel != null) panelPosteActuel.SetActive(visible);
+        if (panelActionsRapides != null) panelActionsRapides.SetActive(visible);
+        if (panelRelationnel != null) panelRelationnel.SetActive(visible);
     }
 
     private bool ResoudreService()
     {
         if (gameData == null)
         {
-            ActionPlay actionPlay =
-                Object.FindFirstObjectByType<ActionPlay>();
-            if (actionPlay != null)
-            {
-                gameData = actionPlay.gameData;
-            }
+            ActionPlay actionPlay = Object.FindFirstObjectByType<ActionPlay>();
+            if (actionPlay != null) gameData = actionPlay.gameData;
         }
 
-        if (gameData == null || gameData.joueur == null)
-        {
-            return false;
-        }
+        if (gameData == null || gameData.joueur == null) return false;
 
         gameData.joueur.InitialiserSiNecessaire();
         donnees = gameData.joueur.salariat;

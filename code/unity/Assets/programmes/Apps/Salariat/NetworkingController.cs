@@ -1,10 +1,8 @@
 using UnityEngine;
+using UnityEngine.UI; // ◄ INDISPENSABLE pour manipuler le bouton grisé
 
 /// <summary>
-/// Handles the "Faire du networking" confirmation flow. Lives on
-/// 'Panel_Confirmation_Networking'. The main "Faire du networking" button in
-/// Panel_Actions_Rapides opens this popup; the "Retour" button closes it and
-/// restores the dashboard panels. The "Oui" effect logic will be added later.
+/// Handles the "Faire du networking" confirmation flow.
 /// </summary>
 public class NetworkingController : MonoBehaviour
 {
@@ -18,12 +16,59 @@ public class NetworkingController : MonoBehaviour
     [Header("Relationship system")]
     public RelationalController relationalController; // 'Panel_Relationnel' controller
 
+    [Header("Gestion du Cooldown (Temps de recharge)")]
+    public Button boutonOuvrirNetworking; // ◄ AJOUT : Le bouton principal dans Panel_Actions_Rapides
+
+    [Tooltip("Nombre de tours à attendre après avoir fait du networking")]
+    [SerializeField] private int cooldownInitial = 3;
+    private int toursRestantsAvantNetworking = 0; // ◄ AJOUT : Compteur de tours restants
+
+    private void Start()
+    {
+        // ◄ SÉCURITÉ CRITIQUE : Écoute le passage des mois en continu, même si le panel est désactivé
+        ActionPlay.OnMoisPasse += DiminuerCooldown;
+        ActualiserEtatBouton();
+    }
+
+    private void OnDestroy()
+    {
+        // Désabonnement à la destruction pour éviter les fuites de mémoire
+        ActionPlay.OnMoisPasse -= DiminuerCooldown;
+    }
+
+    /// <summary>
+    /// Réduit le temps d'attente de 1 à chaque passage de mois.
+    /// </summary>
+    private void DiminuerCooldown()
+    {
+        if (toursRestantsAvantNetworking > 0)
+        {
+            toursRestantsAvantNetworking--;
+            ActualiserEtatBouton();
+        }
+    }
+
+    /// <summary>
+    /// Met à jour l'état visuel du bouton (grisé ou actif).
+    /// </summary>
+    private void ActualiserEtatBouton()
+    {
+        if (boutonOuvrirNetworking != null)
+        {
+            // Redevient cliquable uniquement si le cooldown est à 0
+            boutonOuvrirNetworking.interactable = (toursRestantsAvantNetworking <= 0);
+        }
+    }
+
     /// <summary>
     /// Opens the networking confirmation popup and hides the three dashboard panels.
     /// Wired to the main "Faire du networking" button in Panel_Actions_Rapides.
     /// </summary>
     public void OpenNetworkingPanel()
     {
+        // Sécurité : Si le cooldown est actif, on empêche l'ouverture
+        if (toursRestantsAvantNetworking > 0) return;
+
         if (panelConfirmationNetworking != null) panelConfirmationNetworking.SetActive(true);
         if (panelPosteActuel != null) panelPosteActuel.SetActive(false);
         if (panelActionsRapides != null) panelActionsRapides.SetActive(false);
@@ -56,6 +101,10 @@ public class NetworkingController : MonoBehaviour
             relationalController.ModifyColleguesScore(15);
             relationalController.ModifyPatronScore(5);
         }
+
+        // ◄ AJOUT : Déclenche les 3 tours de blocage (tour actuel + 2 tours d'attente)
+        toursRestantsAvantNetworking = cooldownInitial;
+        ActualiserEtatBouton();
 
         // Close the popup and restore the dashboard panels.
         CloseNetworkingPanel();
