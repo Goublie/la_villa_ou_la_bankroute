@@ -105,11 +105,17 @@ public sealed class ServiceBourse : IEvolutionMensuelle
         int valeurPosition = CalculerValeurAvecPrixCentimes(
             position,
             prixCentimes);
-        if (montantCentimes > valeurPosition)
+        
+        // Si le joueur demande à vendre autant ou plus que ce qu'il a,
+        // on vend la totalité exacte de la position pour éviter les restes liés aux arrondis.
+        if (montantCentimes >= valeurPosition)
         {
-            return ResultatOperation.Echec(
-                "La vente depasse la valeur de la position.",
-                "position_insuffisante");
+            return VendreInterne(
+                actif,
+                position.quantite,
+                mois,
+                compteCourant,
+                banque);
         }
 
         float quantiteDemandee =
