@@ -11,14 +11,16 @@ public sealed class ServiceBourse : IEvolutionMensuelle
     public const int MontantMinimumOrdreCentimes = 1000;
 
     private readonly DonneesBourse donnees;
+    private readonly DonneesJoueur joueur;
 
     /// <summary>
     /// Cree un service lie a un portefeuille persistant.
     /// </summary>
-    public ServiceBourse(DonneesBourse donnees)
+    public ServiceBourse(DonneesBourse donnees, DonneesJoueur joueur = null)
     {
         this.donnees = donnees ??
             throw new ArgumentNullException(nameof(donnees));
+        this.joueur = joueur;
     }
 
     /// <summary>
@@ -67,6 +69,12 @@ public sealed class ServiceBourse : IEvolutionMensuelle
             .AjouterAchat(quantiteAchetee, montantCentimes);
         MettreAJourValorisation(mois);
 
+        if (joueur != null)
+        {
+            joueur.energie = Math.Max(0, Math.Min(100, joueur.energie - 2));
+            joueur.santeMentale = Math.Max(0, Math.Min(100, joueur.santeMentale - 2));
+        }
+
         return ResultatOperation.Reussite(
             "Achat reussi : " +
             quantiteAchetee.ToString("N5") + " " + actif.Nom + ".",
@@ -108,24 +116,35 @@ public sealed class ServiceBourse : IEvolutionMensuelle
         
         // Si le joueur demande à vendre autant ou plus que ce qu'il a,
         // on vend la totalité exacte de la position pour éviter les restes liés aux arrondis.
+        ResultatOperation resultat;
         if (montantCentimes >= valeurPosition)
         {
-            return VendreInterne(
+            resultat = VendreInterne(
                 actif,
                 position.quantite,
                 mois,
                 compteCourant,
                 banque);
         }
+        else
+        {
+            float quantiteDemandee =
+                montantCentimes / (float)prixCentimes;
+            resultat = VendreInterne(
+                actif,
+                Math.Min(quantiteDemandee, position.quantite),
+                mois,
+                compteCourant,
+                banque);
+        }
 
-        float quantiteDemandee =
-            montantCentimes / (float)prixCentimes;
-        return VendreInterne(
-            actif,
-            Math.Min(quantiteDemandee, position.quantite),
-            mois,
-            compteCourant,
-            banque);
+        if (resultat.Succes && joueur != null)
+        {
+            joueur.energie = Math.Max(0, Math.Min(100, joueur.energie + 2));
+            joueur.santeMentale = Math.Max(0, Math.Min(100, joueur.santeMentale + 2));
+        }
+        
+        return resultat;
     }
 
     /// <summary>
@@ -145,12 +164,20 @@ public sealed class ServiceBourse : IEvolutionMensuelle
                 "quantite_invalide");
         }
 
-        return VendreInterne(
+        ResultatOperation resultat = VendreInterne(
             actif,
             quantite,
             mois,
             compteCourant,
             banque);
+            
+        if (resultat.Succes && joueur != null)
+        {
+            joueur.energie = Math.Max(0, Math.Min(100, joueur.energie + 2));
+            joueur.santeMentale = Math.Max(0, Math.Min(100, joueur.santeMentale + 2));
+        }
+        
+        return resultat;
     }
 
     /// <summary>
@@ -171,12 +198,20 @@ public sealed class ServiceBourse : IEvolutionMensuelle
                 "position_absente");
         }
 
-        return VendreInterne(
+        ResultatOperation resultat = VendreInterne(
             actif,
             position.quantite,
             mois,
             compteCourant,
             banque);
+
+        if (resultat.Succes && joueur != null)
+        {
+            joueur.energie = Math.Max(0, Math.Min(100, joueur.energie + 5));
+            joueur.santeMentale = Math.Max(0, Math.Min(100, joueur.santeMentale + 5));
+        }
+        
+        return resultat;
     }
 
     /// <summary>

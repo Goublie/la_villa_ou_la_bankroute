@@ -187,14 +187,6 @@ public class BourseUI : MonoBehaviour
             compteCourant,
             serviceBanque);
 
-        // Baisse l'énergie et la santé mentale seulement si l'ordre a réussi
-        if (resultat.Succes && gameData != null && gameData.joueur != null)
-        {
-            // Restreint la valeur entre 0 et 100
-            gameData.joueur.energie = Mathf.Clamp(gameData.joueur.energie - 2, 0, 100);
-            gameData.joueur.santeMentale = Mathf.Clamp(gameData.joueur.santeMentale - 2, 0, 100);
-        }
-
         AfficherResultat(resultat);
     }
 
@@ -257,15 +249,6 @@ public class BourseUI : MonoBehaviour
                 compteCourant,
                 serviceBanque);
         }
-        // AJOUTE LE BLOC if JUSTE AVANT AfficherResultat(resultat);
-        if (resultat.Succes && gameData != null && gameData.joueur != null)
-        {
-            // Restreint la valeur entre 0 et 100
-            gameData.joueur.energie = Mathf.Clamp(gameData.joueur.energie + 2, 0, 100);
-            gameData.joueur.santeMentale = Mathf.Clamp(gameData.joueur.santeMentale + 2, 0, 100);
-        }
-
-
         AfficherResultat(resultat);
     }
 
@@ -285,14 +268,6 @@ public class BourseUI : MonoBehaviour
             MoisActuel,
             compteCourant,
             serviceBanque);
-
-        // 2. On vérifie le succès pour appliquer la fatigue et le stress
-        if (resultat.Succes && gameData != null && gameData.joueur != null)
-        {
-            // Restreint la valeur entre 0 et 100
-            gameData.joueur.energie = Mathf.Clamp(gameData.joueur.energie + 5, 0, 100);
-            gameData.joueur.santeMentale = Mathf.Clamp(gameData.joueur.santeMentale + 5, 0, 100);
-        }
 
         // 3. On affiche le résultat et on met à jour l'écran
         AfficherResultat(resultat);
@@ -696,7 +671,7 @@ public class BourseUI : MonoBehaviour
         gameData.joueur.InitialiserSiNecessaire();
         serviceBanque = new ServiceBanque(gameData.joueur);
         donneesBourse = gameData.joueur.bourse;
-        serviceBourse = new ServiceBourse(donneesBourse);
+        serviceBourse = new ServiceBourse(donneesBourse, gameData != null ? gameData.joueur : null);
         RemplacerCompteCourant(
             serviceBanque.ObtenirCompteCourant());
     }

@@ -256,7 +256,7 @@ public class BourseMarcheUI : MonoBehaviour
 
         serviceBanque = new ServiceBanque(gameData.joueur);
         donneesBourse = gameData.joueur.bourse;
-        serviceBourse = new ServiceBourse(donneesBourse);
+        serviceBourse = new ServiceBourse(donneesBourse, gameData != null ? gameData.joueur : null);
 
         RemplacerCompteCourant(serviceBanque.ObtenirCompteCourant());
     }
