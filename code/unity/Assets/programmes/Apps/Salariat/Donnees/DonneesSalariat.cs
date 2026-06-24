@@ -19,7 +19,6 @@ public class DonneesSalariat
     public int ancienneteMois;
     public int experience;
     public int fatigue = 20;
-    public int burnout;
     public int relationPatron;
     public int relationCollegues;
     public int satisfaction;
@@ -36,7 +35,6 @@ public class DonneesSalariat
 
         experience = BornerScore(experience);
         fatigue = BornerScore(fatigue);
-        burnout = BornerScore(burnout);
         relationPatron = BornerScore(relationPatron);
         relationCollegues = BornerScore(relationCollegues);
         satisfaction = BornerScore(satisfaction);
@@ -62,7 +60,6 @@ public class DonneesSalariat
             ancienneteMois = ancienneteMois,
             experience = experience,
             fatigue = fatigue,
-            burnout = burnout,
             relationPatron = relationPatron,
             relationCollegues = relationCollegues,
             satisfaction = satisfaction

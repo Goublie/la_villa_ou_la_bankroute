@@ -138,8 +138,7 @@ public class ActionPlay : MonoBehaviour
             return false;
         }
 
-        DonneesSalariat salariat = gameData.joueur.salariat;
-        return salariat != null && salariat.burnout >= 100;
+        return gameData.joueur.santeMentale <= 0;
     }
 
     /// <summary>
