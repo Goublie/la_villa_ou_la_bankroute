@@ -17,7 +17,11 @@ public class Case : MonoBehaviour
     // Affiche le texte text dans la case
     public void Set(string texte)
     {
-        composantTexte.text = texte;
+        if (composantTexte == null) composantTexte = GetComponentInChildren<TextMeshProUGUI>();
+        if (composantTexte != null)
+        {
+            composantTexte.text = texte;
+        }
     }
 
     //Affiche un nombre dans la case
@@ -41,6 +45,7 @@ public class Case : MonoBehaviour
     //Vide la case
     public void Vider()
     {
+        if (composantTexte == null) composantTexte = GetComponentInChildren<TextMeshProUGUI>();
         if (composantTexte != null)
             Set("");
     }
