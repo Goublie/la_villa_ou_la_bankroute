@@ -118,6 +118,35 @@ public sealed class ServicePassageMensuel
                 }
             }
         }
+        if (joueur.immobilier != null && joueur.immobilier.biensPossedes != null)
+        {
+            foreach (BienImmobilier bien in joueur.immobilier.biensPossedes)
+            {
+                if (bien != null && bien.estLoue && bien.loyerMensuel.centimes > 0)
+                {
+                    banque.Crediter(compteCourant, bien.loyerMensuel, "loyer");
+                }
+            }
+        }
+        // ==========================================
+
+        // ==========================================
+        // PRÉLÈVEMENT MENSUEL DU NIVEAU DE VIE
+        // ==========================================
+        if (joueur.niveauVie != null)
+        {
+            argent coutNiveauVie = GestionnaireNiveauVie.CalculerCoutMensuel(joueur.niveauVie);
+            if (coutNiveauVie.centimes > 0)
+            {
+                // On débite même si fonds insuffisants (découvert) — on force via AjoutHistorique
+                compteCourant.AjoutHistorique("Dépenses courantes", -coutNiveauVie);
+            }
+
+            // Effets sur l'énergie et la santé mentale
+            GestionnaireNiveauVie.AppliquerEffetsMensuels(joueur.niveauVie, joueur);
+        }
+        // ==========================================
+        
         if (joueur.investissements != null)
         {
             foreach (Investissement investissement in joueur.investissements)
