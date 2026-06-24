@@ -1,5 +1,7 @@
+using System.IO;
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using UnityEngine.UI;
 
 /// <summary>
 /// Point de navigation central entre les scenes principales du jeu.
@@ -12,6 +14,10 @@ using UnityEngine.SceneManagement;
 public class ScenesManager : MonoBehaviour
 {
     private static ScenesManager _instance;
+
+    private Button boutonJouer;
+    private Button boutonContinuer; // Ajout pour la sauvegarde
+    private Button boutonQuitter;
 
     [Header("Donnees de jeu a reinitialiser")]
     public GameData gameData;
@@ -35,6 +41,13 @@ public class ScenesManager : MonoBehaviour
         }
     }
 
+    [RuntimeInitializeOnLoadMethod(
+        RuntimeInitializeLoadType.SubsystemRegistration)]
+    private static void ReinitialiserInstance()
+    {
+        _instance = null;
+    }
+
     private void Awake()
     {
         if (_instance != null && _instance != this)
@@ -45,6 +58,44 @@ public class ScenesManager : MonoBehaviour
 
         _instance = this;
         DontDestroyOnLoad(gameObject);
+    }
+
+    private void OnEnable()
+    {
+        if (_instance == this)
+        {
+            SceneManager.sceneLoaded += OnSceneLoaded;
+        }
+    }
+
+    private void Start()
+    {
+        if (_instance == this)
+        {
+            ConfigurerBoutonsMenu(SceneManager.GetActiveScene());
+        }
+    }
+
+    private void OnDisable()
+    {
+        if (_instance == this)
+        {
+            SceneManager.sceneLoaded -= OnSceneLoaded;
+            RetirerListenersMenu();
+        }
+    }
+
+    private void OnDestroy()
+    {
+        if (_instance == this)
+        {
+            _instance = null;
+        }
+    }
+
+    private void OnSceneLoaded(Scene scene, LoadSceneMode mode)
+    {
+        ConfigurerBoutonsMenu(scene);
     }
 
     /// <summary>
@@ -68,6 +119,22 @@ public class ScenesManager : MonoBehaviour
         }
 
         ChargerJeu();
+    }
+
+    /// <summary>
+    /// Charge la sauvegarde existante puis bascule vers la scene de jeu.
+    /// </summary>
+    public void ContinuerJeu()
+    {
+        Debug.Log("ScenesManager : Tentative de chargement de la sauvegarde...");
+        if (SaveManager.Instance != null && SaveManager.Instance.ChargerPartie())
+        {
+            ChargerJeu();
+        }
+        else
+        {
+            Debug.LogError("ScenesManager : Échec du chargement de la partie.");
+        }
     }
 
     /// <summary>
@@ -113,5 +180,82 @@ public class ScenesManager : MonoBehaviour
     {
         Debug.Log("ScenesManager : Fermeture.");
         Application.Quit();
+    }
+
+    private void ConfigurerBoutonsMenu(Scene scene)
+    {
+        RetirerListenersMenu();
+        if (scene.name != "Menu")
+        {
+            return;
+        }
+
+        boutonJouer = TrouverBouton(scene, "Jouer");
+        boutonContinuer = TrouverBouton(scene, "Continuer"); // Recherche automatique du bouton
+        boutonQuitter = TrouverBouton(scene, "Quitter");
+
+        if (boutonJouer != null)
+        {
+            boutonJouer.onClick.RemoveListener(InitJeu);
+            boutonJouer.onClick.AddListener(InitJeu);
+        }
+
+        if (boutonContinuer != null)
+        {
+            // Vérification de l'existence du fichier physique validé par Antigravity
+            string cheminSauvegarde = Path.Combine(Application.persistentDataPath, "sauvegarde_jeu.json");
+            bool sauvegardeExiste = File.Exists(cheminSauvegarde);
+
+            boutonContinuer.interactable = sauvegardeExiste; // Grisé si pas de fichier
+
+            boutonContinuer.onClick.RemoveListener(ContinuerJeu);
+            boutonContinuer.onClick.AddListener(ContinuerJeu);
+        }
+
+        if (boutonQuitter != null)
+        {
+            boutonQuitter.onClick.RemoveListener(QuitterJeu);
+            boutonQuitter.onClick.AddListener(QuitterJeu);
+        }
+    }
+
+    private void RetirerListenersMenu()
+    {
+        if (boutonJouer != null)
+        {
+            boutonJouer.onClick.RemoveListener(InitJeu);
+        }
+
+        if (boutonContinuer != null)
+        {
+            boutonContinuer.onClick.RemoveListener(ContinuerJeu);
+        }
+
+        if (boutonQuitter != null)
+        {
+            boutonQuitter.onClick.RemoveListener(QuitterJeu);
+        }
+
+        boutonJouer = null;
+        boutonContinuer = null;
+        boutonQuitter = null;
+    }
+
+    private static Button TrouverBouton(Scene scene, string nomObjet)
+    {
+        Button[] boutons = Object.FindObjectsByType<Button>(
+            FindObjectsInactive.Include,
+            FindObjectsSortMode.None);
+        foreach (Button bouton in boutons)
+        {
+            if (bouton != null &&
+                bouton.gameObject.scene == scene &&
+                bouton.name == nomObjet)
+            {
+                return bouton;
+            }
+        }
+
+        return null;
     }
 }

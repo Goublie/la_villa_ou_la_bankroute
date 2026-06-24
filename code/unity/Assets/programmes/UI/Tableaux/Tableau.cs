@@ -1,0 +1,268 @@
+using UnityEngine;
+using UnityEngine.UI;
+using System.Collections.Generic;
+
+public class Tableau : MonoBehaviour
+{
+    public List<Ligne> tableau;    
+
+    public List<Ligne> GetTableau() { return tableau; }
+
+    [Tooltip("Ligne d'en-tête statique (optionnelle) à exclure de la liste de données.")]
+    public Ligne ligneEnTete;
+
+    [Tooltip("Si coché et que ligneEnTete est vide, la toute première ligne sera automatiquement protégée en tant qu'en-tête.")]
+    public bool premiereLigneEstEnTete = true;
+
+    [Tooltip("Laissez vide pour utiliser les largeurs par défaut du prefab Ligne. Sinon, renseignez la largeur en pixels pour chaque colonne (-1 pour flexible/étirable).")]
+    public List<float> largeursColonnes;
+
+    [Header("Structure")]
+    [Range(1, 10)] public int nombreColonnes = 3;
+
+    [Header("Apparence Globale")]
+    public Color couleurFondCases = Color.white;
+    public Color couleurLigne = Color.black;
+    public Color couleurTexte = Color.black;
+
+    protected virtual void OnValidate()
+    {
+        // Auto-réparation de la configuration dans l'éditeur
+        if (largeursColonnes == null || largeursColonnes.Count < 4)
+        {
+            largeursColonnes = new System.Collections.Generic.List<float>() { 200f, 150f, 150f, -1f };
+        }
+
+        // Assigner automatiquement la première ligne comme en-tête si demandé, même dans l'éditeur
+        if (premiereLigneEstEnTete && ligneEnTete == null)
+        {
+            Ligne[] toutesLignes = GetComponentsInChildren<Ligne>(true);
+            if (toutesLignes.Length > 0)
+            {
+                ligneEnTete = toutesLignes[0];
+#if UNITY_EDITOR
+                UnityEditor.EditorUtility.SetDirty(this);
+#endif
+            }
+        }
+
+        AppliquerApparence();
+        
+#if UNITY_EDITOR
+        UnityEditor.EditorApplication.delayCall += () =>
+        {
+            if (this == null) return;
+            
+            // Éviter de modifier directement le prefab sur le disque (ce qui génère des erreurs)
+            // On s'assure qu'on est bien dans une scène (ou le Prefab Mode)
+            if (!this.gameObject.scene.IsValid()) return; 
+
+            AppliquerStructure();
+        };
+#endif
+    }
+
+    public void AppliquerStructure()
+    {
+        Ligne[] toutesLignes = GetComponentsInChildren<Ligne>(true);
+        foreach (Ligne l in toutesLignes)
+        {
+            if (l != null)
+            {
+                l.AjusterNombreColonnes(nombreColonnes);
+                AppliquerConfigurationColonnes(l);
+            }
+        }
+    }
+
+    public virtual void AppliquerApparence()
+    {
+        Image imgTableau = GetComponent<Image>();
+        if (imgTableau != null) imgTableau.color = couleurLigne;
+
+        Ligne[] toutesLignes = GetComponentsInChildren<Ligne>(true);
+        foreach (Ligne l in toutesLignes)
+        {
+            if (l != null) l.SetApparence(couleurFondCases, couleurLigne, couleurTexte);
+        }
+    }
+
+    public void Start()
+    {
+        Ligne[] toutesLignes = GetComponentsInChildren<Ligne>();
+        tableau = new List<Ligne>(toutesLignes);
+
+        // Assigner automatiquement la première ligne comme en-tête si demandé
+        if (premiereLigneEstEnTete && ligneEnTete == null && toutesLignes.Length > 0)
+        {
+            ligneEnTete = toutesLignes[0];
+        }
+
+        if (ligneEnTete != null)
+        {
+            tableau.Remove(ligneEnTete);
+            AppliquerConfigurationColonnes(ligneEnTete);
+        }
+
+        // Appliquer la configuration des colonnes aux lignes existantes
+        foreach (Ligne l in tableau)
+        {
+            AppliquerConfigurationColonnes(l);
+        }
+
+        //On vide le tableau au début du jeu
+        Vider();
+    }
+
+    public void AppliquerConfigurationColonnes(Ligne ligne)
+    {
+        UnityEngine.UI.HorizontalLayoutGroup hlg = ligne.GetComponent<UnityEngine.UI.HorizontalLayoutGroup>();
+        if (hlg != null)
+        {
+            hlg.childForceExpandWidth = false; // Empêche l'étirement des colonnes fixes
+            hlg.childControlWidth = true;      // OBLIGATOIRE pour que les largeurs (LayoutElement) soient appliquées !
+        }
+
+        // On applique sur tous les enfants directs, même s'ils n'ont pas de script 'Case' (utile pour un en-tête personnalisé)
+        int childCount = ligne.transform.childCount;
+
+        for (int i = 0; i < childCount; i++)
+        {
+            UnityEngine.Transform child = ligne.transform.GetChild(i);
+            UnityEngine.UI.LayoutElement le = child.GetComponent<UnityEngine.UI.LayoutElement>();
+            if (le == null)
+            {
+                le = child.gameObject.AddComponent<UnityEngine.UI.LayoutElement>();
+            }
+            
+            float width = (largeursColonnes != null && i < largeursColonnes.Count) ? largeursColonnes[i] : -1f;
+            
+            if (width >= 0f)
+            {
+                le.preferredWidth = width;
+                le.minWidth = width;   // CRUCIAL : Empêche Unity de rétrécir cette colonne !
+                le.flexibleWidth = 0f; // Fixe
+            }
+            else
+            {
+                le.preferredWidth = -1f;
+                le.minWidth = 0f;      // Autorise le rétrécissement maximal
+                le.flexibleWidth = 1f; // S'étire pour remplir le reste
+            }
+        }
+        
+        // Forcer Unity à redessiner immédiatement l'interface pour que l'éditeur s'actualise
+        UnityEngine.UI.LayoutRebuilder.MarkLayoutForRebuild(ligne.GetComponent<UnityEngine.RectTransform>());
+        UnityEngine.Canvas.ForceUpdateCanvases();
+        
+#if UNITY_EDITOR
+        if (!Application.isPlaying)
+        {
+            UnityEditor.EditorUtility.SetDirty(ligne.gameObject);
+        }
+#endif
+    }
+
+    //Renvoie true si toutes les lignes sont vides
+    public bool EstVide()
+    {
+        foreach (Ligne l in tableau)
+        {
+            if (!l.EstVide())
+            {
+                return false;
+            }
+        }
+        return true;
+    }
+
+    //Vide le tableau
+    public void Vider()
+    {
+        foreach (Ligne l in tableau)
+        {
+            if (l != null)
+            {
+                l.Vider();
+            }
+        }
+    }
+
+    //Renvoie le texte affiché dans la case à l'indice (y,x)
+    public string get(int y, int x)
+    {
+        return tableau[y].Get(x);
+    }
+
+    //Ajoute les valeurs dans la première ligne vide du tableau et renvoie true en cas de réussite
+    public virtual bool Add(params object[] valeurs)
+    {
+        foreach (Ligne l in tableau)
+        {
+            if (l.EstVide())
+            {
+                l.Set(valeurs);
+                return true;
+            }
+        }
+        return false;
+    }
+
+    public virtual bool Add(Transaction transaction)
+    {
+        if(transaction.montant.centimes <= 0)
+        {
+            return Add(transaction.libelle, "", transaction.montant.ToString());
+        }
+        return Add(transaction.libelle, transaction.montant.ToString());
+    }
+
+    //Met à jour la ligne du tableau dont le libelle correspond à libelleRecherche avec le nouveau montant et renvoie true en cas de réussite
+    public bool MettreAJourLigne(string libelleRecherche, argent nouveauMontant)
+    {
+        foreach (Ligne l in tableau)
+        {
+            // On vérifie que la ligne n'est pas vide pour éviter les erreurs
+            if (!l.EstVide() && l.Get(0) == libelleRecherche) 
+            {
+                if(nouveauMontant.centimes <= 0)
+                {
+                    l.Set(2, nouveauMontant); // Si le montant est négatif ou nul, on le met dans la troisième colonne
+                    return true;
+                }
+                l.Set(1, nouveauMontant); // On met à jour la colonne du montant
+                return true; 
+            }
+        }
+        return false;
+    }
+
+    //Affiche le texte text dans la case à l'indice (y,x)
+    public void Set(int indiceLigne, int indiceColonne, string text)
+    {
+        tableau[indiceLigne].Set(indiceColonne, text);
+    }
+
+    //Modifie la ligne à l'indice indice avec les valeurs en argument
+    public void Set(int indice, params object[] valeurs)
+    {
+        tableau[indice].Set(valeurs);
+    }
+
+    public void Set(int indice, Transaction transac)
+    {
+        Set(indice, transac.libelle, transac.montant.ToString());
+    }
+
+    //Affiche un nombre dans la case à l'indice (y,x)
+    public void Set(int indiceLigne, int indiceColonne, int data)
+    {
+        Set(indiceLigne, indiceColonne, data.ToString());
+    }
+
+    //Affiche un montant d'argent dans la case à l'indice (y,x)
+    public void Set(int indiceLigne, int indiceColonne, argent data)
+    {
+        Set(indiceLigne, indiceColonne, data.ToString());
+    }
+}

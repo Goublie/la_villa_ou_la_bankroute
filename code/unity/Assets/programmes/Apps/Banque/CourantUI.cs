@@ -49,12 +49,33 @@ public class CourantUI : MonoBehaviour
             return;
         }
 
+        // Force le tableau à 4 colonnes pour gérer le libellé, la date, le crédit et le débit
+        tab.nombreColonnes = 4;
+        tab.largeursColonnes = new System.Collections.Generic.List<float> { 200f, 150f, 150f, -1f };
+        tab.AppliquerStructure();
+
         Historique historique = compteCrnt.GetHistorique();
         tab.Vider();
+        tab.GarantirLignesMinimum();
+
         for (int i = historique.GetSize() - 1; i >= 0; i--)
         {
-            tab.Add(historique.GetHistorique()[i]);
+            Transaction t = historique.GetHistorique()[i];
+            string dateStr = FormaterDate(t.indexMois);
+            string creditStr = t.montant.centimes > 0 ? $"<color=green>+{t.montant.ToString()}</color>" : "";
+            string debitStr = t.montant.centimes < 0 ? $"<color=red>{t.montant.ToString()}</color>" : "";
+            
+            tab.Add(t.libelle, dateStr, creditStr, debitStr);
         }
+    }
+
+    private string FormaterDate(int indexMois)
+    {
+        if (indexMois < 0) return "---";
+        int moisAbsolu = 6 + indexMois; // Juillet = index 6
+        int annee = 2026 + (moisAbsolu / 12);
+        int moisCivil = (moisAbsolu % 12) + 1;
+        return $"{moisCivil:D2}/{annee}";
     }
 
     private void RafraichirJusteLeSolde()

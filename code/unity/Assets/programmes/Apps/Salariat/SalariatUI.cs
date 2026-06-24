@@ -63,9 +63,9 @@ public class SalariatUI : MonoBehaviour
 
         if (txtSalaire != null)
         {
-            txtSalaire.text =
-                new argent(donnees.salaireMensuelCentimes).ToString() +
-                " brut / mois";
+            // ◄ FIX FORMATTAGE (Conversion mensuel centimes -> annuel formaté)
+            float salaireAnnuel = (donnees.salaireMensuelCentimes * 12f) / 100f;
+            txtSalaire.text = "Salaire brut : " + salaireAnnuel.ToString("N0") + " € / an";
             txtSalaire.color = Color.green;
         }
 
@@ -124,7 +124,8 @@ public class SalariatUI : MonoBehaviour
 
         if (txtSalaire != null)
         {
-            txtSalaire.text = "0.00 EUR brut / mois";
+            // ◄ FIX FORMATTAGE
+            txtSalaire.text = "Salaire brut : 0 € / an";
         }
 
         if (txtHeures != null)
