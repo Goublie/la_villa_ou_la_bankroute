@@ -207,23 +207,32 @@ public sealed class ServicePassageMensuel
             .AppliquerEvolutionMensuelle(mois);
 
         // ===================================================================
-        // AJOUT : ESTIMATION MENSUELLE & RECALCUL ANNUEL DES LOYERS (INDEXATION)
+        // AJOUT : ESTIMATION MENSUELLE & RECALCUL ANNUEL DES LOYERS (INDEXATION) & ROTATION DU MARCHÉ
         // ===================================================================
-        if (joueur.immobilier != null && joueur.immobilier.biensPossedes != null)
+        if (joueur.immobilier != null)
         {
-            // 1. On met à jour la valeur du patrimoine chaque mois (pour l'UI et le score global via IPatrimoine)
-            foreach (BienImmobilier bien in joueur.immobilier.biensPossedes)
+            if (joueur.immobilier.biensPossedes != null)
             {
-                if (bien != null)
+                // 1. On met à jour la valeur du patrimoine chaque mois
+                foreach (BienImmobilier bien in joueur.immobilier.biensPossedes)
                 {
-                    bien.valeurActuelle = ServiceImmobilier.CalculerValeurActuelle(bien, mois);
+                    if (bien != null)
+                    {
+                        bien.valeurActuelle = ServiceImmobilier.CalculerValeurActuelle(bien, mois);
+                    }
+                }
+
+                // 2. Indexation annuelle des loyers (tous les 12 mois, sauf à l'initialisation mois 0)
+                if (mois > 0 && mois % 12 == 0)
+                {
+                    ServiceImmobilier.ActualiserLoyersAnnuels(joueur, mois);
                 }
             }
 
-            // 2. Indexation annuelle des loyers (tous les 12 mois écoulés, hors initialisation mois 0)
-            if (mois > 0 && mois % 12 == 0)
+            // 3. Rafraîchissement automatique du marché toutes les échéances de 6 mois
+            if (mois > 0 && mois % 6 == 0)
             {
-                ServiceImmobilier.ActualiserLoyersAnnuels(joueur, mois);
+                ServiceImmobilier.RafraichirMarche(joueur, mois, 3);
             }
         }
         // ===================================================================

@@ -87,15 +87,18 @@ public class BienImmobilier : IPatrimoine
 public class DonneesImmobilier
 {
     public List<BienImmobilier> biensPossedes;
+    public List<AnnonceImmobiliere> annoncesActuelles; // Stockage persistant du marché
 
     public DonneesImmobilier()
     {
         biensPossedes = new List<BienImmobilier>();
+        annoncesActuelles = new List<AnnonceImmobiliere>();
     }
 
     public DonneesImmobilier Copier()
     {
         DonneesImmobilier copie = new DonneesImmobilier();
+        
         if (this.biensPossedes != null)
         {
             foreach (var bien in this.biensPossedes)
@@ -103,6 +106,15 @@ public class DonneesImmobilier
                 copie.biensPossedes.Add(bien.Copier());
             }
         }
+
+        if (this.annoncesActuelles != null)
+        {
+            foreach (var annonce in this.annoncesActuelles)
+            {
+                copie.annoncesActuelles.Add(annonce.Copier());
+            }
+        }
+
         return copie;
     }
 }

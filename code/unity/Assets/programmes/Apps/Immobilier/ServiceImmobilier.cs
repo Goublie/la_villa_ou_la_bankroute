@@ -1,9 +1,11 @@
 using System;
+using System.Collections.Generic;
 using UnityEngine;
 
 /// <summary>
 /// Structure éphémère représentant une opportunité sur le marché immobilier.
 /// </summary>
+[Serializable]
 public class AnnonceImmobiliere
 {
     public DefinitionBienImmobilier Definition; // Lien direct vers le gabarit d'origine
@@ -12,6 +14,19 @@ public class AnnonceImmobiliere
     public argent PrixVenteAffiche;
     public argent LoyerMensuelPropose;
     public float TauxRendementBrut;
+
+    public AnnonceImmobiliere Copier()
+    {
+        return new AnnonceImmobiliere
+        {
+            Definition = this.Definition,
+            Ville = this.Ville,
+            Type = this.Type,
+            PrixVenteAffiche = new argent(this.PrixVenteAffiche.centimes),
+            LoyerMensuelPropose = new argent(this.LoyerMensuelPropose.centimes),
+            TauxRendementBrut = this.TauxRendementBrut
+        };
+    }
 }
 
 public static class ServiceImmobilier
@@ -54,6 +69,38 @@ public static class ServiceImmobilier
     }
 
     /// <summary>
+    /// Vide le marché persistant actuel et pioche de nouvelles annonces aléatoires sans doublons de gabarits.
+    /// </summary>
+    public static void RafraichirMarche(DonneesJoueur joueur, int nombreMoisPasses, int nombreAnnoncesSouhaitees = 3)
+    {
+        var catalogue = CatalogueImmobilier.ObtenirBiens();
+        if (catalogue == null || catalogue.Count == 0 || joueur.immobilier == null) return;
+
+        joueur.immobilier.annoncesActuelles.Clear();
+
+        List<DefinitionBienImmobilier> listeMelangee = new List<DefinitionBienImmobilier>(catalogue);
+        System.Random rnd = new System.Random();
+
+        // Mélange Fisher-Yates
+        for (int i = listeMelangee.Count - 1; i > 0; i--)
+        {
+            int k = rnd.Next(i + 1);
+            var value = listeMelangee[k];
+            listeMelangee[k] = listeMelangee[i];
+            listeMelangee[i] = value;
+        }
+
+        int quantite = Math.Min(nombreAnnoncesSouhaitees, listeMelangee.Count);
+        for (int i = 0; i < quantite; i++)
+        {
+            AnnonceImmobiliere nouvelleAnnonce = GenererAnnonceSurLeMarche(listeMelangee[i], nombreMoisPasses);
+            joueur.immobilier.annoncesActuelles.Add(nouvelleAnnonce);
+        }
+
+        Debug.Log($"[ServiceImmobilier] Le marché a été renouvelé avec {quantite} annonces au mois {nombreMoisPasses}.");
+    }
+
+    /// <summary>
     /// Traite l'achat cash brut. Si le joueur a assez, ça passe, sinon ça bloque.
     /// </summary>
     public static bool ExecuterAchatCash(DonneesJoueur joueur, AnnonceImmobiliere annonce, int nombreMoisPasses)
@@ -84,6 +131,9 @@ public static class ServiceImmobilier
         };
 
         joueur.immobilier.biensPossedes.Add(nouveauBien);
+        
+        // Retirer l'annonce du marché pour qu'elle ne soit plus achetable deux fois
+        joueur.immobilier.annoncesActuelles.Remove(annonce);
         
         // Forcer le recalcul immédiat du patrimoine total du joueur
         joueur.valeurActuelle = nouveauBien.valeurActuelle; 
