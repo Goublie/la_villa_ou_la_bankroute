@@ -1,10 +1,10 @@
 fileFormatVersion: 2
-guid: 40da210444afdbd4dbdbb1618ba0501b
+guid: 03d48d0f324f65f48a60b0a47a38c2c4
 TextureImporter:
   internalIDToNameTable:
   - first:
-      213: 3723974259179489015
-    second: passez_un_mois_0
+      213: -3959181496108354309
+    second: passez_un_mois__0
   externalObjects: {}
   serializedVersion: 13
   mipmaps:
@@ -96,27 +96,53 @@ TextureImporter:
     ignorePlatformSupport: 0
     androidETC2FallbackOverride: 0
     forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 4
+    buildTarget: WebGL
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 4
+    buildTarget: WindowsStoreApps
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
   spriteSheet:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: passez_un_mois_0
+      name: passez_un_mois__0
       rect:
         serializedVersion: 2
         x: 0
-        y: 345
-        width: 986
-        height: 337
+        y: 0
+        width: 984
+        height: 325
       alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: 7f68717bbd63ea330800000000000000
-      internalID: 3723974259179489015
+      spriteID: bf4792be7692e09c0800000000000000
+      internalID: -3959181496108354309
       vertices: []
       indices: 
       edges: []
@@ -125,7 +151,7 @@ TextureImporter:
     customData: 
     physicsShape: []
     bones: []
-    spriteID: f6df5e04a67198a418d65a9d8d1887d5
+    spriteID: 
     internalID: 0
     vertices: []
     indices: 
@@ -135,7 +161,7 @@ TextureImporter:
     spriteCustomMetadata:
       entries: []
     nameFileIdTable:
-      passez_un_mois_0: 3723974259179489015
+      passez_un_mois__0: -3959181496108354309
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 
