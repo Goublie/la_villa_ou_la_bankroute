@@ -15,6 +15,11 @@ public class AnnonceImmobiliere
     public argent LoyerMensuelPropose;
     public float TauxRendementBrut;
 
+    /// <summary>Surface aléatoire générée à la création de l'annonce (25-150 m²).</summary>
+    public int SurfaceM2;
+    /// <summary>Indique si le bien est proposé meublé (tiré aléatoirement à la génération).</summary>
+    public bool EstMeuble;
+
     public AnnonceImmobiliere Copier()
     {
         return new AnnonceImmobiliere
@@ -24,33 +29,52 @@ public class AnnonceImmobiliere
             Type = this.Type,
             PrixVenteAffiche = new argent(this.PrixVenteAffiche.centimes),
             LoyerMensuelPropose = new argent(this.LoyerMensuelPropose.centimes),
-            TauxRendementBrut = this.TauxRendementBrut
+            TauxRendementBrut = this.TauxRendementBrut,
+            SurfaceM2 = this.SurfaceM2,
+            EstMeuble = this.EstMeuble
         };
     }
 }
 
 public static class ServiceImmobilier
 {
-    /// <summary>
-    /// Génère une annonce sur le marché avec les fluctuations de bonne/mauvaise affaire (Prix 0.95-1.05 et Renta 4%-7%).
-    /// </summary>
-    public static AnnonceImmobiliere GenererAnnonceSurLeMarche(DefinitionBienImmobilier definition, int nombreMoisPasses)
+    // Types de biens disponibles sur le marché libre
+    private static readonly TypeBien[] TypesBienMarche = new[]
     {
-        // 1. Détermination des Enums correspondants pour l'UI et le joueur
-        Ville villeEnum = (Ville)Enum.Parse(typeof(Ville), definition.VilleId, true);
-        TypeBien typeEnum = MaperTypeCatalogueVersJoueur(definition.Type);
+        TypeBien.Studio,
+        TypeBien.AppartementT2,
+        TypeBien.AppartementT4,
+        TypeBien.ImmeubleRapport,
+        TypeBien.LocalCommercial
+    };
 
-        // 2. Calcul du vrai prix au m2 issu du marché mondial
-        float prixM2Actuel = MarcheImmobilier.ObtenirPrixM2(definition.VilleId, nombreMoisPasses);
-        float valeurTheoriqueEuros = prixM2Actuel * definition.SurfaceM2 * definition.FacteurQualite;
+    /// <summary>
+    /// Génère une annonce sur le marché à partir d'une ville, d'un type de bien,
+    /// d'une surface et d'un statut meublé tirés aléatoirement.
+    /// </summary>
+    public static AnnonceImmobiliere GenererAnnonceSurLeMarche(
+        Ville ville,
+        TypeBien type,
+        int surfaceM2,
+        bool estMeuble,
+        int nombreMoisPasses)
+    {
+        string villeId = ville.ToString().ToLower();
 
-        // 3. Application de l'oscillation aléatoire de l'opportunité (0.95 à 1.05)
+        // 1. Prix au m2 issu du marché mondial pour cette ville
+        float prixM2Actuel = MarcheImmobilier.ObtenirPrixM2(villeId, nombreMoisPasses);
+
+        // 2. Facteur qualité : légèrement aléatoire (0.85 à 1.20)
+        float facteurQualite = UnityEngine.Random.Range(0.85f, 1.20f);
+        float valeurTheoriqueEuros = prixM2Actuel * surfaceM2 * facteurQualite;
+
+        // 3. Oscillation aléatoire de l'opportunité (0.95 à 1.05)
         float multiplicateurPrix = UnityEngine.Random.Range(0.95f, 1.05f);
         float prixAfficheEuros = valeurTheoriqueEuros * multiplicateurPrix;
         long prixCentimes = (long)Math.Round(prixAfficheEuros * 100d);
         argent prixVente = new argent((int)Math.Clamp(prixCentimes, 0, int.MaxValue));
 
-        // 4. Calcul du loyer mystère (Taux de rendement aléatoire entre 4% et 7% par an)
+        // 4. Loyer : rendement brut aléatoire entre 4% et 7% par an
         float tauxRendement = UnityEngine.Random.Range(0.04f, 0.07f);
         double loyerAnnuelEuros = prixAfficheEuros * tauxRendement;
         double loyerMensuelEuros = loyerAnnuelEuros / 12d;
@@ -59,9 +83,10 @@ public static class ServiceImmobilier
 
         return new AnnonceImmobiliere
         {
-            Definition = definition,
-            Ville = villeEnum,
-            Type = typeEnum,
+            Ville = ville,
+            Type = type,
+            SurfaceM2 = surfaceM2,
+            EstMeuble = estMeuble,
             PrixVenteAffiche = prixVente,
             LoyerMensuelPropose = loyerMensuel,
             TauxRendementBrut = tauxRendement
@@ -69,35 +94,39 @@ public static class ServiceImmobilier
     }
 
     /// <summary>
-    /// Vide le marché persistant actuel et pioche de nouvelles annonces aléatoires sans doublons de gabarits.
+    /// Vide le marché et génère exactement 2 biens par ville avec surface (25-150 m²)
+    /// et statut meublé aléatoires. Appelé tous les 6 mois.
     /// </summary>
     public static void RafraichirMarche(DonneesJoueur joueur, int nombreMoisPasses, int nombreAnnoncesSouhaitees = 3)
     {
-        var catalogue = CatalogueImmobilier.ObtenirBiens();
-        if (catalogue == null || catalogue.Count == 0 || joueur.immobilier == null) return;
+        if (joueur.immobilier == null) return;
 
         joueur.immobilier.annoncesActuelles.Clear();
 
-        List<DefinitionBienImmobilier> listeMelangee = new List<DefinitionBienImmobilier>(catalogue);
-        System.Random rnd = new System.Random();
+        Ville[] toutesLesVilles = (Ville[])Enum.GetValues(typeof(Ville));
+        int totalGenere = 0;
 
-        // Mélange Fisher-Yates
-        for (int i = listeMelangee.Count - 1; i > 0; i--)
+        foreach (Ville ville in toutesLesVilles)
         {
-            int k = rnd.Next(i + 1);
-            var value = listeMelangee[k];
-            listeMelangee[k] = listeMelangee[i];
-            listeMelangee[i] = value;
+            // 2 biens par ville
+            for (int i = 0; i < 2; i++)
+            {
+                // Type aléatoire parmi les types disponibles
+                TypeBien type = TypesBienMarche[UnityEngine.Random.Range(0, TypesBienMarche.Length)];
+
+                // Surface aléatoire entre 25 et 150 m²
+                int surface = UnityEngine.Random.Range(25, 151);
+
+                // Meublé aléatoire (50/50)
+                bool meuble = UnityEngine.Random.value > 0.5f;
+
+                AnnonceImmobiliere annonce = GenererAnnonceSurLeMarche(ville, type, surface, meuble, nombreMoisPasses);
+                joueur.immobilier.annoncesActuelles.Add(annonce);
+                totalGenere++;
+            }
         }
 
-        int quantite = Math.Min(nombreAnnoncesSouhaitees, listeMelangee.Count);
-        for (int i = 0; i < quantite; i++)
-        {
-            AnnonceImmobiliere nouvelleAnnonce = GenererAnnonceSurLeMarche(listeMelangee[i], nombreMoisPasses);
-            joueur.immobilier.annoncesActuelles.Add(nouvelleAnnonce);
-        }
-
-        Debug.Log($"[ServiceImmobilier] Le marché a été renouvelé avec {quantite} annonces au mois {nombreMoisPasses}.");
+        Debug.Log($"[ServiceImmobilier] Marché renouvelé : {totalGenere} annonces ({toutesLesVilles.Length} villes × 2) au mois {nombreMoisPasses}.");
     }
 
     /// <summary>
@@ -108,20 +137,22 @@ public static class ServiceImmobilier
         var compteCourant = joueur.comptes[ServiceBanque.CompteCourantId];
 
         // Règle 1 : Le joueur a-t-il assez d'argent cash ?
-        if (compteCourant.Solde.centimes < annonce.PrixVenteAffiche.centimes)
+        if (compteCourant.GetSolde().centimes < annonce.PrixVenteAffiche.centimes)
         {
             Debug.LogWarning("[ServiceImmobilier] Achat échoué : Fonds insuffisants sur le compte courant.");
             return false;
         }
 
         // Règle 2 : Débit immédiat du compte courant
-        compteCourant.Retirer(annonce.PrixVenteAffiche);
+        compteCourant.AjoutHistorique("Achat immobilier", -annonce.PrixVenteAffiche);
 
         // Règle 3 : Création du bien immobilier dans le patrimoine du joueur
         BienImmobilier nouveauBien = new BienImmobilier
         {
             ville = annonce.Ville,
             type = annonce.Type,
+            surfaceM2 = annonce.SurfaceM2,
+            estMeuble = annonce.EstMeuble,
             prixAchat = annonce.PrixVenteAffiche,
             valeurActuelle = annonce.PrixVenteAffiche, // Égal au prix d'achat au jour J
             estLoue = true, // Loué directement en v1
@@ -136,7 +167,7 @@ public static class ServiceImmobilier
         joueur.immobilier.annoncesActuelles.Remove(annonce);
         
         // Forcer le recalcul immédiat du patrimoine total du joueur
-        joueur.valeurActuelle = nouveauBien.valeurActuelle; 
+        // La valeurActuelle est portée par BienImmobilier directement, pas par DonneesJoueur.
 
         Debug.Log($"[ServiceImmobilier] Succès ! Achat de {annonce.Type} à {annonce.Ville} pour {annonce.PrixVenteAffiche.centimes / 100f} €");
         return true;
@@ -183,14 +214,14 @@ public static class ServiceImmobilier
 
     // --- UTILS DE CORRESPONDANCE LOGIQUE ---
 
-    private static DefinitionBienImmobilier TrouverDefinitionAssociee(Ville ville, TypeBien type)
+    public static DefinitionBienImmobilier TrouverDefinitionAssociee(Ville ville, TypeBien type)
     {
         string villeCle = ville.ToString().ToLower();
         var catalogue = CatalogueImmobilier.ObtenirBiens();
 
         foreach (var def in catalogue)
         {
-            if (def.VilleId.ToLower() == villeCle && MaperTypeCatalogueVersJoueur(def.Type) == type)
+            if (def.VilleId.ToLower() == villeCle && MaperTypeCatalogueVersJoueur(def.TypeBien) == type)
             {
                 return def;
             }

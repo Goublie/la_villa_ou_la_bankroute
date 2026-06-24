@@ -13,8 +13,7 @@ public class UiImmoMesBiens : MonoBehaviour
     [SerializeField] private GameData gameData;
 
     [Header("Tableau / Grille")]
-    [SerializeField] private GameObject rowPrefab;
-    [SerializeField] private Transform container;
+    [SerializeField] private TableauScrollSelectable tableauMesBiensComponent;
 
     [Header("Boutons d'action")]
     [SerializeField] private Button boutonVendre;
@@ -25,8 +24,8 @@ public class UiImmoMesBiens : MonoBehaviour
     [SerializeField] private GameObject panneauMesBiens;
 
     private ActionPlay actionPlay;
-    private List<GameObject> lignesInstanciees = new List<GameObject>();
-    private int indexSelectionne = -1;
+    private Dictionary<LigneSelectable, BienImmobilier> mapLignesBiens = new Dictionary<LigneSelectable, BienImmobilier>();
+    private BienImmobilier bienSelectionne;
 
     private void Awake()
     {
@@ -37,6 +36,12 @@ public class UiImmoMesBiens : MonoBehaviour
     {
         ResoudreDependances();
         ActionPlay.OnMoisPasse += ActualiserAffichage;
+
+        if (tableauMesBiensComponent != null)
+        {
+            tableauMesBiensComponent.OnSelectionChanged.RemoveListener(OnBienSelectionne);
+            tableauMesBiensComponent.OnSelectionChanged.AddListener(OnBienSelectionne);
+        }
 
         if (boutonVendre != null)
         {
@@ -50,6 +55,11 @@ public class UiImmoMesBiens : MonoBehaviour
     private void OnDisable()
     {
         ActionPlay.OnMoisPasse -= ActualiserAffichage;
+
+        if (tableauMesBiensComponent != null)
+        {
+            tableauMesBiensComponent.OnSelectionChanged.RemoveListener(OnBienSelectionne);
+        }
 
         if (boutonVendre != null)
         {
@@ -67,6 +77,10 @@ public class UiImmoMesBiens : MonoBehaviour
                 gameData = actionPlay.gameData;
             }
         }
+        if (tableauMesBiensComponent == null)
+        {
+            tableauMesBiensComponent = GetComponentInChildren<TableauScrollSelectable>(true);
+        }
     }
 
     /// <summary>
@@ -77,69 +91,71 @@ public class UiImmoMesBiens : MonoBehaviour
         if (gameData == null || gameData.joueur == null || gameData.joueur.immobilier == null) return;
 
         // 1. Nettoyer les anciennes lignes
-        foreach (var ligne in lignesInstanciees)
+        if (tableauMesBiensComponent != null)
         {
-            if (ligne != null) Destroy(ligne);
+            tableauMesBiensComponent.Initialiser();
+            foreach (var ligne in tableauMesBiensComponent.tableau)
+            {
+                if (ligne != null) ligne.Vider();
+            }
+            tableauMesBiensComponent.ReinitialiserSelection();
         }
-        lignesInstanciees.Clear();
-        indexSelectionne = -1;
+        
+        mapLignesBiens.Clear();
+        bienSelectionne = null;
         MettreAJourEtatBoutons();
 
         var biens = gameData.joueur.immobilier.biensPossedes;
         if (biens == null) return;
 
-        // 2. Instancier les nouvelles lignes
-        for (int i = 0; i < biens.Count; i++)
+        // 2. Remplir le tableau
+        if (tableauMesBiensComponent != null)
         {
-            var bien = biens[i];
-            if (bien == null) continue;
-
-            GameObject rowGo = Instantiate(rowPrefab, container);
-            lignesInstanciees.Add(rowGo);
-
-            int surface = ObtenirSurface(bien.ville, bien.type);
-            argent plusValue = bien.valeurActuelle - bien.prixAchat;
-
-            // Remplir les colonnes (0: Ville, 1: Type, 2: Surface, 3: Prix Achat, 4: Valeur Actuelle, 5: Loyer, 6: Plus-value)
-            SetCellText(rowGo.transform, 0, bien.ville.ToString());
-            SetCellText(rowGo.transform, 1, FormaterTypeBien(bien.type));
-            SetCellText(rowGo.transform, 2, $"{surface} m²");
-            SetCellText(rowGo.transform, 3, bien.prixAchat.ToString());
-            SetCellText(rowGo.transform, 4, bien.valeurActuelle.ToString());
-            SetCellText(rowGo.transform, 5, bien.loyerMensuel.ToString());
-            SetCellText(rowGo.transform, 6, FormaterPlusValue(plusValue));
-
-            // Configurer le bouton / clic de sélection
-            int index = i;
-            Button btn = rowGo.GetComponent<Button>();
-            if (btn == null)
+            for (int i = 0; i < biens.Count; i++)
             {
-                btn = rowGo.AddComponent<Button>();
-            }
-            btn.onClick.RemoveAllListeners();
-            btn.onClick.AddListener(() => SelectionnerLigne(index));
+                var bien = biens[i];
+                if (bien == null) continue;
 
-            // Appliquer la couleur d'origine (alternance zèbre)
-            MettreAJourCouleurLigne(rowGo, index, false);
+                // Remplir les colonnes selon les en-têtes du prefab :
+                // 0: Type de bien, 1: Surface, 2: Nombre de pièces, 3: Localisation, 4: Meublé, 5: Prix (valeur actuelle), 6: Loyer
+                var ligne = tableauMesBiensComponent.AjouterEtRetournerLigne(
+                    FormaterTypeBien(bien.type),
+                    $"{bien.surfaceM2} m²",
+                    ObtenirNombrePieces(bien.type),
+                    bien.ville.ToString(),
+                    bien.estMeuble ? "Oui" : "Non",
+                    bien.valeurActuelle.ToString(),
+                    bien.loyerMensuel.ToString()
+                );
+
+                if (ligne != null)
+                {
+                    mapLignesBiens.Add(ligne, bien);
+                }
+            }
+            tableauMesBiensComponent.CheckAutoSelection();
         }
     }
 
     /// <summary>
-    /// Sélectionne visuellement une ligne et mémorise l'index du bien.
+    /// Callback invoqué lors du changement de sélection d'une ligne du tableau.
     /// </summary>
-    private void SelectionnerLigne(int index)
+    private void OnBienSelectionne(LigneSelectable ligne)
     {
-        if (index < 0 || index >= lignesInstanciees.Count) return;
-
-        indexSelectionne = index;
-
-        for (int i = 0; i < lignesInstanciees.Count; i++)
+        if (ligne != null && mapLignesBiens.TryGetValue(ligne, out BienImmobilier bien))
         {
-            MettreAJourCouleurLigne(lignesInstanciees[i], i, i == indexSelectionne);
+            bienSelectionne = bien;
+        }
+        else
+        {
+            bienSelectionne = null;
         }
 
         MettreAJourEtatBoutons();
-        Debug.Log($"[UiImmoMesBiens] Bien sélectionné à l'index : {indexSelectionne}");
+        if (bienSelectionne != null)
+        {
+            Debug.Log($"[UiImmoMesBiens] Bien sélectionné : {bienSelectionne.type} à {bienSelectionne.ville}");
+        }
     }
 
     /// <summary>
@@ -148,28 +164,25 @@ public class UiImmoMesBiens : MonoBehaviour
     private void VendreSelection()
     {
         if (gameData == null || gameData.joueur == null || gameData.joueur.immobilier == null) return;
-        var biens = gameData.joueur.immobilier.biensPossedes;
 
-        if (indexSelectionne < 0 || indexSelectionne >= biens.Count)
+        if (bienSelectionne == null)
         {
             Debug.LogWarning("[UiImmoMesBiens] Aucun bien sélectionné pour la vente.");
             return;
         }
 
-        var bien = biens[indexSelectionne];
-
         // 1. Créditer le compte courant de la valeur actuelle du bien
         ServiceBanque banque = new ServiceBanque(gameData.joueur);
         CompteBanquaire compteCourant = banque.ObtenirCompteCourant();
-        banque.Crediter(compteCourant, bien.valeurActuelle, "Vente Immo");
+        banque.Crediter(compteCourant, bienSelectionne.valeurActuelle, "Vente Immo");
 
         // 2. Retirer le bien du patrimoine du joueur
-        biens.RemoveAt(indexSelectionne);
+        gameData.joueur.immobilier.biensPossedes.Remove(bienSelectionne);
 
         // 3. Forcer la mise à jour immédiate du patrimoine total
         gameData.joueur.CalculPatrimoineTotal();
 
-        Debug.Log($"[UiImmoMesBiens] Vente réussie de {bien.type} à {bien.ville} pour {bien.valeurActuelle}");
+        Debug.Log($"[UiImmoMesBiens] Vente réussie de {bienSelectionne.type} à {bienSelectionne.ville} pour {bienSelectionne.valeurActuelle}");
 
         ActualiserAffichage();
     }
@@ -178,36 +191,7 @@ public class UiImmoMesBiens : MonoBehaviour
     {
         if (boutonVendre != null)
         {
-            boutonVendre.interactable = (indexSelectionne >= 0);
-        }
-    }
-
-    private void MettreAJourCouleurLigne(GameObject ligne, int index, bool estSelectionnee)
-    {
-        Image img = ligne.GetComponent<Image>();
-        if (img == null) return;
-
-        if (estSelectionnee)
-        {
-            img.color = new Color32(200, 225, 255, 255); // Bleu sélection
-        }
-        else
-        {
-            img.color = (index % 2 == 0)
-                ? new Color32(245, 245, 245, 255)
-                : new Color32(255, 255, 255, 255);
-        }
-    }
-
-    private void SetCellText(Transform row, int cellIndex, string text)
-    {
-        if (cellIndex < row.childCount)
-        {
-            TMP_Text tmp = row.GetChild(cellIndex).GetComponentInChildren<TMP_Text>();
-            if (tmp != null)
-            {
-                tmp.text = text;
-            }
+            boutonVendre.interactable = (bienSelectionne != null);
         }
     }
 
@@ -224,22 +208,20 @@ public class UiImmoMesBiens : MonoBehaviour
         };
     }
 
-    private string FormaterPlusValue(argent plusValue)
+    private string ObtenirNombrePieces(TypeBien type)
     {
-        int centimes = plusValue.centimes;
-        string formatted = plusValue.ToString();
-        if (centimes > 0)
+        return type switch
         {
-            return $"<color=#187A2F>+{formatted}</color>";
-        }
-        else if (centimes < 0)
-        {
-            return $"<color=#B02020>{formatted}</color>"; // La valeur négative de l'argent contient déjà le signe "-"
-        }
-        else
-        {
-            return "<color=grey>0,00 €</color>";
-        }
+            TypeBien.Studio => "1",
+            TypeBien.AppartementT2 => "2",
+            TypeBien.AppartementT4 => "4",
+            _ => "-"
+        };
+    }
+
+    private string EstMeuble(TypeBien type)
+    {
+        return type == TypeBien.Studio ? "Oui" : "Non";
     }
 
     // Recherche de la surface du bien basé sur le catalogue immuable

@@ -106,6 +106,10 @@ public class UiImmoAccueil : MonoBehaviour
         var historique = MarcheImmobilier.ObtenirHistoriqueComplet(ville.ToString().ToLower());
         if (historique == null || historique.Count == 0) return;
 
+        // Mise à jour du titre du graphique avec le nom de la ville
+        var titre = lineChart.GetChartComponent<XCharts.Runtime.Title>();
+        if (titre != null) titre.text = ville.ToString();
+
         // Configuration de la série de données
         var serie = lineChart.GetSerie(0);
         if (serie == null)
@@ -117,14 +121,29 @@ public class UiImmoAccueil : MonoBehaviour
             serie.serieName = ville.ToString();
         }
 
-        // On affiche les 12 derniers mois jusqu'au mois actuel inclus
-        int moisActuel = gameData.nombreMoisPasses;
-        int indexDernier = 6 + moisActuel; // Alignement Juillet 2026 (Mois 6 du jeu)
-        int indexPremier = Mathf.Max(0, indexDernier - 11);
+        // Calcul de la date actuelle en jeu : le jeu commence en Juillet 2026 (mois 0)
+        int moisTotalCumules = 6 + gameData.nombreMoisPasses;
+        int anneeActuelle = 2026 + (moisTotalCumules / 12);
+        int moisActuelNum = (moisTotalCumules % 12) + 1;
 
-        for (int i = indexPremier; i <= indexDernier && i < historique.Count; i++)
+        // On convertit la date actuelle en un entier comparable (AAAAMM)
+        int dateLimite = anneeActuelle * 100 + moisActuelNum;
+
+        // On filtre tous les points dont la date est <= la date actuelle du jeu
+        // et on garde les 24 derniers pour avoir une courbe riche
+        const int NB_POINTS_AFFICHES = 24;
+        var pointsFiltres = new System.Collections.Generic.List<MarcheImmobilier.PointImmo>();
+        foreach (var point in historique)
         {
-            var point = historique[i];
+            int datePoint = point.Annee * 100 + point.Mois;
+            if (datePoint <= dateLimite)
+                pointsFiltres.Add(point);
+        }
+
+        int debut = Mathf.Max(0, pointsFiltres.Count - NB_POINTS_AFFICHES);
+        for (int i = debut; i < pointsFiltres.Count; i++)
+        {
+            var point = pointsFiltres[i];
             string labelX = $"{point.Mois:D2}/{point.Annee % 100}";
             lineChart.AddXAxisData(labelX);
             lineChart.AddData(0, point.Prix_m2);

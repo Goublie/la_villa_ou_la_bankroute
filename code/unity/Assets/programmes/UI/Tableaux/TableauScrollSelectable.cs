@@ -16,7 +16,7 @@ public class TableauScrollSelectable : TableauScroll
     /// et permet aux ecrans qui projettent des objets metier d'associer chaque
     /// ligne a son modele sans comparer les textes affiches.
     /// </remarks>
-    public LigneSelectable AjouterEtRetournerLigne(params object[] valeurs)
+    public new LigneSelectable AjouterEtRetournerLigne(params object[] valeurs)
     {
         Ligne ligneCible = null;
         int nombreLignesAvant = tableau != null ? tableau.Count : 0;

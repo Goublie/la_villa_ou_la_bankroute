@@ -211,7 +211,6 @@ public sealed class ServicePassageMensuel
         // ==========================================
         if (joueur.immobilier != null && joueur.immobilier.biensPossedes != null)
         {
-            CompteBanquaire compteCourant = banque.ObtenirCompteCourant();
             foreach (BienImmobilier bien in joueur.immobilier.biensPossedes)
             {
                 if (bien != null && bien.estLoue && bien.loyerMensuel.centimes > 0)
@@ -300,8 +299,8 @@ public sealed class ServicePassageMensuel
                 }
             }
 
-            // 3. Rafraîchissement automatique du marché toutes les échéances de 6 mois
-            if (mois > 0 && mois % 6 == 0)
+            // 3. Rafraîchissement automatique du marché toutes les échéances de 6 mois, et au mois 0 s'il n'y a pas d'annonces
+            if ((mois == 0 && (joueur.immobilier.annoncesActuelles == null || joueur.immobilier.annoncesActuelles.Count == 0)) || (mois > 0 && mois % 6 == 0))
             {
                 ServiceImmobilier.RafraichirMarche(joueur, mois, 3);
             }

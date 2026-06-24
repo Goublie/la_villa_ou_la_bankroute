@@ -14,8 +14,7 @@ public class UiImmoMarche : MonoBehaviour
     [SerializeField] private GameData gameData;
 
     [Header("Tableau / Grille")]
-    [SerializeField] private GameObject rowPrefab;
-    [SerializeField] private Transform container;
+    [SerializeField] private TableauScrollSelectable tableauMarcheComponent;
 
     [Header("Boutons d'action")]
     [SerializeField] private Button boutonAcheter;
@@ -26,8 +25,8 @@ public class UiImmoMarche : MonoBehaviour
     [SerializeField] private GameObject panneauMesBiens;
 
     private ActionPlay actionPlay;
-    private List<GameObject> lignesInstanciees = new List<GameObject>();
-    private int indexSelectionne = -1;
+    private Dictionary<LigneSelectable, AnnonceImmobiliere> mapLignesAnnonces = new Dictionary<LigneSelectable, AnnonceImmobiliere>();
+    private AnnonceImmobiliere annonceSelectionnee;
 
     private void Awake()
     {
@@ -39,6 +38,12 @@ public class UiImmoMarche : MonoBehaviour
         ResoudreDependances();
         ActionPlay.OnMoisPasse += ActualiserAffichage;
         
+        if (tableauMarcheComponent != null)
+        {
+            tableauMarcheComponent.OnSelectionChanged.RemoveListener(OnAnnonceSelectionnee);
+            tableauMarcheComponent.OnSelectionChanged.AddListener(OnAnnonceSelectionnee);
+        }
+
         if (boutonAcheter != null)
         {
             boutonAcheter.onClick.RemoveListener(AcheterSelection);
@@ -52,6 +57,11 @@ public class UiImmoMarche : MonoBehaviour
     {
         ActionPlay.OnMoisPasse -= ActualiserAffichage;
         
+        if (tableauMarcheComponent != null)
+        {
+            tableauMarcheComponent.OnSelectionChanged.RemoveListener(OnAnnonceSelectionnee);
+        }
+
         if (boutonAcheter != null)
         {
             boutonAcheter.onClick.RemoveListener(AcheterSelection);
@@ -68,6 +78,10 @@ public class UiImmoMarche : MonoBehaviour
                 gameData = actionPlay.gameData;
             }
         }
+        if (tableauMarcheComponent == null)
+        {
+            tableauMarcheComponent = GetComponentInChildren<TableauScrollSelectable>(true);
+        }
     }
 
     /// <summary>
@@ -78,65 +92,76 @@ public class UiImmoMarche : MonoBehaviour
         if (gameData == null || gameData.joueur == null || gameData.joueur.immobilier == null) return;
 
         // 1. Nettoyer les anciennes lignes
-        foreach (var ligne in lignesInstanciees)
+        if (tableauMarcheComponent != null)
         {
-            if (ligne != null) Destroy(ligne);
+            tableauMarcheComponent.Initialiser();
+            foreach (var ligne in tableauMarcheComponent.tableau)
+            {
+                if (ligne != null) ligne.Vider();
+            }
+            tableauMarcheComponent.ReinitialiserSelection();
         }
-        lignesInstanciees.Clear();
-        indexSelectionne = -1;
+        
+        mapLignesAnnonces.Clear();
+        annonceSelectionnee = null;
         MettreAJourEtatBoutonAcheter();
 
         var annonces = gameData.joueur.immobilier.annoncesActuelles;
+        if (annonces == null || annonces.Count == 0)
+        {
+            ServiceImmobilier.RafraichirMarche(gameData.joueur, gameData.nombreMoisPasses, 3);
+            annonces = gameData.joueur.immobilier.annoncesActuelles;
+        }
         if (annonces == null) return;
 
-        // 2. Instancier les nouvelles lignes
-        for (int i = 0; i < annonces.Count; i++)
+        // 2. Remplir le tableau
+        if (tableauMarcheComponent != null)
         {
-            var annonce = annonces[i];
-            if (annonce == null) continue;
-
-            GameObject rowGo = Instantiate(rowPrefab, container);
-            lignesInstanciees.Add(rowGo);
-
-            // Remplir les colonnes (0: Ville, 1: Type, 2: Surface, 3: Prix, 4: Loyer, 5: Renta)
-            SetCellText(rowGo.transform, 0, annonce.Ville.ToString());
-            SetCellText(rowGo.transform, 1, FormaterTypeBien(annonce.Type));
-            SetCellText(rowGo.transform, 2, $"{annonce.Definition.SurfaceM2} m²");
-            SetCellText(rowGo.transform, 3, annonce.PrixVenteAffiche.ToString());
-            SetCellText(rowGo.transform, 4, $"{annonce.LoyerMensuelPropose} / mois");
-            SetCellText(rowGo.transform, 5, $"{annonce.TauxRendementBrut * 100f:F1} %");
-
-            // Configurer le bouton / clic de sélection
-            int index = i;
-            Button btn = rowGo.GetComponent<Button>();
-            if (btn == null)
+            for (int i = 0; i < annonces.Count; i++)
             {
-                btn = rowGo.AddComponent<Button>();
-            }
-            btn.onClick.RemoveAllListeners();
-            btn.onClick.AddListener(() => SelectionnerLigne(index));
+                var annonce = annonces[i];
+                if (annonce == null) continue;
 
-            // Appliquer la couleur d'origine (alternance zèbre)
-            MettreAJourCouleurLigne(rowGo, index, false);
+                // Remplir les colonnes selon les en-têtes du prefab :
+                // 0: Type de bien, 1: Surface, 2: Nombre de pièces, 3: Localisation, 4: Meublé, 5: Prix, 6: Loyer
+                var ligne = tableauMarcheComponent.AjouterEtRetournerLigne(
+                    FormaterTypeBien(annonce.Type),
+                    $"{annonce.SurfaceM2} m²",
+                    ObtenirNombrePieces(annonce.Type),
+                    annonce.Ville.ToString(),
+                    annonce.EstMeuble ? "Oui" : "Non",
+                    annonce.PrixVenteAffiche.ToString(),
+                    annonce.LoyerMensuelPropose.ToString()
+                );
+
+                if (ligne != null)
+                {
+                    mapLignesAnnonces.Add(ligne, annonce);
+                }
+            }
+            tableauMarcheComponent.CheckAutoSelection();
         }
     }
 
     /// <summary>
-    /// Sélectionne visuellement une ligne et mémorise l'index de l'annonce.
+    /// Callback invoqué lors du changement de sélection d'une ligne du tableau.
     /// </summary>
-    private void SelectionnerLigne(int index)
+    private void OnAnnonceSelectionnee(LigneSelectable ligne)
     {
-        if (index < 0 || index >= lignesInstanciees.Count) return;
-
-        indexSelectionne = index;
-
-        for (int i = 0; i < lignesInstanciees.Count; i++)
+        if (ligne != null && mapLignesAnnonces.TryGetValue(ligne, out AnnonceImmobiliere annonce))
         {
-            MettreAJourCouleurLigne(lignesInstanciees[i], i, i == indexSelectionne);
+            annonceSelectionnee = annonce;
+        }
+        else
+        {
+            annonceSelectionnee = null;
         }
 
         MettreAJourEtatBoutonAcheter();
-        Debug.Log($"[UiImmoMarche] Annonce sélectionnée à l'index : {indexSelectionne}");
+        if (annonceSelectionnee != null)
+        {
+            Debug.Log($"[UiImmoMarche] Annonce sélectionnée : {annonceSelectionnee.Type} à {annonceSelectionnee.Ville} ({annonceSelectionnee.SurfaceM2} m²)");
+        }
     }
 
     /// <summary>
@@ -145,16 +170,14 @@ public class UiImmoMarche : MonoBehaviour
     private void AcheterSelection()
     {
         if (gameData == null || gameData.joueur == null || gameData.joueur.immobilier == null) return;
-        var annonces = gameData.joueur.immobilier.annoncesActuelles;
 
-        if (indexSelectionne < 0 || indexSelectionne >= annonces.Count)
+        if (annonceSelectionnee == null)
         {
             Debug.LogWarning("[UiImmoMarche] Aucun bien sélectionné pour l'achat.");
             return;
         }
 
-        var annonce = annonces[indexSelectionne];
-        bool succes = ServiceImmobilier.ExecuterAchatCash(gameData.joueur, annonce, gameData.nombreMoisPasses);
+        bool succes = ServiceImmobilier.ExecuterAchatCash(gameData.joueur, annonceSelectionnee, gameData.nombreMoisPasses);
 
         if (succes)
         {
@@ -171,37 +194,7 @@ public class UiImmoMarche : MonoBehaviour
     {
         if (boutonAcheter != null)
         {
-            boutonAcheter.interactable = (indexSelectionne >= 0);
-        }
-    }
-
-    private void MettreAJourCouleurLigne(GameObject ligne, int index, bool estSelectionnee)
-    {
-        Image img = ligne.GetComponent<Image>();
-        if (img == null) return;
-
-        if (estSelectionnee)
-        {
-            img.color = new Color32(200, 225, 255, 255); // Bleu clair sélection
-        }
-        else
-        {
-            // Alternance de couleur (zèbre)
-            img.color = (index % 2 == 0)
-                ? new Color32(245, 245, 245, 255)  // Blanc cassé
-                : new Color32(255, 255, 255, 255); // Blanc pur
-        }
-    }
-
-    private void SetCellText(Transform row, int cellIndex, string text)
-    {
-        if (cellIndex < row.childCount)
-        {
-            TMP_Text tmp = row.GetChild(cellIndex).GetComponentInChildren<TMP_Text>();
-            if (tmp != null)
-            {
-                tmp.text = text;
-            }
+            boutonAcheter.interactable = (annonceSelectionnee != null);
         }
     }
 
@@ -216,6 +209,22 @@ public class UiImmoMarche : MonoBehaviour
             TypeBien.LocalCommercial => "Local commercial",
             _ => type.ToString()
         };
+    }
+
+    private string ObtenirNombrePieces(TypeBien type)
+    {
+        return type switch
+        {
+            TypeBien.Studio => "1",
+            TypeBien.AppartementT2 => "2",
+            TypeBien.AppartementT4 => "4",
+            _ => "-"
+        };
+    }
+
+    private string EstMeuble(TypeBien type)
+    {
+        return type == TypeBien.Studio ? "Oui" : "Non";
     }
 
     // --- NAVIGATION ---

@@ -29,6 +29,8 @@ public class BienImmobilier : IPatrimoine
     public string idUnique;
     public Ville ville;
     public TypeBien type;
+    public int surfaceM2;   // Surface réelle du bien (aléatoire à la génération du marché)
+    public bool estMeuble;  // Bien proposé meublé ou non (aléatoire à la génération)
     
     // Bases financières
     public argent prixAchat;
@@ -68,6 +70,8 @@ public class BienImmobilier : IPatrimoine
             idUnique = this.idUnique,
             ville = this.ville,
             type = this.type,
+            surfaceM2 = this.surfaceM2,
+            estMeuble = this.estMeuble,
             
             prixAchat = new argent(this.prixAchat.centimes),
             valeurActuelle = new argent(this.valeurActuelle.centimes),
