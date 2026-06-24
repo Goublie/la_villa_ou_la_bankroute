@@ -1,179 +1,227 @@
 using System;
 using System.Collections.Generic;
-using UnityEngine;
 
 /// <summary>
-/// Moteur d'optimisation What-if qui simule la stratégie financière optimale "Fourmi"
-/// et la compare à la trajectoire réelle du joueur sur les 12 derniers mois.
+/// Adapte l'historique persistant du moteur What If aux composants de
+/// retrospective existants.
 /// </summary>
 public static class Optimizer
 {
     [Serializable]
     public struct SimulationResult
     {
-        public int indexMois;             // Index du mois dans le jeu
-        public Mois moisCalendrier;       // Mois civil (Juillet, Août, etc.)
-        public argent soldeCourant;       // Solde simulé du compte courant
-        public argent soldeEpargne;       // Solde simulé du compte d'épargne (Livret A)
-        public argent patrimoineTotal;    // Somme du courant et de l'épargne
+        public int indexMois;
+        public Mois moisCalendrier;
+
+        /// <summary>
+        /// Pour le reel : patrimoine total. Pour le What If : liquidites.
+        /// </summary>
+        public argent soldeCourant;
+
+        /// <summary>
+        /// Pour le reel : zero. Pour le What If : valeur boursiere.
+        /// </summary>
+        public argent soldeEpargne;
+
+        public argent patrimoineTotal;
     }
 
     /// <summary>
-    /// Simule la stratégie optimale "Fourmi" sur les 12 derniers mois de jeu.
-    /// La stratégie "Fourmi" consiste à maintenir le même niveau de vie (mêmes dépenses de consommation)
-    /// que le joueur, mais à optimiser les placements en conservant un buffer fixe de 500 € sur le compte
-    /// courant et en versant immédiatement tout excédent sur le Livret A.
+    /// Retourne les points du scenario alternatif reellement calcules mois par
+    /// mois par le nouveau moteur What If.
     /// </summary>
-    public static List<SimulationResult> SimulerFourmi(GameData gameData)
+    /// <remarks>
+    /// Pour une ancienne sauvegarde qui ne possede pas encore d'historique
+    /// What If, les snapshots sont exposes comme trajectoire neutre. Cette
+    /// compatibilite evite d'inventer une optimisation retroactive.
+    /// </remarks>
+    public static List<SimulationResult> ObtenirHistoriqueWhatIf(
+        GameData gameData)
     {
-        List<SimulationResult> resultats = new List<SimulationResult>();
-        if (gameData == null || gameData.historiqueSnapshots == null || gameData.historiqueSnapshots.Count < 2)
+        List<PointHistoriqueWhatIf> points =
+            ObtenirPointsWhatIf(gameData);
+
+        if (points.Count == 0)
         {
-            Debug.LogWarning("[What-If] Historique insuffisant pour lancer la simulation.");
-            return resultats;
+            return ObtenirHistoriqueSnapshots(gameData);
         }
 
-        int totalSnapshots = gameData.historiqueSnapshots.Count;
-        // La simulation porte sur les 12 derniers mois maximum (13 snapshots couvrent 12 intervalles)
-        int startIndex = Mathf.Max(0, totalSnapshots - 13);
+        List<SimulationResult> resultats =
+            new List<SimulationResult>();
 
-        // Initialisation de la simulation à partir du premier snapshot de la période
-        SnapshotEtatJeu snapshotInitial = gameData.historiqueSnapshots[startIndex];
-        
-        // Copie des soldes de départ de la période
-        argent courantSimule = snapshotInitial.joueur.comptes.ContainsKey("courant") 
-            ? snapshotInitial.joueur.comptes["courant"].GetSolde() 
-            : new argent(100000); // 1000 € par défaut
-
-        argent epargneSimule = snapshotInitial.joueur.comptes.ContainsKey("epargne") 
-            ? snapshotInitial.joueur.comptes["epargne"].GetSolde() 
-            : new argent(0); // 0 € si non ouvert
-
-        float interetsAccumules = 0f;
-        int moisEcoulesEpargne = 0;
-
-        // On enregistre le point de départ dans les résultats de simulation
-        resultats.Add(new SimulationResult
+        foreach (PointHistoriqueWhatIf point in points)
         {
-            indexMois = snapshotInitial.indexMois,
-            moisCalendrier = snapshotInitial.moisCalendrier,
-            soldeCourant = courantSimule,
-            soldeEpargne = epargneSimule,
-            patrimoineTotal = courantSimule + epargneSimule
-        });
-
-        // Simulation mois par mois
-        for (int i = startIndex + 1; i < totalSnapshots; i++)
-        {
-            SnapshotEtatJeu snapActuel = gameData.historiqueSnapshots[i];
-            
-            // 1. Versement du salaire réel perçu par le joueur ce mois-ci
-            argent salaireCeMois = snapActuel.joueur.salaire;
-            courantSimule += salaireCeMois;
-
-            // 2. Calcul et accumulation mensuelle des intérêts du Livret A
-            // Le taux appliqué est celui en vigueur dans l'économie réelle à ce mois (DonneesEnvironnement)
-            float tauxAnnuel = snapActuel.env.tauxEpargne;
-            interetsAccumules += epargneSimule.centimes * (tauxAnnuel / 12f);
-            moisEcoulesEpargne++;
-
-            // Versement annuel des intérêts en décembre (ou au bout de 12 mois)
-            if (snapActuel.moisCalendrier == Mois.Decembre || moisEcoulesEpargne >= 12)
-            {
-                int interetsVerse = Mathf.RoundToInt(interetsAccumules);
-                epargneSimule.centimes += interetsVerse;
-                interetsAccumules = 0f;
-                moisEcoulesEpargne = 0;
-            }
-
-            // 3. Déduction des dépenses réelles de consommation du joueur pour ce mois.
-            // On calcule la somme de toutes les dépenses réelles du joueur (transactions négatives
-            // du compte courant, hors transferts vers l'épargne). La stratégie Fourmi conserve
-            // le même niveau de vie (mêmes dépenses) mais optimise le placement de l'excédent.
-            long depensesConsommation = 0;
-            if (snapActuel.joueur.comptes.ContainsKey("courant"))
-            {
-                var compteCourantReel = snapActuel.joueur.comptes["courant"];
-                if (compteCourantReel.GetHistorique() != null && compteCourantReel.GetHistorique().GetHistorique() != null)
+            resultats.Add(
+                new SimulationResult
                 {
-                    foreach (var transac in compteCourantReel.GetHistorique().GetHistorique())
-                    {
-                        // Les transactions de type "courant vers epargne" sont des placements d'épargne,
-                        // pas des dépenses de consommation (nourriture, plaisir, etc.). On les exclut.
-                        if (transac.montant.centimes < 0 && transac.libelle != "courant vers epargne")
-                        {
-                            depensesConsommation += -transac.montant.centimes;
-                        }
-                    }
-                }
-            }
-            courantSimule.centimes -= (int)depensesConsommation;
-
-            // 4. Optimisation des flux : maintien d'un buffer courant de 500 € (50 000 centimes)
-            int cibleBuffer = 50000;
-            if (courantSimule.centimes > cibleBuffer)
-            {
-                // Transfert de l'excédent vers le compte d'épargne rémunéré
-                int excedent = courantSimule.centimes - cibleBuffer;
-                courantSimule.centimes -= excedent;
-                epargneSimule.centimes += excedent;
-            }
-            else if (courantSimule.centimes < cibleBuffer && epargneSimule.centimes > 0)
-            {
-                // Retrait depuis l'épargne vers le courant pour restaurer le buffer de sécurité
-                int manque = cibleBuffer - courantSimule.centimes;
-                int montantRetire = Mathf.Min(manque, epargneSimule.centimes);
-                epargneSimule.centimes -= montantRetire;
-                courantSimule.centimes += montantRetire;
-            }
-
-            // Enregistrement de l'état simulé à la fin du mois
-            resultats.Add(new SimulationResult
-            {
-                indexMois = snapActuel.indexMois,
-                moisCalendrier = snapActuel.moisCalendrier,
-                soldeCourant = courantSimule,
-                soldeEpargne = epargneSimule,
-                patrimoineTotal = courantSimule + epargneSimule
-            });
+                    indexMois = point.indexMois,
+                    moisCalendrier = point.moisCalendrier,
+                    soldeCourant = new argent(
+                        Math.Max(
+                            0,
+                            point.liquiditesAlternativesCentimes)),
+                    soldeEpargne = new argent(
+                        Math.Max(
+                            0,
+                            point.valeurBourseAlternativeCentimes)),
+                    patrimoineTotal = new argent(
+                        Math.Max(
+                            0,
+                            point.patrimoineAlternatifCentimes))
+                });
         }
 
         return resultats;
     }
 
     /// <summary>
-    /// Extrait la trajectoire financière réelle du joueur sur la même période.
+    /// Ancien nom conserve pour ne pas casser une scene ou un ancien prefab.
+    /// Le resultat provient maintenant du moteur What If, pas de la strategie
+    /// Fourmi historique.
     /// </summary>
-    public static List<SimulationResult> ObtenirHistoriqueReel(GameData gameData)
+    public static List<SimulationResult> SimulerFourmi(
+        GameData gameData)
     {
-        List<SimulationResult> resultats = new List<SimulationResult>();
-        if (gameData == null || gameData.historiqueSnapshots == null) return resultats;
+        return ObtenirHistoriqueWhatIf(gameData);
+    }
 
-        int totalSnapshots = gameData.historiqueSnapshots.Count;
-        int startIndex = Mathf.Max(0, totalSnapshots - 13);
+    /// <summary>
+    /// Retourne la trajectoire reelle enregistree en meme temps que le scenario
+    /// alternatif, garantissant des points parfaitement alignes.
+    /// </summary>
+    public static List<SimulationResult> ObtenirHistoriqueReel(
+        GameData gameData)
+    {
+        List<PointHistoriqueWhatIf> points =
+            ObtenirPointsWhatIf(gameData);
 
-        for (int i = startIndex; i < totalSnapshots; i++)
+        if (points.Count == 0)
         {
-            SnapshotEtatJeu snap = gameData.historiqueSnapshots[i];
-            
-            argent courant = snap.joueur.comptes.ContainsKey("courant")
-                ? snap.joueur.comptes["courant"].GetSolde()
-                : new argent(0);
+            return ObtenirHistoriqueSnapshots(gameData);
+        }
 
-            argent epargne = snap.joueur.comptes.ContainsKey("epargne")
-                ? snap.joueur.comptes["epargne"].GetSolde()
-                : new argent(0);
+        List<SimulationResult> resultats =
+            new List<SimulationResult>();
 
-            resultats.Add(new SimulationResult
-            {
-                indexMois = snap.indexMois,
-                moisCalendrier = snap.moisCalendrier,
-                soldeCourant = courant,
-                soldeEpargne = epargne,
-                patrimoineTotal = courant + epargne
-            });
+        foreach (PointHistoriqueWhatIf point in points)
+        {
+            int patrimoine = Math.Max(
+                0,
+                point.patrimoineReelCentimes);
+
+            resultats.Add(
+                new SimulationResult
+                {
+                    indexMois = point.indexMois,
+                    moisCalendrier = point.moisCalendrier,
+                    soldeCourant = new argent(patrimoine),
+                    soldeEpargne = new argent(0),
+                    patrimoineTotal = new argent(patrimoine)
+                });
         }
 
         return resultats;
+    }
+
+    private static List<PointHistoriqueWhatIf> ObtenirPointsWhatIf(
+        GameData gameData)
+    {
+        List<PointHistoriqueWhatIf> points =
+            new List<PointHistoriqueWhatIf>();
+
+        if (gameData?.whatIf?.historique == null)
+        {
+            return points;
+        }
+
+        foreach (
+            PointHistoriqueWhatIf point
+            in gameData.whatIf.historique)
+        {
+            if (point != null)
+            {
+                points.Add(point.Copier());
+            }
+        }
+
+        points.Sort(
+            (gauche, droite) =>
+                gauche.indexMois.CompareTo(droite.indexMois));
+
+        LimiterAuxTreizeDerniers(points);
+        return points;
+    }
+
+    /// <summary>
+    /// Compatibilite lecture seule pour les anciennes parties et les tests
+    /// d'architecture fondes sur SnapshotEtatJeu.
+    /// </summary>
+    private static List<SimulationResult> ObtenirHistoriqueSnapshots(
+        GameData gameData)
+    {
+        List<SnapshotEtatJeu> snapshots =
+            new List<SnapshotEtatJeu>();
+
+        if (gameData?.historiqueSnapshots == null)
+        {
+            return new List<SimulationResult>();
+        }
+
+        foreach (
+            SnapshotEtatJeu snapshot
+            in gameData.historiqueSnapshots)
+        {
+            if (snapshot != null)
+            {
+                snapshots.Add(snapshot);
+            }
+        }
+
+        snapshots.Sort(
+            (gauche, droite) =>
+                gauche.indexMois.CompareTo(droite.indexMois));
+
+        if (snapshots.Count > 13)
+        {
+            snapshots.RemoveRange(
+                0,
+                snapshots.Count - 13);
+        }
+
+        List<SimulationResult> resultats =
+            new List<SimulationResult>();
+
+        foreach (SnapshotEtatJeu snapshot in snapshots)
+        {
+            int patrimoine = snapshot.joueur != null
+                ? Math.Max(
+                    0,
+                    ServicePatrimoine.Calculer(
+                        snapshot.joueur).centimes)
+                : 0;
+
+            resultats.Add(
+                new SimulationResult
+                {
+                    indexMois = snapshot.indexMois,
+                    moisCalendrier = snapshot.moisCalendrier,
+                    soldeCourant = new argent(patrimoine),
+                    soldeEpargne = new argent(0),
+                    patrimoineTotal = new argent(patrimoine)
+                });
+        }
+
+        return resultats;
+    }
+
+    private static void LimiterAuxTreizeDerniers<T>(
+        List<T> elements)
+    {
+        if (elements != null && elements.Count > 13)
+        {
+            elements.RemoveRange(
+                0,
+                elements.Count - 13);
+        }
     }
 }

@@ -54,6 +54,7 @@ public sealed class ServicePassageMensuel
                 evenements,
                 gameData.nombreMoisPasses);
         ActualiserValeursOuverture(gameData.nombreMoisPasses);
+        ServiceCycleMensuelWhatIf.OuvrirMois(gameData);
 
         if (gameData.historiqueSnapshots.Count == 0)
         {
@@ -106,6 +107,10 @@ public sealed class ServicePassageMensuel
         Mois moisCloture = gameData.moisActuel;
 
         AppliquerEvolutionsCloture(indexCloture);
+        ServiceCycleMensuelWhatIf.CloturerMois(
+            gameData,
+            indexCloture,
+            moisCloture);
         EnregistrerSnapshot();
 
         bool changementAnnee = moisCloture == Mois.Decembre;
@@ -128,6 +133,7 @@ public sealed class ServicePassageMensuel
                 evenements,
                 gameData.nombreMoisPasses);
         OuvrirNouveauMois(gameData.nombreMoisPasses);
+        ServiceCycleMensuelWhatIf.OuvrirMois(gameData);
 
         return new ResultatPassageMensuel(
             true,
@@ -340,6 +346,12 @@ public sealed class ServicePassageMensuel
             gameData.evenements = new DonneesEvenements();
         }
         gameData.evenements.InitialiserSiNecessaire();
+
+        if (gameData.whatIf == null)
+        {
+            gameData.whatIf = new DonneesWhatIf();
+        }
+        gameData.whatIf.InitialiserSiNecessaire();
 
         if (gameData.historiqueSnapshots == null)
         {
