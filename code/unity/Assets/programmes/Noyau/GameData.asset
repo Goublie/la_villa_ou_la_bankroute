@@ -13,6 +13,7 @@ MonoBehaviour:
   m_Name: GameData
   m_EditorClassIdentifier: Assembly-CSharp::GameData
   joueur:
+    pretsImmobiliers: []
     salaire:
       centimes: 0
     energie: 100
@@ -20,11 +21,28 @@ MonoBehaviour:
     investissements: []
     bourse:
       positions: []
-      impactsMarche: []
-      dernierMoisObserve: 2
-      dernierMessage: 'Nvidia : +12,0 % ce mois.'
+      impactsMarche:
+      - evenementId: rumeur-0001-0003
+        actifId: cac40
+        moisDebut: 2
+        dureeMois: 1
+        coefficientPrix: 0.86
+        tendanceMensuellePourcent: 0
+        coefficientVolatilite: 1
+      - evenementId: rumeur-0001-0003
+        actifId: nvidia
+        moisDebut: 2
+        dureeMois: 1
+        coefficientPrix: 0.9
+        tendanceMensuellePourcent: 0
+        coefficientVolatilite: 1
+      dernierMoisObserve: 3
+      dernierMessage: 'CAC 40 : +20,3 % ce mois.'
       valeurMarcheCentimes: 0
-      moisValorisation: 2
+      moisValorisation: 3
+    immobilier:
+      biensPossedes: []
+      annoncesActuelles: []
     entrepreneuriat:
       projet:
         secteur: 0
@@ -40,7 +58,7 @@ MonoBehaviour:
         bonusCompatibilite: 0
         valorisationCentimes: 6175000
       dernierMessage: Choisissez un secteur, un public et une technologie.
-      dernierMoisObserve: 2
+      dernierMoisObserve: 3
       migrationPrefabEffectuee: 0
       etatAleatoire: 2463534242
     salariat:
@@ -60,31 +78,441 @@ MonoBehaviour:
       budgetMensuelMinutes: 30
       allocationValidee: 1
       banque:
-        minutesInitiales: 4
-        secondesRestantes: 240
+        minutesInitiales: 19
+        secondesRestantes: 1055.2462
       actualites:
-        minutesInitiales: 4
-        secondesRestantes: 240
+        minutesInitiales: 11
+        secondesRestantes: 660
       salariat:
-        minutesInitiales: 5
-        secondesRestantes: 300
+        minutesInitiales: 0
+        secondesRestantes: 0
       bourse:
-        minutesInitiales: 6
-        secondesRestantes: 360
+        minutesInitiales: 0
+        secondesRestantes: 0
       entrepreneuriat:
-        minutesInitiales: 5
-        secondesRestantes: 300
+        minutesInitiales: 0
+        secondesRestantes: 0
       immobilier:
-        minutesInitiales: 6
-        secondesRestantes: 360
+        minutesInitiales: 0
+        secondesRestantes: 0
+    niveauVie:
+      logement: 1
+      sport: 0
+      transport: 0
+      alimentation: 1
+      vieSociale: 0
   env:
     tauxEpargne: 0.0175
-  nombreMoisPasses: 2
-  moisActuel: 8
+  evenements:
+    rumeurs:
+    - id: rumeur-0000-0000
+      evenementId: 105
+      sourceId: src_tiptop
+      categorie: Boursiers
+      titrePublic: "Rumeur : Inondations records \xE0 Bordeaux"
+      textePublic: "Des informations non confirmees evoquent : Inondations records
+        \xE0 Bordeaux."
+      moisApparition: 0
+      moisResolution: 1
+      probabiliteConfirmation: 0.15
+      etat: 2
+      tirageEffectue: 1
+      resultatConfirmation: 0
+    - id: rumeur-0000-0001
+      evenementId: 047
+      sourceId: src_loups
+      categorie: Boursiers
+      titrePublic: "Rumeur : D\xE9couverte d'uranium en France"
+      textePublic: "Des informations non confirmees evoquent : D\xE9couverte d'uranium
+        en France."
+      moisApparition: 0
+      moisResolution: 1
+      probabiliteConfirmation: 0.5
+      etat: 2
+      tirageEffectue: 1
+      resultatConfirmation: 0
+    - id: rumeur-0001-0002
+      evenementId: 101
+      sourceId: src_bbc_noise
+      categorie: Boursiers
+      titrePublic: "Rumeur : R\xE9glementation Airbnb radicale"
+      textePublic: "Des informations non confirmees evoquent : R\xE9glementation
+        Airbnb radicale."
+      moisApparition: 1
+      moisResolution: 2
+      probabiliteConfirmation: 0.75
+      etat: 2
+      tirageEffectue: 1
+      resultatConfirmation: 0
+    - id: rumeur-0001-0003
+      evenementId: 050
+      sourceId: src_the_world
+      categorie: Boursiers
+      titrePublic: "Rumeur : Rationnement d'\xE9lectricit\xE9 industriel"
+      textePublic: "Des informations non confirmees evoquent : Rationnement d'\xE9lectricit\xE9
+        industriel."
+      moisApparition: 1
+      moisResolution: 2
+      probabiliteConfirmation: 0.65
+      etat: 1
+      tirageEffectue: 1
+      resultatConfirmation: 1
+    - id: rumeur-0002-0004
+      evenementId: 080
+      sourceId: src_fourbes
+      categorie: Boursiers
+      titrePublic: "Rumeur : D\xE9mon\xE9tisation d'une monnaie fiat"
+      textePublic: "Des informations non confirmees evoquent : D\xE9mon\xE9tisation
+        d'une monnaie fiat."
+      moisApparition: 2
+      moisResolution: 3
+      probabiliteConfirmation: 0.6
+      etat: 1
+      tirageEffectue: 1
+      resultatConfirmation: 1
+    - id: rumeur-0002-0005
+      evenementId: 062
+      sourceId: src_bbc_noise
+      categorie: Boursiers
+      titrePublic: "Rumeur : Bitcoin comme monnaie de r\xE9serve"
+      textePublic: "Des informations non confirmees evoquent : Bitcoin comme monnaie
+        de r\xE9serve."
+      moisApparition: 2
+      moisResolution: 3
+      probabiliteConfirmation: 0.75
+      etat: 2
+      tirageEffectue: 1
+      resultatConfirmation: 0
+    - id: rumeur-0003-0006
+      evenementId: 172
+      sourceId: src_alienation
+      categorie: Professionnels
+      titrePublic: 'Rumeur : Obtention d''une certification Cloud'
+      textePublic: 'Des informations non confirmees evoquent : Obtention d''une certification
+        Cloud.'
+      moisApparition: 3
+      moisResolution: 4
+      probabiliteConfirmation: 0.55
+      etat: 0
+      tirageEffectue: 0
+      resultatConfirmation: 0
+    - id: rumeur-0003-0007
+      evenementId: 008
+      sourceId: src_bfmtkt
+      categorie: Boursiers
+      titrePublic: "Rumeur : Boycott des r\xE9seaux sociaux"
+      textePublic: "Des informations non confirmees evoquent : Boycott des r\xE9seaux
+        sociaux."
+      moisApparition: 3
+      moisResolution: 4
+      probabiliteConfirmation: 0.4
+      etat: 0
+      tirageEffectue: 0
+      resultatConfirmation: 0
+    evenementsConfirmes:
+    - definitionId: 050
+      rumeurId: rumeur-0001-0003
+      sourceId: src_the_world
+      categorie: Boursiers
+      importance: Forte
+      titre: "Rationnement d'\xE9lectricit\xE9 industriel"
+      message: "\U0001F4E2 BULLETIN \xC9CONOMIQUE : Changement de tendance important
+        rep\xE9r\xE9 sur l'actif : Rationnement d'\xE9lectricit\xE9 industriel."
+      moisConfirmation: 2
+      etat: 0
+      impacts:
+      - actif: CAC 40
+        variation: -0.14
+      - actif: Nvidia
+        variation: -0.1
+      consommeParMoteurImpacts: 1
+      etatTraitementImpacts: 1
+      diagnosticTraitementImpacts: 
+    - definitionId: 080
+      rumeurId: rumeur-0002-0004
+      sourceId: src_fourbes
+      categorie: Boursiers
+      importance: Forte
+      titre: "D\xE9mon\xE9tisation d'une monnaie fiat"
+      message: "\U0001F4E2 BULLETIN \xC9CONOMIQUE : Changement de tendance important
+        rep\xE9r\xE9 sur l'actif : D\xE9mon\xE9tisation d'une monnaie fiat."
+      moisConfirmation: 3
+      etat: 0
+      impacts:
+      - actif: Bitcoin
+        variation: 0.35
+      - actif: Or
+        variation: 0.12
+      consommeParMoteurImpacts: 0
+      etatTraitementImpacts: 2
+      diagnosticTraitementImpacts: 'Cible boursiere inconnue pour l''evenement rumeur-0002-0004
+        : Or.'
+    publications:
+    - id: publication-0
+      type: 0
+      objetId: rumeur-0000-0000
+      sourceId: src_tiptop
+      sourceNom: TipTop
+      categorie: Boursiers
+      importance: 
+      titre: "Rumeur : Inondations records \xE0 Bordeaux"
+      texte: "Des informations non confirmees evoquent : Inondations records \xE0
+        Bordeaux."
+      moisPublication: 0
+      ordrePublication: 0
+      etatRumeur: 2
+    - id: publication-1
+      type: 0
+      objetId: rumeur-0000-0001
+      sourceId: src_loups
+      sourceNom: L'Oups
+      categorie: Boursiers
+      importance: 
+      titre: "Rumeur : D\xE9couverte d'uranium en France"
+      texte: "Des informations non confirmees evoquent : D\xE9couverte d'uranium
+        en France."
+      moisPublication: 0
+      ordrePublication: 1
+      etatRumeur: 2
+    - id: publication-2
+      type: 0
+      objetId: rumeur-0001-0002
+      sourceId: src_bbc_noise
+      sourceNom: BBC Noise
+      categorie: Boursiers
+      importance: 
+      titre: "Rumeur : R\xE9glementation Airbnb radicale"
+      texte: "Des informations non confirmees evoquent : R\xE9glementation Airbnb
+        radicale."
+      moisPublication: 1
+      ordrePublication: 2
+      etatRumeur: 2
+    - id: publication-3
+      type: 0
+      objetId: rumeur-0001-0003
+      sourceId: src_the_world
+      sourceNom: The World
+      categorie: Boursiers
+      importance: 
+      titre: "Rumeur : Rationnement d'\xE9lectricit\xE9 industriel"
+      texte: "Des informations non confirmees evoquent : Rationnement d'\xE9lectricit\xE9
+        industriel."
+      moisPublication: 1
+      ordrePublication: 3
+      etatRumeur: 1
+    - id: publication-4
+      type: 1
+      objetId: rumeur-0001-0003
+      sourceId: src_the_world
+      sourceNom: The World
+      categorie: Boursiers
+      importance: Forte
+      titre: "Rationnement d'\xE9lectricit\xE9 industriel"
+      texte: "\U0001F4E2 BULLETIN \xC9CONOMIQUE : Changement de tendance important
+        rep\xE9r\xE9 sur l'actif : Rationnement d'\xE9lectricit\xE9 industriel."
+      moisPublication: 2
+      ordrePublication: 4
+      etatRumeur: 1
+    - id: publication-5
+      type: 0
+      objetId: rumeur-0002-0004
+      sourceId: src_fourbes
+      sourceNom: Fourbes
+      categorie: Boursiers
+      importance: 
+      titre: "Rumeur : D\xE9mon\xE9tisation d'une monnaie fiat"
+      texte: "Des informations non confirmees evoquent : D\xE9mon\xE9tisation d'une
+        monnaie fiat."
+      moisPublication: 2
+      ordrePublication: 5
+      etatRumeur: 1
+    - id: publication-6
+      type: 0
+      objetId: rumeur-0002-0005
+      sourceId: src_bbc_noise
+      sourceNom: BBC Noise
+      categorie: Boursiers
+      importance: 
+      titre: "Rumeur : Bitcoin comme monnaie de r\xE9serve"
+      texte: "Des informations non confirmees evoquent : Bitcoin comme monnaie de
+        r\xE9serve."
+      moisPublication: 2
+      ordrePublication: 6
+      etatRumeur: 2
+    - id: publication-7
+      type: 1
+      objetId: rumeur-0002-0004
+      sourceId: src_fourbes
+      sourceNom: Fourbes
+      categorie: Boursiers
+      importance: Forte
+      titre: "D\xE9mon\xE9tisation d'une monnaie fiat"
+      texte: "\U0001F4E2 BULLETIN \xC9CONOMIQUE : Changement de tendance important
+        rep\xE9r\xE9 sur l'actif : D\xE9mon\xE9tisation d'une monnaie fiat."
+      moisPublication: 3
+      ordrePublication: 7
+      etatRumeur: 1
+    - id: publication-8
+      type: 0
+      objetId: rumeur-0003-0006
+      sourceId: src_alienation
+      sourceNom: "Ali\xE9nation"
+      categorie: Professionnels
+      importance: 
+      titre: 'Rumeur : Obtention d''une certification Cloud'
+      texte: 'Des informations non confirmees evoquent : Obtention d''une certification
+        Cloud.'
+      moisPublication: 3
+      ordrePublication: 8
+      etatRumeur: 0
+    - id: publication-9
+      type: 0
+      objetId: rumeur-0003-0007
+      sourceId: src_bfmtkt
+      sourceNom: BFMTKT
+      categorie: Boursiers
+      importance: 
+      titre: "Rumeur : Boycott des r\xE9seaux sociaux"
+      texte: "Des informations non confirmees evoquent : Boycott des r\xE9seaux sociaux."
+      moisPublication: 3
+      ordrePublication: 9
+      etatRumeur: 0
+    dernierMoisTraite: 3
+    prochaineSequenceRumeur: 8
+    prochaineSequencePublication: 10
+    graineInitiale: 3473773228
+    etatAleatoire: 2537236893
+  whatIf:
+    initialisee: 1
+    moisInitialisation: 2
+    dernierMoisTraite: 2
+    capitalInitialCentimes: 100000
+    liquiditesCentimes: 0
+    portefeuille:
+      positions:
+      - actifId: nvidia
+        quantite: 2.5895972
+        coutTotalCentimes: 45854
+      impactsMarche:
+      - evenementId: rumeur-0001-0003
+        actifId: cac40
+        moisDebut: 2
+        dureeMois: 1
+        coefficientPrix: 0.86
+        tendanceMensuellePourcent: 0
+        coefficientVolatilite: 1
+      - evenementId: rumeur-0001-0003
+        actifId: nvidia
+        moisDebut: 2
+        dureeMois: 1
+        coefficientPrix: 0.9
+        tendanceMensuellePourcent: 0
+        coefficientVolatilite: 1
+      dernierMoisObserve: 2
+      dernierMessage: Selectionnez un actif pour commencer.
+      valeurMarcheCentimes: 45854
+      moisValorisation: 3
+    configuration:
+      horizonMois: 3
+      largeurFaisceau: 25
+      pasAllocationPourcent: 25
+      penaliteRisque: 0.15
+      penaliteDrawdown: 0.25
+      coutTransactionCentimes: 0
+    decisions:
+    - indexMois: 2
+      strategieId: alphabet_100__bitcoin_0__cac40_0__cash_0__nvidia_0__totalenergies_0
+      allocations:
+      - actifId: alphabet
+        pourcentage: 100
+      - actifId: bitcoin
+        pourcentage: 0
+      - actifId: cac40
+        pourcentage: 0
+      - actifId: cash
+        pourcentage: 0
+      - actifId: nvidia
+        pourcentage: 0
+      - actifId: totalenergies
+        pourcentage: 0
+      evenementsConnusIds:
+      - rumeur-0001-0003
+      explication: Rendement estime 1.07 %, risque 1.56 %, drawdown 0.00 %, cout
+        de reallocation 0 centimes.
+      rendementAttenduPourcent: 1.0682789
+      risqueEstime: 1.5588672
+      drawdownEstime: 0
+      score: 100831.67260291245
+    - indexMois: 3
+      strategieId: alphabet_0__bitcoin_0__cac40_0__cash_0__nvidia_100__totalenergies_0
+      allocations:
+      - actifId: alphabet
+        pourcentage: 0
+      - actifId: bitcoin
+        pourcentage: 0
+      - actifId: cac40
+        pourcentage: 0
+      - actifId: cash
+        pourcentage: 0
+      - actifId: nvidia
+        pourcentage: 100
+      - actifId: totalenergies
+        pourcentage: 0
+      evenementsConnusIds: []
+      explication: Rendement estime 2.36 %, risque 6.65 %, drawdown 0.00 %, cout
+        de reallocation 0 centimes.
+      rendementAttenduPourcent: 2.356133
+      risqueEstime: 6.6500773
+      drawdownEstime: 0
+      score: 46465.82788637288
+    historique:
+    - indexMois: 2
+      moisCalendrier: 8
+      patrimoineReelCentimes: 45000
+      patrimoineAlternatifCentimes: 45000
+      liquiditesAlternativesCentimes: 0
+      valeurBourseAlternativeCentimes: 45000
+      ecartCumuleCentimes: 0
+    ordres:
+    - indexMois: 2
+      type: 0
+      actifId: alphabet
+      quantite: 4.660484
+      prixUnitaireCentimes: 21457
+      montantCentimes: 100000
+      coutTransactionCentimes: 0
+      raison: Reallocation mensuelle
+    - indexMois: 2
+      type: 2
+      actifId: alphabet
+      quantite: 2.563266
+      prixUnitaireCentimes: 21457
+      montantCentimes: 55000
+      coutTransactionCentimes: 0
+      raison: Couverture des depenses externes
+    - indexMois: 3
+      type: 0
+      actifId: nvidia
+      quantite: 2.5895972
+      prixUnitaireCentimes: 17707
+      montantCentimes: 45854
+      coutTransactionCentimes: 0
+      raison: Reallocation mensuelle
+    - indexMois: 3
+      type: 1
+      actifId: alphabet
+      quantite: 2.0972178
+      prixUnitaireCentimes: 21864
+      montantCentimes: 45854
+      coutTransactionCentimes: 0
+      raison: Reallocation mensuelle
+  nombreMoisPasses: 3
+  moisActuel: 9
   historiqueSnapshots:
   - indexMois: 0
     moisCalendrier: 6
     joueur:
+      pretsImmobiliers: []
       salaire:
         centimes: 0
       energie: 100
@@ -97,6 +525,9 @@ MonoBehaviour:
         dernierMessage: 'CAC 40 : +0,0 % ce mois.'
         valeurMarcheCentimes: 0
         moisValorisation: 0
+      immobilier:
+        biensPossedes: []
+        annoncesActuelles: []
       entrepreneuriat:
         projet:
           secteur: 0
@@ -149,11 +580,27 @@ MonoBehaviour:
         immobilier:
           minutesInitiales: 0
           secondesRestantes: 0
+      niveauVie:
+        logement: 1
+        sport: 1
+        transport: 1
+        alimentation: 1
+        vieSociale: 1
     env:
       tauxEpargne: 0.0175
+    evenements:
+      rumeurs: []
+      evenementsConfirmes: []
+      publications: []
+      dernierMoisTraite: -1
+      prochaineSequenceRumeur: 0
+      prochaineSequencePublication: 0
+      graineInitiale: 0
+      etatAleatoire: 0
   - indexMois: 0
     moisCalendrier: 6
     joueur:
+      pretsImmobiliers: []
       salaire:
         centimes: 10000000
       energie: 100
@@ -166,6 +613,9 @@ MonoBehaviour:
         dernierMessage: 'CAC 40 : +0,0 % ce mois.'
         valeurMarcheCentimes: 0
         moisValorisation: 0
+      immobilier:
+        biensPossedes: []
+        annoncesActuelles: []
       entrepreneuriat:
         projet:
           secteur: 0
@@ -218,11 +668,27 @@ MonoBehaviour:
         immobilier:
           minutesInitiales: 0
           secondesRestantes: 0
+      niveauVie:
+        logement: 1
+        sport: 1
+        transport: 1
+        alimentation: 1
+        vieSociale: 1
     env:
       tauxEpargne: 0.0175
+    evenements:
+      rumeurs: []
+      evenementsConfirmes: []
+      publications: []
+      dernierMoisTraite: -1
+      prochaineSequenceRumeur: 0
+      prochaineSequencePublication: 0
+      graineInitiale: 0
+      etatAleatoire: 0
   - indexMois: 1
     moisCalendrier: 7
     joueur:
+      pretsImmobiliers: []
       salaire:
         centimes: 10000000
       energie: 100
@@ -235,6 +701,9 @@ MonoBehaviour:
         dernierMessage: 'Nvidia : +12,1 % ce mois.'
         valeurMarcheCentimes: 0
         moisValorisation: 1
+      immobilier:
+        biensPossedes: []
+        annoncesActuelles: []
       entrepreneuriat:
         projet:
           secteur: 0
@@ -287,5 +756,309 @@ MonoBehaviour:
         immobilier:
           minutesInitiales: 6
           secondesRestantes: 360
+      niveauVie:
+        logement: 1
+        sport: 1
+        transport: 1
+        alimentation: 1
+        vieSociale: 1
     env:
       tauxEpargne: 0.0175
+    evenements:
+      rumeurs: []
+      evenementsConfirmes: []
+      publications: []
+      dernierMoisTraite: -1
+      prochaineSequenceRumeur: 0
+      prochaineSequencePublication: 0
+      graineInitiale: 0
+      etatAleatoire: 0
+  - indexMois: 2
+    moisCalendrier: 8
+    joueur:
+      pretsImmobiliers: []
+      salaire:
+        centimes: 10000000
+      energie: 79
+      santeMentale: 79
+      investissements: []
+      bourse:
+        positions: []
+        impactsMarche:
+        - evenementId: rumeur-0001-0003
+          actifId: cac40
+          moisDebut: 2
+          dureeMois: 1
+          coefficientPrix: 0.86
+          tendanceMensuellePourcent: 0
+          coefficientVolatilite: 1
+        - evenementId: rumeur-0001-0003
+          actifId: nvidia
+          moisDebut: 2
+          dureeMois: 1
+          coefficientPrix: 0.9
+          tendanceMensuellePourcent: 0
+          coefficientVolatilite: 1
+        dernierMoisObserve: 2
+        dernierMessage: 'CAC 40 : -14,2 % ce mois.'
+        valeurMarcheCentimes: 0
+        moisValorisation: 2
+      immobilier:
+        biensPossedes: []
+        annoncesActuelles: []
+      entrepreneuriat:
+        projet:
+          secteur: 0
+          publicCible: 0
+          technologie: 0
+          estCree: 0
+          progressionProduit: 0
+          tractionMarche: 0
+          reputation: 5
+          connaissanceMarche: 0
+          tresorerieCentimes: 0
+          nombrePivots: 0
+          bonusCompatibilite: 0
+          valorisationCentimes: 6175000
+        dernierMessage: Choisissez un secteur, un public et une technologie.
+        dernierMoisObserve: 2
+        migrationPrefabEffectuee: 0
+        etatAleatoire: 2463534242
+      salariat:
+        aEmploi: 0
+        entreprise: Aucune
+        salaireMensuelCentimes: 0
+        heuresSemaine: 0
+        stressPoste: 0
+        ancienneteMois: 0
+        experience: 0
+        fatigue: 20
+        burnout: 0
+        relationPatron: 0
+        relationCollegues: 0
+        satisfaction: 0
+      tempsApplications:
+        budgetMensuelMinutes: 30
+        allocationValidee: 1
+        banque:
+          minutesInitiales: 4
+          secondesRestantes: 101.14579
+        actualites:
+          minutesInitiales: 4
+          secondesRestantes: 240
+        salariat:
+          minutesInitiales: 5
+          secondesRestantes: 300
+        bourse:
+          minutesInitiales: 6
+          secondesRestantes: 360
+        entrepreneuriat:
+          minutesInitiales: 5
+          secondesRestantes: 300
+        immobilier:
+          minutesInitiales: 6
+          secondesRestantes: 356.05978
+      niveauVie:
+        logement: 1
+        sport: 0
+        transport: 0
+        alimentation: 1
+        vieSociale: 0
+    env:
+      tauxEpargne: 0.0175
+    evenements:
+      rumeurs:
+      - id: rumeur-0000-0000
+        evenementId: 105
+        sourceId: src_tiptop
+        categorie: Boursiers
+        titrePublic: "Rumeur : Inondations records \xE0 Bordeaux"
+        textePublic: "Des informations non confirmees evoquent : Inondations records
+          \xE0 Bordeaux."
+        moisApparition: 0
+        moisResolution: 1
+        probabiliteConfirmation: 0.15
+        etat: 2
+        tirageEffectue: 1
+        resultatConfirmation: 0
+      - id: rumeur-0000-0001
+        evenementId: 047
+        sourceId: src_loups
+        categorie: Boursiers
+        titrePublic: "Rumeur : D\xE9couverte d'uranium en France"
+        textePublic: "Des informations non confirmees evoquent : D\xE9couverte d'uranium
+          en France."
+        moisApparition: 0
+        moisResolution: 1
+        probabiliteConfirmation: 0.5
+        etat: 2
+        tirageEffectue: 1
+        resultatConfirmation: 0
+      - id: rumeur-0001-0002
+        evenementId: 101
+        sourceId: src_bbc_noise
+        categorie: Boursiers
+        titrePublic: "Rumeur : R\xE9glementation Airbnb radicale"
+        textePublic: "Des informations non confirmees evoquent : R\xE9glementation
+          Airbnb radicale."
+        moisApparition: 1
+        moisResolution: 2
+        probabiliteConfirmation: 0.75
+        etat: 2
+        tirageEffectue: 1
+        resultatConfirmation: 0
+      - id: rumeur-0001-0003
+        evenementId: 050
+        sourceId: src_the_world
+        categorie: Boursiers
+        titrePublic: "Rumeur : Rationnement d'\xE9lectricit\xE9 industriel"
+        textePublic: "Des informations non confirmees evoquent : Rationnement d'\xE9lectricit\xE9
+          industriel."
+        moisApparition: 1
+        moisResolution: 2
+        probabiliteConfirmation: 0.65
+        etat: 1
+        tirageEffectue: 1
+        resultatConfirmation: 1
+      - id: rumeur-0002-0004
+        evenementId: 080
+        sourceId: src_fourbes
+        categorie: Boursiers
+        titrePublic: "Rumeur : D\xE9mon\xE9tisation d'une monnaie fiat"
+        textePublic: "Des informations non confirmees evoquent : D\xE9mon\xE9tisation
+          d'une monnaie fiat."
+        moisApparition: 2
+        moisResolution: 3
+        probabiliteConfirmation: 0.6
+        etat: 0
+        tirageEffectue: 0
+        resultatConfirmation: 0
+      - id: rumeur-0002-0005
+        evenementId: 062
+        sourceId: src_bbc_noise
+        categorie: Boursiers
+        titrePublic: "Rumeur : Bitcoin comme monnaie de r\xE9serve"
+        textePublic: "Des informations non confirmees evoquent : Bitcoin comme monnaie
+          de r\xE9serve."
+        moisApparition: 2
+        moisResolution: 3
+        probabiliteConfirmation: 0.75
+        etat: 0
+        tirageEffectue: 0
+        resultatConfirmation: 0
+      evenementsConfirmes:
+      - definitionId: 050
+        rumeurId: rumeur-0001-0003
+        sourceId: src_the_world
+        categorie: Boursiers
+        importance: Forte
+        titre: "Rationnement d'\xE9lectricit\xE9 industriel"
+        message: "\U0001F4E2 BULLETIN \xC9CONOMIQUE : Changement de tendance important
+          rep\xE9r\xE9 sur l'actif : Rationnement d'\xE9lectricit\xE9 industriel."
+        moisConfirmation: 2
+        etat: 0
+        impacts:
+        - actif: CAC 40
+          variation: -0.14
+        - actif: Nvidia
+          variation: -0.1
+        consommeParMoteurImpacts: 1
+        etatTraitementImpacts: 1
+        diagnosticTraitementImpacts: 
+      publications:
+      - id: publication-0
+        type: 0
+        objetId: rumeur-0000-0000
+        sourceId: src_tiptop
+        sourceNom: TipTop
+        categorie: Boursiers
+        importance: 
+        titre: "Rumeur : Inondations records \xE0 Bordeaux"
+        texte: "Des informations non confirmees evoquent : Inondations records \xE0
+          Bordeaux."
+        moisPublication: 0
+        ordrePublication: 0
+        etatRumeur: 2
+      - id: publication-1
+        type: 0
+        objetId: rumeur-0000-0001
+        sourceId: src_loups
+        sourceNom: L'Oups
+        categorie: Boursiers
+        importance: 
+        titre: "Rumeur : D\xE9couverte d'uranium en France"
+        texte: "Des informations non confirmees evoquent : D\xE9couverte d'uranium
+          en France."
+        moisPublication: 0
+        ordrePublication: 1
+        etatRumeur: 2
+      - id: publication-2
+        type: 0
+        objetId: rumeur-0001-0002
+        sourceId: src_bbc_noise
+        sourceNom: BBC Noise
+        categorie: Boursiers
+        importance: 
+        titre: "Rumeur : R\xE9glementation Airbnb radicale"
+        texte: "Des informations non confirmees evoquent : R\xE9glementation Airbnb
+          radicale."
+        moisPublication: 1
+        ordrePublication: 2
+        etatRumeur: 2
+      - id: publication-3
+        type: 0
+        objetId: rumeur-0001-0003
+        sourceId: src_the_world
+        sourceNom: The World
+        categorie: Boursiers
+        importance: 
+        titre: "Rumeur : Rationnement d'\xE9lectricit\xE9 industriel"
+        texte: "Des informations non confirmees evoquent : Rationnement d'\xE9lectricit\xE9
+          industriel."
+        moisPublication: 1
+        ordrePublication: 3
+        etatRumeur: 1
+      - id: publication-4
+        type: 1
+        objetId: rumeur-0001-0003
+        sourceId: src_the_world
+        sourceNom: The World
+        categorie: Boursiers
+        importance: Forte
+        titre: "Rationnement d'\xE9lectricit\xE9 industriel"
+        texte: "\U0001F4E2 BULLETIN \xC9CONOMIQUE : Changement de tendance important
+          rep\xE9r\xE9 sur l'actif : Rationnement d'\xE9lectricit\xE9 industriel."
+        moisPublication: 2
+        ordrePublication: 4
+        etatRumeur: 1
+      - id: publication-5
+        type: 0
+        objetId: rumeur-0002-0004
+        sourceId: src_fourbes
+        sourceNom: Fourbes
+        categorie: Boursiers
+        importance: 
+        titre: "Rumeur : D\xE9mon\xE9tisation d'une monnaie fiat"
+        texte: "Des informations non confirmees evoquent : D\xE9mon\xE9tisation d'une
+          monnaie fiat."
+        moisPublication: 2
+        ordrePublication: 5
+        etatRumeur: 0
+      - id: publication-6
+        type: 0
+        objetId: rumeur-0002-0005
+        sourceId: src_bbc_noise
+        sourceNom: BBC Noise
+        categorie: Boursiers
+        importance: 
+        titre: "Rumeur : Bitcoin comme monnaie de r\xE9serve"
+        texte: "Des informations non confirmees evoquent : Bitcoin comme monnaie
+          de r\xE9serve."
+        moisPublication: 2
+        ordrePublication: 6
+        etatRumeur: 0
+      dernierMoisTraite: 2
+      prochaineSequenceRumeur: 6
+      prochaineSequencePublication: 7
+      graineInitiale: 3473773228
+      etatAleatoire: 3277196731

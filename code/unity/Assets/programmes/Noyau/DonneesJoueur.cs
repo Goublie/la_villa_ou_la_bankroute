@@ -68,6 +68,11 @@ public class DonneesJoueur
     public DonneesRepartitionTemps tempsApplications;
 
     /// <summary>
+    /// Choix de niveau de vie du joueur (Logement, Sport, Transport, Alimentation, Vie Sociale).
+    /// </summary>
+    public DonneesNiveauVie niveauVie;
+
+    /// <summary>
     /// Cree un joueur avec son compte courant initial.
     /// </summary>
     public DonneesJoueur()
@@ -132,6 +137,11 @@ public class DonneesJoueur
             tempsApplications = new DonneesRepartitionTemps();
         }
         tempsApplications.InitialiserSiNecessaire();
+
+        if (niveauVie == null)
+        {
+            niveauVie = new DonneesNiveauVie();
+        }
     }
 
     /// <summary>
@@ -170,7 +180,10 @@ public class DonneesJoueur
                 : new DonneesSalariat(),
             tempsApplications = tempsApplications != null
                 ? tempsApplications.Copier()
-                : new DonneesRepartitionTemps()
+                : new DonneesRepartitionTemps(),
+            niveauVie = niveauVie != null
+                ? niveauVie.Copier()
+                : new DonneesNiveauVie()
         };
 
         if (comptes != null)
