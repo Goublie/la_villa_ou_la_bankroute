@@ -68,7 +68,7 @@ public sealed class GraphiqueBourseUI
             out int dernierMois);
         for (int mois = premierMois; mois <= dernierMois; mois++)
         {
-            string etiquetteMois = (mois == moisActuel) ? "Actuel" : ("M" + (mois - moisActuel));
+            string etiquetteMois = ObtenirNomMois(mois);
             graphique.AddXAxisData(etiquetteMois);
             graphique.AddData(0, service.ObtenirPrix(actif, mois));
         }
@@ -197,5 +197,27 @@ public sealed class GraphiqueBourseUI
         premierMois = Mathf.Max(
             0,
             dernierMois - NombrePoints + 1);
+    }
+
+    private string ObtenirNomMois(int moisAbsolu)
+    {
+        // Le jeu commence au mois 0, qui correspond à Juillet (index 6)
+        int indexMois = (6 + moisAbsolu) % 12;
+        switch (indexMois)
+        {
+            case 0: return "Janvier";
+            case 1: return "Février";
+            case 2: return "Mars";
+            case 3: return "Avril";
+            case 4: return "Mai";
+            case 5: return "Juin";
+            case 6: return "Juillet";
+            case 7: return "Août";
+            case 8: return "Septembre";
+            case 9: return "Octobre";
+            case 10: return "Novembre";
+            case 11: return "Décembre";
+            default: return "";
+        }
     }
 }
