@@ -933,7 +933,12 @@
         "titre": "Guerre commerciale panneaux solaires",
         "importance": "Faible",
         "message": "📢 BULLETIN ÉCONOMIQUE : Changement de tendance important repéré sur l'actif : Guerre commerciale panneaux solaires.",
-        "impacts": []
+        "impacts": [
+            {
+                "actif":"Énergie",
+                "variation": 0.2
+            }
+        ]
     },
     {
         "id": "058",
@@ -1965,7 +1970,20 @@
         "titre": "Passion Trading compulsif",
         "importance": "Modérée",
         "message": "📱 NOTIFICATION PHONE : Il est 3h du matin, vous êtes pris d'une frénésie spéculative sur un coup de tête après avoir lu un thread Reddit. Vous achetez massivement.",
-        "impacts": []
+        "impacts": [
+            {
+                "actif":"Compte courant",
+                "variation": -0.4
+            },
+            {
+                "actif":"Sécurité des revenus",
+                "variation":-0.1
+            },
+            {
+                "actif":"Instabilité",
+                "variation": -0.25
+            }
+        ]
     },
     {
         "id": "128",
@@ -1999,7 +2017,15 @@
         "titre": "Adoption d'un chien de race",
         "importance": "Faible",
         "message": "🐕 COUP DE COEUR : Vous craquez devant ce chiot samoyède pure race. Vous repartez avec lui, son carnet de santé et un budget croquettes revu à la hausse.",
-        "impacts": []
+        "impacts": [
+            {
+                "actif":"Bonheur",
+                "variation":0.3
+            },
+            {
+                "actif":"Compte courant"
+            }
+        ]
     },
     {
         "id": "131",
