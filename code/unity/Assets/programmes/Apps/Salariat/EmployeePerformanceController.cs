@@ -11,15 +11,12 @@ public class EmployeePerformanceController : MonoBehaviour
     [Header("Sliders (progress bars)")]
     public Slider experienceSlider;
     public Slider fatigueSlider;
-    public Slider burnoutSlider;
 
     [Header("Value labels")]
     public TextMeshProUGUI experienceValueText;
     public TextMeshProUGUI fatigueValueText;
-    public TextMeshProUGUI burnoutValueText;
 
-    [Header("Burn-out game over")]
-    public GameObject panelBurnoutGameOver;
+    [Header("UI Panneaux")]
     public GameObject panelPosteActuel;
     public GameObject panelActionsRapides;
     public GameObject panelRelationnel;
@@ -134,10 +131,6 @@ public class EmployeePerformanceController : MonoBehaviour
         RefreshUI();
         ActualiserEtatBoutonNegociation();
 
-        if (donnees.burnout >= 100)
-        {
-            TriggerBurnout();
-        }
     }
 
     private void ActualiserEtatBoutonNegociation()
@@ -146,25 +139,6 @@ public class EmployeePerformanceController : MonoBehaviour
         {
             boutonNegocierSalaire.interactable = (toursRestantsAvantNegociation <= 0);
         }
-    }
-
-    private void TriggerBurnout()
-    {
-        if (panelBurnoutGameOver != null) panelBurnoutGameOver.SetActive(true);
-        AfficherTableauBord(false);
-        gameObject.SetActive(false);
-    }
-
-    public void OnBurnoutRetourClicked()
-    {
-        if (panelBurnoutGameOver != null) panelBurnoutGameOver.SetActive(false);
-
-        if (demissionController != null) demissionController.OnOuiClicked();
-        else if (ResoudreService()) service.Demissionner();
-
-        RefreshUI();
-        AfficherTableauBord(true);
-        gameObject.SetActive(true);
     }
 
     public void ModifyFatigue(int amount)
@@ -237,8 +211,6 @@ public class EmployeePerformanceController : MonoBehaviour
 
     public void UpdateExperience(int value) { if (ResoudreService()) { donnees.experience = Mathf.Clamp(value, 0, 100); RefreshUI(); } }
     public void UpdateFatigue(int value) { if (ResoudreService()) { donnees.fatigue = Mathf.Clamp(value, 0, 100); RefreshUI(); } }
-    public void UpdateBurnout(int value) { if (ResoudreService()) { donnees.burnout = Mathf.Clamp(value, 0, 100); RefreshUI(); } }
-
     private void RefreshUI()
     {
         ControleEtTrouveTextesPoste();
@@ -247,7 +219,6 @@ public class EmployeePerformanceController : MonoBehaviour
         {
             ApplyValue(experienceSlider, experienceValueText, 0);
             ApplyValue(fatigueSlider, fatigueValueText, 0);
-            ApplyValue(burnoutSlider, burnoutValueText, 0);
 
             if (entrepriseTextInternal != null) entrepriseTextInternal.text = "Entreprise : Aucune";
             if (heuresTextInternal != null) heuresTextInternal.text = "Heures : 0 heure / semaine";
@@ -257,7 +228,6 @@ public class EmployeePerformanceController : MonoBehaviour
 
         ApplyValue(experienceSlider, experienceValueText, donnees.experience);
         ApplyValue(fatigueSlider, fatigueValueText, donnees.fatigue);
-        ApplyValue(burnoutSlider, burnoutValueText, donnees.burnout);
 
         // ◄ CONFIGURATION CRITIQUE : Synchronisation immédiate des textes avec les données chargées
         if (donnees.aEmploi)

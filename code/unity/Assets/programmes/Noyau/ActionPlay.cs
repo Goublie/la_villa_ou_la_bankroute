@@ -138,8 +138,8 @@ public class ActionPlay : MonoBehaviour
             return false;
         }
 
-        DonneesSalariat salariat = gameData.joueur.salariat;
-        if (salariat != null && salariat.burnout >= 100)
+        //Si le joueur fait un burn-out (santé mentale nulle)
+        if(gameData.joueur.santeMentale <= 0)
         {
             return true;
         }
@@ -147,9 +147,8 @@ public class ActionPlay : MonoBehaviour
         CompteBanquaire compteCourant = new ServiceBanque(gameData.joueur).ObtenirCompteCourant();
         if (compteCourant != null)
         {
-            string soldeString = compteCourant.GetSolde().ToString();
-            int soldeNumerique = ExtraireIntDepuisArgentString(soldeString);
-            if (soldeNumerique <= 0)
+            argent solde = compteCourant.GetSolde();
+            if (solde <= new argent(0))
             {
                 return true;
             }

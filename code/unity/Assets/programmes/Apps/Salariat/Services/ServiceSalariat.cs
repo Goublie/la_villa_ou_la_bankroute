@@ -33,7 +33,6 @@ public sealed class ServiceSalariat : IEvolutionMensuelle
         donnees.stressPoste = Math.Max(0, stress);
         donnees.ancienneteMois = 0;
         donnees.fatigue = 20;
-        donnees.burnout = 0;
         donnees.satisfaction = CalculerSatisfaction(stress, prestige, equilibre);
         SynchroniserSalaireJoueur();
         return ResultatOperation.Reussite("Poste accepte.", new argent(salaireMensuelCentimes), "poste_accepte");
@@ -56,7 +55,6 @@ public sealed class ServiceSalariat : IEvolutionMensuelle
         donnees.stressPoste = 0;
         donnees.ancienneteMois = 0;
         donnees.fatigue = 20;
-        donnees.burnout = 0;
         donnees.satisfaction = 0;
         SynchroniserSalaireJoueur();
         return ResultatOperation.Reussite("Demission enregistree.", default, "demission");
@@ -103,11 +101,29 @@ public sealed class ServiceSalariat : IEvolutionMensuelle
 
     public void AppliquerEvolutionMensuelle(int mois)
     {
-        if (!donnees.aEmploi) return;
+        if (!donnees.aEmploi)
+        {
+            joueur.santeMentale = BornerScore(joueur.santeMentale + 10);
+            return;
+        }
 
         donnees.ancienneteMois++;
 
-        if (donnees.fatigue >= 100) donnees.burnout = BornerScore(donnees.burnout + 15);
+        if (donnees.fatigue >= 40)
+        {
+            joueur.santeMentale = BornerScore(joueur.santeMentale - 5);
+        }
+
+        if (donnees.satisfaction <= 50)
+        {
+            int perte = UnityEngine.Mathf.RoundToInt(40f * UnityEngine.Mathf.Exp(-0.073777f * donnees.satisfaction));
+            joueur.santeMentale = BornerScore(joueur.santeMentale - perte);
+        }
+        else if (donnees.satisfaction >= 70)
+        {
+            joueur.santeMentale = BornerScore(joueur.santeMentale + 5);
+        }
+
         if (donnees.relationCollegues >= 100) donnees.fatigue = BornerScore(donnees.fatigue - 5);
 
         donnees.experience = BornerScore(donnees.experience + 5);

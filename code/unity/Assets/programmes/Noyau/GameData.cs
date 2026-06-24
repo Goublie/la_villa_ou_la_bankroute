@@ -102,6 +102,10 @@ public class GameData : ScriptableObject
         {
             historiqueSnapshots.Clear();
         }
+
+        // Il faut appeler AssurerAgregats pour forcer l'appel à InitialiserSiNecessaire
+        // sur les nouveaux objets créés (sinon leurs dictionnaires/listes restent null).
+        AssurerAgregats();
     }
 
     private void AssurerAgregats()
