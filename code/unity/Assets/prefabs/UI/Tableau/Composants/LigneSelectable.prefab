@@ -149,6 +149,7 @@ GameObject:
   - component: {fileID: 1960300837250630287}
   - component: {fileID: 2614012249977955112}
   - component: {fileID: 5957031488408358315}
+  - component: {fileID: 3373579203114759036}
   m_Layer: 0
   m_Name: Case
   m_TagString: Untagged
@@ -226,6 +227,26 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f6cf5e2e87522c94ea4f3098dad15d47, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Case
+--- !u!114 &3373579203114759036
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3157738603475395241}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 306cc8c2b49d7114eaa3623786fc2126, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: UnityEngine.UI::UnityEngine.UI.LayoutElement
+  m_IgnoreLayout: 0
+  m_MinWidth: 47
+  m_MinHeight: 18
+  m_PreferredWidth: -1
+  m_PreferredHeight: -1
+  m_FlexibleWidth: -1
+  m_FlexibleHeight: -1
+  m_LayoutPriority: 1
 --- !u!1 &5229059592454995265
 GameObject:
   m_ObjectHideFlags: 0
@@ -238,6 +259,7 @@ GameObject:
   - component: {fileID: 4882195436172066093}
   - component: {fileID: 3723891343331842335}
   - component: {fileID: 1634743246355949951}
+  - component: {fileID: 5822874389885082667}
   m_Layer: 0
   m_Name: Case (1)
   m_TagString: Untagged
@@ -315,6 +337,26 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f6cf5e2e87522c94ea4f3098dad15d47, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Case
+--- !u!114 &5822874389885082667
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5229059592454995265}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 306cc8c2b49d7114eaa3623786fc2126, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: UnityEngine.UI::UnityEngine.UI.LayoutElement
+  m_IgnoreLayout: 0
+  m_MinWidth: 47
+  m_MinHeight: 18
+  m_PreferredWidth: -1
+  m_PreferredHeight: -1
+  m_FlexibleWidth: -1
+  m_FlexibleHeight: -1
+  m_LayoutPriority: 1
 --- !u!1 &6336642123841912253
 GameObject:
   m_ObjectHideFlags: 0

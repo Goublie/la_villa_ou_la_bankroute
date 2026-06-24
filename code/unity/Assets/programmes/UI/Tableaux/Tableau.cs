@@ -6,6 +6,8 @@ public class Tableau : MonoBehaviour
 {
     public List<Ligne> tableau;    
 
+    public List<Ligne> GetTableau() { return tableau; }
+
     [Tooltip("Ligne d'en-tête statique (optionnelle) à exclure de la liste de données.")]
     public Ligne ligneEnTete;
 
@@ -25,6 +27,25 @@ public class Tableau : MonoBehaviour
 
     protected virtual void OnValidate()
     {
+        // Auto-réparation de la configuration dans l'éditeur
+        if (largeursColonnes == null || largeursColonnes.Count < 4)
+        {
+            largeursColonnes = new System.Collections.Generic.List<float>() { 200f, 150f, 150f, -1f };
+        }
+
+        // Assigner automatiquement la première ligne comme en-tête si demandé, même dans l'éditeur
+        if (premiereLigneEstEnTete && ligneEnTete == null)
+        {
+            Ligne[] toutesLignes = GetComponentsInChildren<Ligne>(true);
+            if (toutesLignes.Length > 0)
+            {
+                ligneEnTete = toutesLignes[0];
+#if UNITY_EDITOR
+                UnityEditor.EditorUtility.SetDirty(this);
+#endif
+            }
+        }
+
         AppliquerApparence();
         
 #if UNITY_EDITOR
@@ -95,41 +116,51 @@ public class Tableau : MonoBehaviour
 
     public void AppliquerConfigurationColonnes(Ligne ligne)
     {
-        Case[] casesLigne = ligne.GetComponentsInChildren<Case>(true);
-
-        if (largeursColonnes == null || largeursColonnes.Count == 0)
+        UnityEngine.UI.HorizontalLayoutGroup hlg = ligne.GetComponent<UnityEngine.UI.HorizontalLayoutGroup>();
+        if (hlg != null)
         {
-            // Répartition équitable
-            foreach(Case c in casesLigne)
-            {
-                LayoutElement le = c.GetComponent<LayoutElement>();
-                if (le == null) le = c.gameObject.AddComponent<LayoutElement>();
-                le.preferredWidth = -1f;
-                le.flexibleWidth = 1f;
-            }
-            return;
+            hlg.childForceExpandWidth = false; // Empêche l'étirement des colonnes fixes
+            hlg.childControlWidth = true;      // OBLIGATOIRE pour que les largeurs (LayoutElement) soient appliquées !
         }
 
-        for (int i = 0; i < casesLigne.Length && i < largeursColonnes.Count; i++)
+        // On applique sur tous les enfants directs, même s'ils n'ont pas de script 'Case' (utile pour un en-tête personnalisé)
+        int childCount = ligne.transform.childCount;
+
+        for (int i = 0; i < childCount; i++)
         {
-            LayoutElement le = casesLigne[i].GetComponent<LayoutElement>();
+            UnityEngine.Transform child = ligne.transform.GetChild(i);
+            UnityEngine.UI.LayoutElement le = child.GetComponent<UnityEngine.UI.LayoutElement>();
             if (le == null)
             {
-                le = casesLigne[i].gameObject.AddComponent<LayoutElement>();
+                le = child.gameObject.AddComponent<UnityEngine.UI.LayoutElement>();
             }
-
-            float width = largeursColonnes[i];
+            
+            float width = (largeursColonnes != null && i < largeursColonnes.Count) ? largeursColonnes[i] : -1f;
+            
             if (width >= 0f)
             {
                 le.preferredWidth = width;
+                le.minWidth = width;   // CRUCIAL : Empêche Unity de rétrécir cette colonne !
                 le.flexibleWidth = 0f; // Fixe
             }
             else
             {
                 le.preferredWidth = -1f;
+                le.minWidth = 0f;      // Autorise le rétrécissement maximal
                 le.flexibleWidth = 1f; // S'étire pour remplir le reste
             }
         }
+        
+        // Forcer Unity à redessiner immédiatement l'interface pour que l'éditeur s'actualise
+        UnityEngine.UI.LayoutRebuilder.MarkLayoutForRebuild(ligne.GetComponent<UnityEngine.RectTransform>());
+        UnityEngine.Canvas.ForceUpdateCanvases();
+        
+#if UNITY_EDITOR
+        if (!Application.isPlaying)
+        {
+            UnityEditor.EditorUtility.SetDirty(ligne.gameObject);
+        }
+#endif
     }
 
     //Renvoie true si toutes les lignes sont vides

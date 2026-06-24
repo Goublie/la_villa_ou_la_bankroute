@@ -143,10 +143,31 @@ public sealed class ServicePassageMensuel
     {
         DonneesJoueur joueur = gameData.joueur;
         ServiceBanque banque = new ServiceBanque(joueur);
+        CompteBanquaire compteCourant = banque.ObtenirCompteCourant(); // Récupération du compte courant
         Epargne livret = ObtenirLivretExistant(joueur, banque, mois);
 
-        List<IEvolutionMensuelle> evolutions =
-            new List<IEvolutionMensuelle>();
+        List<IEvolutionMensuelle> evolutions = new List<IEvolutionMensuelle>();
+        
+        // --- INTÉGRATION PRÊTS IMMOBILIERS ---
+        if (joueur.pretsImmobiliers != null)
+        {
+            // On boucle à l'envers ou on nettoie après pour pouvoir supprimer les prêts terminés de la liste
+            for (int i = joueur.pretsImmobiliers.Count - 1; i >= 0; i--)
+            {
+                DonneesPret pret = joueur.pretsImmobiliers[i];
+                if (pret != null)
+                {
+                    // Applique le débit mensuel et l'amortissement du capital
+                    ServicePretImmobilier.AppliquerMensualite(pret, compteCourant);
+
+                    // Si le prêt est arrivé à échéance, on le retire des prêts actifs
+                    if (pret.moisRestants <= 0)
+                    {
+                        joueur.pretsImmobiliers.RemoveAt(i);
+                    }
+                }
+            }
+        }
         if (joueur.investissements != null)
         {
             foreach (Investissement investissement in joueur.investissements)

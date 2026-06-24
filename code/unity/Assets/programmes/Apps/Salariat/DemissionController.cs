@@ -80,7 +80,10 @@ public class DemissionController : MonoBehaviour
         if (panelRelationnel != null) panelRelationnel.SetActive(true);
 
         if (entrepriseText != null) entrepriseText.text = "Entreprise : Aucune";
-        if (salaireText != null) salaireText.text = "Salaire : 0€ / an";
+
+        // ◄ FIX FORMATTAGE
+        if (salaireText != null) salaireText.text = "Salaire brut : 0 € / an";
+
         if (heuresText != null) heuresText.text = "Heures : 0 heures / semaine";
 
         GameData donneesJeu = ResoudreGameData();

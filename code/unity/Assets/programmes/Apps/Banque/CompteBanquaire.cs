@@ -1,4 +1,6 @@
 using System;
+using Newtonsoft.Json; // Requis pour JsonConstructor
+using UnityEngine;
 
 /// <summary>
 /// Represente un compte monetaire possedant un solde et un historique signe.
@@ -6,11 +8,11 @@ using System;
 [Serializable]
 public class CompteBanquaire : IPatrimoine
 {
-    protected Historique historique;
-    private argent totalEntree;
-    private argent totalSortie;
-    protected argent solde;
-    private argent soldeFinMois;
+    [SerializeField] protected Historique historique;
+    [SerializeField] private argent totalEntree;
+    [SerializeField] private argent totalSortie;
+    [SerializeField] protected argent solde;
+    [SerializeField] private argent soldeFinMois;
 
     /// <summary>
     /// Signale qu'une operation a modifie le solde.
@@ -18,9 +20,22 @@ public class CompteBanquaire : IPatrimoine
     public event Action OnSoldeModifie;
 
     /// <summary>
+    /// Constructeur sans paramètre requis par Newtonsoft.Json pour la désérialisation.
+    /// </summary>
+    [JsonConstructor]
+    public CompteBanquaire()
+    {
+        historique = new Historique();
+        totalEntree = new argent(0);
+        totalSortie = new argent(0);
+        solde = new argent(0);
+        soldeFinMois = new argent(0);
+    }
+
+    /// <summary>
     /// Cree un compte avec un montant initial exprime en centimes.
     /// </summary>
-    public CompteBanquaire(argent montantInitial = default)
+    public CompteBanquaire(argent montantInitial)
     {
         historique = new Historique();
         totalEntree = montantInitial.centimes >= 0

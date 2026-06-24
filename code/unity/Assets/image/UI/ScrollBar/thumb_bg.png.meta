@@ -1,10 +1,10 @@
 fileFormatVersion: 2
-guid: 3974d60283eb0a3439dd569fa4462221
+guid: 54af2b13dac16494d84e8b9dbe1b4482
 TextureImporter:
   internalIDToNameTable:
   - first:
-      213: 8428709549357248527
-    second: bouton_quitter_0
+      213: 8814197674909307824
+    second: thumb_bg_0
   externalObjects: {}
   serializedVersion: 13
   mipmaps:
@@ -52,7 +52,7 @@ TextureImporter:
   alignment: 0
   spritePivot: {x: 0.5, y: 0.5}
   spritePixelsToUnits: 100
-  spriteBorder: {x: 0, y: 0, z: 0, w: 0}
+  spriteBorder: {x: 2, y: 2, z: 2, w: 2}
   spriteGenerateFallbackPhysicsShape: 1
   alphaUsage: 1
   alphaIsTransparency: 1
@@ -75,7 +75,7 @@ TextureImporter:
     maxTextureSize: 2048
     resizeAlgorithm: 0
     textureFormat: -1
-    textureCompression: 1
+    textureCompression: 0
     compressionQuality: 50
     crunchedCompression: 0
     allowsAlphaSplitting: 0
@@ -126,13 +126,13 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: bouton_quitter_0
+      name: thumb_bg_0
       rect:
         serializedVersion: 2
         x: 0
         y: 0
-        width: 2021
-        height: 545
+        width: 20
+        height: 20
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -141,8 +141,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: f00b16c8daac8f470800000000000000
-      internalID: 8428709549357248527
+      spriteID: 0b31b01f512525a70800000000000000
+      internalID: 8814197674909307824
       vertices: []
       indices: 
       edges: []
@@ -161,7 +161,7 @@ TextureImporter:
     spriteCustomMetadata:
       entries: []
     nameFileIdTable:
-      bouton_quitter_0: 8428709549357248527
+      thumb_bg_0: 8814197674909307824
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

@@ -1,7 +1,8 @@
 using UnityEngine;
+using UnityEngine.UI;
 
 /// <summary>
-/// Gère la validation de la formation. S'inspire du fonctionnement du NetworkingController.
+/// Gère la validation de la formation avec un système de temps de recharge (cooldown).
 /// </summary>
 public class FormationController : MonoBehaviour
 {
@@ -16,12 +17,59 @@ public class FormationController : MonoBehaviour
     public EmployeePerformanceController performanceController; // Gestionnaire d'expérience
     public RelationalController relationalController;           // Gestionnaire des relations (Patron)
 
+    [Header("Gestion du Cooldown (Temps de recharge)")]
+    public Button boutonOuvrirFormation; // Le bouton qui ouvre le panel (dans Actions Rapides)
+
+    [Tooltip("Nombre de tours à attendre après une formation")]
+    [SerializeField] private int cooldownInitial = 3;
+    private int toursRestantsAvantFormation = 0;
+
+    private void Start()
+    {
+        // ◄ MODIFICATION CRITIQUE : On s'abonne ici pour que le script écoute 
+        // même si son GameObject est désactivé visuellement.
+        ActionPlay.OnMoisPasse += DiminuerCooldown;
+        ActualiserEtatBouton();
+    }
+
+    private void OnDestroy()
+    {
+        // On se désabonne à la destruction du script pour éviter les fuites de mémoire.
+        ActionPlay.OnMoisPasse -= DiminuerCooldown;
+    }
+
+    /// <summary>
+    /// Réduit le temps d'attente de 1 à chaque passage de mois.
+    /// </summary>
+    private void DiminuerCooldown()
+    {
+        if (toursRestantsAvantFormation > 0)
+        {
+            toursRestantsAvantFormation--;
+            ActualiserEtatBouton();
+        }
+    }
+
+    /// <summary>
+    /// Met à jour l'état visuel du bouton selon le cooldown actuel.
+    /// </summary>
+    private void ActualiserEtatBouton()
+    {
+        if (boutonOuvrirFormation != null)
+        {
+            // Le bouton redevient cliquable uniquement si le cooldown est à 0
+            boutonOuvrirFormation.interactable = (toursRestantsAvantFormation <= 0);
+        }
+    }
+
     /// <summary>
     /// Ouvre le panel de formation et masque le tableau de bord.
-    /// À lier au bouton "Formation" du Panel_Actions_Rapides.
     /// </summary>
     public void OpenFormationPanel()
     {
+        // Sécurité : si le cooldown n'est pas terminé, on refuse d'ouvrir
+        if (toursRestantsAvantFormation > 0) return;
+
         if (panelFormation != null) panelFormation.SetActive(true);
         if (panelPosteActuel != null) panelPosteActuel.SetActive(false);
         if (panelActionsRapides != null) panelActionsRapides.SetActive(false);
@@ -31,7 +79,6 @@ public class FormationController : MonoBehaviour
 
     /// <summary>
     /// Ferme le panel et restaure le tableau de bord.
-    /// À lier au 'Bouton_Retour' du panel de formation.
     /// </summary>
     public void CloseFormationPanel()
     {
@@ -43,8 +90,7 @@ public class FormationController : MonoBehaviour
     }
 
     /// <summary>
-    /// Valide la formation : +5 Expérience, +10 Patron.
-    /// À lier au 'Bouton_Accepter' (le bouton Oui).
+    /// Valide la formation : +5 Expérience, +10 Patron et lance le cooldown.
     /// </summary>
     public void OnOuiFormationClicked()
     {
@@ -60,7 +106,11 @@ public class FormationController : MonoBehaviour
             relationalController.ModifyPatronScore(10);
         }
 
-        // 3. Ferme le menu et retourne au jeu
+        // 3. Déclenche le temps d'attente (3 tours au total pour couvrir le tour actuel + 2 tours de pause)
+        toursRestantsAvantFormation = cooldownInitial;
+        ActualiserEtatBouton();
+
+        // 4. Ferme le menu et retourne au jeu
         CloseFormationPanel();
     }
 }

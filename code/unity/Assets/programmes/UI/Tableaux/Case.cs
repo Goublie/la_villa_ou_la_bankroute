@@ -46,6 +46,7 @@ public class Case : MonoBehaviour
     //Vide la case
     public void Vider()
     {
+        if (composantTexte == null) composantTexte = GetComponentInChildren<TextMeshProUGUI>();
         if (composantTexte != null)
             Set("");
     }

@@ -151,6 +151,7 @@ GameObject:
   - component: {fileID: 5350522161456482060}
   - component: {fileID: 5954636679171151098}
   - component: {fileID: 6104517319645144110}
+  - component: {fileID: 3508740507435425433}
   m_Layer: 0
   m_Name: case
   m_TagString: Untagged
@@ -228,6 +229,26 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f6cf5e2e87522c94ea4f3098dad15d47, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Case
+--- !u!114 &3508740507435425433
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3318877342496768729}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 306cc8c2b49d7114eaa3623786fc2126, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: UnityEngine.UI::UnityEngine.UI.LayoutElement
+  m_IgnoreLayout: 0
+  m_MinWidth: 47
+  m_MinHeight: 18
+  m_PreferredWidth: -1
+  m_PreferredHeight: -1
+  m_FlexibleWidth: -1
+  m_FlexibleHeight: -1
+  m_LayoutPriority: 1
 --- !u!1 &5140140853262826887
 GameObject:
   m_ObjectHideFlags: 0
@@ -241,7 +262,7 @@ GameObject:
   - component: {fileID: 3317698415354892082}
   - component: {fileID: 431360808041163330}
   - component: {fileID: 6910823154220746280}
-  - component: {fileID: 8658455243527718181}
+  - component: {fileID: 3327911779262137296}
   m_Layer: 0
   m_Name: Ligne
   m_TagString: Untagged
@@ -349,7 +370,7 @@ MonoBehaviour:
   m_FillOrigin: 0
   m_UseSpriteMesh: 0
   m_PixelsPerUnitMultiplier: 1
---- !u!114 &8658455243527718181
+--- !u!114 &3327911779262137296
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -362,7 +383,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: UnityEngine.UI::UnityEngine.UI.LayoutElement
   m_IgnoreLayout: 0
-  m_MinWidth: 100
+  m_MinWidth: -1
   m_MinHeight: 20
   m_PreferredWidth: -1
   m_PreferredHeight: -1
@@ -381,6 +402,7 @@ GameObject:
   - component: {fileID: 4060901894932235819}
   - component: {fileID: 9106263587717976305}
   - component: {fileID: 6857916631052527401}
+  - component: {fileID: 1886480794640369884}
   m_Layer: 0
   m_Name: case (1)
   m_TagString: Untagged
@@ -458,6 +480,26 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f6cf5e2e87522c94ea4f3098dad15d47, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Case
+--- !u!114 &1886480794640369884
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7284571375390755870}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 306cc8c2b49d7114eaa3623786fc2126, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: UnityEngine.UI::UnityEngine.UI.LayoutElement
+  m_IgnoreLayout: 0
+  m_MinWidth: 47
+  m_MinHeight: 18
+  m_PreferredWidth: -1
+  m_PreferredHeight: -1
+  m_FlexibleWidth: -1
+  m_FlexibleHeight: -1
+  m_LayoutPriority: 1
 --- !u!1 &9092173898530230128
 GameObject:
   m_ObjectHideFlags: 0

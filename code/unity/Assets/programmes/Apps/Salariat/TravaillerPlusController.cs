@@ -5,11 +5,6 @@ using UnityEngine.UI;
 /// <summary>
 /// Pilote le flux de confirmation "travailler plus / moins" du prefab Salariat.
 /// </summary>
-/// <remarks>
-/// Le composant ne calcule pas lui-meme les effets de bord metier : il delegue
-/// heures, salaire et satisfaction a <see cref="EmployeePerformanceController"/>,
-/// qui appelle <see cref="ServiceSalariat"/>.
-/// </remarks>
 public class TravaillerPlusController : MonoBehaviour
 {
     [Header("References")]
@@ -74,7 +69,9 @@ public class TravaillerPlusController : MonoBehaviour
     /// </summary>
     private void OnOuiClicked()
     {
-        if (performanceController == null)
+        // ◄ MODIFICATION : Sécurité si le joueur a déjà atteint le plafond des 45 heures
+        if (performanceController == null ||
+            performanceController.currentJobHours >= 45)
         {
             return;
         }
@@ -97,6 +94,7 @@ public class TravaillerPlusController : MonoBehaviour
     /// </summary>
     public void OnOuiMoinsClicked()
     {
+        // Sécurité existante pour le plancher des 35 heures
         if (performanceController == null ||
             performanceController.currentJobHours <= 35)
         {
@@ -136,8 +134,8 @@ public class TravaillerPlusController : MonoBehaviour
         if (performanceController.texteSalaireAnnuelBrut != null)
         {
             performanceController.texteSalaireAnnuelBrut.text =
-                "Salaire : " + (salaireMensuel * 12f).ToString("N0") +
-                " EUR / an";
+                "Salaire brut : " + (salaireMensuel * 12f).ToString("N0") +
+                " € / an";
         }
 
         if (texteSalaireTaskbar != null)
@@ -159,24 +157,9 @@ public class TravaillerPlusController : MonoBehaviour
 
     private void AfficherTableauBord(bool visible)
     {
-        if (panelPosteActuel != null)
-        {
-            panelPosteActuel.SetActive(visible);
-        }
-
-        if (panelActionsRapides != null)
-        {
-            panelActionsRapides.SetActive(visible);
-        }
-
-        if (panelPerformanceEmploye != null)
-        {
-            panelPerformanceEmploye.SetActive(visible);
-        }
-
-        if (panelRelationnel != null)
-        {
-            panelRelationnel.SetActive(visible);
-        }
+        if (panelPosteActuel != null) panelPosteActuel.SetActive(visible);
+        if (panelActionsRapides != null) panelActionsRapides.SetActive(visible);
+        if (panelPerformanceEmploye != null) panelPerformanceEmploye.SetActive(visible);
+        if (panelRelationnel != null) panelRelationnel.SetActive(visible);
     }
 }
