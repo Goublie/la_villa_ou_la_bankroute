@@ -14,7 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::GameData
   joueur:
     salaire:
-      centimes: 10000000
+      centimes: 0
     energie: 100
     santeMentale: 100
     investissements: []
