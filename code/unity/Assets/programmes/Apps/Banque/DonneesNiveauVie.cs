@@ -8,10 +8,10 @@ using System;
 public class DonneesNiveauVie
 {
     public int logement     = 1;
-    public int sport        = 1;
-    public int transport    = 1;
+    public int sport        = 0;
+    public int transport    = 0;
     public int alimentation = 1;
-    public int vieSociale   = 1;
+    public int vieSociale   = 0;
 
     public DonneesNiveauVie() { }
 
@@ -28,6 +28,6 @@ public class DonneesNiveauVie
         };
     }
 
-    /// <summary>Borne une valeur entre 1 et 5.</summary>
-    public static int Borner(int valeur) => Math.Clamp(valeur, 1, 5);
+    /// <summary>Borne une valeur entre 0 et 5.</summary>
+    public static int Borner(int valeur) => Math.Clamp(valeur, 0, 5);
 }

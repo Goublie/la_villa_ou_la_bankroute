@@ -114,10 +114,16 @@ public class UiModifierNiveauVie : MonoBehaviour
         Fermer();
     }
 
-    /// <summary>Ferme le panneau sans rien changer.</summary>
+    /// <summary>Réinitialise l'affichage aux valeurs par défaut (Sport, Transport, Vie Sociale à 0, et Logement, Alimentation à 1).</summary>
     public void Annuler()
     {
-        Fermer();
+        etatTemporaire.logement = 1;
+        etatTemporaire.sport = 0;
+        etatTemporaire.transport = 0;
+        etatTemporaire.alimentation = 1;
+        etatTemporaire.vieSociale = 0;
+
+        ActualiserAffichage();
     }
 
     // -------------------------------------------------------------------
@@ -147,13 +153,39 @@ public class UiModifierNiveauVie : MonoBehaviour
 
     private void OnPieceCliquee(CategorieNiveauVie categorie, int niveau)
     {
+        int niveauActuel = 0;
         switch (categorie)
         {
-            case CategorieNiveauVie.Logement:     etatTemporaire.logement     = niveau; break;
-            case CategorieNiveauVie.Sport:        etatTemporaire.sport        = niveau; break;
-            case CategorieNiveauVie.Transport:    etatTemporaire.transport    = niveau; break;
-            case CategorieNiveauVie.Alimentation: etatTemporaire.alimentation = niveau; break;
-            case CategorieNiveauVie.VieSociale:   etatTemporaire.vieSociale   = niveau; break;
+            case CategorieNiveauVie.Logement:     niveauActuel = etatTemporaire.logement;     break;
+            case CategorieNiveauVie.Sport:        niveauActuel = etatTemporaire.sport;        break;
+            case CategorieNiveauVie.Transport:    niveauActuel = etatTemporaire.transport;    break;
+            case CategorieNiveauVie.Alimentation: niveauActuel = etatTemporaire.alimentation; break;
+            case CategorieNiveauVie.VieSociale:   niveauActuel = etatTemporaire.vieSociale;   break;
+        }
+
+        int nouveauNiveau = niveau;
+        if (niveauActuel == niveau)
+        {
+            // Clic sur l'échelon déjà actif : toggle ou descente
+            if (niveau == 1)
+            {
+                // Logement et Alimentation obligatoires (min 1)
+                bool estObligatoire = (categorie == CategorieNiveauVie.Logement || categorie == CategorieNiveauVie.Alimentation);
+                nouveauNiveau = estObligatoire ? 1 : 0;
+            }
+            else
+            {
+                nouveauNiveau = niveau - 1;
+            }
+        }
+
+        switch (categorie)
+        {
+            case CategorieNiveauVie.Logement:     etatTemporaire.logement     = Mathf.Clamp(nouveauNiveau, 1, 5); break;
+            case CategorieNiveauVie.Sport:        etatTemporaire.sport        = Mathf.Clamp(nouveauNiveau, 0, 5); break;
+            case CategorieNiveauVie.Transport:    etatTemporaire.transport    = Mathf.Clamp(nouveauNiveau, 0, 5); break;
+            case CategorieNiveauVie.Alimentation: etatTemporaire.alimentation = Mathf.Clamp(nouveauNiveau, 1, 5); break;
+            case CategorieNiveauVie.VieSociale:   etatTemporaire.vieSociale   = Mathf.Clamp(nouveauNiveau, 0, 5); break;
         }
         ActualiserAffichage();
     }
@@ -210,47 +242,50 @@ public class UiModifierNiveauVie : MonoBehaviour
         {
             CategorieNiveauVie.Logement => niveau switch
             {
-                1 => "Logement partagé / coloc",
-                2 => "Studio modeste",
+                1 => "Studio en colocation",
+                2 => "Studio indépendant",
                 3 => "Appartement confortable",
-                4 => "Grand appartement",
-                5 => "Villa / résidence de luxe",
+                4 => "Grand appartement (F4)",
+                5 => "Villa de luxe",
                 _ => ""
             },
             CategorieNiveauVie.Sport => niveau switch
             {
-                1 => "Aucune activité sportive",
+                0 => "Aucune activité",
+                1 => "Entraînement à la maison",
                 2 => "Salle de sport basique",
-                3 => "Club de sport + équipement",
+                3 => "Club de sport & équipement",
                 4 => "Coach personnel",
-                5 => "Programme élite",
+                5 => "Programme d'athlète élite",
                 _ => ""
             },
             CategorieNiveauVie.Transport => niveau switch
             {
+                0 => "Marche à pied uniquement",
                 1 => "Transports en commun",
-                2 => "Vélo / trottinette",
-                3 => "Voiture économique",
-                4 => "Voiture confortable",
-                5 => "Voiture de luxe / chauffeur",
+                2 => "Vélo / Trottinette électrique",
+                3 => "Voiture d'occasion",
+                4 => "Voiture familiale neuve",
+                5 => "Voiture de sport / chauffeur",
                 _ => ""
             },
             CategorieNiveauVie.Alimentation => niveau switch
             {
-                1 => "Budget serré / cuisine maison",
-                2 => "Courses normales",
-                3 => "Produits de qualité",
-                4 => "Bio + restaurants réguliers",
-                5 => "Gastronomie / traiteur",
+                1 => "Repas à l'économie / cuisine maison",
+                2 => "Courses standards supermarché",
+                3 => "Produits frais et de qualité",
+                4 => "Aliments bio & restaurants",
+                5 => "Traiteur gastronomique",
                 _ => ""
             },
             CategorieNiveauVie.VieSociale => niveau switch
             {
-                1 => "Sorties rares",
-                2 => "Sorties occasionnelles",
+                0 => "Sorties inexistantes",
+                1 => "Sorties très rares",
+                2 => "Verres entre amis occasionnels",
                 3 => "Vie sociale active",
-                4 => "Restaurants & événements",
-                5 => "Lifestyle haut de gamme",
+                4 => "Restaurants & soirées",
+                5 => "Lifestyle VIP",
                 _ => ""
             },
             _ => ""

@@ -46,6 +46,7 @@ public static class GestionnaireNiveauVie
         int deltaSanteMentale = 0;
 
         // --- LOGEMENT (impact : santeMentale + énergie) ---
+        // Minimum 1 car obligatoire, donc pas de case 0 nécessaire
         switch (DonneesNiveauVie.Borner(niveauVie.logement))
         {
             case 1: deltaEnergie -= 3; deltaSanteMentale -= 5; break;
@@ -58,6 +59,7 @@ public static class GestionnaireNiveauVie
         // --- SPORT (impact : énergie + santeMentale) ---
         switch (DonneesNiveauVie.Borner(niveauVie.sport))
         {
+            case 0: deltaEnergie -= 8; deltaSanteMentale -= 2; break; // Aucun sport (pires stats)
             case 1: deltaEnergie -= 5; break;
             case 2: break; // neutre
             case 3: deltaEnergie += 5; break;
@@ -68,6 +70,7 @@ public static class GestionnaireNiveauVie
         // --- TRANSPORT (impact : énergie) ---
         switch (DonneesNiveauVie.Borner(niveauVie.transport))
         {
+            case 0: deltaEnergie -= 5; break; // Tout à pied (fatigue supplémentaire)
             case 1: deltaEnergie -= 3; break;
             case 2: break; // neutre
             case 3: deltaEnergie += 2; break;
@@ -76,6 +79,7 @@ public static class GestionnaireNiveauVie
         }
 
         // --- ALIMENTATION (impact : énergie + santeMentale) ---
+        // Minimum 1 car obligatoire, donc pas de case 0 nécessaire
         switch (DonneesNiveauVie.Borner(niveauVie.alimentation))
         {
             case 1: deltaEnergie -= 5; deltaSanteMentale -= 2; break;
@@ -88,6 +92,7 @@ public static class GestionnaireNiveauVie
         // --- VIE SOCIALE (impact : santeMentale) ---
         switch (DonneesNiveauVie.Borner(niveauVie.vieSociale))
         {
+            case 0: deltaSanteMentale -= 12; break; // Solitude complète (fort malus)
             case 1: deltaSanteMentale -= 8; break;
             case 2: deltaSanteMentale -= 2; break;
             case 3: deltaSanteMentale += 5; break;
