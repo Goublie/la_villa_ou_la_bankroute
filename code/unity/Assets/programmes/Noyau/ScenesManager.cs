@@ -52,12 +52,24 @@ public class ScenesManager : MonoBehaviour
     {
         if (_instance != null && _instance != this)
         {
-            Destroy(gameObject);
-            return;
+            if (_instance.gameData == null && this.gameData != null)
+            {
+                // Remplace l'instance invalide (ex: auto-générée depuis une autre scène) par la nouvelle valide
+                Destroy(_instance.gameObject);
+                _instance = this;
+                DontDestroyOnLoad(gameObject);
+            }
+            else
+            {
+                Destroy(gameObject);
+                return;
+            }
         }
-
-        _instance = this;
-        DontDestroyOnLoad(gameObject);
+        else
+        {
+            _instance = this;
+            DontDestroyOnLoad(gameObject);
+        }
     }
 
     private void OnEnable()

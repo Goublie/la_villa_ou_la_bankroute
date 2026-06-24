@@ -44,6 +44,13 @@ public class ActionPlay : MonoBehaviour
         }
     }
 
+    private void OnDestroy()
+    {
+        // Nettoyage de l'événement statique pour éviter les fuites de mémoire et 
+        // les appels sur des objets détruits lors du rechargement de la scène
+        OnMoisPasse = null;
+    }
+
     /// <summary>
     /// Termine le mois courant, ouvre le suivant puis rafraichit les UI.
     /// </summary>
