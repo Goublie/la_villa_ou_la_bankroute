@@ -11,7 +11,7 @@ using XCharts.Runtime;
 /// </remarks>
 public sealed class GraphiqueBourseUI
 {
-    private const int NombrePoints = 12;
+    private const int NombrePoints = 6;
 
     private readonly RectTransform racine;
     private LineChart graphique;
@@ -57,6 +57,10 @@ public sealed class GraphiqueBourseUI
         serie.symbol.show = true;
         serie.symbol.size = 8f;
 
+        Title title = graphique.EnsureChartComponent<Title>();
+        title.show = true;
+        title.text = actif.Nom;
+
         ObtenirPeriode(
             actif,
             moisActuel,
@@ -64,7 +68,8 @@ public sealed class GraphiqueBourseUI
             out int dernierMois);
         for (int mois = premierMois; mois <= dernierMois; mois++)
         {
-            graphique.AddXAxisData("M" + mois);
+            string etiquetteMois = ObtenirNomMois(mois);
+            graphique.AddXAxisData(etiquetteMois);
             graphique.AddData(0, service.ObtenirPrix(actif, mois));
         }
 
@@ -141,7 +146,7 @@ public sealed class GraphiqueBourseUI
 
         graphique.Init();
         graphique.theme.transparentBackground = true;
-        graphique.EnsureChartComponent<Title>().show = false;
+        graphique.EnsureChartComponent<Title>().show = true;
         graphique.EnsureChartComponent<Legend>().show = false;
         graphique.EnsureChartComponent<Tooltip>().show = true;
 
@@ -164,6 +169,8 @@ public sealed class GraphiqueBourseUI
         axeX.splitNumber = 6;
         axeX.axisLine.lineStyle.color = couleurAxes;
         axeX.axisLabel.textStyle.color = couleurAxes;
+        axeX.axisName.show = true;
+        axeX.axisName.name = "Mois";
 
         YAxis axeY = graphique.EnsureChartComponent<YAxis>();
         axeY.show = true;
@@ -171,6 +178,7 @@ public sealed class GraphiqueBourseUI
         axeY.splitNumber = 4;
         axeY.axisLine.lineStyle.color = couleurAxes;
         axeY.axisLabel.textStyle.color = couleurAxes;
+        axeY.axisLabel.formatter = "{value} €";
         axeY.splitLine.show = true;
         axeY.splitLine.lineStyle.color = couleurGrille;
 
@@ -189,5 +197,27 @@ public sealed class GraphiqueBourseUI
         premierMois = Mathf.Max(
             0,
             dernierMois - NombrePoints + 1);
+    }
+
+    private string ObtenirNomMois(int moisAbsolu)
+    {
+        // Le jeu commence au mois 0, qui correspond à Juillet (index 6)
+        int indexMois = (6 + moisAbsolu) % 12;
+        switch (indexMois)
+        {
+            case 0: return "Janvier";
+            case 1: return "Février";
+            case 2: return "Mars";
+            case 3: return "Avril";
+            case 4: return "Mai";
+            case 5: return "Juin";
+            case 6: return "Juillet";
+            case 7: return "Août";
+            case 8: return "Septembre";
+            case 9: return "Octobre";
+            case 10: return "Novembre";
+            case 11: return "Décembre";
+            default: return "";
+        }
     }
 }
