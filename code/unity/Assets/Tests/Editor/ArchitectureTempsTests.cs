@@ -26,12 +26,12 @@ public class ArchitectureTempsTests
             Assert.That(
                 gameData.joueur.comptes[ServiceBanque.CompteCourantId]
                     .GetSolde().centimes,
-                Is.EqualTo(110000));
+                Is.EqualTo(55000));
             Assert.That(
                 gameData.historiqueSnapshots[0].joueur.comptes[
                     ServiceBanque.CompteCourantId]
                     .GetSolde().centimes,
-                Is.EqualTo(100000));
+                Is.EqualTo(45000));
             Assert.That(
                 gameData.joueur.bourse.dernierMoisObserve,
                 Is.EqualTo(1));

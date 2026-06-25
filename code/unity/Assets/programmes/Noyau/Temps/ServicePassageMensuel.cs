@@ -53,6 +53,10 @@ public sealed class ServicePassageMensuel
             ConsommerImpactsBoursiers(
                 evenements,
                 gameData.nombreMoisPasses);
+        ResultatConsommationImpactsImmobiliers resultatImpactsImmobiliers =
+            ConsommerImpactsImmobiliers(
+                evenements,
+                gameData.nombreMoisPasses);
         ActualiserValeursOuverture(gameData.nombreMoisPasses);
         ServiceCycleMensuelWhatIf.OuvrirMois(gameData);
 
@@ -66,7 +70,8 @@ public sealed class ServicePassageMensuel
         return ResultatOperation.Reussite(
             CompleterMessageAvecDiagnostics(
                 "Partie initialisee.",
-                resultatImpacts),
+                resultatImpacts,
+                resultatImpactsImmobiliers),
             default,
             "temps_initialise");
     }
@@ -132,6 +137,10 @@ public sealed class ServicePassageMensuel
             ConsommerImpactsBoursiers(
                 evenements,
                 gameData.nombreMoisPasses);
+        ResultatConsommationImpactsImmobiliers resultatImpactsImmobiliers =
+            ConsommerImpactsImmobiliers(
+                evenements,
+                gameData.nombreMoisPasses);
         OuvrirNouveauMois(gameData.nombreMoisPasses);
         ServiceCycleMensuelWhatIf.OuvrirMois(gameData);
 
@@ -139,7 +148,8 @@ public sealed class ServicePassageMensuel
             true,
             CompleterMessageAvecDiagnostics(
                 "Le mois suivant est ouvert.",
-                resultatImpacts),
+                resultatImpacts,
+                resultatImpactsImmobiliers),
             indexCloture,
             gameData.nombreMoisPasses,
             changementAnnee);
@@ -241,9 +251,6 @@ public sealed class ServicePassageMensuel
             evolution.AppliquerEvolutionMensuelle(mois);
         }
 
-        // ==========================================
-        // AJOUT : ENCAISSEMENT DES LOYERS IMMOBILIERS
-        // ==========================================
         if (joueur.immobilier != null && joueur.immobilier.biensPossedes != null)
         {
             foreach (BienImmobilier bien in joueur.immobilier.biensPossedes)
@@ -323,7 +330,16 @@ public sealed class ServicePassageMensuel
                 {
                     if (bien != null)
                     {
-                        bien.valeurActuelle = ServiceImmobilier.CalculerValeurActuelle(bien, mois);
+                        bien.valeurActuelle =
+                            ServiceImmobilier.CalculerValeurActuelle(
+                                bien,
+                                mois,
+                                joueur.immobilier);
+                        bien.loyerMensuel =
+                            ServiceImmobilier.CalculerLoyerMensuelActuel(
+                                bien,
+                                mois,
+                                joueur.immobilier);
                     }
                 }
 
@@ -391,14 +407,44 @@ public sealed class ServicePassageMensuel
             .ConsommerConfirmationsBoursieres(orchestration, mois);
     }
 
+
+    private ResultatConsommationImpactsImmobiliers
+        ConsommerImpactsImmobiliers(
+            ServiceOrchestrationEvenements orchestration,
+            int mois)
+    {
+        return new ServiceEvenementsImmobiliers(gameData)
+            .ConsommerConfirmationsImmobilieres(
+                orchestration,
+                mois);
+    }
+
+
     private static string CompleterMessageAvecDiagnostics(
         string message,
-        ResultatConsommationImpactsBoursiers resultat)
+        ResultatConsommationImpactsBoursiers resultatBourse,
+        ResultatConsommationImpactsImmobiliers resultatImmobilier)
     {
-        string diagnostics = resultat?.ConstruireMessageDiagnostics();
-        return string.IsNullOrEmpty(diagnostics)
+        List<string> diagnostics = new List<string>();
+
+        string diagnosticBourse =
+            resultatBourse?.ConstruireMessageDiagnostics();
+        if (!string.IsNullOrEmpty(diagnosticBourse))
+        {
+            diagnostics.Add("Bourse : " + diagnosticBourse);
+        }
+
+        string diagnosticImmobilier =
+            resultatImmobilier?.ConstruireMessageDiagnostics();
+        if (!string.IsNullOrEmpty(diagnosticImmobilier))
+        {
+            diagnostics.Add("Immobilier : " + diagnosticImmobilier);
+        }
+
+        return diagnostics.Count == 0
             ? message
-            : message + " Diagnostics impacts : " + diagnostics;
+            : message + " Diagnostics impacts : " +
+              string.Join(" | ", diagnostics);
     }
 
     private void AssurerRacine()

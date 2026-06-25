@@ -9,6 +9,7 @@ public static class CategoriesEvenements
     public const string Boursiers = "Boursiers";
     public const string Personnels = "Personnels";
     public const string Professionnels = "Professionnels";
+    public const string Immobiliers = "Immobiliers";
 
     /// <summary>
     /// Indique si une categorie appartient au vocabulaire actuel du jeu.
@@ -17,7 +18,8 @@ public static class CategoriesEvenements
     {
         return categorie == Boursiers ||
             categorie == Personnels ||
-            categorie == Professionnels;
+            categorie == Professionnels ||
+            categorie == Immobiliers;
     }
 }
 
@@ -30,6 +32,12 @@ public class ImpactDefinitionEvenement
     public string actif;
     public float variation;
 
+    // Champs optionnels réservés aux moteurs spécialisés.
+    public string ville;
+    public string typeBien;
+    public float variationLoyer;
+    public int dureeMois = 1;
+
     /// <summary>
     /// Produit une copie independante pour les parties et snapshots.
     /// </summary>
@@ -38,7 +46,11 @@ public class ImpactDefinitionEvenement
         return new ImpactDefinitionEvenement
         {
             actif = actif,
-            variation = variation
+            variation = variation,
+            ville = ville,
+            typeBien = typeBien,
+            variationLoyer = variationLoyer,
+            dureeMois = dureeMois
         };
     }
 }
@@ -371,6 +383,23 @@ public class DonneesEvenements
             evenement =>
                 evenement != null &&
                 evenement.categorie == CategoriesEvenements.Boursiers &&
+                !evenement.consommeParMoteurImpacts &&
+                evenement.etatTraitementImpacts ==
+                    EtatTraitementImpactsEvenement.EnAttente);
+    }
+
+
+    /// <summary>
+    /// Retourne uniquement les confirmations du moteur Immobilier.
+    /// </summary>
+    public List<EvenementConfirmePartie>
+        ObtenirConfirmationsImmobilieresAConsommer()
+    {
+        InitialiserSiNecessaire();
+        return evenementsConfirmes.FindAll(
+            evenement =>
+                evenement != null &&
+                evenement.categorie == CategoriesEvenements.Immobiliers &&
                 !evenement.consommeParMoteurImpacts &&
                 evenement.etatTraitementImpacts ==
                     EtatTraitementImpactsEvenement.EnAttente);

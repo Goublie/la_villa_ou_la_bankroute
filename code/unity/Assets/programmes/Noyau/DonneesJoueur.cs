@@ -120,7 +120,9 @@ public class DonneesJoueur
             immobilier = new DonneesImmobilier();
         }
 
-        if (entrepreneuriat == null)
+                immobilier.InitialiserSiNecessaire();
+
+if (entrepreneuriat == null)
         {
             entrepreneuriat = new DonneesEntrepreneuriat();
         }

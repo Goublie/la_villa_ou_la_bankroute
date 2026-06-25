@@ -935,7 +935,7 @@
         "message": "📢 BULLETIN ÉCONOMIQUE : Changement de tendance important repéré sur l'actif : Guerre commerciale panneaux solaires.",
         "impacts": [
             {
-                "actif":"Énergie",
+                "actif": "Énergie",
                 "variation": 0.2
             }
         ]
@@ -1972,15 +1972,15 @@
         "message": "📱 NOTIFICATION PHONE : Il est 3h du matin, vous êtes pris d'une frénésie spéculative sur un coup de tête après avoir lu un thread Reddit. Vous achetez massivement.",
         "impacts": [
             {
-                "actif":"Compte courant",
+                "actif": "Compte courant",
                 "variation": -0.4
             },
             {
-                "actif":"Sécurité des revenus",
-                "variation":-0.1
+                "actif": "Sécurité des revenus",
+                "variation": -0.1
             },
             {
-                "actif":"Instabilité",
+                "actif": "Instabilité",
                 "variation": -0.25
             }
         ]
@@ -2019,11 +2019,11 @@
         "message": "🐕 COUP DE COEUR : Vous craquez devant ce chiot samoyède pure race. Vous repartez avec lui, son carnet de santé et un budget croquettes revu à la hausse.",
         "impacts": [
             {
-                "actif":"Bonheur",
-                "variation":0.3
+                "actif": "Bonheur",
+                "variation": 0.3
             },
             {
-                "actif":"Compte courant"
+                "actif": "Compte courant"
             }
         ]
     },
@@ -2751,5 +2751,149 @@
         "importance": "Critique",
         "message": "👋 EFFET DOMINO : Suite au départ du chef de projet, l'intégralité des ingénieurs pose sa démission le même jour, vous laissant seul aux commandes.",
         "impacts": []
+    },
+    {
+        "id": "immo_001",
+        "categorie": "Immobiliers",
+        "titre": "Nouvelle ligne du Grand Paris Express",
+        "importance": "Forte",
+        "message": "🚇 GRAND PARIS : Une nouvelle correspondance majeure réduit fortement les temps de trajet dans plusieurs quartiers parisiens.",
+        "impacts": [
+            {
+                "actif": "Immobilier",
+                "ville": "Paris",
+                "typeBien": "Tous",
+                "variation": 0.1,
+                "variationLoyer": 0.04,
+                "dureeMois": 12
+            }
+        ]
+    },
+    {
+        "id": "immo_002",
+        "categorie": "Immobiliers",
+        "titre": "Surconstruction de logements à Lyon",
+        "importance": "Modérée",
+        "message": "🏗️ OFFRE ABONDANTE : La livraison simultanée de milliers de logements neufs détend brutalement le marché lyonnais.",
+        "impacts": [
+            {
+                "actif": "Immobilier",
+                "ville": "Lyon",
+                "typeBien": "AppartementT2",
+                "variation": -0.08,
+                "variationLoyer": -0.05,
+                "dureeMois": 8
+            },
+            {
+                "actif": "Immobilier",
+                "ville": "Lyon",
+                "typeBien": "AppartementT4",
+                "variation": -0.07,
+                "variationLoyer": -0.04,
+                "dureeMois": 8
+            }
+        ]
+    },
+    {
+        "id": "immo_003",
+        "categorie": "Immobiliers",
+        "titre": "Afflux étudiant à Toulouse",
+        "importance": "Modérée",
+        "message": "🎓 CAMPUS EN TENSION : L'ouverture d'un pôle universitaire international provoque une forte demande de petites surfaces.",
+        "impacts": [
+            {
+                "actif": "Immobilier",
+                "ville": "Toulouse",
+                "typeBien": "Studio",
+                "variation": 0.06,
+                "variationLoyer": 0.12,
+                "dureeMois": 10
+            }
+        ]
+    },
+    {
+        "id": "immo_004",
+        "categorie": "Immobiliers",
+        "titre": "Crise nationale des locaux commerciaux",
+        "importance": "Forte",
+        "message": "🏬 RIDEAUX BAISSÉS : Une vague de faillites fragilise les commerces physiques et multiplie les cellules vacantes.",
+        "impacts": [
+            {
+                "actif": "Immobilier",
+                "ville": "Tous",
+                "typeBien": "LocalCommercial",
+                "variation": -0.18,
+                "variationLoyer": -0.1,
+                "dureeMois": 12
+            }
+        ]
+    },
+    {
+        "id": "immo_005",
+        "categorie": "Immobiliers",
+        "titre": "Développement économique de Nantes",
+        "importance": "Modérée",
+        "message": "⚓ ATTRACTIVITÉ : Plusieurs sièges sociaux annoncent leur installation à Nantes et stimulent la demande résidentielle.",
+        "impacts": [
+            {
+                "actif": "Immobilier",
+                "ville": "Nantes",
+                "typeBien": "Tous",
+                "variation": 0.07,
+                "variationLoyer": 0.03,
+                "dureeMois": 9
+            }
+        ]
+    },
+    {
+        "id": "immo_006",
+        "categorie": "Immobiliers",
+        "titre": "Restrictions sur les locations touristiques à Bordeaux",
+        "importance": "Modérée",
+        "message": "🏛️ RÉGULATION : La municipalité durcit fortement les règles applicables aux locations meublées de courte durée.",
+        "impacts": [
+            {
+                "actif": "Immobilier",
+                "ville": "Bordeaux",
+                "typeBien": "Studio",
+                "variation": -0.05,
+                "variationLoyer": -0.08,
+                "dureeMois": 6
+            }
+        ]
+    },
+    {
+        "id": "immo_007",
+        "categorie": "Immobiliers",
+        "titre": "Grand plan de rénovation à Marseille",
+        "importance": "Forte",
+        "message": "🌊 RENOUVEAU URBAIN : Un programme massif de rénovation des transports et des quartiers revalorise Marseille.",
+        "impacts": [
+            {
+                "actif": "Immobilier",
+                "ville": "Marseille",
+                "typeBien": "Tous",
+                "variation": 0.09,
+                "variationLoyer": 0.05,
+                "dureeMois": 12
+            }
+        ]
+    },
+    {
+        "id": "immo_008",
+        "categorie": "Immobiliers",
+        "titre": "Détente nationale du marché immobilier",
+        "importance": "Modérée",
+        "message": "🏠 REPRISE : Le retour des acheteurs et l'amélioration du financement relancent progressivement les transactions.",
+        "impacts": [
+            {
+                "actif": "Immobilier",
+                "ville": "Tous",
+                "typeBien": "Tous",
+                "variation": 0.05,
+                "variationLoyer": 0.02,
+                "dureeMois": 6
+            }
+        ]
     }
 ]

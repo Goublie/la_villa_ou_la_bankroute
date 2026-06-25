@@ -57,12 +57,19 @@ public static class ServiceImmobilier
         TypeBien type,
         int surfaceM2,
         bool estMeuble,
-        int nombreMoisPasses)
+        int nombreMoisPasses,
+        DonneesImmobilier donneesImmobilier = null)
     {
         string villeId = ville.ToString().ToLower();
 
         // 1. Prix au m2 issu du marché mondial pour cette ville
-        float prixM2Actuel = MarcheImmobilier.ObtenirPrixM2(villeId, nombreMoisPasses);
+        float prixM2Actuel =
+            MarcheImmobilier.ObtenirPrixM2(villeId, nombreMoisPasses) *
+            ServiceImpactsImmobiliers.CalculerCoefficientPrix(
+                donneesImmobilier,
+                ville,
+                type,
+                nombreMoisPasses);
 
         // 2. Facteur qualité : légèrement aléatoire (0.85 à 1.20)
         float facteurQualite = UnityEngine.Random.Range(0.85f, 1.20f);
@@ -77,7 +84,13 @@ public static class ServiceImmobilier
         // 4. Loyer : rendement brut aléatoire entre 4% et 7% par an
         float tauxRendement = UnityEngine.Random.Range(0.04f, 0.07f);
         double loyerAnnuelEuros = prixAfficheEuros * tauxRendement;
-        double loyerMensuelEuros = loyerAnnuelEuros / 12d;
+        double loyerMensuelEuros =
+            (loyerAnnuelEuros / 12d) *
+            ServiceImpactsImmobiliers.CalculerCoefficientLoyer(
+                donneesImmobilier,
+                ville,
+                type,
+                nombreMoisPasses);
         long loyerCentimes = (long)Math.Round(loyerMensuelEuros * 100d);
         argent loyerMensuel = new argent((int)Math.Clamp(loyerCentimes, 0, int.MaxValue));
 
@@ -120,7 +133,13 @@ public static class ServiceImmobilier
                 // Meublé aléatoire (50/50)
                 bool meuble = UnityEngine.Random.value > 0.5f;
 
-                AnnonceImmobiliere annonce = GenererAnnonceSurLeMarche(ville, type, surface, meuble, nombreMoisPasses);
+                AnnonceImmobiliere annonce = GenererAnnonceSurLeMarche(
+                    ville,
+                    type,
+                    surface,
+                    meuble,
+                    nombreMoisPasses,
+                    joueur.immobilier);
                 joueur.immobilier.annoncesActuelles.Add(annonce);
                 totalGenere++;
             }
@@ -176,40 +195,113 @@ public static class ServiceImmobilier
     /// <summary>
     /// Calcule l'estimation actuelle du bien basée sur le vrai prix du marché (m2 * surface * qualité).
     /// </summary>
-    public static argent CalculerValeurActuelle(BienImmobilier bien, int nombreMoisPasses)
+    public static argent CalculerValeurActuelle(
+        BienImmobilier bien,
+        int nombreMoisPasses,
+        DonneesImmobilier donneesImmobilier = null)
     {
         DefinitionBienImmobilier def = TrouverDefinitionAssociee(bien.ville, bien.type);
         if (def == null) return bien.prixAchat;
 
-        float prixM2Actuel = MarcheImmobilier.ObtenirPrixM2(def.VilleId, nombreMoisPasses);
+        float prixM2Actuel =
+            MarcheImmobilier.ObtenirPrixM2(def.VilleId, nombreMoisPasses) *
+            ServiceImpactsImmobiliers.CalculerCoefficientPrix(
+                donneesImmobilier,
+                bien.ville,
+                bien.type,
+                nombreMoisPasses);
         float valeurEuros = prixM2Actuel * def.SurfaceM2 * def.FacteurQualite;
 
         long centimes = (long)Math.Round(valeurEuros * 100d);
         return new argent((int)Math.Clamp(centimes, 0, int.MaxValue));
     }
 
+
+    /// <summary>
+    /// Calcule le loyer courant en séparant la tendance historique du prix
+    /// et le coefficient temporaire propre aux loyers.
+    /// </summary>
+    public static argent CalculerLoyerMensuelActuel(
+        BienImmobilier bien,
+        int nombreMoisPasses,
+        DonneesImmobilier donneesImmobilier = null)
+    {
+        if (bien == null || bien.prixAchat.centimes <= 0)
+        {
+            return bien?.loyerMensuel ?? new argent(0);
+        }
+
+        DefinitionBienImmobilier def =
+            TrouverDefinitionAssociee(bien.ville, bien.type);
+        if (def == null)
+        {
+            return bien.loyerMensuel;
+        }
+
+        float prixM2Base =
+            MarcheImmobilier.ObtenirPrixM2(
+                def.VilleId,
+                nombreMoisPasses);
+        double valeurBaseCentimes =
+            prixM2Base *
+            def.SurfaceM2 *
+            def.FacteurQualite *
+            100d;
+        double evolution =
+            (valeurBaseCentimes - bien.prixAchat.centimes) /
+            bien.prixAchat.centimes;
+
+        double coefficientLoyer =
+            ServiceImpactsImmobiliers.CalculerCoefficientLoyer(
+                donneesImmobilier,
+                bien.ville,
+                bien.type,
+                nombreMoisPasses);
+        double centimes =
+            bien.loyerInitial.centimes *
+            Math.Max(0d, 1d + evolution) *
+            coefficientLoyer;
+
+        return new argent(
+            (int)Math.Clamp(
+                (long)Math.Round(centimes),
+                0,
+                int.MaxValue));
+    }
+
     /// <summary>
     /// Recalcule et indexe les loyers annuellement (+/- x% d'évolution de la valeur).
     /// À appeler tous les 12 mois.
     /// </summary>
-    public static void ActualiserLoyersAnnuels(DonneesJoueur joueur, int nombreMoisPasses)
+
+    public static void ActualiserLoyersAnnuels(
+        DonneesJoueur joueur,
+        int nombreMoisPasses)
     {
-        foreach (var bien in joueur.immobilier.biensPossedes)
+        if (joueur?.immobilier?.biensPossedes == null)
         {
-            if (bien.prixAchat.centimes == 0) continue;
-
-            // 1. On met à jour l'estimation marchande du bâtiment
-            bien.valeurActuelle = CalculerValeurActuelle(bien, nombreMoisPasses);
-
-            // 2. Calcul du coefficient d'évolution relative (x) par rapport au prix d'achat de base
-            double evolution = (double)(bien.valeurActuelle.centimes - bien.prixAchat.centimes) / bien.prixAchat.centimes;
-
-            // 3. Le loyer suit exactement la même courbe : Nouveau Loyer = LoyerInitial * (1 + x)
-            double nouveauLoyerCentimes = bien.loyerInitial.centimes * (1d + evolution);
-            
-            bien.loyerMensuel = new argent((int)Math.Clamp((long)Math.Round(nouveauLoyerCentimes), 0, int.MaxValue));
+            return;
         }
-        Debug.Log("[ServiceImmobilier] Indexation annuelle des loyers et mise à jour des estimations immobilières terminées.");
+
+        foreach (BienImmobilier bien in joueur.immobilier.biensPossedes)
+        {
+            if (bien == null)
+            {
+                continue;
+            }
+
+            bien.valeurActuelle = CalculerValeurActuelle(
+                bien,
+                nombreMoisPasses,
+                joueur.immobilier);
+            bien.loyerMensuel = CalculerLoyerMensuelActuel(
+                bien,
+                nombreMoisPasses,
+                joueur.immobilier);
+        }
+
+        Debug.Log(
+            "[ServiceImmobilier] Indexation annuelle et impacts immobiliers actualisés.");
     }
 
     // --- UTILS DE CORRESPONDANCE LOGIQUE ---

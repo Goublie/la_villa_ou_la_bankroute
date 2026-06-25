@@ -92,15 +92,37 @@ public class DonneesImmobilier
 {
     public List<BienImmobilier> biensPossedes;
     public List<AnnonceImmobiliere> annoncesActuelles; // Stockage persistant du marché
+    public List<ImpactEvenementImmobilier> impactsActifs;
 
     public DonneesImmobilier()
     {
         biensPossedes = new List<BienImmobilier>();
         annoncesActuelles = new List<AnnonceImmobiliere>();
+        impactsActifs = new List<ImpactEvenementImmobilier>();
+    }
+
+
+    public void InitialiserSiNecessaire()
+    {
+        if (biensPossedes == null)
+        {
+            biensPossedes = new List<BienImmobilier>();
+        }
+
+        if (annoncesActuelles == null)
+        {
+            annoncesActuelles = new List<AnnonceImmobiliere>();
+        }
+
+        if (impactsActifs == null)
+        {
+            impactsActifs = new List<ImpactEvenementImmobilier>();
+        }
     }
 
     public DonneesImmobilier Copier()
     {
+        InitialiserSiNecessaire();
         DonneesImmobilier copie = new DonneesImmobilier();
         
         if (this.biensPossedes != null)
@@ -116,6 +138,18 @@ public class DonneesImmobilier
             foreach (var annonce in this.annoncesActuelles)
             {
                 copie.annoncesActuelles.Add(annonce.Copier());
+            }
+        }
+
+
+        if (impactsActifs != null)
+        {
+            foreach (ImpactEvenementImmobilier impact in impactsActifs)
+            {
+                if (impact != null)
+                {
+                    copie.impactsActifs.Add(impact.Copier());
+                }
             }
         }
 

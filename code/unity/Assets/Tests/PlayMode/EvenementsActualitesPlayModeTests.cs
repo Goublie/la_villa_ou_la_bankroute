@@ -289,7 +289,10 @@ public class EvenementsActualitesPlayModeTests
         int nombreImpactsAttendus = 0;
         foreach (object confirmation in confirmations)
         {
-            if ((bool)LireMembre(
+            if ((string)LireMembre(
+                    confirmation,
+                    "categorie") == "Boursiers" &&
+                (bool)LireMembre(
                     confirmation,
                     "consommeParMoteurImpacts"))
             {

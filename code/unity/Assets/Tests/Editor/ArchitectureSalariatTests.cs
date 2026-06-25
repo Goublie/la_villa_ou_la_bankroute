@@ -30,7 +30,7 @@ public class ArchitectureSalariatTests
     }
 
     [Test]
-    public void EvolutionMensuelle_ProgresseHorsInterfaceTousLesCinqMois()
+    public void EvolutionMensuelle_ProgresseHorsInterfaceChaqueMois()
     {
         ContexteSalariat contexte = new ContexteSalariat();
         contexte.Service.AccepterPoste(
@@ -45,8 +45,8 @@ public class ArchitectureSalariatTests
         contexte.Service.AppliquerEvolutionMensuelle(0);
 
         Assert.That(contexte.Donnees.ancienneteMois, Is.EqualTo(5));
-        Assert.That(contexte.Donnees.experience, Is.EqualTo(20));
-        Assert.That(contexte.Donnees.fatigue, Is.EqualTo(40));
+        Assert.That(contexte.Donnees.experience, Is.EqualTo(5));
+        Assert.That(contexte.Donnees.fatigue, Is.EqualTo(30));
     }
 
     [Test]
@@ -150,11 +150,11 @@ public class ArchitectureSalariatTests
                 Is.EqualTo(5));
             Assert.That(
                 gameData.joueur.salariat.experience,
-                Is.EqualTo(10));
+                Is.EqualTo(5));
             Assert.That(
                 gameData.joueur.comptes[ServiceBanque.CompteCourantId]
                     .GetSolde().centimes,
-                Is.EqualTo(100000 + 300000));
+                Is.EqualTo(345000));
         }
         finally
         {
@@ -163,7 +163,7 @@ public class ArchitectureSalariatTests
     }
 
     [Test]
-    public void BurnoutMaximal_DeclencheGameOverSansInterface()
+    public void SanteMentaleNulle_DeclencheGameOverSansInterface()
     {
         GameData gameData = ScriptableObject.CreateInstance<GameData>();
         try
@@ -174,11 +174,11 @@ public class ArchitectureSalariatTests
                 gameData.joueur);
             salariat.AccepterPoste("Global Services", 300000, 45, 3, 1, 1);
             gameData.joueur.salariat.fatigue = 100;
-            gameData.joueur.salariat.burnout = 90;
+            gameData.joueur.santeMentale = 10;
 
             new ServicePassageMensuel(gameData).PasserAuMoisSuivant();
 
-            Assert.That(gameData.joueur.salariat.burnout, Is.EqualTo(100));
+            Assert.That(gameData.joueur.santeMentale, Is.EqualTo(0));
             Assert.That(ActionPlay.DoitChargerGameOver(gameData), Is.True);
         }
         finally
@@ -188,7 +188,7 @@ public class ArchitectureSalariatTests
     }
 
     [Test]
-    public void EvolutionNaturelle_EmploiQuaranteCinqHeuresAtteintBurnout()
+    public void EvolutionNaturelle_EmploiQuaranteCinqHeuresEpuiseSanteMentale()
     {
         GameData gameData = ScriptableObject.CreateInstance<GameData>();
         try
@@ -200,14 +200,14 @@ public class ArchitectureSalariatTests
             salariat.AccepterPoste("Global Services", 300000, 45, 3, 1, 1);
 
             for (int mois = 0;
-                 mois < 40 && gameData.joueur.salariat.burnout < 100;
+                 mois < 40 && gameData.joueur.santeMentale > 0;
                  mois++)
             {
                 salariat.AppliquerEvolutionMensuelle(mois);
             }
 
             Assert.That(gameData.joueur.salariat.fatigue, Is.EqualTo(100));
-            Assert.That(gameData.joueur.salariat.burnout, Is.EqualTo(100));
+            Assert.That(gameData.joueur.santeMentale, Is.EqualTo(0));
             Assert.That(ActionPlay.DoitChargerGameOver(gameData), Is.True);
         }
         finally

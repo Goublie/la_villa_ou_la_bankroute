@@ -390,9 +390,28 @@ public sealed class CatalogueEvenements
                         "Variation invalide pour l'evenement " + evenement.id);
                 }
 
-                if (!EssayerObtenirActifBourse(
+                bool cibleConnue = true;
+                if (evenement.categorie == CategoriesEvenements.Boursiers)
+                {
+                    cibleConnue = EssayerObtenirActifBourse(
                         impact.actif,
-                        out _))
+                        out _);
+                }
+                else if (
+                    evenement.categorie ==
+                    CategoriesEvenements.Immobiliers)
+                {
+                    cibleConnue =
+                        string.Equals(
+                            impact.actif,
+                            "Immobilier",
+                            StringComparison.OrdinalIgnoreCase) &&
+                        impact.dureeMois > 0 &&
+                        !float.IsNaN(impact.variationLoyer) &&
+                        !float.IsInfinity(impact.variationLoyer);
+                }
+
+                if (!cibleConnue)
                 {
                     ciblesInconnues.Add(impact.actif);
                 }

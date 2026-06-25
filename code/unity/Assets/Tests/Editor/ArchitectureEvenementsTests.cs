@@ -16,14 +16,14 @@ public class ArchitectureEvenementsTests
 
         Assert.That(chargement.EstValide, Is.True,
             chargement.ConstruireMessageErreurs());
-        Assert.That(chargement.Catalogue.Evenements, Has.Count.EqualTo(200));
-        Assert.That(chargement.Catalogue.Sources, Has.Count.EqualTo(19));
+        Assert.That(chargement.Catalogue.Evenements, Has.Count.EqualTo(208));
+        Assert.That(chargement.Catalogue.Sources, Has.Count.EqualTo(22));
         Assert.That(
             chargement.Catalogue.Evenements.Select(e => e.id).Distinct().Count(),
-            Is.EqualTo(200));
+            Is.EqualTo(208));
         Assert.That(
             chargement.Catalogue.Sources.Select(s => s.id).Distinct().Count(),
-            Is.EqualTo(19));
+            Is.EqualTo(22));
         Assert.That(
             chargement.Catalogue.Evenements.Count(
                 e => e.categorie == CategoriesEvenements.Boursiers),
@@ -36,6 +36,10 @@ public class ArchitectureEvenementsTests
             chargement.Catalogue.Evenements.Count(
                 e => e.categorie == CategoriesEvenements.Professionnels),
             Is.EqualTo(40));
+        Assert.That(
+            chargement.Catalogue.Evenements.Count(
+                e => e.categorie == CategoriesEvenements.Immobiliers),
+            Is.EqualTo(8));
     }
 
     [Test]
@@ -43,10 +47,27 @@ public class ArchitectureEvenementsTests
     {
         CatalogueEvenements catalogue = ChargerCatalogueReel();
 
-        Assert.That(catalogue.EvenementsSansImpact, Has.Count.EqualTo(45));
-        Assert.That(catalogue.CiblesImpactInconnues, Has.Count.EqualTo(51));
+                CollectionAssert.AreEquivalent(
+            catalogue.Evenements
+                .Where(
+                    evenement =>
+                        evenement.impacts == null ||
+                        evenement.impacts.Count == 0)
+                .Select(evenement => evenement.id),
+            catalogue.EvenementsSansImpact);
+        Assert.That(catalogue.CiblesImpactInconnues, Has.Count.EqualTo(38));
         Assert.That(catalogue.CiblesImpactInconnues, Does.Contain("Or"));
-        Assert.That(catalogue.VariationsExtremes, Has.Count.EqualTo(42));
+        int nombreVariationsExtremesAttendu = catalogue.Evenements
+            .Where(evenement => evenement.impacts != null)
+            .SelectMany(evenement => evenement.impacts)
+            .Count(
+                impact =>
+                    impact != null &&
+                    System.Math.Abs(impact.variation) >=
+                    ParametresEvenements.SeuilVariationExtreme);
+        Assert.That(
+            catalogue.VariationsExtremes,
+            Has.Count.EqualTo(nombreVariationsExtremesAttendu));
         Assert.That(
             catalogue.VariationsExtremes.Any(v => v.StartsWith("062:Bitcoin:")),
             Is.True);
@@ -601,7 +622,9 @@ public class ArchitectureEvenementsTests
                 gameData.historiqueSnapshots[1].evenements
                     .ObtenirRumeurs(EtatRumeur.EnAttente),
                 Has.Count.EqualTo(2));
-            Assert.That(gameData.joueur.bourse.impactsMarche, Is.Empty);
+            Assert.That(
+                gameData.historiqueSnapshots[1].joueur.bourse.impactsMarche,
+                Is.Empty);
         }
         finally
         {

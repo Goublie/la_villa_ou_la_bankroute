@@ -179,5 +179,32 @@
             "Professionnels"
         ],
         "fiabilite": 0.25
+    },
+    {
+        "id": "src_observatoire_m2",
+        "nom": "L'Observatoire du Mètre Carré",
+        "type": "presse_immobiliere",
+        "domaines": [
+            "Immobiliers"
+        ],
+        "fiabilite": 0.85
+    },
+    {
+        "id": "src_immoscope",
+        "nom": "ImmoScope",
+        "type": "presse_immobiliere",
+        "domaines": [
+            "Immobiliers"
+        ],
+        "fiabilite": 0.65
+    },
+    {
+        "id": "src_syndic_bavard",
+        "nom": "Le Syndic Bavard",
+        "type": "reseau_immobilier",
+        "domaines": [
+            "Immobiliers"
+        ],
+        "fiabilite": 0.35
     }
 ]
