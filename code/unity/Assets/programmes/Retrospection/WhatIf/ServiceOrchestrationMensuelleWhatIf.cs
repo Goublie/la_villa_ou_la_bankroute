@@ -93,7 +93,7 @@ public static class ServiceOrchestrationMensuelleWhatIf
         }
 
         resultat.recherche =
-            MoteurRechercheFaisceauWhatIf.Rechercher(
+            ServiceOptimisationMultiHorizonWhatIf.Rechercher(
                 resultat.capitalAvantDecisionCentimes,
                 allocationCourante,
                 resultat.previsions,
@@ -271,10 +271,16 @@ public static class ServiceOrchestrationMensuelleWhatIf
             impactsConnus,
             indexMois);
 
+        string contexte = ConstruireContexteEvenements(ids);
+
         if (recherche.decisionRetenue != null)
         {
             recherche.decisionRetenue.evenementsConnusIds =
                 new List<string>(ids);
+            recherche.decisionRetenue.explication =
+                AjouterContexte(
+                    recherche.decisionRetenue.explication,
+                    contexte);
         }
 
         if (recherche.chemin != null)
@@ -285,6 +291,10 @@ public static class ServiceOrchestrationMensuelleWhatIf
                 {
                     decision.evenementsConnusIds =
                         new List<string>(ids);
+                    decision.explication =
+                        AjouterContexte(
+                            decision.explication,
+                            contexte);
                 }
             }
         }
@@ -313,6 +323,34 @@ public static class ServiceOrchestrationMensuelleWhatIf
         List<string> resultat = new List<string>(uniques);
         resultat.Sort(StringComparer.Ordinal);
         return resultat;
+    }
+
+    private static string ConstruireContexteEvenements(
+        IReadOnlyCollection<string> ids)
+    {
+        int nombre = ids != null ? ids.Count : 0;
+        return nombre == 0
+            ? "Aucun evenement confirme actif n'a influence cette decision."
+            : nombre +
+              " evenement(s) confirme(s) actif(s) ont influence cette decision.";
+    }
+
+    private static string AjouterContexte(
+        string explication,
+        string contexte)
+    {
+        string baseTexte = explication ?? string.Empty;
+        string ajout = contexte ?? string.Empty;
+
+        if (string.IsNullOrWhiteSpace(ajout) ||
+            baseTexte.Contains(ajout))
+        {
+            return baseTexte;
+        }
+
+        return string.IsNullOrWhiteSpace(baseTexte)
+            ? ajout
+            : baseTexte.TrimEnd() + " " + ajout;
     }
 
     private static int CalculerPatrimoineAlternatif(

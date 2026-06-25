@@ -7,9 +7,9 @@ using System.Collections.Generic;
 [Serializable]
 public sealed class ConfigurationWhatIf
 {
-    public int horizonMois = 3;
-    public int largeurFaisceau = 25;
-    public int pasAllocationPourcent = 25;
+    public int horizonMois = 6;
+    public int largeurFaisceau = 50;
+    public int pasAllocationPourcent = 20;
     public float penaliteRisque = 0.15f;
     public float penaliteDrawdown = 0.25f;
     public int coutTransactionCentimes;
