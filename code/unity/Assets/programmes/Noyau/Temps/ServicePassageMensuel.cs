@@ -251,16 +251,7 @@ public sealed class ServicePassageMensuel
             evolution.AppliquerEvolutionMensuelle(mois);
         }
 
-        if (joueur.immobilier != null && joueur.immobilier.biensPossedes != null)
-        {
-            foreach (BienImmobilier bien in joueur.immobilier.biensPossedes)
-            {
-                if (bien != null && bien.estLoue && bien.loyerMensuel.centimes > 0)
-                {
-                    banque.Crediter(compteCourant, bien.loyerMensuel, "loyer");
-                }
-            }
-        }
+
         // ==========================================
 
         gameData.env.tauxEpargne =

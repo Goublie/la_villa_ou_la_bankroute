@@ -69,6 +69,54 @@ public class ArchitectureTempsTests
     }
 
     [Test]
+    public void PassageMensuel_VerseChaqueLoyerUneSeuleFois()
+    {
+        GameData gameData = CreerGameData();
+        try
+        {
+            const int loyerMensuelCentimes = 1500000;
+            CompteBanquaire compte =
+                gameData.joueur.comptes[
+                    ServiceBanque.CompteCourantId];
+            int soldeAvant = compte.GetSolde().centimes;
+            int coutNiveauVie =
+                GestionnaireNiveauVie.CalculerCoutMensuel(
+                    gameData.joueur.niveauVie).centimes;
+
+            gameData.joueur.immobilier.biensPossedes.Add(
+                new BienImmobilier
+                {
+                    ville = Ville.Paris,
+                    type = TypeBien.Studio,
+                    surfaceM2 = 40,
+                    prixAchat = new argent(10000000),
+                    valeurActuelle = new argent(10000000),
+                    estLoue = true,
+                    loyerInitial =
+                        new argent(loyerMensuelCentimes),
+                    loyerMensuel =
+                        new argent(loyerMensuelCentimes)
+                });
+
+            ResultatPassageMensuel resultat =
+                new ServicePassageMensuel(gameData)
+                    .PasserAuMoisSuivant();
+
+            Assert.That(resultat.Succes, Is.True);
+            Assert.That(
+                compte.GetSolde().centimes,
+                Is.EqualTo(
+                    soldeAvant +
+                    loyerMensuelCentimes -
+                    coutNiveauVie));
+        }
+        finally
+        {
+            Object.DestroyImmediate(gameData);
+        }
+    }
+
+    [Test]
     public void PassageMensuel_SignaleLePassageDeDecembreAJanvier()
     {
         GameData gameData = CreerGameData();

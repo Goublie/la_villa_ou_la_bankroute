@@ -150,7 +150,14 @@ public static class ServiceImmobilierAlternatifWhatIf
             type = meilleure.Type,
             surfaceM2 = meilleure.SurfaceM2,
             estMeuble = meilleure.EstMeuble,
-            prixAchat = new argent(prix),
+            moisAchat = resultat.indexMois,
+            indicePrixReferenceAchat =
+                ServiceImmobilier.CalculerIndicePrixReference(
+                    meilleure.Ville,
+                    meilleure.Type,
+                    resultat.indexMois,
+                    donnees.immobilier),
+            valeurReferenceAchatCentimes = prix,            prixAchat = new argent(prix),
             valeurActuelle = new argent(prix),
             estLoue = true,
             tauxRendementInitial = meilleure.TauxRendementBrut,

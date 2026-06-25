@@ -31,7 +31,10 @@ public class BienImmobilier : IPatrimoine
     public TypeBien type;
     public int surfaceM2;   // Surface réelle du bien (aléatoire à la génération du marché)
     public bool estMeuble;  // Bien proposé meublé ou non (aléatoire à la génération)
-    
+    public int moisAchat = -1;
+    public float indicePrixReferenceAchat;
+    public int valeurReferenceAchatCentimes;
+
     // Bases financières
     public argent prixAchat;
     public argent valeurActuelle;
@@ -42,7 +45,7 @@ public class BienImmobilier : IPatrimoine
     public argent loyerInitial;
     public argent loyerMensuel; // Loyer réel perçu (évolue chaque année)
 
-    public BienImmobilier() 
+    public BienImmobilier()
     {
         idUnique = Guid.NewGuid().ToString();
         prixAchat = new argent(0);
@@ -72,11 +75,14 @@ public class BienImmobilier : IPatrimoine
             type = this.type,
             surfaceM2 = this.surfaceM2,
             estMeuble = this.estMeuble,
-            
+            moisAchat = this.moisAchat,
+            indicePrixReferenceAchat = this.indicePrixReferenceAchat,
+            valeurReferenceAchatCentimes =
+                this.valeurReferenceAchatCentimes,
             prixAchat = new argent(this.prixAchat.centimes),
             valeurActuelle = new argent(this.valeurActuelle.centimes),
             estLoue = this.estLoue,
-            
+
             tauxRendementInitial = this.tauxRendementInitial,
             loyerInitial = new argent(this.loyerInitial.centimes),
             loyerMensuel = new argent(this.loyerMensuel.centimes)
@@ -124,7 +130,7 @@ public class DonneesImmobilier
     {
         InitialiserSiNecessaire();
         DonneesImmobilier copie = new DonneesImmobilier();
-        
+
         if (this.biensPossedes != null)
         {
             foreach (var bien in this.biensPossedes)

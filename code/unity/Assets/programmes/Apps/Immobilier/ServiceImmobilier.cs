@@ -172,7 +172,14 @@ public static class ServiceImmobilier
             type = annonce.Type,
             surfaceM2 = annonce.SurfaceM2,
             estMeuble = annonce.EstMeuble,
-            prixAchat = annonce.PrixVenteAffiche,
+            moisAchat = Math.Max(0, nombreMoisPasses),
+            indicePrixReferenceAchat = CalculerIndicePrixReference(
+                annonce.Ville,
+                annonce.Type,
+                nombreMoisPasses,
+                joueur.immobilier),
+            valeurReferenceAchatCentimes =
+                annonce.PrixVenteAffiche.centimes,            prixAchat = annonce.PrixVenteAffiche,
             valeurActuelle = annonce.PrixVenteAffiche, // Égal au prix d'achat au jour J
             estLoue = true, // Loué directement en v1
             tauxRendementInitial = annonce.TauxRendementBrut,
@@ -195,27 +202,83 @@ public static class ServiceImmobilier
     /// <summary>
     /// Calcule l'estimation actuelle du bien basée sur le vrai prix du marché (m2 * surface * qualité).
     /// </summary>
+    public static float CalculerIndicePrixReference(
+        Ville ville,
+        TypeBien type,
+        int nombreMoisPasses,
+        DonneesImmobilier donneesImmobilier = null)
+    {
+        string villeId = ville.ToString().ToLowerInvariant();
+        float prixM2 =
+            MarcheImmobilier.ObtenirPrixM2(
+                villeId,
+                Math.Max(0, nombreMoisPasses));
+        float coefficient =
+            ServiceImpactsImmobiliers.CalculerCoefficientPrix(
+                donneesImmobilier,
+                ville,
+                type,
+                Math.Max(0, nombreMoisPasses));
+
+        return Math.Max(0f, prixM2 * coefficient);
+    }
+
     public static argent CalculerValeurActuelle(
         BienImmobilier bien,
         int nombreMoisPasses,
         DonneesImmobilier donneesImmobilier = null)
     {
-        DefinitionBienImmobilier def = TrouverDefinitionAssociee(bien.ville, bien.type);
-        if (def == null) return bien.prixAchat;
+        if (bien == null)
+        {
+            return new argent(0);
+        }
 
-        float prixM2Actuel =
-            MarcheImmobilier.ObtenirPrixM2(def.VilleId, nombreMoisPasses) *
-            ServiceImpactsImmobiliers.CalculerCoefficientPrix(
-                donneesImmobilier,
+        int valeurExistante =
+            Math.Max(0, bien.valeurActuelle.centimes);
+        int prixAchatCentimes =
+            Math.Max(0, bien.prixAchat.centimes);
+        float indiceActuel =
+            CalculerIndicePrixReference(
                 bien.ville,
                 bien.type,
-                nombreMoisPasses);
-        float valeurEuros = prixM2Actuel * def.SurfaceM2 * def.FacteurQualite;
+                nombreMoisPasses,
+                donneesImmobilier);
 
-        long centimes = (long)Math.Round(valeurEuros * 100d);
-        return new argent((int)Math.Clamp(centimes, 0, int.MaxValue));
+        if (prixAchatCentimes > 0 && indiceActuel > 0f)
+        {
+            if (bien.indicePrixReferenceAchat <= 0f ||
+                bien.valeurReferenceAchatCentimes <= 0)
+            {
+                bien.moisAchat = bien.moisAchat >= 0
+                    ? bien.moisAchat
+                    : Math.Max(0, nombreMoisPasses);
+                bien.indicePrixReferenceAchat = indiceActuel;
+                bien.valeurReferenceAchatCentimes =
+                    valeurExistante > 0
+                        ? valeurExistante
+                        : prixAchatCentimes;
+            }
+
+            double ratio =
+                indiceActuel / bien.indicePrixReferenceAchat;
+            long valeurCentimes =
+                (long)Math.Round(
+                    bien.valeurReferenceAchatCentimes * ratio);
+
+            return new argent(
+                (int)Math.Clamp(
+                    valeurCentimes,
+                    0,
+                    int.MaxValue));
+        }
+
+        if (valeurExistante > 0)
+        {
+            return new argent(valeurExistante);
+        }
+
+        return new argent(prixAchatCentimes);
     }
-
 
     /// <summary>
     /// Calcule le loyer courant en séparant la tendance historique du prix

@@ -144,6 +144,42 @@ public class ServiceImmobilierAlternatifWhatIfTests
     }
 
     [Test]
+    public void AcheterComptant_ConserveLaValeurAuMoisDeLAchat()
+    {
+        DonneesWhatIf donnees = CreerDonnees(2000000);
+        AnnonceImmobiliere annonce =
+            CreerAnnonce(
+                Ville.Paris,
+                TypeBien.Studio,
+                600000,
+                3000);
+
+        ResultatAchatImmobilierWhatIf achat =
+            ServiceImmobilierAlternatifWhatIf
+                .EvaluerEtAcheterComptant(
+                    donnees,
+                    new List<AnnonceImmobiliere> { annonce },
+                    4);
+
+        BienImmobilier bien =
+            donnees.immobilier.biensPossedes[0];
+        argent valeur =
+            ServiceImmobilier.CalculerValeurActuelle(
+                bien,
+                4,
+                donnees.immobilier);
+
+        Assert.That(achat.achatEffectue, Is.True);
+        Assert.That(valeur.centimes, Is.EqualTo(600000));
+        Assert.That(
+            bien.indicePrixReferenceAchat,
+            Is.GreaterThan(0f));
+        Assert.That(
+            bien.valeurReferenceAchatCentimes,
+            Is.EqualTo(600000));
+    }
+
+    [Test]
     public void InitialiserDepuisJoueur_SynchroniseLesImpactsConfirmes()
     {
         DonneesJoueur joueur = new DonneesJoueur();
