@@ -36,11 +36,17 @@ public static class ServicePatrimoineAlternatifWhatIf
         if (donnees.initialisee &&
             donnees.actifsPassifsImmobiliersInitialises)
         {
+            SynchroniserImpactsImmobiliers(
+                donnees.immobilier,
+                joueur != null ? joueur.immobilier : null);
             InitialiserEmpreintesDepuisPretsAlternatifs(donnees);
             return;
         }
 
         donnees.immobilier = CopierImmobilierPossede(
+            joueur != null ? joueur.immobilier : null);
+        SynchroniserImpactsImmobiliers(
+            donnees.immobilier,
             joueur != null ? joueur.immobilier : null);
         donnees.pretsImmobiliers = CopierPrets(
             joueur != null ? joueur.pretsImmobiliers : null);
@@ -180,6 +186,24 @@ public static class ServicePatrimoineAlternatifWhatIf
 
         int lignesPretNeutralisees =
             NeutraliserMensualitesReelles(analyse);
+        int lignesLoyerNeutralisees =
+            NeutraliserLoyersReels(analyse);
+        int loyersAlternatifsCentimes =
+            ActualiserImmobilierEtCalculerLoyers(
+                donnees,
+                indexMois);
+
+        if (loyersAlternatifsCentimes > 0)
+        {
+            analyse.revenusCentimes =
+                AdditionNonNegativeSaturee(
+                    analyse.revenusCentimes,
+                    loyersAlternatifsCentimes);
+            analyse.fluxNetCentimes =
+                AdditionSaturee(
+                    analyse.fluxNetCentimes,
+                    loyersAlternatifsCentimes);
+        }
 
         bool moisDejaTraite =
             donnees.dernierMoisMensualitesPretsTraite >= indexMois;
@@ -227,6 +251,21 @@ public static class ServicePatrimoineAlternatifWhatIf
             resultat.diagnostics.Add(
                 lignesPretNeutralisees +
                 " ligne(s) de pret reel neutralisee(s).");
+        }
+
+        if (lignesLoyerNeutralisees > 0)
+        {
+            resultat.diagnostics.Add(
+                lignesLoyerNeutralisees +
+                " ligne(s) de loyer reel neutralisee(s).");
+        }
+
+        if (loyersAlternatifsCentimes > 0)
+        {
+            resultat.diagnostics.Add(
+                "Loyers alternatifs appliques une seule fois : " +
+                loyersAlternatifsCentimes +
+                " centimes.");
         }
 
         if (mensualitesCentimes > 0)
@@ -348,6 +387,135 @@ public static class ServicePatrimoineAlternatifWhatIf
         }
 
         return LimiterNonNegatif(total);
+    }
+
+    private static void SynchroniserImpactsImmobiliers(
+        DonneesImmobilier cible,
+        DonneesImmobilier source)
+    {
+        if (cible == null)
+        {
+            return;
+        }
+
+        cible.InitialiserSiNecessaire();
+        cible.impactsActifs.Clear();
+
+        if (source?.impactsActifs == null)
+        {
+            return;
+        }
+
+        foreach (ImpactEvenementImmobilier impact in source.impactsActifs)
+        {
+            if (impact != null)
+            {
+                cible.impactsActifs.Add(impact.Copier());
+            }
+        }
+    }
+
+    private static int NeutraliserLoyersReels(
+        ResultatFluxMensuelsWhatIf analyse)
+    {
+        if (analyse?.classifications == null)
+        {
+            return 0;
+        }
+
+        int neutralisees = 0;
+
+        foreach (
+            ResultatClassificationFluxWhatIf classification
+            in analyse.classifications)
+        {
+            if (classification == null ||
+                !classification.doitEtreReproduit ||
+                classification.montantCentimes <= 0 ||
+                !EstLoyer(classification.libelleNormalise))
+            {
+                continue;
+            }
+
+            int montant = classification.montantCentimes;
+            analyse.revenusCentimes = Math.Max(
+                0,
+                analyse.revenusCentimes - montant);
+            analyse.fluxNetCentimes = SoustractionSaturee(
+                analyse.fluxNetCentimes,
+                montant);
+
+            classification.type = TypeFluxWhatIf.RendementInterne;
+            classification.classificationCertaine = true;
+            classification.doitEtreReproduit = false;
+            classification.diagnostic =
+                "Loyer reel remplace par les loyers du patrimoine alternatif.";
+            analyse.transactionsReproduites = Math.Max(
+                0,
+                analyse.transactionsReproduites - 1);
+            analyse.transactionsIgnorees++;
+            neutralisees++;
+        }
+
+        return neutralisees;
+    }
+
+    private static bool EstLoyer(string libelleNormalise)
+    {
+        return !string.IsNullOrWhiteSpace(libelleNormalise) &&
+            libelleNormalise.StartsWith(
+                "loyer",
+                StringComparison.Ordinal);
+    }
+
+    private static int ActualiserImmobilierEtCalculerLoyers(
+        DonneesWhatIf donnees,
+        int indexMois)
+    {
+        if (donnees?.immobilier?.biensPossedes == null)
+        {
+            return 0;
+        }
+
+        bool loyersDejaTraites =
+            donnees.dernierMoisLoyersImmobiliersTraite >= indexMois;
+        long totalLoyers = 0;
+
+        foreach (BienImmobilier bien in donnees.immobilier.biensPossedes)
+        {
+            if (bien == null)
+            {
+                continue;
+            }
+
+            bien.valeurActuelle =
+                ServiceImmobilier.CalculerValeurActuelle(
+                    bien,
+                    Math.Max(0, indexMois),
+                    donnees.immobilier);
+            bien.loyerMensuel =
+                ServiceImmobilier.CalculerLoyerMensuelActuel(
+                    bien,
+                    Math.Max(0, indexMois),
+                    donnees.immobilier);
+
+            if (!loyersDejaTraites &&
+                bien.estLoue &&
+                bien.loyerMensuel.centimes > 0)
+            {
+                totalLoyers += bien.loyerMensuel.centimes;
+            }
+        }
+
+        if (loyersDejaTraites)
+        {
+            return 0;
+        }
+
+        donnees.dernierMoisLoyersImmobiliersTraite = Math.Max(
+            donnees.dernierMoisLoyersImmobiliersTraite,
+            indexMois);
+        return LimiterNonNegatif(totalLoyers);
     }
 
     private static DonneesImmobilier CopierImmobilierPossede(

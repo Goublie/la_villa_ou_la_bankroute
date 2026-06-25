@@ -13,6 +13,7 @@ public sealed class ResultatCycleMensuelWhatIf
     public int nombrePrixObserves;
     public ResultatFluxMensuelsWhatIf flux;
     public ResultatOuvertureMoisWhatIf ouverture;
+    public ResultatAchatImmobilierWhatIf achatImmobilier;
     public PointHistoriqueWhatIf cloture;
     public List<string> diagnostics = new List<string>();
 }
@@ -65,6 +66,20 @@ public static class ServiceCycleMensuelWhatIf
                         gameData.joueur);
             resultat.diagnostics.AddRange(
                 synchronisationOuverture.diagnostics);
+
+            resultat.achatImmobilier =
+                ServiceImmobilierAlternatifWhatIf
+                    .EvaluerEtAcheterComptant(
+                        gameData.whatIf,
+                        gameData.joueur.immobilier?.annoncesActuelles,
+                        gameData.nombreMoisPasses);
+
+            if (!string.IsNullOrWhiteSpace(
+                    resultat.achatImmobilier?.diagnostic))
+            {
+                resultat.diagnostics.Add(
+                    resultat.achatImmobilier.diagnostic);
+            }
 
             resultat.ouverture =
                 ServiceOrchestrationMensuelleWhatIf.OuvrirMois(

@@ -153,6 +153,8 @@ public sealed class DonneesWhatIf
     public int moisInitialisation = -1;
     public int dernierMoisTraite = -1;
     public int dernierMoisMensualitesPretsTraite = -1;
+    public int dernierMoisLoyersImmobiliersTraite = -1;
+    public int dernierMoisAchatImmobilier = -1;
     public int capitalInitialCentimes;
     public int liquiditesCentimes;
     public DonneesBourse portefeuille = new DonneesBourse();
@@ -160,6 +162,8 @@ public sealed class DonneesWhatIf
     public List<DonneesPret> pretsImmobiliers =
         new List<DonneesPret>();
     public List<string> empreintesPretsReelsSynchronises =
+        new List<string>();
+    public List<string> empreintesAnnoncesImmobilieresAchetees =
         new List<string>();
     public ConfigurationWhatIf configuration = new ConfigurationWhatIf();
     public List<DecisionWhatIf> decisions = new List<DecisionWhatIf>();
@@ -197,6 +201,12 @@ public sealed class DonneesWhatIf
         if (empreintesPretsReelsSynchronises == null)
         {
             empreintesPretsReelsSynchronises = new List<string>();
+        }
+
+        if (empreintesAnnoncesImmobilieresAchetees == null)
+        {
+            empreintesAnnoncesImmobilieresAchetees =
+                new List<string>();
         }
 
         if (configuration == null)
@@ -237,6 +247,10 @@ public sealed class DonneesWhatIf
             dernierMoisTraite = dernierMoisTraite,
             dernierMoisMensualitesPretsTraite =
                 dernierMoisMensualitesPretsTraite,
+            dernierMoisLoyersImmobiliersTraite =
+                dernierMoisLoyersImmobiliersTraite,
+            dernierMoisAchatImmobilier =
+                dernierMoisAchatImmobilier,
             capitalInitialCentimes = capitalInitialCentimes,
             liquiditesCentimes = liquiditesCentimes,
             portefeuille = portefeuille.Copier(),
@@ -244,6 +258,9 @@ public sealed class DonneesWhatIf
             pretsImmobiliers = new List<DonneesPret>(),
             empreintesPretsReelsSynchronises =
                 new List<string>(empreintesPretsReelsSynchronises),
+            empreintesAnnoncesImmobilieresAchetees =
+                new List<string>(
+                    empreintesAnnoncesImmobilieresAchetees),
             configuration = configuration.Copier(),
             decisions = new List<DecisionWhatIf>(),
             historique = new List<PointHistoriqueWhatIf>(),
