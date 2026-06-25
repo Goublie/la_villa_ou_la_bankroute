@@ -2,7 +2,7 @@ using System;
 using System.Collections.Generic;
 
 /// <summary>
-/// ParamÃ¨tres configurables du moteur What If.
+/// Parametres configurables du moteur What If.
 /// </summary>
 [Serializable]
 public sealed class ConfigurationWhatIf
@@ -118,6 +118,8 @@ public sealed class PointHistoriqueWhatIf
     public int patrimoineAlternatifCentimes;
     public int liquiditesAlternativesCentimes;
     public int valeurBourseAlternativeCentimes;
+    public int valeurImmobilierAlternativeCentimes;
+    public int dettesAlternativesCentimes;
     public int ecartCumuleCentimes;
 
     public PointHistoriqueWhatIf Copier()
@@ -132,23 +134,33 @@ public sealed class PointHistoriqueWhatIf
                 liquiditesAlternativesCentimes,
             valeurBourseAlternativeCentimes =
                 valeurBourseAlternativeCentimes,
+            valeurImmobilierAlternativeCentimes =
+                valeurImmobilierAlternativeCentimes,
+            dettesAlternativesCentimes = dettesAlternativesCentimes,
             ecartCumuleCentimes = ecartCumuleCentimes
         };
     }
 }
 
 /// <summary>
-/// Ã‰tat persistant et isolÃ© de la stratÃ©gie boursiÃ¨re alternative.
+/// Etat persistant et isole de la strategie alternative.
 /// </summary>
 [Serializable]
 public sealed class DonneesWhatIf
 {
     public bool initialisee;
+    public bool actifsPassifsImmobiliersInitialises;
     public int moisInitialisation = -1;
     public int dernierMoisTraite = -1;
+    public int dernierMoisMensualitesPretsTraite = -1;
     public int capitalInitialCentimes;
     public int liquiditesCentimes;
     public DonneesBourse portefeuille = new DonneesBourse();
+    public DonneesImmobilier immobilier = new DonneesImmobilier();
+    public List<DonneesPret> pretsImmobiliers =
+        new List<DonneesPret>();
+    public List<string> empreintesPretsReelsSynchronises =
+        new List<string>();
     public ConfigurationWhatIf configuration = new ConfigurationWhatIf();
     public List<DecisionWhatIf> decisions = new List<DecisionWhatIf>();
     public List<PointHistoriqueWhatIf> historique =
@@ -161,6 +173,30 @@ public sealed class DonneesWhatIf
         if (portefeuille == null)
         {
             portefeuille = new DonneesBourse();
+        }
+
+        if (immobilier == null)
+        {
+            immobilier = new DonneesImmobilier();
+        }
+        if (immobilier.biensPossedes == null)
+        {
+            immobilier.biensPossedes = new List<BienImmobilier>();
+        }
+        if (immobilier.annoncesActuelles == null)
+        {
+            immobilier.annoncesActuelles =
+                new List<AnnonceImmobiliere>();
+        }
+
+        if (pretsImmobiliers == null)
+        {
+            pretsImmobiliers = new List<DonneesPret>();
+        }
+
+        if (empreintesPretsReelsSynchronises == null)
+        {
+            empreintesPretsReelsSynchronises = new List<string>();
         }
 
         if (configuration == null)
@@ -195,16 +231,32 @@ public sealed class DonneesWhatIf
         DonneesWhatIf copie = new DonneesWhatIf
         {
             initialisee = initialisee,
+            actifsPassifsImmobiliersInitialises =
+                actifsPassifsImmobiliersInitialises,
             moisInitialisation = moisInitialisation,
             dernierMoisTraite = dernierMoisTraite,
+            dernierMoisMensualitesPretsTraite =
+                dernierMoisMensualitesPretsTraite,
             capitalInitialCentimes = capitalInitialCentimes,
             liquiditesCentimes = liquiditesCentimes,
             portefeuille = portefeuille.Copier(),
+            immobilier = immobilier.Copier(),
+            pretsImmobiliers = new List<DonneesPret>(),
+            empreintesPretsReelsSynchronises =
+                new List<string>(empreintesPretsReelsSynchronises),
             configuration = configuration.Copier(),
             decisions = new List<DecisionWhatIf>(),
             historique = new List<PointHistoriqueWhatIf>(),
             ordres = new List<OrdreHistoriqueWhatIf>()
         };
+
+        foreach (DonneesPret pret in pretsImmobiliers)
+        {
+            if (pret != null)
+            {
+                copie.pretsImmobiliers.Add(CopierPret(pret));
+            }
+        }
 
         foreach (DecisionWhatIf decision in decisions)
         {
@@ -231,5 +283,19 @@ public sealed class DonneesWhatIf
         }
 
         return copie;
+    }
+
+    private static DonneesPret CopierPret(DonneesPret source)
+    {
+        return new DonneesPret(
+            new argent(source.montantEmprunte.centimes),
+            source.dureeAns,
+            source.tauxAnnuel,
+            new argent(source.mensualite.centimes))
+        {
+            moisRestants = source.moisRestants,
+            capitalRestantDu =
+                new argent(source.capitalRestantDu.centimes)
+        };
     }
 }

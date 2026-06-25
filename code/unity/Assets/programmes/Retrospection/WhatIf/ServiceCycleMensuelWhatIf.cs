@@ -52,6 +52,20 @@ public static class ServiceCycleMensuelWhatIf
                     ServicePatrimoine.Calculer(
                         gameData.joueur).centimes);
 
+            ServicePatrimoineAlternatifWhatIf.InitialiserDepuisJoueur(
+                gameData.whatIf,
+                gameData.joueur,
+                resultat.patrimoineReelCentimes,
+                gameData.nombreMoisPasses);
+
+            ResultatSynchronisationPretsWhatIf synchronisationOuverture =
+                ServicePatrimoineAlternatifWhatIf
+                    .SynchroniserNouveauxPretsDepuisJoueur(
+                        gameData.whatIf,
+                        gameData.joueur);
+            resultat.diagnostics.AddRange(
+                synchronisationOuverture.diagnostics);
+
             resultat.ouverture =
                 ServiceOrchestrationMensuelleWhatIf.OuvrirMois(
                     gameData.whatIf,
@@ -112,19 +126,32 @@ public static class ServiceCycleMensuelWhatIf
                         gameData.joueur).centimes);
 
             bool dejaInitialisee = gameData.whatIf.initialisee;
-            ServicePortefeuilleAlternatifWhatIf.Initialiser(
+            bool actifsPassifsDejaInitialises =
+                gameData.whatIf.actifsPassifsImmobiliersInitialises;
+
+            ServicePatrimoineAlternatifWhatIf.InitialiserDepuisJoueur(
                 gameData.whatIf,
+                gameData.joueur,
                 resultat.patrimoineReelCentimes,
                 resultat.indexMois);
 
-            if (dejaInitialisee)
+            ResultatSynchronisationPretsWhatIf synchronisationCloture =
+                ServicePatrimoineAlternatifWhatIf
+                    .SynchroniserNouveauxPretsDepuisJoueur(
+                        gameData.whatIf,
+                        gameData.joueur);
+            resultat.diagnostics.AddRange(
+                synchronisationCloture.diagnostics);
+
+            if (dejaInitialisee && actifsPassifsDejaInitialises)
             {
                 resultat.flux =
-                    ServiceFluxMensuelsWhatIf.Appliquer(
+                    ServicePatrimoineAlternatifWhatIf.AppliquerFluxMensuels(
                         gameData.whatIf,
                         gameData.joueur,
                         prix,
-                        resultat.indexMois);
+                        resultat.indexMois,
+                        synchronisationCloture.pretsCopies);
             }
             else
             {
@@ -147,6 +174,13 @@ public static class ServiceCycleMensuelWhatIf
                     gameData.whatIf,
                     resultat.indexMois,
                     moisCalendrier,
+                    prix,
+                    resultat.patrimoineReelCentimes);
+
+            resultat.cloture =
+                ServicePatrimoineAlternatifWhatIf.CompleterPointHistorique(
+                    gameData.whatIf,
+                    resultat.cloture,
                     prix,
                     resultat.patrimoineReelCentimes);
 

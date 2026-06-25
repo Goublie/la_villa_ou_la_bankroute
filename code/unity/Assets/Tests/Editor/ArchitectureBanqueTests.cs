@@ -109,6 +109,48 @@ public class ArchitectureBanqueTests
     }
 
     [Test]
+    public void Patrimoine_SoustraitLeCapitalRestantDuDuPret()
+    {
+        DonneesJoueur joueur = new DonneesJoueur();
+        ServiceBanque banque = new ServiceBanque(joueur);
+        int patrimoineAvant = joueur.CalculPatrimoineTotal().centimes;
+
+        argent montantEmprunte = new argent(500000);
+        banque.ObtenirCompteCourant().AjoutHistorique(
+            "Versement prêt immobilier",
+            montantEmprunte);
+
+        joueur.pretsImmobiliers.Add(
+            new DonneesPret(
+                montantEmprunte,
+                10,
+                2f,
+                new argent(5000)));
+
+        Assert.That(
+            joueur.CalculPatrimoineTotal().centimes,
+            Is.EqualTo(patrimoineAvant));
+    }
+
+    [Test]
+    public void Patrimoine_AjouteLaValeurDesBiensImmobiliers()
+    {
+        DonneesJoueur joueur = new DonneesJoueur();
+        int patrimoineAvant = joueur.CalculPatrimoineTotal().centimes;
+
+        BienImmobilier bien = new BienImmobilier
+        {
+            valeurActuelle = new argent(7500000)
+        };
+
+        joueur.immobilier.biensPossedes.Add(bien);
+
+        Assert.That(
+            joueur.CalculPatrimoineTotal().centimes,
+            Is.EqualTo(patrimoineAvant + 7500000));
+    }
+
+    [Test]
     public void LivretA_CapitaliseLesInteretsEnDecembre()
     {
         DonneesJoueur joueur = new DonneesJoueur();

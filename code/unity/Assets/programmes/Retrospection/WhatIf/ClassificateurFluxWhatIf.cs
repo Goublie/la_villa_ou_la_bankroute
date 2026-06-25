@@ -15,7 +15,8 @@ public enum TypeFluxWhatIf
     TransfertInterne,
     DecisionBoursiere,
     RendementInterne,
-    DecisionHorsBourse
+    DecisionHorsBourse,
+    MensualitePretImmobilier
 }
 
 /// <summary>
@@ -39,8 +40,8 @@ public sealed class ResultatClassificationFluxWhatIf
 /// <remarks>
 /// Le moteur optimise uniquement les decisions boursieres. Les revenus,
 /// depenses de vie et decisions hors Bourse sont donc reproduits. Les achats,
-/// ventes, transferts internes et interets sont remplaces ou recalcules.
-/// Toute regle heuristique reste visible grace a un diagnostic.
+/// ventes, transferts internes, interets et mensualites de pret sont remplaces
+/// ou recalcules. Toute regle heuristique reste visible grace a un diagnostic.
 /// </remarks>
 public static class ClassificateurFluxWhatIf
 {
@@ -134,6 +135,19 @@ public static class ClassificateurFluxWhatIf
                 "Rendement interne recalcule selon la strategie alternative.");
         }
 
+        if (EstMensualitePretImmobilier(normalise))
+        {
+            return CreerResultat(
+                TypeFluxWhatIf.MensualitePretImmobilier,
+                true,
+                false,
+                libelle,
+                normalise,
+                montantCentimes,
+                "Mensualite ignoree ici : la copie alternative du pret la " +
+                "debite et l'amortit une seule fois.");
+        }
+
         if (LibellesTransfertInterne.Contains(normalise))
         {
             return CreerResultat(
@@ -191,6 +205,16 @@ public static class ClassificateurFluxWhatIf
             normalise,
             montantCentimes,
             "Libelle non repertorie : entree reproduite par prudence.");
+    }
+
+    private static bool EstMensualitePretImmobilier(string normalise)
+    {
+        return normalise.StartsWith(
+                   "pret immo",
+                   StringComparison.Ordinal) ||
+               normalise.StartsWith(
+                   "pret immobilier",
+                   StringComparison.Ordinal);
     }
 
     private static ResultatClassificationFluxWhatIf CreerResultat(

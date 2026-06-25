@@ -40,6 +40,30 @@ public static class ServicePatrimoine
             }
         }
 
+        // Les prêts sont des passifs : DonneesPret retourne déjà
+        // une valeur patrimoniale négative correspondant au capital restant dû.
+        if (joueur.pretsImmobiliers != null)
+        {
+            foreach (DonneesPret pret in joueur.pretsImmobiliers)
+            {
+                if (pret != null)
+                {
+                    totalCentimes += pret.GetValeurPatrimoine().centimes;
+                }
+            }
+        }
+
+        // Les biens immobiliers possédés sont des actifs patrimoniaux.
+        if (joueur.immobilier?.biensPossedes != null)
+        {
+            foreach (BienImmobilier bien in joueur.immobilier.biensPossedes)
+            {
+                if (bien != null)
+                {
+                    totalCentimes += bien.GetValeurPatrimoine().centimes;
+                }
+            }
+        }
         if (joueur.investissements != null)
         {
             foreach (Investissement investissement in joueur.investissements)
